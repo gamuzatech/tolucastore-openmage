@@ -1,0 +1,14 @@
+<?php
+/** @var RicardoMartins_PagSeguro_Block_Form_Redirect $this */
+
+/** @var RicardoMartins_PagSeguroPro_Model_Payment_Redirect $_method */
+$_method = $this->getMethod();
+$_code= $_method->getCode();
+$_additional = $_method->getInfoInstance()->getAdditionalInformation();
+?>
+<p class="pagseguro-redirect-title"><strong><?php echo $_method->getTitle();?></strong></p>
+<?php if(!$_additional || !isset($_additional['redirect_url'])): ?>
+    <p class="pagseguro-redirect-description"><?php echo $_method->getStoreConfig('description');?></p>
+<?php else: ?>
+    <p class="pagseguro-redirect-link"><a href="<?php echo $_additional['redirect_url'];?>">Clique aqui para pagar no PagSeguro</a></p>
+<?php endif;?>
