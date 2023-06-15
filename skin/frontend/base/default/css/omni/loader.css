@@ -1,0 +1,66 @@
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Omni
+ * @package     Omni_AjaxAddToCart
+ * @copyright   Copyright (c) 2016 Omni Partners Oy (http://www.omnipartners.fi)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ #backgroundPopup { background-color: #000000; display: none; position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 999;}
+.omni-ajax-backdrop #backgroundPopup { opacity: 0.75; display: block !important; background-color: #ffffff; }
+.omni-ajax-backdrop .omni-loader { z-index: 9999; position: fixed; left: 50%; top: 50%; display: block !important; }
+
+
+/* CSS Spinner */
+.omni-ajax-backdrop .omni-loader .loader {
+  margin: -32px 0 0 -32px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 8px solid rgba(51, 153, 204, 0.2);
+  border-right: 8px solid rgba(51, 153, 204, 0.2);
+  border-bottom: 8px solid rgba(51, 153, 204, 0.2);
+  border-left: 8px solid #3399CC;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load 1.1s infinite linear;
+  animation: load 1.1s infinite linear;
+}
+
+.omni-ajax-backdrop .omni-loader .loader,
+.omni-ajax-backdrop .omni-loader .loader:after {
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+}
+
+@-webkit-keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes load {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
