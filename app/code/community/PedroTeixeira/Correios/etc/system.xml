@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * This source file is subject to the MIT License.
+ * It is also available through http://opensource.org/licenses/MIT
+ *
+ * @category  PedroTeixeira
+ * @package   PedroTeixeira_Correios
+ * @author    Pedro Teixeira <hello@pedroteixeira.io>
+ * @copyright 2015 Pedro Teixeira (http://pedroteixeira.io)
+ * @license   http://opensource.org/licenses/MIT MIT
+ * @link      https://github.com/pedro-teixeira/correios
+ */
+-->
+<config>
+    <sections>
+        <carriers>
+            <groups>
+                <pedroteixeira_correios translate="label" module="pedroteixeira_correios">
+                    <label>Correios - Pedro Teixeira</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>
+                        <![CDATA[
+                            <div>
+                                <h3>Informações Importantes</h3>
+                                <p>Para reportar bugs ou sugerir melhorias, por favor use o <a href="https://github.com/pedro-teixeira/correios" target="_blank">GitHub</a>.</p>
+                                <p>Lembre-se de configurar as "Definições de Envio" no menu ao lado esquerdo.</p>
+                                <p>Para serviços que tenham em seu nome "Com Contrato", é necessário configurar o "Código Administrativo dos Correios" e "Senha Administrativa dos Correios".</p>
+                                <p>Para utilizar as regras de desconto de frete, você deve configurar o "Serviço para entrega gratuita", lembre-se de habilitar o serviço.</p>
+                                <p>Agradecimento especial para todos os <a href="https://github.com/pedro-teixeira/correios/graphs/contributors" target="_blank">contribuidores</a>.</p>
+                                <p>Pedro Teixeira [<a href="http://pedroteixeira.io/" target="_blank">pedroteixeira.io</a> ]</p>
+                                <br />
+                                <hr />
+                                <br />
+                            </div>
+                        ]]>
+                    </comment>
+                    <fields>
+                        <active translate="label">
+                            <label>Habilitar</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Nome do Meio de Entrega</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <weight_type translate="label">
+                            <label>Formato do Peso</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>PedroTeixeira_Correios_Model_Source_WeightType</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Formato do peso dos produtos.</comment>
+                            <tooltip>O formato do peso irá implicar na maneira como o mesmo é cadastrado no produto, por
+                                exemplo, 1 Kg no formato "Kilo" será "1.000", já em "Gramas" será "1000.000".
+                            </tooltip>
+                        </weight_type>
+                        <sigepweb_contract_code translate="label">
+                            <label>Número do Contrato</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sigepweb_contract_code>
+                        <sigepweb_card_code translate="label">
+                            <label>Cartão de postagem vinculado ao contrato</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sigepweb_card_code>
+                        <sigepweb_username translate="label">
+                            <label>Usuário</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sigepweb_username>
+                        <sigepweb_password translate="label">
+                            <label>Senha</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sigepweb_password>
+                        <postmethods translate="label">
+                            <label>Serviços</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>PedroTeixeira_Correios_Model_Source_PostMethods</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Serviços que estarão disponíveis, lembre-se de usar os serviços correspondentes a
+                                fonte configurada.
+                            </comment>
+                        </postmethods>
+                        <update_post_methods>
+                            <label>Atualizar Serviços</label>
+                            <frontend_type>button</frontend_type>
+                            <frontend_model>pedroteixeiracorreios_adminhtml/system_config_form_button</frontend_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Requer usuário e senha.</comment>
+                        </update_post_methods>
+                        <free_method translate="label">
+                            <label>Serviço Para Entrega Gratuita</label>
+                            <frontend_type>select</frontend_type>
+                            <frontend_class>free-method</frontend_class>
+                            <source_model>PedroTeixeira_Correios_Model_Source_PostMethods</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Quando usar um cupom oferecendo frete gratuito, qual serviço será gratuito.
+                                Lembre-se de habilitar o serviço.
+                            </comment>
+                        </free_method>
+                        <cod_admin translate="label">
+                            <label>Código Administrativo dos Correios (Serviços Com Contrato)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cod_admin>
+                        <senha_admin translate="label">
+                            <label>Senha Administrativa dos Correios (Serviços Com Contrato)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>O padrão de senha são os 8 primeiros dígitos do CNPJ</comment>
+                        </senha_admin>
+                        <prazo_entrega translate="label">
+                            <label>Exibir Prazo de Entrega</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </prazo_entrega>
+                        <msgprazo translate="label">
+                            <label>Mensagem que Exibe o Prazo de Entrega</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <tooltip>"%s" para o nome do serviço, por exemplo "Sedex", "%d" para o número de dias.
+                            </tooltip>
+                            <depends>
+                                <prazo_entrega>1</prazo_entrega>
+                            </depends>
+                        </msgprazo>
+                        <mao_propria translate="label">
+                            <label>Utilizar Serviço de Mão Própria</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mao_propria>
+                        <aviso_recebimento translate="label">
+                            <label>Utilizar Serviço de Aviso de Recebimento</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </aviso_recebimento>
+                        <valor_declarado translate="label">
+                            <label>Utilizar Serviço de Valor Declarado</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </valor_declarado>
+                        <check_dimensions>
+                            <label>Validar Dimensões dos Produtos</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Ao habilitar essa funcionalidade cada produto será validado seguindo a regra de dimensões dos Correios.<br />A regra pode ser encontrada <a href="http://www2.correios.com.br/sistemas/precosprazos/Formato.cfm" target="_blank">nesse link</a>.]]></comment>
+                        </check_dimensions>
+                        <altura_padrao translate="label">
+                            <label>Altura Padrão (cm)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Quando não configurada no produto será usada.<br />Mínimo de 2 cm.]]></comment>
+                        </altura_padrao>
+                        <comprimento_padrao translate="label">
+                            <label>Comprimento Padrão (cm)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Quando não configurado no produto será usado.<br />Mínimo de 16 cm.]]></comment>
+                        </comprimento_padrao>
+                        <largura_padrao translate="label">
+                            <label>Largura Padrão (cm)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                <![CDATA[Quando não configurada no produto será usada.<br />Mínimo de 11 cm.]]></comment>
+                        </largura_padrao>
+                        <min_order_value translate="label">
+                            <label>Valor Mínimo de Compra</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>130</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </min_order_value>
+                        <max_order_value translate="label">
+                            <label>Valor Máximo de Compra</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>140</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_order_value>
+                        <handling_fee translate="label">
+                            <label>Taxa de Postagem</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>160</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Essa taxa será adicionada ao valor do frete.</comment>
+                        </handling_fee>
+                        <add_prazo translate="label">
+                            <label>Adicionar ao prazo dos Correios (dias)</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>170</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Adicionará mais dias aos prazos fornecidos pelos Correios.</comment>
+                        </add_prazo>
+                        <correioserror translate="label">
+                            <label>Mensagem que Exibe os Erros dos Correios</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>180</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </correioserror>
+                        <dimensionerror translate="label">
+                            <label>Mensagem de Dimensões Fora do Permitido</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>190</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </dimensionerror>
+                        <valueerror translate="label">
+                            <label>Mensagem de Valor Fora do Permitido</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </valueerror>
+                        <zipcodeerror translate="label">
+                            <label>Mensagem de CEP Incorreto</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>210</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </zipcodeerror>
+                        <weightzeroerror translate="label">
+                            <label>Mensagem de Peso Zero</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>230</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </weightzeroerror>
+                        <urlerror translate="label">
+                            <label>Mensagem de URL Fora do Ar</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>240</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </urlerror>
+                        <coderror translate="label">
+                            <label>Mensagem de Falta de Código Administrativo</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>250</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </coderror>
+                        <showmethod translate="label">
+                            <label>Mostrar Método Mesmo se Não Aplicável</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>260</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Se houver um erro ou o método não for aplicável naquela situação, mesmo assim
+                                mostrar as mensagens de erro?
+                            </comment>
+                        </showmethod>
+                        <unique_city_zip translate="label">
+                            <label>Ignorar Correios quando CEP Destino é igual ao CEP Origem</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>261</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ignora o uso do Correios para cidades pequenas aonde existe somente 1 CEP para todos os endereços de entrega.</comment>
+                        </unique_city_zip>
+                        <filter_by_item translate="label">
+                            <label>Habilitar Filtro de Serviços por Produto</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>265</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>A cotação irá exibir somente os serviços de postagem comuns a todos os produtos do carrinho de compras.</comment>
+                        </filter_by_item>
+                        <cache_mode translate="label">
+                            <label>Modo de Prioridade da Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>PedroTeixeira_Correios_Model_Source_CacheMode</source_model>
+                            <sort_order>267</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Esta configuração se aplica somente quando Correios Cache estiver ativo, em Sistema > Gerenciar Cache.</comment>
+                        </cache_mode>
+                        <split_pack translate="label">
+                            <label>Habilitar Divisão de Pacotes</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>268</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>O pacote é dividido, caso o carrinho exceda os limites de peso e tamanho, para todos os serviços. A divisão se repete até que os limites sejam válidos, para um ou mais serviços.</comment>
+                        </split_pack>
+                        <show_soft_errors translate="label">
+                            <label>Exibir Alerta de Área de Risco</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>269</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show_soft_errors>
+                        <sro_tracking_job translate="label">
+                            <label>Ativar Monitoramento das Encomendas</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>270</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ao ativar o monitoramento, os pedidos são rastreados regularmente. Toda movimentação fica registrada nos comentários da entrega. Pedidos em situações adversas são classificados como Dificuldade de Entrega, mas continuam sendo monitorados. Pedidos entregues são classificados como Transação Concluída, e deixam de ser monitorados. O cliente é notificado via e-mail, em eventos que necessitam sua atenção, como "Saiu para entrega", "Aguardando retirada", entre outros. Somente pedidos com código de rastreamento podem ser monitorados. Somente um rastreador (o primeiro da lista) é monitorado em cada entrega.</comment>
+                        </sro_tracking_job>
+                        <sro_status_tracking_allowed>
+                            <label>Situação para Monitorar</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>272</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Somente os pedidos nas situações selecionadas acima serão monitorados.</comment>
+                            <depends>
+                            	<sro_tracking_job>1</sro_tracking_job>
+                            </depends>
+                        </sro_status_tracking_allowed>
+                        <sro_username translate="label">
+                            <label>Usuário SRO</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>275</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Os dados de acesso ao SRO (Sistema de Rastreamento de Objetos) devem ser solicitados junto aos Correios.</comment>
+                            <depends>
+                            	<sro_tracking_job>1</sro_tracking_job>
+                            </depends>
+                        </sro_username>
+                        <sro_password translate="label">
+                            <label>Senha SRO</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>276</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Os dados de acesso ao SRO (Sistema de Rastreamento de Objetos) devem ser solicitados junto aos Correios.</comment>
+                            <depends>
+                            	<sro_tracking_job>1</sro_tracking_job>
+                            </depends>
+                        </sro_password>
+                        <sort_order translate="label">
+                            <label>Ordenar Por</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                    </fields>
+                </pedroteixeira_correios>
+            </groups>
+        </carriers>
+    </sections>
+</config>
