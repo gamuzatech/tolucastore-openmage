@@ -1,0 +1,9 @@
+<?php
+/* @var RicardoMartins_PagSeguroPro_Block_Payment_Info $this */
+?>
+<?php if($paymentInfo = $this->getPaymentInfo()):?>
+    <button type="button" onclick="popWin('<?php echo $paymentInfo['url']?>','payment','');" title="<?php echo $paymentInfo['texto']?>" class="button ps-button ps-button-redirect"><span><span><?php echo $paymentInfo['texto']?></span></span></button>
+    <?php if($paymentInfo['tipo'] == 'Boleto' && $this->showDownloadPdf()) : ?>
+        <button type="button" onclick="popWin('<?php echo $paymentInfo['urlPdf']?>','payment','');" title="Download do Boleto em PDF" class="button ps-button ps-button-printpdf"><span><span>Download do Boleto em PDF</span></span></button>
+    <?php endif;?>
+<?php endif; ?>

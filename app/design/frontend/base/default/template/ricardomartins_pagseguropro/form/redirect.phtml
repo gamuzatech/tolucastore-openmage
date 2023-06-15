@@ -1,0 +1,11 @@
+<?php
+/** @var RicardoMartins_PagSeguroPro_Block_Form_Redirect $this */
+$_code=$this->getMethodCode();
+$_redirModel = Mage::getModel('ricardomartins_pagseguropro/payment_redirect');
+
+# IWD Checkout compatibility fix
+$iwdEnabled = method_exists(Mage::helper('ricardomartins_pagseguro'), 'isIwdEnabled') && Mage::helper('ricardomartins_pagseguro')->isIwdEnabled();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="<?php echo (!$iwdEnabled)?'display:none;':'';?>">
+    <li><?php echo $_redirModel->getStoreConfig('description');?></li>
+</ul>

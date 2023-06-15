@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_success translate="label">
+        <reference name="content">
+            <block name="ricardomartins.pagseguropro.paymentinfo" type="ricardomartins_pagseguropro/payment_info"
+                   template="ricardomartins_pagseguropro/payment/info.phtml" after="checkout.success"/>
+        </reference>
+    </checkout_onepage_success>
+    <onepagecheckout_index_success>
+        <reference name="content">
+            <block name="ricardomartins.pagseguropro.paymentinfo" type="ricardomartins_pagseguropro/payment_info"
+                   template="ricardomartins_pagseguropro/payment/info.phtml" after="checkout.success"/>
+        </reference>
+    </onepagecheckout_index_success>
+</layout>
