@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Omni
+ * @package     Omni_AjaxAddToCart
+ * @copyright   Copyright (c) 2016 Omni Partners Oy (http://www.omnipartners.fi)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="0.1.0">
+    <omni_ajax_add_to_cart>
+        <reference name="head">
+            <action method="addItem" ifconfig="checkout/cart/ajax_add_to_cart"><type>skin_js</type><name>js/omni/ajax_add_to_cart.js</name></action>
+            <action method="addItem" ifconfig="checkout/cart/ajax_add_to_cart"><type>skin_css</type><name>css/omni/loader.css</name></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="omni_loader" after="-">
+                <action method="setTemplate" ifconfig="checkout/cart/ajax_add_to_cart"><template>omni/loader.phtml</template></action>
+            </block>
+        </reference>
+    </omni_ajax_add_to_cart>
+
+    <catalog_category_default>
+        <update handle="omni_ajax_add_to_cart"/>
+    </catalog_category_default>
+
+    <catalog_category_layered>
+        <update handle="omni_ajax_add_to_cart"/>
+    </catalog_category_layered>
+
+    <catalog_product_view>
+        <update handle="omni_ajax_add_to_cart"/>
+    </catalog_product_view>
+
+    <catalogsearch_result_index>
+        <update handle="omni_ajax_add_to_cart"/>
+    </catalogsearch_result_index>
+</layout>
