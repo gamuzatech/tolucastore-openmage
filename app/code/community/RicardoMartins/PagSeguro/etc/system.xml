@@ -1,0 +1,701 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Paygate
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <sections>
+        <payment>
+            <groups>
+                <rm_pagseguro module="ricardomartins_pagseguro">
+                    <comment><![CDATA[Precisa de ajuda? - <a href="//r-martins.github.io/PagSeguro-Magento-Transparente" target="_blank">Site oficial do módulo</a> | <a href="//pagsegurotransparente.zendesk.com/hc/pt-br" target="_blank">Central de Ajuda</a>.<br/> Quer pagar menos taxas? <a href="//r-martins.github.io/PagSeguro-Magento-Transparente/pro/app.html" target="_blank"><strong>Autorize sua conta</strong></a> no modelo de aplicação e receba o módulo PRO gratuitamente no e-mail informado, com suporte a boleto e TEF.<br/>Se você tem taxas menores ainda, e desejar receber o módulo PRO com suporte a boleto e tef sem autorizar a aplicação, <a href="//r-martins.github.io/PagSeguro-Magento-Transparente/pro/" target="_blank">faça uma assinatura</a>.]]></comment>
+                    <label>PagSeguro - Ricardo Martins</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1110</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <merchant_email translate="label">
+                            <label>E-mail</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-email</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>E-mail da loja (conta vendedor)</comment>
+                            <tooltip>E-mail da sua conta PagSeguro. Você deve ter uma Conta Vendedor ou Conta Empresarial.</tooltip>
+                        </merchant_email>
+                        <token translate="label">
+                            <label>Token</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>O token é obtido no seu painel do PagSeguro. Ao salvar esta página, ele será criptografado, aparentando ter um tamanho menor.</comment>
+                            <tooltip>No caso de suspeita de token inválido ou de ter instalado outro módulo PagSeguro anteriormente, redigite o token e salve as configurações.</tooltip>
+                        </token>
+                        <sandbox translate="label">
+                            <label>Ambiente de testes?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[No modo de testes, os dados são enviados para sandbox do PagSeguro. Habilite o acesso à Sandbox <a href="//pagseguro.ricardomartins.net.br/sandbox.html" target="_blank">aqui</a>]]></comment>
+                        </sandbox>
+                        <sandbox_merchant_email translate="label">
+                            <label>E-mail Sandbox</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-email</validate>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <sandbox>1</sandbox>
+                            </depends>
+                        </sandbox_merchant_email>
+                        <sandbox_token translate="label">
+                            <label>Token Sandbox</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <sandbox>1</sandbox>
+                            </depends>
+                        </sandbox_token>
+                        <sandbox_appkey translate="label">
+                            <label>Sandbox PRO Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Você só precisa informá-la caso esteja usando o <a href="//pagseguro.ricardomartins.net.br/pro/app.html" target="_blank">modelo de aplicação</a>. Nestes casos, também deverá autorizar sua conta Sandbox <a href="//pagseguro.ricardomartins.net.br/sandbox.html" target="_blank">neste link</a>.]]></comment>
+                            <depends>
+                                <sandbox>1</sandbox>
+                            </depends>
+                        </sandbox_appkey>
+                        <debug translate="label">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Veja a saída de log em var/log/pagseguro.log. É recomendável habilitar o log para obter informações sobre eventuais problemas.</comment>
+                        </debug>
+                        <updater_enabled translate="label">
+                            <label>Forçar atualização de pedidos?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[
+                            A cada 6 horas o módulo tentará buscar mudanças no status dos pedidos. Útil caso sua loja esteja sofrendo instabilidades ou tenha problemas para processar estas atualizações.
+                            ]]></comment>
+                        </updater_enabled>
+                        <send_invoice_email>
+                            <label>Enviar e-mail de fatura?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Dispara o e-mail de fatura da loja ao receber a confirmação de pagamento do PagSeguro.]]></comment>
+                        </send_invoice_email>
+                        <send_status_change_email>
+                            <label>Enviar e-mail mudança de status?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>33</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Dispara o e-mail de mudança de status do pedido da loja ao receber notificações relevantes em relação ao pagamento da PagSeguro.]]></comment>
+                        </send_status_change_email>
+                        <customer_cpf_attribute>
+                            <label>CPF do cliente</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_cpf</source_model>
+                            <sort_order>34</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Caso sua loja utilize um atributo personalizado para o CPF do cliente, selecione aqui. Caso contrário escolha "Solicitar junto com os outros dados do pagamento". Caso um CNPJ seja informado no campo mapeado o CPF sempre será solicitado para pagamento com cartão.]]></comment>
+                        </customer_cpf_attribute>
+                        <address_telephone_attribute>
+                            <label>Telefone do cliente</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_address_attributes</source_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Caso sua loja utilize um atributo personalizado para o Telefone do cliente, selecione aqui.]]></comment>
+                        </address_telephone_attribute>
+                        <address_street_attribute>
+                            <label>Atributo Rua de entrega</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_address_attributes</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Caso sua loja utilize um atributo personalizado para a Rua de entrega, selecione aqui.]]></comment>
+                        </address_street_attribute>
+                        <address_number_attribute>
+                            <label>Atributo Número</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_address_attributes</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Caso sua loja utilize um atributo personalizado para o campo 'Número' de entrega, selecione aqui.]]></comment>
+                        </address_number_attribute>
+                        <address_complement_attribute>
+                            <label>Atributo Complemento</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_address_attributes_optional</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Caso sua loja utilize um atributo personalizado para o campo 'Complemento' de entrega, selecione aqui. Você pode omitir esta informação ao PagSeguro.]]></comment>
+                        </address_complement_attribute>
+                        <address_neighborhood_attribute>
+                            <label>Atributo Bairro</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_address_attributes</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Caso sua loja utilize um atributo personalizado para o campo 'Bairro' de entrega, selecione aqui.]]></comment>
+                        </address_neighborhood_attribute>
+                        <notification_url_nosid>
+                            <label>Esconder SID na URL de notificação</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>71</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Previne que o parâmetro de sessão SID seja utilizado na URL de notificação.]]></comment>
+                        </notification_url_nosid>
+                        <hash_email_active>
+                            <label>Utilizar hash@dominio ao invés do e-mail do comprador</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_hash</source_model>
+                            <sort_order>72</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <tooltip>O uso deste recurso pode aumentar a quantidade de pedidos negados e também impede o PagSeguro de enviar e-mails sobre o pedido para o cliente.</tooltip>
+                            <comment><![CDATA[Converte o e-mail do comprador para hash@dominio.]]></comment>
+                        </hash_email_active>
+                        <hash_email_algo>
+                            <label>Algoritimo do hash</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_algorithms</source_model>
+                            <sort_order>73</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Algoritimo utilizado na criação do hash.]]></comment>
+                            <depends><hash_email_active>1</hash_email_active></depends>
+                        </hash_email_algo>
+                        <hash_email_domain>
+                            <label>Domínio após o hash</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>74</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Domínio que será anexado após o hash.]]></comment>
+                            <depends><hash_email_active>1</hash_email_active></depends>
+                        </hash_email_domain>
+                        <exception_request_validate>
+                          <label>Bloquear Validação Instantânea</label>
+                          <frontend_type>textarea</frontend_type>
+                          <sort_order>80</sort_order>
+                          <show_in_default>1</show_in_default>
+                          <show_in_website>1</show_in_website>
+                          <show_in_store>0</show_in_store>
+                          <comment><![CDATA[Informe as URLs (um por linha) que deseja desativar validação imediata. Informe URLs vindas de atualizações via Ajax em seu checkout e que validam o meio de pagamento. Ex.: onestepcheckout/ajax/savePaymentMethod <br/>Para mais informações, consulte <a href="//pagsegurotransparente.zendesk.com/hc/pt-br/articles/115003006172" target="_blank">este artigo</a>.]]></comment>
+                        </exception_request_validate>
+                        <placeorder_button>
+                            <label>Identificador CSS Botão Finalizar Compra</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Alguns eventos precisam ser disparados no momento da finalização da compra. Se você usa um checkout customizado, considere adicionar o identificador do seu botão de checkout. Deixe em branco se não souber. <a href="//pagsegurotransparente.zendesk.com/hc/pt-br/articles/360039820711" target="_blank">Saiba mais.</a>]]></comment>
+                            <tooltip><![CDATA[Exemplos: <br/>por classe css: .btn-checkout <br/>por id: #btn-checkout]]></tooltip>
+                        </placeorder_button>
+                        <jsdelivr_enabled>
+                            <label>Usar CDN para entrega do JS?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use o JsDelivr.com para entregar o Js do módulo mais rapidamente para seus clientes e eventualmente carregar do cache. Desabilite esta opção para usar seu próprio servidor.</comment>
+                        </jsdelivr_enabled>
+                        <jsdelivr_minify>
+                            <label>Minificar JS no CDN?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <jsdelivr_enabled>1</jsdelivr_enabled>
+                            </depends>
+                        </jsdelivr_minify>
+                        <stc_mirror>
+                            <label>Usar CDN secundário para arquivos estáticos?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>120</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[
+                            Ao habilitar esta opção, os arquivos estáticos do PagSeguro passam a ser chamados a partir de um CDN secundário. Recomendável para maior estabilidade e performance. <a href="//pagsegurotransparente.zendesk.com/hc/pt-br/articles/360061203711" target="_blank">Saiba mais</a>.
+                            ]]></comment>
+                            <tooltip>Os arquivos de stc.pagseguro.uol.com.br passarão a ser servidos à partir de stcpagseguro.ricardomartins.net.br.</tooltip>
+                        </stc_mirror>
+                    </fields>
+                </rm_pagseguro>
+                <rm_pagseguro_cc module="ricardomartins_pagseguro">
+                    <label>PagSeguro - Cartão de Crédito - Ricardo Martins</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1120</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </title>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                        <flag>
+                            <label>Tamanho da bandeira do cartão</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_ccbrand</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <tooltip><![CDATA[Exemplos: <br/><img src="//stc.pagseguro.uol.com.br/public/img/payment-methods-flags/42x20/visa.png" title="42x20"/><img src="//stc.pagseguro.uol.com.br/public/img/payment-methods-flags/68x30/visa.png" title="68x30"/>]]></tooltip>
+                        </flag>
+                        <info_brl>
+                            <label>Exibir aviso que a transação é feita no Brasil.</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Esta informação DEVE conter em seu checkout por determinação da Visa.]]></comment>
+                        </info_brl>
+                        <owner_dob_attribute>
+                            <label>Data de Nascimento</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_dob</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Data de nascimento do dono do cartão de crédito é obrigatório para o PagSeguro. Este campo também é usado no formulário de pagamento recorrente (caso esteja usando).]]></comment>
+                        </owner_dob_attribute>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                        </sort_order>
+                        <group_restriction>
+                            <label>Habilitar restrição por grupos</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </group_restriction>
+                        <customer_groups>
+                            <label>Grupos de Cliente</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>ricardomartins_pagseguro/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Grupos de clientes que podem usar este método.]]></comment>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                        </customer_groups>
+                        <show_total>
+                            <label>Exibir valor total no seletor de parcelas</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>70</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Quando habilitado, o valor total do pedido é exibido junto com as informações de parcelamento.]]></comment>
+                        </show_total>
+                        <force_installments_selection>
+                            <label>Forçar seleção de parcelas</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>80</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Quando habilitado, forçará o cliente a selecionar o valor de parcelas ao invés de deixar pagamento a vista pre-selecionado.]]></comment>
+                        </force_installments_selection>
+                        <installment_limit>
+                            <label>Limitar parcelas</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <source_model>ricardomartins_pagseguro/source_ccinstallments</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Limita o número de parcelas.]]></comment>
+                        </installment_limit>
+                        <installment_free_interest_minimum_amt>
+                            <label>Valor de parcela mínima sem juros</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <tooltip><![CDATA[
+                            Esta configuração permite especificar qual um valor mínimo de parcela onde o vendedor (você) assume os juros. Ao colocar o valor 50 neste campo, um pedido de R$ 500 poderá ser parcelado em até 5x de R$50 sem juros.
+                            ]]></tooltip>
+                            <validate>validate-number validate-not-negative-number</validate>
+                            <comment><![CDATA[Ao especificar um valor, você <strong>DEVE</strong> desativar ou remover qualquer <a href="//minhaconta.pagseguro.uol.com.br/meu-negocio/promocoes-salvas" target="_blank">promoção salva no seu painel PagSeguro</a>. <a href="//bit.ly/34927gh" target="_blank">Saiba mais.</a>]]></comment>
+                        </installment_free_interest_minimum_amt>
+                        <installments_product>
+                            <label>Exibir parcelas na página de produto?</label>
+                            <sort_order>120</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <frontend_type>select</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <tooltip>Pode deixar sua página de produtos mais lenta.</tooltip>
+                            <comment><![CDATA[É exibido o parcelamento máximo com base no cartão VISA, de acordo com suas configurações no PagSeguro. Saiba mais <a href="//pagsegurotransparente.zendesk.com/hc/pt-br/articles/360027562792" target="_blank">aqui</a>.]]></comment>
+                        </installments_product>
+                        <installments_product_interestfree_only>
+                            <label>Exibir somente parcelas sem juros?</label>
+                            <sort_order>130</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <frontend_type>select</frontend_type>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Será exibido somente a parcela máxima sem juros na página de produto.</comment>
+                            <depends>
+                                <installments_product>1</installments_product>
+                            </depends>
+                        </installments_product_interestfree_only>
+                        <allowspecific translate="label" module="Payment">
+                            <label>Payment from Applicable Countries</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <sort_order>200</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowspecific>
+                        <specificcountry translate="label" module="Payment">
+                            <label>Payment from Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>210</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                        </specificcountry>
+                        <multicc_active translate="label,comment" module="Payment">
+                            <label>Enable 2 cards payment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <backend_model>ricardomartins_pagseguro/system_config_backend_validateMultiCc</backend_model>
+                            <sort_order>220</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Payment with 2 cards only works if the application mode is enabled.]]></comment>
+                        </multicc_active>
+                    </fields>
+                </rm_pagseguro_cc>
+                <rm_pagseguro_kiosk module="ricardomartins_pagseguro">
+                    <label>PagSeguro - Kiosk mode - Ricardo Martins (beta)</label>
+                    <comment><![CDATA[Permite realizar um pedido inteiro através de um link único. Saiba mais <a href="//pagsegurotransparente.zendesk.com/hc/pt-br/sections/115000671771" target="_blank">aqui</a>. <br/><strong>Este é um recurso novo, ainda em fase de testes (beta) e pode sofrer alterações significativas nas próximas versões. Teste bem antes de usar.</strong>]]></comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1140</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </title>
+                        <order_status translate="label">
+                            <label>New Order Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </order_status>
+                    </fields>
+                </rm_pagseguro_kiosk>
+
+
+                <rm_pagseguro_recurring module="ricardomartins_pagseguro">
+                    <label>PagSeguro - Pagamento Recorrente (beta) - Ricardo Martins</label>
+                    <comment>Certifique-se de ler e entender as condições, requisitos e como utilizar a recorrência no Magento.</comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1150</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </title>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </title>
+                        <flag>
+                            <label>Tamanho da bandeira do cartão</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_ccbrand</source_model>
+                            <sort_order>25</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <tooltip><![CDATA[Exemplos: <br/><img src="//stc.pagseguro.uol.com.br/public/img/payment-methods-flags/42x20/visa.png" title="42x20"/><img src="//stc.pagseguro.uol.com.br/public/img/payment-methods-flags/68x30/visa.png" title="68x30"/>]]></tooltip>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </flag>
+                        <info_brl>
+                            <label>Exibir aviso que a transação é feita no Brasil.</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>26</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Esta informação DEVE conter em seu checkout por determinação da Visa.]]></comment>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </info_brl>
+                        <owner_dob_attribute>
+                            <label>Data de Nascimento</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>ricardomartins_pagseguro/source_customer_dob</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[Data de nascimento do dono do cartão de crédito é obrigatório para o PagSeguro. Este campo também é usado no formulário de pagamento recorrente (caso esteja usando).]]></comment>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </owner_dob_attribute>
+                        <sort_order translate="label">
+                            <label>Sort Order</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <frontend_class>validate-number</frontend_class>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </sort_order>
+                        <group_restriction>
+                            <label>Habilitar restrição por grupos</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </group_restriction>
+                        <customer_groups>
+                            <label>Grupos de Cliente</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>ricardomartins_pagseguro/system_config_source_customer_groups</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Grupos de clientes que podem usar este método.]]></comment>
+                            <depends>
+                                <group_restriction>1</group_restriction>
+                            </depends>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </customer_groups>
+                        <allowspecific translate="label" module="Payment">
+                            <label>Payment from Applicable Countries</label>
+                            <frontend_type>allowspecific</frontend_type>
+                            <sort_order>200</sort_order>
+                            <source_model>adminhtml/system_config_source_payment_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </allowspecific>
+                        <specificcountry translate="label" module="Payment">
+                            <label>Payment from Specific Countries</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>210</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <allowspecific>1</allowspecific>
+                            </depends>
+                            <depends>
+                                <active>1</active>
+                            </depends>
+                        </specificcountry>
+                    </fields>
+                </rm_pagseguro_recurring>
+            </groups>
+        </payment>
+    </sections>
+</config>

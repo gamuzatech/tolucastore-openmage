@@ -1,0 +1,15 @@
+<strong><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?> (PagSeguro)</strong>
+<?php if($info = $this->getInfo()): ?>
+    <br/>
+    <?php if($additional = $info->getAdditionalInformation()):?>
+        Id Transação: <?php echo (isset($additional['transaction_id']))?$this->escapeHtml($additional['transaction_id']):'Desconhecido';?>
+        <br/>
+    <?php endif;?>
+    Bandeira: <?php echo ucfirst($this->escapeHtml($info->getCcType()));?>
+    <br/>
+    Últimos 4 dígitos: <?php echo $this->escapeHtml($info->getCcLast4());?>
+    <?php if(isset($additional['installment_quantity']) && isset($additional['installment_value'])):?>
+        <br/>
+        Parcelas: <?php echo $this->escapeHtml($additional['installment_quantity']);?>x R$ <?php echo number_format($additional['installment_value'], 2, ',', '.');?>
+    <?php endif;?>
+<?php endif; ?>
