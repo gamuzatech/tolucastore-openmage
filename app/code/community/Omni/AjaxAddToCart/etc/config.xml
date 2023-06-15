@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * @category    Omni
+ * @package     Omni_AjaxAddToCart
+ * @copyright   Copyright (c) 2016 Omni Partners Oy (http://www.omnipartners.fi)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <modules>
+        <Omni_AjaxAddToCart>
+            <version>0.0.0.1</version>
+        </Omni_AjaxAddToCart>
+    </modules>
+    <global>
+        <models>
+            <omni_ajax_add_to_cart>
+                <class>Omni_AjaxAddToCart_Model</class>
+            </omni_ajax_add_to_cart>
+        </models>
+        <helpers>
+            <omni_ajax_add_to_cart>
+                <class>Omni_AjaxAddToCart_Helper</class>
+            </omni_ajax_add_to_cart>
+        </helpers>
+    </global>
+    <frontend>
+        <translate>
+            <modules>
+                <Omni_AjaxAddToCart>
+                    <files>
+                        <default>Omni_AjaxAddToCart.csv</default>
+                    </files>
+                </Omni_AjaxAddToCart>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <omni_ajax_add_to_cart>
+                    <file>omni/ajax_add_to_cart.xml</file>
+                </omni_ajax_add_to_cart>
+            </updates>
+        </layout>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Omni_AjaxAddToCart>
+                    <files>
+                        <default>Omni_AjaxAddToCart.csv</default>
+                    </files>
+                </Omni_AjaxAddToCart>
+            </modules>
+        </translate>
+    </adminhtml>
+    <default>
+        <checkout>
+            <cart>
+                <ajax_add_to_cart>0</ajax_add_to_cart>
+            </cart>
+        </checkout>
+    </default>
+</config>
