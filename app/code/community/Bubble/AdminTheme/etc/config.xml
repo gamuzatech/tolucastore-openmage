@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bubble_AdminTheme>
+            <version>1.0.0</version>
+        </Bubble_AdminTheme>
+    </modules>
+    <global>
+        <blocks>
+            <bubble_admintheme>
+                <class>Bubble_AdminTheme_Block</class>
+            </bubble_admintheme>
+        </blocks>
+        <helpers>
+            <bubble_admintheme>
+                <class>Bubble_AdminTheme_Helper</class>
+            </bubble_admintheme>
+        </helpers>
+        <models>
+            <bubble_admintheme>
+                <class>Bubble_AdminTheme_Model</class>
+            </bubble_admintheme>
+        </models>
+        <events>
+            <adminhtml_controller_action_predispatch_start>
+                <observers>
+                    <bubble_admintheme_admin_predispatch>
+                        <class>Bubble_AdminTheme_Model_Adminhtml_Observer</class>
+                        <method>setTheme</method>
+                    </bubble_admintheme_admin_predispatch>
+                </observers>
+            </adminhtml_controller_action_predispatch_start>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <bubble_admintheme before="Mage_Adminhtml">Bubble_AdminTheme_Adminhtml</bubble_admintheme>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <bubble_admintheme>
+                    <file>bubble/admintheme.xml</file>
+                </bubble_admintheme>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Bubble_AdminTheme>
+                    <files>
+                        <default>Bubble_AdminTheme.csv</default>
+                    </files>
+                </Bubble_AdminTheme>
+            </modules>
+        </translate>
+        <themes>
+            <default module="bubble_admintheme">
+                <label>Default</label>
+            </default>
+            <go module="bubble_admintheme">
+                <label>Magento Go</label>
+            </go>
+            <magento module="bubble_admintheme">
+                <label>Magento.com</label>
+            </magento>
+            <magento2 module="bubble_admintheme">
+                <label>Magento 2</label>
+            </magento2>
+            <flatgray module="bubble_admintheme">
+                <label>Flat Gray</label>
+            </flatgray>
+            <flatblue module="bubble_admintheme">
+                <label>Flat Blue</label>
+            </flatblue>
+            <flatorange module="bubble_admintheme">
+                <label>Flat Orange</label>
+            </flatorange>
+        </themes>
+    </adminhtml>
+    <default>
+        <bubble_admintheme>
+            <config>
+                <theme>magento2</theme>
+            </config>
+        </bubble_admintheme>
+    </default>
+</config>
