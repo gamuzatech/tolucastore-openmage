@@ -1,0 +1,67 @@
+<?php
+/* @var $this Aoe_Scheduler_Block_Adminhtml_TimelineDetail */
+$_schedule = $this->getSchedule(); /* @var $_schedule Aoe_Scheduler_Model_Schedule */
+$_helper = $this->helper('aoe_scheduler/data'); /* @var $_helper Aoe_Scheduler_Helper_Data */
+?>
+
+<div class="details">
+    <div class="details-headline <?php echo $_schedule->getStatus(); ?>">
+        <h3><?php echo $_schedule->getJobCode();?></h3>
+    </div>
+    <div class="details-content">
+        <table>
+            <tr>
+                <td class="label"><?php echo $this->__('Status') ?>:</td>
+                <td>
+                    <div class="status"><?php echo $_helper->decorateStatus($_schedule->getStatus()) ?></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Created at') ?>:</td>
+                <td><?php echo $_helper->decorateTime($_schedule->getCreatedAt()); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Scheduled at') ?>:</td>
+                <td><?php echo $_helper->decorateTime($_schedule->getScheduledAt()); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Executed at') ?>:</td>
+                <td><?php echo $_helper->decorateTime($_schedule->getExecutedAt()); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Finished at') ?>:</td>
+                <td><?php echo $_helper->decorateTime($_schedule->getFinishedAt()); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Last seen at') ?>:</td>
+                <td><?php echo $_helper->decorateTime($_schedule->getLastSeen()); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Id') ?>:</td>
+                <td><?php echo $_schedule->getId(); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Pid') ?>:</td>
+                <td><?php echo $_schedule->getPid(); ?></td>
+            </tr>
+            <tr>
+                <td class="label"><?php echo $this->__('Host') ?>:</td>
+                <td><?php echo $_schedule->getHost(); ?></td>
+            </tr>
+            <?php if ($_schedule->getMessages()): ?>
+                <tr>
+                    <td class="label" colspan="2"><?php echo $this->__('Message') ?>:</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <pre><?php echo $_schedule->getMessages(); ?></pre>
+                    </td>
+                </tr>
+            <?php endif; ?>
+            <tr>
+                <td class="label"><?php echo $this->__('Memory Usage') ?>:</td>
+                <td><?php echo number_format($_schedule->getMemoryUsage(), 2) . ' MB'; ?></td>
+            </tr>
+        </table>
+    </div>
+</div>
