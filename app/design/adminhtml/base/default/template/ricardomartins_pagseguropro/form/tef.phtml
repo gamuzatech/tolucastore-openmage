@@ -1,0 +1,33 @@
+<?php
+$_helper = Mage::helper('ricardomartins_pagseguropro');
+$_code=$this->getMethodCode();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+<?php /*
+    <li>
+        <div class="input-box">
+            <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+            <input type="text" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" id="<?php echo $_code ?>_cc_owner" name="payment[cc_owner]" value="<?php echo $this->escapeHtml($this->getInfoData('cc_owner')) ?>" />
+        </div>
+    </li>
+*/ ?>
+    <li>
+        <select name="payment[<?php echo $_code?>_bank]" id="pseguro_tef_bank" class="required-entry">
+            <option value="">Selecione o banco</option>
+            <option value="bancodobrasil">Banco do Brasil</option>
+            <option value="banrisul">Banrisul</option>
+            <option value="bradesco">Bradesco</option>
+<!--            <option value="hsbc">HSBC</option>-->
+            <option value="itau">Itaú</option>
+
+        </select>
+    </li>
+    <?php if(Mage::helper('ricardomartins_pagseguro')->isCpfVisible()):?>
+        <li id="<?php echo $_code ?>_cpf_div">
+            <label for="<?php echo $_code ?>_cpf" class="required"><em>*</em><?php echo $this->__('Your CPF') ?></label>
+            <div class="input-box">
+                <input type="text" id="<?php echo $_code ?>_cpf" name="payment[<?php echo $_code?>_cpf]" title="<?php echo $this->__('CPF') ?>" class="input-text required-entry validate-digits" value=""/>
+            </div>
+        </li>
+    <?php endif ?>
+</ul>

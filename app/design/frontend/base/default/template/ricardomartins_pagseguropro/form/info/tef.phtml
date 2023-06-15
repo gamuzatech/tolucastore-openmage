@@ -1,0 +1,14 @@
+<?php
+/** @var RicardoMartins_PagSeguroPro_Block_Form_Info_Tef $this */
+$_info = $this->getInfo();
+$_method = $this->getMethod();
+?>
+<strong><?php echo $_method->getTitle();?></strong>
+<br/>
+<?php if($transactionId = $_info->getAdditionalInformation('transaction_id')): ?>
+    Id da Transação: <?php echo $transactionId;?>
+    <br/>
+<?php endif;?>
+<?php if($tefUrl = $_info->getAdditionalInformation('tefUrl')): ?>
+    <a href="<?php echo $tefUrl;?>" target="_blank">Realizar pagamento</a>
+<?php endif;?>

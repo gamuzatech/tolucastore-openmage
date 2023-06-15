@@ -1,0 +1,80 @@
+<!--@subject Problemas com seu pagamento. Vamos tentar de outro jeito? @-->
+<!--@vars
+{"var customer":"Customer Name",
+"var order":"Order",
+"var retry_link":"Retry Link",
+"var days_to_cancel":"Days to Cancel",
+"var payment_html":"Payment Details"
+}
+@-->
+{{template config_path="design/email/header"}}
+{{inlinecss file="email-inline.css"}}
+<style type="text/css">
+    .retry-btn {
+        -webkit-border-radius: 7px;
+        -moz-border-radius: 7px;
+        border-radius: 7px;
+        color: #FFFFFF;
+        font-family: Open Sans;
+        font-size: 16px;
+        padding: 10px;
+        background-color: #268739;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .retry-btn:hover {
+        background: #28B531;
+        text-decoration: none;
+    }
+</style>
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td>
+            <table cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                    <td class="action-content">
+                        <h1>{{htmlescape var=$customer}},</h1>
+                        {{if external}}
+                        <p>Infelizmente seu pedido <span class="no-link">#{{var order.getIncrementId()}}</span> foi negado pela instituição bancária.</p>
+                        {{else}}
+                        <p>Infelizmente seu pedido <span class="no-link">#{{var order.getIncrementId()}}</span> foi negado pelo PagSeguro.</p>
+                        {{/if}}
+
+                        <p>Isso geralmente ocorre por uma das razões abaixo:</p>
+                        <ul>
+                            <li>Endereço da fatura diferente do endereço de entrega</li>
+                            <li>CPF do dono do cartão diferente do CPF do comprador</li>
+                            <li>Dados digitados incorretamente</li>
+                            <li>Uma indisponibilidade temporária no serviço</li>
+                        </ul>
+                        <p>Mas fique tranquilo(a) pois nós seguramos o seu pedido e você não precisa refazê-lo para tentar novamente.</p>
+                        <p>Acessando <a href="{{var retry_link}}" target="_blank">este link</a> você pode tentar novamente{{depend days_to_cancel}} em até {{var days_to_cancel}} dias.{{/depend}}. </p>
+                        <a class="retry-btn" href="{{var retry_link}}">PAGAR NO SITE DO PAGSEGURO</a>
+
+                        <h2>Detalhes do pedido</h2>
+                        <table cellpadding="5" border="0">
+                            <tr>
+                                <td>Realizado em:</td>
+                                <td>{{var order.getCreatedAtFormated('long')}}</td>
+                            </tr>
+                            <tr>
+                                <td>Pagamento:</td>
+                                <td>{{var payment_html}}</td>
+                            </tr>
+                        </table>
+                        {{layout handle="sales_email_order_items" order=$order}}
+                        <p>
+                            Se voc&ecirc; tiver alguma d&uacute;vida sobre sua conta ou qualquer outra informa&ccedil;&atilde;o do site, n&atilde;o deixe de entrar em contato atrav&eacute;s do email <a href="mailto:{{var store_email}}">{{var store_email}}</a>
+                            {{depend store_phone}} ou por telefone <a href="tel:{{var phone}}">{{var store_phone}}</a>{{/depend}}.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer"}}
