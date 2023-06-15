@@ -1,0 +1,32 @@
+<?php
+/** @var RicardoMartins_PagSeguro_Block_Form_Redirect $this */
+
+/** @var RicardoMartins_PagSeguroPro_Model_Payment_Redirect $_method */
+$_method = $this->getMethod();
+$_code= $_method->getCode();
+$_additional = $_method->getInfoInstance()->getAdditionalInformation();
+$_info = $this->getInfo();
+$order = $_info->getOrder();
+$isSandbox = (!$order || !$order->getId() || strpos($order->getCustomerEmail(), '@sandbox.pagseguro') === false) ? false : true;
+?>
+<p class="pagseguro-redirect-title"><strong><?php echo $_method->getTitle();?></strong></p>
+<?php if(!$_additional || !isset($_additional['redirect_url'])): ?>
+    <p class="pagseguro-redirect-description"><?php echo $_method->getStoreConfig('description');?></p>
+<?php else: ?>
+    <p class="pagseguro-redirect-link"><a href="<?php echo $_additional['redirect_url'];?>">Clique aqui para pagar no PagSeguro</a></p>
+<?php endif;?>
+
+<?php if($_additional && isset($_additional['transaction_id'])):
+    $codTransacao = $isSandbox ? str_replace('-', '', $_additional['transaction_id']) : $_additional['transaction_id'];
+    ?>
+    Código da Transação: <?php echo $codTransacao;?>
+    <?php if (isset($_additional['transaction_id']) && !$isSandbox): ?>
+        <?php echo sprintf(' | <a href="%s" target="_blank">Ver no PagSeguro</a>', 'https://pagseguro.uol.com.br/transaction/details.jhtml?code=' . $this->escapeHtml($_additional['transaction_id']));?>
+    <?php elseif ($isSandbox): ?>
+        <?php echo sprintf(' | <a href="%s" target="_blank">Ver no PagSeguro</a>', 'https://sandbox.pagseguro.uol.com.br/aplicacao/transacoes.html');?>
+    <?php endif;?>
+    <?php if(Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/pagseguro_update')): ?>
+        <br/>
+        <button class="scalable psupdate" title="Forçar atualização" onclick="if(confirm('Você tem certeza?'))setLocation('<?php echo Mage::helper('adminhtml')->getUrl('adminhtml/updatePayment/index', array('id'=>$_info->getId()))?>')"><span><span>Forçar atualização</span></span></button>
+    <?php endif;?>
+<?php endif;?>

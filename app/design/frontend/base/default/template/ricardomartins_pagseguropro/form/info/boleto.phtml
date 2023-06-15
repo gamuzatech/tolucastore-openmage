@@ -1,0 +1,14 @@
+<?php
+/** @var RicardoMartins_PagSeguroPro_Block_Form_Info_Boleto $this */
+$_info = $this->getInfo();
+$_method = $this->getMethod();
+?>
+<strong><?php echo $_method->getTitle();?></strong>
+<br/>
+<?php if($transactionId = $_info->getAdditionalInformation('transaction_id')): ?>
+    Id da Transação: <?php echo $transactionId;?>
+    <br/>
+<?php endif;?>
+<?php if($boletoUrl = $_info->getAdditionalInformation('boletoUrl')):?>
+    <a href="<?php echo $boletoUrl;?>" target="_blank">Exibir Boleto</a>
+<?php endif; ?>

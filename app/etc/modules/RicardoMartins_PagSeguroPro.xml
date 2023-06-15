@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <RicardoMartins_PagSeguroPro>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <RicardoMartins_PagSeguro/>
+
+            </depends>
+        </RicardoMartins_PagSeguroPro>
+    </modules>
+</config>
