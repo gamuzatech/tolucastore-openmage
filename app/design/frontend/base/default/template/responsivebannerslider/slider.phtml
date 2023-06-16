@@ -1,0 +1,588 @@
+<?php if ($this->getGroupscollection() != "") { ?>
+<?php $groupsdata = $this->getGroupscollection()->getData(); ?>
+<?php foreach ($groupsdata as $groups) { ?>
+<?php
+        if ($groups ['slider_theme'] == "default") {
+            $theme = "defaultTheme";
+        } elseif ($groups ['slider_theme'] == "blank") {
+            $theme = "blankTheme";
+        } elseif ($groups ['slider_theme'] == "drop_shadow") {
+            $theme = "dropShadow";
+        } else {
+            $theme = "emboss";
+        }
+        
+        if ($groups ['navigation_arrow'] == "never") {
+            $navarrow = "noNavArw";
+        } elseif ($groups ['navigation_arrow'] == "always") {
+            $navarrow = "alwaysNavArw";
+        } else {
+            $navarrow = "NavArwOnHover";
+        }
+        
+        if ($groups ['navigation_style'] == "angle") {
+            $navstyle = "angle";
+        } elseif ($groups ['navigation_style'] == "angle_small") {
+            $navstyle = "angle_small";
+        } elseif ($groups ['navigation_style'] == "angle_circle") {
+            $navstyle = "angle_circle";
+        } elseif ($groups ['navigation_style'] == "angle_square") {
+            $navstyle = "angle_square";
+        } elseif ($groups ['navigation_style'] == "arrow") {
+            $navstyle = "arrow";
+        } elseif ($groups ['navigation_style'] == "arrow_circle") {
+            $navstyle = "arrow_circle";
+        } elseif ($groups ['navigation_style'] == "caret") {
+            $navstyle = "caret";
+        } elseif ($groups ['navigation_style'] == "chevron") {
+            $navstyle = "chevron";
+        } elseif ($groups ['navigation_style'] == "chevron_smooth") {
+            $navstyle = "chevron_smooth";
+        } elseif ($groups ['navigation_style'] == "chevron_circle") {
+            $navstyle = "chevron_circle";
+        } else {
+            $navstyle = "chevron_square";
+        }
+        
+        if ($groups ['navigation_aposition'] == "inside") {
+            $navpos = "navArwInside";
+        } elseif ($groups ['navigation_aposition'] == "outside") {
+            $navpos = "navArwOutside";
+        } elseif ($groups ['navigation_aposition'] == "inside_left") {
+            $navpos = "navArwInLeft";
+        } else {
+            $navpos = "navArwInRight";
+        }
+        
+        if ($groups ['show_pagination'] == "never") {
+            $showpage = "noPaging";
+        } elseif ($groups ['show_pagination'] == "always") {
+            $showpage = "alwaysPaging";
+        } else {
+            $showpage = "pagingOnHover";
+        }
+        
+        if ($groups ['pagination_style'] == "circular") {
+            $pagestyle = "circular";
+        } elseif ($groups ['pagination_style'] == "squared") {
+            $pagestyle = "squared";
+        } elseif ($groups ['pagination_style'] == "circular_bar") {
+            $pagestyle = "cir-bar";
+        } else {
+            $pagestyle = "squ-bar";
+        }
+        
+        if ($groups ['pagination_position'] == "below") {
+            $pagepos = "pagerBelow";
+        } elseif ($groups ['pagination_position'] == "above") {
+            $pagepos = "pagerAbove";
+        } elseif ($groups ['pagination_position'] == "inside_top") {
+            $pagepos = "pagerInTop";
+        } elseif ($groups ['pagination_position'] == "inside_bottom") {
+            $pagepos = "pagerInBottom";
+        } elseif ($groups ['pagination_position'] == "inside_bottom_left") {
+            $pagepos = "pagerInBottomleft";
+        } else {
+            $pagepos = "pagerInBottomright";
+        }
+        
+        if ($groups ['slider_type'] == "basic") {
+            $bannerStyle = "basSlider";
+        } elseif ($groups ['slider_type'] == "carousel") {
+            $bannerStyle = "basCarousel";
+        } else {
+            $bannerStyle = "slideNcrosel";
+        }
+        
+        ?>
+<?php $sliedsdata = $this->getSlides($groups['slidergroup_id']); ?>
+<?php if(count($sliedsdata) > 0) { ?>
+<?php $groupId = $groups['slidergroup_id'];  ?>
+<link rel="stylesheet" type="text/css"
+    href="<?php  echo $this->getSkinUrl('css/responsivebannerslider/group-'.$groupId.'.css');?>"
+    media="all" />
+<div id="bnrSlider-<?php echo $groups['slidergroup_id']; ?>"
+    class="cwsSlider <?php echo $bannerStyle.' '.$theme; ?>">
+        <?php if($groups['slider_type'] != "carousel") { ?>
+        <div class="slider loading">
+        <div id="rwdSlider-<?php echo $groups['slidergroup_id']; ?>"
+            class="cwsRwdSlider <?php echo $navpos.' '.$navarrow.' '.$showpage.' '.$pagepos ?>">
+            <ul class="slides">
+                    <?php
+                $youtube = '';
+                $vimeo = '';
+                $sliedsdata = $this->getSlides($groups ['slidergroup_id']);
+                foreach ($sliedsdata as $slide) {
+                    if ($slide->getDateEnabled() == 1) {
+                        $fromdate = strtotime($slide->getFromDate());
+                        $todate = strtotime($slide->getToDate());
+                        $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                    } else {
+                        $fromdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                        $todate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                        $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                    }
+
+                    $videoid = $groups ['slidergroup_id'];
+                    ?>
+                    <?php if($fromdate <= $nowdate && $todate >= $nowdate) { ?>    
+                    <?php if($slide->getImgVideo() == "vimeo") { ?>
+                        <?php $vimeo = $vimeo + 1; ?>
+                        <li class="video"><div class="videoWrapper">
+                            <iframe id="player_<?php echo $videoid; ?>" src="https://player.vimeo.com/video/<?php echo $slide->getVideoId(); ?>?api=1&amp;player_id=player_<?php echo $videoid; ?>" width="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div></li>
+                    <?php } elseif($slide->getImgVideo() == "youtube") { ?>
+                        <?php $youtube = $youtube + 1; ?>
+                        <li class="video">
+                            <div class="videoWrapper">
+                            <iframe class="youtube" id="youtube_<?php echo $videoid; ?>" src="https://www.youtube.com/embed/<?php echo $slide->getVideoId(); ?>?enablejsapi=1&amp;wmode=opaque&amp;playerapiid=youtube_<?php echo $videoid; ?>" width="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                            </div>
+                        </li>
+                    <?php } else { ?>
+                    <?php
+                            if($slide->getData('img_hosting')) {
+                                if ($slide->getData('hosted_url')) {
+                                    $imgsrc = $slide->getHostedUrl();
+                                }
+                            }else{
+                                if ($slide->getData('filename')) {
+                                    $imgsrc = Mage::getBaseUrl('media') . "responsivebannerslider/" . $slide->getData('filename');
+                                }
+                            }
+
+                            $loading_img = $this->getSkinUrl('css/responsivebannerslider/loading.gif');
+                            ?>
+                    
+                    <?php if($slide->getData('hosted_url') != "" || $slide->getData('filename') != "") { ?>
+                        <li><?php if($slide->getUrl()) {?><a
+                    href="<?php echo $slide->getUrl(); ?>"
+                    title="<?php echo $slide->getUrl(); ?>"
+                    target="<?php if($slide->getUrlTarget() == "new_window") { echo "_blank"; 
+                   } ?>"><?php 
+                       } ?><img
+                        class="cwslazy" <?php if($this->getLazylaod()) { ?>
+                        data-src="<?php echo $imgsrc;  ?>" <?php 
+                       } ?>
+                        src="<?php if(!$this->getLazylaod()) { echo $imgsrc; 
+                       }else { echo $loading_img; 
+                       }  ?>"
+                        alt="<?php echo $slide->getAltText(); ?>" /><?php if($slide->getUrl()) {?></a><?php 
+                       } ?><?php if($slide->getDescription()) { ?><span
+                    class="sliderdecs"><?php echo $slide->getDescription(); ?></span><?php 
+                       } ?></li>
+                    
+                    <?php } ?>
+                    
+                    <?php } ?>
+                    <?php if($slide->getDateEnabled() == 1) { 
+                    } 
+                    } ?>    <?php 
+                } ?>    
+                </ul>
+        </div>
+    </div>
+        <?php } ?>
+        
+        <?php if($groups['slider_type'] == "carousel") { ?>
+        <div class="slider loading">
+        <div id="carousel-<?php echo $groups['slidergroup_id']; ?>"
+            class="rwdCarousel <?php echo $navpos.' '.$navarrow.' '.$showpage.' '.$pagepos ?>">
+            <ul class="slides">
+                    <?php
+                $sliedsdata = $this->getSlides($groups ['slidergroup_id']);
+                foreach ($sliedsdata as $slide) {
+                    if ($slide->getDateEnabled() == 1) {
+                        $fromdate = strtotime($slide->getFromDate());
+                        $todate = strtotime($slide->getToDate());
+                        $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                    } else {
+                        $fromdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                        $todate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                        $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                    }
+
+                    $youtube = '';
+                    $vimeo = '';
+                    $videoid = $slide->getSlideId() . $groups ['slidergroup_id'];
+                    ?>
+                    <?php     if($fromdate <= $nowdate && $todate >= $nowdate) {    ?>    
+                    <?php if($slide->getImgVideo() == "vimeo") { ?>
+                        <?php
+                            $vimeo = $vimeo + 1;
+                            $img = $slide->getVideoId();
+                            $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/$img.php"));
+                            ?>
+                        <li class="video"><a
+                    href="https://vimeo.com/<?php echo $slide->getVideoId(); ?>"
+                    title="<?php echo $this->escapeHtml($slide->getTitles()) ?>"
+                    target="_blank"><img
+                        src="<?php echo $hash[0]['thumbnail_large']; ?>"
+                        alt="<?php echo $this->escapeHtml($slide->getTitles()) ?>" /></a></li>
+                    <?php }elseif($slide->getImgVideo() == "youtube") {?>
+                        <?php $youtube = $youtube + 1; ?>    
+                        <li class="video"><a
+                    href="https://www.youtube.com/watch?v=<?php echo $slide->getVideoId(); ?>"
+                    title="<?php echo $this->escapeHtml($slide->getTitles()) ?>"
+                    target="_blank"><img
+                        src="https://img.youtube.com/vi/<?php echo $slide->getVideoId(); ?>/0.jpg"
+                        alt="<?php echo $this->escapeHtml($slide->getTitles()) ?>" /></a></li>
+                    <?php }else{ ?>
+                        <?php
+                            if($slide->getData('img_hosting')) {
+                                if ($slide->getData('hosted_thumb')) {
+                                    $imgsrc = $slide->getHostedThumb();
+                                } 
+                            }else{
+                                if ($slide->getData('filename')) {
+                                    $imgsrc = Mage::getBaseUrl('media') . "responsivebannerslider/thumbnails/" . $slide->getData('filename');
+                                }
+                            }
+                        ?>
+                        
+                    <?php if($slide->getData('hosted_thumb') != "" || $slide->getData('filename') != "") { ?>
+                            <li><?php if($slide->getUrl()) {?><a
+                    href="<?php echo $slide->getUrl(); ?>"
+                    title="<?php echo $slide->getUrl(); ?>"
+                    target="<?php if($slide->getUrlTarget() == "new_window") { echo "_blank"; 
+                   } ?>"><?php 
+                           } ?><img
+                        src="<?php echo $imgsrc;  ?>"
+                        alt="<?php echo $slide->getAltText(); ?>" /><?php if($slide->getUrl()) {?></a><?php 
+                       } ?></li>
+                    <?php }
+                    } ?>    
+                    <?php } ?>    
+                <?php } ?>    
+                </ul>
+        </div>
+    </div>
+        <?php } ?>
+        
+        <?php if($groups['slider_type'] == "bas-caro") { ?>
+        <div class="slider loading">
+        <div id="carousel-<?php echo $groups['slidergroup_id']; ?>"
+            class="rwdSlideCrousel <?php echo $navpos.' '.$navarrow.' '.$showpage.' '.$pagepos ?>">
+            <ul class="slides">
+                    <?php
+                $sliedsdata = $this->getSlides($groups ['slidergroup_id']);
+                foreach ($sliedsdata as $slide) {
+                    if ($slide->getDateEnabled() == 1) {
+                        $fromdate = strtotime($slide->getFromDate());
+                        $todate = strtotime($slide->getToDate());
+                        $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                    } else {
+                        $fromdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                        $todate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                        $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
+                    }
+
+                    $youtube = '';
+                    $vimeo = '';
+                    $videoid = $slide->getSlideId() . $groups ['slidergroup_id'];
+                    ?>
+                    <?php if($fromdate <= $nowdate && $todate >= $nowdate) { ?>    
+                    <?php if($slide->getImgVideo() == "vimeo") { ?>
+                        <?php
+                            $vimeo = $vimeo + 1;
+                            $img = $slide->getVideoId();
+                            $hash = unserialize(file_get_contents("https://vimeo.com/api/v2/video/$img.php"));
+                            ?>                                    
+                        <li class="video"><img
+                    src="<?php echo $hash[0]['thumbnail_large']; ?>"
+                    alt="<?php echo $this->escapeHtml($slide->getTitles()) ?>" /></li>
+                    <?php } elseif($slide->getImgVideo() == "youtube") { ?>
+                        <?php $youtube = $youtube + 1; ?>    
+                        <li class="video"><img
+                    src="https://img.youtube.com/vi/<?php echo $slide->getVideoId(); ?>/0.jpg"
+                    alt="<?php echo $this->escapeHtml($slide->getTitles()) ?>" /></li>
+                    <?php } else { ?>
+                        <?php
+                            if($slide->getData('img_hosting')) {
+                                if ($slide->getData('hosted_thumb')) {
+                                    $imgsrc = $slide->getHostedThumb();
+                                }
+                            }else{
+                                if ($slide->getData('filename')) {
+                                    $imgsrc = Mage::getBaseUrl('media') . "responsivebannerslider/thumbnails/" . $slide->getData('filename');
+                                }
+                            }
+                        ?>
+                        <?php if($slide->getData('hosted_thumb') != "" || $slide->getData('filename') != "") { ?>
+                            <li><img src="<?php  echo $imgsrc; ?>"
+                    alt="<?php echo $slide->getAltText(); ?>" /></li>
+                        <?php }
+                    } ?>    
+                    <?php } ?>    
+                <?php } ?>    
+                </ul>
+        </div>
+    </div>
+        <?php } ?>
+    </div>
+
+<script type="text/javascript">
+        
+        function getGridSize() {
+            return (window.innerWidth < 600) ? 2 :
+               (window.innerWidth < 900) ? 3 : 4;
+        }
+    
+        jQuery(window).load(function(){
+        
+            <?php if($groups['slider_type'] != "basic") { ?>
+                jQuery('#carousel-<?php echo $groups['slidergroup_id']; ?>').flexslider({
+                    animation: "slide",
+                    itemWidth: <?php echo $groups['thumbnail_size'];  ?>,
+                    itemMargin: 10,
+                    
+                    directionNav:  <?php if($groups['navigation_arrow'] == "never") { echo "false"; 
+                   } else { echo "true"; 
+                   } ?>,
+                    <?php if($groups['slider_type']== "bas-caro") { ?>
+                        slideshow:     false,
+                        animationLoop: true,
+                        controlNav: false,
+                        asNavFor: '#rwdSlider-<?php echo $groups['slidergroup_id']; ?>',
+                    <?php } else { ?>
+                        controlNav: <?php if($groups['show_pagination'] == "never" || $groups['slider_type']== "bas-caro" || $groups['slider_type']== "basic") { echo "false"; 
+                       } else { echo "true"; 
+                       } ?>,
+                        slideshow: <?php if($groups['start_animation']==0) { echo 'false'; 
+                       } else { echo 'true'; 
+                       } ?>,
+                        animationLoop: <?php if($groups['loop_slider']==0) { echo 'false'; 
+                       } else { echo 'true'; 
+                       } ?>,
+                    <?php } ?>
+                        start: function(slider){
+                            jQuery('.slider').removeClass('loading');
+                            flexslider = slider;
+                        },
+                                    
+                    navarrow : "<?php echo $navarrow; ?>",
+                    navstyle : "<?php echo $navstyle; ?>",
+                    showpage : "<?php echo $showpage; ?>",
+                    pagestyle : "<?php echo $pagestyle; ?>",
+                    pagepos : "<?php echo $pagepos; ?>",
+                    
+                    
+                });
+                
+                
+                jQuery(window).resize(function() {
+                    var gridSize = getGridSize();
+                 
+                    flexslider.vars.minItems = gridSize;
+                    flexslider.vars.maxItems = gridSize;
+                });
+                
+            <?php } ?>
+    
+            <?php if($groups['slider_type'] != "carousel") { ?>
+                <?php if($youtube) { ?>    
+                    jQuery.getScript('//www.youtube.com/iframe_api');
+                    
+                    var cnt = 0;
+                    jQuery('#rwdSlider-<?php echo $groups['slidergroup_id']; ?>  li.video iframe.youtube').each(function() {
+                        jQuery(this).attr('id', 'youtubeplayer' + cnt);
+                        cnt++;
+                    });
+                    
+                    loadSlider();
+                        
+                    function loadSlider() {
+                        if(typeof(YT) != 'undefined') {
+                            jQuery('.slides').fitVids();
+                <?php } ?>
+                    
+                    
+                      jQuery('#rwdSlider-<?php echo $groups['slidergroup_id']; ?>').fitVids().flexslider({
+                      
+                            directionNav:  <?php if($groups['navigation_arrow'] == "never") { echo "false"; 
+                           } else { echo "true"; 
+                           } ?>,
+                            controlNav: <?php if($groups['show_pagination'] == "never" || $groups['slider_type']== "bas-caro" || $groups['slider_type']== "carousel") { echo "false"; 
+                           } else { echo "true"; 
+                           } ?>,
+                            slideshow: <?php if($groups['start_animation']==0) { echo 'false'; 
+                           } else { echo 'true'; 
+                           } ?>,
+                            animationLoop: <?php if($groups['loop_slider']==0) { echo 'false'; 
+                           } else { echo 'true'; 
+                           } ?>,
+                            pauseOnAction: <?php if($groups['pause_snavigation']==0) { echo 'false'; 
+                           } else { echo 'true'; 
+                           } ?>,
+                            pauseOnHover: <?php if($groups['pause_shover']==0) { echo 'false'; 
+                           } else { echo 'true'; 
+                           } ?>,
+                            animation: "<?php echo $groups['animation_type'] ?>",
+                            animationSpeed:    <?php echo $groups['animation_duration'] ?>,
+                            direction: "<?php echo $groups['animation_direction'] ?>",
+                            slideshowSpeed: <?php echo $groups['slide_duration'] ?>,
+                            randomize:     <?php if($groups['random_order']==0 || $groups['slider_type'] == "bas-caro") { echo 'false'; 
+                           } else { echo 'true'; 
+                           } ?>,
+                            smoothHeight: <?php if($groups['smooth_height']==0) { echo 'false'; 
+                           } else { echo 'true'; 
+                           } ?>,
+                            
+                            <?php if($vimeo || $youtube) { ?>
+                                video:     true,
+                                //smoothHeight: <?php if(!$helper->getLazylaod()) { echo 'true'; 
+                               } else { echo 'false'; 
+                               }  ?>,
+                            <?php } ?>
+                            
+                            <?php if($vimeo || $youtube) { ?>
+                                video:     true,
+                            <?php } ?>
+                            
+                            <?php if($groups['slider_type']== "bas-caro") { ?>
+                                sync: "#carousel-<?php echo $groups['slidergroup_id']; ?>",
+                            <?php } ?>
+                            
+                            <?php if($vimeo) { ?>
+                            before: function(slider){
+                                $f(player).api('pause');
+                                
+                            },
+                            <?php } ?>
+         
+                            <?php if($youtube) { ?>
+                                after: function(slider) {
+                            
+                                    createPlayers(slider);
+                                    
+                                },
+                                before: function(slider) {
+                                    for (key in players) {    
+                                    
+                                        players[key].pauseVideo();
+                                        
+                                        
+                                    }
+                                    <?php if($vimeo) { ?>
+                                        $f(player).api('pause');
+                                    <?php } ?>    
+                                },
+                                start: function(slider) {
+                        
+                                    createPlayers(slider);
+                                    
+                                    jQuery('.slider').removeClass('loading');
+                                                                                                        
+                                },
+                            <?php } else { ?>
+                                start: function(slider){
+                                    jQuery('.slider').removeClass('loading');
+                                    
+                                <?php if($this->getLazylaod()) { ?>
+                                    jQuery(slider).find("img.cwslazy").slice(0,2).each(function () {
+                                       var src = jQuery(this).attr("data-src");
+                                          jQuery(this).attr("src", src).removeAttr("data-src").removeClass("cwslazy");
+                                       });    
+                                <?php } ?>       
+                                    
+                                },
+                                
+                                <?php if($this->getLazylaod()) { ?>
+                                     before: function (slider) {
+                            
+                                       var slide = jQuery(slider).find('.slides').children().eq(slider.animatingTo+1).find('img');
+                                       var src = slide.attr("data-src");
+                                       slide.attr("src", src).removeAttr("data-src").removeClass("cwslazy");
+                                    },
+                                <?php } ?>     
+                            <?php } ?>
+
+                            navarrow : "<?php echo $navarrow; ?>",
+                            navstyle : "<?php echo $navstyle; ?>",
+                            showpage : "<?php echo $showpage; ?>",
+                            pagestyle : "<?php echo $pagestyle; ?>",
+                            pagepos : "<?php echo $pagepos; ?>",
+                                
+                        });
+                        
+                        <?php if($youtube) { ?>
+                        clearTimeout(timeout);
+                        } else {
+                            var timeout = setTimeout(loadSlider, 1000);
+                        }   
+                    }                
+                        <?php } ?>     
+                        
+                        <?php if($vimeo) { ?>    
+                            var player = document.getElementById('player_<?php echo $groups['slidergroup_id']; ?>');
+                            
+                            $f(player).addEvent('ready', ready);
+        
+                            function addEvent(element, eventName, callback) {
+                                
+                                (element.addEventListener) ? element.addEventListener(eventName, callback, false) : element.attachEvent(eventName, callback, false);
+                            }
+    
+                            function ready(player_id) {
+                                var froogaloop = $f(player_id);
+                        
+                                froogaloop.addEvent('play', function(data) {
+                            
+                                  jQuery('#rwdSlider-<?php echo $groups['slidergroup_id']; ?>').flexslider("pause");
+                                });
+    
+                                froogaloop.addEvent('pause', function(data) { 
+                                  jQuery('#rwdSlider-<?php echo $groups['slidergroup_id']; ?>').flexslider("play");
+                                });
+                            }
+                        <?php } ?>    
+                        
+                        <?php if($youtube) { ?>
+                            var players = {};
+                    
+                            function createPlayers(slider) {
+                               var playtimer = [];
+                                (function(jQuery) {
+                                    jQuery("#rwdSlider-<?php echo $groups['slidergroup_id']; ?>  li.video iframe.youtube").each(function(index) {
+                                        var frameID = this.id;
+                                        
+                                        
+                                        if (frameID) {
+                                        
+                                            if (!(frameID in players)) {
+                                                
+                                                if (jQuery(this).parents('.cws-active-slide').length > 0) {
+                                                
+                                                    players[frameID] = new YT.Player(frameID, {
+                                                        events: {
+                                                            "onStateChange": function(event) {
+                                                                
+                                                                if(event.data == 1 || event.data == 3) {
+                                                                        slider.flexslider('pause');
+                                                                    for (var i=0; i<playtimer.length; i++) {
+                                                                        clearTimeout(playtimer[i]);
+                                                                    }
+                                                                    playtimer = []; 
+                                                                
+                                                                } else  {
+                                                                    
+                                                                    playtimer.push(setTimeout(function(){
+                                                                        slider.flexslider('play');
+                                                                        
+                                                                    }, 2000));
+                                                                }
+                                                            }
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+                                }) (jQuery);
+                            }
+                        
+                        <?php } ?>    
+            <?php } ?>
+    });
+</script>
+<?php } ?>
+<?php } ?>
+<?php } ?> 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Toluca_Express>
+            <version>0.0.1</version>
+        </Toluca_Express>
+    </modules>
+    <global>
+        <helpers>
+            <express>
+                <class>Toluca_Express_Helper</class>
+            </express>
+        </helpers>
+        <blocks>
+            <express>
+                <class>Toluca_Express_Block</class>
+            </express>
+        </blocks>
+        <models>
+            <express>
+                <class>Toluca_Express_Model</class>
+            </express>
+        </models>
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Toluca_Express>
+                    <files>
+                        <default>Toluca_Express.csv</default>
+                    </files>
+                </Toluca_Express>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <routers>
+            <toluca_express>
+                <use>standard</use>
+                <args>
+                    <module>Toluca_Express</module>
+                    <frontName>express</frontName>
+                </args>
+            </toluca_express>
+        </routers>
+        <translate>
+            <modules>
+                <Toluca_Express>
+                    <files>
+                        <default>Toluca_Express.csv</default>
+                    </files>
+                </Toluca_Express>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <express>
+                     <file>toluca/express.xml</file>
+                </express>
+            </updates>
+        </layout>
+        <events>
+            <basic_catalog_add_topmenu_items>
+                <observers>
+                    <express_catalog_add_topmenu_items>
+                        <class>express/observer</class>
+                        <method>catalogAddTopmenuItems</method>
+                    </express_catalog_add_topmenu_items>
+                </observers>
+            </basic_catalog_add_topmenu_items>
+        </events>
+    </frontend>
+    <default>
+        <express>
+            <setting>
+                <active>1</active>
+            </setting>
+        </express>
+        <web>
+            <routers>
+                <toluca_express>
+                    <area>frontend</area>
+                    <class>Toluca_Express_Controller_Router_Express</class>
+                </toluca_express>
+            </routers>
+        </web>
+    </default>
+</config>
+

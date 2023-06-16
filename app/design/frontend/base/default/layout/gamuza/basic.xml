@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout>
+    <default>
+        <reference name="head">
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="removeItem">
+                <type>skin_css</type>
+                <name>css/madisonisland.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/styles.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/madisonisland.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/bootstrap-5.1.3/bootstrap.min.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/bootstrap-5.1.3/bootstrap.rtl.min.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/tinyslider-2.9.4/tinyslider.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/gamuza/basic.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_js</type>
+                <name>js/bootstrap-5.1.3/bootstrap.bundle.min.js</name>
+                <params />
+            </action>
+
+            <action method="appendItem">
+                <type>skin_js</type>
+                <name>js/tinyslider-2.9.4/tinyslider.min.js</name>
+                <params />
+            </action>
+
+            <action method="appendItem">
+                <type>skin_js</type>
+                <name>js/gamuza/basic.js</name>
+                <params />
+            </action>
+
+            <!--
+            /**
+             * Open Graph Sharing Debugger
+             *
+             * https://developers.facebook.com/docs/sharing/webmasters/
+             * https://developers.facebook.com/tools/debug/
+             */
+            -->
+            <block type="basic/page_html_head" name="open_graph" template="gamuza/basic/page/html/opengraph.phtml"/>
+        </reference>
+
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="customer"><label>My Addresses</label><url>/customer/address/</url><title>My Addresses</title><prepare/><urlParams/><position>20</position></action>
+            <action method="addLink" translate="label title" module="sales"><label>My Orders</label><url>/sales/order/history</url><title>My Orders</title><prepare/><urlParams/><position>30</position></action>
+        </reference>
+
+        <reference name="cms_footer_links">
+            <action method="setBlockId"><block_id>footer_links_contact</block_id></action>
+        </reference>
+
+        <reference name="before_body_end">
+            <block type="core/template" template="gamuza/basic/page/html/bootstrap.phtml" after="-" />
+        </reference>
+    </default>
+
+    <catalog_category_view>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+    </catalog_category_view>
+
+    <catalog_category_layered>
+        <reference name="product_list">
+            <action method="setColumnCount"><count>5</count></action>
+        </reference>
+    </catalog_category_layered>
+
+    <catalogsearch_result_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+    </catalogsearch_result_index>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="removeLinkByName"><name>billing_agreements</name></action>
+            <action method="removeLinkByName"><name>OAuth Customer Tokens</name></action>
+            <action method="removeLinkByName"><name>downloadable_products</name></action>
+            <action method="removeLinkByName"><name>recurring_profiles</name></action>
+            <action method="appendLink" translate="label" module="customer"><name>logout</name><path>customer/account/logout</path><label>Log Out</label></action>
+        </reference>
+    </customer_account>
+
+    <gamuza_checkout_handle translate="label">
+        <reference name="content">
+            <reference name="checkout.success">
+                <block type="basic/checkout_onepage_success_info" />
+		        <block type="sales/order_items" name="order_items" template="sales/order/items.phtml">
+		            <action method="addItemRender"><type>default</type><block>sales/order_item_renderer_default</block><template>sales/order/items/renderer/default.phtml</template></action>
+		            <action method="addItemRender"><type>grouped</type><block>sales/order_item_renderer_grouped</block><template>sales/order/items/renderer/default.phtml</template></action>
+		            <block type="sales/order_totals" name="order_totals" template="sales/order/totals.phtml">
+		                <action method="setLabelProperties"><value>colspan="4" class="a-right"</value></action>
+		                <action method="setValueProperties"><value>class="last a-right"</value></action>
+		                <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml" />
+		            </block>
+		        </block>
+		        <block type="basic/checkout_onepage_success_additional" />
+            </reference>
+        </reference>
+    </gamuza_checkout_handle>
+
+    <checkout_onepage_success translate="label">
+        <update handle="gamuza_checkout_handle"/>
+    </checkout_onepage_success>
+
+    <PRODUCT_TYPE_bundle>
+        <reference name="product.info">
+            <remove name="bundle.prices"/>
+        </reference>
+    </PRODUCT_TYPE_bundle>
+</layout>
+

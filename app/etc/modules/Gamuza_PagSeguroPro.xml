@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Gamuza_PagSeguroPro
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_PagSeguroPro>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <RicardoMartins_PagSeguroPro />
+            </depends>
+        </Gamuza_PagSeguroPro>
+    </modules>
+</config>
+

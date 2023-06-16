@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_PDV
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+    <admin_pdv_adminhtml_cashier_index>
+        <reference name="content">
+            <block type="pdv/adminhtml_cashier" name="cashier" />
+        </reference>
+    </admin_pdv_adminhtml_cashier_index>
+    <admin_pdv_adminhtml_operator_index>
+        <reference name="content">
+            <block type="pdv/adminhtml_operator" name="operator" />
+        </reference>
+    </admin_pdv_adminhtml_operator_index>
+    <admin_pdv_adminhtml_history_index>
+        <reference name="content">
+            <block type="pdv/adminhtml_history" name="history" />
+        </reference>
+    </admin_pdv_adminhtml_history_index>
+    <admin_pdv_adminhtml_log_index>
+        <reference name="content">
+            <block type="pdv/adminhtml_log" name="log" />
+        </reference>
+    </admin_pdv_adminhtml_log_index>
+</layout>
+

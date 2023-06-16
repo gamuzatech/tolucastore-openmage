@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <!-- Core -->
+            <basic_magento translate="title" module="basic">
+                <model>basic/magento_api</model>
+                <title>Basic Magento API</title>
+                <acl>basic/magento</acl>
+                <methods>
+                    <info translate="title" module="basic">
+                        <title>Get info about current Magento installation</title>
+                        <acl>basic/magento/info</acl>
+                    </info>
+                    <backup translate="title" module="basic">
+                        <title>Backup info about current Magento installation</title>
+                        <acl>basic/magento/backup</acl>
+                    </backup>
+                    <cache translate="title" module="basic">
+                        <title>Refresh info about current Magento cache</title>
+                        <acl>basic/magento/cache</acl>
+                    </cache>
+                    <clean translate="title" module="basic">
+                        <title>Clean info about current Magento quote</title>
+                        <acl>basic/magento/clean</acl>
+                    </clean>
+                    <logout translate="title" module="basic">
+                        <title>Logout info about current Magento session</title>
+                        <acl>basic/magento/logout</acl>
+                    </logout>
+                    <session translate="title" module="basic">
+                        <title>Generate info about current Magento session</title>
+                        <acl>basic/magento/session</acl>
+                    </session>
+                </methods>
+                <faults>
+                    <user_not_exists>
+                        <code>100</code>
+                        <message>Requested user was not found.</message>
+                    </user_not_exists>
+                </faults>
+            </basic_magento>
+            <!-- Customer -->
+            <basic_customer translate="title" module="basic">
+                <model>basic/customer_api</model>
+                <title>Basic Customer API</title>
+                <acl>basic/customer</acl>
+                <methods>
+                    <list translate="title" module="basic">
+                        <title>Retrieve customer list</title>
+                        <method>items</method>
+                        <acl>basic/customer/list</acl>
+                    </list>
+                </methods>
+            </basic_customer>
+            <!-- Customer Address -->
+            <basic_customer_address translate="title" module="basic">
+                <model>basic/customer_address_api</model>
+                <title>Basic Customer Address API</title>
+                <acl>basic/customer_address</acl>
+                <methods>
+                    <list translate="title" module="basic">
+                        <title>Retrieve customer address list</title>
+                        <method>items</method>
+                        <acl>basic/customer_address/list</acl>
+                    </list>
+                </methods>
+            </basic_customer_address>
+            <!-- Country -->
+            <basic_country translate="title" module="basic">
+                <model>basic/directory_country_api</model>
+                <title>Basic Country API</title>
+                <acl>basic/country</acl>
+                <methods>
+                    <list translate="title" module="basic">
+                        <title>Retrieve country list</title>
+                        <method>items</method>
+                        <acl>basic/country/list</acl>
+                    </list>
+                </methods>
+            </basic_country>
+            <!-- Region -->
+            <basic_region translate="title" module="basic">
+                <model>basic/directory_region_api</model>
+                <title>Basic Region API</title>
+                <acl>basic/region</acl>
+                <methods>
+                    <list translate="title" module="basic">
+                        <title>Retrieve region list</title>
+                        <method>items</method>
+                        <acl>basic/region/list</acl>
+                    </list>
+                </methods>
+            </basic_region>
+            <!-- Order Status -->
+            <basic_order_status translate="title" module="basic">
+                <model>basic/order_status_api</model>
+                <title>Basic Order Status API</title>
+                <acl>basic/order_status</acl>
+                <methods>
+                    <canceled translate="title" module="basic">
+                        <title>Canceled order information</title>
+                        <acl>basic/order_status/canceled</acl>
+                    </canceled>
+                    <preparing translate="title" module="basic">
+                        <title>Preparing order information</title>
+                        <acl>basic/order_status/preparing</acl>
+                    </preparing>
+                    <paid translate="title" module="basic">
+                        <title>Paid order information</title>
+                        <acl>basic/order_status/paid</acl>
+                    </paid>
+                    <shipped translate="title" module="basic">
+                        <title>Shipped order information</title>
+                        <acl>basic/order_status/shipped</acl>
+                    </shipped>
+                    <delivered translate="title" module="basic">
+                        <title>Delivered order information</title>
+                        <acl>basic/order_status/delivered</acl>
+                    </delivered>
+                    <refunded translate="title" module="basic">
+                        <title>Refunded order information</title>
+                        <acl>basic/order_status/refunded</acl>
+                    </refunded>
+                </methods>
+                <faults>
+                    <order_not_specified>
+                        <code>100</code>
+                        <message>Requested order ID was not specified.</message>
+                    </order_not_specified>
+                    <order_not_exists>
+                        <code>200</code>
+                        <message>Requested order was not found.</message>
+                    </order_not_exists>
+
+                    <order_has_canceled>
+                        <code>300</code>
+                        <message>Requested order has been canceled.</message>
+                    </order_has_canceled>
+                    <order_not_canceled>
+                        <code>400</code>
+                        <message>Requested order was not canceled.</message>
+                    </order_not_canceled>
+
+                    <order_has_prepared>
+                        <code>500</code>
+                        <message>Requested order has been prepared.</message>
+                    </order_has_prepared>
+                    <order_not_prepared>
+                        <code>600</code>
+                        <message>Requested order was not prepared.</message>
+                    </order_not_prepared>
+
+                    <order_has_paid>
+                        <code>700</code>
+                        <message>Requested order has been paid.</message>
+                    </order_has_paid>
+                    <order_not_paid>
+                        <code>800</code>
+                        <message>Requested order was not paid.</message>
+                    </order_not_paid>
+
+                    <order_has_shipped>
+                        <code>900</code>
+                        <message>Requested order has been shipped.</message>
+                    </order_has_shipped>
+                    <order_not_shipped>
+                        <code>1000</code>
+                        <message>Requested order was not shipped.</message>
+                    </order_not_shipped>
+
+                    <order_has_delivered>
+                        <code>1100</code>
+                        <message>Requested order has been delivered.</message>
+                    </order_has_delivered>
+                    <order_not_delivered>
+                        <code>1200</code>
+                        <message>Requested order was not delivered.</message>
+                    </order_not_delivered>
+
+                    <order_has_refunded>
+                        <code>1300</code>
+                        <message>Requested order has been refunded.</message>
+                    </order_has_refunded>
+                    <order_not_refunded>
+                        <code>1400</code>
+                        <message>Requested order was not refunded.</message>
+                    </order_not_refunded>
+                </faults>
+            </basic_order_status>
+            <!-- Order PDF -->
+            <basic_order_pdf translate="title" module="basic">
+                <model>basic/order_pdf_api</model>
+                <title>Basic Order PDF API</title>
+                <acl>basic/order_pdf</acl>
+                <methods>
+                    <order translate="title" module="basic">
+                        <title>Create order PDF information</title>
+                        <acl>basic/order_pdf/order</acl>
+                    </order>
+                    <invoice translate="title" module="basic">
+                        <title>Create order invoice PDF information</title>
+                        <acl>basic/order_pdf/invoice</acl>
+                    </invoice>
+                    <shipment translate="title" module="basic">
+                        <title>Create order shipment PDF information</title>
+                        <acl>basic/order_pdf/shipment</acl>
+                    </shipment>
+                    <creditmemo translate="title" module="basic">
+                        <title>Create order creditmemo PDF information</title>
+                        <acl>basic/order_pdf/creditmemo</acl>
+                    </creditmemo>
+                    <service translate="title" module="basic">
+                        <title>Create order service PDF information</title>
+                        <acl>basic/order_pdf/service</acl>
+                    </service>
+                </methods>
+                <faults>
+                    <order_not_specified>
+                        <code>100</code>
+                        <message>Requested order ID was not specified.</message>
+                    </order_not_specified>
+                    <order_not_exists>
+                        <code>200</code>
+                        <message>Requested order was not found.</message>
+                    </order_not_exists>
+                    <invoice_not_exists>
+                        <code>300</code>
+                        <message>Requested invoice was not found.</message>
+                    </invoice_not_exists>
+                    <shipment_not_exists>
+                        <code>400</code>
+                        <message>Requested shipment was not found.</message>
+                    </shipment_not_exists>
+                    <creditmemo_not_exists>
+                        <code>500</code>
+                        <message>Requested creditmemo was not found.</message>
+                    </creditmemo_not_exists>
+                    <service_not_exists>
+                        <code>600</code>
+                        <message>Requested service was not found.</message>
+                    </service_not_exists>
+                </faults>
+            </basic_order_pdf>
+            <!-- Shipping -->
+            <basic_shipping translate="title" module="basic">
+                <model>basic/shipping_api</model>
+                <title>Basic Shipping API</title>
+                <acl>basic/shipping</acl>
+                <methods>
+                    <origin translate="title" module="basic">
+                        <title>Get info about current Shipping origin</title>
+                        <acl>basic/shipping/origin</acl>
+                    </origin>
+                </methods>
+            </basic_shipping>
+        </resources>
+        <acl>
+            <resources>
+                <basic translate="title" module="basic">
+                    <title>Basic API</title>
+                    <sort_order>0</sort_order>
+                    <!-- Core -->
+                    <magento translate="title" module="basic">
+                        <title>Magento</title>
+                        <info translate="title" module="basic">
+                            <title>Retrieve info about current Magento installation</title>
+                        </info>
+                        <backup translate="title" module="basic">
+                            <title>Backup info about current Magento installation</title>
+                        </backup>
+                        <cache translate="title" module="basic">
+                            <title>Refresh info about current Magento cache</title>
+                        </cache>
+                        <clean translate="title" module="basic">
+                            <title>Clean info about current Magento quote</title>
+                        </clean>
+                        <logout translate="title" module="basic">
+                            <title>Logout info about current Magento session</title>
+                        </logout>
+                        <session translate="title" module="basic">
+                            <title>Generate info about current Magento session</title>
+                        </session>
+                    </magento>
+                    <!-- Customer -->
+                    <customer translate="title" module="basic">
+                        <title>Customer</title>
+                        <list translate="title" module="basic">
+                            <title>Retrieve customer list</title>
+                        </list>
+                    </customer>
+                    <!-- Customer Address -->
+                    <customer_address translate="title" module="basic">
+                        <title>Customer Address</title>
+                        <list translate="title" module="basic">
+                            <title>Retrieve customer address list</title>
+                        </list>
+                    </customer_address>
+                    <!-- Country -->
+                    <basic_country translate="title" module="basic">
+                        <title>Basic Country API</title>
+                        <methods>
+                            <list translate="title" module="basic">
+                                <title>Retrieve country list</title>
+                                <method>items</method>
+                                <acl>basic/country/list</acl>
+                            </list>
+                        </methods>
+                    </basic_country>
+                    <!-- Region -->
+                    <basic_region translate="title" module="basic">
+                        <title>Basic Region API</title>
+                        <methods>
+                            <list translate="title" module="basic">
+                                <title>Retrieve region list</title>
+                                <method>items</method>
+                                <acl>basic/region/list</acl>
+                            </list>
+                        </methods>
+                    </basic_region>
+                    <!-- Order Status -->
+                    <order_status translate="title" module="basic">
+                        <title>Order Status</title>
+                        <canceled translate="title" module="basic">
+                            <title>Canceled order information</title>
+                        </canceled>
+                        <preparing translate="title" module="basic">
+                            <title>Preparing order information</title>
+                        </preparing>
+                        <paid translate="title" module="basic">
+                            <title>Paid order information</title>
+                        </paid>
+                        <shipped translate="title" module="basic">
+                            <title>Shipped order information</title>
+                        </shipped>
+                        <delivered translate="title" module="basic">
+                            <title>Delivered order information</title>
+                        </delivered>
+                        <refunded translate="title" module="basic">
+                            <title>Refunded order information</title>
+                        </refunded>
+                    </order_status>
+                    <!-- Order PDF -->
+                    <order_pdf translate="title" module="basic">
+                        <title>PDF</title>
+                        <order translate="title" module="basic">
+                            <title>Create order PDF information</title>
+                        </order>
+                        <invoice translate="title" module="basic">
+                            <title>Create order invoice PDF information</title>
+                        </invoice>
+                        <shipment translate="title" module="basic">
+                            <title>Create order shipment PDF information</title>
+                        </shipment>
+                        <creditmemo translate="title" module="basic">
+                            <title>Create order creditmemo PDF information</title>
+                        </creditmemo>
+                        <service translate="title" module="basic">
+                            <title>Create order service PDF information</title>
+                        </service>
+                    </order_pdf>
+                    <!-- Shipping -->
+                    <shipping translate="title" module="basic">
+                        <title>Magento</title>
+                        <origin translate="title" module="basic">
+                            <title>Retrieve info about current Shipping origin</title>
+                        </origin>
+                    </shipping>
+                </basic>
+            </resources>
+        </acl>
+    </api>
+</config>
+

@@ -8,6 +8,7 @@ class RicardoMartins_PagSeguroPro_Helper_Internal extends Mage_Core_Helper_Abstr
 
         /** @var RicardoMartins_PagSeguro_Helper_Params $phelper */
         $phelper = Mage::helper('ricardomartins_pagseguro/params'); //params helper - helper auxiliar de parametrização
+
         $params = array(
             'email' => $helper->getMerchantEmail(),
             'token' => $helper->getToken(),
@@ -17,7 +18,10 @@ class RicardoMartins_PagSeguroPro_Helper_Internal extends Mage_Core_Helper_Abstr
             'currency'  => 'BRL',
             'reference'     => $order->getIncrementId(),
             'extraAmount'=> $phelper->getExtraAmount($order),
-            'notificationURL' => Mage::getUrl('ricardomartins_pagseguro/notification', array('_secure' => true)),
+            'notificationURL' => Mage::getUrl(
+                'ricardomartins_pagseguro/notification',
+                array('_store' => $order->getStoreId(), '_secure' => true)
+            ),
         );
         $items = $phelper->getItemsParams($order);
         $params = array_merge($params, $phelper->getItemsParams($order));

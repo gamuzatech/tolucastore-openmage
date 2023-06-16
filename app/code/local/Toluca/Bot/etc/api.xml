@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_Bot
+ * @copyright   Copyright (c) 2021 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <bot_info translate="title" module="bot">
+                <model>bot/info_api</model>
+                <title>Bot Information API</title>
+                <acl>bot/info</acl>
+                <methods>
+                    <store_url translate="title" module="bot">
+                        <title>Set a store URL for the bot</title>
+                        <acl>bot/info/store_url</acl>
+                        <method>storeUrl</method>
+                    </store_url>
+                    <whatsapp_url translate="title" module="bot">
+                        <title>Set a whatsapp URL for the bot</title>
+                        <acl>bot/info/whatsapp_url</acl>
+                        <method>whatsappUrl</method>
+                    </whatsapp_url>
+                </methods>
+                <faults translate="message" module="bot">
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                </faults>
+            </bot_info>
+            <bot_config translate="title" module="bot">
+                <model>bot/config_api</model>
+                <title>Bot Config API</title>
+                <acl>bot/config</acl>
+                <methods>
+                    <basic_auth translate="title" module="bot">
+                        <title>Set a basic auth for the bot</title>
+                        <acl>bot/config/basic_auth</acl>
+                        <method>basicAuth</method>
+                    </basic_auth>
+                </methods>
+                <faults translate="message" module="bot">
+                    <data_invalid>
+                        <code>100</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                </faults>
+            </bot_config>
+            <bot_contact translate="title" module="bot">
+                <model>bot/contact_api</model>
+                <title>Bot Contact API</title>
+                <acl>bot/contact</acl>
+                <methods>
+                    <add translate="title" module="bot">
+                        <title>Add a contact for the bot</title>
+                        <acl>bot/contact/add</acl>
+                    </add>
+                    <list translate="title" module="bot">
+                        <title>List contacts from the bot</title>
+                        <acl>bot/contact/list</acl>
+                        <method>items</method>
+                    </list>
+                </methods>
+                <faults translate="message" module="bot">
+                    <invalid_contact_data>
+                        <code>100</code>
+                        <message>Contact's data is not valid.</message>
+                    </invalid_contact_data>
+                    <data_invalid>
+                        <code>200</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                    <add_contact_fault>
+                        <code>300</code>
+                        <message>Contact(s) could not be added. </message>
+                    </add_contact_fault>
+                </faults>
+            </bot_contact>
+            <bot_chat translate="title" module="bot">
+                <model>bot/chat_api</model>
+                <title>Bot Chat API</title>
+                <acl>bot/chat</acl>
+                <methods>
+                    <message translate="title" module="bot">
+                        <title>Send a message to the chat</title>
+                        <acl>bot/chat/message</acl>
+                    </message>
+                </methods>
+            </bot_chat>
+        </resources>
+        <acl>
+            <resources>
+                <bot translate="title" module="bot">
+                    <title>Toluca Bot API</title>
+                    <sort_order>0</sort_order>
+                    <info translate="title" module="bot">
+                        <title>Information</title>
+                        <store_url translate="title" module="bot">
+                            <title>Set a store URL for the bot</title>
+                        </store_url>
+                        <whatsapp_url translate="title" module="bot">
+                            <title>Set a whatsapp URL for the bot</title>
+                        </whatsapp_url>
+                    </info>
+                    <config translate="title" module="bot">
+                        <title>Config</title>
+                        <basic_auth translate="title" module="bot">
+                            <title>Set a basic auth for the bot</title>
+                        </basic_auth>
+                    </config>
+                    <contact translate="title" module="bot">
+                        <title>Contact</title>
+                        <add translate="title" module="bot">
+                            <title>Add a contact for the bot</title>
+                        </add>
+                        <list translate="title" module="bot">
+                            <title>List contacts from the bot</title>
+                        </list>
+                    </contact>
+                    <chat translate="title" module="bot">
+                        <title>Chat</title>
+                        <message translate="title" module="bot">
+                            <title>Send a message to the chat</title>
+                        </message>
+                    </chat>
+                </bot>
+            </resources>
+        </acl>
+    </api>
+</config>
+

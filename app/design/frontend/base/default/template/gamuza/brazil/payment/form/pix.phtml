@@ -1,0 +1,19 @@
+<?php
+/**
+ * @package     Gamuza_Brazil
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <?php if ($this->getInstructions()): ?>
+    <li>
+        <div class="<?php echo $_code; ?>-instructions-content agreement-content">
+            <?php echo nl2br($this->getInstructions()) ?>
+        </div>
+    </li>
+    <?php endif; ?>
+    <?php echo $this->getChildHtml() ?>
+</ul>
+

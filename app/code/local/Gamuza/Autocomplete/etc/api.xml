@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Autocomplete
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <!-- CEP -->
+            <autocomplete_cep translate="title" module="autocomplete">
+                <model>autocomplete/cep_api</model>
+                <title>Autocomplete CEP API</title>
+                <acl>autocomplete/cep</acl>
+                <methods>
+                    <info translate="title" module="autocomplete">
+                        <title>Retrieve CEP information</title>
+                        <acl>autocomplete/cep/info</acl>
+                    </info>
+                </methods>
+                <faults>
+                    <zipcode_not_exists>
+                        <code>100</code>
+                        <message>Requested zipcode was not found.</message>
+                    </zipcode_not_exists>
+                </faults>
+            </autocomplete_cep>
+        </resources>
+        <acl>
+            <resources>
+                <autocomplete translate="title" module="autocomplete">
+                    <title>Autocomplete API</title>
+                    <sort_order>0</sort_order>
+                    <!-- CEP -->
+                    <cep translate="title" module="autocomplete">
+                        <title>CEP</title>
+                        <info translate="title" module="autocomplete">
+                            <title>Retrieve CEP information</title>
+                        </info>
+                    </cep>
+                </autocomplete>
+            </resources>
+        </acl>
+    </api>
+</config>
+
