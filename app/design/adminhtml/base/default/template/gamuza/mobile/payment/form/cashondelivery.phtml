@@ -1,0 +1,51 @@
+<?php
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2018 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+/**
+ * @see Mage_Payment_Block_Form_Cashondelivery
+ */
+?>
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <?php if ($this->getInstructions()): ?>
+    <li>
+        <div class="<?php echo $_code; ?>-instructions-content agreement-content">
+            <?php echo nl2br($this->getInstructions()) ?>
+        </div>
+    </li>
+    <?php endif; ?>
+    <?php $_additionalInfo = $this->getInfoData('additional_information') ?>
+    <?php $_additionalInfo = !empty ($_additionalInfo) ? $_additionalInfo : array (0, 0); ?>
+    <li>
+        <label for="<?php echo $_code ?>_change_type" class="required"><em>*</em><?php echo $this->__('Need Change') ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_change_type" name="payment[change_type]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Need Change')) ?>" class="required-entry validate-select">
+                <option value=""><?php echo $this->__('--Please Select--') ?></option>
+            <?php foreach ($this->getChangeAvailableTypes() as $_typeCode => $_typeName): ?>
+                <option value="<?php echo $_typeCode ?>"<?php if($_typeCode==$_additionalInfo[0]): ?> selected="selected"<?php endif ?>><?php echo $_typeName ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+    <li id="<?php echo $_code; ?>_cash_box">
+        <label for="<?php echo $_code ?>_cash_amount" class="required"><em>*</em><?php echo $this->__('Change To Amount') ?></label>
+        <div class="input-box">
+            <?php $_cashAmount = $this->getInfoData('additional_information') ?>
+            <input type="text" pattern="\d*" id="<?php echo $_code ?>_cash_amount" name="payment[cash_amount]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Change To Amount')) ?>" class="input-text required-entry validate-digits" value="<?php echo $_additionalInfo[1]; ?>" />
+        </div>
+    </li>
+    <?php echo $this->getChildHtml() ?>
+</ul>
+<script type="text/javascript">
+Event.observe($("<?php echo $_code ?>_change_type"), "change", function () {
+    var _display = this.value == '1' ? "block" : "none";
+    $("<?php echo $_code; ?>_cash_box").setStyle({'display' : _display});
+    if (this.value == '1') $("<?php echo $_code; ?>_cash_amount").focus ();
+});
+fireEvent($("<?php echo $_code ?>_change_type"), "change");
+</script>
+

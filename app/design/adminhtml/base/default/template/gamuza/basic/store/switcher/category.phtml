@@ -1,0 +1,25 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+<?php /* @var $this Gamuza_Basic_Block_Adminhtml_Store_Switcher_Category */ ?>
+<?php if ($categories = $this->getCategories()): ?>
+<p class="switcher"><label for="store_switcher_category"><?php echo $this->__('Choose Category:') ?></label>
+<select name="store_switcher_category" id="store_switcher_category" onchange="return switchCategory(this);">
+<?php foreach ($categories as $categoryId => $categoryName): ?>
+    <option value="<?php echo $this->escapeHtml($categoryId) ?>"<?php if($this->getCategoryId() == $categoryId): ?> selected="selected"<?php endif ?>>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $this->escapeHtml($categoryName) ?></option>
+<?php endforeach ?>
+</select>
+</p>
+<script type="text/javascript">
+    function switchCategory(obj) {
+        var categoryParam = obj.value ? 'category/' + obj.value + '/' : '';
+
+        setLocation('<?php echo $this->getSwitchUrl() ?>' + categoryParam);
+    }
+</script>
+<?php endif ?>
+

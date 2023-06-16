@@ -1,0 +1,79 @@
+<?php
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+<?php
+/**
+ * Category view template
+ */
+?>
+<?php
+    $_helper    = $this->helper('catalog/output');
+    $_category  = $this->getCurrentCategory();
+    $_imgHtml   = '';
+    if ($_imgUrl = $_category->getImageUrl()) {
+        $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->escapeHtml($_category->getName()).'" title="'.$this->escapeHtml($_category->getName()).'" /></p>';
+        $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+    }
+?>
+<div class="page-title category-title">
+    <?php if($this->isRssCatalogEnable() && $this->isTopCategory()): ?>
+        <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
+    <?php endif ?>
+    <h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+
+<?php if($_imgUrl): ?>
+    <?php echo $_imgHtml ?>
+<?php endif ?>
+
+<?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
+<div class="category-description std">
+    <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
+</div>
+<?php endif ?>
+
+<?php $_children = $_category->getChildrenCategories(); ?>
+
+<ul class="nav nav-underline bg-white sticky-top flex-nowrap text-nowrap overflow-x-auto" id="category-nav">
+<?php foreach($_children as $_child): ?>
+    <li class="nav-item" id="nav<?php echo $_child->getId(); ?>">
+        <a class="nav-link" href="#cat<?php echo $_child->getId(); ?>"><?php echo $_child->getName(); ?></a>
+    </li>
+<?php endforeach; ?>
+</ul>
+
+<div class="accordion" data-bs-spy="scroll" data-bs-target="#category-nav" data-bs-offset="0" tabindex="0">
+<?php foreach($_children as $_child): ?>
+    <div class="accordion-item" id="cat<?php echo $_child->getId(); ?>">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $_child->getId(); ?>"
+                    aria-expanded="true" aria-controls="collapse-<?php echo $_child->getId(); ?>">
+                <?php echo $_child->getName(); ?>
+            </button>
+        </h2>
+        <div id="collapse-<?php echo $_child->getId(); ?>" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+            <?php echo $this->_getProductListHtml($_child); ?>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+
+<script type="text/javascript">
+const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+  target: '#category-nav'
+});
+
+$j(window).on('activate.bs.scrollspy', function (e) {
+    var element = e.relatedTarget.replace('#cat', 'nav');
+    $(element).scrollIntoView();
+});
+</script>
+

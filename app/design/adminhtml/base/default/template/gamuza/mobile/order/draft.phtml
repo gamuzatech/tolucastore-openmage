@@ -1,0 +1,116 @@
+<?php
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+$_order = $this->getOrder();
+
+echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
+
+echo sprintf('%s %s', $this->getOrderNumber(), $this->getOrderDatetime()) . PHP_EOL;
+
+$_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
+
+echo $this->getLineSeparator(Mage::helper('basic')->__('Customer')) . PHP_EOL;
+
+echo sprintf('%s %s', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
+echo sprintf('%s %s %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
+echo sprintf('%s %s', $_address->getStreet4(), $_address->getPostcode()) . PHP_EOL;
+echo sprintf('%s %s %s', $_address->getCity(), $_address->getRegionCode(), $_address->getCountryId()) . PHP_EOL;
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_itemsQty = $_order->getTotalQtyOrdered() ?: $_order->getItemsQty ();
+
+echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_EOL;
+
+foreach ($_order->getAllItems() as $item)
+{
+    echo $this->getLineSeparator($item->getSku()).PHP_EOL;
+    echo $item->getName() . PHP_EOL;
+
+    $_productOptions = $item->getProductOptions();
+
+    foreach ($_productOptions ['options'] as $option)
+    {
+        echo sprintf('%s: %s', $option ['label'], $option ['value']) . PHP_EOL;
+    }
+
+    foreach ($_productOptions ['additional_options'] as $option)
+    {
+        echo sprintf('%s: %s', $option ['label'], $option ['value']) . PHP_EOL;
+    }
+
+    if ($item->getParentItemId ())
+    {
+        continue; // skip
+    }
+
+    $_price = Mage::helper('core')->currency($item->getPrice(), true, false);
+    $_qty = floatval($item->getQtyOrdered() ?: $item->getQty());
+    $_rowTotal = Mage::helper('core')->currency($item->getBaseRowTotal(), true, false);
+
+    echo Mage::helper('basic')->__('Price: %s Qty: %s Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
+}
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_subtotal = Mage::helper('core')->currency($_order->getBaseSubtotal(), true, false);
+$_shipping = Mage::helper('core')->currency($_order->getBaseShippingAmount(), true, false);
+$_total    = Mage::helper('core')->currency($_order->getBaseGrandTotal(), true, false);
+
+echo Mage::helper('sales')->__('Subtotal: %s Shipping: %s', $_subtotal, $_shipping) . PHP_EOL;
+echo Mage::helper('sales')->__('Grand Total: %s', $_total) . PHP_EOL;
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_shppingDescription = $_order->getShippingDescription() ?: $_address->getShippingDescription();
+
+if ($_shippingDescription)
+{
+    echo $_shippingDescription . PHP_EOL;
+}
+else
+{
+    echo Mage::helper('adminhtml')->__('The shipping module is not available.') . PHP_EOL;
+}
+
+$_paymentMethod = null;
+
+try
+{
+    $_paymentMethod = $_order->getPayment()->getMethodInstance();
+}
+catch (Exception $e)
+{
+    Mage::logException ($e);
+}
+
+if ($_paymentMethod)
+{
+    echo $_paymentMethod->getTitle() . PHP_EOL;
+
+    $_paymentInfo = Mage::helper('payment')->getInfoBlock($_order->getPayment());
+
+    if ($_paymentInfo)
+    {
+        foreach ($_paymentInfo->getSpecificInformation() as $id => $value)
+        {
+            echo sprintf('%s: %s', $id, $value) . PHP_EOL;
+        }
+    }
+}
+else
+{
+    echo Mage::helper('adminhtml')->__('Payment method is not available.') . PHP_EOL;
+}
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_storeName  = Mage::getStoreConfig('general/store_information/name',  $_order->getStoreId());
+$_storePhone = Mage::getStoreConfig('general/store_information/phone', $_order->getStoreId());
+
+echo sprintf('%s %s', $_storeName, $_storePhone) . PHP_EOL;
+
+echo sprintf('Toluca Store APP %s', Mage::getModel('core/date')->date('d/m/Y H:i:s')) . PHP_EOL;
+

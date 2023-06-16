@@ -1,0 +1,48 @@
+<!--
+/**
+ * @package     Gamuza_Autocomplete
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<?php $_regionCollection = Mage::getModel('directory/region')->getCollection()->addCountryCodeFilter('BRA'); ?>
+
+<script type="text/javascript">
+<?php foreach ($_regionCollection as $region): ?>
+autocompleteUF["<?php echo $region->getCode(); ?>"] = "<?php echo $region->getId(); ?>";
+<?php endforeach; ?>
+</script>
+
+<script type="text/javascript">
+var autocompleteBaseUrl = "<?php echo $this->getBaseUrl(); ?>";
+
+Event.observe (window, "load", function () {
+    if ($("billing:postcode") != undefined)
+    {
+        $("billing:postcode").observe ("blur", function() { autocomplete (this, "billing:"); });
+    }
+
+    if ($("shipping:postcode") != undefined)
+    {
+        $("shipping:postcode").observe ("blur", function() { autocomplete (this, "shipping:"); });
+    }
+
+    if ($("zip") != undefined)
+    {
+        $("zip").observe ("blur", function() { autocomplete (this, ""); });
+    }
+});
+</script>
+
+<div id="autocomplete-mask" style="display:none;">
+    <p class="loader" id="autocomplete-mask-loader">
+        <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>"
+             alt="<?php echo Mage::helper('core')->__('Loading...') ?>" />
+        <br />
+        <?php echo Mage::helper('core')->__('Please wait...') ?>
+    </p>
+</div>
+
+<div id="autocomplete-overlay" style="display:none;"></div>
+

@@ -1,0 +1,13 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+
+<?php foreach ($this->getCategoryCollection() as $category): ?>
+<h2 class="subtitle"><a href="<?php echo $category->getUrl(); ?>"><?php echo $category->getName (); ?></a></h2>
+<?php echo $this->_getProductHtml($category); ?>
+<?php endforeach; ?>
+

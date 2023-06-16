@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_PagCripto
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_PagCripto>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Adminhtml />
+                <Mage_Payment />
+            </depends>
+        </Gamuza_PagCripto>
+    </modules>
+</config>
+
