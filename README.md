@@ -1,3 +1,19 @@
+<img src="https://dl.dropboxusercontent.com/s/qi0b31um3y3nxo6/tolucastore-admin-panel.png" alt="TolucaStore Admin Panel"/>
+
+## Table of features
+
+- APP ( Android & iOS)
+- Sales Bot ( WhatsApp )
+- Point of Sale ( POS )
+- Express ( eCommerce & POS )
+- PagCripto
+- PicPay
+- PagSeguro
+- OpenPix
+- Correios
+
+---
+
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors-"><img src="https://img.shields.io/badge/all_contributors-152-orange.svg" alt="All Contributors"></a>
@@ -348,7 +364,12 @@ for more information.
 
 ## Public Communication
 
-* [Discord](https://discord.gg/EV8aNbU) (maintained by Flyingmana)
+* [Toluca Store](https://t.me/tolucastore) (Telegram)
+* [Gamuza Technologies](https://t.me/gamuzatech) (Telegram)
+
+## Developers
+
+* [Enéias Ramos de Melo](https://github.com/eneiasramos)
 
 ## Maintainers
 
