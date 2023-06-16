@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2017 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_Mobile>
+            <version>0.0.1</version>
+        </Gamuza_Mobile>
+    </modules>
+    <global>
+        <helpers>
+            <mobile>
+                <class>Gamuza_Mobile_Helper</class>
+            </mobile>
+        </helpers>
+        <blocks>
+            <mobile>
+                <class>Gamuza_Mobile_Block</class>
+            </mobile>
+        </blocks>
+        <models>
+            <mobile>
+                <class>Gamuza_Mobile_Model</class>
+                <resourceModel>mobile_mysql4</resourceModel>
+            </mobile>
+            <mobile_mysql4>
+                <class>Gamuza_Mobile_Model_Mysql4</class>
+                <entities />
+            </mobile_mysql4>
+        </models>
+        <resources>
+            <mobile_setup>
+                <setup>
+                    <module>Gamuza_Mobile</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mobile_setup>
+            <mobile_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </mobile_write>
+            <mobile_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </mobile_read>
+        </resources>
+        <fieldsets>
+            <sales_convert_quote>
+                <is_app>
+                    <to_order>*</to_order>
+                </is_app>
+                <customer_info_code>
+                    <to_order>*</to_order>
+                </customer_info_code>
+                <store_info_code>
+                    <to_order>*</to_order>
+                </store_info_code>
+            </sales_convert_quote>
+            <sales_convert_order>
+                <is_app>
+                    <to_quote>*</to_quote>
+                </is_app>
+                <customer_info_code>
+                    <to_quote>*</to_quote>
+                </customer_info_code>
+                <store_info_code>
+                    <to_quote>*</to_quote>
+                </store_info_code>
+            </sales_convert_order>
+        </fieldsets>
+        <payment>
+            <machine>
+                <types>
+                    <!-- pagseguro -->
+                    <AE>
+                        <code>AE</code>
+                        <name>American Express</name>
+                        <order>0</order>
+                    </AE>
+                    <AL>
+                        <code>AL</code>
+                        <name>Alelo</name>
+                        <order>10</order>
+                    </AL>
+                    <AU>
+                        <code>AU</code>
+                        <name>Aura</name>
+                        <order>15</order>
+                    </AU>
+                    <BC>
+                        <code>BC</code>
+                        <name>Banri Compras Débito</name>
+                        <order>20</order>
+                    </BC>
+                    <CC>
+                        <code>CC</code>
+                        <name>Cabal Crédito</name>
+                        <order>30</order>
+                    </CC>
+                    <CD>
+                        <code>CC</code>
+                        <name>Cabal Débito</name>
+                        <order>40</order>
+                    </CD>
+                    <DC>
+                        <code>DC</code>
+                        <name>Diners Club</name>
+                        <order>50</order>
+                    </DC>
+                    <DI>
+                        <code>DI</code>
+                        <name>Discover</name>
+                        <order>55</order>
+                    </DI>
+                    <EC>
+                        <code>EC</code>
+                        <name>Elo Crédito</name>
+                        <order>60</order>
+                    </EC>
+                    <ED>
+                        <code>ED</code>
+                        <name>Elo Débito</name>
+                        <order>70</order>
+                    </ED>
+                    <ELO>
+                        <code>ELO</code>
+                        <name>Elo</name>
+                        <order>75</order>
+                    </ELO>
+                    <HI>
+                        <code>HI</code>
+                        <name>Hiper</name>
+                        <order>90</order>
+                    </HI>
+                    <HC>
+                        <code>HC</code>
+                        <name>HiperCard</name>
+                        <order>80</order>
+                    </HC>
+                    <JCB>
+                        <code>JCB</code>
+                        <name>JCB</name>
+                        <order>85</order>
+                    </JCB>
+                    <MC>
+                        <code>MC</code>
+                        <name>MasterCard</name>
+                        <order>100</order>
+                    </MC>
+                    <SM>
+                        <code>SM</code>
+                        <name>Maestro / Switch</name>
+                        <order>120</order>
+                    </SM>
+                    <SO>
+                        <code>SO</code>
+                        <name>Sodexo</name>
+                        <order>130</order>
+                    </SO>
+                    <TI>
+                        <code>TI</code>
+                        <name>Ticket</name>
+                        <order>140</order>
+                    </TI>
+                    <VI>
+                        <code>VI</code>
+                        <name>Visa</name>
+                        <order>110</order>
+                    </VI>
+                    <VE>
+                        <code>VE</code>
+                        <name>Visa Electron</name>
+                        <order>150</order>
+                    </VE>
+                    <VR>
+                        <code>VR</code>
+                        <name>Vale Refeição</name>
+                        <order>160</order>
+                    </VR>
+                    <!-- Blockchain -->
+                    <BTC>
+                        <code>BTC</code>
+                        <name>Bitcoin</name>
+                        <order>200</order>
+                    </BTC>
+                </types>
+            </machine>
+        </payment>
+        <events>
+            <sales_convert_quote_item_to_order_item>
+                <observers>
+                    <gamuza_mobile_sales_convert_quote_item_to_order_item>
+                        <class>mobile/observer</class>
+                        <method>salesConvertQuoteItemToOrderItem</method>
+                    </gamuza_mobile_sales_convert_quote_item_to_order_item>
+                </observers>
+            </sales_convert_quote_item_to_order_item>
+        </events>
+    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Gamuza_Mobile>
+                    <files>
+                        <default>Gamuza_Mobile.csv</default>
+                    </files>
+                </Gamuza_Mobile>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+        <translate>
+            <modules>
+                <Gamuza_Mobile>
+                    <files>
+                        <default>Gamuza_Mobile.csv</default>
+                    </files>
+                </Gamuza_Mobile>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <api>
+            <mobile>
+                <store_view>1</store_view>
+            </mobile>
+        </api>
+        <customer>
+            <create_account>
+                <email_prefix>app</email_prefix>
+            </create_account>
+        </customer>
+        <payment>
+            <cashondelivery>
+                <model>mobile/payment_method_cashondelivery</model>
+            </cashondelivery>
+            <machineondelivery>
+                <active>1</active>
+                <cctypes>AE,AL,AU,BC,CC,DC,DI,EC,ED,ELO,HI,HC,JCB,MC,SM,SO,TI,VI,VE,VR</cctypes>
+                <model>mobile/payment_method_machineondelivery</model>
+                <order_status>pending</order_status>
+                <title>Machine On Delivery</title>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+            </machineondelivery>
+        </payment>
+        <sales>
+            <order_draft>
+                <word_wrap>48</word_wrap>
+            </order_draft>
+        </sales>
+    </default>
+</config>
+

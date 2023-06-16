@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Gamuza_PagSeguroPro
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_PagSeguroPro>
+            <version>0.0.1</version>
+        </Gamuza_PagSeguroPro>
+    </modules>
+    <global>
+        <helpers>
+            <gamuza_pagseguropro>
+                <class>Gamuza_PagSeguroPro_Helper</class>
+            </gamuza_pagseguropro>
+        </helpers>
+    </global>
+    <default>
+        <payment>
+            <pagseguro_cc>
+                <model>0</model>
+            </pagseguro_cc>
+            <pagseguropro_tef>
+                <model>0</model>
+            </pagseguropro_tef>
+            <pagseguropro_retry>
+                <model>0</model>
+            </pagseguropro_retry>
+            <pagseguropro_redirect>
+                <model>0</model>
+            </pagseguropro_redirect>
+            <rm_pagseguro_kiosk>
+                <model>0</model>
+            </rm_pagseguro_kiosk>
+            <rm_pagseguro_recurring>
+                <model>0</model>
+            </rm_pagseguro_recurring>
+            <rm_pagseguro>
+                <address_telephone_attribute>cellphone</address_telephone_attribute>
+            </rm_pagseguro>
+        </payment>
+        <carriers>
+            <rm_pagseguro>
+                <model>0</model>
+            </rm_pagseguro>
+        </carriers>
+    </default>
+</config>
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Autocomplete
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_Autocomplete>
+            <version>0.0.1</version>
+        </Gamuza_Autocomplete>
+    </modules>
+    <global>
+        <helpers>
+            <autocomplete>
+                <class>Gamuza_Autocomplete_Helper</class>
+            </autocomplete>
+        </helpers>
+        <models>
+            <autocomplete>
+                <class>Gamuza_Autocomplete_Model</class>
+            </autocomplete>
+        </models>
+    </global>
+    <frontend>
+        <routers>
+            <autocomplete>
+                <use>standard</use>
+                <args>
+                    <module>Gamuza_Autocomplete</module>
+                    <frontName>autocomplete</frontName>
+                </args>
+            </autocomplete>
+        </routers>
+        <translate>
+            <modules>
+                <Gamuza_Autocomplete>
+                    <files>
+                        <default>Gamuza_Autocomplete.csv</default>
+                    </files>
+                </Gamuza_Autocomplete>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <autocomplete>
+                    <file>gamuza/autocomplete.xml</file>
+                </autocomplete>
+            </updates>
+        </layout>
+    </frontend>
+</config>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_PDV
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <menu>
+        <toluca translate="title" module="pdv">
+            <title>Toluca</title>
+            <sort_order>100</sort_order>
+            <children>
+                <pdv translate="title" module="pdv">
+                    <title>PDV</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <cashier translate="title" module="pdv">
+                            <title>Manage Cashiers</title>
+                            <sort_order>0</sort_order>
+                            <action>admin_pdv/adminhtml_cashier</action>
+                        </cashier>
+                        <operator translate="title" module="pdv">
+                            <title>Manage Operators</title>
+                            <sort_order>10</sort_order>
+                            <action>admin_pdv/adminhtml_operator</action>
+                        </operator>
+                        <history translate="title" module="pdv">
+                            <title>Manage History</title>
+                            <sort_order>30</sort_order>
+                            <action>admin_pdv/adminhtml_history</action>
+                        </history>
+                        <log translate="title" module="pdv">
+                            <title>Manage Logs</title>
+                            <sort_order>40</sort_order>
+                            <action>admin_pdv/adminhtml_log</action>
+                        </log>
+                    </children>
+                </pdv>
+            </children>
+        </toluca>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <toluca translate="title" module="pdv">
+                        <title>Toluca</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <pdv translate="title" module="pdv">
+                                <title>PDV</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <cashier translate="title" module="pdv">
+                                        <title>Manage Cashiers</title>
+                                        <sort_order>0</sort_order>
+                                    </cashier>
+                                    <operator translate="title" module="pdv">
+                                        <title>Manage Operators</title>
+                                        <sort_order>10</sort_order>
+                                    </operator>
+                                    <history translate="title" module="pdv">
+                                        <title>Manage History</title>
+                                        <sort_order>30</sort_order>
+                                    </history>
+                                    <log translate="title" module="pdv">
+                                        <title>Manage Logs</title>
+                                        <sort_order>40</sort_order>
+                                    </log>
+                                </children>
+                            </pdv>
+                        </children>
+                    </toluca>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <pdv translate="title" module="pdv">
+                                        <title>Toluca PDV Section</title>
+                                        <sort_order>0</sort_order>
+                                    </pdv>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+

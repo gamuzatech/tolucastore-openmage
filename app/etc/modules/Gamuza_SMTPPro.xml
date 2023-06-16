@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Gamuza_SMTPPro
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+<config>
+    <modules>
+        <Gamuza_SMTPPro>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Aschroder_SMTPPro />
+            </depends>
+       </Gamuza_SMTPPro>
+    </modules>
+</config>
+

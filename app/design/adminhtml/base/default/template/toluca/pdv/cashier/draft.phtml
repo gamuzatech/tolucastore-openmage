@@ -1,0 +1,95 @@
+<?php
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2017 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+$_cashier   = $this->getCashier ();
+$_operator  = $this->getOperator ();
+$_history   = $this->getHistory ();
+
+$_cashierSequenceId = intval ($_cashier->getSequenceId ());
+
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Datetime'), Mage::getModel ('core/locale')->date ()) . PHP_EOL;
+echo $this->getLineSeparator () . PHP_EOL;
+
+echo sprintf ('%s: %s - %s, %s: %s - %s', Mage::helper ('pdv')->__('Cashier'), $_cashier->getId (), $_cashier->getName (),
+    Mage::helper ('pdv')->__('Operator'), $_operator->getId (), $_operator->getName ()) . PHP_EOL;
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('History'), $_history->getId (), Mage::helper ('pdv')->__('Sequence'), $_cashierSequenceId) . PHP_EOL;
+echo $this->getLineSeparator () . PHP_EOL;
+
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Opened At'), Mage::getModel ('core/locale')->date ($_history->getOpenedAt ())) . PHP_EOL;
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Closed At'), Mage::getModel ('core/locale')->date ($_history->getClosedAt ())) . PHP_EOL;
+echo $this->getLineSeparator () . PHP_EOL;
+
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Open'), Mage::helper ('core')->currency ($_history->getOpenAmount (), true, false),
+    Mage::helper ('pdv')->__('Close'), Mage::helper ('core')->currency ($_history->getCloseAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Reinforce'), Mage::helper ('core')->currency ($_history->getReinforceAmount (), true, false),
+    Mage::helper ('pdv')->__('Bleed'), Mage::helper ('core')->currency ($_history->getBleedAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Money'), Mage::helper ('core')->currency ($_history->getMoneyAmount (), true, false),
+    Mage::helper ('pdv')->__('Money Change'), Mage::helper ('core')->currency ($_history->getChangeAmount (), true, false)) . PHP_EOL;
+echo $this->getLineSeparator () . PHP_EOL;
+
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Machine'), Mage::helper ('core')->currency ($_history->getMachineAmount (), true, false),
+    Mage::helper ('pdv')->__('PagCripto'), Mage::helper ('core')->currency ($_history->getPagcriptoAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('PicPay'), Mage::helper ('core')->currency ($_history->getPicpayAmount (), true, false),
+    Mage::helper ('pdv')->__('OpenPix'), Mage::helper ('core')->currency ($_history->getOpenpixAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Credit Card'), Mage::helper ('core')->currency ($_history->getCreditcardAmount (), true, false),
+    Mage::helper ('pdv')->__('Billet'), Mage::helper ('core')->currency ($_history->getBilletAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Bank Transfer'), Mage::helper ('core')->currency ($_history->getBanktransferAmount (), true, false),
+    Mage::helper ('pdv')->__('Check Money'), Mage::helper ('core')->currency ($_history->getCheckAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Pix'), Mage::helper ('core')->currency ($_history->getPixAmount (), true, false)) . PHP_EOL;
+echo $this->getLineSeparator () . PHP_EOL;
+
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Total'), Mage::helper ('core')->currency ($_history->getTotalAmount (), true, false)) . PHP_EOL;
+echo $this->getLineSeparator () . PHP_EOL;
+
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Orders'), Mage::helper ('core')->currency ($_history->getOrderAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Shipments'), Mage::helper ('core')->currency ($_history->getShippingAmount (), true, false)) . PHP_EOL;
+
+if ($_cashierSequenceId > 0)
+{
+    echo $this->getLineSeparator (Mage::helper ('pdv')->__('Payments')) . PHP_EOL;
+
+    foreach ($this->getOrderPayments ($_cashier, $_operator, $_history) as $orderPayment)
+    {
+        $paymentTitle = Mage::getStoreConfig (sprintf ('payment/%s/title', $orderPayment->getPaymentMethod ()));
+
+        $paymentAmount = Mage::helper ('core')->currency ($orderPayment->getPaymentAmount (), true, false);
+
+        echo sprintf ('%s %s: %s', $orderPayment->getPaymentCount (), $paymentTitle, $paymentAmount) . PHP_EOL;
+    }
+
+    echo $this->getLineSeparator (Mage::helper ('pdv')->__('Shipments')) . PHP_EOL;
+
+    foreach ($this->getOrderShipments ($_cashier, $_operator, $_history) as $orderShipment)
+    {
+        $shippingMethod = explode ('_', $orderShipment->getShippingMethod ());
+
+        $shipmentTitle = Mage::getStoreConfig (sprintf ('carriers/%s/title', $shippingMethod [0]));
+
+        $shipmentAmount = Mage::helper ('core')->currency ($orderShipment->getShipmentAmount (), true, false);
+
+        echo sprintf ('%s %s: %s', $orderShipment->getShipmentCount (), $shipmentTitle, $shipmentAmount) . PHP_EOL;
+    }
+
+    echo $this->getLineSeparator (Mage::helper ('pdv')->__('Products')) . PHP_EOL;
+
+    foreach ($this->getOrderProducts ($_cashier, $_operator, $_history) as $orderProduct)
+    {
+        $productAmount = Mage::helper ('core')->currency ($orderProduct->getProductAmount (), true, false);
+
+        echo sprintf ('%s %s: %s', intval ($orderProduct->getProductCount ()), $orderProduct->getName (), $productAmount) . PHP_EOL;
+    }
+}
+
+echo $this->getLineSeparator () . PHP_EOL;
+
+$storeName  = Mage::getStoreConfig('general/store_information/name');
+$storePhone = Mage::getStoreConfig('general/store_information/phone');
+
+echo sprintf('%s %s', $storeName, $storePhone) . PHP_EOL;
+
+echo sprintf('Toluca Store PDV %s', Mage::getModel('core/date')->date('d/m/Y H:i:s')) . PHP_EOL;
+

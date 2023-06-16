@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <menu>
+        <sales>
+            <children>
+                <service>
+                    <title>Services</title>
+                    <sort_order>55</sort_order>
+                    <action>admin_basic/adminhtml_order_service</action>
+                </service>
+            </children>
+        </sales>
+        <shipping>
+            <title>Shipping</title>
+            <sort_order>25</sort_order>
+            <depends><module>Mage_Shipping</module></depends>
+            <children>
+                <tablerate translate="title" module="basic">
+                    <title>Table Rates</title>
+                    <action>admin_basic/adminhtml_shipping_tablerate</action>
+                    <sort_order>0</sort_order>
+                </tablerate>
+                <rates translate="title" module="basic">
+                    <title>Shipping Rates</title>
+                    <sort_order>10</sort_order>
+                    <action>admin_basic/adminhtml_shipping_rate</action>
+                </rates>
+            </children>
+        </shipping>
+        <catalog>
+            <children>
+                <attributes>
+                    <children>
+                        <options translate="title" module="basic">
+                            <title>Manage Attribute Options</title>
+                            <action>admin_basic/adminhtml_catalog_product_attribute_option/index</action>
+                        </options>
+                    </children>
+                </attributes>
+            </children>
+        </catalog>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <service>
+                                <title>Services</title>
+                                <sort_order>55</sort_order>
+                            </service>
+                        </children>
+                    </sales>
+                    <shipping>
+                        <title>Shipping</title>
+                        <sort_order>25</sort_order>
+                        <children>
+                            <tablerate translate="title" module="basic">
+                                <title>Table Rates</title>
+                                <sort_order>0</sort_order>
+                            </tablerate>
+                            <rates translate="title" module="basic">
+                                <title>Shipping Rates</title>
+                                <sort_order>10</sort_order>
+                            </rates>
+                        </children>
+                    </shipping>
+                    <catalog>
+                        <children>
+                            <attributes>
+                                <children>
+                                    <options translate="title" module="basic">
+                                        <title>Manage Attribute Options</title>
+                                    </options>
+                                </children>
+                            </attributes>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+

@@ -1,0 +1,461 @@
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies. (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a.skip-link:focus {
+    color: #940000;
+    outline-color: #d90f0f;
+}
+
+a.skip-link:hover {
+    color: #ca0000;
+}
+
+address.copyright {
+    color: #636363;
+    font-size: 12.9px;
+}
+
+form .form-instructions {
+    color: black;
+    font-weight: bold;
+}
+
+h2.product-name a:focus,
+h3.product-name a:focus,
+h4.product-name a:focus,
+h5.product-name a:focus,
+p.product-name a:focus {
+    outline-color: #d90f0f;
+}
+
+h2.product-name a:hover,
+h3.product-name a:hover,
+h4.product-name a:hover,
+h5.product-name a:hover,
+p.product-name a:hover {
+    color: #d90f0f;
+}
+
+header.header.sticky.mm-slideout {
+    display: none;
+}
+
+input[type=email],
+input[type=search],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text] {
+    height: auto;
+    padding: .375rem .75rem;
+}
+
+ol, ul {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.add-to-links {
+    display: none;
+}
+
+.block-account li a:focus,
+.block-cms-menu li a:focus {
+    outline-color: #d90f0f;
+}
+
+.block-account li a:hover,
+.block-cms-menu li a:hover {
+    color: #d90f0f;
+}
+
+.block-account li strong,
+.block-cms-menu li strong {
+    color: #ca0000;
+}
+
+.block-title h2,
+.block-title h3,
+.block-title strong {
+    color: black;
+}
+
+.button2 span, .button2 span span {
+    text-decoration: none;
+}
+
+.cart .cart-totals table tfoot strong {
+    color: black;
+    font-weight: normal;
+}
+
+.cart .cart-totals table tfoot strong span,
+.cart .cart-totals table tfoot span.price {
+    color: black;
+    font-weight: bold;
+}
+
+.cart-forms {
+    float: left;
+}
+
+.cart-table {
+    width: 100%;
+}
+
+.cart-table .cart-links > li {
+    padding: 5px;
+}
+
+.cart-table .product-cart-actions .button {
+    display: inline-block;
+}
+
+.cart-table .product-cart-actions .qty {
+    float: left;
+    height: auto;
+}
+
+.cms-home .products-grid > li.tns-item {
+    float: none;
+    margin-right: 0;
+}
+
+.cms-index-index h2.subtitle {
+    color: black;
+}
+
+.customer-account-login .col2-set .col-1 ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.header-language-background {
+    background-color: #54217c;
+}
+
+.footer .block-subscribe .actions .button {
+    width: 100%;
+}
+
+.footer .links a:focus {
+    outline-color: #d90f0f;
+}
+
+.footer .links a:hover {
+    color: #d90f0f;
+}
+
+.form-list .control label,
+.sp-methods dt label,
+#checkout-shipping-method-load .sp-methods dd label,
+#co-shipping-method-form .sp-methods dd label,
+.product-options ul.options-list label {
+    background-color: transparent;
+}
+
+.form-list .control label:hover,
+.sp-methods dt label:hover,
+#checkout-shipping-method-load .sp-methods dd label:hover,
+#co-shipping-method-form .sp-methods dd label:hover,
+.product-options ul.options-list label:hover {
+    background-color: transparent;
+}
+
+.form-list .customer-dob .dob-month,
+.form-list .customer-dob .dob-day {
+    width: 50px;
+}
+
+.header-minicart .block-subtitle {
+    color: black;
+    font-size: 12px;
+    padding-top: 12px;
+}
+
+.header-minicart .info-wrapper td span.price {
+    color: black;
+    font-weight: bold;
+}
+
+.header-minicart .info-wrapper .qty {
+    display: inline-block;
+    height: auto;
+}
+
+.header-minicart .minicart-actions .cart-link {
+    font-size: 15px;
+}
+
+.header-minicart .subtotal .label {
+    color: black;
+}
+
+.header-minicart .subtotal .price {
+    color: black;
+}
+
+.icon-sprite,
+.btn-remove2,
+.ratings .rating-box,
+.ratings .rating-box .rating,
+.sorter > .sort-by .sort-by-switcher,
+.sorter > .view-mode .grid,
+.sorter > .view-mode .list,
+.skip-nav .icon,
+.skip-search .icon,
+#search_mini_form .search-button:before,
+.skip-account .icon,
+.skip-cart .icon,
+.product-view .sharing-links a,
+.review-summary-table .rating-box .rating-number:after,
+.ratings-table .rating-box,
+.ratings-table .rating-box .rating {
+    background-image: url(../../../../rwd/gamuza/images/icon_sprite.png);
+}
+
+.logo {
+    padding: 10px 0 10px 0;
+    width: 100%;
+}
+
+.logo .large {
+    max-height: 115px;
+}
+
+.logo .small {
+    margin: 0 auto;
+    max-height: 115px;
+}
+
+.no-touch .product-image:focus {
+    outline-color: #d90f0f;
+}
+
+.no-touch .product-image:hover {
+    border-color: #d90f0f;
+}
+
+.opc .section .step-title .number,
+.opc .section.allow.active .step-title .number,
+.no-touch .opc .section.allow:hover .step-title .number {
+    border-radius: 15px;
+}
+
+.pager > .count-container {
+    min-height: 50px;
+}
+
+.pager > .count-container > .limiter > select {
+    float: right;
+    width: auto;
+}
+
+.products-grid .product-info .product-name .price-box .regular-price .price {
+    color: black;
+}
+
+.product-view .add-to-links {
+    display: unset;
+}
+
+.product-view .product-shop .product-name .h1,
+.product-view .product-img-box .product-name h1 {
+    color: #636363;
+}
+
+.product-view .product-shop .price-box .minimal-price .price,
+.product-view .product-shop .price-box .regular-price .price {
+    color: black;
+    font-weight: bold;
+}
+
+.product-view .product-shop .price-box .special-price .price {
+    color: red;
+    font-weight: bold;
+}
+
+.product-view .product-shop .price-box .full-product-price .price {
+    color: blue;
+    font-weight: bold;
+}
+
+.products-grid .price-box .minimal-price .price,
+.products-grid .price-box .regular-price .price {
+    color: black;
+    font-weight: bold;
+}
+
+.products-grid .price-box .old-price .price {
+    color: #636363;
+}
+
+.products-grid .price-box .special-price .price {
+    color: red;
+    font-weight: bold;
+}
+
+.products-grid .product-name a,
+.products-list .product-name a {
+    color: #636363;
+}
+
+.products-grid .product-name a:focus,
+.products-list .product-name a:focus {
+    outline-color: #d90f0f;
+    outline-width: unset;
+}
+
+.products-grid .product-name a:hover,
+.products-list .product-name a:hover {
+    color: #940000;
+}
+
+.products-list .product-shop .price-box .minimal-price .price,
+.products-list .product-shop .price-box .regular-price .price {
+    color: black;
+    font-weight: bold;
+}
+
+.products-list .product-shop .price-box .old-price .price {
+    color: #636363;
+}
+
+.products-list .product-shop .price-box .special-price .price {
+    color: red;
+    font-weight: bold;
+}
+
+.product-options dd .qty-holder .qty {
+    display: inline-block;
+}
+
+.products-grid .price-box {
+    color: black;
+}
+
+.nav-primary {
+    margin-top: 0;
+}
+
+.shipping select,
+.shipping .form-list input {
+    height: auto;
+}
+
+.shipping .form-list .shipping-postcode {
+    width: auto;
+}
+
+.shipping #co-shipping-method-form .sp-methods dd label {
+    background-color: transparent;
+    border: transparent;
+}
+
+.shipping #co-shipping-method-form .sp-methods dd label:hover {
+    background-color: transparent;
+    border: transparent;
+}
+
+.sorter > .sort-by > select {
+    float: left;
+    width: auto;
+}
+
+#discount-coupon-form label,
+.cart .giftcard label {
+    margin-top: 10px;
+    vertical-align: top;
+}
+
+#header-account a:focus {
+    outline-color: #d90f0f;
+}
+
+#header-account a:hover {
+    color: #d90f0f;
+}
+
+#somediv {
+    display: table;
+}
+
+@media only screen and (max-width: 770px) {
+    .header-minicart .minicart-actions .cart-link {
+        bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 979px) {
+    .col2-left-layout .sorter,
+    .col2-left-layout .pager,
+    .col2-right-layout .sorter,
+    .col2-right-layout .pager,
+    .col3-layout .sorter, .col3-layout .pager {
+        width: auto;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .cms-home .products-grid > li {
+        width: 17.0377%;
+    }
+
+    .cms-home .products-grid > li:not(.tns-item):nth-child(3n) {
+        margin-right: 3.7037%;
+    }
+
+    .cms-home .products-grid > li:not(.tns-item):nth-child(3n+1) {
+        clear: none;
+    }
+
+    .cms-home .products-grid > li:not(.tns-item):nth-child(5n) {
+        margin-right: 0;
+    }
+
+    .cms-home .products-grid > li:not(.tns-item):nth-child(5n+1) {
+        clear: left;
+    }
+}
+
+@media only screen and (min-width: 771px) {
+    .product-collateral .toggle-tabs li.current span,
+    .product-collateral .toggle-tabs li:hover span {
+        color: black;
+    }
+
+    .nav-primary a.level0 {
+        padding-left: 0;
+    }
+
+    .nav-primary a:hover,
+    .nav-primary li:hover > a {
+        color: #d90f0f;
+    }
+
+    .nav-primary a:focus,
+    .nav-primary li:focus > a {
+        outline-color: #d90f0f;
+    }
+
+    .skip-cart {
+        color: #636363;
+    }
+
+    .skip-cart .count,
+    .skip-link.skip-active .count {
+        color: #940000;
+    }
+}
+

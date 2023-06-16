@@ -1,0 +1,37 @@
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies. (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+.footer .legality p {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.grid tr.filter .range div.date {
+    display: inline-block;
+    min-width: 131px;
+}
+
+.header-top {
+    border-bottom: 1px solid #3a565f;
+}
+
+.login-container {
+    background: none;
+}
+
+.login-container::before {
+    background: none;
+}
+
+.login-form .logo {
+    background: url('../../../images/logo.png') no-repeat;
+}
+
+#somediv {
+    display: table;
+}
+
