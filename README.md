@@ -1,10 +1,28 @@
+<img src="https://dl.dropboxusercontent.com/s/qi0b31um3y3nxo6/tolucastore-admin-panel.png" alt="TolucaStore Admin Panel"/>
+
+## Table of features
+
+- APP ( Android & iOS)
+- Comanda ( Android & iOS )
+- Chat & Sales Bot ( WhatsApp )
+- Point of Sale ( POS )
+- Delivery ( e-Commerce & POS )
+- PagCripto
+- PicPay
+- PagSeguro
+- OpenPix
+- Correios
+
+---
+
 [![All Contributors](https://img.shields.io/github/all-contributors/openmage/magento-lts?color=ee8449)](#contributors)
+
 <a href="https://packagist.org/packages/openmage/magento-lts"><img src="https://poser.pugx.org/openmage/magento-lts/d/total.svg" alt="Total Downloads"></a>
 <a href="https://packagist.org/packages/openmage/magento-lts"><img src="https://poser.pugx.org/openmage/magento-lts/license.svg" alt="License"></a>
 <a href="https://github.com/openmage/magento-lts/actions/workflows/security-php.yml"><img src="https://github.com/openmage/magento-lts/actions/workflows/security-php.yml/badge.svg" alt="PHP Security workflow Badge" /></a>
 <a href="https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml"><img src="https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml/badge.svg" alt="CI workflow Badge" /></a>
 
-# Magento - Long Term Support
+# Toluca Store ERP - Long Term Support
 
 This repository is the home of an **unofficial** community-driven project. It's goal is to be a dependable alternative
 to the Magento CE official releases which integrates improvements directly from the community while maintaining a high
@@ -378,7 +396,12 @@ for more information.
 
 ## Public Communication
 
-* [Discord](https://discord.gg/EV8aNbU) (maintained by Flyingmana)
+* [Toluca Store](https://t.me/tolucastore) (Telegram)
+* [Gamuza Technologies](https://t.me/gamuzatech) (Telegram)
+
+## Developers
+
+* [Enéias Ramos de Melo](https://github.com/eneiasramos)
 
 ## Maintainers
 
