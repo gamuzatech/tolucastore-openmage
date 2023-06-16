@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<jstranslator>
+    <!-- js.js -->
+    <sales-order-pending translate="message" module="basic">
+        <message>You have %s pending orders!</message>
+    </sales-order-pending>
+    <!-- end js.js -->
+</jstranslator>
+

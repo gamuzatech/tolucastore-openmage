@@ -1,0 +1,39 @@
+<!--
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<?php $_order = $this->getOrder (); ?>
+<div class="col2-set">
+    <div class="col-1">
+		<?php if($this->helper('giftmessage/message')->getIsMessagesAvailable('order', $_order) && $_order->getGiftMessageId()): ?>
+			<div class="order-additional order-gift-message">
+				<h2 class="sub-title"><?php echo $this->__('Gift Message for This Order') ?></h2>
+			</div>
+			<?php $_giftMessage=$this->helper('giftmessage/message')->getGiftMessageForEntity($_order); ?>
+			<dl class="gift-message">
+				<dt><strong><?php echo $this->__('From:') ?></strong> <?php echo $this->htmlEscape($_giftMessage->getSender()) ?></dt>
+				<dt><strong><?php echo $this->__('To:') ?></strong> <?php echo $this->htmlEscape($_giftMessage->getRecipient()) ?></dt>
+				<dd><?php echo $this->helper('giftmessage/message')->getEscapedGiftMessage($_order) ?></dd>
+			</dl>
+		<?php endif; ?>
+	</div>
+	<div class="col-2">
+		<?php $_history = $this->getOrder()->getVisibleStatusHistory() ?>
+		<?php if (count($_history)): ?>
+		<div class="order-additional order-comments">
+			<h2 class="sub-title"><?php echo $this->__('About Your Order') ?></h2>
+			<dl class="order-about">
+				<?php foreach ($_history as $_historyItem): ?>
+				    <dt><?php echo $this->formatDate($_historyItem->getCreatedAtStoreDate(), 'medium', true) ?></dt>
+				    <dd><?php echo $this->escapeHtml($_historyItem->getComment()) ?></dd>
+				<?php endforeach; ?>
+			</dl>
+		</div>
+		<?php endif; ?>
+	</div>
+</div>
+

@@ -1,0 +1,46 @@
+<?php
+/***************************************************************************
+ Extension Name  : Magento Responsive Banner Slider with Lazy Load Extension
+ Extension URL   : http://www.magebees.com/magento-responsive-banner-slider-with-lazy-load-extension.html
+ Copyright    : Copyright (c) 2016 MageBees, http://www.magebees.com
+ Support Email   : support@magebees.com 
+ ***************************************************************************/
+?>
+<style>
+    .product-param label { padding-right: 10px; }
+    .product-param .label { color: black; font-weight: bold; }
+    .product-param .label:hover { color: blue; font-weight: bold; }
+    .product-param .element { display: none; }
+    .product-param input, .product-param select { min-width: 350px; width: auto !important; }
+    .product-param-edit .label { display: none; }
+    .product-param-edit .element { display: inline; }
+    .product-chooser { border: 1px solid #CCC; display: none; margin: 10px 0; padding: 5px; }
+</style>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('responsivebannerslider')->__('Group Products') ?></h4>
+    </div>
+    <fieldset id="product_fieldset">
+        <ul>
+            <li>
+                <span class="product-param">
+                    <label for="product_sku"><?php echo Mage::helper('responsivebannerslider')->__('Show On Product Pages (SKU)') ?></label>
+                        <a class="label" href="javascript:void(0)"><?php if($this->getIdsString()) { echo $this->getIdsString(); 
+                       } else { echo Mage::helper('responsivebannerslider')->__('Click Here To Add Products'); 
+                       } ?></a>
+                    <span class="element">
+                        <input id="product_sku" class="input-text element-value-changer" type="text" value="<?php echo $this->getIdsString() ?>" name="product_sku">
+                        <a class="product-chooser-trigger" href="javascript:void(0)">
+                            <img src="<?php echo Mage::getDesign()->getSkinUrl('images/rule_chooser_trigger.gif') ?>" alt="" class="v-middle product-chooser-trigger" title="<?php echo Mage::helper('responsivebannerslider')->__('Open Chooser') ?>" />
+                        </a>
+                    </span>
+                </span>
+                <div class="product-chooser" url="<?php echo Mage::getUrl('adminhtml/promo_widget/chooser/attribute/sku/form/rule_conditions_fieldset', array('_secure' => Mage::app()->getStore()->isAdminUrlSecure())); ?>">
+            </li>
+        </ul>
+    </fieldset>
+</div>
+<script type="text/javascript">
+    var rule_conditions_fieldset = new VarienRulesForm('product_fieldset', '<?php echo Mage::getUrl('/admin/promo_catalog/newConditionHtml/form/rule_conditions_fieldset/', array('_secure' => Mage::app()->getStore()->isAdminUrlSecure())) ?>');
+</script>

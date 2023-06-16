@@ -1,0 +1,46 @@
+@font-face {
+    font-family:'cwsarrow';
+    src: url('cwsarw.eot?eywnut');
+    src: url('cwsarw.eot?#iefixeywnut') format('embedded-opentype'),
+        url('cwsarw.woff?eywnut') format('woff'),
+        url('cwsarw.ttf?eywnut') format('truetype'),
+        url('cwsarw.svg?eywnut#icomoon') format('svg');
+    font-weight: normal; font-style: normal;
+}
+i.cws { color:#333; font-family:'cwsarrow'; font-size:20px; speak:none; font-style:normal; font-weight:normal; font-variant:normal; text-transform:none; line-height:1; /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    display:inline-block; width:20px; height:20px; letter-spacing:10px; }
+
+.angle:before { content: "\69"; }
+.angle:after { content: "\6a"; }
+.angle_small:before { content: "\6d"; }
+.angle_small:after { content: "\6e"; }
+.angle_circle:before { content: "\37"; }
+.angle_circle:after { content: "\38"; }
+.angle_square:before { content: "\21"; }
+.angle_square:after { content: "\23"; }
+.arrow:before { content: "\6b"; }
+.arrow:after { content: "\6c"; }
+.arrow_circle:before { content: "\6f"; }
+.arrow_circle:after { content: "\70"; }
+.caret:before { content: "\65"; }
+.caret:after { content: "\66"; }
+.chevron:before { content: "\77"; }
+.chevron:after { content: "\78"; }
+.chevron_smooth:before { content: "\71"; }
+.chevron_smooth:after { content: "\72"; }
+.chevron_circle:before { content: "\33"; }
+.chevron_circle:after { content: "\34"; }
+.chevron_square:before { content: "\39"; }
+.chevron_square:after { content: "\30"; }
+
+
+
+
+
+
+
+.cws-chevSquareLeft:before { content: "\39"; }
+.cws-chevSquareRight:before { content: "\30"; }
+
+

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_Bot
+ * @copyright   Copyright (c) 2020 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+    <admin_bot_adminhtml_chat_index>
+        <reference name="content">
+            <block type="bot/adminhtml_chat" name="chat" />
+        </reference>
+    </admin_bot_adminhtml_chat_index>
+    <admin_bot_adminhtml_chat_history>
+        <reference name="content">
+            <block type="bot/adminhtml_history" name="history" />
+        </reference>
+    </admin_bot_adminhtml_chat_history>
+    <admin_bot_adminhtml_contact_index>
+        <reference name="content">
+            <block type="bot/adminhtml_contact" name="contact" />
+        </reference>
+    </admin_bot_adminhtml_contact_index>
+    <admin_bot_adminhtml_promotion_index>
+        <reference name="content">
+            <block type="bot/adminhtml_promotion" name="promotion" />
+        </reference>
+    </admin_bot_adminhtml_promotion_index>
+    <admin_bot_adminhtml_queue_index>
+        <reference name="content">
+            <block type="bot/adminhtml_queue" name="queue" />
+        </reference>
+    </admin_bot_adminhtml_queue_index>
+    <admin_bot_adminhtml_queue_history>
+        <reference name="content">
+            <block type="bot/adminhtml_log" name="log" />
+        </reference>
+    </admin_bot_adminhtml_queue_history>
+</layout>
+

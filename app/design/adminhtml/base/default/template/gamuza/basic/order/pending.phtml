@@ -1,0 +1,39 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+
+<?php if (Mage::getStoreConfigFlag ('admin/sales/grid_auto_reload')): ?>
+<script type="text/javascript">
+    Notification.requestPermission ();
+
+    setInterval (function () {
+        new Ajax.Request ("<?php echo Mage::helper ('adminhtml')->getUrl ('adminhtml/sales_order/pending'); ?>", {
+            method: 'get',
+            onSuccess: function (transport) {
+                var qty = parseInt (transport.responseText);
+
+                if (qty > 0) {
+                    var notification = new Notification (Translator.translate("You have %s pending orders!").replace("%s", qty));
+
+                    notification.onclick = function (event) {
+                        event.preventDefault (); // prevent the browser from focusing the Notification's tab
+
+                        setLocation ("<?php echo Mage::helper ('adminhtml')->getUrl ('adminhtml'); ?>");
+                    }
+
+                    if (window.location.href.includes ("sales_order/index"))
+                    {
+                        sales_order_gridJsObject.resetFilter ();
+                    }
+                }
+            },
+            onFailure: function () { console.log ('Cannot get pending orders ...'); }
+        });
+    }, 60000);
+</script>
+<?php endif; ?>
+

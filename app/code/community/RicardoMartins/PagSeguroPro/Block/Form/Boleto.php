@@ -1,6 +1,8 @@
 <?php
 class RicardoMartins_PagSeguroPro_Block_Form_Boleto extends Mage_Payment_Block_Form
 {
+    protected $_instructions = null;
+
     /**
      * Set block template
      */
@@ -25,5 +27,14 @@ class RicardoMartins_PagSeguroPro_Block_Form_Boleto extends Mage_Payment_Block_F
         }
 
         return parent::_prepareLayout();
+    }
+
+    protected function getInstructions()
+    {
+        if (is_null($this->_instructions)) {
+            $this->_instructions = $this->getMethod()->getInstructions();
+        }
+
+        return $this->_instructions;
     }
 }

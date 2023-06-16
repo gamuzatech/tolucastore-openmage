@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Toluca_Banner
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Toluca_Banner>
+            <version>0.0.1</version>
+        </Toluca_Banner>
+    </modules>
+    <global>
+        <helpers>
+            <banner>
+                <class>Toluca_Banner_Helper</class>
+            </banner>
+        </helpers>
+        <blocks>
+            <banner>
+                <class>Toluca_Banner_Block</class>
+            </banner>
+            <responsivebannerslider>
+                <rewrite>
+                    <adminhtml_slider_edit_tab_form>Toluca_Banner_Block_Adminhtml_Slider_Edit_Tab_Form</adminhtml_slider_edit_tab_form>
+                    <adminhtml_slider_grid>Toluca_Banner_Block_Adminhtml_Slider_Grid</adminhtml_slider_grid>
+                    <adminhtml_slidergroup>Toluca_Banner_Block_Adminhtml_Slidergroup</adminhtml_slidergroup>
+                    <adminhtml_slidergroup_edit_tab_form>Toluca_Banner_Block_Adminhtml_Slidergroup_Edit_Tab_Form</adminhtml_slidergroup_edit_tab_form>
+                    <adminhtml_slidergroup_edit_tabs>Toluca_Banner_Block_Adminhtml_Slidergroup_Edit_Tabs</adminhtml_slidergroup_edit_tabs>
+                    <adminhtml_slidergroup_grid>Toluca_Banner_Block_Adminhtml_Slidergroup_Grid</adminhtml_slidergroup_grid>
+                </rewrite>
+            </responsivebannerslider>
+        </blocks>
+    </global>
+    <adminhtml>
+		<layout>
+			<updates>
+				<banner>
+					<file>toluca/banner.xml</file>
+				</banner>
+			</updates>
+		</layout>
+        <translate>
+            <modules>
+                <Toluca_Banner>
+                    <files>
+                        <default>Toluca_Banner.csv</default>
+                    </files>
+                </Toluca_Banner>
+            </modules>
+        </translate>
+    </adminhtml>
+    <frontend>
+		<layout>
+			<updates>
+				<banner>
+					<file>toluca/banner.xml</file>
+				</banner>
+			</updates>
+		</layout>
+    </frontend>
+	<default>
+		<responsivebannerslider>
+			<general>
+				<jquery>0</jquery>
+                <lazy_load_jquery>0</lazy_load_jquery>
+			</general>
+		</responsivebannerslider>
+	</default>
+</config>
+

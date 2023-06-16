@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Toluca_Banner
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <tabs>
+        <toluca translate="label" module="banner">
+            <label>Toluca</label>
+            <sort_order>10</sort_order>
+        </toluca>
+    </tabs>
+    <sections>
+        <responsivebannerslider>
+            <label>Banners</label>
+            <tab>toluca</tab>
+            <sort_order>0</sort_order>
+			<groups>
+                <general>
+                    <fields>
+                        <jquery>
+						    <show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </jquery>
+						<lazy_load_jquery>
+							<show_in_default>0</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </lazy_load_jquery>
+                    </fields>
+                </general>
+                <support>
+                    <show_in_default>0</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                </support>
+            </groups>
+		</responsivebannerslider>
+    </sections>
+</config>
+

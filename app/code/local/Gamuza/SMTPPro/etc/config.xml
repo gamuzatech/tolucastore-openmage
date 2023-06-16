@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Gamuza_SMTPPro
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+<config>
+	<modules>
+		<Gamuza_SMTPPro>
+			<version>0.0.1</version>
+		</Gamuza_SMTPPro>
+	</modules>
+	<global>
+		<helpers>
+			<gamuza_smtppro>
+                <class>Gamuza_SMTPPro_Helper</class>
+            </gamuza_smtppro>
+		</helpers>
+	</global>
+	<default>
+		<smtppro>
+            <general>
+                <option>smtp</option>
+                <smtp_authentication>none</smtp_authentication>
+                <smtp_host>localhost</smtp_host>
+                <smtp_ssl>none</smtp_ssl>
+            </general>
+            <queue>
+                <usage>default</usage>
+            </queue>
+            <debug>
+                <logenabled>1</logenabled>
+                <cleanlog>1</cleanlog>
+                <cleanlog_after_days>90</cleanlog_after_days>
+                <log_debug>1</log_debug>
+            </debug>
+            <charset>
+                <utf8>1</utf8>
+            </charset>
+		</smtppro>
+	</default>
+</config>
+

@@ -136,11 +136,9 @@ class RicardoMartins_PagSeguro_Model_Abstract extends Mage_Payment_Model_Method_
             (
                 $processedState->getState(),
                 true,
-                // the order state
                 $message,
                 $processedState->getIsCustomerNotified()
             );
-            
         }
         else
         {
@@ -679,7 +677,8 @@ class RicardoMartins_PagSeguro_Model_Abstract extends Mage_Payment_Model_Method_
 
             $order->addStatusHistoryComment
             (
-                sprintf('Fatura #%s criada com sucesso.', $invoice->getIncrementId())
+                sprintf('Fatura #%s criada com sucesso.', $invoice->getIncrementId()),
+                Mage::getStoreConfig('payment/rm_pagsecuro_cc/paid_status') ?: false
             );
         }
     }

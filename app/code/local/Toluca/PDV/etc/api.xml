@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_PDV
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <!-- Cashier -->
+            <pdv_cashier translate="title" module="pdv">
+                <model>pdv/cashier_api</model>
+                <title>PDV Cashier API</title>
+                <acl>pdv/cashier</acl>
+                <methods>
+                    <open translate="title" module="pdv">
+                        <title>Open a cashier</title>
+                        <acl>pdv/cashier/open</acl>
+                    </open>
+                    <reinforce translate="title" module="pdv">
+                        <title>Reinforce a cashier</title>
+                        <acl>pdv/cashier/reinforce</acl>
+                    </reinforce>
+                    <bleed translate="title" module="pdv">
+                        <title>Bleed a cashier</title>
+                        <acl>pdv/cashier/bleed</acl>
+                    </bleed>
+                    <close translate="title" module="pdv">
+                        <title>Close a cashier</title>
+                        <acl>pdv/cashier/close</acl>
+                    </close>
+                    <info translate="title" module="pdv">
+                        <title>Get cashier information</title>
+                        <acl>pdv/cashier/info</acl>
+                    </info>
+                    <draft translate="title" module="pdv">
+                        <title>Create a new draft for cashier</title>
+                        <acl>pdv/cashier/draft</acl>
+                    </draft>
+                    <clear translate="title" module="pdv">
+                        <title>Clear the quote for cashier</title>
+                        <acl>pdv/cashier/clear</acl>
+                    </clear>
+                </methods>
+            </pdv_cashier>
+            <!-- Cart -->
+            <pdv_cart translate="title" module="pdv">
+                <model>pdv/cart_api</model>
+                <title>PDV Cart API</title>
+                <acl>pdv/cart</acl>
+                <methods>
+                    <list translate="title" module="pdv">
+                        <title>Get cart list information</title>
+                        <acl>pdv/cart/list</acl>
+                        <method>items</method>
+                    </list>
+                    <info translate="title" module="pdv">
+                        <title>Get cart information</title>
+                        <acl>pdv/cart/info</acl>
+                    </info>
+                    <create translate="title" module="pdv">
+                        <title>Create cart information</title>
+                        <acl>pdv/cart/create</acl>
+                    </create>
+                </methods>
+            </pdv_cart>
+        </resources>
+        <faults translate="message" module="pdv">
+            <cashier_not_specified>
+                <code>100</code>
+                <message>Requested cashier ID was not specified.</message>
+            </cashier_not_specified>
+            <amount_not_specified>
+                <code>200</code>
+                <message>Requested cashier amount was not specified.</message>
+            </amount_not_specified>
+            <operator_not_specified>
+                <code>300</code>
+                <message>Requested operator ID was not specified.</message>
+            </operator_not_specified>
+            <password_not_specified>
+                <code>400</code>
+                <message>Requested operator password was not specified.</message>
+            </password_not_specified>
+            <customer_not_specified>
+                <code>500</code>
+                <message>Requested customer was not specified.</message>
+            </customer_not_specified>
+            <quote_not_specified>
+                <code>600</code>
+                <message>Requested quote ID was not specified.</message>
+            </quote_not_specified>
+
+            <cashier_not_exists>
+                <code>700</code>
+                <message>Requested cashier was not found.</message>
+            </cashier_not_exists>
+            <operator_not_exists>
+                <code>800</code>
+                <message>Requested operator was not found.</message>
+            </operator_not_exists>
+            <history_not_exists>
+                <code>900</code>
+                <message>Requested history was not found.</message>
+            </history_not_exists>
+            <quote_not_exists>
+                <code>1000</code>
+                <message>Requested quote was not found.</message>
+            </quote_not_exists>
+            <customer_not_exists>
+                <code>1100</code>
+                <message>Requested customer was not found.</message>
+            </customer_not_exists>
+            <customer_billing_address_not_exists>
+                <code>1200</code>
+                <message>Requested customer billing address was not found.</message>
+            </customer_billing_address_not_exists>
+            <customer_shipping_address_not_exists>
+                <code>1300</code>
+                <message>Requested customer shipping address was not found.</message>
+            </customer_shipping_address_not_exists>
+            <customer_invalid_billing_address>
+                <code>1400</code>
+                <message>Requested customer billing address is invalid.</message>
+            </customer_invalid_billing_address>
+            <customer_invalid_shipping_address>
+                <code>1500</code>
+                <message>Requested customer shipping address is invalid.</message>
+            </customer_invalid_shipping_address>
+
+            <cashier_already_opened>
+                <code>1600</code>
+                <message>Requested cashier is already opened.</message>
+            </cashier_already_opened>
+            <cashier_already_closed>
+                <code>1700</code>
+                <message>Requested cashier is already closed.</message>
+            </cashier_already_closed>
+            <cashier_invalid_amount>
+                <code>1800</code>
+                <message>Cashier amount is invalid.</message>
+            </cashier_invalid_amount>
+            <operator_invalid_password>
+                <code>1900</code>
+                <message>Operator password is invalid.</message>
+            </operator_invalid_password>
+        </faults>
+        <acl>
+            <resources>
+                <pdv translate="title" module="pdv">
+                    <title>PDV API</title>
+                    <sort_order>0</sort_order>
+                    <!-- Cashier -->
+                    <cashier translate="title" module="pdv">
+                        <title>Cashier</title>
+                        <open translate="title" module="pdv">
+                            <title>Open a cashier</title>
+                        </open>
+                        <reinforce translate="title" module="pdv">
+                            <title>Reinforce a cashier</title>
+                        </reinforce>
+                        <bleed translate="title" module="pdv">
+                            <title>Bleed a cashier</title>
+                        </bleed>
+                        <close translate="title" module="pdv">
+                            <title>Close a cashier</title>
+                        </close>
+                        <info translate="title" module="pdv">
+                            <title>Get cashier information</title>
+                        </info>
+                        <draft translate="title" module="pdv">
+                            <title>Create a new draft for cashier</title>
+                        </draft>
+                        <clear translate="title" module="pdv">
+                            <title>Clear the quote for cashier</title>
+                        </clear>
+                    </cashier>
+                    <!-- Cart -->
+                    <cart translate="title" module="pdv">
+                        <title>Cart</title>
+                        <list translate="title" module="pdv">
+                            <title>Get cart list information</title>
+                        </list>
+                        <info translate="title" module="pdv">
+                            <title>Get cart information</title>
+                        </info>
+                        <create translate="title" module="pdv">
+                            <title>Create cart information</title>
+                        </create>
+                    </cart>
+                </pdv>
+            </resources>
+        </acl>
+    </api>
+</config>
+
