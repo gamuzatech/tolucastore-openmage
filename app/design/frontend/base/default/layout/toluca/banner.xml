@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_Banner
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout>
+    <default>
+        <reference name="head">
+            <action method="removeItem">
+                <type>js</type>
+                <name>responsivebannerslider/jquery.fitvid.js</name>
+                <params />
+            </action>
+
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/toluca/banner/jquery.fitvids.js</name>
+                <params />
+            </action>
+        </reference>
+    </default>
+</layout>
+

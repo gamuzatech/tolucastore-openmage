@@ -68,7 +68,7 @@
     <default>
         <checkout>
             <cart>
-                <ajax_add_to_cart>0</ajax_add_to_cart>
+                <ajax_add_to_cart>1</ajax_add_to_cart>
             </cart>
         </checkout>
     </default>

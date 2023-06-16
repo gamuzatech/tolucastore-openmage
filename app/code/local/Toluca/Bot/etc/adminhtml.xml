@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Toluca_Bot
+ * @copyright   Copyright (c) 2020 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <menu>
+        <toluca module="bot">
+            <title>Toluca</title>
+            <sort_order>100</sort_order>
+            <children>
+                <bot module="bot">
+                    <title>Bot</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <chat translate="title" module="bot">
+                            <title>Manage Chats</title>
+                            <sort_order>0</sort_order>
+                            <action>admin_bot/adminhtml_chat</action>
+                        </chat>
+                        <contact translate="title" module="bot">
+                            <title>Manage Contacts</title>
+                            <sort_order>10</sort_order>
+                            <action>admin_bot/adminhtml_contact</action>
+                        </contact>
+                        <promotion translate="title" module="bot">
+                            <title>Manage Promotions</title>
+                            <sort_order>20</sort_order>
+                            <action>admin_bot/adminhtml_promotion</action>
+                        </promotion>
+                        <queue translate="title" module="bot">
+                            <title>Manage Queue</title>
+                            <sort_order>30</sort_order>
+                            <action>admin_bot/adminhtml_queue</action>
+                        </queue>
+                    </children>
+                </bot>
+            </children>
+        </toluca>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <toluca translate="title" module="bot">
+                        <title>Toluca</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <bot translate="title" module="bot">
+                                <title>Bot</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <chat translate="title" module="bot">
+                                        <title>Manage Chats</title>
+                                        <sort_order>0</sort_order>
+                                    </chat>
+                                    <contact translate="title" module="bot">
+                                        <title>Manage Contacts</title>
+                                        <sort_order>10</sort_order>
+                                    </contact>
+                                    <promotion translate="title" module="bot">
+                                        <title>Manage Promotions</title>
+                                        <sort_order>20</sort_order>
+                                    </promotion>
+                                    <queue translate="title" module="bot">
+                                        <title>Manage Queue</title>
+                                        <sort_order>30</sort_order>
+                                    </queue>
+                                </children>
+                            </bot>
+                        </children>
+                    </toluca>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <bot translate="title" module="bot">
+                                        <title>Toluca Bot Section</title>
+                                        <sort_order>0</sort_order>
+                                    </bot>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+

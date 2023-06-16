@@ -1,0 +1,27 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2021 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+<div class="footer-content">
+<div class="bug-report">
+    <p><?php echo $this->__('Interface Locale: %s', $this->getLanguageSelect()) ?></p>
+</div>
+<div class="legality">
+    <img src="<?php echo $this->getSkinUrl('images/gamuza_logo.gif') ?>" class="v-middle" alt="" />&nbsp;&nbsp;
+    <p><?php echo $this->__('Toluca Store&trade; is a trademark of Gamuza Technologies.') ?><br/>
+    <?php echo $this->__('Copyright &copy; %s Gamuza Technologies. All rights reserved.', date('Y')) ?></p>
+</div>
+<script type="text/javascript">
+    function setInterfaceLanguage(evt){
+        var elem = Event.element(evt);
+        if(elem){
+            setLocation('<?php echo $this->getChangeLocaleUrl() ?>locale/'+elem.value+'/<?php echo $this->getRefererParamName() ?>/<?php echo $this->getUrlForReferer() ?>');
+        }
+    }
+    Event.observe('interface_locale', 'change', setInterfaceLanguage);
+</script>
+</div>
+

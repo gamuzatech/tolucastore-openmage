@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2017 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Gamuza_Mobile>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Mage_Adminhtml />
+                <Mage_Api />
+                <Mage_Catalog />
+                <Mage_Checkout />
+                <Mage_Payment />
+                <Mage_Sales />
+                <Mage_Shipping />
+            </depends>
+        </Gamuza_Mobile>
+    </modules>
+</config>
+

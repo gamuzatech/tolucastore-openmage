@@ -1,0 +1,40 @@
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+.buttons-set {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.col2-set .col-1,
+.col2-set .col-2 {
+    padding: 0
+}
+
+.nav-link {
+    padding: 15px;
+}
+
+.nav-link.active {
+    color: black;
+    font-weight: bold;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+}
+
+#category-nav {
+    -webkit-overflow-scrolling: touch;
+}
+
+@media only screen and (max-width: 479px) {
+    .buttons-set .button {
+        margin-bottom: 0;
+    }
+}
+

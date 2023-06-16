@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Autocomplete
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+    <gamuza_autocomplete>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>css/gamuza/autocomplete.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>js/gamuza/autocomplete.js</script>
+            </action>
+        </reference>        
+        <reference name="after_body_start">
+            <block type="page/html" name="gamuza_autocomplete">
+                <action method="setTemplate">
+                    <template>gamuza/autocomplete.phtml</template>
+                </action>
+            </block>
+        </reference>        
+    </gamuza_autocomplete>
+    <checkout_onepage_index>
+        <update handle="gamuza_autocomplete"/>
+    </checkout_onepage_index>
+    <customer_address_form>
+        <update handle="gamuza_autocomplete"/>
+    </customer_address_form>
+    <customer_account_create>
+        <update handle="gamuza_autocomplete"/>
+    </customer_account_create>
+</layout>
+

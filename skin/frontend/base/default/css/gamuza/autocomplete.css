@@ -1,0 +1,45 @@
+/*
+ * @package     Gamuza_Autocomplete
+ * @copyright   Copyright (c) 2022 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+#autocomplete-mask {
+    color: #d85909;
+    font-size: 1.1em;
+    font-weight: bold;
+    /* opacity: 0.8; */
+    position: absolute;
+    text-align: center;
+    z-index: 1200;
+}
+
+#autocomplete-mask .loader {
+    background: none repeat scroll 0 0 #fff4e9;
+    border: 2px solid #f1af73;
+    color: #d85909;
+    font-weight: bold;
+    left: 50%;
+    margin-left: -105px;
+    padding: 15px 30px;
+    position: fixed;
+    text-align: center;
+    top: 45%;
+    width: 150px;
+    z-index: 1100;
+}
+
+#autocomplete-mask img {
+    margin: 0 auto;
+}
+
+#autocomplete-overlay {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.35);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+

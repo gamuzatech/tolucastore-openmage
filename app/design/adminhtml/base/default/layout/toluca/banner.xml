@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/*
+ * @package     Toluca_Banner
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+	<adminhtml_slider_index>
+	    <reference name="content">
+          	<remove name="group_switcher" />
+	    </reference>
+	</adminhtml_slider_index>
+</layout>
+

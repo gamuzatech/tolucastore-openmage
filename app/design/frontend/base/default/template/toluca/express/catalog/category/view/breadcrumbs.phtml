@@ -1,0 +1,25 @@
+<?php
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+
+<?php $_storeHours = Mage::getStoreConfig(Mage_Core_Model_Store::XML_PATH_STORE_STORE_HOURS); ?>
+
+<div class="col2-set">
+    <div class="col-1">
+        <div class="content">
+            <h2><?php echo $this->__('Express'); ?></h2>
+            <p><strong><?php echo $this->__('Store Hours of Operation'); ?></strong></p>
+            <p><?php echo $_storeHours; ?></p>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="buttons-set">
+        <?php echo $this->getChildHtml('checkout.cart.link'); ?>
+        </div>
+    </div>
+</div>
+

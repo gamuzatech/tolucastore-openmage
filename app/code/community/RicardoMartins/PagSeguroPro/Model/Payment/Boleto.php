@@ -1,7 +1,9 @@
 <?php
 class RicardoMartins_PagSeguroPro_Model_Payment_Boleto extends RicardoMartins_PagSeguro_Model_Abstract
 {
-    protected $_code = 'pagseguropro_boleto';
+    const CODE = 'pagseguropro_boleto';
+
+    protected $_code = self::CODE;
     protected $_formBlockType = 'ricardomartins_pagseguropro/form_boleto';
     protected $_infoBlockType = 'ricardomartins_pagseguropro/form_info_boleto';
     protected $_isGateway = true;
@@ -40,6 +42,9 @@ class RicardoMartins_PagSeguroPro_Model_Payment_Boleto extends RicardoMartins_Pa
     {
         /** @var Mage_Sales_Model_Order $order */
         $order = $payment->getOrder();
+
+        $order->setState(Mage_Sales_Model_Order::STATE_PAYMENT_REVIEW, true);
+
         $helper = Mage::helper('ricardomartins_pagseguropro/internal');
         $rmHelper = Mage::helper('ricardomartins_pagseguro');
 
@@ -91,5 +96,10 @@ class RicardoMartins_PagSeguroPro_Model_Payment_Boleto extends RicardoMartins_Pa
             return false;
         }
         return parent::isAvailable($quote);
+    }
+
+    public function getInstructions()
+    {
+        return trim($this->getConfigData('instructions'));
     }
 }
