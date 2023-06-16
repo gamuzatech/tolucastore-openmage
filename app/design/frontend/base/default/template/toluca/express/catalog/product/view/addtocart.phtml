@@ -1,0 +1,35 @@
+<?php
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+<script type="text/javascript">
+productAddToCartForm.submit = function(url){
+    if(this.validator && this.validator.validate()){
+        var button = $j('.product-view .add-to-cart-buttons button.button');
+        var form = $j(this.form);
+
+        button.attr('disabled', 'disabled');
+
+        $j.ajax({
+            url: form.attr('action'),
+            type: form.attr('method'),
+            enctype: form.attr('enctype'),
+            data: form.serialize(),
+        })
+        .success(function(data) {
+            productsModal.hide();
+        })
+        .fail(function(data){
+            console.log(data);
+
+            button.removeAttr('disabled');
+        });
+    }
+
+    return false;
+};
+</script>
+

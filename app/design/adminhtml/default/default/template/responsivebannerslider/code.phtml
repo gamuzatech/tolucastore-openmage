@@ -1,0 +1,83 @@
+<?php 
+/***************************************************************************
+ Extension Name  : Magento Responsive Banner Slider with Lazy Load Extension
+ Extension URL   : http://www.magebees.com/magento-responsive-banner-slider-with-lazy-load-extension.html
+ Copyright    : Copyright (c) 2016 MageBees, http://www.magebees.com
+ Support Email   : support@magebees.com 
+ ***************************************************************************/
+?>
+
+<?php $GroupData = $this->getCurrentGroup(); ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('responsivebannerslider')->__('Information') ?></h4>
+    </div>
+    <fieldset id="xml-info">
+        <?php $GroupInfo= $GroupData->getData('slidergroup_id'); ?>
+        
+        <p>For more flexibility on where to load this slider group you can use a template tag or Layout XML code to add this slider group to a CMS page or static block. The following template tag or XML code can be used to display the <strong><?php echo  $GroupData->getData('title'); ?></strong> slider group in your webshop.</p>
+        
+        <p>Instead of selecting a page or category to display the <strong><?php echo  $GroupData->getData('title') ?></strong> slider group you can copy either the template tag or the XML code below and paste it into the content editor of a CMS page or static block (for template tag) or either a Layout XML file or a Custom Layout Update XML field of a CMS page or category (Layout XML code). You can change the reference name parameter to position the group where you want it to show in the CMS page or category.</p>
+    </fieldset>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo  Mage::helper('responsivebannerslider')->__('Template Tag') ?></h4>
+    </div>
+        
+    <fieldset id="template-tag">
+        
+        
+<textarea id="flexslider-template-tag" rows="3" cols="176" onclick="this.focus();this.select()" readonly="readonly">
+    
+    {{block type="responsivebannerslider/view" name="responsivebannerslider_view<?php echo $GroupInfo; ?>" template="responsivebannerslider/slider.phtml" code="<?php echo $GroupInfo; ?>"}}
+</textarea>
+
+        
+    </fieldset>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('responsivebannerslider')->__('XML Code') ?></h4>
+    </div>
+        
+    <fieldset id="xml-code">
+        
+        
+<textarea id="flexslider-code" rows="7" cols="176" onclick="this.focus();this.select()" readonly="readonly">
+    
+    <reference name="content">
+        <block type="responsivebannerslider/view" name="responsivebannerslider_view<?php echo $GroupInfo; ?>" template="responsivebannerslider/slider.phtml">
+            <action method="setCode"><code><?php echo $GroupInfo; ?></code></action>
+        </block>
+    </reference>
+</textarea>
+
+        
+    </fieldset>
+</div>
+
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo  Mage::helper('responsivebannerslider')->__(
+            '
+	Call Via Frontend Template File'
+        ) ?></h4>
+    </div>
+        
+    <fieldset id="template-tag">
+        
+        
+<textarea id="flexslider-template-tag" rows="3" cols="176" onclick="this.focus();this.select()" readonly="readonly">
+
+    <?php echo 
+            '<?php echo $this->getLayout()->createBlock("responsivebannerslider/view")->setCode('.$GroupInfo.')->setTemplate("responsivebannerslider/slider.phtml")->toHtml() ?>';
+
+            ?></textarea>
+
+        
+    </fieldset>
+</div>

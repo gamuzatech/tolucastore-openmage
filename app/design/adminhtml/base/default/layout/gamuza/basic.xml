@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2016 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout>
+    <default>
+        <reference name="head">
+            <action method="setTitle" translate="title"><title>Toluca Store Admin</title></action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/gamuza/basic/custom.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/gamuza/basic/menu.css</name>
+                <params>media="screen, projection"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/gamuza/basic/calendar-win2k-1.css</name>
+                <params>media="all"</params>
+            </action>
+        </reference>
+        <!--
+        <reference name="notifications">
+            <remove name="notification_toolbar" />
+            <remove name="notification_window" />
+        </reference>
+        -->
+        <reference name="before_body_end">
+            <block type="adminhtml/template" template="gamuza/basic/order/pending.phtml" />
+        </reference>
+    </default>
+
+    <adminhtml_dashboard_index>
+        <reference name="content">
+            <remove name="store_switcher" />
+        </reference>
+    </adminhtml_dashboard_index>
+
+    <adminhtml_system_config_edit>
+        <reference name="left">
+            <remove name="adminhtml.system.config.switcher" />
+        </reference>
+    </adminhtml_system_config_edit>
+
+    <adminhtml_catalog_product_index>
+        <reference name="content">
+            <remove name="store_switcher" />
+        </reference>
+    </adminhtml_catalog_product_index>
+
+    <adminhtml_catalog_product_edit>
+        <reference name="content">
+            <remove name="store_switcher" />
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <adminhtml_catalog_product_action_attribute_edit>
+        <reference name="left">
+            <remove name="store_switcher" />
+        </reference>
+    </adminhtml_catalog_product_action_attribute_edit>
+
+    <adminhtml_customer_attribute_edit>
+        <reference name="left">
+            <remove name="website_switcher" />
+        </reference>
+    </adminhtml_customer_attribute_edit>
+
+    <adminhtml_customer_address_attribute_edit>
+        <reference name="left">
+            <remove name="website_switcher" />
+        </reference>
+    </adminhtml_customer_address_attribute_edit>
+
+    <adminhtml_customer_edit>
+        <reference name="left">
+            <remove name="sales" />
+            <remove name="accordion" />
+        </reference>
+        <reference name="customer_edit_tabs">
+            <action method="removeTab"><name>customer_edit_tab_agreements</name></action>
+            <action method="removeTab"><name>customer_edit_tab_recurring_profile</name></action>
+        </reference>
+    </adminhtml_customer_edit>
+
+    <admin_basic_adminhtml_catalog_product_attribute_option_index>
+        <reference name="content">
+            <block type="basic/adminhtml_catalog_product_attribute_option" name="option" />
+        </reference>
+    </admin_basic_adminhtml_catalog_product_attribute_option_index>
+
+    <admin_basic_adminhtml_shipping_tablerate_index>
+        <reference name="content">
+            <block type="basic/adminhtml_shipping_tablerate" name="tablerate" />
+        </reference>
+    </admin_basic_adminhtml_shipping_tablerate_index>
+
+    <admin_basic_adminhtml_shipping_rate_index>
+        <reference name="content">
+            <block type="basic/adminhtml_shipping_rate" name="rate" />
+        </reference>
+    </admin_basic_adminhtml_shipping_rate_index>
+
+    <admin_basic_adminhtml_order_service_index>
+        <reference name="content">
+            <block type="basic/adminhtml_order_service" name="service" />
+        </reference>
+    </admin_basic_adminhtml_order_service_index>
+</layout>
+

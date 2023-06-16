@@ -14,12 +14,13 @@
  * @license    https://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
+chdir(__DIR__);
+
 define('MAGENTO_ROOT', getcwd());
 
 $mageFilename = MAGENTO_ROOT . '/app/Mage.php';
 $maintenanceFile = 'maintenance.flag';
 $maintenanceIpFile = 'maintenance.ip';
-
 
 require MAGENTO_ROOT . '/app/bootstrap.php';
 require_once $mageFilename;
@@ -52,6 +53,22 @@ if (file_exists($maintenanceFile)) {
     // remove config cache to make the system check for DB updates
     $config = Mage::app()->getConfig();
     $config->getCache()->remove($config->getCacheId());
+}
+
+$httpXOriginalHost = @$_SERVER['HTTP_X_FORWARDED_HOST'];
+
+if (!empty($httpXOriginalHost)) {
+    Mage::init('admin');
+
+    foreach (Mage::app()->getStores(false, false) as $store) {
+        if (strpos($store->getBaseUrl(), $httpXOriginalHost) !== false) {
+            $httpHost = $_SERVER['HTTP_HOST'];
+            $_SERVER['HTTP_X_INBOUND_HOST'] = $httpHost;
+            $_SERVER['HTTP_HOST'] = $httpXOriginalHost;
+            $mageRunCode = $store->getCode();
+            break;
+        }
+    }
 }
 
 Mage::run($mageRunCode, $mageRunType);

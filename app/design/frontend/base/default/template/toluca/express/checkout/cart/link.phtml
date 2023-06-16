@@ -1,0 +1,14 @@
+<?php
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+
+<button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('View Shopping Cart')) ?>"
+        class="button btn btn-express fixed-bottom"
+        onclick="window.location='<?php echo Mage::getUrl('checkout/cart/index', array('_secure' => true)) ?>';">
+        <span><span><?php echo $this->__('View Shopping Cart'); ?></span></span>
+</button>
+

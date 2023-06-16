@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <cws translate="label" module="responsivebannerslider">
+            <label>MageBees</label>
+            <sort_order>100</sort_order>
+        </cws>
+    </tabs>
+    <sections>
+        <responsivebannerslider translate="label" module="responsivebannerslider">
+            <label>Responsive Banner Slider</label>
+            <tab>cws</tab>
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+			<groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>80</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                     <fields>
+                        <enabled translate="label">
+							<label>Enabled</label>
+							<comment>Select Yes for display the Responsive Banner Slider on frontend.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enabled> 
+						
+						 <jquery translate="label">
+							<label>Include Jquery</label>
+							<comment>Select Yes for include the jquery library.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jquery> 
+						<lazy_load_jquery translate="label">
+							<label>Lazy Load</label>
+							<comment>Select Yes for the Lazy Load.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </lazy_load_jquery> 
+						<thumbnail_width translate="label">
+							<label>Thumbnail Upload Width</label>
+							<comment>Set the width of the thumbnails created during upload. Thumbnails are used in carousels (default is 200).</comment>
+							<frontend_type>text</frontend_type>
+						    <validate>validate-greater-than-zero</validate>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </thumbnail_width> 
+						<cms_page translate="label">
+							<label>Show in CMS Pages</label>
+							<comment>Select Yes for display the Responsive Banner Slider on frontend for Selected CMS Pages.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cms_page> 
+						<category_page translate="label">
+							<label>Show in Category Pages</label>
+							<comment>Select Yes for display the Responsive Banner Slider on frontend for Selected CMS Pages.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </category_page> 
+						<product_page translate="label">
+							<label>Show in Product Pages</label>
+							<comment>Select Yes for display the Responsive Banner Slider on frontend for Selected Product Pages.</comment>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_type>select</frontend_type>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </product_page> 
+					</fields>
+                </general>
+            </groups>
+			<groups>
+                <support translate="label">
+                    <label>Info</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>responsivebannerslider/adminhtml_system_config_form_fieldset_support_support</frontend_model>
+                    <sort_order>120</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                </support>
+            </groups>				
+		</responsivebannerslider>
+    </sections>
+</config>

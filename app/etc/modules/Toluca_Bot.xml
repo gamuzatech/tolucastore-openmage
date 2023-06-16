@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Bot
+ * @copyright   Copyright (c) 2020 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <modules>
+        <Toluca_Bot>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Toluca_Bot>
+    </modules>
+</config>
+

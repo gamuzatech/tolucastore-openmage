@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2017 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <!-- Catalog -->
+            <mobile_product translate="title" module="mobile">
+                <title>Mobile Product API</title>
+                <model>mobile/product_api</model>
+                <acl>mobile/product</acl>
+                <methods>
+                    <list translate="title" module="mobile">
+                        <title>Retrieve product list</title>
+                        <method>items</method>
+                        <acl>mobile/product/list</acl>
+                    </list>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <store_not_specified>
+                        <code>100</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>200</code>
+                        <message>Requested store not found.</message>
+                    </store_not_exists>
+                    <category_not_specified>
+                        <code>300</code>
+                        <message>Requested category not specified.</message>
+                    </category_not_specified>
+                    <category_not_exists>
+                        <code>400</code>
+                        <message>Requested category not found.</message>
+                    </category_not_exists>
+                    <filters_invalid>
+                        <code>500</code>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
+                </faults>
+            </mobile_product>
+            <!-- Checkout -->
+            <mobile_cart translate="title" module="mobile">
+                <title>Mobile Cart API</title>
+                <model>mobile/cart_api</model>
+                <acl>mobile/cart</acl>
+                <methods>
+                    <totals translate="title" module="mobile">
+                        <title>Get total prices for shopping cart</title>
+                        <method>totals</method>
+                        <acl>mobile/cart/totals</acl>
+                    </totals>
+                    <amount translate="title" module="mobile">
+                        <title>Get total amount for shopping cart</title>
+                        <method>amount</method>
+                        <acl>mobile/cart/amount</acl>
+                    </amount>
+                    <order translate="title" module="mobile">
+                        <title>Create an order from shopping cart</title>
+                        <method>createOrder</method>
+                        <acl>mobile/cart/order</acl>
+                    </order>
+                    <clear translate="title" module="mobile">
+                        <title>Delete quote from shopping cart</title>
+                        <method>clear</method>
+                        <acl>mobile/cart/clear</acl>
+                    </clear>
+                    <draft translate="title" module="mobile">
+                        <title>Draft quote from shopping cart</title>
+                        <method>draft</method>
+                        <acl>mobile/cart/draft</acl>
+                    </draft>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <customer_not_exists>
+                        <code>100</code>
+                        <message>The customer's identifier is not valid or customer is not existed</message>
+                    </customer_not_exists>
+                    <store_not_specified>
+                        <code>200</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>300</code>
+                        <message>Requested store not found.</message>
+                    </store_not_exists>
+                    <create_quote_fault>
+                        <code>400</code>
+                        <message>Can not create a quote. </message>
+                    </create_quote_fault>
+                    <quote_not_exists>
+                        <code>500</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </quote_not_exists>
+                    <required_agreements_are_not_specified>
+                        <code>600</code>
+                        <message>You did not specified all required agreements</message>
+                    </required_agreements_are_not_specified>
+                    <required_agreements_are_not_all>
+                        <code>700</code>
+                        <message>You did not set all required agreements</message>
+                    </required_agreements_are_not_all>
+                    <invalid_checkout_type>
+                        <code>800</code>
+                        <message>The checkout type is not valid. Select single checkout type.</message>
+                    </invalid_checkout_type>
+                    <guest_checkout_is_not_enabled>
+                        <code>900</code>
+                        <message>Checkout is not available for guest</message>
+                    </guest_checkout_is_not_enabled>
+                    <create_order_fault>
+                        <code>1000</code>
+                        <message>Can not create an order. </message>
+                    </create_order_fault>
+                </faults>
+            </mobile_cart>
+            <mobile_cart_coupon translate="title" module="mobile">
+                <title>Mobile Cart Coupon API</title>
+                <model>mobile/cart_coupon_api</model>
+                <acl>mobile/cart_coupon</acl>
+                <methods>
+                    <add translate="title" module="mobile">
+                        <title>Add coupon code for shopping cart</title>
+                        <method>addCoupon</method>
+                        <acl>mobile/cart_coupon/add</acl>
+                    </add>
+                    <remove translate="title" module="mobile">
+                        <title>Remove coupon code from shopping cart</title>
+                        <method>removeCoupon</method>
+                        <acl>mobile/cart_coupon/remove</acl>
+                    </remove>
+                    <info translate="title" module="mobile">
+                        <title>Get coupon code for shopping cart</title>
+                        <method>getCoupon</method>
+                        <acl>mobile/cart_coupon/info</acl>
+                    </info>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <store_not_specified>
+                        <code>100</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>200</code>
+                        <message>Can not make operation because store is not exists</message>
+                    </store_not_exists>
+                    <quote_not_exists>
+                        <code>300</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </quote_not_exists>
+                    <quote_is_empty>
+                        <code>400</code>
+                        <message>Coupon could not be applied because quote is empty.</message>
+                    </quote_is_empty>
+                    <cannot_apply_coupon_code>
+                        <code>500</code>
+                        <message>Coupon could not be applied.</message>
+                    </cannot_apply_coupon_code>
+                    <coupon_code_is_not_valid>
+                        <code>600</code>
+                        <message>Coupon is not valid.</message>
+                    </coupon_code_is_not_valid>
+                </faults>
+            </mobile_cart_coupon>
+            <mobile_cart_customer translate="title" module="mobile">
+                <title>Mobile Cart Customer API</title>
+                <model>mobile/cart_customer_api</model>
+                <acl>mobile/cart_customer</acl>
+                <methods>
+                    <addresses translate="title" module="mobile">
+                        <title>Set customer's addresses in shopping cart</title>
+                        <method>_setAddresses</method>
+                        <acl>mobile/cart_customer/addresses</acl>
+                    </addresses>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <store_not_specified>
+                        <code>100</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>200</code>
+                        <message>Can not make operation because store is not exists</message>
+                    </store_not_exists>
+                    <create_quote_fault>
+                        <code>300</code>
+                        <message>Can not create a quote. </message>
+                    </create_quote_fault>
+                    <quote_not_exists>
+                        <code>400</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </quote_not_exists>
+                    <customer_mode_is_unknown>
+                        <code>500</code>
+                        <message>Customer's mode is unknown</message>
+                    </customer_mode_is_unknown>
+                    <customer_data_invalid>
+                        <code>600</code>
+                        <message>Customer data is not valid. </message>
+                    </customer_data_invalid>
+                    <customer_not_set>
+                        <code>700</code>
+                        <message>Customer is not set. </message>
+                    </customer_not_set>
+                    <customer_address_data_empty>
+                        <code>800</code>
+                        <message>Customer address data is empty.</message>
+                    </customer_address_data_empty>
+                    <address_not_belong_customer>
+                        <code>900</code>
+                        <message>Customer address identifier do not belong customer, which set in quote</message>
+                    </address_not_belong_customer>
+                    <customer_address_invalid>
+                        <code>1000</code>
+                        <message>Customer's address data is not valid.</message>
+                    </customer_address_invalid>
+                    <address_is_not_set>
+                        <code>1100</code>
+                        <message>Customer address is not set.</message>
+                    </address_is_not_set>
+                </faults>
+            </mobile_cart_customer>
+            <mobile_cart_payment translate="title" module="mobile">
+                <title>Mobile Cart Payment API</title>
+                <model>mobile/cart_payment_api</model>
+                <acl>mobile/cart_payment</acl>
+                <methods>
+                    <method translate="title" module="mobile">
+                        <title>Set payment method</title>
+                        <method>_setPaymentMethod</method>
+                        <acl>mobile/cart_payment/method</acl>
+                    </method>
+                    <list translate="title" module="mobile">
+                        <title>Get list of available payment methods</title>
+                        <method>_getPaymentMethodsList</method>
+                        <acl>mobile/cart_payment/list</acl>
+                    </list>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <store_not_specified>
+                        <code>100</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>200</code>
+                        <message>Can not make operation because store is not exists</message>
+                    </store_not_exists>
+                    <create_quote_fault>
+                        <code>300</code>
+                        <message>Can not create a quote. </message>
+                    </create_quote_fault>
+                    <quote_not_exists>
+                        <code>400</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </quote_not_exists>
+                    <payment_method_empty>
+                        <code>500</code>
+                        <message>Payment method data is empty.</message>
+                    </payment_method_empty>
+                    <billing_address_is_not_set>
+                        <code>600</code>
+                        <message>Customer's billing address is not set. Required for payment method data.</message>
+                    </billing_address_is_not_set>
+                    <shipping_address_is_not_set>
+                        <code>700</code>
+                        <message>Customer's shipping address is not set. Required for payment method data.</message>
+                    </shipping_address_is_not_set>
+                    <method_not_allowed>
+                        <code>800</code>
+                        <message>Payment method is not allowed</message>
+                    </method_not_allowed>
+                    <payment_method_is_not_set>
+                        <code>900</code>
+                        <message>Payment method is not set. </message>
+                    </payment_method_is_not_set>
+                </faults>
+            </mobile_cart_payment>
+            <mobile_cart_product translate="title" module="mobile">
+                <title>Mobile Cart Product API</title>
+                <model>mobile/cart_product_api</model>
+                <acl>mobile/cart_product</acl>
+                <methods>
+                    <add translate="title" module="mobile">
+                        <title>Add product to shopping cart</title>
+                        <method>add</method>
+                        <acl>mobile/cart_product/add</acl>
+                    </add>
+                    <update translate="title" module="mobile">
+                        <title>Update product quantities in shopping cart</title>
+                        <method>update</method>
+                        <acl>mobile/cart_product/update</acl>
+                    </update>
+                    <remove translate="title" module="mobile">
+                        <title>Remove product from shopping cart</title>
+                        <method>remove</method>
+                        <acl>cart/product/remove</acl>
+                    </remove>
+                    <list translate="title" module="mobile">
+                        <title>Get list of products in shopping cart</title>
+                        <method>items</method>
+                        <acl>cart/product/list</acl>
+                    </list>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <store_not_specified>
+                        <code>100</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>200</code>
+                        <message>Requested store not found.</message>
+                    </store_not_exists>
+                    <create_quote_fault>
+                        <code>300</code>
+                        <message>Can not create a quote. </message>
+                    </create_quote_fault>
+                    <quote_not_exists>
+                        <code>400</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </quote_not_exists>
+                    <product_data_not_specified>
+                        <code>500</code>
+                        <message>Requested product's data not specified.</message>
+                    </product_data_not_specified>
+                    <invalid_product_data>
+                        <code>600</code>
+                        <message>Product's data is not valid.</message>
+                    </invalid_product_data>
+                    <add_product_fault>
+                        <code>700</code>
+                        <message>Product(s) could not be added. </message>
+                    </add_product_fault>
+                    <add_product_quote_save_fault>
+                        <code>800</code>
+                        <message>Quote could not be saved during adding product(s) operation.</message>
+                    </add_product_quote_save_fault>
+                    <update_product_fault>
+                        <code>900</code>
+                        <message>Product(s) could not be updated. </message>
+                    </update_product_fault>
+                    <update_product_quote_save_fault>
+                        <code>1000</code>
+                        <message>Quote could not be saved during updating product(s) operation.</message>
+                    </update_product_quote_save_fault>
+                    <remove_product_fault>
+                        <code>1100</code>
+                        <message>Product(s) could not be removed. </message>
+                    </remove_product_fault>
+                    <remove_product_quote_save_fault>
+                        <code>1200</code>
+                        <message>Quote could not be saved during removing product(s) operation.</message>
+                    </remove_product_quote_save_fault>
+                </faults>
+            </mobile_cart_product>
+            <mobile_cart_shipping translate="title" module="mobile">
+                <title>Mobile Cart Shipping API</title>
+                <model>mobile/cart_shipping_api</model>
+                <acl>mobile/cart_shipping</acl>
+                <methods>
+                    <method translate="title" module="mobile">
+                        <title>Set shipping method</title>
+                        <method>_setShippingMethod</method>
+                        <acl>mobile/cart_shipping/method</acl>
+                    </method>
+                    <list translate="title" module="mobile">
+                        <title>Get list of available shipping methods</title>
+                        <method>_getShippingMethodsList</method>
+                        <acl>mobile/cart_shipping/list</acl>
+                    </list>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <store_not_specified>
+                        <code>100</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>200</code>
+                        <message>Can not make operation because store is not exists</message>
+                    </store_not_exists>
+                    <create_quote_fault>
+                        <code>300</code>
+                        <message>Can not create a quote. </message>
+                    </create_quote_fault>
+                    <quote_not_exists>
+                        <code>400</code>
+                        <message>Can not make operation because quote is not exists</message>
+                    </quote_not_exists>
+                    <shipping_address_is_not_set>
+                        <code>500</code>
+                        <message>Can not make operation because of customer shipping address is not set</message>
+                    </shipping_address_is_not_set>
+                    <shipping_method_is_not_available>
+                        <code>600</code>
+                        <message>Shipping method is not available</message>
+                    </shipping_method_is_not_available>
+                    <shipping_method_is_not_set>
+                        <code>700</code>
+                        <message>Can not set shipping method. </message>
+                    </shipping_method_is_not_set>
+                    <shipping_methods_list_could_not_be_retrieved>
+                        <code>800</code>
+                        <message>Can not receive list of shipping methods. </message>
+                    </shipping_methods_list_could_not_be_retrieved>
+                </faults>
+            </mobile_cart_shipping>
+            <!-- Sales -->
+            <mobile_order translate="title" module="mobile">
+                <title>Mobile Order API</title>
+                <model>mobile/order_api</model>
+                <acl>mobile/order</acl>
+                <methods>
+                    <list translate="title" module="mobile">
+                        <title>Retrieve list of orders by filters</title>
+                        <method>items</method>
+                        <acl>mobile/order/list</acl>
+                    </list>
+                    <info translate="title" module="mobile">
+                        <title>Retrieve order information</title>
+                        <acl>mobile/order/info</acl>
+                    </info>
+                    <rate translate="title" module="mobile">
+                        <title>Rate order information</title>
+                        <acl>mobile/order/rate</acl>
+                    </rate>
+                    <reorder translate="title" module="mobile">
+                        <title>Reorder order information</title>
+                        <acl>mobile/order/reorder</acl>
+                    </reorder>
+                    <draft translate="title" module="mobile">
+                        <title>Draft order information</title>
+                        <acl>mobile/order/draft</acl>
+                    </draft>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <customer_not_exists>
+                        <code>100</code>
+                        <message>The customer's identifier is not valid or customer is not existed</message>
+                    </customer_not_exists>
+                    <filters_invalid>
+                        <code>200</code>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
+                    <order_not_specified>
+                        <code>300</code>
+                        <message>Requested order not specified.</message>
+                    </order_not_specified>
+                    <not_exists>
+                        <code>400</code>
+                        <message>Requested order not exists.</message>
+                    </not_exists>
+                    <data_invalid>
+                        <code>500</code>
+                        <message>Invalid data given. Details in error message.</message>
+                    </data_invalid>
+                    <stars_not_specified>
+                        <code>600</code>
+                        <message>Requested stars not specified.</message>
+                    </stars_not_specified>
+                    <comment_not_specified>
+                        <code>700</code>
+                        <message>Requested comment not specified.</message>
+                    </comment_not_specified>
+                    <order_has_rated>
+                        <code>800</code>
+                        <message>Requested order has been rated.</message>
+                    </order_has_rated>
+                    <store_not_specified>
+                        <code>900</code>
+                        <message>Requested store not specified.</message>
+                    </store_not_specified>
+                    <store_not_exists>
+                        <code>1000</code>
+                        <message>Can not make operation because store is not exists</message>
+                    </store_not_exists>
+                    <code_not_specified>
+                        <code>1100</code>
+                        <message>Requested code not specified.</message>
+                    </code_not_specified>
+                </faults>
+            </mobile_order>
+        </resources>
+        <faults translate="message" module="mobile">
+            <customer_data_not_specified>
+                <code>100</code>
+                <message>Customer data not specified.</message>
+            </customer_data_not_specified>
+            <customer_data_are_invalid>
+                <code>101</code>
+                <message>Customer data are invalid.</message>
+            </customer_data_are_invalid>
+            <customer_code_not_specified>
+                <code>200</code>
+                <message>Customer code was not specified.</message>
+            </customer_code_not_specified>
+        </faults>
+        <acl>
+            <resources>
+                <mobile translate="title" module="mobile">
+                    <title>Mobile API</title>
+                    <sort_order>0</sort_order>
+                    <!-- Catalog -->
+                    <product translate="title" module="mobile">
+                        <title>Product</title>
+                        <sort_order>20</sort_order>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                    </product>
+                    <!-- Checkout -->
+                    <cart translate="title" module="mobile">
+                        <title>Cart</title>
+                        <sort_order>30</sort_order>
+                        <totals translate="title" module="mobile">
+                            <title>Totals</title>
+                        </totals>
+                        <amount translate="title" module="mobile">
+                            <title>Amount</title>
+                        </amount>
+                        <order translate="title" module="mobile">
+                            <title>Order</title>
+                        </order>
+                        <clear translate="title" module="mobile">
+                            <title>Clear</title>
+                        </clear>
+                        <draft translate="title" module="mobile">
+                            <title>Draft</title>
+                        </draft>
+                     </cart>
+                     <cart_coupon translate="title" module="mobile">
+                        <title>Cart Coupon</title>
+                        <sort_order>40</sort_order>
+                        <add translate="title" module="mobile">
+                            <title>Add</title>
+                        </add>
+                        <remove translate="title" module="mobile">
+                            <title>Remove</title>
+                        </remove>
+                        <info translate="title" module="mobile">
+                            <title>Info</title>
+                        </info>
+                     </cart_coupon>
+                     <cart_customer translate="title" module="mobile">
+                        <title>Cart Customer</title>
+                        <sort_order>50</sort_order>
+                        <addresses translate="title" module="mobile">
+                            <title>Addresses</title>
+                        </addresses>
+                     </cart_customer>
+                     <cart_payment translate="title" module="mobile">
+                        <title>Cart Payment</title>
+                        <sort_order>60</sort_order>
+                        <method translate="title" module="mobile">
+                            <title>Method</title>
+                        </method>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                     </cart_payment>
+                     <cart_product translate="title" module="mobile">
+                        <title>Cart Product</title>
+                        <sort_order>70</sort_order>
+                        <add translate="title" module="mobile">
+                            <title>Add</title>
+                        </add>
+                        <update translate="title" module="mobile">
+                            <title>Update</title>
+                        </update>
+                        <remove translate="title" module="mobile">
+                            <title>Remove</title>
+                        </remove>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                     </cart_product>
+                     <cart_shipping translate="title" module="mobile">
+                        <title>Cart Shipping</title>
+                        <sort_order>80</sort_order>
+                        <method translate="title" module="mobile">
+                            <title>Method</title>
+                        </method>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                     </cart_shipping>
+                    <!-- Sales -->
+                     <order translate="title" module="mobile">
+                        <title>Order</title>
+                        <sort_order>120</sort_order>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                        <info translate="title" module="mobile">
+                            <title>Info</title>
+                        </info>
+                        <rate translate="title" module="mobile">
+                            <title>Rate</title>
+                        </rate>
+                        <reorder translate="title" module="mobile">
+                            <title>Reorder</title>
+                        </reorder>
+                        <draft translate="title" module="mobile">
+                            <title>Draft order information</title>
+                        </draft>
+                     </order>
+                </mobile>
+            </resources>
+        </acl>
+    </api>
+</config>
+

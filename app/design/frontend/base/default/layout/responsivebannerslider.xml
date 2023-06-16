@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<block type="responsivebannerslider/managejquery" name="managejquery" >
+				<action method="addJquery"/> 
+			</block> 
+		</reference>
+	</default>
+	<cms_page>
+		<reference name="content">
+			<block  type="responsivebannerslider/view_top" name="responsivebannerslider_top" before="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+			<block  type="responsivebannerslider/view_bottom" name="responsivebannerslider_bottom" after="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block> 
+		</reference>
+	</cms_page>	 
+    <catalog_category_default>
+    	<reference name="content">
+			<block  type="responsivebannerslider/view_top" name="responsivebannerslider_tops" before="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+			<block  type="responsivebannerslider/view_bottom" name="responsivebannerslider_bottom" after="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+		</reference>
+	</catalog_category_default>
+	<catalog_category_layered>
+	    <reference name="content">
+			<block  type="responsivebannerslider/view_top" name="responsivebannerslider_top" before="_">
+				<action method="setTemplate"  ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+			<block  type="responsivebannerslider/view_bottom" name="responsivebannerslider_bottom" after="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+		</reference>
+	</catalog_category_layered>
+	<catalog_product_view>
+		<reference name="content">
+			<block  type="responsivebannerslider/view_top" name="responsivebannerslider_top" before="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+			<block  type="responsivebannerslider/view_bottom" name="responsivebannerslider_bottom" after="_">
+				<action method="setTemplate" ifconfig="responsivebannerslider/general/enabled">
+					<template>responsivebannerslider/slider.phtml</template>
+				</action>
+			</block>
+		</reference>
+	</catalog_product_view>
+</layout>
