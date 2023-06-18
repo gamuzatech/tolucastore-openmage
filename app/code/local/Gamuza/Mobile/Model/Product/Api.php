@@ -90,7 +90,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
     {
         $storeId = Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_API_MOBILE_STORE_VIEW, $store);
 
-        Mage::app ()->setCurrentStore ($storeId); // for bundle selections
+        // Mage::app ()->setCurrentStore ($storeId); // for bundle selections
 
         $storeCategoryId  = Mage::app ()->getStore ($storeId)->getRootCategoryId ();
         $baseCategoryPath = Mage_Catalog_Model_Category::TREE_ROOT_ID . '/' . $storeCategoryId;
@@ -339,7 +339,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
                     foreach ($option->getSelections() as $selection)
                     {
-                        if (!$selection->getIsSalable ()) continue;
+                        // if (!$selection->getIsSalable ()) continue;
 
                         $resultOption ['selections'][] = array(
                             'option_type_id'     => intval ($selection->getSelectionId ()),
