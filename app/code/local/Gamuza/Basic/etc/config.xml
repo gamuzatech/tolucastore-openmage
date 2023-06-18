@@ -120,6 +120,9 @@
                 <rewrite>
                     <category>Gamuza_Basic_Model_Catalog_Category</category>
                     <product_image>Gamuza_Basic_Model_Catalog_Product_image</product_image>
+                    <product_option>Gamuza_Basic_Model_Catalog_Product_Option</product_option>
+                    <product_type_configurable>Gamuza_Basic_Model_Catalog_Product_Type_Configurable</product_type_configurable>
+                    <observer>Gamuza_Basic_Model_Catalog_Observer</observer>
                 </rewrite>
             </catalog>
             <catalog_resource>
@@ -134,13 +137,6 @@
                     <locale_config>Gamuza_Basic_Model_Core_Locale_Config</locale_config>
                 </rewrite>
             </core>
-            <catalog>
-                <rewrite>
-                    <product_option>Gamuza_Basic_Model_Catalog_Product_Option</product_option>
-                    <product_type_configurable>Gamuza_Basic_Model_Catalog_Product_Type_Configurable</product_type_configurable>
-                    <observer>Gamuza_Basic_Model_Catalog_Observer</observer>
-                </rewrite>
-            </catalog>
             <customer>
                 <rewrite>
                     <customer>Gamuza_Basic_Model_Customer_Customer</customer>
