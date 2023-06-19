@@ -34,7 +34,7 @@ class Gamuza_Basic_Model_Customer_Resource_Customer
             $collection->addAttributeToFilter('entity_id', array('neq' => $customer->getId()));
         }
 
-        if ($collection->getSize() > 0)
+        if ($collection->getSize() > 0 && Mage::getStoreConfigFlag(Gamuza_Basic_Model_Customer_Customer::XML_PATH_VALIDATE_CUSTOMER_CELLPHONE))
         {
             throw Mage::exception(
                 'Mage_Customer',
