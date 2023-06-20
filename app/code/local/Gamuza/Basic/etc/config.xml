@@ -299,6 +299,14 @@
                     </admin_basic_catalog_product_save_after>
                 </observers>
             </catalog_product_save_after>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <admin_basic_checkout_cart_product_add_after>
+                        <class>basic/observer</class>
+                        <method>checkoutCartProductAddAfter</method>
+                    </admin_basic_checkout_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>
             <order_cancel_after>
                 <observers>
                     <admin_basic_order_cancel_after>
