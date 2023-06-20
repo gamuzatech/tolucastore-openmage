@@ -133,6 +133,45 @@ class Gamuza_Basic_Model_Observer
         return $this;
     }
 
+    public function checkoutCartProductAddAfter($observer)
+    {
+        $event = $observer->getEvent ();
+        $quoteItem = $event->getQuoteItem ();
+
+        $additionalOptions = $quoteItem->getOptionByCode('additional_options');
+
+        if (!empty ($additionalOptions))
+        {
+            return $this;
+        }
+
+        $infoByRequest = $quoteItem->getOptionByCode('info_buyRequest');
+
+        if (empty ($infoByRequest))
+        {
+            return $this;
+        }
+
+        $value = unserialize ($infoByRequest->getValue ());
+
+        if (is_array ($value) && !empty ($value ['additional_options']))
+        {
+            $additionalOptions = $value ['additional_options'];
+
+            if (is_array ($additionalOptions) && count ($additionalOptions)
+                && !empty ($additionalOptions [0]['code'])
+                && !empty ($additionalOptions [0]['label'])
+                && !empty ($additionalOptions [0]['value']))
+            {
+                $quoteItem->addOption (array (
+                    'code' => 'additional_options',
+                    'product_id' => $quoteItem->getProductId (),
+                    'value' => serialize (array ($additionalOptions [0]))
+                ));
+            }
+        }
+    }
+
     public function cleanExpiredQuotes()
     {
         Mage::dispatchEvent('clear_expired_quotes_before', array('sales_observer' => $this));
