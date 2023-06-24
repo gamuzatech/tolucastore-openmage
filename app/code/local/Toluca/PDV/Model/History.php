@@ -12,8 +12,10 @@ class Toluca_PDV_Model_History extends Mage_Core_Model_Abstract
         $this->_init ('pdv/history');
     }
 
-    protected function _afterSaveCommit ()
+    protected function _afterSave ()
     {
+        parent::_afterSave ();
+
         $openAmount      = floatval ($this->getOpenAmount ());
         $reinforceAmount = floatval ($this->getReinforceAmount ());
         $bleedAmount     = floatval ($this->getBleedAmount ());
