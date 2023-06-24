@@ -186,7 +186,10 @@
                 <rewrite>
                     <order>Gamuza_Basic_Model_Sales_Order</order>
                     <quote_address>Gamuza_Basic_Model_Sales_Quote_Address</quote_address>
+                    <order_creditmemo>Gamuza_Basic_Model_Sales_Order_Creditmemo</order_creditmemo>
+                    <order_invoice>Gamuza_Basic_Model_Sales_Order_Invoice</order_invoice>
                     <quote_item>Gamuza_Basic_Model_Sales_Quote_Item</quote_item>
+                    <order_shipment>Gamuza_Basic_Model_Sales_Order_Shipment</order_shipment>
                 </rewrite>
             </sales>
             <sales_resource>
