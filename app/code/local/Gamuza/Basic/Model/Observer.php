@@ -178,6 +178,22 @@ class Gamuza_Basic_Model_Observer
 
         /** @var $quotes Mage_Sales_Model_Mysql4_Quote_Collection */
         $quotes = Mage::getModel('sales/quote')->getCollection()
+            ->addFieldToFilter('items_count', array ('gt' => 0))
+        ;
+
+        foreach($quotes as $quote)
+        {
+            foreach($quote->getAllItems() as $item)
+            {
+                if (!strcmp($item->getProductType(), Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) && $item->getHasError())
+                {
+                    $item->delete();
+                }
+            }
+        }
+
+        /** @var $quotes Mage_Sales_Model_Mysql4_Quote_Collection */
+        $quotes = Mage::getModel('sales/quote')->getCollection()
             ->addFieldToFilter('items_count', array ('eq' => 0))
         ;
 
