@@ -109,8 +109,8 @@
             class="cwsRwdSlider <?php echo $navpos.' '.$navarrow.' '.$showpage.' '.$pagepos ?>">
             <ul class="slides">
                     <?php
-                $youtube = '';
-                $vimeo = '';
+                $youtube = null;
+                $vimeo = null;
                 $sliedsdata = $this->getSlides($groups ['slidergroup_id']);
                 foreach ($sliedsdata as $slide) {
                     if ($slide->getDateEnabled() == 1) {
@@ -203,8 +203,8 @@
                         $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
                     }
 
-                    $youtube = '';
-                    $vimeo = '';
+                    $youtube = null;
+                    $vimeo = null;
                     $videoid = $slide->getSlideId() . $groups ['slidergroup_id'];
                     ?>
                     <?php     if($fromdate <= $nowdate && $todate >= $nowdate) {    ?>    
@@ -278,8 +278,8 @@
                         $nowdate = strtotime($this->formatTime(now(), Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, true));
                     }
 
-                    $youtube = '';
-                    $vimeo = '';
+                    $youtube = null;
+                    $vimeo = null;
                     $videoid = $slide->getSlideId() . $groups ['slidergroup_id'];
                     ?>
                     <?php if($fromdate <= $nowdate && $todate >= $nowdate) { ?>    
