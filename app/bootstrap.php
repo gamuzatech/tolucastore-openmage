@@ -22,8 +22,8 @@ if ((LIBXML_VERSION < 20900) && function_exists('libxml_disable_entity_loader'))
     libxml_disable_entity_loader(false);
 }
 
-ini_set('session.sid_bits_per_character', 6);
-ini_set('session.sid_length', 224);
+ini_set('session.sid_bits_per_character', 5);
+ini_set('session.sid_length', 248);
 
 $mageRunOptions = array();
 
