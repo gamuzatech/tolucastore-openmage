@@ -10,7 +10,7 @@ if (!Mage::isInstalled())
 {
     echo "Application is not installed yet, please complete install wizard first." . PHP_EOL;
 
-    exit;
+    exit(255);
 }
 
 // Only for urls
@@ -26,7 +26,7 @@ catch (Exception $e)
 {
     echo $e->getMessage() . PHP_EOL;
 
-    exit;
+    exit(1);
 }
 
 umask(0);
