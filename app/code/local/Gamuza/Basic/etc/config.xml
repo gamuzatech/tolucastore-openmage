@@ -578,6 +578,9 @@
                 <date_fields_order><![CDATA[d,m,y]]></date_fields_order>
                 <time_format>24h</time_format>
             </custom_options>
+            <product>
+                <allow_comment>1</allow_comment>
+            </product>
         </catalog>
         <cataloginventory>
             <options>
