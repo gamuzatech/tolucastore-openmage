@@ -66,6 +66,10 @@ ol, ul {
     padding-right: 0;
 }
 
+.add-to-cart-comment {
+    padding-bottom: 15px;
+}
+
 .add-to-links {
     display: none;
 }
@@ -289,6 +293,10 @@ ol, ul {
 .product-view .product-shop .price-box .full-product-price .price {
     color: blue;
     font-weight: bold;
+}
+
+.product-view .sharing-links a.link-whatsapp {
+    background-position: -29px -373px;
 }
 
 .products-grid .price-box .minimal-price .price,
