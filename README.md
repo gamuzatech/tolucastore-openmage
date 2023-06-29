@@ -3,7 +3,7 @@
 ## Table of features
 
 - APP ( Android & iOS)
-- Sales Bot ( WhatsApp )
+- Chat & Sales Bot ( WhatsApp )
 - Point of Sale ( POS )
 - Express ( eCommerce & POS )
 - PagCripto
