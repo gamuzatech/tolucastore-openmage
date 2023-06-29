@@ -42,14 +42,17 @@
 
 <ul class="nav nav-underline bg-white sticky-top flex-nowrap text-nowrap overflow-x-auto" id="category-nav">
 <?php foreach($_children as $_child): ?>
+<?php if ($_child->getProductCount ()): ?>
     <li class="nav-item" id="nav<?php echo $_child->getId(); ?>">
         <a class="nav-link" href="#cat<?php echo $_child->getId(); ?>"><?php echo $_child->getName(); ?></a>
     </li>
+<?php endif; ?>
 <?php endforeach; ?>
 </ul>
 
 <div class="accordion" data-bs-spy="scroll" data-bs-target="#category-nav" data-bs-offset="0" tabindex="0">
 <?php foreach($_children as $_child): ?>
+<?php if ($_child->getProductCount ()): ?>
     <div class="accordion-item" id="cat<?php echo $_child->getId(); ?>">
         <h2 class="accordion-header">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?php echo $_child->getId(); ?>"
@@ -63,6 +66,7 @@
             </div>
         </div>
     </div>
+<?php endif; ?>
 <?php endforeach; ?>
 </div>
 
