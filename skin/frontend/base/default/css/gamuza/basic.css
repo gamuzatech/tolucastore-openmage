@@ -296,7 +296,11 @@ ol, ul {
 }
 
 .product-view .sharing-links a.link-whatsapp {
-    background-position: -29px -373px;
+    background-position: -30px -424px;
+}
+
+.product-view .sharing-links a.link-telegram {
+    background-position: -30px -370px;
 }
 
 .products-grid .price-box .minimal-price .price,
