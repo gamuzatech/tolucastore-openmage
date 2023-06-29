@@ -17,7 +17,7 @@
 <?php $buttonTitle = Mage::helper('core')->quoteEscape($this->__('Add to Cart')); ?>
 <?php if($_product->isSaleable()): ?>
     <div class="add-to-cart">
-        <?php if (Mage::getStoreConfigFlag('catalog/product/allow_comment')): ?>
+        <?php if (Mage::getStoreConfigFlag(Gamuza_Basic_Helper_Data::XML_PATH_CATALOG_PRODUCT_ALLOW_COMMENT)): ?>
         <div class="add-to-cart-comment">
             <input type="hidden" name="additional_options[0][code]" value="comment" />
             <input type="hidden" name="additional_options[0][label]" value="<?php echo Mage::helper('basic')->__('Comment'); ?>" />
