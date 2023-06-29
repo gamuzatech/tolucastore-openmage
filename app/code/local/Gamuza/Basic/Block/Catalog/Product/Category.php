@@ -29,12 +29,18 @@ class Gamuza_Basic_Block_Catalog_Product_Category
             {
                 foreach ($category->getChildrenCategories () as $child)
                 {
-                    $categories [$child->getId ()] = $child;
+                    if ($child->getProductCount ())
+                    {
+                        $categories [$child->getId ()] = $child;
+                    }
                 }
             }
             else
             {
-                $categories [$category->getId ()] = $category;
+                if ($category->getProductCount ())
+                {
+                    $categories [$category->getId ()] = $category;
+                }
             }
         }
 
