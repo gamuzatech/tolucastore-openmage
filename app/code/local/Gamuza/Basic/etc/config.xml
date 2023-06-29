@@ -57,6 +57,11 @@
                     <widget_grid_column>Gamuza_Basic_Block_Adminhtml_Widget_Grid_Column</widget_grid_column>
                 </rewrite>
             </adminhtml>
+            <bundle>
+                <rewrite>
+                    <catalog_product_price>Gamuza_Basic_Block_Bundle_Catalog_Product_Price</catalog_product_price>
+                </rewrite>
+            </bundle>
             <checkout>
                 <rewrite>
                     <cart_shipping>Gamuza_Basic_Block_Checkout_Cart_Shipping</cart_shipping>
@@ -580,6 +585,7 @@
             </custom_options>
             <product>
                 <allow_comment>1</allow_comment>
+                <bundle_price>0</bundle_price>
             </product>
         </catalog>
         <cataloginventory>
