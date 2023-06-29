@@ -3,7 +3,10 @@
 ## Table of features
 
 - APP ( Android & iOS)
+<<<<<<< HEAD
 - Comanda ( Android & iOS )
+=======
+>>>>>>> 2de62f6e81 (Update README.md)
 - Chat & Sales Bot ( WhatsApp )
 - Point of Sale ( POS )
 - Delivery ( e-Commerce & POS )
