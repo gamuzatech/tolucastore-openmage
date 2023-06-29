@@ -38,5 +38,8 @@
     <li>
         <a href="<?php echo 'http://wa.me?text=' . $_productName . '%0A%0A' . $_productUrl; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on WhatsApp')) ?>" class="link-whatsapp"><?php echo $this->__('Share on WhatsApp') ?></a>
     </li>
+    <li>
+        <a href="<?php echo 'http://t.me/share/url?text=' . $_productName . '&url=' . $_productUrl; ?>" target="_blank" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Share on Telegram')) ?>" class="link-telegram"><?php echo $this->__('Share on Telegram') ?></a>
+    </li>
 </ul>
 
