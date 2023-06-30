@@ -183,13 +183,24 @@ class Gamuza_Basic_Model_Observer
 
         foreach($quotes as $quote)
         {
+            $collectTotals = false;
+
             foreach($quote->getAllItems() as $item)
             {
                 if (!strcmp($item->getProductType(), Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) && $item->getHasError())
                 {
                     $item->delete();
+
+                    $collectTotals = true;
                 }
             }
+
+            if ($collectTotals)
+            {
+                $quote->collectTotals();
+            }
+
+            $quote->save ();
         }
 
         /** @var $quotes Mage_Sales_Model_Mysql4_Quote_Collection */
