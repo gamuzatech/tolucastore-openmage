@@ -132,9 +132,10 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 {
                     Mage::throwException($result);
                 }
-                else
+
+                if ($quote->getIsSuperMode ())
                 {
-                    if (!empty ($productItem ['custom_price']) && $quote->getIsSuperMode ())
+                    if (!empty ($productItem ['custom_price']))
                     {
                         $customPrice = $productItem ['custom_price'];
 
