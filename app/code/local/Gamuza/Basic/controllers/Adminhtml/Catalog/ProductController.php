@@ -465,5 +465,17 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $grid       = $this->getLayout()->createBlock('basic/adminhtml_catalog_product_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
     }
+
+    /**
+     * Get orders fieldset block
+     *
+     * @throws Mage_Core_Exception
+     */
+    public function ordersAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
 }
 
