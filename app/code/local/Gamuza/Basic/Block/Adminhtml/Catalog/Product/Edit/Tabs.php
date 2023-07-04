@@ -23,6 +23,18 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
         $this->removeTab (self::CATALOG_PRODUCT_GROUP_ID_12);
         $this->removeTab (self::CATALOG_PRODUCT_GROUP_ID_17);
 
+        if (Mage::registry('current_product')->getId())
+        {
+            if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/view'))
+            {
+                $this->addTab('orders', array(
+                    'label' => Mage::helper('catalog')->__('Orders'),
+                    'url'   => $this->getUrl('*/*/orders', ['_current' => true]),
+                    'class' => 'ajax',
+                ));
+            }
+        }
+
         return $result;
     }
 }
