@@ -15,6 +15,11 @@ class Gamuza_Basic_Model_Adminhtml_System_Config_Source_Product_Options_Type
 
     public function toOptionArray()
     {
+        if (Mage::getStoreConfigFlag(Gamuza_Basic_Helper_Data::XML_PATH_CATALOG_PRODUCT_CUSTOM_OPTIONS))
+        {
+            return parent::toOptionArray();
+        }
+
         $groups = array(
             array('value' => '', 'label' => Mage::helper('adminhtml')->__('-- Please select --'))
         );
