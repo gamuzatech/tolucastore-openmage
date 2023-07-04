@@ -586,6 +586,7 @@
             <product>
                 <allow_comment>1</allow_comment>
                 <bundle_price>0</bundle_price>
+                <custom_options>0</custom_options>
             </product>
         </catalog>
         <cataloginventory>
