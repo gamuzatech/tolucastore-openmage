@@ -789,9 +789,9 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                     {
                         $result = Mage::helper ('bot/message')->getEnterDeliveryMethodText () . PHP_EOL . PHP_EOL;
 
-                        foreach ($shippingMethods as $method)
+                        foreach ($this->_shippingMethods as $_id => $_method)
                         {
-                            foreach ($this->_shippingMethods as $_id => $_method)
+                            foreach ($shippingMethods as $method)
                             {
                                 if (!strcmp ($method ['code'], $_method))
                                 {
@@ -850,9 +850,9 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
                         $quote = Mage::getModel ('sales/quote')->load ($chat->getQuoteId ());
 
-                        foreach ($paymentMethods as $method)
+                        foreach ($this->_paymentMethods as $_id => $_method)
                         {
-                            foreach ($this->_paymentMethods as $_id => $_method)
+                            foreach ($paymentMethods as $method)
                             {
                                 if (!strcmp ($method ['code'], $_method))
                                 {
@@ -877,9 +877,9 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                             . Mage::helper ('bot/message')->getEnterDeliveryMethodText () . PHP_EOL . PHP_EOL
                         ;
 
-                        foreach ($shippingMethods as $method)
+                        foreach ($this->_shippingMethods as $_id => $_method)
                         {
-                            foreach ($this->_shippingMethods as $_id => $_method)
+                            foreach ($shippingMethods as $method)
                             {
                                 if (!strcmp ($method ['code'], $_method))
                                 {
@@ -898,9 +898,9 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                 {
                     $result = Mage::helper ('bot/message')->getEnterDeliveryMethodText () . PHP_EOL . PHP_EOL;
 
-                    foreach ($shippingMethods as $method)
+                    foreach ($this->_shippingMethods as $_id => $_method)
                     {
-                        foreach ($this->_shippingMethods as $_id => $_method)
+                        foreach ($shippingMethods as $method)
                         {
                             if (!strcmp ($method ['code'], $_method))
                             {
@@ -995,9 +995,9 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
                     $quote = Mage::getModel ('sales/quote')->load ($chat->getQuoteId ());
 
-                    foreach ($paymentMethods as $method)
+                    foreach ($this->_paymentMethods as $_id => $_method)
                     {
-                        foreach ($this->_paymentMethods as $_id => $_method)
+                        foreach ($paymentMethods as $method)
                         {
                             if (!strcmp ($method ['code'], $_method))
                             {
