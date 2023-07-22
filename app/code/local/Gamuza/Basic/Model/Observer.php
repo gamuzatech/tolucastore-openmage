@@ -217,6 +217,32 @@ class Gamuza_Basic_Model_Observer
         return $this;
     }
 
+    public function cleanExpiredBackups()
+    {
+        $point = date ('c', strtotime ('-30 days'));
+
+        foreach (Mage::getModel ('backup/fs_collection') as $fs)
+        {
+            $stamp = date ('c', $fs->getTime ());
+
+            if ($stamp < $point)
+            {
+                $backup = Mage::getModel ('backup/backup')->loadByTimeAndType ($fs->getTime (), $fs->getType ());
+
+                try
+                {
+                    $backup->deleteFile();
+                }
+                catch (Exception $e)
+                {
+                    Mage::logException ($e);
+                }
+            }
+        }
+
+        return $this;
+    }
+
     public function salesOrderPlaceAfter ($observer)
     {
         $event = $observer->getEvent ();
