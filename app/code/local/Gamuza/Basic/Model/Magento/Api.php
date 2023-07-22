@@ -81,7 +81,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
                 }
                 case 'backup':
                 {
-                    $point = date ('c', strtotime ('-7 days'));
+                    $point = date ('c', strtotime ('-30 days'));
 
                     foreach (Mage::getModel ('backup/fs_collection') as $fs)
                     {
