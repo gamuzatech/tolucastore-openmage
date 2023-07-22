@@ -139,9 +139,9 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                     {
                         $customDiscount = $productItem ['custom_discount'];
 
-                        $discountAmount = $result->getProduct ()->getPrice () * ($customDiscount / 100);
+                        $discountAmount = $result->getProduct ()->getFinalPrice () * ($customDiscount / 100);
 
-                        $productItem ['custom_price'] = $result->getProduct ()->getPrice () - $discountAmount;
+                        $productItem ['custom_price'] = $result->getProduct ()->getFinalPrice () - $discountAmount;
                     }
 
                     if (!empty ($productItem ['custom_price']))
