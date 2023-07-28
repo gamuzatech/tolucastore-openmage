@@ -357,10 +357,6 @@ ol, ul {
     color: black;
 }
 
-.nav-primary {
-    margin-top: 0;
-}
-
 .shipping select,
 .shipping .form-list input {
     height: auto;
