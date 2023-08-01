@@ -382,6 +382,22 @@
                 </sales>
             </groups>
         </admin>
+        <system>
+            <groups>
+                <cron translate="label" module="basic">
+                    <fields>
+                        <jobs translate="label" module="basic">
+                            <label>Jobs</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>1000</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </jobs>
+                    </fields>
+                </cron>
+            </groups>
+        </system>
     </sections>
 </config>
 
