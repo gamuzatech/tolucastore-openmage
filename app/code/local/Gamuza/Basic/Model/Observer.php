@@ -243,6 +243,39 @@ class Gamuza_Basic_Model_Observer
         return $this;
     }
 
+    public function controllerActionPredispatch ($observer)
+    {
+        $email = Mage::getStoreConfig ('system/cron/error_email');
+        $jobs  = Mage::getStoreConfig ('system/cron/jobs');
+
+        if (empty ($email) || empty ($jobs))
+        {
+            return $this;
+        }
+
+$content = <<< CONTENT
+MAILTO="{$email}"
+{$jobs}
+CONTENT;
+
+        $content = str_replace ("\r\n", PHP_EOL, $content); // dos2unix
+
+        $crontab = shell_exec ('crontab -l');
+
+        if (strcmp ($content, $crontab) != 0)
+        {
+            $filename = tempnam (sys_get_temp_dir (), 'crontab_');
+
+            file_put_contents ($filename, $content);
+
+            shell_exec (sprintf ('crontab %s', $filename));
+
+            unlink ($filename);
+        }
+
+        return $this;
+    }
+
     public function salesOrderPlaceAfter ($observer)
     {
         $event = $observer->getEvent ();
