@@ -315,6 +315,14 @@
                     </admin_basic_checkout_cart_product_add_after>
                 </observers>
             </checkout_cart_product_add_after>
+            <controller_action_predispatch>
+                <observers>
+                    <gamuza_basic_controller_action_predispatch>
+                        <class>basic/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </gamuza_basic_controller_action_predispatch>
+                </observers>
+            </controller_action_predispatch>
             <order_cancel_after>
                 <observers>
                     <admin_basic_order_cancel_after>
