@@ -36,8 +36,23 @@ QUERY;
     ;
 }
 
+function updateLogVisitorTable ($installer, $model, $comment)
+{
+    $table = $installer->getTable ($model);
+
+$updateLogVisitorQuery = <<< QUERY
+    ALTER TABLE {$table} MODIFY session_id VARCHAR(512) NOT NULL COMMENT '{$comment}'
+QUERY;
+
+    Mage::getSingleton ('core/resource')
+        ->getConnection ('core_write')
+        ->query ($updateLogVisitorQuery)
+    ;
+}
+
 updateCoreSessionTable ($installer, 'core_session', 'Session ID');
 updateAPISessionTable ($installer, 'api_session', 'Session ID');
+updateLogVisitorTable ($installer, 'log_visitor', 'Session ID');
 
 $installer->endSetup ();
 
