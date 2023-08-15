@@ -114,20 +114,6 @@ $coreConfig->saveConfig ('sales/gift_options/allow_order', '0');
 $coreConfig->saveConfig ('sales/gift_options/allow_items', '0');
 
 /**
- * Sales Email
- */
-/*
-$coreConfig->saveConfig (Mage_Sales_Model_Order::XML_PATH_EMAIL_ENABLED,                   '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order::XML_PATH_UPDATE_EMAIL_ENABLED,            '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order_Invoice::XML_PATH_EMAIL_ENABLED,           '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order_Invoice::XML_PATH_UPDATE_EMAIL_ENABLED,    '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order_Shipment::XML_PATH_EMAIL_ENABLED,          '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order_Shipment::XML_PATH_UPDATE_EMAIL_ENABLED,   '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order_Creditmemo::XML_PATH_EMAIL_ENABLED,        '0');
-$coreConfig->saveConfig (Mage_Sales_Model_Order_Creditmemo::XML_PATH_UPDATE_EMAIL_ENABLED, '0');
-*/
-
-/**
  * Tax
  */
 $coreConfig->saveConfig (Mage_Tax_Model_Config::CONFIG_XML_PATH_DEFAULT_COUNTRY, 'BR');
