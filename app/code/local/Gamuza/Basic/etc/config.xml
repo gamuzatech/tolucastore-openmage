@@ -685,34 +685,6 @@
                 <allow_items>0</allow_items>
             </gift_options>
         </sales>
-        <!--
-        <sales_email>
-            <order>
-                <enabled>0</enabled>
-            </order>
-            <order_comment>
-                <enabled>0</enabled>
-            </order_comment>
-            <invoice>
-                <enabled>0</enabled>
-            </invoice>
-            <invoice_comment>
-                <enabled>0</enabled>
-            </invoice_comment>
-            <shipment>
-                <enabled>0</enabled>
-            </shipment>
-            <shipment_comment>
-                <enabled>0</enabled>
-            </shipment_comment>
-            <creditmemo>
-                <enabled>0</enabled>
-            </creditmemo>
-            <creditmemo_comment>
-                <enabled>0</enabled>
-            </creditmemo_comment>
-        </sales_email>
-        -->
         <tax>
             <defaults>
                 <country>BR</country>
