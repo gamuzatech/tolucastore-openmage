@@ -11,6 +11,8 @@
 class Gamuza_Basic_Model_Customer_Customer
     extends Mage_Customer_Model_Customer
 {
+    public const ABSOLUTE_MIN_PASSWORD_LENGTH = 6;
+
     public const ENTITY = 'customer';
 
     /**#@+
@@ -58,6 +60,19 @@ class Gamuza_Basic_Model_Customer_Customer
         $mailer->setQueue($emailQueue)->send();
 
         return $this;
+    }
+
+    /**
+     * Retrieve minimum length of password
+     *
+     * @return int
+     */
+    public function getMinPasswordLength()
+    {
+        $minLength = (int)Mage::getStoreConfig(self::XML_PATH_MIN_PASSWORD_LENGTH);
+        $absoluteMinLength = self::ABSOLUTE_MIN_PASSWORD_LENGTH;
+
+        return ($minLength < $absoluteMinLength) ? $absoluteMinLength : $minLength;
     }
 }
 
