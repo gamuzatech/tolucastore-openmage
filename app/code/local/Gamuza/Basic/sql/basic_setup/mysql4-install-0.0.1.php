@@ -90,6 +90,7 @@ $coreConfig->saveConfig (Mage_Customer_Model_Customer::XML_PATH_IS_CONFIRM, '0')
 
 $coreConfig->saveConfig ('customer/online_customers/online_minutes_interval', '1');
 $coreConfig->saveConfig ('customer/password/require_admin_user_to_change_user_password', '0');
+
 $coreConfig->saveConfig (Mage_Customer_Model_Customer::XML_PATH_MIN_PASSWORD_LENGTH, '6');
 
 $coreConfig->saveConfig ('customer/address/street_lines',    '4');
@@ -134,6 +135,8 @@ $coreConfig->saveConfig (Mage_Admin_Model_User::XML_PATH_STARTUP_PAGE, 'sales/or
 
 $coreConfig->saveConfig ('admin/security/session_cookie_lifetime',   '86400');
 $coreConfig->saveConfig ('admin/security/validate_formkey_checkout', '1');
+
+$coreConfig->saveConfig (Mage_Admin_Model_User::XML_PATH_MIN_ADMIN_PASSWORD_LENGTH, '12');
 
 /**
  * System
