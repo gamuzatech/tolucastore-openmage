@@ -620,6 +620,7 @@
             </online_customers>
             <password>
                 <require_admin_user_to_change_user_password>0</require_admin_user_to_change_user_password>
+                <min_password_length>6</min_password_length>
             </password>
             <address>
                 <street_lines>4</street_lines>
