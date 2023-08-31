@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <catalog>
+            <groups>
+                <flagbit_changeattributeset translate="label" module="flagbit_changeattributeset">
+                    <label>Flagbit ChangeAttributeSet Options</label>
+                    <sort_order>999</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <delete_old_data translate="label">
+                            <label>Delete Old Data</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </delete_old_data>
+                        <flush_limit translate="label">
+                            <label>Product Limit to Flush Cache</label>
+                            <comment>Set to 0 to disable "Flush Cache Storage"</comment>
+                            <frontend_type>text</frontend_type>
+                            <frontend_class>validate-number</frontend_class>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </flush_limit>
+                    </fields>
+                </flagbit_changeattributeset>
+            </groups>
+        </catalog>
+    </sections>
+</config>
