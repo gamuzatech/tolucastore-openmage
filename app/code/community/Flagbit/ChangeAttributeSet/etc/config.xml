@@ -29,6 +29,15 @@
     </global>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <Flagbit_ChangeAttributeSet>
+                    <files>
+                        <default>Flagbit_ChangeAttributeSet.csv</default>
+                    </files>
+                </Flagbit_ChangeAttributeSet>
+            </modules>
+        </translate>
         <events>
             <adminhtml_block_html_before>
                 <observers>
