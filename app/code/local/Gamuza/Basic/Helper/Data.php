@@ -137,6 +137,13 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
         return $object;
     }
 
+    public function hasAttributeSets ()
+    {
+        return Mage::getModel ('basic/config')
+            ->getAttributeSets (Mage_Catalog_Model_Product::ENTITY)
+        ;
+    }
+
     public function isMobile ()
     {
         /*
