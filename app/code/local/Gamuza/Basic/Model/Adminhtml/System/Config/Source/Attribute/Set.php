@@ -11,14 +11,8 @@ class Gamuza_Basic_Model_Adminhtml_System_Config_Source_Attribute_Set
     {
         $result = array ();
 
-        $entityTypeId = Mage::getSingleton ('eav/config')
-            ->getEntityType (Mage_Catalog_Model_Product::ENTITY)
-            ->getEntityTypeId ()
-        ;
-
-        $collection = Mage::getResourceModel ('eav/entity_attribute_set_collection')
-            ->setEntityTypeFilter ($entityTypeId)
-            ->setOrder ('attribute_set_id')
+        $collection = Mage::getModel ('basic/config')
+            ->getAttributeSets (Mage_Catalog_Model_Product::ENTITY)
         ;
 
         foreach ($collection as $attributeSet)
