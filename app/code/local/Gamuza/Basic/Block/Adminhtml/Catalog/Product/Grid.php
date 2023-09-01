@@ -56,7 +56,14 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
 
         $store = $this->_getStore ();
 
-        $this->removeColumn ('set_name');
+        $this->getColumn ('set_name')
+            ->setData ('header', Mage::helper ('basic')->__('Set'))
+        ;
+
+        if (!$this->helper('basic')->hasAttributeSets())
+        {
+            $this->removeColumn ('set_name');
+        }
 
         $this->addColumnAfter ('thumbnail', array(
             'header'   => Mage::helper ('basic')->__('Thumbnail'),
@@ -78,7 +85,7 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
 */
         $this->addColumnAfter ('is_in_stock',
             array(
-                'header'  => Mage::helper ('basic')->__('Is In Stock'),
+                'header'  => Mage::helper ('basic')->__('Stock'),
                 'index'   => 'is_in_stock',
                 'width'   => '100px',
                 'type'    => 'options',
