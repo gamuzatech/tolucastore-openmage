@@ -764,6 +764,8 @@
             <flatrate>
                 <active>1</active>
                 <type>O</type>
+                <handling_action>O</handling_action>
+                <model>basic/shipping_carrier_flatrate</model>
             </flatrate>
             <tablerate>
                 <active>1</active>
