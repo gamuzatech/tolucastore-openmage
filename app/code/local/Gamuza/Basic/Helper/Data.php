@@ -141,6 +141,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::getModel ('basic/config')
             ->getAttributeSets (Mage_Catalog_Model_Product::ENTITY)
+            ->getSize ()
         ;
     }
 
