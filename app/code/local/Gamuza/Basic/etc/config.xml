@@ -709,6 +709,9 @@
                 <validate_formkey_checkout>1</validate_formkey_checkout>
                 <min_admin_password_length>12</min_admin_password_length>
             </security>
+            <dashboard>
+                <enable_pdv>1</enable_pdv>
+            </dashboard>
             <sales>
                 <grid_auto_reload>0</grid_auto_reload>
             </sales>
