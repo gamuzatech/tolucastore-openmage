@@ -10,6 +10,20 @@
  */
 class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 {
+    /**
+     * Retrieve information about current Magento installation
+     *
+     * @return array
+     */
+    public function info()
+    {
+        $result = parent::info();
+
+        $result['enable_pdv_admin_dashboard'] = Mage::getStoreConfigFlag('admin/dashboard/enable_pdv');
+
+        return $result;
+    }
+
     public function backup ()
     {
         Mage::getModel ('backup/observer')->scheduledBackup ();
