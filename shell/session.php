@@ -35,7 +35,9 @@ try
 {
     if (!strcmp(php_sapi_name(), 'cli'))
     {
-        Mage::getModel ('basic/magento_api')->session ();
+        array_shift($argv);
+
+        Mage::getModel ('basic/magento_api')->session ($argv);
     }
 }
 catch (Exception $e)
