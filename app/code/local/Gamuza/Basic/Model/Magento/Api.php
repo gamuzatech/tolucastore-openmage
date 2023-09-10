@@ -130,7 +130,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         return true;
     }
 
-    public function session ()
+    public function session ($codes = array())
     {
         $result = null;
 
@@ -140,7 +140,10 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         {
             $session = Mage::getSingleton('admin/session');
 
-            $session->renewSession();
+            if (!in_array('keep', $codes))
+            {
+                $session->renewSession();
+            }
 
             if (Mage::getSingleton('adminhtml/url')->useSecretKey())
             {
