@@ -36,6 +36,11 @@ class Gamuza_Basic_Model_Customer_Customer
      */
     protected function _sendEmailTemplate($template, $sender, $templateParams = [], $storeId = null, $customerEmail = null)
     {
+        if (Mage::getStoreConfig('smtppro/queue/usage') == 'never')
+        {
+            return parent::_sendEmailTemplate($template, $sender, $templateParams, $storeId, $customerEmail);
+        }
+
         $customerEmail = ($customerEmail) ? $customerEmail : $this->getEmail();
 
         /** @var Mage_Core_Model_Email_Template_Mailer $mailer */
