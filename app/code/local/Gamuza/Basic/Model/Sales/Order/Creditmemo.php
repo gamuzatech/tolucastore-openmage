@@ -31,6 +31,11 @@ class Gamuza_Basic_Model_Sales_Order_Creditmemo
      */
     public function sendEmail($notifyCustomer = true, $comment = '')
     {
+        if (Mage::getStoreConfig('smtppro/queue/usage') == 'never')
+        {
+            return parent::sendEmail($notifyCustomer, $comment);
+        }
+
         $order = $this->getOrder();
         $storeId = $order->getStore()->getId();
 
@@ -139,6 +144,11 @@ class Gamuza_Basic_Model_Sales_Order_Creditmemo
      */
     public function sendUpdateEmail($notifyCustomer = true, $comment = '')
     {
+        if (Mage::getStoreConfig('smtppro/queue/usage') == 'never')
+        {
+            return parent::sendUpdateEmail($notifyCustomer, $comment);
+        }
+
         $order = $this->getOrder();
         $storeId = $order->getStore()->getId();
 
