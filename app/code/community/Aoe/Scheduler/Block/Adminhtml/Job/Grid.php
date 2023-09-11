@@ -40,7 +40,7 @@ class Aoe_Scheduler_Block_Adminhtml_Job_Grid extends Mage_Adminhtml_Block_Widget
      */
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('id');
+        $this->setMassactionIdField('job_code');
         $this->getMassactionBlock()->setFormFieldName('codes');
         $this->getMassactionBlock()->addItem(
             'schedule',
