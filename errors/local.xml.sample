@@ -21,7 +21,7 @@
             "action" can be set to "print" to show exception on screen and "email"
             to send exception on specified email
         -->
-        <action>print</action>
+        <action>email</action>
         <!--
             in "subject" you can set subject of email
         -->
@@ -29,7 +29,7 @@
         <!--
             "email_address" admin email address
         -->
-        <email_address></email_address>
+        <email_address>debug@toluca.com.br</email_address>
         <!--
             "trash" is handle about trace info
             value "leave" is for store on disk
