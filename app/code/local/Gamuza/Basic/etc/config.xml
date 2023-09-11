@@ -724,11 +724,13 @@
         </hints>
         <system>
             <cron>
+                <error_email><![CDATA[cron@toluca.com.br]]></error_email>
                 <enableRunNow>1</enableRunNow>
                 <showCronUserMessage>0</showCronUserMessage>
             </cron>
             <log>
                 <enable_log>1</enable_log>
+                <error_email><![CDATA[log@toluca.com.br]]></error_email>
             </log>
             <adminnotification>
                 <feed_url>www.toluca.com.br/media/sitemap/notifications.rss</feed_url>
