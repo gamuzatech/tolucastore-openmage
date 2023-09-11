@@ -141,9 +141,11 @@ $coreConfig->saveConfig (Mage_Admin_Model_User::XML_PATH_MIN_ADMIN_PASSWORD_LENG
 /**
  * System
  */
+$coreConfig->saveConfig ('system/cron/error_email',            'cron@toluca.com.br');
 $coreConfig->saveConfig ('system/cron/enableRunNow',           '1');
 $coreConfig->saveConfig ('system/cron/showCronUserMessage',    '0');
 $coreConfig->saveConfig ('system/log/enable_log',              '1');
+$coreConfig->saveConfig ('system/log/error_email',             'log@toluca.com.br');
 $coreConfig->saveConfig ('system/adminnotification/use_https', '2');
 $coreConfig->saveConfig ('system/backup/enabled',              '1');
 $coreConfig->saveConfig ('system/backup/type',                 'db');
