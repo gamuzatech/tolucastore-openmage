@@ -24,6 +24,10 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
      **/
     public function send($email, $name = null, array $variables = array())
     {
+        /**
+         * NOTE: reload attributes configuration for mixed email templates with products.
+         */
+        Mage::getSingleton('eav/config')->clear();
 
         $_helper = Mage::helper('smtppro');
         // If it's not enabled, just return the parent result.
@@ -31,7 +35,6 @@ class Aschroder_SMTPPro_Model_Email_Template extends Mage_Core_Model_Email_Templ
             $_helper->log('SMTP Pro is not enabled, fall back to parent class');
             return parent::send($email, $name, $variables);
         }
-
 
         // As per parent class - except addition of before and after send events
 
