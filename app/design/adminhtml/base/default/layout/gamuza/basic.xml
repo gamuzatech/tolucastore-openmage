@@ -94,10 +94,6 @@
             <remove name="sales" />
             <remove name="accordion" />
         </reference>
-        <reference name="customer_edit_tabs">
-            <action method="removeTab"><name>customer_edit_tab_agreements</name></action>
-            <action method="removeTab"><name>customer_edit_tab_recurring_profile</name></action>
-        </reference>
     </adminhtml_customer_edit>
 
     <admin_basic_adminhtml_catalog_product_attribute_option_index>
