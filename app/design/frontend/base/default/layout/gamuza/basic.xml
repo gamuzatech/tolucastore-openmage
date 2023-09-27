@@ -90,6 +90,7 @@
         <reference name="top.links">
             <action method="addLink" translate="label title" module="customer"><label>My Addresses</label><url>/customer/address/</url><title>My Addresses</title><prepare/><urlParams/><position>20</position></action>
             <action method="addLink" translate="label title" module="sales"><label>My Orders</label><url>/sales/order/history</url><title>My Orders</title><prepare/><urlParams/><position>30</position></action>
+            <action method="addLink" translate="label title" module="sales"><label>Recurring Profiles</label><url>/sales/recurring_profile</url><title>Recurring Profiles</title><prepare/><urlParams/><position>40</position></action>
         </reference>
 
         <reference name="cms_footer_links">
