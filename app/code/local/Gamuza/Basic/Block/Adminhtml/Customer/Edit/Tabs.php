@@ -50,8 +50,6 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Edit_Tabs
             ));
         }
 
-        $this->removeTab('agreements');
-
         $this->_updateActiveTab();
 
         Varien_Profiler::stop('customer/tabs');
