@@ -11,17 +11,9 @@
 class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
     extends Mage_Adminhtml_Block_Catalog_Product_Edit_Tabs
 {
-    const CATALOG_PRODUCT_GROUP_ID_11 = 'group_11'; // recurring_profile
-    const CATALOG_PRODUCT_GROUP_ID_12 = 'group_12'; // custom_design
-    const CATALOG_PRODUCT_GROUP_ID_17 = 'group_17'; // gift_message
-
     protected function _prepareLayout ()
     {
         $result = parent::_prepareLayout ();
-
-        $this->removeTab (self::CATALOG_PRODUCT_GROUP_ID_11);
-        $this->removeTab (self::CATALOG_PRODUCT_GROUP_ID_12);
-        $this->removeTab (self::CATALOG_PRODUCT_GROUP_ID_17);
 
         if (Mage::registry('current_product')->getId())
         {
