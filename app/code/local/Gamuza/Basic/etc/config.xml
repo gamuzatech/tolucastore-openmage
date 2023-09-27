@@ -33,7 +33,6 @@
                     <api_user_grid>Gamuza_Basic_Block_Adminhtml_Api_User_Grid</api_user_grid>
                     <backup>Gamuza_Basic_Block_Adminhtml_Backup</backup>
                     <catalog_category_tree>Gamuza_Basic_Block_Adminhtml_Catalog_Category_Tree</catalog_category_tree>
-                    <catalog_category_tabs>Gamuza_Basic_Block_Adminhtml_Catalog_Category_Tabs</catalog_category_tabs>
                     <catalog_product>Gamuza_Basic_Block_Adminhtml_Catalog_Product</catalog_product>
                     <catalog_product_edit_tab_attributes>Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tab_Attributes</catalog_product_edit_tab_attributes>
                     <catalog_product_edit_tab_options_option>Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tab_Options_Option</catalog_product_edit_tab_options_option>
