@@ -229,6 +229,10 @@ ol, ul {
     background-image: url(../../../../rwd/gamuza/images/icon_sprite.png);
 }
 
+.info-box {
+    display: table;
+}
+
 .logo {
     padding: 10px 0 10px 0;
     width: 100%;
