@@ -61,7 +61,7 @@
                 <active>0</active>
                 <allowspecific>0</allowspecific>
                 <title>Boleto - via PagSeguro UOL</title>
-                <order_status>pending</order_status>
+                <order_status>holded</order_status>
                 <payment_action>order</payment_action>
                 <model>ricardomartins_pagseguropro/payment_boleto</model>
                 <allowspecific>0</allowspecific>
@@ -73,7 +73,7 @@
                 <active>0</active>
                 <allowspecific>0</allowspecific>
                 <title>Cartão de Débito (TEF) - via PagSeguro UOL</title>
-                <order_status>pending</order_status>
+                <order_status>holded</order_status>
                 <payment_action>order</payment_action>
                 <model>ricardomartins_pagseguropro/payment_tef</model>
                 <allowspecific>0</allowspecific>
