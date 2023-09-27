@@ -155,6 +155,15 @@
                         </generate_human_friendly_email>
                     </fields>
                 </create_account>
+                <password>
+                    <fields>
+                        <min_password_length translate="label comment">
+                            <comment>Please enter a number 6 or greater in this field.</comment>
+                            <validate>required-entry validate-digits validate-digits-range digits-range-6-</validate>
+                            <backend_model>basic/adminhtml_system_config_backend_passwordlength</backend_model>
+                        </min_password_length>
+                    </fields>
+                </password>
                 <address>
                     <fields>
                         <validate_cellphone translate="label">
