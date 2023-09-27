@@ -14,9 +14,13 @@ $iwdEnabled = method_exists(Mage::helper('ricardomartins_pagseguro'), 'isIwdEnab
         </div>
     </li>
 */ ?>
+    <?php if ($this->getInstructions()): ?>
     <li>
-        O boleto poderá ser impresso após a finalização do pedido.
+        <div class="<?php echo $_code; ?>-instructions-content agreement-content">
+            <?php echo nl2br($this->getInstructions()) ?>
+        </div>
     </li>
+    <?php endif; ?>
     <?php if(Mage::helper('ricardomartins_pagseguro')->isCpfVisible()):?>
         <li id="<?php echo $_code ?>_cpf_div">
             <label for="<?php echo $_code ?>_cpf" class="required"><em>*</em><?php echo $this->__('Your CPF') ?></label>
@@ -25,4 +29,5 @@ $iwdEnabled = method_exists(Mage::helper('ricardomartins_pagseguro'), 'isIwdEnab
             </div>
         </li>
     <?php endif ?>
+    <?php echo $this->getChildHtml() ?>
 </ul>
