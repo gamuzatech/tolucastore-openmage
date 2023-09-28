@@ -67,6 +67,12 @@ public function call($sessionId, $apiPath, $args = array())
         $this->_getConfig()->saveCacheResult (serialize ($result), $this->_getCacheId($sessionId, $apiPath, $args));
     }
 
+    Mage::dispatchEvent('jsonapi_call_after', array(
+        'apiPath' => $apiPath,
+        'args' => $args,
+        'result' => $result,
+    ));
+
     return $result;
 }
 
