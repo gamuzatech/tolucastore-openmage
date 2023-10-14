@@ -57,7 +57,7 @@ if (file_exists($maintenanceFile)) {
 $httpXOriginalHost = @$_SERVER['HTTP_X_FORWARDED_HOST'];
 
 if (!empty($httpXOriginalHost)) {
-    Mage::init('admin', 'store', $mageRunOptions);
+    Mage::init('admin');
 
     foreach (Mage::app()->getStores(false, false) as $store) {
         if (strpos($store->getBaseUrl(), $httpXOriginalHost) !== false) {
@@ -70,4 +70,4 @@ if (!empty($httpXOriginalHost)) {
     }
 }
 
-Mage::run($mageRunCode, $mageRunType, $mageRunOptions);
+Mage::run($mageRunCode, $mageRunType);

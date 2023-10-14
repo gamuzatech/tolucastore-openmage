@@ -72,7 +72,7 @@ abstract class Mage_Shell_Abstract
         if ($this->_includeMage) {
             require_once $this->_getRootPath() . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php';
             require_once $this->_getRootPath() . 'app' . DIRECTORY_SEPARATOR . 'Mage.php';
-            Mage::app($this->_appCode, $this->_appType, $mageRunOptions);
+            Mage::app($this->_appCode, $this->_appType);
         }
         $this->_factory = new Mage_Core_Model_Factory();
 
