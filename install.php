@@ -111,7 +111,7 @@ set_include_path(__DIR__ . PATH_SEPARATOR . get_include_path());
 require 'app/bootstrap.php';
 require 'app/Mage.php';
 
-$app = Mage::app('default', 'store', $mageRunOptions);
+$app = Mage::app('default');
 
 /** @var Mage_Install_Model_Installer_Console $installer */
 $installer = Mage::getSingleton('install/installer_console');

@@ -27,7 +27,7 @@ $_SERVER['SCRIPT_NAME'] = str_replace(basename(__FILE__), 'index.php', $_SERVER[
 $_SERVER['SCRIPT_FILENAME'] = str_replace(basename(__FILE__), 'index.php', $_SERVER['SCRIPT_FILENAME']);
 
 try {
-    Mage::app('admin', 'store', $mageRunOptions)->setUseSessionInUrl(false);
+    Mage::app('admin')->setUseSessionInUrl(false);
 } catch (Exception $e) {
     Mage::printException($e);
     exit;

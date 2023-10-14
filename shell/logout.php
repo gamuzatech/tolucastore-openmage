@@ -20,7 +20,7 @@ $_SERVER['SCRIPT_FILENAME'] = str_replace(basename(__FILE__), 'index.php', $_SER
 
 try
 {
-    Mage::app('admin', 'store', $mageRunOptions)->setUseSessionInUrl(false);
+    Mage::app('admin')->setUseSessionInUrl(false);
 }
 catch (Exception $e)
 {

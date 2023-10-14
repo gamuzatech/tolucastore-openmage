@@ -39,7 +39,7 @@ if (file_exists($maintenanceFile)) {
 
     if (file_exists($maintenanceIpFile)) {
         /* if maintenanceFile and maintenanceIpFile are set use Mage to get remote IP (in order to respect remote_addr_headers xml config) */
-        Mage::init($mageRunCode, $mageRunType, $mageRunOptions);
+        Mage::init($mageRunCode, $mageRunType);
         $currentIp = Mage::helper('core/http')->getRemoteAddr();
         $allowedIps = explode(',', trim(file_get_contents($maintenanceIpFile)));
 
@@ -61,7 +61,7 @@ if (file_exists($maintenanceFile)) {
 $httpXOriginalHost = @$_SERVER['HTTP_X_FORWARDED_HOST'];
 
 if (!empty($httpXOriginalHost)) {
-    Mage::init('admin', 'store', $mageRunOptions);
+    Mage::init('admin');
 
     foreach (Mage::app()->getStores(false, false) as $store) {
         if (strpos($store->getBaseUrl(), $httpXOriginalHost) !== false) {
@@ -74,4 +74,4 @@ if (!empty($httpXOriginalHost)) {
     }
 }
 
-Mage::run($mageRunCode, $mageRunType, $mageRunOptions);
+Mage::run($mageRunCode, $mageRunType);
