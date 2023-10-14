@@ -26,9 +26,3 @@ if ((LIBXML_VERSION < 20900) && function_exists('libxml_disable_entity_loader'))
 ini_set('session.sid_bits_per_character', 5);
 ini_set('session.sid_length', 248);
 
-$mageRunOptions = array();
-
-if ($mageRunCache = getenv('TOLUCASTORE_APPLICATION_VAR_CACHE', true)) {
-    $mageRunOptions['cache_dir'] = $mageRunCache;
-}
-
