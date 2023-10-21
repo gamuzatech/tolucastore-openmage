@@ -95,6 +95,11 @@ ol, ul {
     color: black;
 }
 
+.btn-express {
+    margin-left: 0 !important;
+    width: 100%; /* firefox */
+}
+
 .button2 span, .button2 span span {
     text-decoration: none;
 }
