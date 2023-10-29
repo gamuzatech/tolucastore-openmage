@@ -28,20 +28,21 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
     protected $_shippingMethods = array(
         '1' => 'pickup_store',
-        '2' => 'freeshipping_freeshipping',
-        '3' => 'flatrate_flatrate',
-        '4' => 'tablerate_bestway',
+        '2' => 'eatin_local',
+        '3' => 'freeshipping_freeshipping',
+        '4' => 'flatrate_flatrate',
+        '5' => 'tablerate_bestway',
 
-        '5' => 'pedroteixeira_correios_10065',
-        '6' => 'pedroteixeira_correios_04510',
-        '7' => 'pedroteixeira_correios_04014',
-        '8' => 'pedroteixeira_correios_40290',
-        '9' => 'pedroteixeira_correios_04162',
+        '6'  => 'pedroteixeira_correios_10065',
+        '7'  => 'pedroteixeira_correios_04510',
+        '8'  => 'pedroteixeira_correios_04014',
+        '9'  => 'pedroteixeira_correios_40290',
+        '10' => 'pedroteixeira_correios_04162',
 
-        '10' => 'pedroteixeira_correios_04669',
-        '11' => 'pedroteixeira_correios_04693',
-        '12' => 'pedroteixeira_correios_40215',
-        '13' => 'pedroteixeira_correios_40045',
+        '11' => 'pedroteixeira_correios_04669',
+        '12' => 'pedroteixeira_correios_04693',
+        '13' => 'pedroteixeira_correios_40215',
+        '14' => 'pedroteixeira_correios_40045',
     );
 
     protected $_paymentMethods = array(
