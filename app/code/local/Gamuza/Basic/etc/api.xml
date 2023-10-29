@@ -59,7 +59,22 @@
                         <method>items</method>
                         <acl>basic/customer/list</acl>
                     </list>
+                    <welcome translate="title" module="basic">
+                        <title>Welcome customer info</title>
+                        <method>welcome</method>
+                        <acl>basic/customer/welcome</acl>
+                    </welcome>
                 </methods>
+                <faults>
+                    <customer_not_specified>
+                        <code>100</code>
+                        <message>Requested customer ID was not specified.</message>
+                    </customer_not_specified>
+                    <customer_not_exists>
+                        <code>200</code>
+                        <message>Requested customer was not found.</message>
+                    </customer_not_exists>
+                </faults>
             </basic_customer>
             <!-- Customer Address -->
             <basic_customer_address translate="title" module="basic">
@@ -296,6 +311,9 @@
                         <list translate="title" module="basic">
                             <title>Retrieve customer list</title>
                         </list>
+                        <welcome translate="title" module="basic">
+                            <title>Welcome customer info</title>
+                        </welcome>
                     </customer>
                     <!-- Customer Address -->
                     <customer_address translate="title" module="basic">
