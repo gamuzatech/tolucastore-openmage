@@ -86,7 +86,7 @@ class Gamuza_Basic_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
         return $result;
     }
 
-    public function welcome ($customerId, $password = null)
+    public function welcome ($customerId)
     {
         if (empty ($customerId))
         {
