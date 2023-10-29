@@ -54,6 +54,10 @@ INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
 INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
+    VALUES ('default', 0, 'carriers/eatin/title', 'Consumir no Local')
+    ON DUPLICATE KEY UPDATE `updated_at` = NULL;
+
+INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     VALUES ('default', 0, 'payment/free/title', 'Sem Pagamento')
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
