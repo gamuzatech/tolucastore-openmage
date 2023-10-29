@@ -765,6 +765,14 @@
                 <specificerrmsg>This shipping method is currently unavailable.</specificerrmsg>
                 <model>basic/shipping_carrier_pickup</model>
             </pickup>
+            <eatin>
+                <active>0</active>
+                <title>Local Eat In</title>
+                <name>eatin</name>
+                <sallowspecific>0</sallowspecific>
+                <specificerrmsg>This shipping method is currently unavailable.</specificerrmsg>
+                <model>basic/shipping_carrier_eatin</model>
+            </eatin>
             <flatrate>
                 <active>1</active>
                 <type>O</type>
