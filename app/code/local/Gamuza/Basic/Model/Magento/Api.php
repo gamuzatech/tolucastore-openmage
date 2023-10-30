@@ -102,7 +102,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
                 }
                 case 'api':
                 {
-                    Mage::getModel ('api/cron')->cleanOldSessions ();
+                    Mage::getModel ('api/cron')->cleanOldSessions (null);
 
                     break;
                 }
