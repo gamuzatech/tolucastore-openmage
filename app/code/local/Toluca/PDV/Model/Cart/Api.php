@@ -311,38 +311,36 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         if ($customerBillingAddress && $customerBillingAddress->getId () && $customerBillingAddress->validate () === true
             && $customerShippingAddress && $customerShippingAddress->getId () && $customerShippingAddress->validate () === true)
         {
+            $customerBillingPostcode  = preg_replace ('[\D]', null, $customerBillingAddress->getPostcode ());
+            $customerShippingPostcode = preg_replace ('[\D]', null, $customerShippingAddress->getPostcode ());
 
-        $customerBillingPostcode  = preg_replace ('[\D]', null, $customerBillingAddress->getPostcode ());
-        $customerShippingPostcode = preg_replace ('[\D]', null, $customerShippingAddress->getPostcode ());
+            $customerBillingCellphone  = preg_replace ('[\D]', null, $customerBillingAddress->getCellphone ());
+            $customerShippingCellphone = preg_replace ('[\D]', null, $customerShippingAddress->getCellphone ());
 
-        $customerBillingCellphone  = preg_replace ('[\D]', null, $customerBillingAddress->getCellphone ());
-        $customerShippingCellphone = preg_replace ('[\D]', null, $customerShippingAddress->getCellphone ());
-
-        Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
-            array(
-                'mode'       => 'billing',
-                'firstname'  => $customerBillingAddress->getFirstname (),
-                'lastname'   => $customerBillingAddress->getLastname (),
-                'street'     => $customerBillingAddress->getStreet (),
-                'city'       => $customerBillingAddress->getCity (),
-                'region'     => $customerBillingAddress->getRegionId (),
-                'country_id' => $customerBillingAddress->getCountryId (),
-                'postcode'   => $customerBillingPostcode,
-                'cellphone'  => $customerBillingCellphone,
-            ),
-            array(
-                'mode'       => 'shipping',
-                'firstname'  => $customerShippingAddress->getFirstname (),
-                'lastname'   => $customerShippingAddress->getLastname (),
-                'street'     => $customerShippingAddress->getStreet (),
-                'city'       => $customerShippingAddress->getCity (),
-                'region'     => $customerShippingAddress->getRegionId (),
-                'country_id' => $customerShippingAddress->getCountryId (),
-                'postcode'   => $customerShippingPostcode,
-                'cellphone'  => $customerShippingCellphone,
-            ),
-        ), $storeId);
-
+            Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
+                array(
+                    'mode'       => 'billing',
+                    'firstname'  => $customerBillingAddress->getFirstname (),
+                    'lastname'   => $customerBillingAddress->getLastname (),
+                    'street'     => $customerBillingAddress->getStreet (),
+                    'city'       => $customerBillingAddress->getCity (),
+                    'region'     => $customerBillingAddress->getRegionId (),
+                    'country_id' => $customerBillingAddress->getCountryId (),
+                    'postcode'   => $customerBillingPostcode,
+                    'cellphone'  => $customerBillingCellphone,
+                ),
+                array(
+                    'mode'       => 'shipping',
+                    'firstname'  => $customerShippingAddress->getFirstname (),
+                    'lastname'   => $customerShippingAddress->getLastname (),
+                    'street'     => $customerShippingAddress->getStreet (),
+                    'city'       => $customerShippingAddress->getCity (),
+                    'region'     => $customerShippingAddress->getRegionId (),
+                    'country_id' => $customerShippingAddress->getCountryId (),
+                    'postcode'   => $customerShippingPostcode,
+                    'cellphone'  => $customerShippingCellphone,
+                ),
+            ), $storeId);
         }
 
     __returnQuote:
