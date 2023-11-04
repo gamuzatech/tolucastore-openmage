@@ -43,6 +43,18 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'   => 'number',
 		    'index'  => 'entity_id',
 		));
+		$this->addColumn ('history_id', array(
+		    'header'  => Mage::helper ('pdv')->__('History ID'),
+		    'align'   => 'right',
+            'type'    => 'number',
+		    'index'   => 'history_id',
+		));
+		$this->addColumn ('sequence_id', array(
+		    'header'  => Mage::helper ('pdv')->__('Sequence ID'),
+		    'align'   => 'right',
+	        'type'    => 'number',
+		    'index'   => 'sequence_id',
+		));
 		$this->addColumn ('code', array(
 		    'header'  => Mage::helper ('pdv')->__('Code'),
 		    'index'   => 'code',
@@ -74,7 +86,7 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Grid extends Mage_Adminhtml_Block_Widge
 			'index'  => 'closed_at',
             'type'   => 'datetime',
 		));
-
+/*
 		$this->addColumn ('operator_id', array(
 		    'header'  => Mage::helper ('pdv')->__('Operator'),
 		    'align'   => 'right',
@@ -82,18 +94,6 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'operator_id',
             'type'    => 'options',
             'options' => self::getOperators (),
-		));
-		$this->addColumn ('history_id', array(
-		    'header'  => Mage::helper ('pdv')->__('History ID'),
-		    'align'   => 'right',
-	        'type'    => 'number',
-		    'index'   => 'history_id',
-		));
-		$this->addColumn ('sequence_id', array(
-		    'header'  => Mage::helper ('pdv')->__('Sequence ID'),
-		    'align'   => 'right',
-	        'type'    => 'number',
-		    'index'   => 'sequence_id',
 		));
 		$this->addColumn ('customer_id', array(
 		    'header' => Mage::helper ('pdv')->__('Customer ID'),
@@ -105,7 +105,7 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'  => 'quote_id',
             'type'   => 'number',
 		));
-
+*/
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('pdv')->__('Created At'),
 			'index'  => 'created_at',
