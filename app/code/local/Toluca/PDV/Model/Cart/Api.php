@@ -345,7 +345,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
     __returnQuote:
 
-        $cashier->setQuoteId ($quote->getId ())
+        $operator->setQuoteId ($quote->getId ())
             ->setCustomerId ($customer->getId ())
             ->save ()
         ;
