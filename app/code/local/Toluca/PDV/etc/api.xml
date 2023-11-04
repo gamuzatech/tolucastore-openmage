@@ -114,22 +114,6 @@
                 <code>1100</code>
                 <message>Requested customer was not found.</message>
             </customer_not_exists>
-            <customer_billing_address_not_exists>
-                <code>1200</code>
-                <message>Requested customer billing address was not found.</message>
-            </customer_billing_address_not_exists>
-            <customer_shipping_address_not_exists>
-                <code>1300</code>
-                <message>Requested customer shipping address was not found.</message>
-            </customer_shipping_address_not_exists>
-            <customer_invalid_billing_address>
-                <code>1400</code>
-                <message>Requested customer billing address is invalid.</message>
-            </customer_invalid_billing_address>
-            <customer_invalid_shipping_address>
-                <code>1500</code>
-                <message>Requested customer shipping address is invalid.</message>
-            </customer_invalid_shipping_address>
 
             <cashier_already_opened>
                 <code>1600</code>

@@ -53,8 +53,6 @@
 "Cashier amount is invalid.","Valor do Caixa inválido."
 "Requested customer was not specified.","Cliente solicitado não foi especificado."
 "Requested customer was not found.","Cliente solicitado não foi encontrado."
-"Requested customer billing address was not found.","Endereço de Cobrança do Cliente solicitado não foi especificado."
-"Requested customer shipping address was not found.","Endereço de Cobrança do Cliente solicitado não foi encontrado."
 "Requested history was not found.","Histórico solicitado não foi encontrado."
 "Requested quote ID was not specified.","ID Carrinho não foi especificado."
 "Requested quote was not found.","Carrinho não foi encontrado."
