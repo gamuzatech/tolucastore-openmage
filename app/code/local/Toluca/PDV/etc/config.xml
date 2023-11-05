@@ -195,6 +195,7 @@
         <pdv>
             <cashier>
                 <include_all_orders>0</include_all_orders>
+                <show_operator_orders>0</show_operator_orders>
                 <show_pending_orders>0</show_pending_orders>
             </cashier>
             <payment_method>
