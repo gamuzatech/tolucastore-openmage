@@ -18,6 +18,7 @@
 # Openmage config
 /app/etc/local.xml
 /app/etc/redis.xml
+/errors/local.xml
 
 # CM Redis
 /app/code/community/Cm
