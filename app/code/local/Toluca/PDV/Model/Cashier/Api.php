@@ -531,9 +531,13 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         $collection = Mage::getModel ('sales/order')->getCollection ()
             ->addFieldToFilter ('is_pdv', array ('eq' => true))
             ->addFieldToFilter ('pdv_cashier_id', array ('eq' => $cashier->getId ()))
-            ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()))
             ->addFieldToFilter ('pdv_history_id', array ('eq' => $history->getId ()))
         ;
+
+        if (!Mage::getStoreConfigFlag ('pdv/cashier/show_operator_orders'))
+        {
+            $collection->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()));
+        }
 
         if (!Mage::getStoreConfigFlag ('pdv/cashier/show_pending_orders'))
         {
