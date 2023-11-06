@@ -114,39 +114,55 @@
                 <code>1100</code>
                 <message>Requested customer was not found.</message>
             </customer_not_exists>
-            <customer_billing_address_not_exists>
-                <code>1200</code>
-                <message>Requested customer billing address was not found.</message>
-            </customer_billing_address_not_exists>
-            <customer_shipping_address_not_exists>
-                <code>1300</code>
-                <message>Requested customer shipping address was not found.</message>
-            </customer_shipping_address_not_exists>
-            <customer_invalid_billing_address>
-                <code>1400</code>
-                <message>Requested customer billing address is invalid.</message>
-            </customer_invalid_billing_address>
-            <customer_invalid_shipping_address>
-                <code>1500</code>
-                <message>Requested customer shipping address is invalid.</message>
-            </customer_invalid_shipping_address>
 
             <cashier_already_opened>
-                <code>1600</code>
+                <code>1200</code>
                 <message>Requested cashier is already opened.</message>
             </cashier_already_opened>
             <cashier_already_closed>
-                <code>1700</code>
+                <code>1300</code>
                 <message>Requested cashier is already closed.</message>
             </cashier_already_closed>
             <cashier_invalid_amount>
-                <code>1800</code>
+                <code>1400</code>
                 <message>Cashier amount is invalid.</message>
             </cashier_invalid_amount>
             <operator_invalid_password>
-                <code>1900</code>
+                <code>1500</code>
                 <message>Operator password is invalid.</message>
             </operator_invalid_password>
+
+            <!-- Mage_Checkout -->
+            <customer_mode_is_unknown>
+                <code>1600</code>
+                <message>Customer's mode is unknown</message>
+            </customer_mode_is_unknown>
+            <customer_data_invalid>
+                <code>1700</code>
+                <message>Customer data is not valid. </message>
+            </customer_data_invalid>
+            <customer_not_set_for_quote>
+                <code>1800</code>
+                <message>Customer is not set for quote.</message>
+            </customer_not_set_for_quote>
+
+            <!-- Mage_Checkout -->
+            <customer_address_data_empty>
+                <code>1900</code>
+                <message>Customer address data is empty.</message>
+            </customer_address_data_empty>
+            <address_not_belong_customer>
+                <code>2000</code>
+                <message>Customer address identifier do not belong customer, which set in quote</message>
+            </address_not_belong_customer>
+            <customer_address_invalid>
+                <code>2100</code>
+                <message>Customer's address data is not valid.</message>
+            </customer_address_invalid>
+            <address_is_not_set>
+                <code>2200</code>
+                <message>Customer address is not set.</message>
+            </address_is_not_set>
         </faults>
         <acl>
             <resources>

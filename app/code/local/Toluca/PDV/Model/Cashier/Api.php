@@ -12,11 +12,16 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 {
     const XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS;
 
-    public function info ($cashier_id)
+    public function info ($cashier_id, $operator_id)
     {
         if (empty ($cashier_id))
         {
             $this->_fault ('cashier_not_specified');
+        }
+
+        if (empty ($operator_id))
+        {
+            $this->_fault ('operator_not_specified');
         }
 
         $cashier = Mage::getModel ('pdv/cashier')->getCollection ()
@@ -30,31 +35,35 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('cashier_not_exists');
         }
 
+        $operator = Mage::getModel ('pdv/operator')->getCollection ()
+            ->addFieldToFilter ('is_active',  array ('eq' => true))
+            ->addFieldToFilter ('entity_id',  array ('eq' => $operator_id))
+            ->addFieldToFilter ('cashier_id', array ('eq' => $cashier->getId ()))
+            ->getFirstItem ()
+        ;
+
+        if (!$operator || !$operator->getId ())
+        {
+            $this->_fault ('operator_not_exists');
+        }
+
         $result = array(
             'entity_id'  => intval ($cashier->getId ()),
             'code'       => $cashier->getCode (),
             'name'       => $cashier->getName (),
             'is_active'  => boolval ($cashier->getIsActive ()),
             'status'     => intval ($cashier->getStatus ()),
-            'operator_id'    => intval ($cashier->getOperatorId ()),
-            'operator_code'  => $cashier->getOperatorCode (),
-            'operator_name'  => $cashier->getOperatorName (),
+            'operator_id'   => intval ($operator_id),
+            'operator_code' => $operator->getCode (),
+            'operator_name' => $operator->getName (),
             'history_id' => intval ($cashier->getHistoryId ()),
             'created_at' => $cashier->getCreatedAt (),
             'updated_at' => $cashier->getUpdatedAt (),
             'order_amount'     => floatval ($cashier->getOrderAmount ()),
-            'customer_id' => intval ($cashier->getCustomerId ()),
-            'quote_id'    => intval ($cashier->getQuoteId ()),
+            'customer_id' => intval ($operator->getCustomerId ()),
+            'quote_id'    => intval ($operator->getQuoteId ()),
             'history' => $cashier->getHistory (),
         );
-
-        $operator = Mage::getModel ('pdv/operator')->load ($cashier->getOperatorId ());
-
-        if ($operator && $operator->getId ())
-        {
-            $result ['operator_code'] = $operator->getCode ();
-            $result ['operator_name'] = $operator->getName ();
-        }
 
         $history = Mage::getModel ('pdv/history')->load ($cashier->getHistoryId ());
 
@@ -87,8 +96,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
-            ->addFieldToFilter ('entity_id', array ('eq' => $cashier->getQuoteId ()))
-            ->addFieldToFilter ('pdv_customer_id', array ('eq' => $cashier->getCustomerId ()))
+            ->addFieldToFilter ('entity_id', array ('eq' => $operator->getQuoteId ()))
+            ->addFieldToFilter ('pdv_customer_id', array ('eq' => $operator->getCustomerId ()))
         ;
 
         if (!$collection->getSize ())
@@ -113,11 +122,16 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function draft ($cashier_id, $operation = null)
+    public function draft ($cashier_id, $operator_id, $operation = null)
     {
         if (empty ($cashier_id))
         {
             $this->_fault ('cashier_not_specified');
+        }
+
+        if (empty ($operator_id))
+        {
+            $this->_fault ('operator_not_specified');
         }
 
         $cashier = Mage::getModel ('pdv/cashier')->getCollection ()
@@ -132,8 +146,9 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $operator = Mage::getModel ('pdv/operator')->getCollection ()
-            ->addFieldToFilter ('is_active', array ('eq' => true))
-            ->addFieldToFilter ('entity_id', array ('eq' => $cashier->getOperatorId ()))
+            ->addFieldToFilter ('is_active',  array ('eq' => true))
+            ->addFieldToFilter ('entity_id',  array ('eq' => $operator_id))
+            ->addFieldToFilter ('cashier_id', array ('eq' => $cashier->getId ()))
             ->getFirstItem ()
         ;
 
@@ -176,11 +191,16 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function clear ($cashier_id)
+    public function clear ($cashier_id, $operator_id)
     {
         if (empty ($cashier_id))
         {
             $this->_fault ('cashier_not_specified');
+        }
+
+        if (empty ($operator_id))
+        {
+            $this->_fault ('operator_not_specified');
         }
 
         $cashier = Mage::getModel ('pdv/cashier')->getCollection ()
@@ -194,7 +214,19 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('cashier_not_exists');
         }
 
-        $cashier->setQuoteId (0)
+        $operator = Mage::getModel ('pdv/operator')->getCollection ()
+            ->addFieldToFilter ('is_active',  array ('eq' => true))
+            ->addFieldToFilter ('entity_id',  array ('eq' => $operator_id))
+            ->addFieldToFilter ('cashier_id', array ('eq' => $cashier->getId ()))
+            ->getFirstItem ()
+        ;
+
+        if (!$operator || !$operator->getId ())
+        {
+            $this->_fault ('operator_not_exists');
+        }
+
+        $operator->setQuoteId (0)
             ->setCustomerId (0)
             ->save ()
         ;
@@ -204,7 +236,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
     public function open ($operator_id, $password, $amount, $message)
     {
-        $cashier = $this->_getCashier ($operator_id, $password, $amount);
+        list ($cashier, $operator) = $this->_getCashier ($operator_id, $password, $amount);
 
         if ($cashier->getStatus () == Toluca_PDV_Helper_Data::CASHIER_STATUS_OPENED)
         {
@@ -241,12 +273,14 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         ;
 
         $cashier->setStatus (Toluca_PDV_Helper_Data::CASHIER_STATUS_OPENED)
-            ->setOperatorId ($operator_id)
             ->setHistoryId ($history->getId ())
             ->setSequenceId (0)
-            ->setQuoteId (0)
-            ->setCustomerId (0)
             ->setOpenedAt (date ('c'))
+            ->save ()
+        ;
+
+        $operator->setQuoteId (0)
+            ->setCustomerId (0)
             ->save ()
         ;
 
@@ -266,7 +300,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
     public function reinforce ($operator_id, $password, $amount, $message)
     {
-        $cashier = $this->_getCashier ($operator_id, $password, $amount);
+        list ($cashier, $operator) = $this->_getCashier ($operator_id, $password, $amount);
 
         if ($cashier->getStatus () == Toluca_PDV_Helper_Data::CASHIER_STATUS_CLOSED)
         {
@@ -303,7 +337,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
     public function bleed ($operator_id, $password, $amount, $message)
     {
-        $cashier = $this->_getCashier ($operator_id, $password, $amount);
+        list ($cashier, $operator) = $this->_getCashier ($operator_id, $password, $amount);
 
         if ($cashier->getStatus () == Toluca_PDV_Helper_Data::CASHIER_STATUS_CLOSED)
         {
@@ -360,7 +394,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
     public function close ($operator_id, $password, $amount, $message)
     {
-        $cashier = $this->_getCashier ($operator_id, $password, $amount);
+        list ($cashier, $operator) = $this->_getCashier ($operator_id, $password, $amount);
 
         if ($cashier->getStatus () == Toluca_PDV_Helper_Data::CASHIER_STATUS_CLOSED)
         {
@@ -489,7 +523,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('cashier_not_exists');
         }
 
-        return $cashier;
+        return array ($cashier, $operator);
     }
 
     public function _getOrderCollection ($cashier, $operator, $history)
@@ -497,9 +531,13 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         $collection = Mage::getModel ('sales/order')->getCollection ()
             ->addFieldToFilter ('is_pdv', array ('eq' => true))
             ->addFieldToFilter ('pdv_cashier_id', array ('eq' => $cashier->getId ()))
-            ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()))
             ->addFieldToFilter ('pdv_history_id', array ('eq' => $history->getId ()))
         ;
+
+        if (!Mage::getStoreConfigFlag ('pdv/cashier/show_operator_orders'))
+        {
+            $collection->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()));
+        }
 
         if (!Mage::getStoreConfigFlag ('pdv/cashier/show_pending_orders'))
         {
