@@ -40,7 +40,7 @@ try
     $order = strrpos($argv[1], '-');
 
     $orderIncrementId = substr($argv[1], 0, $order);
-    $orderProtectCode = substr($argv[1], $order + 1, 6);
+    $orderProtectCode = substr($argv[1], $order + 1);
 
     $contents = Mage::getModel('mobile/order_api')->draft($orderIncrementId, $orderProtectCode);
 
