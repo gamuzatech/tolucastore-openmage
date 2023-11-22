@@ -64,7 +64,7 @@ echo Mage::helper('sales')->__('Subtotal: %s Shipping: %s', $_subtotal, $_shippi
 echo Mage::helper('sales')->__('Grand Total: %s', $_total) . PHP_EOL;
 echo $this->getLineSeparator() . PHP_EOL;
 
-$_shppingDescription = $_order->getShippingDescription() ?: $_address->getShippingDescription();
+$_shippingDescription = $_order->getShippingDescription() ?: $_address->getShippingDescription();
 
 if ($_shippingDescription)
 {
