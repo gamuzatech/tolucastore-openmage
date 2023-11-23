@@ -12,6 +12,25 @@ class Gamuza_Basic_Model_Customer_Resource_Customer
     extends Mage_Customer_Model_Resource_Customer
 {
     /**
+     * Retrieve customer entity default attributes
+     *
+     * @return array
+     */
+    protected function _getDefaultAttributes()
+    {
+        return [
+            'entity_type_id',
+            'attribute_set_id',
+            'created_at',
+            'updated_at',
+            'increment_id',
+            'store_id',
+            'website_id',
+            'is_active',
+        ];
+    }
+
+    /**
      * Check customer scope, email and confirmation key before saving
      *
      * @param Mage_Customer_Model_Customer $customer
