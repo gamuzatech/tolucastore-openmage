@@ -10,6 +10,8 @@
  */
 class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 {
+    const CATALOG_PRODUCT_VIEW_PATH_INFO = 'catalog/product/view/id/';
+
     /**
      * Getter for path to Favicon
      *
@@ -109,9 +111,27 @@ class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
         return Mage::helper ('core/url')->getHomeUrl ();
     }
 
-    public function getLogoUrl ()
+    public function getImageUrl ()
     {
-        return Mage::helper ('basic')->getLogoUrl ();
+        $pathInfo = Mage::app ()->getRequest ()->getPathInfo ();
+
+        if (strpos ($pathInfo, self::CATALOG_PRODUCT_VIEW_PATH_INFO) !== false)
+        {
+            $product = Mage::registry ('product');
+
+            if ($product && $product->getId () && $product->getImage ())
+            {
+                return sprintf (
+                    '%s/catalog/product/%s',
+                    Mage::getBaseUrl (Mage_Core_Model_Store::URL_TYPE_MEDIA),
+                    $product->getImage ()
+                );
+            }
+        }
+        else
+        {
+            return Mage::helper ('basic')->getLogoUrl ();
+        }
     }
 
     public function getLocaleCode ()
