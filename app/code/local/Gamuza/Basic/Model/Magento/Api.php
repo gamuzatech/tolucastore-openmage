@@ -25,9 +25,20 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         return $result;
     }
 
-    public function backup ()
+    public function backup ($type = null)
     {
+        if (!empty ($type))
+        {
+            Mage::app ()->getStore ()->setConfig (
+                Mage_Backup_Model_Observer::XML_PATH_BACKUP_TYPE, $type
+            );
+        }
+
         Mage::getModel ('backup/observer')->scheduledBackup ();
+
+        $backupManager = Mage::registry ('backup_manager');
+
+        echo $backupManager->getBackupPath () . PHP_EOL;
 
         return true;
     }
