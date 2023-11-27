@@ -33,12 +33,7 @@ umask(0);
 
 try
 {
-    if (!strcmp(php_sapi_name(), 'cli'))
-    {
-        array_shift($argv);
-
-        Mage::getModel ('basic/magento_api')->session ($argv);
-    }
+    Mage::getModel ('basic/magento_api')->session (shell_get_args ());
 }
 catch (Exception $e)
 {

@@ -33,9 +33,7 @@ umask(0);
 
 try
 {
-    array_shift($argv);
-
-    Mage::getModel ('basic/magento_api')->cache ($argv);
+    Mage::getModel ('basic/magento_api')->cache (shell_get_args ());
 }
 catch (Exception $e)
 {
