@@ -38,7 +38,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         $backupManager = Mage::registry ('backup_manager');
 
-        echo $backupManager->getBackupPath () . PHP_EOL;
+        $this->_log ($backupManager->getBackupPath ());
 
         return true;
     }
@@ -54,12 +54,19 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         foreach ($cacheTypes as $type => $value)
         {
-            $cacheTypes[$type] = 1;
+            $this->_log ('CACHE: enable %s', $type);
 
+            $cacheTypes[$type] = 1;
+        }
+
+        foreach ($cacheTypes as $type => $value)
+        {
             if (!array_key_exists($type, $codes))
             {
                 continue; // skip
             }
+
+            $this->_log ('CACHE: clean %s', $type);
 
             Mage::app()->getCacheInstance()->cleanType($type);
 
@@ -72,6 +79,8 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         {
             return true;
         }
+
+        $this->_log ('CACHE: clean all');
 
         Mage::app()->cleanCache();
 
@@ -88,6 +97,8 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
     {
         foreach ($codes as $id => $value)
         {
+            $this->_log ('CLEAN: %s', $value);
+
             switch ($value)
             {
                 case 'quote':
@@ -127,6 +138,8 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
     {
         // Mage::app()->cleanAllSessions();
 
+        $this->_log ('LOGOUT: files');
+
         $dir = Mage::app()->getConfig()->getOptions()->getSessionDir();
 
         $dh  = scandir($dir);
@@ -141,7 +154,12 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         $write = Mage::getSingleton('core/resource')->getConnection('core_write');
 
+        $this->_log ('LOGOUT: api');
+
         $write->delete(Mage::getSingleton('core/resource')->getTableName('api/session'));
+
+        $this->_log ('LOGOUT: core');
+
         $write->delete(Mage::getSingleton('core/resource')->getTableName('core/session'));
 
         return true;
@@ -155,10 +173,14 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         if ($user && $user->getId())
         {
+            $this->_log ('SESSION: admin');
+
             $session = Mage::getSingleton('admin/session');
 
             if (!in_array('keep', $codes))
             {
+                $this->_log ('SESSION: renew');
+
                 $session->renewSession();
             }
 
@@ -171,6 +193,8 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
             $session->setUser($user);
             $session->setAcl(Mage::getResourceModel('admin/acl')->loadAcl());
 
+            $this->_log ('SESSION: success');
+
             Mage::dispatchEvent('admin_session_user_login_success', array('user' => $user));
 
             $result = $session->getEncryptedSessionId ();
@@ -181,6 +205,18 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         }
 
         return $result;
+    }
+
+    private function _log ($text)
+    {
+        if (!strcmp (php_sapi_name (), 'cli'))
+        {
+            $args = func_get_args ();
+
+            array_shift ($args);
+
+            echo sprintf ($text, implode (',', $args)) . PHP_EOL;
+        }
     }
 }
 
