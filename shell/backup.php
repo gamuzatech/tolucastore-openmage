@@ -33,7 +33,11 @@ umask(0);
 
 try
 {
-    Mage::getModel ('basic/magento_api')->backup ();
+    $args = shell_get_args ();
+
+    $type = count ($args) > 0 ? $args [0] : null;
+
+    Mage::getModel ('basic/magento_api')->backup ($type);
 }
 catch (Exception $e)
 {
