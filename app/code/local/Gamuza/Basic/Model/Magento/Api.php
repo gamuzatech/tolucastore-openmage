@@ -97,8 +97,6 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
     {
         foreach ($codes as $id => $value)
         {
-            $this->_log ('CLEAN: %s', $value);
-
             switch ($value)
             {
                 case 'quote':
@@ -129,6 +127,8 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
                     break;
                 }
             }
+
+            $this->_log ('CLEAN: %s', $value);
         }
 
         return true;
@@ -173,15 +173,13 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         if ($user && $user->getId())
         {
-            $this->_log ('SESSION: admin');
-
             $session = Mage::getSingleton('admin/session');
 
             if (!in_array('keep', $codes))
             {
-                $this->_log ('SESSION: renew');
-
                 $session->renewSession();
+
+                $this->_log ('SESSION: renew');
             }
 
             if (Mage::getSingleton('adminhtml/url')->useSecretKey())
@@ -193,11 +191,11 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
             $session->setUser($user);
             $session->setAcl(Mage::getResourceModel('admin/acl')->loadAcl());
 
-            $this->_log ('SESSION: success');
-
             Mage::dispatchEvent('admin_session_user_login_success', array('user' => $user));
 
             $result = $session->getEncryptedSessionId ();
+
+            $this->_log ('SESSION: admin');
         }
         else
         {
