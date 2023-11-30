@@ -7,7 +7,7 @@
 
 $_order = $this->getOrder();
 
-echo Mage::helper('basic')->__('Dining Table: %s', intval($_order->getPdvTableId())) . PHP_EOL;
+echo Mage::helper('basic')->__('Dining Table: %s %s', intval($_order->getPdvTableId()), $_order->getCustomerNote()) . PHP_EOL;
 
 echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
 
