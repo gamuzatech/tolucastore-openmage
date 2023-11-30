@@ -7,9 +7,12 @@
 
 $_order = $this->getOrder();
 
+echo Mage::helper('basic')->__('Dining Table: %s', intval($_order->getPdvTableId())) . PHP_EOL;
+
 echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
 
-echo sprintf('%s %s', $this->getOrderNumber(), $this->getOrderDatetime()) . PHP_EOL;
+echo $this->getOrderNumber() . PHP_EOL;
+echo $this->getOrderDatetime() . PHP_EOL;
 
 $_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
 
