@@ -103,6 +103,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_operator_id' => intval ($quote->getPdvOperatorId ()),
                 'pdv_customer_id' => intval ($quote->getPdvCustomerId ()),
                 'pdv_history_id'  => intval ($quote->getPdvHistoryId ()),
+                'pdv_table_id'    => intval ($quote->getPdvTableId ()),
                 'store_info_code'    => $quote->getStoreInfoCode (),
                 'customer_info_code' => $quote->getCustomerInfoCode (),
             );
@@ -157,6 +158,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'pdv_operator_id' => intval ($quote->getPdvOperatorId ()),
             'pdv_customer_id' => intval ($quote->getPdvCustomerId ()),
             'pdv_history_id'  => intval ($quote->getPdvHistoryId ()),
+            'pdv_table_id'    => intval ($quote->getPdvTableId ()),
             'store_info_code'    => $quote->getStoreInfoCode (),
             'customer_info_code' => $quote->getCustomerInfoCode (),
         );
@@ -164,14 +166,14 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $message = null)
+    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $note = null)
     {
-        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $message);
+        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $note);
 
         return intval ($quote->getId ());
     }
 
-    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $message)
+    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $note)
     {
         if (empty ($cashier_id))
         {
@@ -250,7 +252,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setCustomerLastname ($customer->getLastname ())
             ->setCustomerEmail ($customerEmail)
             ->setCustomerTaxvat ($customer->getTaxvat ())
-            ->setCustomerNote ($message)
+            ->setCustomerNote ($note)
             ->setCustomerCellphone ($customer->getCellphone ())
         ;
 
@@ -259,6 +261,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID, $operator_id)
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID, $customer_id)
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID,  $history->getId ())
+            ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID,    $table_id)
             ->setCustomerGroupId (0)
             ->setCustomerIsGuest (1)
             ->setIsSuperMode (true)
@@ -347,6 +350,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
         $operator->setQuoteId ($quote->getId ())
             ->setCustomerId ($customer->getId ())
+            ->setTableId ($table_id)
             ->save ()
         ;
 
