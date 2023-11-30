@@ -79,6 +79,14 @@ SQLBLOCK;
             'comment'  => 'Quote ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'table_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Table ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'order_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,

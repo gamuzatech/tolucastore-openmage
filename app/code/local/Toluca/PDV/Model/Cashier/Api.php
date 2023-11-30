@@ -62,6 +62,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             'order_amount'     => floatval ($cashier->getOrderAmount ()),
             'customer_id' => intval ($operator->getCustomerId ()),
             'quote_id'    => intval ($operator->getQuoteId ()),
+            'table_id'    => intval ($operator->getTableId ()),
             'history' => $cashier->getHistory (),
         );
 
@@ -228,6 +229,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
         $operator->setQuoteId (0)
             ->setCustomerId (0)
+            ->setTableId (0)
             ->save ()
         ;
 
@@ -281,6 +283,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
         $operator->setQuoteId (0)
             ->setCustomerId (0)
+            ->setTableId (0)
             ->save ()
         ;
 
