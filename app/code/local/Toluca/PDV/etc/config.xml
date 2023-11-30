@@ -91,6 +91,9 @@
                 <pdv_sequence_id>
                     <to_order>*</to_order>
                 </pdv_sequence_id>
+                <pdv_table_id>
+                    <to_order>*</to_order>
+                </pdv_table_id>
             </sales_convert_quote>
             <sales_convert_order>
                 <is_super_mode>
@@ -114,6 +117,9 @@
                 <pdv_sequence_id>
                     <to_quote>*</to_quote>
                 </pdv_sequence_id>
+                <pdv_table_id>
+                    <to_quote>*</to_quote>
+                </pdv_table_id>
             </sales_convert_order>
         </fieldsets>
         <events>

@@ -103,6 +103,7 @@ class Toluca_PDV_Model_Observer
         $orderPdvCustomerId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID);
         $orderPdvHistoryId  = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID);
         $orderPdvSequenceId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_SEQUENCE_ID);
+        $orderPdvTableId    = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID);
 
         $amount = $order->getBaseGrandTotal ();
 
@@ -128,6 +129,7 @@ class Toluca_PDV_Model_Observer
             ->setOperatorId ($operator->getId ())
             ->setHistoryId ($history->getId ())
             ->setSequenceId ($orderPdvSequenceId)
+            ->setTableId ($orderPdvTableId)
             ->setCustomerId ($customer->getId ())
             ->setQuoteId ($order->getQuoteId ())
             ->setOrderId ($order->getId ())
@@ -156,6 +158,7 @@ class Toluca_PDV_Model_Observer
                 ->setOperatorId ($operator->getId ())
                 ->setHistoryId ($history->getId ())
                 ->setSequenceId ($orderPdvSequenceId)
+                ->setTableId ($orderPdvTableId)
                 ->setCustomerId ($customer->getId ())
                 ->setQuoteId ($order->getQuoteId ())
                 ->setOrderId ($order->getId ())
