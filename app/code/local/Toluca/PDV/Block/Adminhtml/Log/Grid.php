@@ -86,6 +86,11 @@ class Toluca_PDV_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget_Gr
 		    'index'   => 'sequence_id',
             'type'    => 'number',
 		));
+		$this->addColumn ('table_id', array(
+		    'header'  => Mage::helper ('pdv')->__('Dining Table ID'),
+		    'index'   => 'table_id',
+            'type'    => 'number',
+		));
 		$this->addColumn ('type_id', array(
 		    'header'  => Mage::helper ('pdv')->__('Type'),
 		    'index'   => 'type_id',
