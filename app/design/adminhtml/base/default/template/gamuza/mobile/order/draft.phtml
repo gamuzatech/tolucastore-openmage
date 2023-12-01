@@ -7,7 +7,14 @@
 
 $_order = $this->getOrder();
 
-echo Mage::helper('basic')->__('Dining Table: %s %s', intval($_order->getPdvTableId()), $_order->getCustomerNote()) . PHP_EOL;
+echo Mage::helper('basic')->__('Dining Table: %s', intval($_order->getPdvTableId())) . PHP_EOL;
+
+$_customerNote = $_order->getCustomerNote();
+
+if (!empty($_customerNote))
+{
+    echo $_customerNote . PHP_EOL;
+}
 
 echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
 
@@ -16,7 +23,9 @@ echo $this->getOrderDatetime() . PHP_EOL;
 
 $_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
 
-echo $this->getLineSeparator(Mage::helper('basic')->__('Customer #%s', $_order->getCustomerId())) . PHP_EOL;
+$_customerId = $_order->getPdvCustomerId() ? $_order->getPdvCustomerId() : $_order->getCustomerId();
+
+echo $this->getLineSeparator(Mage::helper('basic')->__('Customer #%s', $_customerId)) . PHP_EOL;
 
 echo sprintf('%s %s', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
 echo sprintf('%s %s %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
