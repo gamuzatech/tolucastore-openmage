@@ -16,7 +16,7 @@ echo $this->getOrderDatetime() . PHP_EOL;
 
 $_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
 
-echo $this->getLineSeparator(Mage::helper('basic')->__('Customer')) . PHP_EOL;
+echo $this->getLineSeparator(Mage::helper('basic')->__('Customer #%s', $_order->getCustomerId())) . PHP_EOL;
 
 echo sprintf('%s %s', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
 echo sprintf('%s %s %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
@@ -30,7 +30,7 @@ echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_
 
 foreach ($_order->getAllItems() as $item)
 {
-    echo $this->getLineSeparator($item->getSku()).PHP_EOL;
+    echo $this->getLineSeparator(sprintf('SKU %s', $item->getSku())).PHP_EOL;
     echo $item->getName() . PHP_EOL;
 
     $_productOptions = $item->getProductOptions();
@@ -115,5 +115,5 @@ $_storePhone = Mage::getStoreConfig('general/store_information/phone', $_order->
 
 echo sprintf('%s %s', $_storeName, $_storePhone) . PHP_EOL;
 
-echo sprintf('Toluca Store APP %s', Mage::getModel('core/date')->date('d/m/Y H:i:s')) . PHP_EOL;
+echo sprintf('Toluca Store APP %s', Mage::getModel('core/date')->date('d/m/Y H:i:s')) . PHP_EOL . PHP_EOL;
 
