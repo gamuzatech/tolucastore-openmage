@@ -28,7 +28,7 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const ENTER_PRODUCT_OPTION_CODE  = 'enter_product_option_code';
     const THIS_IS_YOUR_SHOPPING_CART = 'this_is_your_shopping_cart';
 
-    const DEFAULT_APP_URL = 'https://app.toluca.com.br';
+    const DEFAULT_APP_URL = 'https://go.toluca.com.br';
 
     public function getUnavailableAtTheMomentText ()
     {
