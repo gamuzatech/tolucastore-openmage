@@ -8,9 +8,10 @@
 $installer = new Mage_Catalog_Model_Resource_Setup('basic_setup');
 $installer->startSetup ();
 
-$installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_EAN, array(
+$installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN, array(
     'group'            => Mage::helper ('basic')->__('General'),
-    'label'            => Mage::helper ('basic')->__('EAN'),
+    'label'            => Mage::helper ('basic')->__('GTIN'),
+    'note'             => Mage::helper ('basic')->__('Global Trade Item Number'),
     'global'           => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
     'type'             => 'varchar',
     'input'            => 'text',
