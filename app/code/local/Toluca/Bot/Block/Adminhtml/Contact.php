@@ -7,6 +7,8 @@
 
 class Toluca_Bot_Block_Adminhtml_Contact extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
+    const BOT_TYPE_WHATSAPP = Toluca_Bot_Helper_Data::BOT_TYPE_WHATSAPP;
+
 	public function __construct ()
 	{
 	    $this->_blockGroup = 'bot';
@@ -17,6 +19,17 @@ class Toluca_Bot_Block_Adminhtml_Contact extends Mage_Adminhtml_Block_Widget_Gri
 	    parent::__construct();
 
         $this->_removeButton ('add');
+
+        $this->_addButton('whatsapp', array(
+            'label'   => Mage::helper ('basic')->__('Import Customers Whatsapp'),
+            'onclick' => Mage::helper ('core/js')->getConfirmSetLocationJs ($this->getImportUrl (self::BOT_TYPE_WHATSAPP)),
+            'class'   => 'add',
+        ));
 	}
+
+    public function getImportUrl ($typeId)
+    {
+        return $this->getUrl ('*/*/import', array ('type_id' => $typeId));
+    }
 }
 
