@@ -63,9 +63,9 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
             {
                 $productByItem = $this->_getProduct($productItem['sku'], $storeId, "sku");
             }
-            else if (isset($productItem['ean']) && strlen($productItem['ean']) > 0)
+            else if (isset($productItem['gtin']) && strlen($productItem['gtin']) > 0)
             {
-                $productByItem = $this->_getProduct($productItem['ean'], $storeId, "ean");
+                $productByItem = $this->_getProduct($productItem['gtin'], $storeId, "gtin");
             }
             else
             {
@@ -220,9 +220,9 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
             {
                 $productByItem = $this->_getProduct($productItem['sku'], $storeId, "sku");
             }
-            else if (isset($productItem['ean']) && strlen($productItem['ean']) > 0)
+            else if (isset($productItem['gtin']) && strlen($productItem['gtin']) > 0)
             {
-                $productByItem = $this->_getProduct($productItem['ean'], $storeId, "ean");
+                $productByItem = $this->_getProduct($productItem['gtin'], $storeId, "gtin");
             }
             else
             {
@@ -331,9 +331,9 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
             {
                 $productByItem = $this->_getProduct($productItem['sku'], $storeId, "sku");
             }
-            else if (isset($productItem['ean']) && strlen($productItem['ean']) > 0)
+            else if (isset($productItem['gtin']) && strlen($productItem['gtin']) > 0)
             {
-                $productByItem = $this->_getProduct($productItem['ean'], $storeId, "ean");
+                $productByItem = $this->_getProduct($productItem['gtin'], $storeId, "gtin");
             }
             else
             {
@@ -457,7 +457,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'quote_id'                => intval($item->getQuoteId()),
                 // Basic item data
                 'type_id'                 => $product->getTypeId(),
-                'ean'                     => $product->getEan(),
+                'gtin'                    => $product->getGtin(),
                 'sku'                     => $item->getSku(),
                 'name'                    => $item->getName(),
                 'free_shipping'           => boolval($item->getFreeShipping()),
