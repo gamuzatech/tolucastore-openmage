@@ -9,7 +9,7 @@
 
 <config>
     <tabs>
-        <gamuza translate="label" module="basic">
+        <gamuza>
             <label>Gamuza Technologies</label>
             <sort_order>0</sort_order>
         </gamuza>
@@ -38,6 +38,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </code>
+                        <country_code translate="label" module="basic">
+                            <label>Country Code</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>24</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </country_code>
                     </fields>
                 </store_information>
             </groups>
