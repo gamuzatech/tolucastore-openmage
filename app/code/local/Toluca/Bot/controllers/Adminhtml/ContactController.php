@@ -24,6 +24,46 @@ class Toluca_Bot_Adminhtml_ContactController extends Mage_Adminhtml_Controller_A
 		return $this;
 	}
 
+    public function importAction ()
+    {
+        $countryCode = Mage::getStoreConfig ('general/store_information/country_code');
+
+        $typeId = $this->getRequest ()->getParam ('type_id');
+
+        $collection = Mage::getModel ('customer/customer')->getCollection ()
+            ->addAttributeToFilter ('firstname', array ('notnull' => true))
+            ->addAttributeToSelect ('lastname',  array ('notnull' => true))
+            ->addAttributeToSelect ('cellphone', array ('notnull' => true))
+        ;
+
+        foreach ($collection as $customer)
+        {
+            $number = $countryCode . $customer->getCellphone ();
+
+            $data = array(
+                'type_id' => $typeId,
+                'name'    => sprintf ('%s %s', $customer->getFirstname (), $customer->getLastname ()),
+                'number'  => $number,
+            );
+
+            $contact = Mage::getModel ('bot/contact')->getCollection ()
+                ->addFieldToFilter ('type_id', $typeId)
+                ->addFieldToFilter ('number',  $number)
+                ->getFirstItem ();
+
+            $exists = $contact && $contact->getId ();
+
+            $contact->setData ($exists ? 'updated_at' : 'created_at', date ('c'));
+            $contact->addData ($data)->save ();
+        }
+
+        $this->_getSession()->addSuccess(
+            $this->__('Total of %d record(s) have been updated.', $collection->count())
+        );
+
+        $this->_redirect ('*/*/index');
+    }
+
 	public function indexAction ()
 	{
 	    $this->_title ($this->__('Bot'));
