@@ -61,7 +61,7 @@ class Toluca_Bot_Model_Contact_Api extends Mage_Api_Model_Resource_Abstract
 
             $exists = $contact && $contact->getId ();
 
-            $contact->setUpdatedAt ($exists ? 'updated_at' : 'created_at', date ('c'));
+            $contact->setData ($exists ? 'updated_at' : 'created_at', date ('c'));
             $contact->addData ($data)->save ();
 
             if (!$contact || !$contact->getId ())
