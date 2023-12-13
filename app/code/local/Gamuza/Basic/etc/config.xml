@@ -111,6 +111,11 @@
                     <session>Gamuza_Basic_Model_Api_Session</session>
                 </rewrite>
             </api>
+            <backup_resource>
+                <rewrite>
+                    <db>Gamuza_Basic_Model_Backup_Resource_Db</db>
+                </rewrite>
+            </backup_resource>
             <bundle>
                 <rewrite>
                     <product_attribute_source_price_view>Gamuza_Basic_Model_Bundle_Product_Attribute_Source_Price_View</product_attribute_source_price_view>

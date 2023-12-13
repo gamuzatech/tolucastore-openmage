@@ -16,6 +16,7 @@
                 <Mage_Admin />
                 <Mage_Api />
                 <Mage_Adminhtml />
+                <Mage_Backup />
                 <Mage_Bundle />
                 <Mage_Catalog />
                 <Mage_Checkout />
