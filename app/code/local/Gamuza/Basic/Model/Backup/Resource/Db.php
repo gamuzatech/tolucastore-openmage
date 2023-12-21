@@ -22,12 +22,24 @@ class Gamuza_Basic_Model_Backup_Resource_Db extends Mage_Backup_Model_Resource_D
 
         if (is_object($result) && !strcmp(php_sapi_name(), 'cli'))
         {
+            $row = 1;
+
+            foreach ($this->getTables() as $tableName)
+            {
+                if (!strcmp($tableName, $result->getName())) break;
+
+                $row ++;
+            }
+
             echo sprintf(
-                '%s: %s: %s (%s)',
+                '%s: %s: %s (%s) %s%% (%s of %s)',
                 $result->getEngine(),
                 $result->getName(),
                 $result->getRows(),
-                $result->getComment()
+                $result->getComment(),
+                number_format (($row / count($this->getTables())) * 100, 2),
+                $row,
+                count($this->getTables()),
             ) . PHP_EOL;
         }
 
