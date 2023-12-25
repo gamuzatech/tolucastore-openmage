@@ -32,14 +32,14 @@ class Gamuza_Basic_Model_Backup_Resource_Db extends Mage_Backup_Model_Resource_D
             }
 
             echo sprintf(
-                '%s: %s: %s (%s) %s%% (%s of %s)',
+                '%s: %s: %s (%s of %s) %s%% (%s)',
                 $result->getEngine(),
                 $result->getName(),
                 $result->getRows(),
-                $result->getComment(),
-                number_format (($row / count($this->getTables())) * 100, 2),
                 $row,
                 count($this->getTables()),
+                number_format (($row / count($this->getTables())) * 100, 2),
+                $result->getComment(),
             ) . PHP_EOL;
         }
 
