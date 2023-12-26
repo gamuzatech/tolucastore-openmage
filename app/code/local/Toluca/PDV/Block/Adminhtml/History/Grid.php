@@ -30,6 +30,7 @@ class Toluca_PDV_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widge
         'banktransfer_amount' => 0,
         'check_amount' => 0,
 
+        'refund_amount' => 0,
         'shipping_amount' => 0,
         'total_amount' => 0,
     );
@@ -227,6 +228,14 @@ class Toluca_PDV_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widge
             'default' => 0,
 		));
 
+		$this->addColumn ('refund_amount', array(
+		    'header'  => Mage::helper ('pdv')->__('Refund'),
+		    'align'   => 'right',
+	        'type'    => 'price',
+		    'index'   => 'refund_amount',
+            'currency_code' => $store->getBaseCurrency()->getCode(),
+            'default' => 0,
+		));
 		$this->addColumn ('shipping_amount', array(
 		    'header'  => Mage::helper ('pdv')->__('Shipping'),
 		    'align'   => 'right',
