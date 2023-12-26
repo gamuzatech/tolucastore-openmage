@@ -9,8 +9,8 @@
 
 <config>
     <tabs>
-        <toluca translate="label" module="banner">
-            <label>Toluca</label>
+        <toluca>
+            <label>Toluca Store</label>
             <sort_order>10</sort_order>
         </toluca>
     </tabs>
