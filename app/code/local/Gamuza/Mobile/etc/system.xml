@@ -9,7 +9,7 @@
 
 <config>
     <tabs>
-        <gamuza translate="label" module="mobile">
+        <gamuza>
             <label>Gamuza Technologies</label>
             <sort_order>0</sort_order>
         </gamuza>
