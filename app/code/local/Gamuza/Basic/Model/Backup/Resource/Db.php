@@ -31,14 +31,16 @@ class Gamuza_Basic_Model_Backup_Resource_Db extends Mage_Backup_Model_Resource_D
                 $row ++;
             }
 
+            $tablesCount = count($this->getTables());
+
             echo sprintf(
                 '%s: %s: %s (%s of %s) %s%% (%s)',
                 $result->getEngine(),
                 $result->getName(),
                 $result->getRows(),
-                $row,
-                count($this->getTables()),
-                number_format (($row / count($this->getTables())) * 100, 2),
+                str_pad($row, strlen($tablesCount), 0, STR_PAD_LEFT),
+                $tablesCount,
+                number_format (($row / $tablesCount) * 100, 2),
                 $result->getComment(),
             ) . PHP_EOL;
         }
