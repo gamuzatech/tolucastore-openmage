@@ -24,6 +24,7 @@ class Toluca_PDV_Model_Adminhtml_System_Config_Source_Log_Type
             array ('value' => Toluca_PDV_Helper_Data::LOG_TYPE_MONEY,     'label' => Mage::helper ('pdv')->__('Money')),
             array ('value' => Toluca_PDV_Helper_Data::LOG_TYPE_CHANGE,    'label' => Mage::helper ('pdv')->__('MOney Change')),
             array ('value' => Toluca_PDV_Helper_Data::LOG_TYPE_ORDER,     'label' => Mage::helper ('pdv')->__('Order')),
+            array ('value' => Toluca_PDV_Helper_Data::LOG_TYPE_REFUND,    'label' => Mage::helper ('pdv')->__('Refund')),
             array ('value' => Toluca_PDV_Helper_Data::LOG_TYPE_CLOSE,     'label' => Mage::helper ('pdv')->__('Close')),
         );
 
@@ -44,6 +45,7 @@ class Toluca_PDV_Model_Adminhtml_System_Config_Source_Log_Type
             Toluca_PDV_Helper_Data::LOG_TYPE_MONEY     => Mage::helper ('pdv')->__('Money'),
             Toluca_PDV_Helper_Data::LOG_TYPE_CHANGE    => Mage::helper ('pdv')->__('Money Change'),
             Toluca_PDV_Helper_Data::LOG_TYPE_ORDER     => Mage::helper ('pdv')->__('Order'),
+            Toluca_PDV_Helper_Data::LOG_TYPE_REFUND    => Mage::helper ('pdv')->__('Refund'),
             Toluca_PDV_Helper_Data::LOG_TYPE_CLOSE     => Mage::helper ('pdv')->__('Close'),
         );
 
