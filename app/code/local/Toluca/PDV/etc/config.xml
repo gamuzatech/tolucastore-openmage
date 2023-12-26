@@ -147,6 +147,14 @@
                     </pdv_sales_order_invoice_pay>
                 </observers>
             </sales_order_invoice_pay>
+            <sales_order_creditmemo_refund>
+                <observers>
+                    <pdv_sales_order_creditmemo_refund>
+                        <class>Toluca_PDV_Model_Observer</class>
+                        <method>salesOrderCreditmemoRefund</method>
+                    </pdv_sales_order_creditmemo_refund>
+                </observers>
+            </sales_order_creditmemo_refund>
             <basic_install_installer_finish_after>
                 <observers>
                     <pdv_install_installer_finish_after>
