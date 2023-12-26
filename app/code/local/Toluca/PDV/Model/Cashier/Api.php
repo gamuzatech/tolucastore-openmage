@@ -59,7 +59,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             'history_id' => intval ($cashier->getHistoryId ()),
             'created_at' => $cashier->getCreatedAt (),
             'updated_at' => $cashier->getUpdatedAt (),
-            'order_amount'     => floatval ($cashier->getOrderAmount ()),
+            'order_amount' => floatval ($cashier->getOrderAmount ()),
             'customer_id' => intval ($operator->getCustomerId ()),
             'quote_id'    => intval ($operator->getQuoteId ()),
             'table_id'    => intval ($operator->getTableId ()),
@@ -89,6 +89,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                 'banktransfer_amount' => floatval ($history->getBanktransferAmount ()),
                 'check_amount'        => floatval ($history->getCheckAmount ()),
                 'pix_amount'          => floatval ($history->getPixAmount ()),
+                'refund_amount'   => floatval ($history->getRefundAmount ()),
                 'shipping_amount' => floatval ($history->getShippingAmount ()),
                 'total_amount'    => floatval ($history->getTotalAmount ()),
                 'created_at' => $history->getCreatedAt (),
@@ -268,6 +269,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setBanktransferAmount (0)
             ->setCheckAmount (0)
             ->setPixAmount (0)
+            ->setRefundAmount (0)
             ->setShippingAmount (0)
             ->setTotalAmount (0)
             ->setCreatedAt (date ('c'))
@@ -364,8 +366,11 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         $checkAmount = floatval ($history->getCheckAmount ());
         $pixAmount = floatval ($history->getPixAmount ());
 
+        $refundAmount = floatval ($history->getRefundAmount ());
+
         $closeAmount = ((($openAmount + $reinforceAmount) + $bleedAmount) + $moneyAmount) + $changeAmount
-            + $openpixAmount + $checkAmount + $pixAmount;
+            + $openpixAmount + $checkAmount + $pixAmount
+            + $refundAmount;
 
         if ($amount > $closeAmount)
         {
@@ -432,10 +437,12 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $banktransferAmount = floatval ($history->getBanktransferAmount ());
             $checkAmount        = floatval ($history->getCheckAmount ());
             $pixAmount          = floatval ($history->getPixAmount ());
+            $refundAmount       = floatval ($history->getRefundAmount ());
 
             $orderAmount = $machineAmount
                 + $pagcriptoAmount + $picpayAmount + $openpixAmount
                 + $creditcardAmount + $billetAmount + $banktransferAmount + $checkAmount + $pixAmount
+                + $refundAmount
             ;
         }
 

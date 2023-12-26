@@ -201,6 +201,65 @@ class Toluca_PDV_Model_Observer
         }
     }
 
+    public function salesOrderCreditmemoRefund ($observer)
+    {
+        $event      = $observer->getEvent ();
+        $creditmemo = $event->getCreditmemo ();
+        $order      = $creditmemo->getOrder ();
+        $payment    = $order->getPayment ();
+
+        $orderIsPdv = boolval ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV));
+
+        if (!$orderIsPdv)
+        {
+            return $this; // cancel
+        }
+
+        $orderPdvCashierId  = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID);
+        $orderPdvOperatorId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID);
+        $orderPdvCustomerId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID);
+        $orderPdvHistoryId  = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID);
+        $orderPdvSequenceId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_SEQUENCE_ID);
+        $orderPdvTableId    = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID);
+
+        $amount = $order->getBaseGrandTotal ();
+
+        $cashier = Mage::getModel ('pdv/cashier')->load ($orderPdvCashierId);
+        $operator = Mage::getModel ('pdv/operator')->load ($orderPdvOperatorId);
+        $customer = Mage::getModel ('customer/customer')->load ($orderPdvCustomerId);
+        $history = Mage::getModel ('pdv/history')->load ($orderPdvHistoryId);
+
+        $history->setShippingAmount (floatval ($history->getShippingAmount ()) + $order->getBaseShippingAmount ());
+
+        $log = Mage::getModel ('pdv/log')
+            ->setTypeId (Toluca_PDV_Helper_Data::LOG_TYPE_REFUND)
+            ->setCashierId ($cashier->getId ())
+            ->setOperatorId ($operator->getId ())
+            ->setHistoryId ($history->getId ())
+            ->setSequenceId ($orderPdvSequenceId)
+            ->setTableId ($orderPdvTableId)
+            ->setCustomerId ($customer->getId ())
+            ->setQuoteId ($order->getQuoteId ())
+            ->setOrderId ($order->getId ())
+            ->setOrderIncrementId ($order->getIncrementId ())
+            ->setShippingMethod ($order->getShippingMethod ())
+            ->setPaymentMethod ($payment->getMethod ())
+            ->setSubtotalAmount ($order->getBaseSubtotal ())
+            ->setShippingAmount ($order->getBaseShippingAmount ())
+            ->setTotalAmount (- $amount)
+            ->setMessage (Mage::helper ('pdv')->__('Refund Amount'))
+            ->setCreatedAt (date ('c'))
+            ->save ()
+        ;
+
+        $historyAmount = floatval ($history->getRefundAmount ());
+
+        $history->setRefundAmount ($historyAmount - $amount)
+            ->setUpdatedAt (date ('c'))
+            ->save ()
+        ;
+    }
+
     public function installInstallerFinishAfter ($observer)
     {
         $apiUser = Mage::getModel ('api/user')->loadByUsername (Toluca_PDV_Helper_Data::PDV_API_USER);

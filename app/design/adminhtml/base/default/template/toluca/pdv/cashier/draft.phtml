@@ -46,6 +46,7 @@ echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Total'), Mage::helper ('core')
 echo $this->getLineSeparator () . PHP_EOL;
 
 echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Orders'), Mage::helper ('core')->currency ($_history->getOrderAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Refunds'), Mage::helper ('core')->currency ($_history->getRefundAmount (), true, false)) . PHP_EOL;
 echo sprintf ('%s: %s', Mage::helper ('pdv')->__('Shipments'), Mage::helper ('core')->currency ($_history->getShippingAmount (), true, false)) . PHP_EOL;
 
 if ($_cashierSequenceId > 0)
