@@ -34,6 +34,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const LOG_TYPE_MONEY     = 'money';
     const LOG_TYPE_CHANGE    = 'change';
     const LOG_TYPE_ORDER     = 'order';
+    const LOG_TYPE_REFUND    = 'refund';
     const LOG_TYPE_CLOSE     = 'close';
 
     const XML_PATH_DEFAULT_EMAIL_PREFIX = 'customer/create_account/email_prefix';
