@@ -38,6 +38,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </taxvat>
+                        <company_name translate="label" module="basic">
+                            <label>Company Name</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </company_name>
                         <code translate="label" module="basic">
                             <label>Code</label>
                             <frontend_type>label</frontend_type>
