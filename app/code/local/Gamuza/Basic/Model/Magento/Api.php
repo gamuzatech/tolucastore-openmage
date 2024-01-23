@@ -21,6 +21,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         $result['tolucastore_version'] = Mage::getOpenMageVersion();
         $result['enable_pdv_admin_dashboard'] = Mage::getStoreConfigFlag('admin/dashboard/enable_pdv');
+        $result['brazil'] = Mage::getStoreConfig('brazil');
 
         return $result;
     }
