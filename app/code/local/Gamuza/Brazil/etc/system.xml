@@ -49,9 +49,100 @@
                         </code>
                     </fields>
                 </csc>
+                <nfe translate="label" module="brazil">
+                    <label>NF-e</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <environment translate="label" module="brazil">
+                            <label>Environment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_environment</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </environment>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <ie translate="label" module="brazil">
+                            <label>I.E.</label>
+                            <comment>State registration</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </ie>
+                        <country_id translate="label" module="brazil">
+                            <label>Country ID</label>
+                            <tooltip>Country Code</tooltip>
+                            <comment><![CDATA[1058 = Brazil]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </country_id>
+                        <region_id translate="label" module="brazil">
+                            <label>Region ID</label>
+                            <tooltip>UF Code</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </region_id>
+                        <city_id translate="label" module="brazil">
+                            <label>City ID</label>
+                            <tooltip>City Code</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </city_id>
+                        <number_id translate="label" module="brazil">
+                            <label>Number ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </number_id>
+                        <model translate="label" module="brazil">
+                            <label>Model</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>55 = NF-e, 65 = NFC-e</comment>
+                        </model>
+                        <series translate="label" module="brazil">
+                            <label>Series</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </series>
+                    </fields>
+                </nfe>
                 <nfce translate="label" module="brazil">
                     <label>NFC-e</label>
-                    <sort_order>10</sort_order>
+                    <sort_order>20</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
