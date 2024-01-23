@@ -4,6 +4,11 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+.field-tooltip {
+    float: right;
+    top: 10px;
+}
+
 .footer .legality p {
     display: inline-block;
     text-align: left;
