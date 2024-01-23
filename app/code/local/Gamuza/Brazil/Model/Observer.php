@@ -7,6 +7,20 @@
 
 class Gamuza_Brazil_Model_Observer
 {
+    public function salesQuoteItemSetProduct (Varien_Event_Observer $observer)
+    {
+        $quoteItem = $observer->getQuoteItem ();
+        $product   = $observer->getProduct ();
+
+        $productBrazilNcm  = $product->getData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_NCM);
+        $productBrazilCest = $product->getData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CEST);
+        $productBrazilCfop = $product->getData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CFOP);
+
+        $quoteItem->setData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_NCM,  $productBrazilNcm);
+        $quoteItem->setData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CEST, $productBrazilCest);
+        $quoteItem->setData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CFOP, $productBrazilCfop);
+    }
+
     public function salesOrderPlaceAfter (Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent ();
