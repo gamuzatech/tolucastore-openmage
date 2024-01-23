@@ -161,6 +161,14 @@
     </frontend>
     <default>
         <brazil>
+            <nfe>
+                <environment>2</environment>
+                <version>4.00</version>
+                <country_id>1058</country_id>
+                <number_id>1</number_id>
+                <model>55</model>
+                <series>1</series>
+            </nfe>
             <nfce>
                 <environment>2</environment>
                 <version>4.00</version>
