@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.2</version>
+            <version>0.0.4</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -61,13 +61,43 @@
                     <to_order>*</to_order>
                 </is_pix>
             </sales_convert_quote>
+            <sales_convert_quote_item>
+                <brazil_ncm>
+                    <to_order_item>*</to_order_item>
+                </brazil_ncm>
+                <brazil_cest>
+                    <to_order_item>*</to_order_item>
+                </brazil_cest>
+                <brazil_cfop>
+                    <to_order_item>*</to_order_item>
+                </brazil_cfop>
+            </sales_convert_quote_item>
             <sales_convert_order>
                 <is_pix>
                     <to_quote>*</to_quote>
                 </is_pix>
             </sales_convert_order>
+            <sales_convert_order_item>
+                <brazil_ncm>
+                    <to_quote_item>*</to_quote_item>
+                </brazil_ncm>
+                <brazil_cest>
+                    <to_quote_item>*</to_quote_item>
+                </brazil_cest>
+                <brazil_cfop>
+                    <to_quote_item>*</to_quote_item>
+                </brazil_cfop>
+            </sales_convert_order_item>
         </fieldsets>
         <events>
+            <sales_quote_item_set_product>
+                <observers>
+                    <gamuza_brazil_sales_quote_item_set_product>
+                        <class>brazil/observer</class>
+                        <method>salesQuoteItemSetProduct</method>
+                    </gamuza_brazil_sales_quote_item_set_product>
+                </observers>
+            </sales_quote_item_set_product>
             <sales_order_place_after>
                 <observers>
                     <gamuza_brazil_sales_order_place_after>
@@ -77,6 +107,26 @@
                 </observers>
             </sales_order_place_after>
         </events>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <brazil_ncm />
+                        <brazil_cest />
+                        <brazil_cfop />
+                    </product_attributes>
+                </item>
+            </quote>
+            <order>
+                <item>
+                    <product_attributes>
+                        <brazil_ncm />
+                        <brazil_cest />
+                        <brazil_cfop />
+                    </product_attributes>
+                </item>
+            </order>
+        </sales>
     </global>
     <adminhtml>
         <translate>
@@ -99,8 +149,27 @@
                 </Gamuza_Brazil>
             </modules>
         </translate>
+        <product>
+            <collection>
+                <attributes>
+                    <brazil_ncm />
+                    <brazil_cest />
+                    <brazil_cfop />
+                </attributes>
+            </collection>
+        </product>
     </frontend>
     <default>
+        <brazil>
+            <nfce>
+                <environment>2</environment>
+                <version>4.00</version>
+                <country_id>1058</country_id>
+                <number_id>1</number_id>
+                <model>65</model>
+                <series>1</series>
+            </nfce>
+        </brazil>
         <payment>
             <gamuza_brazil_pix>
                 <active>0</active>
