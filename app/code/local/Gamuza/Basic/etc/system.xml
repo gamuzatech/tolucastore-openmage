@@ -108,6 +108,7 @@
                     <fields>
                         <add_root_category translate="label comment">
                             <label>Add root category</label>
+                            <comment><![CDATA[Display <b>Add Root Category</b> button in admin panel]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
@@ -117,6 +118,7 @@
                         </add_root_category>
                         <add_subcategory translate="label comment">
                             <label>Add subcategory</label>
+                            <comment><![CDATA[Display <b>Add Subcategory</b> button in admin panel]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
@@ -135,6 +137,7 @@
                     <fields>
                         <allow_comment translate="label comment">
                             <label>Allow comment</label>
+                            <comment><![CDATA[Display <b>comment box</b> on product page]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>1</sort_order>
@@ -144,6 +147,7 @@
                         </allow_comment>
                         <bundle_price translate="label comment">
                             <label>Bundle price</label>
+                            <comment><![CDATA[Display <b>bundle price</b> on product page]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>10</sort_order>
@@ -151,11 +155,22 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </bundle_price>
-                        <custom_options translate="label comment">
-                            <label>Custom Options</label>
+                        <bundle_option_select_price translate="label comment">
+                            <label>Bundle option select price</label>
+                            <comment><![CDATA[Display <b>bundle option select price</b> on product page]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bundle_option_select_price>
+                        <custom_options translate="label comment">
+                            <label>Custom Options</label>
+                            <comment><![CDATA[Display <b>all custom options</b> in admin panel]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
