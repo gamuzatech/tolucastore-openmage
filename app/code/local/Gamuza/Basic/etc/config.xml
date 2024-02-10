@@ -23,6 +23,11 @@
                     <data>Gamuza_Basic_Helper_Adminhtml_Data</data>
                 </rewrite>
             </adminhtml>
+            <bundle>
+                <rewrite>
+                    <catalog_product_configuration>Gamuza_Basic_Helper_Bundle_Catalog_Product_Configuration</catalog_product_configuration>
+                </rewrite>
+            </bundle>
         </helpers>
         <blocks>
             <basic>
@@ -59,6 +64,8 @@
             <bundle>
                 <rewrite>
                     <catalog_product_price>Gamuza_Basic_Block_Bundle_Catalog_Product_Price</catalog_product_price>
+                    <catalog_product_view_type_bundle_option_select>Gamuza_Basic_Block_Bundle_Catalog_Product_View_Type_Bundle_Option_Select</catalog_product_view_type_bundle_option_select>
+                    <sales_order_items_renderer>Gamuza_Basic_Block_Bundle_Sales_Order_Items_Renderer</sales_order_items_renderer>
                 </rewrite>
             </bundle>
             <checkout>
@@ -599,6 +606,7 @@
             <product>
                 <allow_comment>1</allow_comment>
                 <bundle_price>0</bundle_price>
+                <bundle_option_select_price>0</bundle_option_select_price>
                 <custom_options>0</custom_options>
             </product>
         </catalog>
