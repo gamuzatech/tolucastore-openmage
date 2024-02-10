@@ -95,6 +95,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_PRICE = 'catalog/product/bundle_price';
 
+    const XML_PATH_CATALOG_PRODUCT_BUNDLE_OPTION_SELECT_PRICE = 'catalog/product/bundle_option_select_price';
+
     const XML_PATH_CATALOG_PRODUCT_CUSTOM_OPTIONS = 'catalog/product/custom_options';
 
     public function getLocaleCode ($scope = 'default', $scope_id = 0)
