@@ -26,5 +26,8 @@
     <ajax_add_to_cart_success translate="message" module="omni_ajax_add_to_cart">
         <message>Item was added successfully.</message>
     </ajax_add_to_cart_success>
+    <ajax_cart_title translate="message" module="omni_ajax_add_to_cart">
+        <message>Cart</message>
+    </ajax_cart_title>
 </jstranslator>
 
