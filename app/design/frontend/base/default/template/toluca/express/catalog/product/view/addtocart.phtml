@@ -10,6 +10,7 @@ productAddToCartForm.submit = function(url){
     if(this.validator && this.validator.validate()){
         var button = $j('.product-view .add-to-cart-buttons button.button');
         var form = $j(this.form);
+        var message = undefined;
 
         button.attr('disabled', 'disabled');
 
@@ -20,12 +21,23 @@ productAddToCartForm.submit = function(url){
             data: form.serialize(),
         })
         .success(function(data) {
+            message = "<?php echo Mage::helper('express')->__('Product was added to your shopping cart.'); ?>";
+
             productsModal.hide();
         })
         .fail(function(data){
             console.log(data);
 
+            message = "<?php echo Mage::helper('express')->__('Cannot add item to the shopping cart.'); ?>";
+
             button.removeAttr('disabled');
+        })
+        .done(function(data){
+            $j("<div>" + message + "</div>").dialog({
+                modal: true,
+                title: "<?php echo Mage::helper('express')->__('Cart'); ?>",
+                buttons: [{text: "OK", click: function() { $j(this).dialog("close"); }}],
+            });
         });
     }
 
