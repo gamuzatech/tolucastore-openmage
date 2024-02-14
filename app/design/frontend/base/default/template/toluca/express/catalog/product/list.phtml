@@ -119,15 +119,15 @@ if ($this->getChild('after')) {
 }
 ?>
 
-<div class="modal fade" id="products-modal" tabindex="-1" aria-labelledby="products-label" aria-hidden="true">
+<div class="modal fade" id="products-modal-<?php echo $this->getCategoryId(); ?>" tabindex="-1" aria-labelledby="products-label" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                <h5 class="modal-title" id="products-label"><?php echo Mage::helper('express')->__('Loading...'); ?></h5>
+                <h5 class="modal-title" id="products-title-<?php echo $this->getCategoryId(); ?>"><?php echo Mage::helper('express')->__('Loading...'); ?></h5>
             </div>
-            <div class="modal-body"></div>
-            <div class="modal-loading" style="display:none;">
+            <div class="modal-body" id="products-body-<?php echo $this->getCategoryId(); ?>"></div>
+            <div class="modal-loading" style="display:none;" id="products-loading-<?php echo $this->getCategoryId(); ?>">
                 <div class="d-flex flex-column align-items-center justify-content-center m-5">
                     <div class="row">
                         <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;"></div>
@@ -142,29 +142,30 @@ if ($this->getChild('after')) {
 </div>
 
 <script type="text/javascript">
-var productsModal = new bootstrap.Modal(document.getElementById('products-modal'));
+var categoryId = "<?php echo $this->getCategoryId(); ?>";
+var productsModal = new bootstrap.Modal(document.getElementById('products-modal-' + categoryId));
 
 $j('.products-grid a.product-image, .products-grid .product-name a').on('click', function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    var loading = $j('.modal-loading').html();
+    var loading = $j('#products-loading-' + categoryId).html();
     var title = $j(this).attr('title');
     var url = $j(this).attr('href');
 
-    $j('.modal-body').html(loading);
+    $j('#products-body-' + categoryId).html(loading);
 
     productsModal.show();
 
     $j.ajax(url, {
         success: function(data, textStatus, jqXHR) {
-            $j('.modal-body').html(data);
-            $j('.modal-title').html(title);
+            $j('#products-body-' + categoryId).html(data);
+            $j('#products-title-' + categoryId).html(title);
 
             productsModal.handleUpdate()
         },
         error: function(data, textStatus, jqXHR) {
-            $j('.modal-body').html('<?php echo Mage::helper('express')->__('Unable to load product information :('); ?>');
+            $j('#products-body-' + categoryId).html('<?php echo Mage::helper('express')->__('Unable to load product information :('); ?>');
 
             // productsModal.hide();
         }
