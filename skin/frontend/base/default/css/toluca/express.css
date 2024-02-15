@@ -28,6 +28,14 @@
     overflow-x: auto;
 }
 
+.sticky-top {
+    z-index: 199;
+}
+
+.ui-dialog {
+    z-index: 1055;
+}
+
 #category-nav {
     -webkit-overflow-scrolling: touch;
 }
