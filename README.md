@@ -25,7 +25,11 @@
 <a href="https://github.com/openmage/magento-lts/actions/workflows/security-php.yml"><img src="https://github.com/openmage/magento-lts/actions/workflows/security-php.yml/badge.svg" alt="PHP Security workflow Badge" /></a>
 <a href="https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml"><img src="https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml/badge.svg" alt="CI workflow Badge" /></a>
 
+<<<<<<< HEAD
 # Toluca Store ERP - Long Term Support
+=======
+# TolucaStore - Long Term Support
+>>>>>>> 9cce4aaca7 (Update README.md)
 
 This repository is the home of an **unofficial** community-driven project. It's goal is to be a dependable alternative
 to the Magento CE official releases which integrates improvements directly from the community while maintaining a high
