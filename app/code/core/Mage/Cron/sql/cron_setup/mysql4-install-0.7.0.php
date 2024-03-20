@@ -20,7 +20,7 @@ $installer->startSetup();
 
 $installer->run("
 
-SET NAMES utf8;
+-- SET NAMES utf8;
 
 SET SQL_MODE='';
 
