@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.4</version>
+            <version>0.0.5</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -31,7 +31,11 @@
             </brazil>
             <brazil_mysql4>
                 <class>Gamuza_Brazil_Model_Mysql4</class>
-                <entities />
+                <entities>
+                    <nfce>
+                        <table>gamuza_brazil_nfce</table>
+                    </nfce>
+                </entities>
             </brazil_mysql4>
         </models>
         <resources>
@@ -128,7 +132,25 @@
             </order>
         </sales>
     </global>
+    <admin>
+        <routers>
+            <admin_brazil>
+                <use>admin</use>
+                <args>
+                    <module>Gamuza_Brazil</module>
+                    <frontName>admin_brazil</frontName>
+                </args>
+            </admin_brazil>
+        </routers>
+    </admin>
     <adminhtml>
+        <layout>
+            <updates>
+                <brazil>
+                    <file>gamuza/brazil.xml</file>
+                </brazil>
+            </updates>
+        </layout>
         <translate>
             <modules>
                 <Gamuza_Brazil>
@@ -165,6 +187,7 @@
                 <environment>2</environment>
                 <version>4.00</version>
                 <country_id>1058</country_id>
+                <batch_id>1</batch_id>
                 <number_id>1</number_id>
                 <model>55</model>
                 <series>1</series>
@@ -173,6 +196,7 @@
                 <environment>2</environment>
                 <version>4.00</version>
                 <country_id>1058</country_id>
+                <batch_id>1</batch_id>
                 <number_id>1</number_id>
                 <model>65</model>
                 <series>1</series>
