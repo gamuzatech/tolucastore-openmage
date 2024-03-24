@@ -1,0 +1,311 @@
+<?php
+/**
+ * @package     Gamuza_Brazil
+ * @copyright   Copyright (c) 2024 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+$installer = $this;
+$installer->startSetup ();
+
+function addBrazilNfceTable ($installer, $model, $description)
+{
+    $table = $installer->getTable ($model);
+
+    $sqlBlock = <<< SQLBLOCK
+CREATE TABLE IF NOT EXISTS {$table}
+(
+    entity_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (entity_id)
+) ENGINE=InnoDB AUTO_INCREMENT=1 COMMENT='{$description}';
+SQLBLOCK;
+
+    $installer->run ($sqlBlock);
+
+    $installer->getConnection ()
+        ->addColumn ($table, 'store_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Store ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'customer_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Customer ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'order_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Order ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'batch_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Batch ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'region_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Region ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'number_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Number ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'operation_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Operation ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'destiny_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Destiny ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'city_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'City ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'print_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Print ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'emission_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Emission ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'environment_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Environment ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'finality_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Finality ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'consumer_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Consumer ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'presence_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Presence ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'intermediary_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Intermediary ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'process_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Process ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'freight_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Freight ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'version', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Version',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'number', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Number',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'document', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Document',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'key', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Key',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'digit', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Digit',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'operation', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Operation',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'model', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Model',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'series', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Series',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'pdv', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'PDV',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'taxvat', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Taxvat',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'crt', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'CRT',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'customer_taxvat', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Customer Taxvat',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'customer_ie', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Customer IE',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'customer_email', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Customer Email',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'payment_type', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Payment Type',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'payment_amount', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'length'   => '12,4',
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Payment Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'qrcode', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'nullable' => false,
+            'comment'  => 'QRCode',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'created_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => false,
+            'comment'  => 'Created At',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'updated_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => true,
+            'comment'  => 'Updated At'
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'emission_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => true,
+            'comment'  => 'Emission At',
+        ));
+}
+
+addBrazilNfceTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_TABLE, 'Gamuza Brazil NFC-e');
+
+$installer->endSetup ();
+

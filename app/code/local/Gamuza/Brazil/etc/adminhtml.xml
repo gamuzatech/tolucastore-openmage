@@ -8,6 +8,25 @@
 -->
 
 <config>
+    <menu>
+        <gamuza translate="title" module="brazil">
+            <title>Gamuza</title>
+            <sort_order>1000</sort_order>
+            <children>
+                <brazil translate="title" module="brazil">
+                    <title>Brazil</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <nfce translate="title" module="brazil">
+                            <title>Manage NFCEs</title>
+                            <sort_order>0</sort_order>
+                            <action>admin_brazil/adminhtml_nfce</action>
+                        </nfce>
+                    </children>
+                </brazil>
+            </children>
+        </gamuza>
+    </menu>
     <acl>
         <resources>
             <all>
@@ -15,6 +34,22 @@
             </all>
             <admin>
                 <children>
+                    <gamuza translate="title" module="brazil">
+                        <title>Gamuza</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <brazil translate="title" module="brazil">
+                                <title>Brazil</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <nfce translate="title" module="brazil">
+                                        <title>Manage NFCEs</title>
+                                        <sort_order>0</sort_order>
+                                    </nfce>
+                                </children>
+                            </brazil>
+                        </children>
+                    </gamuza>
                     <system>
                         <children>
                             <config>
