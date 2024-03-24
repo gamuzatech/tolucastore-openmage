@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Brazil
+ * @copyright   Copyright (c) 2024 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+    <admin_brazil_adminhtml_nfce_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfce" name="nfce" />
+        </reference>
+    </admin_brazil_adminhtml_nfce_index>
+</layout>
+
