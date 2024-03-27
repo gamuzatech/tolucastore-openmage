@@ -118,6 +118,11 @@
                     <session>Gamuza_Basic_Model_Api_Session</session>
                 </rewrite>
             </api>
+            <backup>
+                <rewrite>
+                    <db>Gamuza_Basic_Model_Backup_Db</db>
+                </rewrite>
+            </backup>
             <backup_resource>
                 <rewrite>
                     <db>Gamuza_Basic_Model_Backup_Resource_Db</db>
