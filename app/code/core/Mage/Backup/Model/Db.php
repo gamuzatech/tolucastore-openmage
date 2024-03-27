@@ -122,10 +122,10 @@ class Mage_Backup_Model_Db
                 if ($tableStatus->getRows() && !in_array($table, $ignoreDataTablesList)) {
                     $backup->write($this->getResource()->getTableDataBeforeSql($table));
 
-                    if ($tableStatus->getDataLength() > self::BUFFER_LENGTH) {
-                        if ($tableStatus->getAvgRowLength() > 0 && $tableStatus->getAvgRowLength() < self::BUFFER_LENGTH) {
+                    if ($tableStatus->getDataLength() > static::BUFFER_LENGTH) {
+                        if ($tableStatus->getAvgRowLength() > 0 && $tableStatus->getAvgRowLength() < static::BUFFER_LENGTH) {
                             // Process rows in batches
-                            $limit = floor(self::BUFFER_LENGTH / $tableStatus->getAvgRowLength());
+                            $limit = floor(static::BUFFER_LENGTH / $tableStatus->getAvgRowLength());
                             $multiRowsLength = ceil($tableStatus->getRows() / $limit);
                         } else {
                             // Process rows one by one
