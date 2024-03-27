@@ -120,6 +120,7 @@
             </api>
             <backup>
                 <rewrite>
+                    <backup>Gamuza_Basic_Model_Backup_Backup</backup>
                     <db>Gamuza_Basic_Model_Backup_Db</db>
                 </rewrite>
             </backup>
