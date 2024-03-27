@@ -152,7 +152,7 @@ class Mage_Backup_Model_Backup extends Varien_Object
 
         $rawContent = '';
         if ($compress) {
-            $rawContent = gzcompress($content, self::COMPRESS_RATE);
+            $rawContent = gzcompress($content, static::COMPRESS_RATE);
         } else {
             $rawContent = $content;
         }
@@ -250,7 +250,7 @@ class Mage_Backup_Model_Backup extends Varien_Object
             Mage::exception('Mage_Backup', Mage::helper('backup')->__('Backup file "%s" does not exist.', $this->getFileName()));
         }
 
-        $mode = $write ? 'wb' . self::COMPRESS_RATE : 'rb';
+        $mode = $write ? 'wb' . static::COMPRESS_RATE : 'rb';
 
         $this->_handler = @gzopen($filePath, $mode);
 
