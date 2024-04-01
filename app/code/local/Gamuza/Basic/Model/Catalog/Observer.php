@@ -16,7 +16,7 @@ class Gamuza_Basic_Model_Catalog_Observer extends Mage_Catalog_Model_Observer
     {
         $storeCategories = Mage::helper ('catalog/category')->getStoreCategories ();
 
-        Mage::dispatchEvent ('basic_catalog_add_topmenu_items', array ('store_categories' => & $storeCategories));
+        Mage::dispatchEvent ('basic_catalog_add_topmenu_items', array ('store_categories' => & $storeCategories, 'menu' => $observer->getMenu ()));
 
         $block = $observer->getEvent ()->getBlock ();
         $block->addCacheTag (Mage_Catalog_Model_Category::CACHE_TAG);
@@ -43,7 +43,8 @@ class Gamuza_Basic_Model_Catalog_Observer extends Mage_Catalog_Model_Observer
                 continue;
             }
 
-            $productCollection = $category->getProductCollection();
+            $categoryModel->setId($category->getId());
+            $productCollection = $categoryModel->getProductCollection();
             if (!$productCollection || !$productCollection->getSize())
             {
                 $urlRewrite = Mage::getModel ('core/url_rewrite')->load ($category->getRequestPath (), 'request_path');
