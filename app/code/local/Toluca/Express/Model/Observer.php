@@ -19,13 +19,16 @@ class Toluca_Express_Model_Observer
 
         $event = $observer->getEvent ();
         $storeCategories = $event->getStoreCategories ();
+        $menu = $event->getMenu ();
 
-        $category = Mage::getModel ('catalog/category')
-            ->setIsActive (true)
-            ->setName ('Express')
-            ->setUrl ('/express');
+        $category = new Varien_Data_Tree_Node (array(
+            'id'        => PHP_INT_MAX,
+            'is_active' => true,
+            'name'      => 'Express',
+            'url'       => '/express',
+        ), 'id', $menu->getTree (), $storeCategories);
 
-        array_unshift ($storeCategories, $category);
+        $menu->addChild ($category);
 
         $event->setStoreCategories ($storeCategories);
 
