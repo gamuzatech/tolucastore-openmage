@@ -122,17 +122,17 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
         $collection->getSelect ()->group ('e.entity_id')
             ->join(
+                array ('ccfs' => 'catalog_category_entity'),
+                'ccfs.entity_id = at_category_id.category_id',
+                array ('category_position' => 'ccfs.position')
+            )
+            ->join(
                 array ('at_category_name' => 'catalog_category_entity_' . $this->_nameAttribute->getBackendType ()),
                 sprintf (
-                    'at_category_name.entity_id = at_category_id.category_id AND at_category_name.attribute_id = %d AND at_category_name.store_id = %d',
+                    'at_category_name.entity_id = ccfs.entity_id AND at_category_name.attribute_id = %d AND at_category_name.store_id = %d',
                     $this->_nameAttribute->getAttributeId (), Mage_Core_Model_App::ADMIN_STORE_ID,
                 ),
                 array ('category_name' => 'at_category_name.value')
-            )
-            ->join(
-                array ('ccfs' => 'catalog_category_entity'),
-                'ccfs.entity_id = at_category_id.category_id',
-                array ()
             )
             ->where ("ccfs.path LIKE '{$baseCategoryPath}/%'")
             ->order ('ccfs.position')
