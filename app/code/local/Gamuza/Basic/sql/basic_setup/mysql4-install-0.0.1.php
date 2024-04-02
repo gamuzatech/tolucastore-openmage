@@ -60,8 +60,11 @@ $coreConfig->saveConfig ('trans_email/ident_custom2/email', 'custom2@toluca.com.
  * Catalog
  */
 $coreConfig->saveConfig ('catalog/frontend/list_allow_all', '1');
+
+/*
 $coreConfig->saveConfig (Mage_Catalog_Helper_Category_Flat::XML_PATH_IS_ENABLED_FLAT_CATALOG_CATEGORY, '1');
 $coreConfig->saveConfig (Mage_Catalog_Helper_Product_Flat::XML_PATH_USE_PRODUCT_FLAT,                  '1');
+*/
 
 $coreConfig->saveConfig ('catalog/placeholder/image_placeholder',       'default/image.jpg');
 $coreConfig->saveConfig ('catalog/placeholder/small_image_placeholder', 'default/small_image.jpg');
