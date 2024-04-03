@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Brazil
+ * @copyright   Copyright (c) 2024 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <brazil_nfce translate="title" module="bot">
+                <model>brazil/nfce_api</model>
+                <title>Brazil NFC-e API</title>
+                <acl>brazil/nfce</acl>
+                <methods>
+                    <create translate="title" module="bot">
+                        <title>Create a NFC-e for the order</title>
+                        <acl>brazil/nfce/create</acl>
+                        <method>create</method>
+                    </create>
+                </methods>
+                <faults>
+                    <order_not_specified>
+                        <code>100</code>
+                        <message>Requested order not specified.</message>
+                    </order_not_specified>
+                    <code_not_specified>
+                        <code>200</code>
+                        <message>Requested code not specified.</message>
+                    </code_not_specified>
+                    <order_not_exists>
+                        <code>300</code>
+                        <message>Requested order not exists.</message>
+                    </order_not_exists>
+                    <operation_not_specified>
+                        <code>400</code>
+                        <message>Requested operation not specified.</message>
+                    </operation_not_specified>
+                    <nfce_already_exists>
+                        <code>500</code>
+                        <message>Requested nfce already exists.</message>
+                    </nfce_already_exists>
+                </faults>
+            </brazil_nfce>
+        </resources>
+        <acl>
+            <resources>
+                <brazil translate="title" module="bot">
+                    <title>Gamuza Brazil API</title>
+                    <sort_order>0</sort_order>
+                    <nfce translate="title" module="bot">
+                        <title>NFC-e</title>
+                        <create translate="title" module="bot">
+                            <title>Create a NFC-e for the order</title>
+                        </create>
+                    </nfce>
+                </brazil>
+            </resources>
+        </acl>
+    </api>
+</config>
+

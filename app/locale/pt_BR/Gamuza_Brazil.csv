@@ -55,7 +55,7 @@
 "Own","Próprio"
 "Third","Terceiro"
 "Process","Processo"
-"Document","Documento"
+"Code","Código"
 "Digit","Dígito"
 "Simple National","Simples Nacional"
 "Simple National Excess","Simples Nacional Excesso"
@@ -72,4 +72,12 @@
 "Gift Voucher","Vale Presente"
 "Fuel Voucher","Vale Combustível"
 "Bank Slip","Boleto Bancário"
+
+"Requested order not specified.","Pedido solicitado não foi especificado."
+"Requested code not specified.","Código do pedido não foi especificado."
+"Requested order not exists.","Pedido solicitado não existe."
+
+"Requested operation not specified.","Operação solicitada não foi especificada."
+
+"Requested nfce already exists.","NFC-e solicitada já existe."
 
