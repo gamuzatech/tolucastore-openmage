@@ -172,18 +172,11 @@ SQLBLOCK;
             'comment'  => 'Version',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'number', array(
+        ->addColumn ($table, 'code', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
             'nullable' => false,
-            'comment'  => 'Number',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'document', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Document',
+            'comment'  => 'Code',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'key', array(
@@ -197,7 +190,7 @@ SQLBLOCK;
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Digit',
         ));
     $installer->getConnection ()
@@ -229,11 +222,11 @@ SQLBLOCK;
             'comment'  => 'PDV',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'taxvat', array(
+        ->addColumn ($table, 'company_taxvat', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
             'nullable' => false,
-            'comment'  => 'Taxvat',
+            'comment'  => 'Company Taxvat',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'crt', array(
@@ -265,11 +258,11 @@ SQLBLOCK;
             'comment'  => 'Customer Email',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'payment_type', array(
+        ->addColumn ($table, 'payment_method', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
             'nullable' => false,
-            'comment'  => 'Payment Type',
+            'comment'  => 'Payment Method',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'payment_amount', array(
