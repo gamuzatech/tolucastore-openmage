@@ -70,7 +70,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
             'width'   => '50px',
             'type'    => 'number',
-		    'index'   => 'order_increment_id',
+		    'index'   => 'batch_id',
 		));
 		$this->addColumn ('region_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Region ID'),
@@ -194,15 +194,10 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'version',
 		));
-		$this->addColumn ('document', array(
-		    'header'  => Mage::helper ('brazil')->__('Document'),
+		$this->addColumn ('code', array(
+		    'header'  => Mage::helper ('brazil')->__('Code'),
 		    'align'   => 'right',
-		    'index'   => 'document',
-		));
-		$this->addColumn ('number', array(
-		    'header'  => Mage::helper ('brazil')->__('Number'),
-		    'align'   => 'right',
-		    'index'   => 'number',
+		    'index'   => 'code',
 		));
 		$this->addColumn ('key', array(
 		    'header'  => Mage::helper ('brazil')->__('Key'),
@@ -267,11 +262,11 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'customer_email',
 		));
-		$this->addColumn ('payment_type', array(
+		$this->addColumn ('payment_method', array(
 		    'header'  => Mage::helper ('brazil')->__('Payment'),
 		    'align'   => 'right',
             'width'   => '50px',
-		    'index'   => 'payment_type',
+		    'index'   => 'payment_method',
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_payment_type')->toArray (),
 		));
