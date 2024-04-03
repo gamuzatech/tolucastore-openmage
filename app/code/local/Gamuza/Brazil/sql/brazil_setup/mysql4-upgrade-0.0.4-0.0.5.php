@@ -229,6 +229,13 @@ SQLBLOCK;
             'comment'  => 'Company Taxvat',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'company_ie', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Company IE',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'crt', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
