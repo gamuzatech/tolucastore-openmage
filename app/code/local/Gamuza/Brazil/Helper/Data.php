@@ -89,5 +89,41 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_PROCESS_FISCO      = 1;
     const NFE_PROCESS_FISCO_SITE = 2;
     const NFE_PROCESS_FISCO_PDV  = 3;
+
+    const XML_PATH_BRAZIL_NFCE_ENVIRONMENT = 'brazil/nfce/environment';
+    const XML_PATH_BRAZIL_NFCE_VERSION     = 'brazil/nfce/version';
+
+    const XML_PATH_BRAZIL_NFCE_MODEL  = 'brazil/nfce/model';
+    const XML_PATH_BRAZIL_NFCE_SERIES = 'brazil/nfce/series';
+
+    const XML_PATH_BRAZIL_NFCE_BATCH_ID  = 'brazil/nfce/batch_id';
+    const XML_PATH_BRAZIL_NFCE_REGION_ID = 'brazil/nfce/region_id';
+    const XML_PATH_BRAZIL_NFCE_CITY_ID   = 'brazil/nfce/city_id';
+    const XML_PATH_BRAZIL_NFCE_NUMBER_ID = 'brazil/nfce/number_id';
+
+    public function getNumberId ($type)
+    {
+        $filename = sprintf (
+            '%s%s%s_get_number_id.lock',
+            Mage::app ()->getConfig ()->getVarDir ('locks'),
+            DS, $type
+        );
+
+        $fp = fopen ($filename, 'a');
+
+        fwrite ($fp, date ('c') . PHP_EOL);
+        flock  ($fp, LOCK_EX);
+
+        $path = sprintf ("brazil/{$type}/number_id");
+
+        $result = Mage::getStoreConfig ($path);
+
+        Mage::getModel ('core/config')->saveConfig ($path, $result + 1);
+
+        flock  ($fp, LOCK_UN);
+        fclose ($fp);
+
+        return $result;
+    }
 }
 
