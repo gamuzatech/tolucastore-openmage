@@ -51,7 +51,7 @@
             <pdv_setup>
                 <setup>
                     <module>Toluca_PDV</module>
-                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                    <class>Toluca_PDV_Model_Resource_Setup</class>
                 </setup>
                 <connection>
                     <use>core_setup</use>
