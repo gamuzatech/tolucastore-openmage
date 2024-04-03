@@ -10,12 +10,17 @@
 <config>
     <api>
         <resources>
-            <brazil_nfce translate="title" module="bot">
+            <brazil_nfce translate="title" module="brazil">
                 <model>brazil/nfce_api</model>
                 <title>Brazil NFC-e API</title>
                 <acl>brazil/nfce</acl>
                 <methods>
-                    <create translate="title" module="bot">
+                    <list translate="title" module="brazil">
+                        <title>Retrieve the NFC-e list</title>
+                        <acl>brazil/nfce/list</acl>
+                        <method>items</method>
+                    </list>
+                    <create translate="title" module="brazil">
                         <title>Create a NFC-e for the order</title>
                         <acl>brazil/nfce/create</acl>
                         <method>create</method>
@@ -38,21 +43,24 @@
                         <code>400</code>
                         <message>Requested operation not specified.</message>
                     </operation_not_specified>
-                    <nfce_already_exists>
+                    <filters_invalid>
                         <code>500</code>
-                        <message>Requested nfce already exists.</message>
-                    </nfce_already_exists>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
                 </faults>
             </brazil_nfce>
         </resources>
         <acl>
             <resources>
-                <brazil translate="title" module="bot">
+                <brazil translate="title" module="brazil">
                     <title>Gamuza Brazil API</title>
                     <sort_order>0</sort_order>
-                    <nfce translate="title" module="bot">
+                    <nfce translate="title" module="brazil">
                         <title>NFC-e</title>
-                        <create translate="title" module="bot">
+                        <list translate="title" module="brazil">
+                            <title>Retrieve the NFC-e list</title>
+                        </list>
+                        <create translate="title" module="brazil">
                             <title>Create a NFC-e for the order</title>
                         </create>
                     </nfce>
