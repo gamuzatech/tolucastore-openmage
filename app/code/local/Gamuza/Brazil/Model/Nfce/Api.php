@@ -33,6 +33,15 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
     const NFE_PAYMENT_TYPE_MONEY = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_MONEY;
 
+    /**
+     * Attributes map array per entity type
+     *
+     * @var array
+     */
+    protected $_attributesMap = array(
+        'nfce' => array ()
+    );
+
     public function __construct ()
     {
         // parent::__construct ();
@@ -44,6 +53,84 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $this->_companyTaxvat = Mage::getStoreConfig ('general/store_information/taxvat');
         $this->_companyName   = Mage::getStoreConfig ('general/store_information/company_name');
         $this->_companyIE     = Mage::getStoreConfig ('general/store_information/company_ie');
+    }
+
+    public function items ($filters = null)
+    {
+        $collection = Mage::getModel ('brazil/nfce')->getCollection ();
+
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper ('api');
+
+        $filters = $apiHelper->parseFilters ($filters, $this->_attributesMap ['nfce']);
+
+        try
+        {
+            foreach ($filters as $field => $value)
+            {
+                $collection->addFieldToFilter ($field, $value);
+            }
+        }
+        catch (Mage_Core_Exception $e)
+        {
+            $this->_fault ('filters_invalid', $e->getMessage ());
+        }
+
+        $result = array ();
+
+        foreach ($collection as $nfce)
+        {
+            $nfce->setFantasyName ($this->_fantasyName)
+                ->setCompanyName ($this->_companyName)
+            ;
+
+            $result [] = array (
+                'entity_id'       => intval ($nfce->getId ()),
+                'order_id'        => intval ($nfce->getOrderId ()),
+                'store_id'        => intval ($nfce->getStoreId ()),
+                'customer_id'     => intval ($nfce->getCustomerId ()),
+                'environment_id'  => intval ($nfce->getEnvironmentId ()),
+                'version'         => strval ($nfce->getVersion ()),
+                'model'           => intval ($nfce->getModel ()),
+                'series'          => intval ($nfce->getSeries ()),
+                'batch_id'        => intval ($nfce->getBatchId ()),
+                'region_id'       => intval ($nfce->getRegionId ()),
+                'city_id'         => intval ($nfce->getCityId ()),
+                'number_id'       => strval ($nfce->getNumberId ()),
+                'operation_id'    => intval ($nfce->getOperationId ()),
+                'destiny_id'      => intval ($nfce->getDestinyId ()),
+                'print_id'        => intval ($nfce->getPrintId ()),
+                'emission_id'     => intval ($nfce->getEmissionId ()),
+                'finality_id'     => intval ($nfce->getFinalityId ()),
+                'consumer_id'     => intval ($nfce->getConsumerId ()),
+                'presence_id'     => intval ($nfce->getPresenceId ()),
+                'intermediary_id' => intval ($nfce->getIntermediaryId ()),
+                'process_id'      => intval ($nfce->getProcessId ()),
+                'freight_id'      => intval ($nfce->getFreightId ()),
+                'operation'       => strval ($nfce->getOperation ()),
+                'code'            => strval ($nfce->getCode ()),
+                'fantasy_name'    => strval ($nfce->getFantasyName ()),
+                'company_taxvat'  => strval ($nfce->getCompanyTaxvat ()),
+                'company_name'    => strval ($nfce->getCompanyName ()),
+                'company_ie'      => strval ($nfce->getCompanyIe ()),
+                'customer_taxvat' => strval ($nfce->getCustomerTaxvat ()),
+                'customer_email'  => strval ($nfce->getCustomerEmail ()),
+                'customer_ie'     => intval ($nfce->getCustomerIe ()),
+                'payment_method'  => strval ($nfce->getPaymentMethod ()),
+                'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
+                'created_at'      => strval ($nfce->getCreatedAt ()),
+                // Toluca_PDV
+                'is_pdv'          => boolval ($nfce->getIsPdv ()),
+                'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
+                'pdv_operator_id' => intval ($nfce->getPdvOperatorId ()),
+                'pdv_customer_id' => intval ($nfce->getPdvCustomerId ()),
+                'pdv_history_id'  => intval ($nfce->getPdvHistoryId ()),
+                'pdv_sequence_id' => intval ($nfce->getPdvSequenceId ()),
+                'pdv_table_id'    => intval ($nfce->getPdvTableId ()),
+            );
+        }
+
+        return $result;
     }
 
     public function create ($orderIncrementId, $orderProtectCode, $operationId, $operationName)
@@ -69,14 +156,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if ($nfce && $nfce->getId ())
         {
-            $this->_fault ('nfce_already_exists');
-        }
-
-        if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
-            && $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV)
-            && !$order->getCustomerId ())
-        {
-            $order->setCustomerId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID));
+            goto __return;
         }
 
         $destinyId = 0;
@@ -126,15 +206,28 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setCrt (self::NFE_CRT_SIMPLE_NATIONAL)
             ->setOperation ($operationName)
             ->setCode (hexdec ($polynomial))
-            ->setFantasyName ($this->_fantasyName)
             ->setCompanyTaxvat ($this->_companyTaxvat)
-            ->setCompanyName ($this->_companyName)
-            ->setCompanyIE ($this->_companyIE)
+            ->setCompanyIe ($this->_companyIE)
             ->setCustomerTaxvat ($order->getCustomerTaxvat ())
             ->setCustomerEmail ($order->getCustomerEmail ())
             ->setCustomerIe (self::NFE_CUSTOMER_IE_NONE)
             ->setCreatedAt (date ('c'))
         ;
+
+        if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
+            && $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV))
+        {
+            $nfce->setCustomerId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID));
+
+            $nfce->setIsPdv ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV));
+
+            $nfce->setPdvCashierId  ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID));
+            $nfce->setPdvOperatorId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID));
+            $nfce->setPdvCustomerId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID));
+            $nfce->setPdvHistoryId  ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID));
+            $nfce->setPdvSequenceId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_SEQUENCE_ID));
+            $nfce->setPdvTableId    ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID));
+        }
 
         $paymentAmount = $order->getPayment ()->getBaseAmountOrdered ();
         $paymentMethod = null;
@@ -147,6 +240,12 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $nfce->setPaymentAmount ($paymentAmount)
             ->setPaymentMethod ($paymentMethod)
             ->save ()
+        ;
+
+    __return:
+
+        $nfce->setFantasyName ($this->_fantasyName)
+            ->setCompanyName ($this->_companyName)
         ;
 
         $result = array (
@@ -177,13 +276,21 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             'fantasy_name'    => strval ($nfce->getFantasyName ()),
             'company_taxvat'  => strval ($nfce->getCompanyTaxvat ()),
             'company_name'    => strval ($nfce->getCompanyName ()),
-            'company_ie'      => strval ($nfce->getCompanyIE ()),
+            'company_ie'      => strval ($nfce->getCompanyIe ()),
             'customer_taxvat' => strval ($nfce->getCustomerTaxvat ()),
             'customer_email'  => strval ($nfce->getCustomerEmail ()),
             'customer_ie'     => intval ($nfce->getCustomerIe ()),
             'payment_method'  => strval ($nfce->getPaymentMethod ()),
             'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
             'created_at'      => strval ($nfce->getCreatedAt ()),
+            // Toluca_PDV
+            'is_pdv'          => boolval ($nfce->getIsPdv ()),
+            'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
+            'pdv_operator_id' => intval ($nfce->getPdvOperatorId ()),
+            'pdv_customer_id' => intval ($nfce->getPdvCustomerId ()),
+            'pdv_history_id'  => intval ($nfce->getPdvHistoryId ()),
+            'pdv_sequence_id' => intval ($nfce->getPdvSequenceId ()),
+            'pdv_table_id'    => intval ($nfce->getPdvTableId ()),
         );
 
         return $result;
