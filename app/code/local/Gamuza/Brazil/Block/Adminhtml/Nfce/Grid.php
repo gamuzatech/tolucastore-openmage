@@ -126,12 +126,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_emission')->toArray (),
 		));
-		$this->addColumn ('emission_at', array(
-			'header' => Mage::helper ('brazil')->__('Emission At'),
-			'index'  => 'emission_at',
-            'type'   => 'datetime',
-            'width'  => '100px',
-		));
 		$this->addColumn ('environment_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Environment'),
 		    'align'   => 'right',
@@ -230,10 +224,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'pdv',
 		));
-		$this->addColumn ('taxvat', array(
-		    'header'  => Mage::helper ('brazil')->__('Taxvat'),
+		$this->addColumn ('company_taxvat', array(
+		    'header'  => Mage::helper ('brazil')->__('Company Taxvat'),
 		    'align'   => 'right',
-		    'index'   => 'taxvat',
+		    'index'   => 'company_taxvat',
+		));
+		$this->addColumn ('company_ie', array(
+		    'header'  => Mage::helper ('brazil')->__('Company IE'),
+		    'align'   => 'right',
+		    'index'   => 'company_ie',
 		));
 		$this->addColumn ('crt', array(
 		    'header'  => Mage::helper ('brazil')->__('CRT'),
@@ -287,6 +286,12 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('updated_at', array(
 			'header' => Mage::helper ('brazil')->__('Updated At'),
 			'index'  => 'updated_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+		));
+		$this->addColumn ('emission_at', array(
+			'header' => Mage::helper ('brazil')->__('Emission At'),
+			'index'  => 'emission_at',
             'type'   => 'datetime',
             'width'  => '100px',
 		));

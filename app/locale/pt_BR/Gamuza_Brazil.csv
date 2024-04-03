@@ -57,6 +57,8 @@
 "Process","Processo"
 "Code","Código"
 "Digit","Dígito"
+"Company Taxvat","CPF/CNPJ Empresa"
+"Company IE","I.E. Empresa"
 "Simple National","Simples Nacional"
 "Simple National Excess","Simples Nacional Excesso"
 "Normal Regime","Regime Normal"
@@ -76,8 +78,5 @@
 "Requested order not specified.","Pedido solicitado não foi especificado."
 "Requested code not specified.","Código do pedido não foi especificado."
 "Requested order not exists.","Pedido solicitado não existe."
-
 "Requested operation not specified.","Operação solicitada não foi especificada."
-
-"Requested nfce already exists.","NFC-e solicitada já existe."
 
