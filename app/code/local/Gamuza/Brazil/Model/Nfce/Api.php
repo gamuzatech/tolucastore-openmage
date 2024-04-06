@@ -59,6 +59,17 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
     {
         $collection = Mage::getModel ('brazil/nfce')->getCollection ();
 
+        $collection->getSelect ()
+            ->joinLeft(
+                array ('order' => Mage::getSingleton ('core/resource')->getTablename ('sales/order')),
+                'main_table.order_id = order.entity_id',
+                array(
+                    'increment_id',
+                    'protect_code',
+                )
+            )
+        ;
+
         /** @var $apiHelper Mage_Api_Helper_Data */
         $apiHelper = Mage::helper ('api');
 
@@ -89,6 +100,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'order_id'        => intval ($nfce->getOrderId ()),
                 'store_id'        => intval ($nfce->getStoreId ()),
                 'customer_id'     => intval ($nfce->getCustomerId ()),
+                'increment_id'    => strval ($nfce->getIncrementId ()),
+                'protect_code'    => strval ($nfce->getProtectCode ()),
                 'environment_id'  => intval ($nfce->getEnvironmentId ()),
                 'version_id'      => strval ($nfce->getVersionId ()),
                 'model_id'        => intval ($nfce->getModelId ()),
@@ -265,6 +278,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             'order_id'        => intval ($nfce->getOrderId ()),
             'store_id'        => intval ($nfce->getStoreId ()),
             'customer_id'     => intval ($nfce->getCustomerId ()),
+            'increment_id'    => strval ($orderIncrementId),
+            'protect_code'    => strval ($orderProtectCode),
             'environment_id'  => intval ($nfce->getEnvironmentId ()),
             'version_id'      => strval ($nfce->getVersionId ()),
             'model_id'        => intval ($nfce->getModelId ()),
