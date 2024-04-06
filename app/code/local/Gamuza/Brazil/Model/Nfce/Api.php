@@ -66,6 +66,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 array(
                     'increment_id',
                     'protect_code',
+                    'is_super_mode',
+                    'is_pdv',
+                    'pdv_cashier_id',
+                    'pdv_operator_id',
+                    'pdv_customer_id',
+                    'pdv_history_id',
+                    'pdv_sequence_id',
+                    'pdv_table_id',
                 )
             )
         ;
