@@ -90,13 +90,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'store_id'        => intval ($nfce->getStoreId ()),
                 'customer_id'     => intval ($nfce->getCustomerId ()),
                 'environment_id'  => intval ($nfce->getEnvironmentId ()),
-                'version'         => strval ($nfce->getVersion ()),
-                'model'           => intval ($nfce->getModel ()),
-                'series'          => intval ($nfce->getSeries ()),
+                'version_id'      => strval ($nfce->getVersionId ()),
+                'model_id'        => intval ($nfce->getModelId ()),
+                'series_id'       => intval ($nfce->getSeriesId ()),
                 'batch_id'        => intval ($nfce->getBatchId ()),
                 'region_id'       => intval ($nfce->getRegionId ()),
                 'city_id'         => intval ($nfce->getCityId ()),
-                'number_id'       => strval ($nfce->getNumberId ()),
+                'number_id'       => intval ($nfce->getNumberId ()),
                 'operation_id'    => intval ($nfce->getOperationId ()),
                 'destiny_id'      => intval ($nfce->getDestinyId ()),
                 'print_id'        => intval ($nfce->getPrintId ()),
@@ -110,16 +110,27 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'crt_id'          => intval ($nfce->getCrtId ()),
                 'operation'       => strval ($nfce->getOperation ()),
                 'code'            => strval ($nfce->getCode ()),
+                'key'             => $nfce->getKey (),
+                'digit'           => $nfce->getDigit (),
                 'fantasy_name'    => strval ($nfce->getFantasyName ()),
                 'company_taxvat'  => strval ($nfce->getCompanyTaxvat ()),
                 'company_name'    => strval ($nfce->getCompanyName ()),
                 'company_ie'      => strval ($nfce->getCompanyIe ()),
                 'customer_taxvat' => strval ($nfce->getCustomerTaxvat ()),
                 'customer_email'  => strval ($nfce->getCustomerEmail ()),
-                'customer_ie'     => intval ($nfce->getCustomerIe ()),
+                'customer_ie'     => strval ($nfce->getCustomerIe ()),
                 'payment_method'  => strval ($nfce->getPaymentMethod ()),
                 'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
+                'updated_at'      => $nfce->getUpdatedAt (),
+                'emission_at'     => $nfce->getEmissionAt (),
+                'response_at'     => $nfce->getResponseAt (),
+                'response_application' => $nfce->getResponseApplication (),
+                'response_reason' => $nfce->getResponseReason (),
+                'response_key'    => $nfce->getResponseKey (),
+                'response_id'     => $nfce->getResponseId (),
+                'receipt_id'      => $nfce->getReceiptId (),
+                'average_id'      => intval ($nfce->getAverageId ()),
                 // Toluca_PDV
                 'is_pdv'          => boolval ($nfce->getIsPdv ()),
                 'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
@@ -187,9 +198,9 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setStoreId ($order->getStoreId ())
             ->setCustomerId ($order->getCustomerId ())
             ->setEnvironmentId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_ENVIRONMENT))
-            ->setVersion (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_VERSION))
-            ->setModel (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_MODEL))
-            ->setSeries (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_SERIES))
+            ->setVersionId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_VERSION))
+            ->setModelId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_MODEL))
+            ->setSeriesId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_SERIES))
             ->setBatchId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_BATCH_ID))
             ->setRegionId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_REGION_ID))
             ->setCityId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_CITY_ID))
@@ -255,13 +266,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             'store_id'        => intval ($nfce->getStoreId ()),
             'customer_id'     => intval ($nfce->getCustomerId ()),
             'environment_id'  => intval ($nfce->getEnvironmentId ()),
-            'version'         => strval ($nfce->getVersion ()),
-            'model'           => intval ($nfce->getModel ()),
-            'series'          => intval ($nfce->getSeries ()),
+            'version_id'      => strval ($nfce->getVersionId ()),
+            'model_id'        => intval ($nfce->getModelId ()),
+            'series_id'       => intval ($nfce->getSeriesId ()),
             'batch_id'        => intval ($nfce->getBatchId ()),
             'region_id'       => intval ($nfce->getRegionId ()),
             'city_id'         => intval ($nfce->getCityId ()),
-            'number_id'       => strval ($nfce->getNumberId ()),
+            'number_id'       => intval ($nfce->getNumberId ()),
             'operation_id'    => intval ($nfce->getOperationId ()),
             'destiny_id'      => intval ($nfce->getDestinyId ()),
             'print_id'        => intval ($nfce->getPrintId ()),
@@ -281,7 +292,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             'company_ie'      => strval ($nfce->getCompanyIe ()),
             'customer_taxvat' => strval ($nfce->getCustomerTaxvat ()),
             'customer_email'  => strval ($nfce->getCustomerEmail ()),
-            'customer_ie'     => intval ($nfce->getCustomerIe ()),
+            'customer_ie'     => strval ($nfce->getCustomerIe ()),
             'payment_method'  => strval ($nfce->getPaymentMethod ()),
             'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
             'created_at'      => strval ($nfce->getCreatedAt ()),
