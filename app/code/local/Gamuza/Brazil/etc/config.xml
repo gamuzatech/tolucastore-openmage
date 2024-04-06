@@ -184,22 +184,22 @@
     <default>
         <brazil>
             <nfe>
-                <environment>2</environment>
-                <version>4.00</version>
+                <environment_id>2</environment_id>
+                <version_id>4.00</version_id>
                 <country_id>1058</country_id>
                 <batch_id>1</batch_id>
                 <number_id>1</number_id>
-                <model>55</model>
-                <series>1</series>
+                <model_id>55</model_id>
+                <series_id>1</series_id>
             </nfe>
             <nfce>
-                <environment>2</environment>
-                <version>4.00</version>
+                <environment_id>2</environment_id>
+                <version_id>4.00</version_id>
                 <country_id>1058</country_id>
                 <batch_id>1</batch_id>
                 <number_id>1</number_id>
-                <model>65</model>
-                <series>1</series>
+                <model_id>65</model_id>
+                <series_id>1</series_id>
             </nfce>
         </brazil>
         <payment>
