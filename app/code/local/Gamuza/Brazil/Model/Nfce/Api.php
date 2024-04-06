@@ -107,6 +107,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'intermediary_id' => intval ($nfce->getIntermediaryId ()),
                 'process_id'      => intval ($nfce->getProcessId ()),
                 'freight_id'      => intval ($nfce->getFreightId ()),
+                'crt_id'          => intval ($nfce->getCrtId ()),
                 'operation'       => strval ($nfce->getOperation ()),
                 'code'            => strval ($nfce->getCode ()),
                 'fantasy_name'    => strval ($nfce->getFantasyName ()),
@@ -203,7 +204,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setIntermediaryId (self::NFE_INTERMEDIARY_OWN)
             ->setProcessId (self::NFE_PROCESS_PDV)
             ->setFreightId (self::NFE_FREIGHT_EMITTER)
-            ->setCrt (self::NFE_CRT_SIMPLE_NATIONAL)
+            ->setCrtId (self::NFE_CRT_SIMPLE_NATIONAL)
             ->setOperation ($operationName)
             ->setCode (hexdec ($polynomial))
             ->setCompanyTaxvat ($this->_companyTaxvat)
@@ -271,6 +272,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             'intermediary_id' => intval ($nfce->getIntermediaryId ()),
             'process_id'      => intval ($nfce->getProcessId ()),
             'freight_id'      => intval ($nfce->getFreightId ()),
+            'crt_id'          => intval ($nfce->getCrtId ()),
             'operation'       => strval ($nfce->getOperation ()),
             'code'            => strval ($nfce->getCode ()),
             'fantasy_name'    => strval ($nfce->getFantasyName ()),
