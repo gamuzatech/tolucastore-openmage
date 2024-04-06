@@ -190,10 +190,25 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
 		));
-		$this->addColumn ('version', array(
+		$this->addColumn ('version_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Version'),
 		    'align'   => 'right',
-		    'index'   => 'version',
+		    'index'   => 'version_id',
+		));
+		$this->addColumn ('response_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Response'),
+		    'align'   => 'right',
+		    'index'   => 'response_id',
+		));
+		$this->addColumn ('receipt_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Receipt'),
+		    'align'   => 'right',
+		    'index'   => 'receipt_id',
+		));
+		$this->addColumn ('average_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Average'),
+		    'align'   => 'right',
+		    'index'   => 'average_id',
 		));
 		$this->addColumn ('code', array(
 		    'header'  => Mage::helper ('brazil')->__('Code'),
@@ -216,20 +231,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'operation',
 		));
-		$this->addColumn ('model', array(
+		$this->addColumn ('model_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Model'),
 		    'align'   => 'right',
-		    'index'   => 'model',
+		    'index'   => 'model_id',
 		));
-		$this->addColumn ('series', array(
+		$this->addColumn ('series_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Series'),
 		    'align'   => 'right',
-		    'index'   => 'series',
-		));
-		$this->addColumn ('pdv', array(
-		    'header'  => Mage::helper ('brazil')->__('PDV'),
-		    'align'   => 'right',
-		    'index'   => 'pdv',
+		    'index'   => 'series_id',
 		));
 		$this->addColumn ('company_taxvat', array(
 		    'header'  => Mage::helper ('brazil')->__('Company Taxvat'),
@@ -293,6 +303,27 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 			'index'  => 'emission_at',
             'type'   => 'datetime',
             'width'  => '100px',
+		));
+		$this->addColumn ('response_at', array(
+			'header' => Mage::helper ('brazil')->__('Response At'),
+			'index'  => 'response_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+		));
+		$this->addColumn ('response_application', array(
+		    'header'  => Mage::helper ('brazil')->__('Application'),
+		    'align'   => 'right',
+		    'index'   => 'response_application',
+		));
+		$this->addColumn ('response_reason', array(
+		    'header'  => Mage::helper ('brazil')->__('Reason'),
+		    'align'   => 'right',
+		    'index'   => 'response_reason',
+		));
+		$this->addColumn ('response_key', array(
+		    'header'  => Mage::helper ('brazil')->__('Key'),
+		    'align'   => 'right',
+		    'index'   => 'response_key',
 		));
 
 		return parent::_prepareColumns ();
