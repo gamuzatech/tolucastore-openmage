@@ -204,7 +204,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setBatchId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_BATCH_ID))
             ->setRegionId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_REGION_ID))
             ->setCityId (Mage::getStoreConfig (self::XML_PATH_BRAZIL_NFCE_CITY_ID))
-            ->setNumberId (Mage::helper ('brazil')->getNumberId ('nfce'))
+            ->setNumberId (Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ())))
             ->setOperationId ($operationId)
             ->setDestinyId ($destinyId)
             ->setPrintId (self::NFE_PRINT_PORTRAIT)

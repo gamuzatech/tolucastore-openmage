@@ -101,7 +101,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFCE_CITY_ID   = 'brazil/nfce/city_id';
     const XML_PATH_BRAZIL_NFCE_NUMBER_ID = 'brazil/nfce/number_id';
 
-    public function getNumberId ($type)
+    public function getNumberId ($type, $contents = null)
     {
         $filename = sprintf (
             '%s%s%s_get_number_id.lock',
@@ -111,8 +111,8 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
         $fp = fopen ($filename, 'a');
 
-        fwrite ($fp, date ('c') . PHP_EOL);
         flock  ($fp, LOCK_EX);
+        fwrite ($fp, sprintf ("%s: %s\n", date ('c'), json_encode ($contents)));
 
         $path = sprintf ("brazil/{$type}/number_id");
 
