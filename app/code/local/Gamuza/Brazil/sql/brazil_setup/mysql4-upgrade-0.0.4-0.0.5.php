@@ -165,6 +165,13 @@ SQLBLOCK;
             'comment'  => 'Freight ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'crt_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'CRT ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'version', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
@@ -234,13 +241,6 @@ SQLBLOCK;
             'length'   => 255,
             'nullable' => false,
             'comment'  => 'Company IE',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'crt', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'CRT',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'customer_taxvat', array(
