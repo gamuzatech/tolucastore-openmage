@@ -182,7 +182,14 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_freight')->toArray (),
 		));
-
+		$this->addColumn ('crt_id', array(
+		    'header'  => Mage::helper ('brazil')->__('CRT'),
+		    'align'   => 'right',
+            'width'   => '50px',
+		    'index'   => 'crt_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
+		));
 		$this->addColumn ('version', array(
 		    'header'  => Mage::helper ('brazil')->__('Version'),
 		    'align'   => 'right',
@@ -233,14 +240,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Company IE'),
 		    'align'   => 'right',
 		    'index'   => 'company_ie',
-		));
-		$this->addColumn ('crt', array(
-		    'header'  => Mage::helper ('brazil')->__('CRT'),
-		    'align'   => 'right',
-            'width'   => '50px',
-		    'index'   => 'crt',
-	        'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
 		));
 		$this->addColumn ('customer_taxvat', array(
 		    'header'  => Mage::helper ('brazil')->__('Customer Taxvat'),
