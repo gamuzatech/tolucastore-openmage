@@ -16,10 +16,12 @@ $entities = array(
     'order',
 );
 
+/*
 if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Brazil'))
 {
     $entities [] = 'nfce';
 }
+*/
 
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
