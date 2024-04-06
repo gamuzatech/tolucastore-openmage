@@ -56,7 +56,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <environment translate="label" module="brazil">
+                        <environment_id translate="label" module="brazil">
                             <label>Environment</label>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_environment</source_model>
@@ -64,8 +64,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </environment>
-                        <version translate="label" module="brazil">
+                        </environment_id>
+                        <version_id translate="label" module="brazil">
                             <label>Version</label>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
@@ -73,16 +73,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </version>
-                        <ie translate="label" module="brazil">
-                            <label>I.E.</label>
-                            <comment>State registration</comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </ie>
+                        </version_id>
                         <country_id translate="label" module="brazil">
                             <label>Country ID</label>
                             <tooltip>Country Code</tooltip>
@@ -129,7 +120,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </number_id>
-                        <model translate="label" module="brazil">
+                        <model_id translate="label" module="brazil">
                             <label>Model</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>80</sort_order>
@@ -137,15 +128,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment>55 = NF-e, 65 = NFC-e</comment>
-                        </model>
-                        <series translate="label" module="brazil">
+                        </model_id>
+                        <series_id translate="label" module="brazil">
                             <label>Series</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </series>
+                        </series_id>
                     </fields>
                 </nfe>
                 <nfce translate="label" module="brazil">
@@ -155,7 +146,7 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <environment translate="label" module="brazil">
+                        <environment_id translate="label" module="brazil">
                             <label>Environment</label>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_environment</source_model>
@@ -163,8 +154,8 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </environment>
-                        <version translate="label" module="brazil">
+                        </environment_id>
+                        <version_id translate="label" module="brazil">
                             <label>Version</label>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
@@ -172,16 +163,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </version>
-                        <ie translate="label" module="brazil">
-                            <label>I.E.</label>
-                            <comment>State registration</comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </ie>
+                        </version_id>
                         <country_id translate="label" module="brazil">
                             <label>Country ID</label>
                             <tooltip>Country Code</tooltip>
@@ -228,7 +210,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </number_id>
-                        <model translate="label" module="brazil">
+                        <model_id translate="label" module="brazil">
                             <label>Model</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>80</sort_order>
@@ -236,15 +218,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment>65 = NFC-e, 55 = NF-e</comment>
-                        </model>
-                        <series translate="label" module="brazil">
+                        </model_id>
+                        <series_id translate="label" module="brazil">
                             <label>Series</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </series>
+                        </series_id>
                     </fields>
                 </nfce>
             </groups>

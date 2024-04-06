@@ -56,8 +56,9 @@ SQLBLOCK;
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'region_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
             'comment'  => 'Region ID',
         ));
@@ -166,17 +167,41 @@ SQLBLOCK;
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'crt_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
             'comment'  => 'CRT ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'version', array(
+        ->addColumn ($table, 'version_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
             'nullable' => false,
-            'comment'  => 'Version',
+            'comment'  => 'Version ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'response_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Response ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'receipt_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Receipt ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'average_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'default'  => -1,
+            'nullable' => false,
+            'comment'  => 'Average ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'code', array(
@@ -189,7 +214,7 @@ SQLBLOCK;
         ->addColumn ($table, 'key', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Key',
         ));
     $installer->getConnection ()
@@ -208,25 +233,20 @@ SQLBLOCK;
             'comment'  => 'Operation',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'model', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
+        ->addColumn ($table, 'model_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
-            'comment'  => 'Model',
+            'comment'  => 'Model ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'series', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
+        ->addColumn ($table, 'series_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
-            'comment'  => 'Series',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'pdv', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'PDV',
+            'comment'  => 'Series ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'company_taxvat', array(
@@ -251,9 +271,8 @@ SQLBLOCK;
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'customer_ie', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'unsigned' => true,
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
             'nullable' => false,
             'comment'  => 'Customer IE',
         ));
@@ -286,6 +305,28 @@ SQLBLOCK;
             'comment'  => 'QRCode',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'response_application', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Response Application',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'response_reason', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Response Reason',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'response_key', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Response Key',
+        ));
+
+    $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => false,
@@ -302,6 +343,12 @@ SQLBLOCK;
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'Emission At',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'response_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => true,
+            'comment'  => 'Response At',
         ));
 }
 
