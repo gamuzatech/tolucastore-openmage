@@ -17,6 +17,11 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ATTRIBUTE_IS_PIX = 'is_pix';
 
+    const NFE_CERTIFICATE_A1_REPOSITORY = 0;
+    const NFE_CERTIFICATE_A1_FILE = 1;
+    const NFE_CERTIFICATE_A3 = 2;
+    const NFE_CERTIFICATE_A1_BYTE_ARRAY = 3;
+
     const NFE_VERSION_3_10 = '3.10';
     const NFE_VERSION_4_00 = '4.00';
 
