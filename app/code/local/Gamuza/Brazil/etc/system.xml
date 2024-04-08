@@ -43,8 +43,7 @@
                             <label>Filename</label>
                             <frontend_type>file</frontend_type>
                             <backend_model>adminhtml/system_config_backend_file</backend_model>
-                            <upload_dir config="system/filesystem/media" scope_info="1">gamuza/brazil</upload_dir>
-                            <base_url type="media" scope_info="1">gamuza/store</base_url>
+                            <upload_dir allowed_extensions="pfx" config="system/filesystem/var" scope_info="1">cert/brazil</upload_dir>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
