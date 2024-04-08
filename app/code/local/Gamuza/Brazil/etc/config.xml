@@ -110,6 +110,15 @@
                     </gamuza_brazil_sales_order_place_after>
                 </observers>
             </sales_order_place_after>
+            <!-- Gamuza_Basic -->
+            <basic_magento_api_info>
+                <observers>
+                    <gamuza_brazil_basic_magento_api_info>
+                        <class>brazil/observer</class>
+                        <method>basicMagentoApiInfo</method>
+                    </gamuza_brazil_basic_magento_api_info>
+                </observers>
+            </basic_magento_api_info>
         </events>
         <sales>
             <quote>
@@ -183,19 +192,18 @@
     </frontend>
     <default>
         <brazil>
-            <nfe>
+            <setting>
                 <environment_id>2</environment_id>
                 <version_id>4.00</version_id>
                 <country_id>1058</country_id>
+            </setting>
+            <nfe>
                 <batch_id>1</batch_id>
                 <number_id>1</number_id>
                 <model_id>55</model_id>
                 <series_id>1</series_id>
             </nfe>
             <nfce>
-                <environment_id>2</environment_id>
-                <version_id>4.00</version_id>
-                <country_id>1058</country_id>
                 <batch_id>1</batch_id>
                 <number_id>1</number_id>
                 <model_id>65</model_id>
