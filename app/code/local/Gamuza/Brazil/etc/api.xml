@@ -39,10 +39,10 @@
                         <code>300</code>
                         <message>Requested order not exists.</message>
                     </order_not_exists>
-                    <operation_not_specified>
+                    <data_not_specified>
                         <code>400</code>
-                        <message>Requested operation not specified.</message>
-                    </operation_not_specified>
+                        <message>Requested data not specified.</message>
+                    </data_not_specified>
                     <filters_invalid>
                         <code>500</code>
                         <message>Invalid filters given. Details in error message.</message>
