@@ -19,7 +19,7 @@ class Gamuza_Brazil_Model_Observer
 
         $info['brazil'] = array(
             'certificate' => array(
-                'type'      => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
+                'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
                 'directory' => $certificateDirectory,
                 'filename'  => $certificateFilename,
                 'readable'  => $certificateReadable,
