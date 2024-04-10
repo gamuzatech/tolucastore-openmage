@@ -14,16 +14,13 @@ class Gamuza_Brazil_Model_Observer
 
         $certificateDirectory = Mage::getBaseDir ('var') . DS . 'cert' . DS . 'brazil';
         $certificateFilename  = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME);
-        $certificateReadable  = is_readable ($certificateDirectory . DS . $certificateFilename);
-        $certificateContents  = $certificateReadable ? file_get_contents ($certificateDirectory . DS . $certificateFilename) : null;
+        $schemesDirectory = Mage::getBaseDir ('lib') . DS . 'Gamuza' . DS . 'Brazil' . DS . 'Schemes';
 
         $info['brazil'] = array(
             'certificate' => array(
                 'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
                 'directory' => $certificateDirectory,
                 'filename'  => $certificateFilename,
-                'readable'  => $certificateReadable,
-                // 'contents'  => base64_encode ($certificateContents),
                 'password'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_PASSWORD),
             ),
             'csc' => array(
@@ -48,6 +45,9 @@ class Gamuza_Brazil_Model_Observer
                 'number_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_NUMBER_ID)),
                 'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_MODEL_ID)),
                 'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_SERIES_ID)),
+            ),
+            'schemes' => array(
+                'directory' => $schemesDirectory,
             ),
         );
 
