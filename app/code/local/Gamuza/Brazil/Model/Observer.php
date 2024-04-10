@@ -17,6 +17,7 @@ class Gamuza_Brazil_Model_Observer
         $schemesDirectory = Mage::getBaseDir ('lib') . DS . 'Gamuza' . DS . 'Brazil' . DS . 'Schemes';
 
         $info['brazil'] = array(
+            'schemes' => $schemesDirectory,
             'certificate' => array(
                 'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
                 'directory' => $certificateDirectory,
@@ -45,9 +46,6 @@ class Gamuza_Brazil_Model_Observer
                 'number_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_NUMBER_ID)),
                 'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_MODEL_ID)),
                 'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_SERIES_ID)),
-            ),
-            'schemes' => array(
-                'directory' => $schemesDirectory,
             ),
         );
 
