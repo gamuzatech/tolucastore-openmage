@@ -149,6 +149,7 @@
             </catalog>
             <catalog_resource>
                 <rewrite>
+                    <product_action>Gamuza_Basic_Model_Catalog_Resource_Product_Action</product_action>
                     <product_collection>Gamuza_Basic_Model_Catalog_Resource_Product_Collection</product_collection>
                     <product_flat_indexer>Gamuza_Basic_Model_Catalog_Resource_Product_Flat_Indexer</product_flat_indexer>
                 </rewrite>
