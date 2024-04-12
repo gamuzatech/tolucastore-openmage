@@ -163,7 +163,7 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
                     'visibility' => array(
                          'name' => 'price',
                          'type' => 'text',
-                         'class' => 'required-entry validate-number validate-greater-than-zero',
+                         'class' => 'required-entry _validate-number _validate-greater-than-zero',
                          'label' => Mage::helper('basic')->__('Price'),
                      )
              )
