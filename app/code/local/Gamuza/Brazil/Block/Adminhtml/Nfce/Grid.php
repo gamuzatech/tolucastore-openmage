@@ -226,10 +226,10 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'width'   => '50px',
 		    'index'   => 'digit',
 		));
-		$this->addColumn ('operation', array(
+		$this->addColumn ('operation_name', array(
 		    'header'  => Mage::helper ('brazil')->__('Operation Description'),
 		    'align'   => 'right',
-		    'index'   => 'operation',
+		    'index'   => 'operation_name',
 		));
 		$this->addColumn ('model_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Model'),
