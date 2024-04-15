@@ -187,6 +187,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setOrderId ($order->getId ())
             ->setStoreId ($order->getStoreId ())
             ->setCustomerId ($order->getCustomerId ())
+            ->setDestinyId ($destinyId)
             ->setNumberId (Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ())))
             ->setCode (hexdec ($polynomial))
             ->setCustomerTaxvat ($order->getCustomerTaxvat ())
