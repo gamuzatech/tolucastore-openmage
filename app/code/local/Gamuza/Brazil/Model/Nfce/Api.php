@@ -27,7 +27,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $this->_shippingRegionId  = Mage::getStoreConfig (Mage_Shipping_Model_Config::XML_PATH_ORIGIN_REGION_ID);
     }
 
-    public function items ($filters = null)
+    public function items ($filters = array ())
     {
         $collection = Mage::getModel ('brazil/nfce')->getCollection ();
 
@@ -225,53 +225,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
     __return:
 
-        $result = array (
-            'entity_id'       => intval ($nfce->getId ()),
-            'order_id'        => intval ($nfce->getOrderId ()),
-            'store_id'        => intval ($nfce->getStoreId ()),
-            'customer_id'     => intval ($nfce->getCustomerId ()),
-            'increment_id'    => strval ($orderIncrementId),
-            'protect_code'    => strval ($orderProtectCode),
-            'environment_id'  => intval ($nfce->getEnvironmentId ()),
-            'version_id'      => strval ($nfce->getVersionId ()),
-            'model_id'        => intval ($nfce->getModelId ()),
-            'series_id'       => intval ($nfce->getSeriesId ()),
-            'batch_id'        => intval ($nfce->getBatchId ()),
-            'region_id'       => intval ($nfce->getRegionId ()),
-            'city_id'         => intval ($nfce->getCityId ()),
-            'number_id'       => intval ($nfce->getNumberId ()),
-            'operation_id'    => intval ($nfce->getOperationId ()),
-            'destiny_id'      => intval ($nfce->getDestinyId ()),
-            'print_id'        => intval ($nfce->getPrintId ()),
-            'emission_id'     => intval ($nfce->getEmissionId ()),
-            'finality_id'     => intval ($nfce->getFinalityId ()),
-            'consumer_id'     => intval ($nfce->getConsumerId ()),
-            'presence_id'     => intval ($nfce->getPresenceId ()),
-            'intermediary_id' => intval ($nfce->getIntermediaryId ()),
-            'process_id'      => intval ($nfce->getProcessId ()),
-            'freight_id'      => intval ($nfce->getFreightId ()),
-            'crt_id'          => intval ($nfce->getCrtId ()),
-            'operation'       => strval ($nfce->getOperation ()),
-            'code'            => strval ($nfce->getCode ()),
-            'fantasy_name'    => strval ($nfce->getFantasyName ()),
-            'company_taxvat'  => strval ($nfce->getCompanyTaxvat ()),
-            'company_name'    => strval ($nfce->getCompanyName ()),
-            'company_ie'      => strval ($nfce->getCompanyIe ()),
-            'customer_taxvat' => strval ($nfce->getCustomerTaxvat ()),
-            'customer_email'  => strval ($nfce->getCustomerEmail ()),
-            'customer_ie'     => strval ($nfce->getCustomerIe ()),
-            'payment_method'  => strval ($nfce->getPaymentMethod ()),
-            'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
-            'created_at'      => strval ($nfce->getCreatedAt ()),
-            // Toluca_PDV
-            'is_pdv'          => boolval ($nfce->getIsPdv ()),
-            'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
-            'pdv_operator_id' => intval ($nfce->getPdvOperatorId ()),
-            'pdv_customer_id' => intval ($nfce->getPdvCustomerId ()),
-            'pdv_history_id'  => intval ($nfce->getPdvHistoryId ()),
-            'pdv_sequence_id' => intval ($nfce->getPdvSequenceId ()),
-            'pdv_table_id'    => intval ($nfce->getPdvTableId ()),
-        );
+        $result = array ();
+
+        $items = $this->items (array(
+            'main_table.entity_id' => $nfce->getId (),
+        ));
+
+        if (count ($items) > 0)
+        {
+            $result = reset ($items);
+        }
 
         return $result;
     }
