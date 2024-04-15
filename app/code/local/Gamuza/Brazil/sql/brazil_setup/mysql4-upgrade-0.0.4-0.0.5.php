@@ -226,11 +226,11 @@ SQLBLOCK;
             'comment'  => 'Digit',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'operation', array(
+        ->addColumn ($table, 'operation_name', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
             'nullable' => false,
-            'comment'  => 'Operation',
+            'comment'  => 'Operation Name',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'model_id', array(
