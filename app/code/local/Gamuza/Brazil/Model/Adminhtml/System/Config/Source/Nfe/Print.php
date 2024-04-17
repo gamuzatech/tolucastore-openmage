@@ -18,8 +18,12 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Print
     public function toOptionArray()
     {
         $result = array(
-            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_PORTRAIT,  'label' => Mage::helper ('brazil')->__('Portrait')),
-            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_LANDSCAPE, 'label' => Mage::helper ('brazil')->__('Landscape')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_NO_GENERATION,     'label' => Mage::helper ('brazil')->__('No generation')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_PORTRAIT,          'label' => Mage::helper ('brazil')->__('Portrait')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_LANDSCAPE,         'label' => Mage::helper ('brazil')->__('Landscape')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_SIMPLIFIED,        'label' => Mage::helper ('brazil')->__('Simplified')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_NFCE,              'label' => Mage::helper ('brazil')->__('NFC-e')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_PRINT_ELETRONIC_MESSAGE, 'label' => Mage::helper ('brazil')->__('Landscape')),
         );
 
         return $result;
@@ -33,8 +37,12 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Print
     public function toArray()
     {
         $result = array(
-            Gamuza_Brazil_Helper_Data::NFE_PRINT_PORTRAIT  => Mage::helper ('brazil')->__('Portrait'),
-            Gamuza_Brazil_Helper_Data::NFE_PRINT_LANDSCAPE => Mage::helper ('brazil')->__('Landscape'),
+            Gamuza_Brazil_Helper_Data::NFE_PRINT_NO_GENERATION     => Mage::helper ('brazil')->__('No generation'),
+            Gamuza_Brazil_Helper_Data::NFE_PRINT_PORTRAIT          => Mage::helper ('brazil')->__('Portrait'),
+            Gamuza_Brazil_Helper_Data::NFE_PRINT_LANDSCAPE         => Mage::helper ('brazil')->__('Landscape'),
+            Gamuza_Brazil_Helper_Data::NFE_PRINT_SIMPLIFIED        => Mage::helper ('brazil')->__('Simplified'),
+            Gamuza_Brazil_Helper_Data::NFE_PRINT_NFCE              => Mage::helper ('brazil')->__('NFC-e'),
+            Gamuza_Brazil_Helper_Data::NFE_PRINT_ELETRONIC_MESSAGE => Mage::helper ('brazil')->__('Eletronic Message'),
         );
 
         return $result;
