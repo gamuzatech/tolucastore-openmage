@@ -71,7 +71,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         foreach ($collection as $nfce)
         {
-            $result [] = array (
+            $data = array (
                 'entity_id'       => intval ($nfce->getId ()),
                 'order_id'        => intval ($nfce->getOrderId ()),
                 'store_id'        => intval ($nfce->getStoreId ()),
@@ -129,6 +129,45 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_sequence_id' => intval ($nfce->getPdvSequenceId ()),
                 'pdv_table_id'    => intval ($nfce->getPdvTableId ()),
             );
+
+            $orderItemCollection = Mage::getModel ('sales/order_item')->getCollection ()
+                ->setOrderFilter ($nfce->getOrderId ())
+            ;
+
+            foreach ($orderItemCollection as $item)
+            {
+                $data ['items'][] = array(
+                    'item_id'         => intval ($item->getId ()),
+                    'product_id'      => intval ($item->getProductId ()),
+                    'product_type'    => strval ($item->getProductType ()),
+                    'product_options' => $item->getProductOptions (),
+                    'weight'          => floatval ($item->getWeight ()),
+                    'is_virtual'      => boolval ($item->getIsVirtual ()),
+                    'sku'             => strval ($item->getSku ()),
+                    'name'            => strval ($item->getName ()),
+                    'free_shipping'   => boolval ($item->getFreeShipping ()),
+                    'qty_canceled'    => floatval ($item->getQtyCanceled ()),
+                    'qty_invoiced'    => floatval ($item->getQtyInvoiced ()),
+                    'qty_ordered'     => floatval ($item->getQtyOrdered ()),
+                    'qty_refunded'    => floatval ($item->getQtyRefunded ()),
+                    'qty_shipped'     => floatval ($item->getQtyShipped ()),
+                    'row_weight'      => floatval ($item->getRowWeight ()),
+                    'base_price'      => floatval ($item->getBasePrice ()),
+                    'base_original_price'    => floatval ($item->getBaseOriginalPrice ()),
+                    'base_discount_amount'   => floatval ($item->getBaseDiscountAmount ()),
+                    'base_discount_invoiced' => floatval ($item->getBaseDiscountInvoiced ()),
+                    'base_amount_refunded'   => floatval ($item->getBaseAmountRefunded ()),
+                    'base_row_total'         => floatval ($item->getBaseRowTotal ()),
+                    'base_row_invoiced'      => floatval ($item->getBaseRowInvoiced ()),
+                    'gift_message_available' => intval ($item->getGiftMessageAvailable ()),
+                    // DFe
+                    'brazil_ncm'  => $item->getBrazilNcm (),
+                    'brazil_cest' => $item->getBrazilCest (),
+                    'brazil_cfop' => $item->getBrazilCfop (),
+                );
+            }
+
+            $result [] = $data;
         }
 
         return $result;
