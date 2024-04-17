@@ -31,22 +31,24 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_CRT_SIMPLE_NATIONAL        = 1;
     const NFE_CRT_SIMPLE_NATIONAL_EXCESS = 2;
     const NFE_CRT_NORMAL_REGIME          = 3;
+    const NFE_CRT_SIMPLE_NATIONAL_MEI    = 4;
 
     const NFE_CUSTOMER_IE_ICMS = 1;
     const NFE_CUSTOMER_IE_FREE = 2;
-    const NFE_CUSTOMER_IE_NONE = 3;
+    const NFE_CUSTOMER_IE_NONE = 9;
 
     const NFE_DESTINY_INTERNAL   = 1;
     const NFE_DESTINY_INTERSTATE = 2;
     const NFE_DESTINY_ABROAD     = 3;
 
-    const NFE_EMISSION_NORMAL             = 1;
-    const NFE_EMISSION_CONTINGENCY_FS     = 2;
-    const NFE_EMISSION_CONTINGENCY_SCAN   = 3;
-    const NFE_EMISSION_CONTINGENCY_DPEC   = 4;
-    const NFE_EMISSION_CONTINGENCY_FS_DA  = 5;
-    const NFE_EMISSION_CONTINGENCY_SVC_AN = 6;
-    const NFE_EMISSION_CONTINGENCY_SVC_RS = 7;
+    const NFE_EMISSION_NORMAL              = 1;
+    const NFE_EMISSION_CONTINGENCY_FS_IA   = 2;
+    const NFE_EMISSION_CONTINGENCY_SCAN    = 3;
+    const NFE_EMISSION_CONTINGENCY_DPEC    = 4;
+    const NFE_EMISSION_CONTINGENCY_FS_DA   = 5;
+    const NFE_EMISSION_CONTINGENCY_SVC_AN  = 6;
+    const NFE_EMISSION_CONTINGENCY_SVC_RS  = 7;
+    const NFE_EMISSION_CONTINGENCY_OFFLINE = 9;
 
     const NFE_ENVIRONMENT_PRODUCTION   = 1;
     const NFE_ENVIRONMENT_HOMOLOGATION = 2;
@@ -54,11 +56,14 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_FINALITY_NORMAL        = 1;
     const NFE_FINALITY_COMPLEMENTARY = 2;
     const NFE_FINALITY_ADJUSTMENT    = 3;
+    const NFE_FINALITY_DEVOLUTION    = 4;
 
-    const NFE_FREIGHT_EMITTER  = 0;
-    const NFE_FREIGHT_RECEIVER = 1;
-    const NFE_FREIGHT_THIRD    = 2;
-    const NFE_FREIGHT_NONE     = 9;
+    const NFE_FREIGHT_EMITTER_CIF  = 0;
+    const NFE_FREIGHT_RECEIVER_FOB = 1;
+    const NFE_FREIGHT_THIRD        = 2;
+    const NFE_FREIGHT_OWN_EMITTER  = 3;
+    const NFE_FREIGHT_OWN_RECEIVER = 4;
+    const NFE_FREIGHT_NONE         = 9;
 
     const NFE_INTERMEDIARY_OWN   = 0;
     const NFE_INTERMEDIARY_THIRD = 1;
@@ -75,7 +80,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_PAYMENT_TYPE_MEAL_TICKET  = '11';
     const NFE_PAYMENT_TYPE_GIFT_VOUCHER = '12';
     const NFE_PAYMENT_TYPE_FUEL_VOUCHER = '13';
+    const NFE_PAYMENT_TYPE_COMMERCIAL_DUPLICATE = '14';
     const NFE_PAYMENT_TYPE_BANK_SLIP    = '15';
+    const NFE_PAYMENT_TYPE_BANK_DEPOSIT = '16';
+    const NFE_PAYMENT_TYPE_PIX          = '17';
+    const NFE_PAYMENT_TYPE_BANK_TRANSFER = '18';
+    const NFE_PAYMENT_TYPE_FIDELITY     = '19';
     const NFE_PAYMENT_TYPE_NONE         = '90';
     const NFE_PAYMENT_TYPE_OTHER        = '99';
 
@@ -87,11 +97,11 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_PRESENCE_EXTERNAL    = 5;
     const NFE_PRESENCE_OTHER       = 9;
 
-    const NFE_PRINT_NO_GENERATION = 0;
-    const NFE_PRINT_PORTRAIT  = 1;
-    const NFE_PRINT_LANDSCAPE = 2;
+    const NFE_PRINT_NONE       = 0;
+    const NFE_PRINT_PORTRAIT   = 1;
+    const NFE_PRINT_LANDSCAPE  = 2;
     const NFE_PRINT_SIMPLIFIED = 3;
-    const NFE_PRINT_NFCE = 4;
+    const NFE_PRINT_NFCE       = 4;
     const NFE_PRINT_ELETRONIC_MESSAGE = 5;
 
     const NFE_PROCESS_PDV        = 0;
