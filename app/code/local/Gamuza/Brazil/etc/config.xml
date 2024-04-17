@@ -193,17 +193,20 @@
     <default>
         <brazil>
             <setting>
+                <crt_id>4</crt_id>
                 <environment_id>2</environment_id>
                 <version_id>4.00</version_id>
                 <country_id>1058</country_id>
             </setting>
             <nfe>
+                <print_id>1</print_id>
                 <batch_id>1</batch_id>
                 <number_id>1</number_id>
                 <model_id>55</model_id>
                 <series_id>1</series_id>
             </nfe>
             <nfce>
+                <print_id>4</print_id>
                 <batch_id>1</batch_id>
                 <number_id>1</number_id>
                 <model_id>65</model_id>
