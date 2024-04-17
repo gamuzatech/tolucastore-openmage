@@ -21,6 +21,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Finality
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_FINALITY_NORMAL,        'label' => Mage::helper ('brazil')->__('Normal')),
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_FINALITY_COMPLEMENTARY, 'label' => Mage::helper ('brazil')->__('Complementary')),
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_FINALITY_ADJUSTMENT,    'label' => Mage::helper ('brazil')->__('Adjustment')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_FINALITY_DEVOLUTION,    'label' => Mage::helper ('brazil')->__('Devolution')),
         );
 
         return $result;
@@ -37,6 +38,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Finality
             Gamuza_Brazil_Helper_Data::NFE_FINALITY_NORMAL        => Mage::helper ('brazil')->__('Normal'),
             Gamuza_Brazil_Helper_Data::NFE_FINALITY_COMPLEMENTARY => Mage::helper ('brazil')->__('Complementary'),
             Gamuza_Brazil_Helper_Data::NFE_FINALITY_ADJUSTMENT    => Mage::helper ('brazil')->__('Adjustment'),
+            Gamuza_Brazil_Helper_Data::NFE_FINALITY_DEVOLUTION    => Mage::helper ('brazil')->__('Devolution'),
         );
 
         return $result;
