@@ -87,8 +87,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_PRESENCE_EXTERNAL    = 5;
     const NFE_PRESENCE_OTHER       = 9;
 
+    const NFE_PRINT_NO_GENERATION = 0;
     const NFE_PRINT_PORTRAIT  = 1;
     const NFE_PRINT_LANDSCAPE = 2;
+    const NFE_PRINT_SIMPLIFIED = 3;
+    const NFE_PRINT_NFCE = 4;
+    const NFE_PRINT_ELETRONIC_MESSAGE = 5;
 
     const NFE_PROCESS_PDV        = 0;
     const NFE_PROCESS_FISCO      = 1;
