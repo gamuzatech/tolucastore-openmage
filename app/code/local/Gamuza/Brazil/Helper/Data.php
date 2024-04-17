@@ -116,17 +116,20 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CSC_ID   = 'brazil/csc/id';
     const XML_PATH_BRAZIL_CSC_CODE = 'brazil/csc/code';
 
+    const XML_PATH_BRAZIL_SETTING_CRT_ID         = 'brazil/setting/crt_id';
     const XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID = 'brazil/setting/environment_id';
     const XML_PATH_BRAZIL_SETTING_VERSION_ID     = 'brazil/setting/version_id';
     const XML_PATH_BRAZIL_SETTING_COUNTRY_ID     = 'brazil/setting/country_id';
     const XML_PATH_BRAZIL_SETTING_REGION_ID      = 'brazil/setting/region_id';
     const XML_PATH_BRAZIL_SETTING_CITY_ID        = 'brazil/setting/city_id';
 
+    const XML_PATH_BRAZIL_NFE_PRINT_ID  = 'brazil/nfe/print_id';
     const XML_PATH_BRAZIL_NFE_BATCH_ID  = 'brazil/nfe/batch_id';
     const XML_PATH_BRAZIL_NFE_NUMBER_ID = 'brazil/nfe/number_id';
     const XML_PATH_BRAZIL_NFE_MODEL_ID  = 'brazil/nfe/model_id';
     const XML_PATH_BRAZIL_NFE_SERIES_ID = 'brazil/nfe/series_id';
 
+    const XML_PATH_BRAZIL_NFCE_PRINT_ID  = 'brazil/nfce/print_id';
     const XML_PATH_BRAZIL_NFCE_BATCH_ID  = 'brazil/nfce/batch_id';
     const XML_PATH_BRAZIL_NFCE_NUMBER_ID = 'brazil/nfce/number_id';
     const XML_PATH_BRAZIL_NFCE_MODEL_ID  = 'brazil/nfce/model_id';
