@@ -381,6 +381,15 @@
                     </admin_basic_sales_order_creditmemo_refund>
                 </observers>
             </sales_order_creditmemo_refund>
+            <!-- Gamuza_Basic -->
+            <basic_magento_api_info>
+                <observers>
+                    <gamuza_basic_basic_magento_api_info>
+                        <class>basic/observer</class>
+                        <method>basicMagentoApiInfo</method>
+                    </gamuza_basic_basic_magento_api_info>
+                </observers>
+            </basic_magento_api_info>
         </events>
         <pdf>
             <order>
