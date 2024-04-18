@@ -9,7 +9,6 @@
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
 
-"Tax Regime Code","Código de Regime Tributário"
 "Environment","Ambiente"
 "Homologation","Homologação"
 "Production","Produção"
@@ -20,6 +19,9 @@
 "Country ID","ID País"
 "Region ID","ID Região"
 "City ID","ID Cidade"
+"Tax Regime Code","Código de Regime Tributário"
+"State Registration","Inscrição Estadual"
+"Municipal Registration","Inscrição Municipal"
 "Batch ID","ID Lote"
 "Number ID","ID Número"
 "Model","Modelo"
