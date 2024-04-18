@@ -29,12 +29,14 @@ class Gamuza_Brazil_Model_Observer
                 'code' => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CSC_CODE),
             ),
             'setting' => array(
-                'crt_id'         => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CRT_ID)),
                 'environment_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID)),
                 'version_id'     => strval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_VERSION_ID)),
                 'country_id'     => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COUNTRY_ID)),
                 'region_id'      => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_REGION_ID)),
                 'city_id'        => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CITY_ID)),
+                'crt_id'         => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CRT_ID)),
+                'company_ie'     => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COMPANY_IE),
+                'company_im'     => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COMPANY_IM),
             ),
             'nfe' => array(
                 'print_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_PRINT_ID)),
