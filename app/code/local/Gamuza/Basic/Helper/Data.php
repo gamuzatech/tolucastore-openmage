@@ -89,14 +89,14 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
 
     const SQL_PT_BR = 'pt_BR' . DS . 'sql' . DS . 'sql_pt_br_19_utf8.txt';
 
+    const XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT  = 'general/store_information/taxvat';
+    const XML_PATH_GENERAL_STORE_INFORMATION_NAME    = 'general/store_information/company_name';
+    const XML_PATH_GENERAL_STORE_INFORMATION_FANTASY = 'general/store_information/name';
     const XML_PATH_GENERAL_STORE_INFORMATION_LOGO = 'general/store_information/logo';
 
     const XML_PATH_CATALOG_PRODUCT_ALLOW_COMMENT = 'catalog/product/allow_comment';
-
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_PRICE = 'catalog/product/bundle_price';
-
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_OPTION_SELECT_PRICE = 'catalog/product/bundle_option_select_price';
-
     const XML_PATH_CATALOG_PRODUCT_CUSTOM_OPTIONS = 'catalog/product/custom_options';
 
     public function getLocaleCode ($scope = 'default', $scope_id = 0)

@@ -25,6 +25,22 @@ class Gamuza_Basic_Model_Observer
         Mage::getDesign ()->setArea ('adminhtml')->setTheme ('zzz'); // use fallback theme
     }
 
+    public function basicMagentoApiInfo (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $info = $event->getInfo ();
+
+        $info['general'] = array(
+            'store_information' => array(
+                'company_taxvat' => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT),
+                'company_name'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
+                'fantasy_name'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_FANTASY),
+            ),
+        );
+
+        $event->setInfo($info);
+    }
+
     public function catalogProductSaveBefore ($observer)
     {
         $event   = $observer->getEvent ();
