@@ -90,9 +90,10 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const SQL_PT_BR = 'pt_BR' . DS . 'sql' . DS . 'sql_pt_br_19_utf8.txt';
 
     const XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT  = 'general/store_information/taxvat';
-    const XML_PATH_GENERAL_STORE_INFORMATION_NAME    = 'general/store_information/company_name';
-    const XML_PATH_GENERAL_STORE_INFORMATION_FANTASY = 'general/store_information/name';
-    const XML_PATH_GENERAL_STORE_INFORMATION_LOGO = 'general/store_information/logo';
+    const XML_PATH_GENERAL_STORE_INFORMATION_COMPANY = 'general/store_information/company';
+    const XML_PATH_GENERAL_STORE_INFORMATION_NAME    = 'general/store_information/name';
+    const XML_PATH_GENERAL_STORE_INFORMATION_LOGO    = 'general/store_information/logo';
+    const XML_PATH_GENERAL_STORE_INFORMATION_PHONE   = 'general/store_information/phone';
 
     const XML_PATH_CATALOG_PRODUCT_ALLOW_COMMENT = 'catalog/product/allow_comment';
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_PRICE = 'catalog/product/bundle_price';
