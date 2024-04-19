@@ -12,14 +12,16 @@ class Gamuza_Brazil_Model_Observer
         $event = $observer->getEvent ();
         $info = $event->getInfo ();
 
-        $certificateDirectory = Mage::getBaseDir ('var') . DS . 'cert' . DS . 'brazil';
+        $certificateDirectory = Mage::getBaseDir ('var') . DS . 'brazil' . DS . 'cert';
         $certificateFilename  = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME);
         $schemesDirectory = Mage::getBaseDir ('lib') . DS . 'Gamuza' . DS . 'Brazil' . DS . 'Schemes';
+        $xmlDirectory = Mage::getBaseDir ('var') . DS . 'brazil' . DS . 'xml';
 
         $info = array_replace_recursive ($info, array(
             'config' => array(
                 'brazil' => array(
                     'schemes' => $schemesDirectory,
+                    'xml' => $xmlDirectory,
                     'certificate' => array(
                         'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
                         'directory' => $certificateDirectory,
