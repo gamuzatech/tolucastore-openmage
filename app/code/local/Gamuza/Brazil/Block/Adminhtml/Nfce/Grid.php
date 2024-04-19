@@ -72,6 +72,13 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'type'    => 'number',
 		    'index'   => 'batch_id',
 		));
+		$this->addColumn ('country_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Country ID'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'country_id',
+		));
 		$this->addColumn ('region_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Region ID'),
 		    'align'   => 'right',
