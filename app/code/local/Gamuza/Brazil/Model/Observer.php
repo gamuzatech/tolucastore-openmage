@@ -16,45 +16,49 @@ class Gamuza_Brazil_Model_Observer
         $certificateFilename  = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME);
         $schemesDirectory = Mage::getBaseDir ('lib') . DS . 'Gamuza' . DS . 'Brazil' . DS . 'Schemes';
 
-        $info['brazil'] = array(
-            'schemes' => $schemesDirectory,
-            'certificate' => array(
-                'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
-                'directory' => $certificateDirectory,
-                'filename'  => $certificateFilename,
-                'password'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_PASSWORD),
+        $info = array_replace_recursive ($info, array(
+            'config' => array(
+                'brazil' => array(
+                    'schemes' => $schemesDirectory,
+                    'certificate' => array(
+                        'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
+                        'directory' => $certificateDirectory,
+                        'filename'  => $certificateFilename,
+                        'password'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_PASSWORD),
+                    ),
+                    'csc' => array(
+                        'id'   => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CSC_ID),
+                        'code' => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CSC_CODE),
+                    ),
+                    'setting' => array(
+                        'environment_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID)),
+                        'version_id'     => strval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_VERSION_ID)),
+                        'country_id'     => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COUNTRY_ID)),
+                        'region_id'      => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_REGION_ID)),
+                        'city_id'        => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CITY_ID)),
+                        'crt_id'         => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CRT_ID)),
+                        'company_ie'     => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COMPANY_IE),
+                        'company_im'     => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COMPANY_IM),
+                    ),
+                    'nfe' => array(
+                        'print_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_PRINT_ID)),
+                        'batch_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_BATCH_ID)),
+                        'number_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_NUMBER_ID)),
+                        'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_MODEL_ID)),
+                        'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_SERIES_ID)),
+                    ),
+                    'nfce' => array(
+                        'print_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_PRINT_ID)),
+                        'batch_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_BATCH_ID)),
+                        'number_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_NUMBER_ID)),
+                        'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_MODEL_ID)),
+                        'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_SERIES_ID)),
+                    ),
+                ),
             ),
-            'csc' => array(
-                'id'   => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CSC_ID),
-                'code' => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CSC_CODE),
-            ),
-            'setting' => array(
-                'environment_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID)),
-                'version_id'     => strval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_VERSION_ID)),
-                'country_id'     => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COUNTRY_ID)),
-                'region_id'      => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_REGION_ID)),
-                'city_id'        => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CITY_ID)),
-                'crt_id'         => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CRT_ID)),
-                'company_ie'     => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COMPANY_IE),
-                'company_im'     => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_COMPANY_IM),
-            ),
-            'nfe' => array(
-                'print_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_PRINT_ID)),
-                'batch_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_BATCH_ID)),
-                'number_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_NUMBER_ID)),
-                'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_MODEL_ID)),
-                'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_SERIES_ID)),
-            ),
-            'nfce' => array(
-                'print_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_PRINT_ID)),
-                'batch_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_BATCH_ID)),
-                'number_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_NUMBER_ID)),
-                'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_MODEL_ID)),
-                'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_SERIES_ID)),
-            ),
-        );
+        ));
 
-        $event->setInfo($info);
+        $event->setInfo ($info);
     }
 
     public function salesQuoteItemSetProduct (Varien_Event_Observer $observer)
