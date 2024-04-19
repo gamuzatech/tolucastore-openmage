@@ -36,9 +36,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 array ('order' => Mage::getSingleton ('core/resource')->getTablename ('sales/order')),
                 'main_table.order_id = order.entity_id',
                 array(
+                    'store_id',
                     'increment_id',
                     'protect_code',
                     'is_super_mode',
+                    'customer_email',
+                    'customer_firstname',
+                    'customer_lastname',
+                    'customer_taxvat',
                     'is_pdv',
                     'pdv_cashier_id',
                     'pdv_operator_id',
@@ -104,7 +109,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'digit'           => $nfce->getDigit (),
                 'customer_taxvat' => strval ($nfce->getCustomerTaxvat ()),
                 'customer_email'  => strval ($nfce->getCustomerEmail ()),
-                'customer_ie'     => strval ($nfce->getCustomerIe ()),
+                'customer_firstname' => strval ($nfce->getCustomerFirstname ()),
+                'customer_lastname'  => strval ($nfce->getCustomerLastname ()),
                 'payment_method'  => strval ($nfce->getPaymentMethod ()),
                 'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
@@ -221,30 +227,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $nfce = Mage::getModel ('brazil/nfce')
             ->addData ($data)
             ->setOrderId ($order->getId ())
-            ->setStoreId ($order->getStoreId ())
-            ->setCustomerId ($order->getCustomerId ())
             ->setDestinyId ($destinyId)
             ->setNumberId (Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ())))
             ->setCode (hexdec ($polynomial))
-            ->setCustomerTaxvat ($order->getCustomerTaxvat ())
-            ->setCustomerEmail ($order->getCustomerEmail ())
             ->setCreatedAt (date ('c'))
         ;
-
-        if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
-            && $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV))
-        {
-            $nfce->setCustomerId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID));
-
-            $nfce->setIsPdv ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV));
-
-            $nfce->setPdvCashierId  ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID));
-            $nfce->setPdvOperatorId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID));
-            $nfce->setPdvCustomerId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID));
-            $nfce->setPdvHistoryId  ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID));
-            $nfce->setPdvSequenceId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_SEQUENCE_ID));
-            $nfce->setPdvTableId    ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID));
-        }
 
         $paymentAmount = $order->getPayment ()->getBaseAmountOrdered ();
         $paymentMethod = null;
