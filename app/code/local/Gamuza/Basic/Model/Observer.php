@@ -30,15 +30,23 @@ class Gamuza_Basic_Model_Observer
         $event = $observer->getEvent ();
         $info = $event->getInfo ();
 
-        $info['general'] = array(
-            'store_information' => array(
-                'company_taxvat' => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT),
-                'company_name'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
-                'fantasy_name'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_FANTASY),
+        $info = array_replace_recursive ($info, array(
+            'config' => array(
+                'general' => array(
+                    'store_information' => array(
+                        'taxvat'  => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT),
+                        'company' => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_COMPANY),
+                        'name'    => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
+                        'phone'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_PHONE),
+                    ),
+                ),
+                'shipping' => array(
+                    'origin' => Mage::getModel ('basic/shipping_api')->origin (Mage::app ()->getStore ()->getId ()),
+                ),
             ),
-        );
+        ));
 
-        $event->setInfo($info);
+        $event->setInfo ($info);
     }
 
     public function catalogProductSaveBefore ($observer)
