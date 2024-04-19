@@ -43,7 +43,7 @@
                             <label>Filename</label>
                             <frontend_type>file</frontend_type>
                             <backend_model>adminhtml/system_config_backend_file</backend_model>
-                            <upload_dir allowed_extensions="pfx" config="system/filesystem/var" scope_info="1">cert/brazil</upload_dir>
+                            <upload_dir allowed_extensions="pfx" config="system/filesystem/var" scope_info="1">brazil/cert</upload_dir>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -143,7 +143,7 @@
                             <show_in_store>1</show_in_store>
                         </city_id>
                         <crt_id translate="label" module="brazil">
-                            <label>CRT</label>
+                            <label>C.R.T.</label>
                             <comment>Tax Regime Code</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_crt</source_model>

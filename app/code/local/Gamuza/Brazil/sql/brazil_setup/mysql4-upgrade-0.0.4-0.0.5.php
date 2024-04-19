@@ -47,6 +47,14 @@ SQLBLOCK;
             'comment'  => 'Order ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'country_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Country ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'batch_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
@@ -247,20 +255,6 @@ SQLBLOCK;
             'unsigned' => true,
             'nullable' => false,
             'comment'  => 'Series ID',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'company_taxvat', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Company Taxvat',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'company_ie', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Company IE',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'customer_taxvat', array(
