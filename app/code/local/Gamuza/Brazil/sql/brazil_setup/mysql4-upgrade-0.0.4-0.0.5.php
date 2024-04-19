@@ -23,22 +23,6 @@ SQLBLOCK;
     $installer->run ($sqlBlock);
 
     $installer->getConnection ()
-        ->addColumn ($table, 'store_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'unsigned' => true,
-            'nullable' => false,
-            'comment'  => 'Store ID',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'customer_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'unsigned' => true,
-            'nullable' => false,
-            'comment'  => 'Customer ID',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'order_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
@@ -257,27 +241,6 @@ SQLBLOCK;
             'comment'  => 'Series ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'customer_taxvat', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Customer Taxvat',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'customer_ie', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Customer IE',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'customer_email', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Customer Email',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'payment_method', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
@@ -319,7 +282,6 @@ SQLBLOCK;
             'nullable' => true,
             'comment'  => 'Response Key',
         ));
-
     $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
