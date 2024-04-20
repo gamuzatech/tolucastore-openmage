@@ -29,30 +29,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
     public function items ($filters = array ())
     {
-        $collection = Mage::getModel ('brazil/nfce')->getCollection ();
-
-        $collection->getSelect ()
-            ->joinLeft(
-                array ('order' => Mage::getSingleton ('core/resource')->getTablename ('sales/order')),
-                'main_table.order_id = order.entity_id',
-                array(
-                    'store_id',
-                    'increment_id',
-                    'protect_code',
-                    'is_super_mode',
-                    'customer_email',
-                    'customer_firstname',
-                    'customer_lastname',
-                    'customer_taxvat',
-                    'is_pdv',
-                    'pdv_cashier_id',
-                    'pdv_operator_id',
-                    'pdv_customer_id',
-                    'pdv_history_id',
-                    'pdv_sequence_id',
-                    'pdv_table_id',
-                )
-            )
+        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addOrderInfo ()
         ;
 
         /** @var $apiHelper Mage_Api_Helper_Data */
@@ -79,7 +57,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $data = array (
                 'entity_id'       => intval ($nfce->getId ()),
                 'order_id'        => intval ($nfce->getOrderId ()),
-                'store_id'        => intval ($nfce->getStoreId ()),
                 'customer_id'     => intval ($nfce->getCustomerId ()),
                 'increment_id'    => strval ($nfce->getIncrementId ()),
                 'protect_code'    => strval ($nfce->getProtectCode ()),

@@ -12,5 +12,33 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
     {
         $this->_init ('brazil/nfce');
     }
+
+    public function addOrderInfo ()
+    {
+        $this->getSelect ()
+            ->joinLeft(
+                array ('order' => Mage::getSingleton ('core/resource')->getTablename ('sales/order')),
+                'main_table.order_id = order.entity_id',
+                array(
+                    'increment_id',
+                    'protect_code',
+                    'customer_id',
+                    'customer_email',
+                    'customer_firstname',
+                    'customer_lastname',
+                    'customer_taxvat',
+                    'is_pdv',
+                    'pdv_cashier_id',
+                    'pdv_operator_id',
+                    'pdv_customer_id',
+                    'pdv_history_id',
+                    'pdv_sequence_id',
+                    'pdv_table_id',
+                )
+            )
+        ;
+
+        return $this;
+    }
 }
 
