@@ -38,7 +38,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Freight
     {
         $result = array(
             Gamuza_Brazil_Helper_Data::NFE_FREIGHT_EMITTER_CIF  => Mage::helper ('brazil')->__('Emitter CIF'),
-            Gamuza_Brazil_Helper_Data::NFE_FREIGHT_RECEIVER_FOB => Mage::helper ('brazil')->__('Receiver COF'),
+            Gamuza_Brazil_Helper_Data::NFE_FREIGHT_RECEIVER_FOB => Mage::helper ('brazil')->__('Receiver FOB'),
             Gamuza_Brazil_Helper_Data::NFE_FREIGHT_THIRD        => Mage::helper ('brazil')->__('Third'),
             Gamuza_Brazil_Helper_Data::NFE_FREIGHT_OWN_EMITTER  => Mage::helper ('brazil')->__('Own Emitter'),
             Gamuza_Brazil_Helper_Data::NFE_FREIGHT_OWN_RECEIVER => Mage::helper ('brazil')->__('Own Receiver'),

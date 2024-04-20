@@ -26,7 +26,9 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 
 	protected function _prepareCollection ()
 	{
-		$collection = Mage::getModel ('brazil/nfce')->getCollection ();
+		$collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addOrderInfo ()
+        ;
 
 		$this->setCollection ($collection);
 
@@ -43,20 +45,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'width'  => '50px',
 	        'type'   => 'number',
 		    'index'  => 'entity_id',
-		));
-		$this->addColumn ('store_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Store'),
-		    'align'   => 'right',
-		    'index'   => 'store_id',
-	        'type'    => 'options',
-            'options' => Mage::getSingleton ('adminhtml/system_store')->getStoreOptionHash (true),
-		));
-		$this->addColumn ('customer_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Customer'),
-		    'align'   => 'right',
-		    'index'   => 'customer_id',
-	        'type'    => 'options',
-		    'options' => self::_getCustomers (),
+            'filter_index' => 'main_table.entity_id',
 		));
 /*
 		$this->addColumn ('order_id', array(
@@ -271,11 +260,22 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_customer_ie')->toArray (),
 		));
-
 		$this->addColumn ('customer_email', array(
 		    'header'  => Mage::helper ('brazil')->__('Customer Email'),
 		    'align'   => 'right',
 		    'index'   => 'customer_email',
+		));
+		$this->addColumn ('customer_firstname', array(
+		    'header'  => Mage::helper ('brazil')->__('Customer Firstname'),
+		    'align'   => 'right',
+            'width'   => '50px',
+		    'index'   => 'customer_firstname',
+		));
+		$this->addColumn ('customer_lastname', array(
+		    'header'  => Mage::helper ('brazil')->__('Customer Lastname'),
+		    'align'   => 'right',
+            'width'   => '50px',
+		    'index'   => 'customer_lastname',
 		));
 		$this->addColumn ('payment_method', array(
 		    'header'  => Mage::helper ('brazil')->__('Payment'),
@@ -298,12 +298,14 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 			'index'  => 'created_at',
             'type'   => 'datetime',
             'width'  => '100px',
+            'filter_index' => 'main_table.created_at',
 		));
 		$this->addColumn ('updated_at', array(
 			'header' => Mage::helper ('brazil')->__('Updated At'),
 			'index'  => 'updated_at',
             'type'   => 'datetime',
             'width'  => '100px',
+            'filter_index' => 'main_table.updated_at',
 		));
 		$this->addColumn ('emission_at', array(
 			'header' => Mage::helper ('brazil')->__('Emission At'),
@@ -333,6 +335,25 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'response_key',
 		));
 
+        $this->addColumn ('action', array(
+            'header' => Mage::helper ('brazil')->__('Order'),
+            'width'  => '50px',
+            'type'   => 'action',
+            'getter' => 'getOrderId',
+            'index'  => 'stores',
+            'filter'    => false,
+            'sortable'  => false,
+            'is_system' => true,
+            'actions' => array(
+                array(
+                    'caption' => Mage::helper ('brazil')->__('View'),
+                    'url'     => array ('base' => 'adminhtml/sales_order/view'),
+                    'field'   => 'order_id',
+                    'data-column' => 'action',
+                ),
+            ),
+        ));
+
 		return parent::_prepareColumns ();
 	}
 
@@ -340,21 +361,5 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	{
         // nothing
 	}
-
-    public function _getCustomers ($websiteId = null)
-    {
-        $collection = Mage::getModel ('customer/customer')->getCollection ();
-
-        if (!empty ($websiteId))
-        {
-            $collection->addFieldToFilter ('website_id', $websiteId);
-        }
-
-        $collection->getSelect ()->reset (Zend_Db_Select::COLUMNS)
-            ->columns (array ('id' => 'e.entity_id', 'name' => 'e.email'))
-        ;
-
-        return $collection->toOptionHash ();
-    }
 }
 
