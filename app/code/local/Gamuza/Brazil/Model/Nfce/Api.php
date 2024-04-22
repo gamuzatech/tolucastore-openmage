@@ -176,6 +176,48 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 );
             }
 
+            $orderPaymentCollection = Mage::getModel ('sales/order_payment')->getCollection ()
+                ->setOrderFilter ($nfce->getOrderId ())
+            ;
+
+            foreach ($orderPaymentCollection as $payment)
+            {
+                $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_OTHER;
+
+                switch ($payment->getMethod ())
+                {
+                    case 'banktransfer':           { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_BANK_TRANSFER; break; }
+                    case 'cashondelivery':         { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_MONEY;         break; }
+                    case 'checkmo':                { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_CHECK;         break; }
+                    case 'free':                   { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_NONE;          break; }
+                    case 'gamuza_brazil_pix':      { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_PIX;           break; }
+                    case 'gamuza_openpix_payment': { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_PIX;           break; }
+                    case 'machineondelivery':      { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_CREDIT_CARD;   break; }
+                    case 'pagseguropro_boleto':    { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_BANK_SLIP;     break; }
+                    case 'pagseguropro_tef':       { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_BANK_TRANSFER; break; }
+                    case 'rm_pagseguro_cc':        { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_CREDIT_CARD;   break; }
+                }
+
+                $paymentMethod = $payment->getMethod ();
+
+                $data ['payments'][] = array(
+                    'entity_id' => intval ($payment->getId ()),
+                    'parent_id' => intval ($payment->getParentId ()),
+                    'method' => strval ($paymentMethod),
+                    'title'  => Mage::getStoreConfig ("payment/{$paymentMethod}/title"),
+                    'base_amount_ordered'  => floatval ($payment->getBaseAmountOrdered ()),
+                    'base_amount_canceled' => floatval ($payment->getBaseAmountCanceled ()),
+                    'base_amount_paid'     => floatval ($payment->getBaseAmountPaid ()),
+                    'base_amount_refunded' => floatval ($payment->getBaseAmountRefunded ()),
+                    'base_shipping_amount'   => floatval ($payment->getBaseShippingAmount ()),
+                    'base_shipping_captured' => floatval ($payment->getBaseShippingCaptured ()),
+                    'base_shipping_refunded' => floatval ($payment->getBaseShippingRefunded ()),
+                    'additional_information' => $payment->getAdditionalInformation (),
+                    // DFe
+                    'payment_id' => $paymentId,
+                );
+            }
+
             $result [] = $data;
         }
 
