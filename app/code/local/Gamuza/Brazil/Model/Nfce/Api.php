@@ -147,6 +147,35 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 );
             }
 
+            $orderAddressCollection = Mage::getModel ('sales/order_address')->getCollection ()
+                ->setOrderFilter ($nfce->getOrderId ())
+            ;
+
+            foreach ($orderAddressCollection as $address)
+            {
+                $data ['addresses'][] = array(
+                    'address_type' => strval ($address->getAddressType ()),
+                    'entity_id'    => intval ($address->getId ()),
+                    'parent_id'    => intval ($address->getParentId ()),
+                    'region_id'    => intval ($address->getRegionId ()),
+                    'postcode'     => preg_replace ('[\D]', '', $address->getPostcode ()),
+                    'street'       => $address->getStreet (),
+                    'city'         => strval ($address->getCity ()),
+                    'region'       => strval ($address->getRegion ()),
+                    'region_code'  => strval ($address->getRegionCode ()),
+                    'country_id'   => strval ($address->getCountryId ()),
+                    'country_name' => strval ($address->getCountryModel ()->getName ()),
+                    'country_iso2' => strval ($address->getCountryModel ()->getIso2Code ()),
+                    'country_iso3' => strval ($address->getCountryModel ()->getIso3Code ()),
+                    'firstname' => strval ($address->getFirstname ()),
+                    'lastname'  => strval ($address->getLastname ()),
+                    'email'     => strval ($address->getEmail ()),
+                    'cellphone' => preg_replace ('[\D]', '', $address->getCellphone ()),
+                    'telephone' => $address->getTelephone (),
+                    'fax'       => $address->getFax (),
+                );
+            }
+
             $result [] = $data;
         }
 
