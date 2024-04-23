@@ -240,6 +240,7 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'Series ID',
         ));
+/*
     $installer->getConnection ()
         ->addColumn ($table, 'payment_method', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
@@ -255,6 +256,7 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'Payment Amount',
         ));
+*/
     $installer->getConnection ()
         ->addColumn ($table, 'qrcode', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
