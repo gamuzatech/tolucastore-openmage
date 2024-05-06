@@ -237,16 +237,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'series_id',
 		));
-		$this->addColumn ('company_taxvat', array(
-		    'header'  => Mage::helper ('brazil')->__('Company Taxvat'),
-		    'align'   => 'right',
-		    'index'   => 'company_taxvat',
-		));
-		$this->addColumn ('company_ie', array(
-		    'header'  => Mage::helper ('brazil')->__('Company IE'),
-		    'align'   => 'right',
-		    'index'   => 'company_ie',
-		));
 		$this->addColumn ('customer_taxvat', array(
 		    'header'  => Mage::helper ('brazil')->__('Customer Taxvat'),
 		    'align'   => 'right',
