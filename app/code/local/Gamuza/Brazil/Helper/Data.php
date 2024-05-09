@@ -7,6 +7,7 @@
 
 class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    const IBPT_TABLE = 'gamuza_brazil_ibpt';
     const NFCE_TABLE = 'gamuza_brazil_nfce';
 
     const PRODUCT_ATTRIBUTE_BRAZIL_NCM  = 'brazil_ncm';
@@ -16,6 +17,10 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const CUSTOMER_ATTRIBUTE_RG_IE = 'br_rg_ie';
 
     const ORDER_ATTRIBUTE_IS_PIX = 'is_pix';
+
+    const IBPT_TYPE_NCM   = 0;
+    const IBPT_TYPE_NBS   = 1;
+    const IBPT_TYPE_LC116 = 2;
 
     const NFE_CERTIFICATE_A1_REPOSITORY = 0;
     const NFE_CERTIFICATE_A1_FILE = 1;
@@ -109,6 +114,13 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_PROCESS_FISCO_SITE = 2;
     const NFE_PROCESS_FISCO_PDV  = 3;
 
+    const XML_PATH_BRAZIL_IBPT_IMPORT   = 'brazil/ibpt/import';
+    const XML_PATH_BRAZIL_IBPT_KEY      = 'brazil/ibpt/key';
+    const XML_PATH_BRAZIL_IBPT_SOURCE   = 'brazil/ibpt/source';
+    const XML_PATH_BRAZIL_IBPT_VERSION  = 'brazil/ibpt/version';
+    const XML_PATH_BRAZIL_IBPT_BEGIN_AT = 'brazil/ibpt/begin_at';
+    const XML_PATH_BRAZIL_IBPT_END_AT   = 'brazil/ibpt/end_at';
+
     const XML_PATH_BRAZIL_CERTIFICATE_TYPE     = 'brazil/certificate/type';
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';
     const XML_PATH_BRAZIL_CERTIFICATE_PASSWORD = 'brazil/certificate/password';
@@ -116,6 +128,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CSC_ID   = 'brazil/csc/id';
     const XML_PATH_BRAZIL_CSC_CODE = 'brazil/csc/code';
 
+    const XML_PATH_BRAZIL_SETTING_IS_ACTIVE      = 'brazil/setting/is_active';
     const XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID = 'brazil/setting/environment_id';
     const XML_PATH_BRAZIL_SETTING_VERSION_ID     = 'brazil/setting/version_id';
     const XML_PATH_BRAZIL_SETTING_COUNTRY_ID     = 'brazil/setting/country_id';
