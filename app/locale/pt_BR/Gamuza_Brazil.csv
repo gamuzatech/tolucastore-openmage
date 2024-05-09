@@ -6,6 +6,14 @@
 
 "Taxpayer Security Code","Código de Segurança do Contribuinte"
 
+"Invalid IBPT File Format","Formato Inválido do Arquivo IBPT"
+"An error occurred while import IBPT.","Ocorreu um erro ao importar IBPT."
+"Invalid IBTP format in the Row #%s","Formato Inválido do IBPT na Linha #%s"
+"Invalid %s '%s' in the Row #%s.","%s '%s' Inválido na Linha #%s."
+"The IBPT file has been imported successfully!","O arquivo IBPT foi importado com sucesso!"
+"Begin At","Início Em"
+"End At","Fim Em"
+
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
 
@@ -27,8 +35,15 @@
 "Model","Modelo"
 "Series","Série"
 
-"Manage NFCEs","Gerenciar Notas Fiscais"
-"NFC-e Manager","Gerenciador de Notas Fiscais"
+"Manage IBPTs","Gerenciar IBPTs"
+"IBPT Manager","Gerenciador de IBPTs"
+"Exception","Exceção"
+"National Federal","Nacional Federal"
+"Imported Federal","Importado Federal"
+"Source","Fonte"
+
+"Manage NFCEs","Gerenciar NFCEs"
+"NFC-e Manager","Gerenciador de NFCEs"
 "Operation Type","Tipo Op."
 "Operation Description","Descrição Op."
 "Input","Entrada"
