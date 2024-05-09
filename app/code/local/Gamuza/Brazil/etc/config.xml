@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.5</version>
+            <version>0.0.6</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -32,6 +32,9 @@
             <brazil_mysql4>
                 <class>Gamuza_Brazil_Model_Mysql4</class>
                 <entities>
+                    <ibpt>
+                        <table>gamuza_brazil_ibpt</table>
+                    </ibpt>
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
