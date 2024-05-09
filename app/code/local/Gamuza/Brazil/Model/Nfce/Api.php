@@ -114,9 +114,21 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 ->setOrderFilter ($nfce->getOrderId ())
             ;
 
+            $brazilIBPT = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_IMPORT);
+            $brazilNCM = array ();
+
             foreach ($orderItemCollection as $item)
             {
-                $data ['items'][] = array(
+                $brazilNCM [] = $item->getBrazilNcm ();
+            }
+
+            $brazilIBPTCollection = Mage::getModel ('brazil/ibpt')->getCollection ()
+                ->addFieldToFilter ('code', array ('in' => $brazilNCM))
+            ;
+
+            foreach ($orderItemCollection as $item)
+            {
+                $orderItem = array(
                     'item_id'         => intval ($item->getId ()),
                     'product_id'      => intval ($item->getProductId ()),
                     'product_type'    => strval ($item->getProductType ()),
@@ -144,7 +156,37 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                     'brazil_ncm'  => $item->getBrazilNcm (),
                     'brazil_cest' => $item->getBrazilCest (),
                     'brazil_cfop' => $item->getBrazilCfop (),
+                    'brazil_ibpt' => null,
                 );
+
+                foreach ($brazilIBPTCollection as $ibpt)
+                {
+                    if (!strcmp ($ibpt->getCode (), $item->getBrazilNcm ()))
+                    {
+                        $orderItem ['brazil_ibpt'] = array(
+                            'filename' => $brazilIBPT,
+                            'entity_id'   => intval ($ibpt->getId ()),
+                            'code'        => strval ($ibpt->getCode ()),
+                            'exception'   => $ibpt->getException (),
+                            'type'        => intval ($ibpt->getType ()),
+                            'description' => strval ($ibpt->getDescription ()),
+                            'national_federal' => floatval ($ibpt->getNationalFederal ()),
+                            'imported_federal' => floatval ($ibpt->getImportedFederal ()),
+                            'state' => floatval ($ibpt->getState ()),
+                            'local' => floatval ($ibpt->getLocal ()),
+                            'key'     => strval ($ibpt->getKey ()),
+                            'version' => strval ($ibpt->getVersion ()),
+                            'source'  => strval ($ibpt->getSource ()),
+                            'begin_at'   => strval ($ibpt->getBeginAt ()),
+                            'end_at'     => strval ($ibpt->getEndAt ()),
+                            'created_at' => strval ($ibpt->getCreatedAt ()),
+                        );
+
+                        break;
+                    }
+                }
+
+                $data ['items'][] = $orderItem;
             }
 
             $orderAddressCollection = Mage::getModel ('sales/order_address')->getCollection ()
