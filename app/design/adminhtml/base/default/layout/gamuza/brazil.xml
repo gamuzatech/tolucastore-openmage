@@ -8,6 +8,11 @@
 -->
 
 <layout version="0.1.0">
+    <admin_brazil_adminhtml_ibpt_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_ibpt" name="ibpt" />
+        </reference>
+    </admin_brazil_adminhtml_ibpt_index>
     <admin_brazil_adminhtml_nfce_index>
         <reference name="content">
             <block type="brazil/adminhtml_nfce" name="nfce" />

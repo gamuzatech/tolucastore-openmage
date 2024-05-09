@@ -17,6 +17,11 @@
                     <title>Brazil</title>
                     <sort_order>100</sort_order>
                     <children>
+                        <ibpt translate="title" module="brazil">
+                            <title>Manage IBPTs</title>
+                            <sort_order>0</sort_order>
+                            <action>admin_brazil/adminhtml_ibpt</action>
+                        </ibpt>
                         <nfce translate="title" module="brazil">
                             <title>Manage NFCEs</title>
                             <sort_order>0</sort_order>
@@ -42,9 +47,13 @@
                                 <title>Brazil</title>
                                 <sort_order>100</sort_order>
                                 <children>
+                                    <ibpt translate="title" module="brazil">
+                                        <title>Manage IBPTs</title>
+                                        <sort_order>0</sort_order>
+                                    </ibpt>
                                     <nfce translate="title" module="brazil">
                                         <title>Manage NFCEs</title>
-                                        <sort_order>0</sort_order>
+                                        <sort_order>10</sort_order>
                                     </nfce>
                                 </children>
                             </brazil>
