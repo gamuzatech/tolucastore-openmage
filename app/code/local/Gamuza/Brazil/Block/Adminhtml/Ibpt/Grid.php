@@ -13,7 +13,7 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 
 		$this->setId ('brazilIbptGrid');
 		$this->setDefaultSort ('entity_id');
-		$this->setDefaultDir ('ASC');
+		$this->setDefaultDir ('DESC');
 		$this->setSaveParametersInSession (true);
     }
 
