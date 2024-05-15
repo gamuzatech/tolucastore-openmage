@@ -118,4 +118,5 @@
 "Requested code not specified.","Código do pedido não foi especificado."
 "Requested order not exists.","Pedido solicitado não existe."
 "Requested data not specified.","Dados solicitados não foram especificados."
+"Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 
