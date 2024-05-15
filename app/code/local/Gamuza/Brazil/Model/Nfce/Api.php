@@ -119,7 +119,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             foreach ($orderItemCollection as $item)
             {
-                $brazilNCM [] = $item->getBrazilNcm ();
+                $brazilNCM [] = preg_replace ('[\D]', "", $item->getBrazilNcm ());
             }
 
             $brazilIBPTCollection = Mage::getModel ('brazil/ibpt')->getCollection ()
@@ -161,7 +161,9 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
                 foreach ($brazilIBPTCollection as $ibpt)
                 {
-                    if (!strcmp ($ibpt->getCode (), $item->getBrazilNcm ()))
+                    $productBrazilNCM = preg_replace ('[\D]', "", $item->getBrazilNcm ());
+
+                    if (!strcmp ($ibpt->getCode (), $productBrazilNCM))
                     {
                         $orderItem ['brazil_ibpt'] = array(
                             'filename' => $brazilIBPT,
@@ -299,17 +301,17 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (!strcmp ($orderBillingAddress->getCountryId (), $this->_shippingCountryId)
             && !strcmp ($orderBillingAddress->getRegionId (), $this->_shippingRegionId))
         {
-            $destinyId = 1;
+            $destinyId = Gamuza_Brazil_Helper_Data::NFE_DESTINY_INTERNAL;
         }
         else if (!strcmp ($orderBillingAddress->getCountryId (), $this->_shippingCountryId)
             && strcmp ($orderBillingAddress->getRegionId (), $this->_shippingRegionId) != 0)
         {
-            $destinyId = 2;
+            $destinyId = Gamuza_Brazil_Helper_Data::NFE_DESTINY_INTERSTATE;
         }
         else if (strcmp ($orderBillingAddress->getCountryId (), $this->_shippingCountryId) != 0
             && strcmp ($orderBillingAddress->getRegionId (), $this->_shippingRegionId) != 0)
         {
-            $destinyId = 3;
+            $destinyId = Gamuza_Brazil_Helper_Data::NFE_DESTINY_ABROAD;
         }
 
         $polynomial = hash ('crc32b', $order->getId ());
