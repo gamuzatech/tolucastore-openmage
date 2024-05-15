@@ -25,6 +25,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $this->_shippingCountryId = Mage::getStoreConfig (Mage_Shipping_Model_Config::XML_PATH_ORIGIN_COUNTRY_ID);
         $this->_shippingRegionId  = Mage::getStoreConfig (Mage_Shipping_Model_Config::XML_PATH_ORIGIN_REGION_ID);
+
+        $this->_brazilIBPTImport = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_IMPORT);
     }
 
     public function items ($filters = array ())
@@ -114,7 +116,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 ->setOrderFilter ($nfce->getOrderId ())
             ;
 
-            $brazilIBPT = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_IMPORT);
             $brazilNCM = array ();
 
             foreach ($orderItemCollection as $item)
@@ -166,7 +167,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                     if (!strcmp ($ibpt->getCode (), $productBrazilNCM))
                     {
                         $orderItem ['brazil_ibpt'] = array(
-                            'filename' => $brazilIBPT,
+                            'filename' => $this->_brazilIBPTImport,
                             'entity_id'   => intval ($ibpt->getId ()),
                             'code'        => strval ($ibpt->getCode ()),
                             'exception'   => $ibpt->getException (),
@@ -268,7 +269,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($orderIncrementId, $orderProtectCode, $data = array ())
+    public function create ($orderIncrementId, $orderProtectCode, $data = array (), $updateIBPT = false)
     {
         if (empty ($orderIncrementId))
         {
@@ -287,11 +288,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
 
+        $order = $this->_initIBPT ($order, $updateIBPT);
+
         $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
 
         if ($nfce && $nfce->getId ())
         {
-            goto __return;
+            goto __returnNFCe;
         }
 
         $destinyId = 0;
@@ -338,7 +341,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
-    __return:
+    __returnNFCe:
 
         $result = array ();
 
@@ -375,6 +378,55 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         return $order;
+    }
+
+    protected function _initIBPT (Mage_Sales_Model_Order $order, $updateIBPT)
+    {
+        if (!$order || !$order->getId ())
+        {
+            $this->_fault ('order_not_exists');
+        }
+
+        foreach ($order->getAllItems () as $item)
+        {
+            foreach (array ('ncm', 'cest', 'cfop') as $code)
+            {
+                $field = sprintf ('brazil_%s', $code);
+                $value = preg_replace ('[\D]', "", $item->getData ($field));
+
+                if ($updateIBPT)
+                {
+                    $value = preg_replace ('[\D]', "", $item->getProduct ()->getData ($field));
+                }
+
+                if (empty ($value))
+                {
+                    $this->_faultOrderItem ($item, $code);
+                }
+
+                if ($updateIBPT)
+                {
+                    $item->setData ($field, $value)->save ();
+                }
+            }
+
+            $ibpt = Mage::getModel ('brazil/ibpt')->load ($item->getBrazilNcm (), 'code');
+
+            if (!$ibpt || !$ibpt->getId ())
+            {
+                $this->_faultOrderItem ($item, sprintf ('ncm %s', $item->getBrazilNcm ()));
+            }
+        }
+
+        return $order;
+    }
+
+    protected function _faultOrderItem (Mage_Sales_Model_Order_Item $item, $code)
+    {
+        $productMessage = sprintf ('%s SKU %s ID %s', $item->getName (), $item->getSku (), $item->getId ());
+        $customMessage  = Mage::helper ('brazil')->__('Requested %s not specified for product: %s', strtoupper ($code), $productMessage);
+
+        $this->_fault ('data_not_specified', $customMessage);
     }
 }
 
