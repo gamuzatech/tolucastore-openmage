@@ -47,6 +47,10 @@
                         <code>500</code>
                         <message>Invalid filters given. Details in error message.</message>
                     </filters_invalid>
+                    <ibpt_not_imported>
+                        <code>600</code>
+                        <message>Requested IBPT not imported.</message>
+                    </ibpt_not_imported>
                 </faults>
             </brazil_nfce>
         </resources>
