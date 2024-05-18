@@ -387,6 +387,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('order_not_exists');
         }
 
+        $collection = Mage::getModel ('brazil/ibpt')->getCollection ();
+
+        if (!$collection->getSize ())
+        {
+            $this->_fault ('ibpt_not_imported');
+        }
+
         foreach ($order->getAllItems () as $item)
         {
             foreach (array ('ncm', 'cest', 'cfop') as $code)
