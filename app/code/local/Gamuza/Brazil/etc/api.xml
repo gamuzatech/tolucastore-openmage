@@ -40,22 +40,22 @@
                         <code>200</code>
                         <message>Requested code not specified.</message>
                     </code_not_specified>
-                    <order_not_exists>
+                    <key_not_specified>
                         <code>300</code>
-                        <message>Requested order not exists.</message>
-                    </order_not_exists>
-                    <data_not_specified>
+                        <message>Requested key not specified.</message>
+                    </key_not_specified>
+                    <digit_not_specified>
                         <code>400</code>
+                        <message>Requested digit not specified.</message>
+                    </digit_not_specified>
+                    <data_not_specified>
+                        <code>500</code>
                         <message>Requested data not specified.</message>
                     </data_not_specified>
-                    <filters_invalid>
-                        <code>500</code>
-                        <message>Invalid filters given. Details in error message.</message>
-                    </filters_invalid>
-                    <ibpt_not_imported>
+                    <order_not_exists>
                         <code>600</code>
-                        <message>Requested IBPT not imported.</message>
-                    </ibpt_not_imported>
+                        <message>Requested order not exists.</message>
+                    </order_not_exists>
                     <nfce_not_exists>
                         <code>700</code>
                         <message>Requested NFC-e not exists.</message>
@@ -64,10 +64,14 @@
                         <code>800</code>
                         <message>Requested NFC-e is already authorized.</message>
                     </nfce_already_authorized>
-                    <key_not_specified>
+                    <ibpt_not_imported>
                         <code>900</code>
-                        <message>Requested key not specified.</message>
-                    </key_not_specified>
+                        <message>Requested IBPT not imported.</message>
+                    </ibpt_not_imported>
+                    <filters_invalid>
+                        <code>1000</code>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
                 </faults>
             </brazil_nfce>
         </resources>
