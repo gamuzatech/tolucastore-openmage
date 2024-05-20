@@ -270,7 +270,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($orderIncrementId, $orderProtectCode, $data = array (), $updateIBPT = false)
+    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = false)
     {
         if (empty ($orderIncrementId))
         {
@@ -357,6 +357,64 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         return $result;
+    }
+
+    public function sign ($orderIncrementId, $orderProtectCode, $key, $data)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        if (empty ($key))
+        {
+            $this->_fault ('key_not_specified');
+        }
+
+        $data = base64_decode ($data);
+
+        if (!simplexml_load_string ($data))
+        {
+            $this->_fault ('data_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
+
+        if (!$nfce || !$nfce->getId ())
+        {
+            $this->_fault ('nfce_not_exists');
+        }
+
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED))
+        {
+            $this->_fault ('nfce_already_authorized');
+        }
+
+        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . 'request';
+
+        if (!is_dir ($xmlDir))
+        {
+            mkdir ($xmlDir, 0777, true);
+        }
+
+        $filename = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $key);
+
+        file_put_contents ($filename, $data);
+
+        $nfce->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED)
+            ->setSignedAt (date ('c'))
+            ->setUpdatedAt (date ('c'))
+            ->save ()
+        ;
+
+        return true;
     }
 
     /**

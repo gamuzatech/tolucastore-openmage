@@ -308,6 +308,12 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'width'  => '100px',
             'filter_index' => 'main_table.updated_at',
 		));
+		$this->addColumn ('signed_at', array(
+			'header' => Mage::helper ('brazil')->__('Signed At'),
+			'index'  => 'signed_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+		));
 		$this->addColumn ('emission_at', array(
 			'header' => Mage::helper ('brazil')->__('Emission At'),
 			'index'  => 'emission_at',
