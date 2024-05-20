@@ -102,6 +102,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'response_id'     => $nfce->getResponseId (),
                 'receipt_id'      => $nfce->getReceiptId (),
                 'average_id'      => intval ($nfce->getAverageId ()),
+                'status_id'       => strval ($nfce->getStatusId ()),
                 // Toluca_PDV
                 'is_pdv'          => boolval ($nfce->getIsPdv ()),
                 'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
@@ -326,6 +327,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setNumberId (Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ())))
             ->setCode (hexdec ($polynomial))
             ->setCreatedAt (date ('c'))
+            ->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED)
         ;
 
         $paymentAmount = $order->getPayment ()->getBaseAmountOrdered ();
