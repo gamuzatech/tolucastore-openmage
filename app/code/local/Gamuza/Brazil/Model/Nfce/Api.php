@@ -293,9 +293,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
 
-        if ($nfce && $nfce->getId ())
+        if (!$nfce || !$nfce->getId ())
         {
-            goto __returnNFCe;
+            $numberId = Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ()));
+
+            $nfce = Mage::getModel ('brazil/nfce')
+                ->setNumberId ($numberId)
+            ;
         }
 
         $destinyId = 0;
@@ -320,30 +324,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $polynomial = hash ('crc32b', $order->getId ());
 
-        $nfce = Mage::getModel ('brazil/nfce')
-            ->addData ($data)
+        $nfce->addData ($data)
             ->setOrderId ($order->getId ())
             ->setDestinyId ($destinyId)
-            ->setNumberId (Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ())))
             ->setCode (hexdec ($polynomial))
             ->setCreatedAt (date ('c'))
             ->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED)
-        ;
-
-        $paymentAmount = $order->getPayment ()->getBaseAmountOrdered ();
-        $paymentMethod = null;
-
-        switch ($order->getPayment ()->getMethod ())
-        {
-            case 'cashondelivery': { $paymentMethod = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_MONEY; break; }
-        }
-
-        $nfce->setPaymentAmount ($paymentAmount)
-            ->setPaymentMethod ($paymentMethod)
             ->save ()
         ;
-
-    __returnNFCe:
 
         $result = array ();
 
@@ -359,7 +347,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function sign ($orderIncrementId, $orderProtectCode, $key, $data)
+    public function sign ($orderIncrementId, $orderProtectCode, $key, $digit, $data)
     {
         if (empty ($orderIncrementId))
         {
@@ -374,6 +362,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (empty ($key))
         {
             $this->_fault ('key_not_specified');
+        }
+
+        if (empty ($digit))
+        {
+            $this->_fault ('digit_not_specified');
         }
 
         $data = base64_decode ($data);
@@ -408,7 +401,9 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         file_put_contents ($filename, $data);
 
-        $nfce->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED)
+        $nfce->setKey ($key)
+            ->setDigit ($digit)
+            ->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED)
             ->setSignedAt (date ('c'))
             ->setUpdatedAt (date ('c'))
             ->save ()
