@@ -58,6 +58,7 @@
 "Simplified","Simplificado"
 "Eletronic Message","Mensagem Eletrônica"
 "Emission","Emissão"
+"Signed At","Assinado Em"
 "Emission At","Emissão Em"
 "Contingency","Contingência"
 "Contingency FS-IA","Contingência FS-IA"
@@ -122,6 +123,9 @@
 "Requested code not specified.","Código do pedido não foi especificado."
 "Requested order not exists.","Pedido solicitado não existe."
 "Requested data not specified.","Dados solicitados não foram especificados."
+"Requested key not specified.","Chave não foi especificada."
 "Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 "Requested IBPT not imported.","IBPT solicitado não foi importado."
+"Requested NFC-e not exists.","NFC-e solicitado não existe."
+"Requested NFC-e is already authorized.","NFC-e solicitado já está autorizado."
 

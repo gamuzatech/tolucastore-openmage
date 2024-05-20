@@ -25,6 +25,11 @@
                         <acl>brazil/nfce/create</acl>
                         <method>create</method>
                     </create>
+                    <sign translate="title" module="brazil">
+                        <title>Sign a NFC-e for the order</title>
+                        <acl>brazil/nfce/sign</acl>
+                        <method>sign</method>
+                    </sign>
                 </methods>
                 <faults>
                     <order_not_specified>
@@ -51,6 +56,18 @@
                         <code>600</code>
                         <message>Requested IBPT not imported.</message>
                     </ibpt_not_imported>
+                    <nfce_not_exists>
+                        <code>700</code>
+                        <message>Requested NFC-e not exists.</message>
+                    </nfce_not_exists>
+                    <nfce_already_authorized>
+                        <code>800</code>
+                        <message>Requested NFC-e is already authorized.</message>
+                    </nfce_already_authorized>
+                    <key_not_specified>
+                        <code>900</code>
+                        <message>Requested key not specified.</message>
+                    </key_not_specified>
                 </faults>
             </brazil_nfce>
         </resources>
@@ -67,6 +84,9 @@
                         <create translate="title" module="brazil">
                             <title>Create a NFC-e for the order</title>
                         </create>
+                        <sign translate="title" module="brazil">
+                            <title>Sign a NFC-e for the order</title>
+                        </sign>
                     </nfce>
                 </brazil>
             </resources>
