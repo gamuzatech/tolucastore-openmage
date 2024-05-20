@@ -82,6 +82,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'type'    => 'number',
 		    'index'   => 'number_id',
 		));
+		$this->addColumn ('status_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Status'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'status_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_status')->toArray (),
+		));
 		$this->addColumn ('operation_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Operation Type'),
 		    'align'   => 'right',

@@ -264,6 +264,14 @@ SQLBLOCK;
             'comment'  => 'QRCode',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'status_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Status ID',
+            'default'  => Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED,
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'response_application', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
@@ -295,6 +303,12 @@ SQLBLOCK;
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'Updated At'
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'signed_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => true,
+            'comment'  => 'Signed At'
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'emission_at', array(
