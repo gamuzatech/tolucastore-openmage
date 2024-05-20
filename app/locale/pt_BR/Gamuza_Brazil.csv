@@ -113,6 +113,10 @@
 "Response At","Resposta Em"
 "Application","Aplicação"
 "Reason","Razão"
+"Signed","Assinado"
+"Issued","Emitido"
+"Authorized","Autorizado"
+"Denied","Negado"
 
 "Requested order not specified.","Pedido solicitado não foi especificado."
 "Requested code not specified.","Código do pedido não foi especificado."
