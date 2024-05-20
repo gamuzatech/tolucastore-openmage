@@ -223,7 +223,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('key', array(
 		    'header'  => Mage::helper ('brazil')->__('Key'),
 		    'align'   => 'right',
-		    'index'   => 'Key',
+		    'index'   => 'key',
 		));
 		$this->addColumn ('digit', array(
 		    'header'  => Mage::helper ('brazil')->__('Digit'),
