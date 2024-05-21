@@ -311,10 +311,10 @@ SQLBLOCK;
             'comment'  => 'Signed At'
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'emission_at', array(
+        ->addColumn ($table, 'emitted_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
-            'comment'  => 'Emission At',
+            'comment'  => 'Emitted At',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'response_at', array(

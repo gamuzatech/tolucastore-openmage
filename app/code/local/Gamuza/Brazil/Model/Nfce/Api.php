@@ -333,18 +333,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
-        $result = array ();
-
-        $items = $this->items (array(
-            'main_table.entity_id' => $nfce->getId (),
-        ));
-
-        if (count ($items) > 0)
-        {
-            $result = reset ($items);
-        }
-
-        return $result;
+        return $this->_getNFCe ($nfce);
     }
 
     public function sign ($orderIncrementId, $orderProtectCode, $key, $digit, $data)
@@ -409,7 +398,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
-        return true;
+        return $this->_getNFCe ($nfce);
     }
 
     /**
@@ -489,6 +478,22 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $customMessage  = Mage::helper ('brazil')->__('Requested %s not specified for product: %s', strtoupper ($code), $productMessage);
 
         $this->_fault ('data_not_specified', $customMessage);
+    }
+
+    private function _getNFCe ($nfce)
+    {
+        $result = array ();
+
+        $items = $this->items (array(
+            'main_table.entity_id' => $nfce->getId (),
+        ));
+
+        if (count ($items) > 0)
+        {
+            $result = reset ($items);
+        }
+
+        return $result;
     }
 }
 
