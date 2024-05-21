@@ -116,7 +116,6 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
     const NFE_STATUS_CREATED    = 'created';
     const NFE_STATUS_SIGNED     = 'signed';
-    const NFE_STATUS_ISSUED     = 'issued';
     const NFE_STATUS_AUTHORIZED = 'authorized';
     const NFE_STATUS_DENIED     = 'denied';
 
