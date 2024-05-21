@@ -59,7 +59,7 @@
 "Eletronic Message","Mensagem Eletrônica"
 "Emission","Emissão"
 "Signed At","Assinado Em"
-"Emission At","Emissão Em"
+"Emitted At","Emitido Em"
 "Contingency","Contingência"
 "Contingency FS-IA","Contingência FS-IA"
 "Contingency SCAN","Contingência SCAN"
@@ -115,7 +115,6 @@
 "Application","Aplicação"
 "Reason","Razão"
 "Signed","Assinado"
-"Issued","Emitido"
 "Authorized","Autorizado"
 "Denied","Negado"
 
