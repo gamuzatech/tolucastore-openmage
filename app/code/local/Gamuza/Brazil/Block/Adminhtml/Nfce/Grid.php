@@ -200,6 +200,11 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'version_id',
 		));
+		$this->addColumn ('result_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Result'),
+		    'align'   => 'right',
+		    'index'   => 'result_id',
+		));
 		$this->addColumn ('response_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Response'),
 		    'align'   => 'right',
