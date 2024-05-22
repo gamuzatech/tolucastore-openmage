@@ -125,8 +125,9 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_IBPT_VERSION  = 'brazil/ibpt/version';
     const XML_PATH_BRAZIL_IBPT_BEGIN_AT = 'brazil/ibpt/begin_at';
     const XML_PATH_BRAZIL_IBPT_END_AT   = 'brazil/ibpt/end_at';
+    const XML_PATH_BRAZIL_IBPT_VALIDATE = 'brazil/ibpt/validate';
 
-    const XML_PATH_BRAZIL_CERTIFICATE_TYPE     = 'brazil/certificate/type';
+    const XML_PATH_BRAZIL_CERTIFICATE_TYPE     = 'brazil/certificate/type_id';
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';
     const XML_PATH_BRAZIL_CERTIFICATE_PASSWORD = 'brazil/certificate/password';
 
