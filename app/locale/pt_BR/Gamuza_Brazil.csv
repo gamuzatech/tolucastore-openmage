@@ -13,6 +13,7 @@
 "The IBPT file has been imported successfully!","O arquivo IBPT foi importado com sucesso!"
 "Begin At","Início Em"
 "End At","Fim Em"
+"Validate","Validar"
 
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
@@ -128,5 +129,6 @@
 "Requested NFC-e not exists.","NFC-e solicitado não existe."
 "Requested NFC-e is already authorized.","NFC-e solicitado já está autorizado."
 "Requested IBPT not imported.","IBPT solicitado não foi importado."
+"Requested IBPT not valid.","IBPT solicitado não é válido."
 "Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 
