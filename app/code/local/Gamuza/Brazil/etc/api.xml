@@ -30,6 +30,11 @@
                         <acl>brazil/nfce/sign</acl>
                         <method>sign</method>
                     </sign>
+                    <response translate="title" module="brazil">
+                        <title>Response a NFC-e for the order</title>
+                        <acl>brazil/nfce/response</acl>
+                        <method>response</method>
+                    </response>
                 </methods>
                 <faults>
                     <order_not_specified>
@@ -91,6 +96,9 @@
                         <sign translate="title" module="brazil">
                             <title>Sign a NFC-e for the order</title>
                         </sign>
+                        <response translate="title" module="brazil">
+                            <title>Response a NFC-e for the order</title>
+                        </response>
                     </nfce>
                 </brazil>
             </resources>

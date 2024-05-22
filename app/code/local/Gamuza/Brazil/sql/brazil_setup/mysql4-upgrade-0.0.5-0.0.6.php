@@ -173,6 +173,14 @@ SQLBLOCK;
             'comment'  => 'Version ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'result_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Result ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'response_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
