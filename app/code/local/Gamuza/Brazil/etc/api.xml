@@ -73,8 +73,12 @@
                         <code>900</code>
                         <message>Requested IBPT not imported.</message>
                     </ibpt_not_imported>
-                    <filters_invalid>
+                    <ibpt_not_valid>
                         <code>1000</code>
+                        <message>Requested IBPT not valid.</message>
+                    </ibpt_not_valid>
+                    <filters_invalid>
+                        <code>1100</code>
                         <message>Invalid filters given. Details in error message.</message>
                     </filters_invalid>
                 </faults>
