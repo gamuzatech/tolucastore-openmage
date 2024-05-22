@@ -478,6 +478,28 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('order_not_exists');
         }
 
+        if (Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_VALIDATE))
+        {
+            $ibptKey     = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_KEY);
+            $ibptSource  = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_SOURCE);
+            $ibptVersion = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_VERSION);
+
+            if (empty ($ibptKey) || empty ($ibptSource) || empty ($ibptVersion))
+            {
+                $this->_fault ('ibpt_not_imported');
+            }
+
+            $beginAt = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_BEGIN_AT);
+            $endAt   = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_END_AT);
+
+            $now = time ();
+
+            if (strtotime ($beginAt) >= $now || strtotime ($endAt) <= $now)
+            {
+                $this->_fault ('ibpt_not_valid');
+            }
+        }
+
         $collection = Mage::getModel ('brazil/ibpt')->getCollection ();
 
         if (!$collection->getSize ())

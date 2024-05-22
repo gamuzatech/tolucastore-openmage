@@ -195,6 +195,9 @@
     </frontend>
     <default>
         <brazil>
+            <ibpt>
+                <validate>1</validate>
+            </ibpt>
             <setting>
                 <crt_id>4</crt_id>
                 <environment_id>2</environment_id>
