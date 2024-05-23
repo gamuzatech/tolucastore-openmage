@@ -19,6 +19,29 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'nfce' => array ()
     );
 
+    protected $_createAttributeList = array(
+        'environment_id',
+        'version_id',
+        'country_id',
+        'region_id',
+        'city_id',
+        'operation_id',
+        'operation_name',
+        'emission_id',
+        'finality_id',
+        'consumer_id',
+        'presence_id',
+        'intermediary_id',
+        'process_id',
+        'freight_id',
+        'crt_id',
+        'print_id',
+        'model_id',
+        'series_id',
+        'batch_id',
+        'number_id',
+    );
+
     public function __construct ()
     {
         // parent::__construct ();
@@ -90,8 +113,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_email'  => strval ($nfce->getCustomerEmail ()),
                 'customer_firstname' => strval ($nfce->getCustomerFirstname ()),
                 'customer_lastname'  => strval ($nfce->getCustomerLastname ()),
-                'payment_method'  => strval ($nfce->getPaymentMethod ()),
-                'payment_amount'  => floatval ($nfce->getPaymentAmount ()),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
                 'updated_at'      => $nfce->getUpdatedAt (),
                 'signed_at'       => $nfce->getSignedAt (),
@@ -304,6 +325,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ;
         }
 
+        foreach ($this->_createAttributeList as $attribute)
+        {
+            if (array_key_exists ($attribute, $data))
+            {
+                $nfce->setData ($attribute, $data [$attribute]);
+            }
+        }
+
         $destinyId = 0;
 
         $orderBillingAddress = $order->getBillingAddress ();
@@ -326,12 +355,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $polynomial = hash ('crc32b', $order->getId ());
 
-        $nfce->addData ($data)
+        $nfce->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED)
             ->setOrderId ($order->getId ())
             ->setDestinyId ($destinyId)
             ->setCode (hexdec ($polynomial))
             ->setCreatedAt (date ('c'))
-            ->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED)
             ->save ()
         ;
 
@@ -355,7 +383,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('key_not_specified');
         }
 
-        if (empty ($digit))
+        if (!ctype_digit ($digit))
         {
             $this->_fault ('digit_not_specified');
         }
@@ -549,7 +577,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $this->_fault ('data_not_specified', $customMessage);
     }
 
-    private function _getNFCe ($nfce)
+    protected function _getNFCe ($nfce)
     {
         $result = array ();
 
