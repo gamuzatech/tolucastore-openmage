@@ -86,7 +86,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Status'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'status_id',
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_status')->toArray (),
@@ -95,7 +94,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Operation Type'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'operation_id',
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_operation')->toArray (),
@@ -104,7 +102,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Destiny'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'destiny_id',
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_destiny')->toArray (),
@@ -113,6 +110,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('City ID'),
 		    'align'   => 'right',
             'width'   => '50px',
+            'type'    => 'number',
 		    'index'   => 'city_id',
 		));
 		$this->addColumn ('print_id', array(
@@ -199,6 +197,8 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Version'),
 		    'align'   => 'right',
 		    'index'   => 'version_id',
+            'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
 		));
 		$this->addColumn ('result_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Result'),
@@ -218,11 +218,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('average_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Average'),
 		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
 		    'index'   => 'average_id',
 		));
 		$this->addColumn ('code', array(
 		    'header'  => Mage::helper ('brazil')->__('Code'),
 		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
 		    'index'   => 'code',
 		));
 		$this->addColumn ('key', array(
@@ -234,6 +238,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Digit'),
 		    'align'   => 'right',
             'width'   => '50px',
+            'type'    => 'number',
 		    'index'   => 'digit',
 		));
 		$this->addColumn ('operation_name', array(
@@ -244,11 +249,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('model_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Model'),
 		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
 		    'index'   => 'model_id',
 		));
 		$this->addColumn ('series_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Series'),
 		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
 		    'index'   => 'series_id',
 		));
 		$this->addColumn ('customer_taxvat', array(
