@@ -17,6 +17,7 @@ class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
             );
 
             $fileCsv = new Varien_File_Csv ();
+            $fileCsv->setDelimiter ('|');
 
             $data = $fileCsv->getDataPairs (Mage::getModuleDir ('lib', 'Gamuza_Brazil') . DS . 'lib' . DS . static::FILENAME);
 

@@ -6,6 +6,7 @@
 
 "Taxpayer Security Code","Código de Segurança do Contribuinte"
 
+"Download and Import IBPT Table","Baixar e Importar Tabela IBPT"
 "Invalid IBPT File Format","Formato Inválido do Arquivo IBPT"
 "An error occurred while import IBPT.","Ocorreu um erro ao importar IBPT."
 "Invalid IBTP format in the Row #%s","Formato Inválido do IBPT na Linha #%s"
@@ -14,7 +15,6 @@
 "Begin At","Início Em"
 "End At","Fim Em"
 "Validate","Validar"
-"Download and Import IBPT Table","Baixar e Importar Tabela IBPT"
 
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
