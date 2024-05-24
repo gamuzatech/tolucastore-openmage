@@ -40,6 +40,19 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'series_id',
         'batch_id',
         'number_id',
+        'customer_taxvat',
+        'observation',
+        'fisco',
+    );
+
+    protected $_updateAttributeList = array(
+        'emitted_at',
+        'average_id',
+        'result_id',
+        'response_id',
+        'response_at',
+        'response_application',
+        'response_reason',
     );
 
     public function __construct ()
@@ -113,6 +126,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_email'  => strval ($nfce->getCustomerEmail ()),
                 'customer_firstname' => strval ($nfce->getCustomerFirstname ()),
                 'customer_lastname'  => strval ($nfce->getCustomerLastname ()),
+                'observation'     => $nfce->getObservation (),
+                'fisco'           => $nfce->getFisco (),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
                 'updated_at'      => $nfce->getUpdatedAt (),
                 'signed_at'       => $nfce->getSignedAt (),
@@ -363,10 +378,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
+        if (strlen ($nfce->getCustomerTaxvat ()) == 11
+            || strlen ($nfce->getCustomerTaxvat ()) == 14)
+        {
+            $order->setCustomerTaxvat ($nfce->getCustomerTaxvat ())->save ();
+        }
+
         return $this->_getNFCe ($nfce);
     }
 
-    public function sign ($orderIncrementId, $orderProtectCode, $key, $digit, $data)
+    public function save ($orderIncrementId, $orderProtectCode, $key, $digit, $data)
     {
         if (empty ($orderIncrementId))
         {
@@ -409,7 +430,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
-        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . 'request';
+        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce';
 
         if (!is_dir ($xmlDir))
         {
@@ -431,7 +452,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function response ($orderIncrementId, $orderProtectCode, $data)
+    public function update ($orderIncrementId, $orderProtectCode, $data)
     {
         if (empty ($orderIncrementId))
         {
@@ -462,13 +483,23 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
+        foreach ($this->_updateAttributeList as $attribute)
+        {
+            if (array_key_exists ($attribute, $data))
+            {
+                $nfce->setData ($attribute, $data [$attribute]);
+            }
+        }
+
+        /**
+         * 100 is AUTHORIZED
+         */
         $statusId = array_key_exists ('result_id', $data) && $data ['result_id'] == 100
             ? Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED
         ;
 
-        $nfce->addData ($data)
-            ->setStatusId ($statusId)
+        $nfce->setStatusId ($statusId)
             ->setUpdatedAt (date ('c'))
             ->save ()
         ;
