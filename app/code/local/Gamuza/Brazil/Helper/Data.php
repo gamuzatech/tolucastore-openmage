@@ -134,7 +134,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CSC_ID   = 'brazil/csc/id';
     const XML_PATH_BRAZIL_CSC_CODE = 'brazil/csc/code';
 
-    const XML_PATH_BRAZIL_SETTING_IS_ACTIVE      = 'brazil/setting/is_active';
+    const XML_PATH_BRAZIL_SETTING_ACTIVE         = 'brazil/setting/active';
     const XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID = 'brazil/setting/environment_id';
     const XML_PATH_BRAZIL_SETTING_VERSION_ID     = 'brazil/setting/version_id';
     const XML_PATH_BRAZIL_SETTING_COUNTRY_ID     = 'brazil/setting/country_id';
