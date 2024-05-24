@@ -308,6 +308,16 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'currency_code' => $store->getBaseCurrency ()->getCode (),
 		));
 */
+		$this->addColumn ('observation', array(
+			'header' => Mage::helper ('brazil')->__('Observation'),
+            'align'  => 'right',
+			'index'  => 'observation',
+		));
+		$this->addColumn ('fisco', array(
+			'header' => Mage::helper ('brazil')->__('Fisco'),
+            'align'  => 'right',
+			'index'  => 'fisco',
+		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('brazil')->__('Created At'),
 			'index'  => 'created_at',
