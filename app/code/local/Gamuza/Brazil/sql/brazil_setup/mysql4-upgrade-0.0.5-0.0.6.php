@@ -266,6 +266,20 @@ SQLBLOCK;
         ));
 */
     $installer->getConnection ()
+        ->addColumn ($table, 'observation', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Observation',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'fisco', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Fisco',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'qrcode', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'nullable' => false,
