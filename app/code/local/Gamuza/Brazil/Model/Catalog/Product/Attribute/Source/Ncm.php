@@ -8,8 +8,6 @@
 class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Ncm
     extends Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
 {
-    const FILENAME = 'ncm.csv';
-
     public function getAllOptions($withEmpty = true, $defaultValues = false)
     {
         if ($this->_options === null)
@@ -17,6 +15,11 @@ class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Ncm
             $this->_options = array (
                 array ('value' => 0, 'label' => Mage::helper ('core')->__('-- Please Select --')),
             );
+
+            if (!Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ACTIVE))
+            {
+                return $this->_options;
+            }
 
             $collection = Mage::getModel ('brazil/ibpt')->getCollection ()
                 ->addFieldToFilter ('type', array ('eq' => Gamuza_Brazil_Helper_Data::IBPT_TYPE_NCM))
