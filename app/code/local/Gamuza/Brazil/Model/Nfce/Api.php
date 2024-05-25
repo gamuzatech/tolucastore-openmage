@@ -46,6 +46,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
     );
 
     protected $_updateAttributeList = array(
+        'qr_code',
+        'url_key',
         'emitted_at',
         'average_id',
         'result_id',
