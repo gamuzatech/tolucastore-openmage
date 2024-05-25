@@ -322,11 +322,13 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 			'header' => Mage::helper ('brazil')->__('QR Code'),
             'align'  => 'right',
 			'index'  => 'qr_code',
+            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
 		));
 		$this->addColumn ('url_key', array(
-			'header' => Mage::helper ('brazil')->__('QR Code'),
+			'header' => Mage::helper ('brazil')->__('URL Key'),
             'align'  => 'right',
 			'index'  => 'url_key',
+            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
 		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('brazil')->__('Created At'),
