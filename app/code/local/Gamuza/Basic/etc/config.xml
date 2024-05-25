@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Basic>
-            <version>0.0.20</version>
+            <version>0.0.21</version>
         </Gamuza_Basic>
     </modules>
     <global>
@@ -251,6 +251,11 @@
                     <to_order>*</to_order>
                 </is_service>
             </sales_convert_quote>
+            <sales_convert_quote_item>
+                <gtin>
+                    <to_order_item>*</to_order_item>
+                </gtin>
+            </sales_convert_quote_item>
             <sales_convert_order>
                 <customer_cellphone>
                     <to_quote>*</to_quote>
@@ -259,6 +264,11 @@
                     <to_quote>*</to_quote>
                 </is_service>
             </sales_convert_order>
+            <sales_convert_order_item>
+                <gtin>
+                    <to_quote_item>*</to_quote_item>
+                </gtin>
+            </sales_convert_order_item>
             <!-- Address -->
             <sales_copy_order_billing_address>
                 <cellphone>
@@ -419,10 +429,18 @@
             <quote>
                 <item>
                     <product_attributes>
-                        <image/>
+                        <image />
+                        <gtin />
                     </product_attributes>
                 </item>
             </quote>
+            <order>
+                <item>
+                    <product_attributes>
+                        <gtin />
+                    </product_attributes>
+                </item>
+            </order>
         </sales>
         <basic>
             <product>
@@ -533,6 +551,7 @@
                 <attributes>
                     <brand />
                     <color />
+                    <gtin />
                     <sku_position />
                     <size />
                 </attributes>
