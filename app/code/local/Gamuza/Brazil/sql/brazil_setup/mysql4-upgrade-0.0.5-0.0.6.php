@@ -166,13 +166,6 @@ SQLBLOCK;
             'comment'  => 'CRT ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'version_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Version ID',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'result_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
@@ -202,6 +195,13 @@ SQLBLOCK;
             'default'  => -1,
             'nullable' => false,
             'comment'  => 'Average ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'version', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Version',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'code', array(

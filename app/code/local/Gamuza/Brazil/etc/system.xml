@@ -183,7 +183,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </environment_id>
-                        <version_id translate="label" module="brazil">
+                        <version translate="label" module="brazil">
                             <label>Version</label>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
@@ -191,13 +191,22 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </version_id>
+                        </version>
+                        <timeout translate="label" module="brazil">
+                            <label>Timeout</label>
+                            <comment>milliseconds</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </timeout>
                         <country_id translate="label" module="brazil">
                             <label>Country ID</label>
                             <tooltip>Country Code</tooltip>
                             <comment><![CDATA[1058 = Brazil]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
+                            <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -207,7 +216,7 @@
                             <tooltip>UF Code</tooltip>
                             <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
+                            <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -217,7 +226,7 @@
                             <tooltip>City Code</tooltip>
                             <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>50</sort_order>
+                            <sort_order>60</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -227,7 +236,7 @@
                             <comment>Tax Regime Code</comment>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_crt</source_model>
-                            <sort_order>60</sort_order>
+                            <sort_order>70</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -236,7 +245,7 @@
                             <label>I.E.</label>
                             <comment>State Registration</comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>70</sort_order>
+                            <sort_order>80</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -245,11 +254,20 @@
                             <label>I.M.</label>
                             <comment>Municipal Registration</comment>
                             <frontend_type>text</frontend_type>
-                            <sort_order>80</sort_order>
+                            <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </company_im>
+                        <remove_accents translate="label" module="brazil">
+                            <label>Remove Accents</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remove_accents>
                     </fields>
                 </setting>
                 <nfe translate="label" module="brazil">
