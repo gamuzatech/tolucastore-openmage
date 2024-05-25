@@ -50,6 +50,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
 
+    const ORDER_ITEM_ATTRIBUTE_GTIN = 'gtin';
+
     const ORDER_SUFFIX_APP    = 'APP';
     const ORDER_SUFFIX_BOT    = 'BOT';
     const ORDER_SUFFIX_PDV    = 'PDV';
