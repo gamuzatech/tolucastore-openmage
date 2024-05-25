@@ -197,6 +197,14 @@ SQLBLOCK;
             'comment'  => 'Average ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'customer_ie', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Customer IE',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'version', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
@@ -248,23 +256,6 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'Series ID',
         ));
-/*
-    $installer->getConnection ()
-        ->addColumn ($table, 'payment_method', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Payment Method',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'payment_amount', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
-            'length'   => '12,4',
-            'unsigned' => true,
-            'nullable' => false,
-            'comment'  => 'Payment Amount',
-        ));
-*/
     $installer->getConnection ()
         ->addColumn ($table, 'observation', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
