@@ -347,6 +347,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ;
         }
 
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED))
+        {
+            $this->_fault ('nfce_already_authorized');
+        }
+
         foreach ($this->_createAttributeList as $attribute)
         {
             if (array_key_exists ($attribute, $data))
