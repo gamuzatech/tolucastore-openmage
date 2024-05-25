@@ -38,7 +38,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'model_id',
         'series_id',
         'batch_id',
-        'number_id',
         'version',
         'customer_taxvat',
         'observation',
