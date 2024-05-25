@@ -146,6 +146,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'receipt_id'      => $nfce->getReceiptId (),
                 'average_id'      => intval ($nfce->getAverageId ()),
                 'status_id'       => strval ($nfce->getStatusId ()),
+                'qr_code'         => $nfce->getQrCode (),
+                'url_key'         => $nfce->getUrlKey (),
                 // Toluca_PDV
                 'is_pdv'          => boolval ($nfce->getIsPdv ()),
                 'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
