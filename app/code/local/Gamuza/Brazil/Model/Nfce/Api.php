@@ -50,10 +50,12 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'emitted_at',
         'average_id',
         'result_id',
+        'receipt_id',
         'response_id',
         'response_at',
         'response_application',
         'response_reason',
+        'response_key',
     );
 
     public function __construct ()
@@ -340,6 +342,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             $nfce = Mage::getModel ('brazil/nfce')
                 ->setNumberId ($numberId)
+                ->setCustomerIe (Gamuza_Brazil_Helper_Data::NFE_CUSTOMER_IE_NONE)
             ;
         }
 
@@ -497,7 +500,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         /**
          * 100 is AUTHORIZED
          */
-        $statusId = array_key_exists ('result_id', $data) && $data ['result_id'] == 100
+        $statusId = array_key_exists ('response_id', $data) && $data ['response_id'] == 100
             ? Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED
         ;
