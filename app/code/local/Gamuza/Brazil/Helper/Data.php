@@ -171,13 +171,17 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
         $fp = fopen ($filename, 'a');
 
         flock  ($fp, LOCK_EX);
-        fwrite ($fp, sprintf ("%s: %s\n", date ('c'), json_encode ($contents)));
+        fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode ($contents), PHP_EOL));
 
         $path = sprintf ("brazil/{$type}/number_id");
+        $value = Mage::getStoreConfig ($path);
+        $result = intval ($value) + 1;
 
-        $result = Mage::getStoreConfig ($path);
+        fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode (array ('number_id' => $result)), PHP_EOL));
 
-        Mage::getModel ('core/config')->saveConfig ($path, $result + 1);
+        Mage::getModel ('core/config')->saveConfig ($path, $result);
+        Mage::app ()->getCacheInstance ()->cleanType ('config');
+        Mage::dispatchEvent ('adminhtml_cache_refresh_type', array ('type' => 'config'));
 
         flock  ($fp, LOCK_UN);
         fclose ($fp);
