@@ -201,7 +201,8 @@
             <setting>
                 <crt_id>1</crt_id>
                 <environment_id>2</environment_id>
-                <version_id>4.00</version_id>
+                <version>4.00</version>
+                <timeout>12000</timeout>
                 <country_id>1058</country_id>
             </setting>
             <nfe>

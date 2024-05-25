@@ -193,13 +193,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
 		));
-		$this->addColumn ('version_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Version'),
-		    'align'   => 'right',
-		    'index'   => 'version_id',
-            'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
-		));
 		$this->addColumn ('result_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Result'),
 		    'align'   => 'right',
@@ -221,6 +214,13 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'width'   => '50px',
             'type'    => 'number',
 		    'index'   => 'average_id',
+		));
+		$this->addColumn ('version', array(
+		    'header'  => Mage::helper ('brazil')->__('Version'),
+		    'align'   => 'right',
+		    'index'   => 'version',
+            'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
 		));
 		$this->addColumn ('code', array(
 		    'header'  => Mage::helper ('brazil')->__('Code'),
