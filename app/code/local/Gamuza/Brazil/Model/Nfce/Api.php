@@ -21,7 +21,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
     protected $_createAttributeList = array(
         'environment_id',
-        'version_id',
         'country_id',
         'region_id',
         'city_id',
@@ -40,6 +39,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'series_id',
         'batch_id',
         'number_id',
+        'version',
         'customer_taxvat',
         'observation',
         'fisco',
@@ -99,7 +99,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'increment_id'    => strval ($nfce->getIncrementId ()),
                 'protect_code'    => strval ($nfce->getProtectCode ()),
                 'environment_id'  => intval ($nfce->getEnvironmentId ()),
-                'version_id'      => strval ($nfce->getVersionId ()),
                 'model_id'        => intval ($nfce->getModelId ()),
                 'series_id'       => intval ($nfce->getSeriesId ()),
                 'batch_id'        => intval ($nfce->getBatchId ()),
@@ -119,6 +118,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'freight_id'      => intval ($nfce->getFreightId ()),
                 'crt_id'          => intval ($nfce->getCrtId ()),
                 'operation_name'  => strval ($nfce->getOperationName ()),
+                'version'         => strval ($nfce->getVersion ()),
                 'code'            => strval ($nfce->getCode ()),
                 'key'             => $nfce->getKey (),
                 'digit'           => $nfce->getDigit (),
