@@ -280,10 +280,16 @@ SQLBLOCK;
             'comment'  => 'Fisco',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'qrcode', array(
+        ->addColumn ($table, 'qr_code', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'nullable' => false,
-            'comment'  => 'QRCode',
+            'comment'  => 'QR Code',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'url_key', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'nullable' => false,
+            'comment'  => 'URL Key',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'status_id', array(
