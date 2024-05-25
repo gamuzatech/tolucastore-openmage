@@ -138,13 +138,15 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_BRAZIL_SETTING_ACTIVE         = 'brazil/setting/active';
     const XML_PATH_BRAZIL_SETTING_ENVIRONMENT_ID = 'brazil/setting/environment_id';
-    const XML_PATH_BRAZIL_SETTING_VERSION_ID     = 'brazil/setting/version_id';
+    const XML_PATH_BRAZIL_SETTING_VERSION        = 'brazil/setting/version';
+    const XML_PATH_BRAZIL_SETTING_TIMEOUT        = 'brazil/setting/timeout';
     const XML_PATH_BRAZIL_SETTING_COUNTRY_ID     = 'brazil/setting/country_id';
     const XML_PATH_BRAZIL_SETTING_REGION_ID      = 'brazil/setting/region_id';
     const XML_PATH_BRAZIL_SETTING_CITY_ID        = 'brazil/setting/city_id';
     const XML_PATH_BRAZIL_SETTING_CRT_ID         = 'brazil/setting/crt_id';
     const XML_PATH_BRAZIL_SETTING_COMPANY_IE     = 'brazil/setting/company_ie';
     const XML_PATH_BRAZIL_SETTING_COMPANY_IM     = 'brazil/setting/company_im';
+    const XML_PATH_BRAZIL_SETTING_REMOVE_ACCENTS = 'brazil/setting/remove_accents';
 
     const XML_PATH_BRAZIL_NFE_PRINT_ID  = 'brazil/nfe/print_id';
     const XML_PATH_BRAZIL_NFE_BATCH_ID  = 'brazil/nfe/batch_id';
