@@ -14,6 +14,8 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_BRAZIL_CEST = 'brazil_cest';
     const PRODUCT_ATTRIBUTE_BRAZIL_CFOP = 'brazil_cfop';
 
+    const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
+
     const CUSTOMER_ATTRIBUTE_RG_IE = 'br_rg_ie';
 
     const ORDER_ATTRIBUTE_IS_PIX = 'is_pix';
