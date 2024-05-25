@@ -159,7 +159,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             foreach ($orderItemCollection as $item)
             {
-                $brazilNCM [] = preg_replace ('[\D]', "", $item->getBrazilNcm ());
+                $brazilNCM [] = $item->getBrazilNcm ();
             }
 
             $brazilIBPTCollection = Mage::getModel ('brazil/ibpt')->getCollection ()
@@ -192,6 +192,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                     'base_row_total'         => floatval ($item->getBaseRowTotal ()),
                     'base_row_invoiced'      => floatval ($item->getBaseRowInvoiced ()),
                     'gift_message_available' => intval ($item->getGiftMessageAvailable ()),
+                    // custom
+                    'gtin' => strval ($item->getGtin ()),
                     // DFe
                     'brazil_ncm'  => $item->getBrazilNcm (),
                     'brazil_cest' => $item->getBrazilCest (),
@@ -201,7 +203,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
                 foreach ($brazilIBPTCollection as $ibpt)
                 {
-                    $productBrazilNCM = preg_replace ('[\D]', "", $item->getBrazilNcm ());
+                    $productBrazilNCM = $item->getBrazilNcm ();
 
                     if (!strcmp ($ibpt->getCode (), $productBrazilNCM))
                     {
@@ -430,7 +432,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
-        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce';
+        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . 'request';
 
         if (!is_dir ($xmlDir))
         {
@@ -566,16 +568,22 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('ibpt_not_imported');
         }
 
+        $fieldList = array(
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_NCM,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CEST,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CFOP,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_GTIN,
+        );
+
         foreach ($order->getAllItems () as $item)
         {
-            foreach (array ('ncm', 'cest', 'cfop') as $code)
+            foreach ($fieldList as $field)
             {
-                $field = sprintf ('brazil_%s', $code);
-                $value = preg_replace ('[\D]', "", $item->getData ($field));
+                $value = $item->getData ($field);
 
                 if ($updateIBPT)
                 {
-                    $value = preg_replace ('[\D]', "", $item->getProduct ()->getData ($field));
+                    $value = $item->getProduct ()->getData ($field);
                 }
 
                 if (empty ($value))
