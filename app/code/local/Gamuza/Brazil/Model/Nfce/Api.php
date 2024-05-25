@@ -40,6 +40,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'batch_id',
         'version',
         'customer_taxvat',
+        'customer_ie',
         'observation',
         'fisco',
     );
@@ -129,6 +130,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_email'  => strval ($nfce->getCustomerEmail ()),
                 'customer_firstname' => strval ($nfce->getCustomerFirstname ()),
                 'customer_lastname'  => strval ($nfce->getCustomerLastname ()),
+                'customer_ie'     => intval ($nfce->getCustomerIe ()),
                 'observation'     => $nfce->getObservation (),
                 'fisco'           => $nfce->getFisco (),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
@@ -342,7 +344,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             $nfce = Mage::getModel ('brazil/nfce')
                 ->setNumberId ($numberId)
-                ->setCustomerIe (Gamuza_Brazil_Helper_Data::NFE_CUSTOMER_IE_NONE)
             ;
         }
 
