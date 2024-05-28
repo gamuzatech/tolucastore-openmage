@@ -55,5 +55,20 @@ class Gamuza_Basic_Model_Sales_Order extends Mage_Sales_Model_Order
 
         return $collection->getSize () > 0;
     }
+
+    public function getAllAddresses ()
+    {
+        $addresses = [];
+
+        foreach ($this->getAddressCollection () as $address)
+        {
+            if (!$address->isDeleted ())
+            {
+                $addresses [] =  $address;
+            }
+        }
+
+        return $addresses;
+    }
 }
 
