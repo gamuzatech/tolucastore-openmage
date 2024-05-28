@@ -60,7 +60,7 @@ class Gamuza_Basic_Model_Sales_Order extends Mage_Sales_Model_Order
     {
         $addresses = [];
 
-        foreach ($this->getAddressCollection () as $address)
+        foreach ($this->getAddressesCollection () as $address)
         {
             if (!$address->isDeleted ())
             {
