@@ -53,32 +53,36 @@
                         <code>400</code>
                         <message>Requested digit not specified.</message>
                     </digit_not_specified>
-                    <data_not_specified>
+                    <info_not_specified>
                         <code>500</code>
+                        <message>Requested info not specified.</message>
+                    </info_not_specified>
+                    <data_not_specified>
+                        <code>600</code>
                         <message>Requested data not specified.</message>
                     </data_not_specified>
                     <order_not_exists>
-                        <code>600</code>
+                        <code>700</code>
                         <message>Requested order not exists.</message>
                     </order_not_exists>
                     <nfce_not_exists>
-                        <code>700</code>
+                        <code>800</code>
                         <message>Requested NFC-e not exists.</message>
                     </nfce_not_exists>
                     <nfce_already_authorized>
-                        <code>800</code>
+                        <code>900</code>
                         <message>Requested NFC-e is already authorized.</message>
                     </nfce_already_authorized>
                     <ibpt_not_imported>
-                        <code>900</code>
+                        <code>1000</code>
                         <message>Requested IBPT not imported.</message>
                     </ibpt_not_imported>
                     <ibpt_not_valid>
-                        <code>1000</code>
+                        <code>1100</code>
                         <message>Requested IBPT not valid.</message>
                     </ibpt_not_valid>
                     <filters_invalid>
-                        <code>1100</code>
+                        <code>1200</code>
                         <message>Invalid filters given. Details in error message.</message>
                     </filters_invalid>
                 </faults>
