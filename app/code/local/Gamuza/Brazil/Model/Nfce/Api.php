@@ -401,7 +401,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function save ($orderIncrementId, $orderProtectCode, $key, $digit, $data)
+    public function save ($orderIncrementId, $orderProtectCode, $key, $digit, $info)
     {
         if (empty ($orderIncrementId))
         {
@@ -423,11 +423,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('digit_not_specified');
         }
 
-        $data = base64_decode ($data);
+        $info = base64_decode ($info);
 
-        if (!simplexml_load_string ($data))
+        if (!simplexml_load_string ($info))
         {
-            $this->_fault ('data_not_specified');
+            $this->_fault ('info_not_specified');
         }
 
         $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
@@ -444,16 +444,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
-        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . 'request';
+        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . 'info';
 
         if (!is_dir ($xmlDir))
         {
             mkdir ($xmlDir, 0777, true);
         }
 
-        $filename = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $key);
+        $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $key);
 
-        file_put_contents ($filename, $data);
+        file_put_contents ($xmlFile, $info);
 
         $nfce->setKey ($key)
             ->setDigit ($digit)
