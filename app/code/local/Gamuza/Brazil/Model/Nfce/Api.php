@@ -158,13 +158,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_table_id'    => intval ($nfce->getPdvTableId ()),
             );
 
-            $orderItemCollection = Mage::getModel ('sales/order_item')->getCollection ()
-                ->setOrderFilter ($nfce->getOrderId ())
-            ;
+            $order = $this->_initOrder ($nfce->getIncrementId (), $nfce->getProtectCode ());
 
             $brazilNCM = array ();
 
-            foreach ($orderItemCollection as $item)
+            foreach ($order->getAllItems () as $item)
             {
                 $brazilNCM [] = $item->getBrazilNcm ();
             }
@@ -173,7 +171,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 ->addFieldToFilter ('code', array ('in' => $brazilNCM))
             ;
 
-            foreach ($orderItemCollection as $item)
+            foreach ($order->getAllItems () as $item)
             {
                 $orderItem = array(
                     'item_id'         => intval ($item->getId ()),
@@ -240,11 +238,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 $data ['items'][] = $orderItem;
             }
 
-            $orderAddressCollection = Mage::getModel ('sales/order_address')->getCollection ()
-                ->setOrderFilter ($nfce->getOrderId ())
-            ;
-
-            foreach ($orderAddressCollection as $address)
+            foreach ($order->getAllAddresses () as $address)
             {
                 $data ['addresses'][] = array(
                     'address_type' => strval ($address->getAddressType ()),
@@ -269,11 +263,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 );
             }
 
-            $orderPaymentCollection = Mage::getModel ('sales/order_payment')->getCollection ()
-                ->setOrderFilter ($nfce->getOrderId ())
-            ;
-
-            foreach ($orderPaymentCollection as $payment)
+            foreach ($order->getAllPayments () as $payment)
             {
                 $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_OTHER;
 
@@ -559,7 +549,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
      */
     protected function _initOrder ($orderIncrementId, $orderProtectCode)
     {
-        $order = Mage::getModel ('sales/order')->getCollection ()
+        $order = Mage::getModel ('basic/sales_order')->getCollection ()
             ->addFieldToFilter ('increment_id', array ('eq' => $orderIncrementId))
             ->addFieldToFilter ('protect_code', array ('eq' => $orderProtectCode))
             ->getFirstItem ()
