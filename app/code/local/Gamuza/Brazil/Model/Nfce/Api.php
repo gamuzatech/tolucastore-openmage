@@ -392,6 +392,9 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
+        /**
+         * CPF or CNPJ
+         */
         if (strlen ($nfce->getCustomerTaxvat ()) == 11
             || strlen ($nfce->getCustomerTaxvat ()) == 14)
         {
@@ -466,7 +469,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function update ($orderIncrementId, $orderProtectCode, $data)
+    public function update ($orderIncrementId, $orderProtectCode, $sent, $return, $data)
     {
         if (empty ($orderIncrementId))
         {
@@ -476,6 +479,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (empty ($orderProtectCode))
         {
             $this->_fault ('code_not_specified');
+        }
+
+        if (empty ($sent))
+        {
+            $this->_fault ('sent_not_specified');
+        }
+
+        if (empty ($return))
+        {
+            $this->_fault ('return_not_specified');
         }
 
         if (empty ($data))
@@ -503,6 +516,22 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             {
                 $nfce->setData ($attribute, $data [$attribute]);
             }
+        }
+
+        $codeList = array ('sent', 'return');
+
+        foreach ($codeList as $code)
+        {
+            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . $code;
+
+            if (!is_dir ($xmlDir))
+            {
+                mkdir ($xmlDir, 0777, true);
+            }
+
+            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfce->getKey ());
+
+            file_put_contents ($xmlFile, $$code);
         }
 
         /**
