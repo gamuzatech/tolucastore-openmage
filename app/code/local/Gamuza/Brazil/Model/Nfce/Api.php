@@ -295,7 +295,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                     'base_shipping_amount'   => floatval ($payment->getBaseShippingAmount ()),
                     'base_shipping_captured' => floatval ($payment->getBaseShippingCaptured ()),
                     'base_shipping_refunded' => floatval ($payment->getBaseShippingRefunded ()),
-                    'additional_information' => $payment->getAdditionalInformation (),
+                    'additional_information' => $payment->getAdditionalInformation () ?: null,
                     // DFe
                     'payment_id' => $paymentId,
                 );
