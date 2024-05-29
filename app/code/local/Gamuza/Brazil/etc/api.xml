@@ -77,20 +77,24 @@
                         <code>1000</code>
                         <message>Requested NFC-e not exists.</message>
                     </nfce_not_exists>
-                    <nfce_already_authorized>
+                    <nfce_not_saved>
                         <code>1100</code>
+                        <message>Requested NFC-e not saved.</message>
+                    </nfce_not_saved>
+                    <nfce_already_authorized>
+                        <code>1200</code>
                         <message>Requested NFC-e is already authorized.</message>
                     </nfce_already_authorized>
                     <ibpt_not_imported>
-                        <code>1200</code>
+                        <code>1300</code>
                         <message>Requested IBPT not imported.</message>
                     </ibpt_not_imported>
                     <ibpt_not_valid>
-                        <code>1300</code>
+                        <code>1400</code>
                         <message>Requested IBPT not valid.</message>
                     </ibpt_not_valid>
                     <filters_invalid>
-                        <code>1400</code>
+                        <code>1500</code>
                         <message>Invalid filters given. Details in error message.</message>
                     </filters_invalid>
                 </faults>
