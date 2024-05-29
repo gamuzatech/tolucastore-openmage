@@ -448,7 +448,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $result = file_put_contents ($xmlFile, $info);
 
-        if ($result != strlen ($xmlFile) || $result === false)
+        if (!is_file ($xmlFile) || $result != strlen ($info) || $result === false)
         {
             $this->_fault ('nfce_not_saved');
         }
@@ -528,7 +528,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             $result = file_put_contents ($xmlFile, $$code);
 
-            if ($result != strlen ($xmlFile) || $result === false)
+            if (!is_file ($xmlFile) || $result != strlen ($$code) || $result === false)
             {
                 $this->_fault ('nfce_not_saved');
             }
