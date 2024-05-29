@@ -437,7 +437,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
-        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . 'info';
+        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'xml' . DS . 'info';
 
         if (!is_dir ($xmlDir))
         {
@@ -517,7 +517,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         foreach ($codeList as $code)
         {
-            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'xml' . DS . 'nfce' . DS . $code;
+            $$code = base64_decode ($$code);
+
+            if (!simplexml_load_string ($$code))
+            {
+                $this->_fault (sprintf ('%s_not_specified', $code));
+            }
+
+            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'xml' . DS . $code;
 
             if (!is_dir ($xmlDir))
             {
