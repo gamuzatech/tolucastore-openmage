@@ -52,6 +52,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'average_id',
         'result_id',
         'receipt_id',
+        'protocol_id',
         'response_id',
         'response_at',
         'response_application',
