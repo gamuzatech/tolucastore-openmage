@@ -97,6 +97,10 @@
                         <code>1500</code>
                         <message>Invalid filters given. Details in error message.</message>
                     </filters_invalid>
+                    <key_invalid>
+                        <code>1600</code>
+                        <message>Invalid key given.</message>
+                    </key_invalid>
                 </faults>
             </brazil_nfce>
         </resources>
