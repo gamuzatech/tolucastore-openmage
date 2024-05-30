@@ -359,6 +359,14 @@
                     </admin_basic_order_cancel_after>
                 </observers>
             </order_cancel_after>
+            <sales_quote_item_set_product>
+                <observers>
+                    <gamuza_basic_sales_quote_item_set_product>
+                        <class>basic/observer</class>
+                        <method>salesQuoteItemSetProduct</method>
+                    </gamuza_basic_sales_quote_item_set_product>
+                </observers>
+            </sales_quote_item_set_product>
             <sales_order_place_after>
                 <observers>
                     <admin_basic_sales_order_place_after>
