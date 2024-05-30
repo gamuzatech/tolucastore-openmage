@@ -208,6 +208,11 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'receipt_id',
 		));
+		$this->addColumn ('protocol_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Protocol'),
+		    'align'   => 'right',
+		    'index'   => 'protocol_id',
+		));
 		$this->addColumn ('average_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Average'),
 		    'align'   => 'right',

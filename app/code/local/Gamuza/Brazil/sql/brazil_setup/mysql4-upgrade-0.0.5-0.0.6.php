@@ -182,6 +182,13 @@ SQLBLOCK;
             'comment'  => 'Response ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'protocol_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Protocol ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'receipt_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
