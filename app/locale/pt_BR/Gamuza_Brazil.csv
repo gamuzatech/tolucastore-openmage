@@ -140,3 +140,5 @@
 "Requested IBPT not valid.","IBPT solicitado não é válido."
 "Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 
+"Invalid key given.","Chave fornecida é inválida."
+
