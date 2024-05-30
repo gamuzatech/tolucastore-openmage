@@ -334,6 +334,16 @@ CONTENT;
         return $this;
     }
 
+    public function salesQuoteItemSetProduct (Varien_Event_Observer $observer)
+    {
+        $quoteItem = $observer->getQuoteItem ();
+        $product   = $observer->getProduct ();
+
+        $productGTIN = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN);
+
+        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
+    }
+
     public function salesOrderPreparingAfter ($observer)
     {
         $this->_updateOrderServiceState (
