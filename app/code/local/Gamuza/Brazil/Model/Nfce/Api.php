@@ -411,6 +411,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('key_not_specified');
         }
 
+        if (strlen ($key) != 44)
+        {
+            $this->_fault ('key_invalid');
+        }
+
         if (!ctype_digit ($digit))
         {
             $this->_fault ('digit_not_specified');
@@ -464,7 +469,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function update ($orderIncrementId, $orderProtectCode, $sent, $return, $data)
+    public function update ($orderIncrementId, $orderProtectCode, $info, $sent, $return, $data)
     {
         if (empty ($orderIncrementId))
         {
@@ -474,6 +479,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (empty ($orderProtectCode))
         {
             $this->_fault ('code_not_specified');
+        }
+
+        if (empty ($info))
+        {
+            $this->_fault ('info_not_specified');
         }
 
         if (empty ($sent))
@@ -513,7 +523,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
         }
 
-        $codeList = array ('sent', 'return');
+        $codeList = array ('info', 'sent', 'return');
 
         foreach ($codeList as $code)
         {
