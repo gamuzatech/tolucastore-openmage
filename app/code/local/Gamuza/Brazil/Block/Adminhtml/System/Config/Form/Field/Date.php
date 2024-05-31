@@ -20,9 +20,11 @@ class Gamuza_Brazil_Block_Adminhtml_System_Config_Form_Field_Date
             return null;
         }
 
-        $locale = new Zend_Locale ();
+        $defaultLocale = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE);
 
-        return Mage::app ()->getLocale ()->date ($value, null, $locale, false)->toString ('dd/MM/YYYY');
+        $locale = new Zend_Locale ($defaultLocale);
+
+        return Mage::app ()->getLocale ()->date ($value, null, $locale, true)->toString ('dd/MM/YYYY HH:mm:ss');
     }
 }
 
