@@ -351,6 +351,10 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             {
                 $nfce->setData ($attribute, $data [$attribute]);
             }
+            else
+            {
+                $this->_fault ('data_not_specified');
+            }
         }
 
         $destinyId = 0;
@@ -521,6 +525,10 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             if (array_key_exists ($attribute, $data))
             {
                 $nfce->setData ($attribute, $data [$attribute]);
+            }
+            else
+            {
+                $this->_fault ('data_not_specified');
             }
         }
 
