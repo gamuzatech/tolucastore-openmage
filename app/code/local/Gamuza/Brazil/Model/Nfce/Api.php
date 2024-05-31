@@ -622,7 +622,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             $now = time ();
 
-            if (strtotime ($beginAt) >= $now || strtotime ($endAt) <= $now)
+            if (strtotime ($beginAt) > $now || strtotime ($endAt) < $now)
             {
                 $this->_fault ('ibpt_not_valid');
             }
