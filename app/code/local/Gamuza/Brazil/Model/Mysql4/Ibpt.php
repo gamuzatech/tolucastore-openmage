@@ -217,7 +217,14 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
         }
 
         $row [8] = $this->_convertDate ($row [8]); // begin_at
-        $row [9] = $this->_convertDate ($row [9]); // end_at
+        $row [9] = $this->_convertDate ($row [9], 86400 - 1); // end_at
+
+        $now = time ();
+
+        if (strtotime ($row [8]) > $now || strtotime ($row [9]) < $now)
+        {
+            Mage::throwException (Mage::helper ('brazil')->__('Requested IBPT table is not valid.'));
+        }
 
         $row [13] = date ('c'); // created_at
 
@@ -300,15 +307,19 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
     /**
      * Convert given date to UTC
      */
-    protected function _convertDate ($date)
+    protected function _convertDate ($date, $second = 0)
     {
+        $store = Mage_Core_Model_App::ADMIN_STORE_ID;
+
+        $date = Mage::app ()->getLocale ()->utcDate ($store, $date, true, 'dd/MM/YYYY');
+
         $defaultLocale = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE);
 
         $locale = new Zend_Locale ($defaultLocale);
 
-        $date = Mage::app ()->getLocale ()->date ($date, null, $locale, false);
+        $date->addSecond ($second);
 
-        return $date->toString ('YYYY-MM-dd');
+        return $date->toString ('YYYY-MM-dd HH:mm:ss');
     }
 }
 
