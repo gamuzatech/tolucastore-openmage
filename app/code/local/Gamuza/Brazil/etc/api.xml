@@ -87,11 +87,11 @@
                     </nfce_already_authorized>
                     <ibpt_not_imported>
                         <code>1300</code>
-                        <message>Requested IBPT not imported.</message>
+                        <message>Requested IBPT table was not imported.</message>
                     </ibpt_not_imported>
                     <ibpt_not_valid>
                         <code>1400</code>
-                        <message>Requested IBPT not valid.</message>
+                        <message>Requested IBPT table is not valid.</message>
                     </ibpt_not_valid>
                     <filters_invalid>
                         <code>1500</code>
