@@ -137,8 +137,8 @@
 "Requested NFC-e not exists.","NFC-e solicitado não existe."
 "Requested NFC-e not saved.","NFC-e solicitada não foi salva."
 "Requested NFC-e is already authorized.","NFC-e solicitado já está autorizado."
-"Requested IBPT not imported.","IBPT solicitado não foi importado."
-"Requested IBPT not valid.","IBPT solicitado não é válido."
+"Requested IBPT table was not imported.","Tabela IBPT solicitada não foi importada."
+"Requested IBPT table is not valid.","Tabela IBPT solicitada não é válida."
 "Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 
 "Invalid key given.","Chave fornecida é inválida."
