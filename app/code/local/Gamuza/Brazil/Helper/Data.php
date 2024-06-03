@@ -7,8 +7,9 @@
 
 class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    const IBPT_TABLE = 'gamuza_brazil_ibpt';
     const NFCE_TABLE = 'gamuza_brazil_nfce';
+    const IBPT_TABLE = 'gamuza_brazil_ibpt';
+    const CEST_TABLE = 'gamuza_brazil_cest';
 
     const PRODUCT_ATTRIBUTE_BRAZIL_NCM  = 'brazil_ncm';
     const PRODUCT_ATTRIBUTE_BRAZIL_CEST = 'brazil_cest';
@@ -128,6 +129,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_IBPT_BEGIN_AT = 'brazil/ibpt/begin_at';
     const XML_PATH_BRAZIL_IBPT_END_AT   = 'brazil/ibpt/end_at';
     const XML_PATH_BRAZIL_IBPT_VALIDATE = 'brazil/ibpt/validate';
+
+    const XML_PATH_BRAZIL_CEST_IMPORT   = 'brazil/cest/import';
+    const XML_PATH_BRAZIL_CEST_VERSION  = 'brazil/cest/version';
+    const XML_PATH_BRAZIL_CEST_BEGIN_AT = 'brazil/cest/begin_at';
+    const XML_PATH_BRAZIL_CEST_END_AT   = 'brazil/cest/end_at';
+    const XML_PATH_BRAZIL_CEST_VALIDATE = 'brazil/cest/validate';
 
     const XML_PATH_BRAZIL_CERTIFICATE_TYPE     = 'brazil/certificate/type_id';
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';

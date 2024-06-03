@@ -313,7 +313,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = false)
+    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = false, $updateCEST = false)
     {
         if (empty ($orderIncrementId))
         {
@@ -333,6 +333,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
 
         $order = $this->_initIBPT ($order, $updateIBPT);
+
+        $order = $this->_initCEST ($order, $updateCEST);
 
         $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
 
@@ -674,6 +676,80 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             if (!$ibpt || !$ibpt->getId ())
             {
                 $this->_faultOrderItem ($item, sprintf ('ncm %s', $item->getBrazilNcm ()));
+            }
+        }
+
+        return $order;
+    }
+
+    protected function _initCEST (Mage_Sales_Model_Order $order, $updateCEST)
+    {
+        if (!$order || !$order->getId ())
+        {
+            $this->_fault ('order_not_exists');
+        }
+
+        if (Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_VALIDATE))
+        {
+            $cestVersion = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_VERSION);
+
+            if (empty ($cestVersion))
+            {
+                $this->_fault ('cest_not_imported');
+            }
+
+            $beginAt = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_BEGIN_AT);
+            $endAt   = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_END_AT);
+
+            $now = time ();
+
+            if (strtotime ($beginAt) > $now || strtotime ($endAt) < $now)
+            {
+                $this->_fault ('cest_not_valid');
+            }
+        }
+
+        $collection = Mage::getModel ('brazil/cest')->getCollection ();
+
+        if (!$collection->getSize ())
+        {
+            $this->_fault ('cest_not_imported');
+        }
+
+        $fieldList = array(
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_NCM,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CEST,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CFOP,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_GTIN,
+        );
+
+        foreach ($order->getAllItems () as $item)
+        {
+            foreach ($fieldList as $field)
+            {
+                $value = $item->getData ($field);
+
+                if ($updateCEST)
+                {
+                    $value = $item->getProduct ()->getData ($field);
+                }
+
+                if (empty ($value))
+                {
+                    $this->_faultOrderItem ($item, $code);
+                }
+
+                if ($updateCEST)
+                {
+                    $item->setData ($field, $value)->save ();
+                }
+            }
+
+            $cest = Mage::getModel ('brazil/cest')->load ($item->getBrazilCest (), 'code');
+
+            if (!$cest || !$cest->getId ())
+            {
+                $this->_faultOrderItem ($item, sprintf ('cest %s', $item->getBrazilCest ()));
             }
         }
 

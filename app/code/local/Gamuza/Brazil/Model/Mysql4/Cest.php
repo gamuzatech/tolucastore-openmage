@@ -5,14 +5,19 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
+class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
 {
-    const HEADER_DELIMITER = ';';
-    const LINE_DELIMITER   = ';';
+    const HEADER_DELIMITER = ',';
+    const LINE_DELIMITER   = '|';
 
     const ROW_COUNT = 5000;
 
-    const DATE_FORMAT     = 'dd/MM/YYYY';
+    const VERSION_REGEX = '/versão=(.*)COD_CEST/';
+
+    const ENCODING_TO   = 'UTF-8';
+    const ENCODING_FROM = 'ISO-8859-15';
+
+    const DATE_FORMAT     = 'ddMMYYYY';
     const DATETIME_FORMAT = 'YYYY-MM-dd HH:mm:ss';
 
     /**
@@ -31,20 +36,22 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
     protected function _construct ()
     {
-        $this->_init ('brazil/ibpt', 'entity_id');
+        $this->_init ('brazil/cest', 'entity_id');
+
+        $this->_validate = Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_VALIDATE);
     }
 
     /**
-     * Upload IBPT file and import data from it
+     * Upload CEST file and import data from it
      */
     public function uploadAndImport (Varien_Object $object)
     {
-        if (empty ($_FILES ['groups']['tmp_name']['ibpt']['fields']['import']['value']))
+        if (empty ($_FILES ['groups']['tmp_name']['cest']['fields']['import']['value']))
         {
             return $this;
         }
 
-        $csvFile = $_FILES ['groups']['tmp_name']['ibpt']['fields']['import']['value'];
+        $csvFile = $_FILES ['groups']['tmp_name']['cest']['fields']['import']['value'];
 
         $this->_importUniqueHash = [];
         $this->_importErrors     = [];
@@ -59,11 +66,27 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
         // check and skip headers
         $headers = $io->streamReadCsv (self::HEADER_DELIMITER);
 
-        if ($headers === false || count ($headers) < 13)
+        if ($headers === false || count ($headers) < 4)
         {
             $io->streamClose ();
 
-            Mage::throwException (Mage::helper ('brazil')->__('Invalid IBPT File Format'));
+            Mage::throwException (Mage::helper ('brazil')->__('Invalid CEST File Format'));
+        }
+
+        $matches = array ();
+        $version = mb_convert_encoding ($headers [0], self::ENCODING_TO, self::ENCODING_FROM);
+        $beginAt = null;
+        $endAt = null;
+
+        if (preg_match (self::VERSION_REGEX, $version, $matches) != 1 || !ctype_digit (trim ($matches [1])))
+        {
+            $io->streamClose ();
+
+            Mage::throwException (Mage::helper ('brazil')->__('Invalid CEST File Format'));
+        }
+        else
+        {
+            $version = trim ($matches [1]);
         }
 
         $adapter = $this->_getWriteAdapter ();
@@ -87,7 +110,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
                     continue;
                 }
 
-                $row = $this->_getImportRow ($csvLine, $rowNumber, $headers);
+                $row = $this->_getImportRow ($csvLine, $rowNumber, $headers, $version, $beginAt, $endAt);
 
                 if ($row !== false)
                 {
@@ -123,7 +146,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
             $io->streamClose ();
 
             Mage::logException ($e);
-            Mage::throwException (Mage::helper ('brazil')->__('An error occurred while import IBPT.') . PHP_EOL . $e->getMessage ());
+            Mage::throwException (Mage::helper ('brazil')->__('An error occurred while import CEST.') . PHP_EOL . $e->getMessage ());
         }
 
         if ($this->_importErrors)
@@ -133,19 +156,17 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
             Mage::throwException ($error);
         }
 
-        Mage::getSingleton ('adminhtml/session')->addSuccess (Mage::helper ('brazil')->__('The IBPT file has been imported successfully!'));
+        Mage::getSingleton ('adminhtml/session')->addSuccess (Mage::helper ('brazil')->__('The CEST file has been imported successfully!'));
 
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_BEGIN_AT, $row [8]); // begin_at
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_END_AT,   $row [9]); // end_at
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_KEY,      $row [10]); // key
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_VERSION,  $row [11]); // version
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_IBPT_SOURCE,   $row [12]); // source
+        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_VERSION,  $version);
+        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_BEGIN_AT, $beginAt);
+        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_END_AT,   $endAt);
 
         return $this;
     }
 
     /**
-     * Validate row for import and return IBPT array or false
+     * Validate row for import and return CEST array or false
      * Error will be add to _importErrors array
      *
      * @param array $row
@@ -153,12 +174,12 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
      * @param array $headers
      * @return array|false
      */
-    protected function _getImportRow ($row, $rowNumber = 0, $headers)
+    protected function _getImportRow ($row, $rowNumber = 0, $headers, $version, & $beginAt, & $endAt)
     {
         // validate row
-        if (count ($row) < 13)
+        if (count ($row) < 4)
         {
-            $this->_importErrors [] = Mage::helper ('brazil')->__('Invalid IBPT format in the Row #%s', $rowNumber);
+            $this->_importErrors [] = Mage::helper ('brazil')->__('Invalid CEST format in the Row #%s', $rowNumber);
 
             return false;
         }
@@ -174,65 +195,59 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
             }
         }
 
-        // validate type
+        // validate code
+        $value = $this->_parseIntegerValue ($row [0]);
+
+        if ($value === false)
+        {
+            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [0], $row [0], $rowNumber);
+
+            return false;
+        }
+
+        // validate begin_at
         $value = $this->_parseIntegerValue ($row [2]);
 
         if ($value === false)
         {
-            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [2], $row [2], $rowNumber);
-        }
-
-        // validate national_federal
-        $value = $this->_parseDecimalValue ($row [4]);
-
-        if ($value === false)
-        {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [4], $row [4], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [2], $row [2], $rowNumber);
 
             return false;
         }
 
-        // validate imported_federal
-        $value = $this->_parseDecimalValue ($row [5]);
-
+        // validate end_at
+        $value = $this->_parseIntegerValue ($row [3]);
+/*
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [5], $row [5], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [3], $row [3], $rowNumber);
 
             return false;
         }
-
-        // validate state
-        $value = $this->_parseDecimalValue ($row [6]);
-
-        if ($value === false)
-        {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [6], $row [6], $rowNumber);
-
-            return false;
-        }
-
-        // validate local
-        $value = $this->_parseDecimalValue ($row [7]);
-
-        if ($value === false)
-        {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [7], $row [7], $rowNumber);
-
-            return false;
-        }
-
-        $row [8] = $this->_convertDate ($row [8]); // begin_at
-        $row [9] = $this->_convertDate ($row [9], 86400 - 1); // end_at
-
+*/
+        $row [1] = mb_convert_encoding ($row [1], self::ENCODING_TO, self::ENCODING_FROM); // description
+        $row [2] = $this->_convertDate (str_pad ($row [2], 8, '0', STR_PAD_LEFT)); // begin_at
+        $row [3] = $value === false ? null : $this->_convertDate ($row [3], 86400 - 1); // end_at
+/*
         $now = time ();
 
-        if (strtotime ($row [8]) > $now || strtotime ($row [9]) < $now)
+        if (strtotime ($row [2]) > $now || strtotime ($row [3]) < $now)
         {
-            Mage::throwException (Mage::helper ('brazil')->__('Requested IBPT table is not valid.'));
+            Mage::throwException (Mage::helper ('brazil')->__('Requested CEST table is not valid.'));
+        }
+*/
+        if ($beginAt == null || strtotime ($beginAt) > strtotime ($row [2]))
+        {
+            $beginAt = $row [2];
         }
 
-        $row [13] = date ('c'); // created_at
+        if ($endAt == null || strtotime ($endAt) < strtotime ($row [3]))
+        {
+            $endAt = $row [3];
+        }
+
+        $row [4] = $version;
+        $row [5] = date ('c'); // created_at
 
         return $row;
     }
@@ -248,10 +263,8 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
         if (!empty ($data))
         {
             $columns = [
-                'code', 'exception', 'type', 'description',
-                'national_federal', 'imported_federal', 'state', 'local',
-                'begin_at', 'end_at', 'key', 'version', 'source',
-                'created_at',
+                'code', 'description', 'begin_at', 'end_at',
+                'version', 'created_at',
             ];
 
             $this->_getWriteAdapter ()->insertArray ($this->getMainTable (), $columns, $data);
@@ -276,33 +289,9 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
             return false;
         }
 
-        $value = (int) sprintf ('%.9u', $value);
+        $value = (int) sprintf ('%.10u', $value);
 
         if ($value < 0)
-        {
-            return false;
-        }
-
-        return $value;
-    }
-
-    /**
-     * Parse and validate positive decimal value
-     * Return false if value is not decimal or is not positive
-     *
-     * @param string $value
-     * @return bool|float
-     */
-    protected function _parseDecimalValue ($value)
-    {
-        if (!is_numeric ($value))
-        {
-            return false;
-        }
-
-        $value = (float) sprintf ('%.4F', $value);
-
-        if ($value < 0.0000)
         {
             return false;
         }
