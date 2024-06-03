@@ -19,14 +19,19 @@
                     <children>
                         <nfce translate="title" module="brazil">
                             <title>Manage NFCEs</title>
-                            <sort_order>0</sort_order>
+                            <sort_order>10</sort_order>
                             <action>admin_brazil/adminhtml_nfce</action>
                         </nfce>
                         <ibpt translate="title" module="brazil">
                             <title>Manage IBPTs</title>
-                            <sort_order>0</sort_order>
+                            <sort_order>20</sort_order>
                             <action>admin_brazil/adminhtml_ibpt</action>
                         </ibpt>
+                        <cest translate="title" module="brazil">
+                            <title>Manage CESTs</title>
+                            <sort_order>30</sort_order>
+                            <action>admin_brazil/adminhtml_cest</action>
+                        </cest>
                     </children>
                 </brazil>
             </children>
@@ -53,8 +58,12 @@
                                     </nfce>
                                     <ibpt translate="title" module="brazil">
                                         <title>Manage IBPTs</title>
-                                        <sort_order>0</sort_order>
+                                        <sort_order>20</sort_order>
                                     </ibpt>
+                                    <cest translate="title" module="brazil">
+                                        <title>Manage CESTs</title>
+                                        <sort_order>30</sort_order>
+                                    </cest>
                                 </children>
                             </brazil>
                         </children>

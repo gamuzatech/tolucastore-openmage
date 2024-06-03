@@ -8,6 +8,28 @@
 class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Cest
     extends Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
 {
-    const FILENAME = 'cest.csv';
+    public function getAllOptions ($withEmpty = true, $defaultValues = false)
+    {
+        if ($this->_options === null)
+        {
+            $this->_options = array (
+                array ('value' => 0, 'label' => Mage::helper ('core')->__('-- Please Select --')),
+            );
+
+            if (!Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ACTIVE))
+            {
+                return $this->_options;
+            }
+
+            $collection = Mage::getModel ('brazil/cest')->getCollection ();
+
+            foreach ($collection as $cest)
+            {
+                $this->_options [] = array ('value' => $cest->getCode (), 'label' => sprintf ('%s %s', $cest->getCode (), $cest->getDescription ()));
+            }
+        }
+
+        return $this->_options;
+    }
 }
 

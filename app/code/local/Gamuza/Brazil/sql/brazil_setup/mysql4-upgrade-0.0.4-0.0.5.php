@@ -8,7 +8,7 @@
 $installer = $this;
 $installer->startSetup ();
 
-function addBrazilIbptTable ($installer, $model, $description)
+function addBrazilIBPTTable ($installer, $model, $description)
 {
     $table = $installer->getTable ($model);
 
@@ -106,13 +106,13 @@ SQLBLOCK;
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'begin_at', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DATE,
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'Begin At',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'end_at', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DATE,
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'End At',
         ));
@@ -130,7 +130,7 @@ SQLBLOCK;
         ));
 }
 
-addBrazilIbptTable ($installer, Gamuza_Brazil_Helper_Data::IBPT_TABLE, 'Gamuza Brazil IBPT');
+addBrazilIBPTTable ($installer, Gamuza_Brazil_Helper_Data::IBPT_TABLE, 'Gamuza Brazil IBPT');
 
 function addBrazilNfceTable ($installer, $model, $description)
 {
