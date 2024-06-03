@@ -93,12 +93,20 @@
                         <code>1400</code>
                         <message>Requested IBPT table is not valid.</message>
                     </ibpt_not_valid>
-                    <filters_invalid>
+                    <cest_not_imported>
                         <code>1500</code>
+                        <message>Requested CEST table was not imported.</message>
+                    </cest_not_imported>
+                    <cest_not_valid>
+                        <code>1600</code>
+                        <message>Requested CEST table is not valid.</message>
+                    </cest_not_valid>
+                    <filters_invalid>
+                        <code>1700</code>
                         <message>Invalid filters given. Details in error message.</message>
                     </filters_invalid>
                     <key_invalid>
-                        <code>1600</code>
+                        <code>1800</code>
                         <message>Invalid key given.</message>
                     </key_invalid>
                 </faults>

@@ -35,6 +35,9 @@
                     <ibpt>
                         <table>gamuza_brazil_ibpt</table>
                     </ibpt>
+                    <cest>
+                        <table>gamuza_brazil_cest</table>
+                    </cest>
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
@@ -198,6 +201,9 @@
             <ibpt>
                 <validate>1</validate>
             </ibpt>
+            <cest>
+                <validate>0</validate>
+            </cest>
             <setting>
                 <crt_id>1</crt_id>
                 <environment_id>2</environment_id>
@@ -205,13 +211,6 @@
                 <timeout>12000</timeout>
                 <country_id>1058</country_id>
             </setting>
-            <nfe>
-                <print_id>1</print_id>
-                <batch_id>1</batch_id>
-                <number_id>1</number_id>
-                <model_id>55</model_id>
-                <series_id>1</series_id>
-            </nfe>
             <nfce>
                 <print_id>4</print_id>
                 <batch_id>1</batch_id>
@@ -219,6 +218,13 @@
                 <model_id>65</model_id>
                 <series_id>1</series_id>
             </nfce>
+            <nfe>
+                <print_id>1</print_id>
+                <batch_id>1</batch_id>
+                <number_id>1</number_id>
+                <model_id>55</model_id>
+                <series_id>1</series_id>
+            </nfe>
         </brazil>
         <payment>
             <gamuza_brazil_pix>
