@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.8</version>
+            <version>0.0.9</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -44,6 +44,9 @@
                     <country>
                         <table>gamuza_brazil_country</table>
                     </country>
+                    <region>
+                        <table>gamuza_brazil_region</table>
+                    </region>
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>

@@ -5,13 +5,13 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Block_Adminhtml_Cest_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Gamuza_Brazil_Block_Adminhtml_Region_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 	public function __construct ()
 	{
 		parent::__construct ();
 
-		$this->setId ('brazilCestGrid');
+		$this->setId ('brazilRegionGrid');
 		$this->setDefaultSort ('entity_id');
 		$this->setDefaultDir ('DESC');
 		$this->setSaveParametersInSession (true);
@@ -19,7 +19,7 @@ class Gamuza_Brazil_Block_Adminhtml_Cest_Grid extends Mage_Adminhtml_Block_Widge
 
 	protected function _prepareCollection ()
 	{
-		$collection = Mage::getModel ('brazil/cest')->getCollection ();
+		$collection = Mage::getModel ('brazil/region')->getCollection ();
 
 		$this->setCollection ($collection);
 
@@ -40,10 +40,10 @@ class Gamuza_Brazil_Block_Adminhtml_Cest_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'code',
 		));
-		$this->addColumn ('description', array(
-		    'header'  => Mage::helper ('brazil')->__('Description'),
+		$this->addColumn ('acronym', array(
+		    'header'  => Mage::helper ('brazil')->__('Acronym'),
 		    'align'   => 'right',
-		    'index'   => 'description',
+		    'index'   => 'acronym',
 		));
 		$this->addColumn ('version', array(
 		    'header'  => Mage::helper ('brazil')->__('Version'),

@@ -5,14 +5,14 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
+class Gamuza_Brazil_Model_Mysql4_Region extends Mage_Core_Model_Mysql4_Abstract
 {
     const HEADER_DELIMITER = ',';
     const LINE_DELIMITER   = '|';
 
     const ROW_COUNT = 5000;
 
-    const VERSION_REGEX = '/versão=(.*)CFOP/';
+    const VERSION_REGEX = '/versão=(.*)UF_CODIBGE/';
 
     const ENCODING_TO   = 'UTF-8';
     const ENCODING_FROM = 'ISO-8859-15';
@@ -36,20 +36,20 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
 
     protected function _construct ()
     {
-        $this->_init ('brazil/cfop', 'entity_id');
+        $this->_init ('brazil/region', 'entity_id');
     }
 
     /**
-     * Upload CFOP file and import data from it
+     * Upload Regions file and import data from it
      */
     public function uploadAndImport (Varien_Object $object)
     {
-        if (empty ($_FILES ['groups']['tmp_name']['cfop']['fields']['import']['value']))
+        if (empty ($_FILES ['groups']['tmp_name']['region']['fields']['import']['value']))
         {
             return $this;
         }
 
-        $csvFile = $_FILES ['groups']['tmp_name']['cfop']['fields']['import']['value'];
+        $csvFile = $_FILES ['groups']['tmp_name']['region']['fields']['import']['value'];
 
         $this->_importErrors = [];
         $this->_importedRows = 0;
@@ -67,7 +67,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
         {
             $io->streamClose ();
 
-            Mage::throwException (Mage::helper ('brazil')->__('Invalid CFOP File Format'));
+            Mage::throwException (Mage::helper ('brazil')->__('Invalid Regions File Format'));
         }
 
         $matches = array ();
@@ -79,7 +79,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
         {
             $io->streamClose ();
 
-            Mage::throwException (Mage::helper ('brazil')->__('Invalid CFOP File Format'));
+            Mage::throwException (Mage::helper ('brazil')->__('Invalid Regions File Format'));
         }
         else
         {
@@ -143,7 +143,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
             $io->streamClose ();
 
             Mage::logException ($e);
-            Mage::throwException (Mage::helper ('brazil')->__('An error occurred while import CFOP.') . PHP_EOL . $e->getMessage ());
+            Mage::throwException (Mage::helper ('brazil')->__('An error occurred while import Regions.') . PHP_EOL . $e->getMessage ());
         }
 
         if ($this->_importErrors)
@@ -153,17 +153,17 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
             Mage::throwException ($error);
         }
 
-        Mage::getSingleton ('adminhtml/session')->addSuccess (Mage::helper ('brazil')->__('The CFOP file has been imported successfully!'));
+        Mage::getSingleton ('adminhtml/session')->addSuccess (Mage::helper ('brazil')->__('The Regions file has been imported successfully!'));
 
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CFOP_VERSION,  $version);
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CFOP_BEGIN_AT, $beginAt);
-        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CFOP_END_AT,   $endAt);
+        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_REGION_VERSION,  $version);
+        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_REGION_BEGIN_AT, $beginAt);
+        Mage::getModel ('core/config')->saveConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_REGION_END_AT,   $endAt);
 
         return $this;
     }
 
     /**
-     * Validate row for import and return CFOP array or false
+     * Validate row for import and return Regions array or false
      * Error will be add to _importErrors array
      *
      * @param array $row
@@ -176,7 +176,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
         // validate row
         if (count ($row) < 4)
         {
-            $this->_importErrors [] = Mage::helper ('brazil')->__('Invalid CFOP format in the Row #%s', $rowNumber);
+            $this->_importErrors [] = Mage::helper ('brazil')->__('Invalid Regions format in the Row #%s', $rowNumber);
 
             return false;
         }
@@ -229,7 +229,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
             return false;
         }
 */
-        $row [1] = mb_convert_encoding ($row [1], self::ENCODING_TO, self::ENCODING_FROM); // description
+        $row [1] = $row [1]; // acronym
         $row [2] = $this->_convertDate (str_pad ($row [2], 8, '0', STR_PAD_LEFT)); // begin_at
         $row [3] = $value === false ? null : $this->_convertDate ($row [3], 86400 - 1); // end_at
 /*
@@ -237,7 +237,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
 
         if (strtotime ($row [2]) > $now || strtotime ($row [3]) < $now)
         {
-            Mage::throwException (Mage::helper ('brazil')->__('Requested CFOP table is not valid.'));
+            Mage::throwException (Mage::helper ('brazil')->__('Requested Regions table is not valid.'));
         }
 */
         if ($beginAt == null || strtotime ($beginAt) > strtotime ($row [2]))
@@ -267,7 +267,7 @@ class Gamuza_Brazil_Model_Mysql4_Cfop extends Mage_Core_Model_Mysql4_Abstract
         if (!empty ($data))
         {
             $columns = [
-                'code', 'description', 'begin_at', 'end_at',
+                'code', 'acronym', 'begin_at', 'end_at',
                 'version', 'created_at',
             ];
 
