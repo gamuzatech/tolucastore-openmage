@@ -29,6 +29,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const IBPT_TYPE_NBS   = 1;
     const IBPT_TYPE_LC116 = 2;
 
+    const DFE_MODEL_NFE    = 55;
+    const DFE_MODEL_CTE    = 57;
+    const DFE_MODEL_MDFE   = 58;
+    const DFE_MODEL_NFCE   = 65;
+    const DFE_MODEL_CTE_OS = 67;
+
     const NFE_CERTIFICATE_A1_REPOSITORY = 0;
     const NFE_CERTIFICATE_A1_FILE = 1;
     const NFE_CERTIFICATE_A3 = 2;

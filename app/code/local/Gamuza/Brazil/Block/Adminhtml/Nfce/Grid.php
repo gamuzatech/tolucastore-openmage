@@ -62,18 +62,20 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'batch_id',
 		));
 		$this->addColumn ('country_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Country ID'),
+		    'header'  => Mage::helper ('brazil')->__('Country'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'country_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_country')->toArray (),
 		));
 		$this->addColumn ('region_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Region ID'),
+		    'header'  => Mage::helper ('brazil')->__('Region'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'region_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_region')->toArray (),
 		));
 		$this->addColumn ('number_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Number ID'),
@@ -107,11 +109,12 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_destiny')->toArray (),
 		));
 		$this->addColumn ('city_id', array(
-		    'header'  => Mage::helper ('brazil')->__('City ID'),
+		    'header'  => Mage::helper ('brazil')->__('City'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'city_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_city')->toArray (),
 		));
 		$this->addColumn ('print_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Print'),
@@ -255,8 +258,9 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Model'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'model_id',
+            'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_dfe_model')->toArray (),
 		));
 		$this->addColumn ('series_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Series'),

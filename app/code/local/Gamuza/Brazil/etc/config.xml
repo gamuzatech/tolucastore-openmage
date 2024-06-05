@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.10</version>
+            <version>0.0.11</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -235,7 +235,7 @@
                 <timeout>12000</timeout>
                 <country_id>1058</country_id>
                 <!-- São Paulo -->
-                <region_id>35<region_id>
+                <region_id>35</region_id>
                 <city_id>3550308</city_id>
             </setting>
             <nfce>
