@@ -98,7 +98,6 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('key', array(
 		    'header'  => Mage::helper ('brazil')->__('Key'),
 		    'align'   => 'right',
-            'type'    => 'number',
 		    'index'   => 'key',
 		));
 		$this->addColumn ('version', array(
