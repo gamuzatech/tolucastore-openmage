@@ -422,6 +422,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
                         </id>
                         <code translate="label" module="brazil">
                             <label>Code</label>
@@ -430,6 +431,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
                         </code>
                     </fields>
                 </csc>
