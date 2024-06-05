@@ -10,6 +10,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const IBPT_TABLE = 'gamuza_brazil_ibpt';
     const CEST_TABLE = 'gamuza_brazil_cest';
     const CFOP_TABLE = 'gamuza_brazil_cfop';
+    const COUNTRY_TABLE = 'gamuza_brazil_country';
     const NFCE_TABLE = 'gamuza_brazil_nfce';
 
     const PRODUCT_ATTRIBUTE_BRAZIL_NCM  = 'brazil_ncm';
@@ -142,6 +143,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CFOP_BEGIN_AT = 'brazil/cfop/begin_at';
     const XML_PATH_BRAZIL_CFOP_END_AT   = 'brazil/cfop/end_at';
     const XML_PATH_BRAZIL_CFOP_VALIDATE = 'brazil/cfop/validate';
+
+    const XML_PATH_BRAZIL_COUNTRY_IMPORT   = 'brazil/country/import';
+    const XML_PATH_BRAZIL_COUNTRY_VERSION  = 'brazil/country/version';
+    const XML_PATH_BRAZIL_COUNTRY_BEGIN_AT = 'brazil/country/begin_at';
+    const XML_PATH_BRAZIL_COUNTRY_END_AT   = 'brazil/country/end_at';
+    const XML_PATH_BRAZIL_COUNTRY_VALIDATE = 'brazil/country/validate';
 
     const XML_PATH_BRAZIL_CERTIFICATE_TYPE     = 'brazil/certificate/type_id';
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';
