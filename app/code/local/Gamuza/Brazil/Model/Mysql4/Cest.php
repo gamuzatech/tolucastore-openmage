@@ -37,8 +37,6 @@ class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
     protected function _construct ()
     {
         $this->_init ('brazil/cest', 'entity_id');
-
-        $this->_validate = Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CEST_VALIDATE);
     }
 
     /**
@@ -53,9 +51,8 @@ class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
 
         $csvFile = $_FILES ['groups']['tmp_name']['cest']['fields']['import']['value'];
 
-        $this->_importUniqueHash = [];
-        $this->_importErrors     = [];
-        $this->_importedRows     = 0;
+        $this->_importErrors = [];
+        $this->_importedRows = 0;
 
         $info = pathinfo ($csvFile);
 
@@ -174,7 +171,7 @@ class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
      * @param array $headers
      * @return array|false
      */
-    protected function _getImportRow ($row, $rowNumber = 0, $headers, $version, & $beginAt, & $endAt)
+    protected function _getImportRow ($row, $rowNumber, $headers, $version, & $beginAt, & $endAt)
     {
         // validate row
         if (count ($row) < 4)
@@ -201,6 +198,13 @@ class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
         if ($value === false)
         {
             $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [0], $row [0], $rowNumber);
+
+            return false;
+        }
+
+        if (empty ($row [1]))
+        {
+            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [1], $row [1], $rowNumber);
 
             return false;
         }
@@ -307,10 +311,6 @@ class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
         $store = Mage_Core_Model_App::ADMIN_STORE_ID;
 
         $utcDate = Mage::app ()->getLocale ()->utcDate ($store, $date, true, self::DATE_FORMAT);
-
-        $defaultLocale = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE);
-
-        $locale = new Zend_Locale ($defaultLocale);
 
         $utcDate->addSecond ($second);
 
