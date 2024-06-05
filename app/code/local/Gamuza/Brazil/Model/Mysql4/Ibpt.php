@@ -46,9 +46,8 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
         $csvFile = $_FILES ['groups']['tmp_name']['ibpt']['fields']['import']['value'];
 
-        $this->_importUniqueHash = [];
-        $this->_importErrors     = [];
-        $this->_importedRows     = 0;
+        $this->_importErrors = [];
+        $this->_importedRows = 0;
 
         $info = pathinfo ($csvFile);
 
@@ -153,7 +152,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
      * @param array $headers
      * @return array|false
      */
-    protected function _getImportRow ($row, $rowNumber = 0, $headers)
+    protected function _getImportRow ($row, $rowNumber, $headers)
     {
         // validate row
         if (count ($row) < 13)
@@ -318,10 +317,6 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
         $store = Mage_Core_Model_App::ADMIN_STORE_ID;
 
         $utcDate = Mage::app ()->getLocale ()->utcDate ($store, $date, true, self::DATE_FORMAT);
-
-        $defaultLocale = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_LOCALE);
-
-        $locale = new Zend_Locale ($defaultLocale);
 
         $utcDate->addSecond ($second);
 
