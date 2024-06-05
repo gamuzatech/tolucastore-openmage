@@ -11,11 +11,23 @@
 class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Region
     extends Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
 {
-    public const FIELD = 'acronym';
-
     public function _getCollection ()
     {
-        return Mage::getModel ('brazil/region')->getCollection ();
+        $collection = Mage::getModel ('brazil/region')->getCollection ();
+
+        $countryId = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_COUNTRY);
+
+        $collection->getSelect ()
+            ->joinLeft(
+                array ('dcr' => Mage::getSingleton ('core/resource')->getTablename ('directory/country_region')),
+                sprintf ("main_table.acronym = dcr.code AND dcr.country_id = '%s'", $countryId),
+                array(
+                    'name' => "CONCAT(dcr.default_name, ' ', main_table.acronym)",
+                )
+            )
+        ;
+
+        return $collection;
     }
 }
 
