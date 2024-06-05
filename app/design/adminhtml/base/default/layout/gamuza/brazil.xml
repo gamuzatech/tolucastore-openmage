@@ -38,5 +38,10 @@
             <block type="brazil/adminhtml_region" name="region" />
         </reference>
     </admin_brazil_adminhtml_region_index>
+    <admin_brazil_adminhtml_city_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_city" name="city" />
+        </reference>
+    </admin_brazil_adminhtml_city_index>
 </layout>
 

@@ -42,6 +42,13 @@
 "Invalid Regions format in the Row #%s","Formato Inválido de Estados na Linha #%s"
 "The Regions file has been imported successfully!","O arquivo Estados foi importado com sucesso!"
 
+"IBGE Cities","Cidades IBGE"
+"Download and Import IBGE Cities Global Table","Baixar e Importar Tabela Global Cidades IBGE"
+"Invalid Cities File Format","Formato Inválido do Arquivo Cidades"
+"An error occurred while import Cities.","Ocorreu um erro ao importar Cidades."
+"Invalid Cities format in the Row #%s","Formato Inválido de Cidades na Linha #%s"
+"The Cities file has been imported successfully!","O arquivo Cidades foi importado com sucesso!"
+
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
 
@@ -84,6 +91,9 @@
 "Manage Regions","Gerenciar Estados"
 "Regions Manager","Gerenciador de Estados"
 "Acronym","Sigla"
+
+"Manage Cities","Gerenciar Cidades"
+"Cities Manager","Gerenciador de Cidades"
 
 "Manage NFCEs","Gerenciar NFCEs"
 "NFC-e Manager","Gerenciador de NFCEs"
