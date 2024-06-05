@@ -37,6 +37,11 @@
                             <sort_order>40</sort_order>
                             <action>admin_brazil/adminhtml_cfop</action>
                         </cfop>
+                        <country translate="title" module="brazil">
+                            <title>Manage Countries</title>
+                            <sort_order>50</sort_order>
+                            <action>admin_brazil/adminhtml_country</action>
+                        </country>
                     </children>
                 </brazil>
             </children>
@@ -73,6 +78,10 @@
                                         <title>Manage CFOPs</title>
                                         <sort_order>40</sort_order>
                                     </cfop>
+                                    <country translate="title" module="brazil">
+                                        <title>Manage Countries</title>
+                                        <sort_order>50</sort_order>
+                                    </country>
                                 </children>
                             </brazil>
                         </children>

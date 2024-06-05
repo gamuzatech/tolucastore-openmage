@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.7</version>
+            <version>0.0.8</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -41,6 +41,9 @@
                     <cfop>
                         <table>gamuza_brazil_cfop</table>
                     </cfop>
+                    <country>
+                        <table>gamuza_brazil_country</table>
+                    </country>
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
@@ -210,8 +213,11 @@
             <cfop>
                 <validate>0</validate>
             </cfop>
+            <country>
+                <validate>0</validate>
+            </country>
             <setting>
-                <crt_id>1</crt_id>
+                <crt_id>4</crt_id>
                 <environment_id>2</environment_id>
                 <version>4.00</version>
                 <timeout>12000</timeout>

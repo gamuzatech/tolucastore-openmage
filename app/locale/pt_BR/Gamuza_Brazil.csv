@@ -28,6 +28,12 @@
 "Invalid CFOP format in the Row #%s","Formato Inválido do CFOP na Linha #%s"
 "The CFOP file has been imported successfully!","O arquivo CFOP foi importado com sucesso!"
 
+"Download and Import IBGE Countries Global Table","Baixar e Importar Tabela Global Países IBGE"
+"Invalid Countries File Format","Formato Inválido do Arquivo Países"
+"An error occurred while import Countries.","Ocorreu um erro ao importar Países."
+"Invalid Countries format in the Row #%s","Formato Inválido de Países na Linha #%s"
+"The Countries file has been imported successfully!","O arquivo Países foi importado com sucesso!"
+
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
 
@@ -63,6 +69,9 @@
 
 "Manage CFOPs","Gerenciar CFOPs"
 "CFOP Manager","Gerenciador de CFOPs"
+
+"Manage Countries","Gerenciar Países"
+"Countries Manager","Gerenciador de Países"
 
 "Manage NFCEs","Gerenciar NFCEs"
 "NFC-e Manager","Gerenciador de NFCEs"
