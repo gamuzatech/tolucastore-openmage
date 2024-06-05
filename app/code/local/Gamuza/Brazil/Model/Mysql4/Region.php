@@ -202,6 +202,7 @@ class Gamuza_Brazil_Model_Mysql4_Region extends Mage_Core_Model_Mysql4_Abstract
             return false;
         }
 
+        // validate acronym
         if (empty ($row [1]))
         {
             $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [1], $row [1], $rowNumber);
