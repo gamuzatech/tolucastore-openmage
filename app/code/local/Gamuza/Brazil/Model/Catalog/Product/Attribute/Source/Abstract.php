@@ -8,7 +8,7 @@
 class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
     extends Mage_Eav_Model_Entity_Attribute_Source_Abstract
 {
-    public function getAllOptions($withEmpty = true, $defaultValues = false)
+    public function getAllOptions ($withEmpty = true, $defaultValues = false)
     {
         if ($this->_options === null)
         {
@@ -16,16 +16,16 @@ class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
                 array ('value' => 0, 'label' => Mage::helper ('core')->__('-- Please Select --')),
             );
 
-            $fileCsv = new Varien_File_Csv ();
-            $fileCsv->setDelimiter ('|');
-
-            $data = $fileCsv->getDataPairs (Mage::getModuleDir ('lib', 'Gamuza_Brazil') . DS . 'lib' . DS . static::FILENAME);
-
-            foreach ($data as $id => $value)
+            if (!Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ACTIVE))
             {
-                if (!is_numeric ($id)) continue;
+                return $this->_options;
+            }
 
-                $this->_options [] = array ('value' => $id, 'label' => sprintf ('%s %s', $id, $value));
+            $collection = $this->_getCollection ();
+
+            foreach ($collection as $item)
+            {
+                $this->_options [] = array ('value' => $item->getCode (), 'label' => sprintf ('%s %s', $item->getCode (), $item->getDescription ()));
             }
         }
 
