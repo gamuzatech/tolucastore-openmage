@@ -11,8 +11,6 @@
 class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_City
     extends Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
 {
-    public const FIELD = 'name';
-
     public function _getCollection ()
     {
         return Mage::getModel ('brazil/city')->getCollection ();
