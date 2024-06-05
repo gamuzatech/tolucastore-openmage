@@ -43,7 +43,6 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 		    'width'  => '50px',
 	        'type'   => 'number',
 		    'index'  => 'entity_id',
-            'filter_index' => 'main_table.entity_id',
 		));
 		$this->addColumn ('code', array(
 		    'header'  => Mage::helper ('brazil')->__('Code'),
@@ -129,7 +128,6 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 			'index'  => 'created_at',
             'type'   => 'datetime',
             'width'  => '100px',
-            'filter_index' => 'main_table.created_at',
 		));
 
 		return parent::_prepareColumns ();
