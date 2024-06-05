@@ -7,6 +7,8 @@
 
 class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
 {
+    public const FIELD = 'description';
+
     /**
      * Options getter
      *
@@ -22,7 +24,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
 
         foreach ($collection as $item)
         {
-            $result [] = array ('value' => $item->getCode (), 'label' => sprintf ('%s %s', $item->getCode (), $item->getDescription ()));
+            $result [] = array ('value' => $item->getCode (), 'label' => sprintf ('%s %s', $item->getData (static::FIELD), $item->getCode ()));
         }
 
         return $result;

@@ -214,7 +214,7 @@ class Gamuza_Brazil_Model_Mysql4_Country extends Mage_Core_Model_Mysql4_Abstract
 
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [2], $row [2], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [2], $row [2], $rowNumber);
 
             return false;
         }
@@ -224,7 +224,7 @@ class Gamuza_Brazil_Model_Mysql4_Country extends Mage_Core_Model_Mysql4_Abstract
 /*
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [3], $row [3], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [3], $row [3], $rowNumber);
 
             return false;
         }
