@@ -5,13 +5,13 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Block_Adminhtml_Region_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Gamuza_Brazil_Block_Adminhtml_City_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 	public function __construct ()
 	{
 		parent::__construct ();
 
-		$this->setId ('brazilRegionGrid');
+		$this->setId ('brazilCityGrid');
 		$this->setDefaultSort ('entity_id');
 		$this->setDefaultDir ('DESC');
 		$this->setSaveParametersInSession (true);
@@ -19,19 +19,7 @@ class Gamuza_Brazil_Block_Adminhtml_Region_Grid extends Mage_Adminhtml_Block_Wid
 
 	protected function _prepareCollection ()
 	{
-		$collection = Mage::getModel ('brazil/region')->getCollection ();
-
-        $countryId = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_COUNTRY);
-
-        $collection->getSelect ()
-            ->joinLeft(
-                array ('dcr' => Mage::getSingleton ('core/resource')->getTablename ('directory/country_region')),
-                sprintf ("main_table.acronym = dcr.code AND dcr.country_id = '%s'", $countryId),
-                array(
-                    'name' => 'dcr.default_name',
-                )
-            )
-        ;
+		$collection = Mage::getModel ('brazil/city')->getCollection ();
 
 		$this->setCollection ($collection);
 
@@ -51,18 +39,11 @@ class Gamuza_Brazil_Block_Adminhtml_Region_Grid extends Mage_Adminhtml_Block_Wid
 		    'header'  => Mage::helper ('brazil')->__('Code'),
 		    'align'   => 'right',
 		    'index'   => 'code',
-            'filter_index' => 'main_table.code',
-		));
-		$this->addColumn ('acronym', array(
-		    'header'  => Mage::helper ('brazil')->__('Acronym'),
-		    'align'   => 'right',
-		    'index'   => 'acronym',
 		));
 		$this->addColumn ('name', array(
 		    'header'  => Mage::helper ('brazil')->__('Name'),
 		    'align'   => 'right',
 		    'index'   => 'name',
-            'filter_index' => 'dcr.default_name',
 		));
 		$this->addColumn ('version', array(
 		    'header'  => Mage::helper ('brazil')->__('Version'),
