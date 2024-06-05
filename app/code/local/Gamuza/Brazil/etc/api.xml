@@ -36,6 +36,20 @@
                         <method>update</method>
                     </update>
                 </methods>
+                <faults>
+                    <nfce_not_exists>
+                        <code>1600</code>
+                        <message>Requested NFC-e not exists.</message>
+                    </nfce_not_exists>
+                    <nfce_not_saved>
+                        <code>1700</code>
+                        <message>Requested NFC-e not saved.</message>
+                    </nfce_not_saved>
+                    <nfce_already_authorized>
+                        <code>1800</code>
+                        <message>Requested NFC-e is already authorized.</message>
+                    </nfce_already_authorized>
+                </faults>
             </brazil_nfce>
         </resources>
         <faults>
@@ -75,40 +89,28 @@
                 <code>900</code>
                 <message>Requested order not exists.</message>
             </order_not_exists>
-            <nfce_not_exists>
-                <code>1000</code>
-                <message>Requested NFC-e not exists.</message>
-            </nfce_not_exists>
-            <nfce_not_saved>
-                <code>1100</code>
-                <message>Requested NFC-e not saved.</message>
-            </nfce_not_saved>
-            <nfce_already_authorized>
-                <code>1200</code>
-                <message>Requested NFC-e is already authorized.</message>
-            </nfce_already_authorized>
             <ibpt_not_imported>
-                <code>1300</code>
+                <code>1000</code>
                 <message>Requested IBPT table was not imported.</message>
             </ibpt_not_imported>
             <ibpt_not_valid>
-                <code>1400</code>
+                <code>1100</code>
                 <message>Requested IBPT table is not valid.</message>
             </ibpt_not_valid>
             <cest_not_imported>
-                <code>1500</code>
+                <code>1200</code>
                 <message>Requested CEST table was not imported.</message>
             </cest_not_imported>
             <cest_not_valid>
-                <code>1600</code>
+                <code>1300</code>
                 <message>Requested CEST table is not valid.</message>
             </cest_not_valid>
             <filters_invalid>
-                <code>1700</code>
+                <code>1400</code>
                 <message>Invalid filters given. Details in error message.</message>
             </filters_invalid>
             <key_invalid>
-                <code>1800</code>
+                <code>1500</code>
                 <message>Invalid key given.</message>
             </key_invalid>
         </faults>
