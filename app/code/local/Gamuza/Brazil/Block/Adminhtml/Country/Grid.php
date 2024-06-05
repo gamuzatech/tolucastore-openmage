@@ -40,10 +40,10 @@ class Gamuza_Brazil_Block_Adminhtml_Country_Grid extends Mage_Adminhtml_Block_Wi
 		    'align'   => 'right',
 		    'index'   => 'code',
 		));
-		$this->addColumn ('description', array(
-		    'header'  => Mage::helper ('brazil')->__('Description'),
+		$this->addColumn ('name', array(
+		    'header'  => Mage::helper ('brazil')->__('Name'),
 		    'align'   => 'right',
-		    'index'   => 'description',
+		    'index'   => 'name',
 		));
 		$this->addColumn ('version', array(
 		    'header'  => Mage::helper ('brazil')->__('Version'),
