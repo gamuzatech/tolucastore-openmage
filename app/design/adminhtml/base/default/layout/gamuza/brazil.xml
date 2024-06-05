@@ -23,5 +23,10 @@
             <block type="brazil/adminhtml_cest" name="cest" />
         </reference>
     </admin_brazil_adminhtml_cest_index>
+    <admin_brazil_adminhtml_cfop_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_cfop" name="cfop" />
+        </reference>
+    </admin_brazil_adminhtml_cfop_index>
 </layout>
 
