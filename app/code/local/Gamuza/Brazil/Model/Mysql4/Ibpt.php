@@ -181,6 +181,14 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
             $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [2], $row [2], $rowNumber);
         }
 
+        // validate description
+        if (empty ($row [3]))
+        {
+            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [3], $row [3], $rowNumber);
+
+            return false;
+        }
+
         // validate national_federal
         $value = $this->_parseDecimalValue ($row [4]);
 
@@ -229,6 +237,30 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
         if (strtotime ($row [8]) > $now || strtotime ($row [9]) < $now)
         {
             Mage::throwException (Mage::helper ('brazil')->__('Requested IBPT table is not valid.'));
+        }
+
+        // validate key
+        if (empty ($row [10]))
+        {
+            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [10], $row [10], $rowNumber);
+
+            return false;
+        }
+
+        // validate version
+        if (empty ($row [11]))
+        {
+            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [11], $row [11], $rowNumber);
+
+            return false;
+        }
+
+        // validate source
+        if (empty ($row [12]))
+        {
+            $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [12], $row [12], $rowNumber);
+
+            return false;
         }
 
         $row [13] = date ('c'); // created_at
