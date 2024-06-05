@@ -30,11 +30,11 @@ SQLBLOCK;
             'comment'  => 'Code',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'description', array(
+        ->addColumn ($table, 'name', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 500,
             'nullable' => false,
-            'comment'  => 'Description',
+            'comment'  => 'name',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'version', array(

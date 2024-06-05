@@ -202,6 +202,7 @@ class Gamuza_Brazil_Model_Mysql4_Country extends Mage_Core_Model_Mysql4_Abstract
             return false;
         }
 
+        // validate name
         if (empty ($row [1]))
         {
             $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [1], $row [1], $rowNumber);
@@ -229,7 +230,7 @@ class Gamuza_Brazil_Model_Mysql4_Country extends Mage_Core_Model_Mysql4_Abstract
             return false;
         }
 */
-        $row [1] = mb_convert_encoding ($row [1], self::ENCODING_TO, self::ENCODING_FROM); // description
+        $row [1] = mb_convert_encoding ($row [1], self::ENCODING_TO, self::ENCODING_FROM); // name
         $row [2] = $this->_convertDate (str_pad ($row [2], 8, '0', STR_PAD_LEFT)); // begin_at
         $row [3] = $value === false ? null : $this->_convertDate ($row [3], 86400 - 1); // end_at
 /*
@@ -267,7 +268,7 @@ class Gamuza_Brazil_Model_Mysql4_Country extends Mage_Core_Model_Mysql4_Abstract
         if (!empty ($data))
         {
             $columns = [
-                'code', 'description', 'begin_at', 'end_at',
+                'code', 'name', 'begin_at', 'end_at',
                 'version', 'created_at',
             ];
 
