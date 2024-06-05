@@ -682,6 +682,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             {
                 $this->_faultOrderItem ($item, sprintf ('cest %s', $item->getBrazilCest ()));
             }
+
+            $cfop = Mage::getModel ('brazil/cfop')->load ($item->getBrazilCfop (), 'code');
+
+            if (!$cfop || !$cfop->getId ())
+            {
+                $this->_faultOrderItem ($item, sprintf ('cfop %s', $item->getBrazilCfop ()));
+            }
         }
 
         return $order;
