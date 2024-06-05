@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.9</version>
+            <version>0.0.10</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -47,6 +47,9 @@
                     <region>
                         <table>gamuza_brazil_region</table>
                     </region>
+                    <city>
+                        <table>gamuza_brazil_city</table>
+                    </city>
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
@@ -219,12 +222,21 @@
             <country>
                 <validate>0</validate>
             </country>
+            <region>
+                <validate>0</validate>
+            </region>
+            <city>
+                <validate>0</validate>
+            </city>
             <setting>
                 <crt_id>4</crt_id>
                 <environment_id>2</environment_id>
                 <version>4.00</version>
                 <timeout>12000</timeout>
                 <country_id>1058</country_id>
+                <!-- São Paulo -->
+                <region_id>35<region_id>
+                <city_id>3550308</city_id>
             </setting>
             <nfce>
                 <print_id>4</print_id>
