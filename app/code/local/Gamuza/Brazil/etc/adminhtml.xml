@@ -42,6 +42,11 @@
                             <sort_order>50</sort_order>
                             <action>admin_brazil/adminhtml_country</action>
                         </country>
+                        <region translate="title" module="brazil">
+                            <title>Manage Regions</title>
+                            <sort_order>60</sort_order>
+                            <action>admin_brazil/adminhtml_region</action>
+                        </region>
                     </children>
                 </brazil>
             </children>
@@ -82,6 +87,10 @@
                                         <title>Manage Countries</title>
                                         <sort_order>50</sort_order>
                                     </country>
+                                    <region translate="title" module="brazil">
+                                        <title>Manage Regions</title>
+                                        <sort_order>60</sort_order>
+                                    </region>
                                 </children>
                             </brazil>
                         </children>

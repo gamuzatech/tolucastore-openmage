@@ -186,7 +186,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [4], $row [4], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [4], $row [4], $rowNumber);
 
             return false;
         }
@@ -196,7 +196,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [5], $row [5], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [5], $row [5], $rowNumber);
 
             return false;
         }
@@ -206,7 +206,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [6], $row [6], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [6], $row [6], $rowNumber);
 
             return false;
         }
@@ -216,7 +216,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
         if ($value === false)
         {
-            $this->_importErrors[] = Mage::helper ('brazil')->__('Invalid %s "%s" in the Row #%s.', $headers [7], $row [7], $rowNumber);
+            $this->_importErrors[] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [7], $row [7], $rowNumber);
 
             return false;
         }
