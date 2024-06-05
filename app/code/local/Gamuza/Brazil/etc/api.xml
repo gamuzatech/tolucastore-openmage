@@ -36,82 +36,82 @@
                         <method>update</method>
                     </update>
                 </methods>
-                <faults>
-                    <order_not_specified>
-                        <code>100</code>
-                        <message>Requested order not specified.</message>
-                    </order_not_specified>
-                    <code_not_specified>
-                        <code>200</code>
-                        <message>Requested code not specified.</message>
-                    </code_not_specified>
-                    <key_not_specified>
-                        <code>300</code>
-                        <message>Requested key not specified.</message>
-                    </key_not_specified>
-                    <digit_not_specified>
-                        <code>400</code>
-                        <message>Requested digit not specified.</message>
-                    </digit_not_specified>
-                    <info_not_specified>
-                        <code>500</code>
-                        <message>Requested info not specified.</message>
-                    </info_not_specified>
-                    <sent_not_specified>
-                        <code>600</code>
-                        <message>Requested sent not specified.</message>
-                    </sent_not_specified>
-                    <return_not_specified>
-                        <code>700</code>
-                        <message>Requested return not specified.</message>
-                    </return_not_specified>
-                    <data_not_specified>
-                        <code>800</code>
-                        <message>Requested data not specified.</message>
-                    </data_not_specified>
-                    <order_not_exists>
-                        <code>900</code>
-                        <message>Requested order not exists.</message>
-                    </order_not_exists>
-                    <nfce_not_exists>
-                        <code>1000</code>
-                        <message>Requested NFC-e not exists.</message>
-                    </nfce_not_exists>
-                    <nfce_not_saved>
-                        <code>1100</code>
-                        <message>Requested NFC-e not saved.</message>
-                    </nfce_not_saved>
-                    <nfce_already_authorized>
-                        <code>1200</code>
-                        <message>Requested NFC-e is already authorized.</message>
-                    </nfce_already_authorized>
-                    <ibpt_not_imported>
-                        <code>1300</code>
-                        <message>Requested IBPT table was not imported.</message>
-                    </ibpt_not_imported>
-                    <ibpt_not_valid>
-                        <code>1400</code>
-                        <message>Requested IBPT table is not valid.</message>
-                    </ibpt_not_valid>
-                    <cest_not_imported>
-                        <code>1500</code>
-                        <message>Requested CEST table was not imported.</message>
-                    </cest_not_imported>
-                    <cest_not_valid>
-                        <code>1600</code>
-                        <message>Requested CEST table is not valid.</message>
-                    </cest_not_valid>
-                    <filters_invalid>
-                        <code>1700</code>
-                        <message>Invalid filters given. Details in error message.</message>
-                    </filters_invalid>
-                    <key_invalid>
-                        <code>1800</code>
-                        <message>Invalid key given.</message>
-                    </key_invalid>
-                </faults>
             </brazil_nfce>
         </resources>
+        <faults>
+            <order_not_specified>
+                <code>100</code>
+                <message>Requested order not specified.</message>
+            </order_not_specified>
+            <code_not_specified>
+                <code>200</code>
+                <message>Requested code not specified.</message>
+            </code_not_specified>
+            <key_not_specified>
+                <code>300</code>
+                <message>Requested key not specified.</message>
+            </key_not_specified>
+            <digit_not_specified>
+                <code>400</code>
+                <message>Requested digit not specified.</message>
+            </digit_not_specified>
+            <info_not_specified>
+                <code>500</code>
+                <message>Requested info not specified.</message>
+            </info_not_specified>
+            <sent_not_specified>
+                <code>600</code>
+                <message>Requested sent not specified.</message>
+            </sent_not_specified>
+            <return_not_specified>
+                <code>700</code>
+                <message>Requested return not specified.</message>
+            </return_not_specified>
+            <data_not_specified>
+                <code>800</code>
+                <message>Requested data not specified.</message>
+            </data_not_specified>
+            <order_not_exists>
+                <code>900</code>
+                <message>Requested order not exists.</message>
+            </order_not_exists>
+            <nfce_not_exists>
+                <code>1000</code>
+                <message>Requested NFC-e not exists.</message>
+            </nfce_not_exists>
+            <nfce_not_saved>
+                <code>1100</code>
+                <message>Requested NFC-e not saved.</message>
+            </nfce_not_saved>
+            <nfce_already_authorized>
+                <code>1200</code>
+                <message>Requested NFC-e is already authorized.</message>
+            </nfce_already_authorized>
+            <ibpt_not_imported>
+                <code>1300</code>
+                <message>Requested IBPT table was not imported.</message>
+            </ibpt_not_imported>
+            <ibpt_not_valid>
+                <code>1400</code>
+                <message>Requested IBPT table is not valid.</message>
+            </ibpt_not_valid>
+            <cest_not_imported>
+                <code>1500</code>
+                <message>Requested CEST table was not imported.</message>
+            </cest_not_imported>
+            <cest_not_valid>
+                <code>1600</code>
+                <message>Requested CEST table is not valid.</message>
+            </cest_not_valid>
+            <filters_invalid>
+                <code>1700</code>
+                <message>Invalid filters given. Details in error message.</message>
+            </filters_invalid>
+            <key_invalid>
+                <code>1800</code>
+                <message>Invalid key given.</message>
+            </key_invalid>
+        </faults>
         <acl>
             <resources>
                 <brazil translate="title" module="brazil">
