@@ -22,6 +22,12 @@
 "Invalid CEST format in the Row #%s","Formato Inválido do CEST na Linha #%s"
 "The CEST file has been imported successfully!","O arquivo CEST foi importado com sucesso!"
 
+"Download and Import CFOP Global Table","Baixar e Importar Tabela Global CFOP"
+"Invalid CFOP File Format","Formato Inválido do Arquivo CFOP"
+"An error occurred while import CFOP.","Ocorreu um erro ao importar CFOP."
+"Invalid CFOP format in the Row #%s","Formato Inválido do CFOP na Linha #%s"
+"The CFOP file has been imported successfully!","O arquivo CFOP foi importado com sucesso!"
+
 "Certificate","Certificado"
 "A1 File","A1 Arquivo"
 
@@ -54,6 +60,9 @@
 
 "Manage CESTs","Gerenciar CESTs"
 "CEST Manager","Gerenciador de CESTs"
+
+"Manage CFOPs","Gerenciar CFOPs"
+"CFOP Manager","Gerenciador de CFOPs"
 
 "Manage NFCEs","Gerenciar NFCEs"
 "NFC-e Manager","Gerenciador de NFCEs"
@@ -150,6 +159,8 @@
 "Requested IBPT table is not valid.","Tabela IBPT solicitada não é válida."
 "Requested CEST table was not imported.","Tabela CEST solicitada não foi importada."
 "Requested CEST table is not valid.","Tabela CEST solicitada não é válida."
+"Requested CFOP table was not imported.","Tabela CFOP solicitada não foi importada."
+"Requested CFOP table is not valid.","Tabela CFOP solicitada não é válida."
 "Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 
 "Invalid key given.","Chave fornecida é inválida."
