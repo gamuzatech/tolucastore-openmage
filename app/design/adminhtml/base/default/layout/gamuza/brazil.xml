@@ -33,5 +33,10 @@
             <block type="brazil/adminhtml_country" name="country" />
         </reference>
     </admin_brazil_adminhtml_country_index>
+    <admin_brazil_adminhtml_region_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_region" name="region" />
+        </reference>
+    </admin_brazil_adminhtml_region_index>
 </layout>
 
