@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.6</version>
+            <version>0.0.7</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -38,6 +38,9 @@
                     <cest>
                         <table>gamuza_brazil_cest</table>
                     </cest>
+                    <cfop>
+                        <table>gamuza_brazil_cfop</table>
+                    </cfop>
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
@@ -204,6 +207,9 @@
             <cest>
                 <validate>0</validate>
             </cest>
+            <cfop>
+                <validate>0</validate>
+            </cfop>
             <setting>
                 <crt_id>1</crt_id>
                 <environment_id>2</environment_id>

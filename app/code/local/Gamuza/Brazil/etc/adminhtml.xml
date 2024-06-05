@@ -32,6 +32,11 @@
                             <sort_order>30</sort_order>
                             <action>admin_brazil/adminhtml_cest</action>
                         </cest>
+                        <cfop translate="title" module="brazil">
+                            <title>Manage CFOPs</title>
+                            <sort_order>40</sort_order>
+                            <action>admin_brazil/adminhtml_cfop</action>
+                        </cfop>
                     </children>
                 </brazil>
             </children>
@@ -64,6 +69,10 @@
                                         <title>Manage CESTs</title>
                                         <sort_order>30</sort_order>
                                     </cest>
+                                    <cfop translate="title" module="brazil">
+                                        <title>Manage CFOPs</title>
+                                        <sort_order>40</sort_order>
+                                    </cfop>
                                 </children>
                             </brazil>
                         </children>
