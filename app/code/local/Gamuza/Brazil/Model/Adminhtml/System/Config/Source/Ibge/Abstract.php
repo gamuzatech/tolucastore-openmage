@@ -7,7 +7,7 @@
 
 class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
 {
-    public const FIELD = 'description';
+    public const FIELD = 'name';
 
     /**
      * Options getter
