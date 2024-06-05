@@ -9,12 +9,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
 {
     public const FIELD = 'name';
 
-    /**
-     * Options getter
-     *
-     * @return array
-     */
-    public function toOptionArray()
+    public function toOptionArray ()
     {
         $result = array (
             array ('value' => 0, 'label' => Mage::helper ('core')->__('-- Please Select --')),
@@ -25,6 +20,18 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Ibge_Abstract
         foreach ($collection as $item)
         {
             $result [] = array ('value' => $item->getCode (), 'label' => sprintf ('%s %s', $item->getData (static::FIELD), $item->getCode ()));
+        }
+
+        return $result;
+    }
+
+    public function toArray ()
+    {
+        $result = array ();
+
+        foreach ($this->toOptionArray () as $item)
+        {
+            $result [$item ['value']] = $item ['label'];
         }
 
         return $result;
