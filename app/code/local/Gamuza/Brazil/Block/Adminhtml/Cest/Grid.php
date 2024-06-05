@@ -17,13 +17,6 @@ class Gamuza_Brazil_Block_Adminhtml_Cest_Grid extends Mage_Adminhtml_Block_Widge
 		$this->setSaveParametersInSession (true);
     }
 
-    protected function _getStore()
-    {
-        $storeId = (int) $this->getRequest()->getParam('store', 0);
-
-        return Mage::app()->getStore($storeId);
-    }
-
 	protected function _prepareCollection ()
 	{
 		$collection = Mage::getModel ('brazil/cest')->getCollection ();
@@ -35,8 +28,6 @@ class Gamuza_Brazil_Block_Adminhtml_Cest_Grid extends Mage_Adminhtml_Block_Widge
 
 	protected function _prepareColumns ()
 	{
-        $store = $this->_getStore();
-
 		$this->addColumn ('entity_id', array(
 		    'header' => Mage::helper ('brazil')->__('ID'),
 		    'align'  => 'right',
