@@ -66,6 +66,7 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
                 array ('dcr' => Mage::getSingleton ('core/resource')->getTablename ('directory/country_region')),
                 sprintf ("region.acronym = dcr.code AND dcr.country_id = '%s'", $countryId),
                 array(
+                    'region_code' => 'region.acronym',
                     'region_name' => 'dcr.default_name',
                 )
            )
