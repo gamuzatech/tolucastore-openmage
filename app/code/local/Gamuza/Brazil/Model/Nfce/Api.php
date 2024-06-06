@@ -74,6 +74,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
     {
         $collection = Mage::getModel ('brazil/nfce')->getCollection ()
             ->addOrderInfo ()
+            ->addIBGEInfo ()
         ;
 
         /** @var $apiHelper Mage_Api_Helper_Data */
@@ -162,6 +163,10 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_history_id'  => intval ($nfce->getPdvHistoryId ()),
                 'pdv_sequence_id' => intval ($nfce->getPdvSequenceId ()),
                 'pdv_table_id'    => intval ($nfce->getPdvTableId ()),
+                // IBGE
+                'country_name' => strval ($nfce->getCountryName ()),
+                'region_name'  => strval ($nfce->getRegionName ()),
+                'city_name'    => strval ($nfce->getCityName ()),
             );
 
             $order = $this->_initOrder ($nfce->getIncrementId (), $nfce->getProtectCode ());
