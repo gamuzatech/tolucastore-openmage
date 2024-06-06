@@ -36,20 +36,6 @@
                         <method>update</method>
                     </update>
                 </methods>
-                <faults>
-                    <nfce_not_exists>
-                        <code>1600</code>
-                        <message>Requested NFC-e not exists.</message>
-                    </nfce_not_exists>
-                    <nfce_not_saved>
-                        <code>1700</code>
-                        <message>Requested NFC-e not saved.</message>
-                    </nfce_not_saved>
-                    <nfce_already_authorized>
-                        <code>1800</code>
-                        <message>Requested NFC-e is already authorized.</message>
-                    </nfce_already_authorized>
-                </faults>
             </brazil_nfce>
         </resources>
         <faults>
@@ -113,6 +99,18 @@
                 <code>1500</code>
                 <message>Invalid key given.</message>
             </key_invalid>
+            <nfce_not_exists>
+                <code>1600</code>
+                <message>Requested NFC-e not exists.</message>
+            </nfce_not_exists>
+            <nfce_not_saved>
+                <code>1700</code>
+                <message>Requested NFC-e not saved.</message>
+            </nfce_not_saved>
+            <nfce_already_authorized>
+                <code>1800</code>
+                <message>Requested NFC-e is already authorized.</message>
+            </nfce_already_authorized>
         </faults>
         <acl>
             <resources>
