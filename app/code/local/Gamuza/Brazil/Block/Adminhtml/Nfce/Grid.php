@@ -54,12 +54,73 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'order_id',
 		));
 */
+		$this->addColumn ('increment_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Order Inc. ID'),
+		    'align'   => 'right',
+		    'index'   => 'increment_id',
+		));
 		$this->addColumn ('batch_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Batch ID'),
 		    'align'   => 'right',
             'width'   => '50px',
             'type'    => 'number',
 		    'index'   => 'batch_id',
+		));
+		$this->addColumn ('number_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Number ID'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'number_id',
+		));
+		$this->addColumn ('code', array(
+		    'header'  => Mage::helper ('brazil')->__('Code'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'code',
+		));
+		$this->addColumn ('key', array(
+		    'header'  => Mage::helper ('brazil')->__('Key'),
+		    'align'   => 'right',
+		    'index'   => 'key',
+		));
+		$this->addColumn ('digit', array(
+		    'header'  => Mage::helper ('brazil')->__('Digit'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'digit',
+		));
+		$this->addColumn ('model_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Model'),
+		    'align'   => 'right',
+            'width'   => '50px',
+		    'index'   => 'model_id',
+            'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_dfe_model')->toArray (),
+		));
+		$this->addColumn ('series_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Series'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'series_id',
+		));
+		$this->addColumn ('version', array(
+		    'header'  => Mage::helper ('brazil')->__('Version'),
+		    'align'   => 'right',
+		    'index'   => 'version',
+            'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
+		));
+		$this->addColumn ('crt_id', array(
+		    'header'  => Mage::helper ('brazil')->__('CRT'),
+		    'align'   => 'right',
+            'width'   => '50px',
+		    'index'   => 'crt_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
 		));
 		$this->addColumn ('country_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Country'),
@@ -76,13 +137,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'region_id',
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_region')->toArray (),
-		));
-		$this->addColumn ('number_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Number ID'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'number_id',
 		));
 		$this->addColumn ('status_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Status'),
@@ -188,14 +242,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_freight')->toArray (),
 		));
-		$this->addColumn ('crt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('CRT'),
-		    'align'   => 'right',
-            'width'   => '50px',
-		    'index'   => 'crt_id',
-	        'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
-		));
 		$this->addColumn ('result_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Result'),
 		    'align'   => 'right',
@@ -223,51 +269,10 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'type'    => 'number',
 		    'index'   => 'average_id',
 		));
-		$this->addColumn ('version', array(
-		    'header'  => Mage::helper ('brazil')->__('Version'),
-		    'align'   => 'right',
-		    'index'   => 'version',
-            'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
-		));
-		$this->addColumn ('code', array(
-		    'header'  => Mage::helper ('brazil')->__('Code'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'code',
-		));
-		$this->addColumn ('key', array(
-		    'header'  => Mage::helper ('brazil')->__('Key'),
-		    'align'   => 'right',
-		    'index'   => 'key',
-		));
-		$this->addColumn ('digit', array(
-		    'header'  => Mage::helper ('brazil')->__('Digit'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'digit',
-		));
 		$this->addColumn ('operation_name', array(
 		    'header'  => Mage::helper ('brazil')->__('Operation Description'),
 		    'align'   => 'right',
 		    'index'   => 'operation_name',
-		));
-		$this->addColumn ('model_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Model'),
-		    'align'   => 'right',
-            'width'   => '50px',
-		    'index'   => 'model_id',
-            'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_dfe_model')->toArray (),
-		));
-		$this->addColumn ('series_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Series'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'series_id',
 		));
 		$this->addColumn ('customer_taxvat', array(
 		    'header'  => Mage::helper ('brazil')->__('Customer Taxvat'),
@@ -299,24 +304,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'width'   => '50px',
 		    'index'   => 'customer_lastname',
 		));
-/*
-		$this->addColumn ('payment_method', array(
-		    'header'  => Mage::helper ('brazil')->__('Payment'),
-		    'align'   => 'right',
-            'width'   => '50px',
-		    'index'   => 'payment_method',
-	        'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_payment_type')->toArray (),
-		));
-		$this->addColumn ('payment_amount', array(
-		    'header'  => Mage::helper ('brazil')->__('Amount'),
-		    'align'   => 'right',
-            'width'   => '50px',
-		    'index'   => 'payment_amount',
-            'type'    => 'price',
-            'currency_code' => $store->getBaseCurrency ()->getCode (),
-		));
-*/
 		$this->addColumn ('observation', array(
 			'header' => Mage::helper ('brazil')->__('Observation'),
             'align'  => 'right',
