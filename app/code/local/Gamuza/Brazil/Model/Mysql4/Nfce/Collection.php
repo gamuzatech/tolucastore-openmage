@@ -44,5 +44,41 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
 
         return $this;
     }
+
+    public function addIBGEInfo ()
+    {
+        $countryId = Mage::getStoreConfig (Mage_Core_Model_Locale::XML_PATH_DEFAULT_COUNTRY);
+
+        $this->getSelect ()
+            ->joinLeft(
+                array ('country' => Mage::getSingleton ('core/resource')->getTablename ('brazil/country')),
+                'main_table.country_id = country.code',
+                array(
+                    'country_name' => 'country.name',
+                )
+            )
+            ->joinLeft(
+                array ('region' => Mage::getSingleton ('core/resource')->getTablename ('brazil/region')),
+                'main_table.region_id = region.code',
+                array ()
+            )
+            ->joinLeft(
+                array ('dcr' => Mage::getSingleton ('core/resource')->getTablename ('directory/country_region')),
+                sprintf ("region.acronym = dcr.code AND dcr.country_id = '%s'", $countryId),
+                array(
+                    'region_name' => 'dcr.default_name',
+                )
+           )
+            ->joinLeft(
+                array ('city' => Mage::getSingleton ('core/resource')->getTablename ('brazil/city')),
+                'main_table.city_id = city.code',
+                array (
+                    'city_name' => 'city.name',
+                )
+            )
+        ;
+
+        return $this;
+    }
 }
 
