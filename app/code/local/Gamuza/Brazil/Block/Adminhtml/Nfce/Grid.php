@@ -122,6 +122,19 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_crt')->toArray (),
 		));
+		$this->addColumn ('status_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Status'),
+		    'align'   => 'right',
+            'width'   => '50px',
+		    'index'   => 'status_id',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_status')->toArray (),
+		));
+		$this->addColumn ('operation_name', array(
+		    'header'  => Mage::helper ('brazil')->__('Operation Description'),
+		    'align'   => 'right',
+		    'index'   => 'operation_name',
+		));
 		$this->addColumn ('country_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Country'),
 		    'align'   => 'right',
@@ -138,13 +151,13 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_region')->toArray (),
 		));
-		$this->addColumn ('status_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Status'),
+		$this->addColumn ('city_id', array(
+		    'header'  => Mage::helper ('brazil')->__('City'),
 		    'align'   => 'right',
             'width'   => '50px',
-		    'index'   => 'status_id',
+		    'index'   => 'city_id',
 	        'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_status')->toArray (),
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_city')->toArray (),
 		));
 		$this->addColumn ('operation_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Operation Type'),
@@ -161,14 +174,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'destiny_id',
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_destiny')->toArray (),
-		));
-		$this->addColumn ('city_id', array(
-		    'header'  => Mage::helper ('brazil')->__('City'),
-		    'align'   => 'right',
-            'width'   => '50px',
-		    'index'   => 'city_id',
-	        'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_city')->toArray (),
 		));
 		$this->addColumn ('print_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Print'),
@@ -242,38 +247,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	        'type'    => 'options',
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_freight')->toArray (),
 		));
-		$this->addColumn ('result_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Result'),
-		    'align'   => 'right',
-		    'index'   => 'result_id',
-		));
-		$this->addColumn ('response_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Response'),
-		    'align'   => 'right',
-		    'index'   => 'response_id',
-		));
-		$this->addColumn ('receipt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Receipt'),
-		    'align'   => 'right',
-		    'index'   => 'receipt_id',
-		));
-		$this->addColumn ('protocol_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Protocol'),
-		    'align'   => 'right',
-		    'index'   => 'protocol_id',
-		));
-		$this->addColumn ('average_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Average'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'average_id',
-		));
-		$this->addColumn ('operation_name', array(
-		    'header'  => Mage::helper ('brazil')->__('Operation Description'),
-		    'align'   => 'right',
-		    'index'   => 'operation_name',
-		));
 		$this->addColumn ('customer_taxvat', array(
 		    'header'  => Mage::helper ('brazil')->__('Customer Taxvat'),
 		    'align'   => 'right',
@@ -313,18 +286,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 			'header' => Mage::helper ('brazil')->__('Fisco'),
             'align'  => 'right',
 			'index'  => 'fisco',
-		));
-		$this->addColumn ('qr_code', array(
-			'header' => Mage::helper ('brazil')->__('QR Code'),
-            'align'  => 'right',
-			'index'  => 'qr_code',
-            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
-		));
-		$this->addColumn ('url_key', array(
-			'header' => Mage::helper ('brazil')->__('URL Key'),
-            'align'  => 'right',
-			'index'  => 'url_key',
-            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
 		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('brazil')->__('Created At'),
@@ -372,6 +333,45 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Key'),
 		    'align'   => 'right',
 		    'index'   => 'response_key',
+		));
+		$this->addColumn ('result_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Result'),
+		    'align'   => 'right',
+		    'index'   => 'result_id',
+		));
+		$this->addColumn ('response_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Response'),
+		    'align'   => 'right',
+		    'index'   => 'response_id',
+		));
+		$this->addColumn ('receipt_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Receipt'),
+		    'align'   => 'right',
+		    'index'   => 'receipt_id',
+		));
+		$this->addColumn ('protocol_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Protocol'),
+		    'align'   => 'right',
+		    'index'   => 'protocol_id',
+		));
+		$this->addColumn ('average_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Average'),
+		    'align'   => 'right',
+            'width'   => '50px',
+            'type'    => 'number',
+		    'index'   => 'average_id',
+		));
+		$this->addColumn ('qr_code', array(
+			'header' => Mage::helper ('brazil')->__('QR Code'),
+            'align'  => 'right',
+			'index'  => 'qr_code',
+            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
+		));
+		$this->addColumn ('url_key', array(
+			'header' => Mage::helper ('brazil')->__('URL Key'),
+            'align'  => 'right',
+			'index'  => 'url_key',
+            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
 		));
 
         $this->addColumn ('action', array(
