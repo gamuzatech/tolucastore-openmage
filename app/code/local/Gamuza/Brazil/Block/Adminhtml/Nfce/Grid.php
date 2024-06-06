@@ -334,25 +334,25 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'response_key',
 		));
-		$this->addColumn ('result_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Result'),
-		    'align'   => 'right',
-		    'index'   => 'result_id',
-		));
 		$this->addColumn ('response_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Response'),
 		    'align'   => 'right',
 		    'index'   => 'response_id',
 		));
-		$this->addColumn ('receipt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Receipt'),
+		$this->addColumn ('result_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Result'),
 		    'align'   => 'right',
-		    'index'   => 'receipt_id',
+		    'index'   => 'result_id',
 		));
 		$this->addColumn ('protocol_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Protocol'),
 		    'align'   => 'right',
 		    'index'   => 'protocol_id',
+		));
+		$this->addColumn ('receipt_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Receipt'),
+		    'align'   => 'right',
+		    'index'   => 'receipt_id',
 		));
 		$this->addColumn ('average_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Average'),
