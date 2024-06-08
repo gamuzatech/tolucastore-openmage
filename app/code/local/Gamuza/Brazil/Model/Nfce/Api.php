@@ -411,7 +411,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function save ($orderIncrementId, $orderProtectCode, $key, $digit, $info)
+    public function sign ($orderIncrementId, $orderProtectCode, $key, $digit, $info)
     {
         if (empty ($orderIncrementId))
         {
@@ -486,7 +486,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function update ($orderIncrementId, $orderProtectCode, $info, $sent, $return, $data)
+    public function authorize ($orderIncrementId, $orderProtectCode, $info, $sent, $return, $data)
     {
         if (empty ($orderIncrementId))
         {
