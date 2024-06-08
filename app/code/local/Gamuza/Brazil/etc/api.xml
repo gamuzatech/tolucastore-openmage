@@ -25,16 +25,16 @@
                         <acl>brazil/nfce/create</acl>
                         <method>create</method>
                     </create>
-                    <save translate="title" module="brazil">
-                        <title>Save a NFC-e for the order</title>
-                        <acl>brazil/nfce/save</acl>
-                        <method>save</method>
-                    </save>
-                    <update translate="title" module="brazil">
-                        <title>Update a NFC-e for the order</title>
-                        <acl>brazil/nfce/update</acl>
-                        <method>update</method>
-                    </update>
+                    <sign translate="title" module="brazil">
+                        <title>Sign a NFC-e for the order</title>
+                        <acl>brazil/nfce/sign</acl>
+                        <method>sign</method>
+                    </sign>
+                    <authorize translate="title" module="brazil">
+                        <title>Authorize a NFC-e for the order</title>
+                        <acl>brazil/nfce/authorize</acl>
+                        <method>authorize</method>
+                    </authorize>
                 </methods>
             </brazil_nfce>
         </resources>
@@ -125,12 +125,12 @@
                         <create translate="title" module="brazil">
                             <title>Create a NFC-e for the order</title>
                         </create>
-                        <save translate="title" module="brazil">
-                            <title>Save a NFC-e for the order</title>
-                        </save>
-                        <update translate="title" module="brazil">
-                            <title>Update a NFC-e for the order</title>
-                        </update>
+                        <sign translate="title" module="brazil">
+                            <title>Sign a NFC-e for the order</title>
+                        </sign>
+                        <authorize translate="title" module="brazil">
+                            <title>Authorize a NFC-e for the order</title>
+                        </authorize>
                     </nfce>
                 </brazil>
             </resources>
