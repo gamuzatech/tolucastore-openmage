@@ -111,6 +111,14 @@
                 <code>1800</code>
                 <message>Requested NFC-e is already authorized.</message>
             </nfce_already_authorized>
+            <nfce_not_authorized>
+                <code>1900</code>
+                <message>Requested NFC-e is not authorized.</message>
+            </nfce_not_authorized>
+            <nfce_already_canceled>
+                <code>2000</code>
+                <message>Requested NFC-e is already canceled.</message>
+            </nfce_already_canceled>
         </faults>
         <acl>
             <resources>
