@@ -22,6 +22,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Status
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED,     'label' => Mage::helper ('brazil')->__('Signed')),
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED, 'label' => Mage::helper ('brazil')->__('Authorized')),
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED,     'label' => Mage::helper ('brazil')->__('Denied')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED,   'label' => Mage::helper ('brazil')->__('Canceled')),
         );
 
         return $result;
@@ -39,6 +40,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Status
             Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED     => Mage::helper ('brazil')->__('Signed'),
             Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED => Mage::helper ('brazil')->__('Authorized'),
             Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED     => Mage::helper ('brazil')->__('Denied'),
+            Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED   => Mage::helper ('brazil')->__('Canceled'),
         );
 
         return $result;
