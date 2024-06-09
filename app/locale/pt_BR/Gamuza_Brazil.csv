@@ -190,6 +190,8 @@
 "Requested NFC-e not exists.","NFC-e solicitado não existe."
 "Requested NFC-e not saved.","NFC-e solicitada não foi salva."
 "Requested NFC-e is already authorized.","NFC-e solicitado já está autorizado."
+"Requested NFC-e is not authorized.","NFC-e solicitado não está autorizado."
+"Requested NFC-e is already canceled.","NFC-e solicitado já está cancelado."
 "Requested IBPT table was not imported.","Tabela IBPT solicitada não foi importada."
 "Requested IBPT table is not valid.","Tabela IBPT solicitada não é válida."
 "Requested CEST table was not imported.","Tabela CEST solicitada não foi importada."
