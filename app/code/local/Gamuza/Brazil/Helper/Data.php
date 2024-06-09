@@ -134,6 +134,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_STATUS_SIGNED     = 'signed';
     const NFE_STATUS_AUTHORIZED = 'authorized';
     const NFE_STATUS_DENIED     = 'denied';
+    const NFE_STATUS_CANCELED   = 'canceled';
 
     const XML_PATH_BRAZIL_IBPT_IMPORT   = 'brazil/ibpt/import';
     const XML_PATH_BRAZIL_IBPT_KEY      = 'brazil/ibpt/key';

@@ -45,7 +45,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'fisco',
     );
 
-    protected $_updateAttributeList = array(
+    protected $_authorizeAttributeList = array(
         'qr_code',
         'url_key',
         'emitted_at',
@@ -357,6 +357,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfce_already_canceled');
+        }
+
         foreach ($this->_createAttributeList as $attribute)
         {
             if (array_key_exists ($attribute, $data))
@@ -459,6 +464,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfce_already_canceled');
+        }
+
         $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'xml' . DS . 'info';
 
         if (!is_dir ($xmlDir))
@@ -532,7 +542,12 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_authorized');
         }
 
-        foreach ($this->_updateAttributeList as $attribute)
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfce_already_canceled');
+        }
+
+        foreach ($this->_authorizeAttributeList as $attribute)
         {
             if (array_key_exists ($attribute, $data))
             {
