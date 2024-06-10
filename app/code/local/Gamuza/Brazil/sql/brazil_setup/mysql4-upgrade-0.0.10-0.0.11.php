@@ -166,42 +166,12 @@ SQLBLOCK;
             'comment'  => 'CRT ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'result_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'unsigned' => true,
-            'nullable' => true,
-            'comment'  => 'Result ID',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'response_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
             'nullable' => true,
             'comment'  => 'Response ID',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'protocol_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Protocol ID',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'receipt_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Receipt ID',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'average_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'default'  => -1,
-            'nullable' => false,
-            'comment'  => 'Average ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'customer_ie', array(
@@ -278,45 +248,12 @@ SQLBLOCK;
             'comment'  => 'Fisco',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'qr_code', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'nullable' => false,
-            'comment'  => 'QR Code',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'url_key', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'nullable' => false,
-            'comment'  => 'URL Key',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'status_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
             'nullable' => false,
             'comment'  => 'Status ID',
             'default'  => Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED,
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'response_application', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Response Application',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'response_reason', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Response Reason',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'response_key', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Response Key',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
@@ -335,18 +272,6 @@ SQLBLOCK;
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'Signed At'
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'emitted_at', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
-            'nullable' => true,
-            'comment'  => 'Emitted At',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'response_at', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
-            'nullable' => true,
-            'comment'  => 'Response At',
         ));
 }
 
