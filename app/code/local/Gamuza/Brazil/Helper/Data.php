@@ -14,6 +14,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const REGION_TABLE  = 'gamuza_brazil_region';
     const CITY_TABLE  = 'gamuza_brazil_city';
     const NFCE_TABLE = 'gamuza_brazil_nfce';
+    const NFCE_RESPONSE_TABLE = 'gamuza_brazil_nfce_response';
 
     const PRODUCT_ATTRIBUTE_BRAZIL_NCM  = 'brazil_ncm';
     const PRODUCT_ATTRIBUTE_BRAZIL_CEST = 'brazil_cest';
