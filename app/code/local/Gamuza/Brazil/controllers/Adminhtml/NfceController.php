@@ -34,5 +34,59 @@ class Gamuza_Brazil_Adminhtml_NfceController extends Mage_Adminhtml_Controller_A
 
 		$this->renderLayout ();
 	}
+
+    public function responseAction ()
+    {
+        $nfce = $this->_initNFCe ();
+
+        if ($nfce && $nfce->getId ())
+        {
+            $this->_title ($this->__('Brazil'));
+            $this->_title ($this->__('NFC-e Manager'));
+            $this->_title ($this->__('NFC-e Response Manager'));
+
+            $this->_initAction ();
+
+            $this->renderLayout ();
+        }
+    }
+
+    protected function _initNFCe ()
+    {
+        $id = $this->getRequest ()->getParam ('nfce_id');
+
+        $nfce = Mage::getModel ('brazil/nfce')->load ($id);
+
+        if (!$nfce || !$nfce->getId ())
+        {
+            $this->_getSession ()->addError ($this->__('This NFC-e no longer exists.'));
+
+            $this->_redirect('*/*/index');
+
+            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
+
+            return false;
+        }
+
+        $collection = Mage::getModel ('brazil/nfce_response')->getCollection ()
+            ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
+        ;
+
+        if (!$collection->getSize ())
+        {
+            $this->_getSession ()->addError ($this->__('This NFC-e has no response.'));
+
+            $this->_redirect('*/*/index');
+
+            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
+
+            return false;
+        }
+
+        Mage::register('brazil_nfce',  $nfce);
+        Mage::register('current_nfce', $nfce);
+
+        return $nfce;
+    }
 }
 

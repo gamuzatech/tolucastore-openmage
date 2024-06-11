@@ -273,6 +273,12 @@ SQLBLOCK;
             'nullable' => true,
             'comment'  => 'Signed At'
         ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'response_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => true,
+            'comment'  => 'Response At',
+        ));
 }
 
 addBrazilNfceTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_TABLE, 'Gamuza Brazil NFC-e');
