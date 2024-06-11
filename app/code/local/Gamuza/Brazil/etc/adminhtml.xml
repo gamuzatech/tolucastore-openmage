@@ -18,7 +18,7 @@
                     <sort_order>100</sort_order>
                     <children>
                         <nfce translate="title" module="brazil">
-                            <title>Manage NFCEs</title>
+                            <title>Manage NFC-e</title>
                             <sort_order>10</sort_order>
                             <action>admin_brazil/adminhtml_nfce</action>
                         </nfce>
@@ -73,7 +73,7 @@
                                 <sort_order>100</sort_order>
                                 <children>
                                     <nfce translate="title" module="brazil">
-                                        <title>Manage NFCEs</title>
+                                        <title>Manage NFC-e</title>
                                         <sort_order>10</sort_order>
                                     </nfce>
                                     <ibpt translate="title" module="brazil">
