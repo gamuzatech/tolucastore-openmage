@@ -50,14 +50,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'url_key',
         'emitted_at',
         'average_id',
-        'result_id',
+        'return_id',
         'receipt_id',
         'protocol_id',
-        'response_id',
-        'response_at',
-        'response_application',
-        'response_reason',
-        'response_key',
+        'received_id',
+        'received_at',
+        'application',
+        'reason',
+        'key',
     );
 
     public function __construct ()
@@ -341,7 +341,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $order = $this->_initIBPT ($order, $updateIBPT);
 
-        $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
+        $nfce = $this->_initNFCe ($order, false);
 
         if (!$nfce || !$nfce->getId ())
         {
@@ -349,6 +349,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             $nfce = Mage::getModel ('brazil/nfce')
                 ->setNumberId ($numberId)
+                ->setCreatedAt (date ('c'))
             ;
         }
 
@@ -400,7 +401,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setOrderId ($order->getId ())
             ->setDestinyId ($destinyId)
             ->setCode (hexdec ($polynomial))
-            ->setCreatedAt (date ('c'))
             ->save ()
         ;
 
@@ -452,12 +452,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
 
-        $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
-
-        if (!$nfce || !$nfce->getId ())
-        {
-            $this->_fault ('nfce_not_exists');
-        }
+        $nfce = $this->_initNFCe ($order);
 
         if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED))
         {
@@ -530,12 +525,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
 
-        $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
-
-        if (!$nfce || !$nfce->getId ())
-        {
-            $this->_fault ('nfce_not_exists');
-        }
+        $nfce = $this->_initNFCe ($order);
 
         if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED))
         {
@@ -547,17 +537,24 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_canceled');
         }
 
+        $response = Mage::getModel ('brazil/nfce_response')
+            ->setNfceId ($nfce->getId ())
+            ->setCreatedAt (date ('c'))
+        ;
+
         foreach ($this->_authorizeAttributeList as $attribute)
         {
             if (array_key_exists ($attribute, $data))
             {
-                $nfce->setData ($attribute, $data [$attribute]);
+                $response->setData ($attribute, $data [$attribute]);
             }
             else
             {
                 $this->_fault ('data_not_specified');
             }
         }
+
+        $response->save ();
 
         $codeList = array ('info', 'sent', 'return');
 
@@ -590,12 +587,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         /**
          * 100 is AUTHORIZED
          */
-        $statusId = array_key_exists ('response_id', $data) && $data ['response_id'] == 100
+        $statusId = $response->getReceivedId () == 100
             ? Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED
         ;
 
         $nfce->setStatusId ($statusId)
+            ->setResponseId ($response->getId ())
+            ->setResponseAt ($response->getReceivedAt ())
             ->setUpdatedAt (date ('c'))
             ->save ()
         ;
@@ -624,6 +623,18 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         return $order;
+    }
+
+    protected function _initNFCe ($order, $fault = true)
+    {
+        $nfce = Mage::getModel ('brazil/nfce')->load ($order->getId (), 'order_id');
+
+        if ($fault && (!$nfce || !$nfce->getId ()))
+        {
+            $this->_fault ('nfce_not_exists');
+        }
+
+        return $nfce;
     }
 
     protected function _initIBPT (Mage_Sales_Model_Order $order, $updateIBPT)
