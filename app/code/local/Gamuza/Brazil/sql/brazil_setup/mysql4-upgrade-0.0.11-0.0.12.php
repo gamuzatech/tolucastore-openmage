@@ -23,33 +23,33 @@ SQLBLOCK;
     $installer->run ($sqlBlock);
 
     $installer->getConnection ()
-        ->addColumn ($table, 'result_id', array(
+        ->addColumn ($table, 'return_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
-            'nullable' => true,
-            'comment'  => 'Result ID',
+            'nullable' => false,
+            'comment'  => 'Return ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'response_id', array(
+        ->addColumn ($table, 'received_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
-            'nullable' => true,
-            'comment'  => 'Response ID',
+            'nullable' => false,
+            'comment'  => 'Received ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'protocol_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => true,
+            'nullable' => false,
             'comment'  => 'Protocol ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'receipt_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => true,
+            'nullable' => false,
             'comment'  => 'Receipt ID',
         ));
     $installer->getConnection ()
@@ -59,6 +59,14 @@ SQLBLOCK;
             'default'  => -1,
             'nullable' => false,
             'comment'  => 'Average ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'nfce_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'NFC-e ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'qr_code', array(
@@ -73,25 +81,25 @@ SQLBLOCK;
             'comment'  => 'URL Key',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'response_application', array(
+        ->addColumn ($table, 'application', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Response Application',
+            'nullable' => false,
+            'comment'  => 'Application',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'response_reason', array(
+        ->addColumn ($table, 'reason', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Response Reason',
+            'nullable' => false,
+            'comment'  => 'Reason',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'response_key', array(
+        ->addColumn ($table, 'key', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => true,
-            'comment'  => 'Response Key',
+            'nullable' => false,
+            'comment'  => 'Key',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
@@ -99,23 +107,25 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'Created At',
         ));
+/*
     $installer->getConnection ()
         ->addColumn ($table, 'updated_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'Updated At'
         ));
+*/
     $installer->getConnection ()
         ->addColumn ($table, 'emitted_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
-            'nullable' => true,
+            'nullable' => false,
             'comment'  => 'Emitted At',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'response_at', array(
+        ->addColumn ($table, 'received_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
-            'nullable' => true,
-            'comment'  => 'Response At',
+            'nullable' => false,
+            'comment'  => 'Received At',
         ));
 }
 

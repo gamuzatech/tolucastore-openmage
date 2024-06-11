@@ -983,6 +983,8 @@
 "The backup's creation process will take time.","O processo de criação do backup vai levar tempo."
 "The billing agreement has been canceled.","O termo de cobrança foi cancelado."
 "The billing agreement has been deleted.","O termo de cobrança foi excluído."
+"Flush & Apply Updates","Liberar Cache e Aplicar Alterações"
+"The OpenMage cache has been flushed and updates applied.","O cache foi liberado e as atualizações aplicadas."
 "The cache storage has been flushed.","O cache foi apagado."
 "The carrier needs to be specified.","A forma de entrega precisa ser informada."
 "The catalog index has been rebuilt.","O índice do catálogo foi refeito."
