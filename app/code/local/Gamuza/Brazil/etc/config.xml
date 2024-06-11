@@ -53,6 +53,9 @@
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
+                    <nfce_response>
+                        <table>gamuza_brazil_nfce_response</table>
+                    </nfce_response>
                 </entities>
             </brazil_mysql4>
         </models>

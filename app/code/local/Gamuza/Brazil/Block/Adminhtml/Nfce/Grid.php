@@ -17,13 +17,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		$this->setSaveParametersInSession (true);
     }
 
-    protected function _getStore()
-    {
-        $storeId = (int) $this->getRequest()->getParam('store', 0);
-
-        return Mage::app()->getStore($storeId);
-    }
-
 	protected function _prepareCollection ()
 	{
 		$collection = Mage::getModel ('brazil/nfce')->getCollection ()
@@ -37,8 +30,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 
 	protected function _prepareColumns ()
 	{
-        $store = $this->_getStore();
-
 		$this->addColumn ('entity_id', array(
 		    'header' => Mage::helper ('brazil')->__('ID'),
 		    'align'  => 'right',
@@ -115,7 +106,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
 		));
 		$this->addColumn ('crt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('CRT'),
+		    'header'  => Mage::helper ('brazil')->__('C.R.T.'),
 		    'align'   => 'right',
             'width'   => '50px',
 		    'index'   => 'crt_id',
@@ -307,74 +298,32 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'type'   => 'datetime',
             'width'  => '100px',
 		));
-		$this->addColumn ('emitted_at', array(
-			'header' => Mage::helper ('brazil')->__('Emitted At'),
-			'index'  => 'emitted_at',
-            'type'   => 'datetime',
-            'width'  => '100px',
-		));
 		$this->addColumn ('response_at', array(
 			'header' => Mage::helper ('brazil')->__('Response At'),
 			'index'  => 'response_at',
             'type'   => 'datetime',
             'width'  => '100px',
 		));
-		$this->addColumn ('response_application', array(
-		    'header'  => Mage::helper ('brazil')->__('Application'),
-		    'align'   => 'right',
-		    'index'   => 'response_application',
-		));
-		$this->addColumn ('response_reason', array(
-		    'header'  => Mage::helper ('brazil')->__('Reason'),
-		    'align'   => 'right',
-		    'index'   => 'response_reason',
-		));
-		$this->addColumn ('response_key', array(
-		    'header'  => Mage::helper ('brazil')->__('Key'),
-		    'align'   => 'right',
-		    'index'   => 'response_key',
-		));
-		$this->addColumn ('response_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Response'),
-		    'align'   => 'right',
-		    'index'   => 'response_id',
-		));
-		$this->addColumn ('result_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Result'),
-		    'align'   => 'right',
-		    'index'   => 'result_id',
-		));
-		$this->addColumn ('protocol_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Protocol'),
-		    'align'   => 'right',
-		    'index'   => 'protocol_id',
-		));
-		$this->addColumn ('receipt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Receipt'),
-		    'align'   => 'right',
-		    'index'   => 'receipt_id',
-		));
-		$this->addColumn ('average_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Average'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'average_id',
-		));
-		$this->addColumn ('qr_code', array(
-			'header' => Mage::helper ('brazil')->__('QR Code'),
-            'align'  => 'right',
-			'index'  => 'qr_code',
-            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
-		));
-		$this->addColumn ('url_key', array(
-			'header' => Mage::helper ('brazil')->__('URL Key'),
-            'align'  => 'right',
-			'index'  => 'url_key',
-            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
-		));
 
-        $this->addColumn ('action', array(
+        $this->addColumn ('response_action', array(
+            'header' => Mage::helper ('brazil')->__('Response'),
+            'width'  => '50px',
+            'type'   => 'action',
+            'getter' => 'getId',
+            'index'  => 'stores',
+            'filter'    => false,
+            'sortable'  => false,
+            'is_system' => true,
+            'actions' => array(
+                array(
+                    'caption' => Mage::helper ('brazil')->__('View'),
+                    'url'     => array ('base' => 'admin_brazil/adminhtml_nfce/response'),
+                    'field'   => 'nfce_id',
+                    'data-column' => 'action',
+                ),
+            ),
+        ));
+        $this->addColumn ('order_action', array(
             'header' => Mage::helper ('brazil')->__('Order'),
             'width'  => '50px',
             'type'   => 'action',
