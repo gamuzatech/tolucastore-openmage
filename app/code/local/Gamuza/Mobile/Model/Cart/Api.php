@@ -197,6 +197,15 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             }
         }
 
+        if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Brazil')
+            && !strcmp ($payment->getMethod (), Gamuza_Brazil_Model_Payment_Method_Pix::CODE))
+        {
+            $result ['brazil_pix'] = array (
+                'key'          => Mage::getStoreConfig ('payment/gamuza_brazil_pix/key'),
+                'instructions' => Mage::getStoreConfig ('payment/gamuza_brazil_pix/instructions'),
+            );
+        }
+
         if (Mage::helper ('core')->isModuleEnabled ('RicardoMartins_PagSeguroPro')
             && !strcmp ($payment->getMethod (), RicardoMartins_PagSeguroPro_Model_Payment_Boleto::CODE))
         {
