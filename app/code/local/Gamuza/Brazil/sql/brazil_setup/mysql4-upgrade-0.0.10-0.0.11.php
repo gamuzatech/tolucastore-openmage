@@ -166,14 +166,6 @@ SQLBLOCK;
             'comment'  => 'CRT ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'response_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'unsigned' => true,
-            'nullable' => true,
-            'comment'  => 'Response ID',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'customer_ie', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
@@ -272,12 +264,6 @@ SQLBLOCK;
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => true,
             'comment'  => 'Signed At'
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'response_at', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
-            'nullable' => true,
-            'comment'  => 'Response At',
         ));
 }
 
