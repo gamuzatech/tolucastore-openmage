@@ -69,6 +69,30 @@ SQLBLOCK;
             'comment'  => 'NFC-e ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'organ_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Organ ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'event_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Event ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'sequence_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Sequence ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'qr_code', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'nullable' => false,
@@ -100,6 +124,13 @@ SQLBLOCK;
             'length'   => 255,
             'nullable' => false,
             'comment'  => 'Key',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'event', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Event',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
