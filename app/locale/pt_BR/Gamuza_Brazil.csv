@@ -171,7 +171,6 @@
 "Fidelity","Fidelidade"
 "Static PIX","PIX Estático"
 "Not Informed","Não Informado"
-"Response At","Resposta Em"
 "Application","Aplicação"
 "Reason","Razão"
 "Signed","Assinado"
@@ -184,6 +183,8 @@
 "Received At","Recebido Em"
 "This NFC-e no longer exists.","Esta NFC-e não existe."
 "This NFC-e has no response.","Esta NFC-e não tem resposta."
+"Organ","Orgão"
+"Event","Evento"
 
 "Requested order not specified.","Pedido solicitado não foi especificado."
 "Requested code not specified.","Código do pedido não foi especificado."
