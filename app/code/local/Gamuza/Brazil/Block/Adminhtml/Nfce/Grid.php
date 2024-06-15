@@ -298,12 +298,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'type'   => 'datetime',
             'width'  => '100px',
 		));
-		$this->addColumn ('response_at', array(
-			'header' => Mage::helper ('brazil')->__('Response At'),
-			'index'  => 'response_at',
-            'type'   => 'datetime',
-            'width'  => '100px',
-		));
 
         $this->addColumn ('response_action', array(
             'header' => Mage::helper ('brazil')->__('Response'),
