@@ -39,6 +39,8 @@ class Gamuza_Brazil_Adminhtml_NfceController extends Mage_Adminhtml_Controller_A
     {
         $nfce = $this->_initNFCe ();
 
+        $nfce = $this->_initNFCeResponse ($nfce);
+
         if ($nfce && $nfce->getId ())
         {
             $this->_title ($this->__('Brazil'));
@@ -68,6 +70,11 @@ class Gamuza_Brazil_Adminhtml_NfceController extends Mage_Adminhtml_Controller_A
             return false;
         }
 
+        return $nfce;
+    }
+
+    protected function _initNFCeResponse ($nfce)
+    {
         $collection = Mage::getModel ('brazil/nfce_response')->getCollection ()
             ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
         ;
