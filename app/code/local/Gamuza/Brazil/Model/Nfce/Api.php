@@ -593,8 +593,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         ;
 
         $nfce->setStatusId ($statusId)
-            ->setResponseId ($response->getId ())
-            ->setResponseAt ($response->getReceivedAt ())
             ->setUpdatedAt (date ('c'))
             ->save ()
         ;
