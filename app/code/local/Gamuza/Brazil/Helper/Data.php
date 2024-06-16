@@ -206,12 +206,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFCE_MODEL_ID  = 'brazil/nfce/model_id';
     const XML_PATH_BRAZIL_NFCE_SERIES_ID = 'brazil/nfce/series_id';
 
-    public function getNumberId ($type, $contents = null)
+    public function getNextId ($type, $field, $contents = null)
     {
         $filename = sprintf (
-            '%s%s%s_get_number_id.lock',
+            '%s%s%s_get_%s.lock',
             Mage::app ()->getConfig ()->getVarDir ('locks'),
-            DS, $type
+            DS, $type, $field
         );
 
         $fp = fopen ($filename, 'a');
@@ -219,11 +219,11 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
         flock  ($fp, LOCK_EX);
         fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode ($contents), PHP_EOL));
 
-        $path = sprintf ("brazil/{$type}/number_id");
+        $path = sprintf ("brazil/{$type}/{$field}");
         $value = Mage::getStoreConfig ($path);
         $result = intval ($value) + 1;
 
-        fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode (array ('number_id' => $result)), PHP_EOL));
+        fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode (array ($field => $result)), PHP_EOL));
 
         Mage::getModel ('core/config')->saveConfig ($path, $result);
         Mage::app ()->getCacheInstance ()->cleanType ('config');

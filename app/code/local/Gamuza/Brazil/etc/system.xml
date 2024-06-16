@@ -513,7 +513,8 @@
                         </city_id>
                         <crt_id translate="label" module="brazil">
                             <label>C.R.T.</label>
-                            <comment>Tax Regime Code</comment>
+                            <tooltip>Tax Regime Code</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sintegra.gov.br">http://www.sintegra.gov.br</a>]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>brazil/adminhtml_system_config_source_nfe_crt</source_model>
                             <sort_order>70</sort_order>
@@ -599,6 +600,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </series_id>
+                        <cancel_id translate="label" module="brazil">
+                            <label>Cancel ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_id>
                     </fields>
                 </nfce>
                 <!--
@@ -651,6 +660,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </series_id>
+                        <cancel_id translate="label" module="brazil">
+                            <label>Cancel ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_id>
                     </fields>
                 </nfe>
                 -->
