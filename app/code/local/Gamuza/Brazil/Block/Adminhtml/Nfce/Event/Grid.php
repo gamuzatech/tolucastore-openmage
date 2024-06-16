@@ -61,20 +61,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Event_Grid extends Mage_Adminhtml_Block
 		    'align'   => 'right',
 		    'index'   => 'key',
 		));
-/*
-		$this->addColumn ('qr_code', array(
-			'header' => Mage::helper ('brazil')->__('QR Code'),
-            'align'  => 'right',
-			'index'  => 'qr_code',
-            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
-		));
-		$this->addColumn ('url_key', array(
-			'header' => Mage::helper ('brazil')->__('URL Key'),
-            'align'  => 'right',
-			'index'  => 'url_key',
-            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
-		));
-*/
 		$this->addColumn ('received_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Received'),
 		    'align'   => 'right',
@@ -89,18 +75,6 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Event_Grid extends Mage_Adminhtml_Block
 		    'header'  => Mage::helper ('brazil')->__('Protocol'),
 		    'align'   => 'right',
 		    'index'   => 'protocol_id',
-		));
-		$this->addColumn ('receipt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Receipt'),
-		    'align'   => 'right',
-		    'index'   => 'receipt_id',
-		));
-		$this->addColumn ('average_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Average'),
-		    'align'   => 'right',
-            'width'   => '50px',
-            'type'    => 'number',
-		    'index'   => 'average_id',
 		));
 		$this->addColumn ('type_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Type'),
@@ -120,15 +94,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Event_Grid extends Mage_Adminhtml_Block
 		    'header'  => Mage::helper ('brazil')->__('Event'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'event_id',
 		));
 		$this->addColumn ('organ_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Organ'),
 		    'align'   => 'right',
             'width'   => '50px',
-            'type'    => 'number',
 		    'index'   => 'organ_id',
+            'type'    => 'options',
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_ibge_region')->toArray (),
 		));
 		$this->addColumn ('name', array(
 		    'header'  => Mage::helper ('brazil')->__('Name'),
