@@ -38,14 +38,30 @@ class Gamuza_Brazil_Adminhtml_NfceController extends Mage_Adminhtml_Controller_A
     public function responseAction ()
     {
         $nfce = $this->_initNFCe ();
-
-        $nfce = $this->_initNFCeResponse ($nfce);
+        $nfce = $this->_initNFCeType ($nfce, 'response');
 
         if ($nfce && $nfce->getId ())
         {
             $this->_title ($this->__('Brazil'));
             $this->_title ($this->__('NFC-e Manager'));
             $this->_title ($this->__('NFC-e Response Manager'));
+
+            $this->_initAction ();
+
+            $this->renderLayout ();
+        }
+    }
+
+    public function eventAction ()
+    {
+        $nfce = $this->_initNFCe ();
+        $nfce = $this->_initNFCeType ($nfce, 'event');
+
+        if ($nfce && $nfce->getId ())
+        {
+            $this->_title ($this->__('Brazil'));
+            $this->_title ($this->__('NFC-e Manager'));
+            $this->_title ($this->__('NFC-e Event Manager'));
 
             $this->_initAction ();
 
@@ -73,15 +89,15 @@ class Gamuza_Brazil_Adminhtml_NfceController extends Mage_Adminhtml_Controller_A
         return $nfce;
     }
 
-    protected function _initNFCeResponse ($nfce)
+    protected function _initNFCeType ($nfce, $type)
     {
-        $collection = Mage::getModel ('brazil/nfce_response')->getCollection ()
+        $collection = Mage::getModel ("brazil/nfce_{$type}")->getCollection ()
             ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
         ;
 
         if (!$collection->getSize ())
         {
-            $this->_getSession ()->addError ($this->__('This NFC-e has no response.'));
+            $this->_getSession ()->addError ($this->__("This NFC-e has no {$type}."));
 
             $this->_redirect('*/*/index');
 
