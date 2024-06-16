@@ -51,7 +51,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'url_key',
         'emitted_at',
         'average_id',
-        'return_id',
+        'process_id',
         'receipt_id',
         'protocol_id',
         'received_id',
@@ -64,7 +64,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
     protected $_cancelAttributeList = array(
         'environment_id',
         'emitted_at',
-        'return_id',
+        'process_id',
         'protocol_id',
         'received_id',
         'received_at',
@@ -190,7 +190,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 $data ['response'][] = array(
                     'entity_id'     => intval ($response->getId ()),
                     'nfce_id'       => intval ($response->getNfceId ()),
-                    'return_id'     => intval ($response->getReturnId ()),
+                    'process_id'     => intval ($response->getProcessId ()),
                     'received_id'   => intval ($response->getReceivedId ()),
                     'protocol_id'   => intval ($response->getProtocolId ()),
                     'receipt_id'    => intval ($response->getReceiptId ()),

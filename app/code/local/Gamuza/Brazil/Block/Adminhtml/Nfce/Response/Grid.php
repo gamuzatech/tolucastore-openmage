@@ -75,15 +75,15 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Response_Grid extends Mage_Adminhtml_Bl
             'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_link',
 		));
 */
+		$this->addColumn ('process_id', array(
+		    'header'  => Mage::helper ('brazil')->__('Process'),
+		    'align'   => 'right',
+		    'index'   => 'process_id',
+		));
 		$this->addColumn ('received_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Received'),
 		    'align'   => 'right',
 		    'index'   => 'received_id',
-		));
-		$this->addColumn ('return_id', array(
-		    'header'  => Mage::helper ('brazil')->__('Return'),
-		    'align'   => 'right',
-		    'index'   => 'return_id',
 		));
 		$this->addColumn ('protocol_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Protocol'),
