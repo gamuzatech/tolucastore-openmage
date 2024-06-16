@@ -131,19 +131,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'created_at'      => strval ($nfce->getCreatedAt ()),
                 'updated_at'      => $nfce->getUpdatedAt (),
                 'signed_at'       => $nfce->getSignedAt (),
-                'emitted_at'      => $nfce->getEmittedAt (),
-                'response_at'     => $nfce->getResponseAt (),
-                'response_application' => $nfce->getResponseApplication (),
-                'response_reason' => $nfce->getResponseReason (),
-                'response_key'    => $nfce->getResponseKey (),
-                'response_id'     => $nfce->getResponseId (),
-                'result_id'       => $nfce->getResultId (),
-                'protocol_id'     => $nfce->getProtocolId (),
-                'receipt_id'      => $nfce->getReceiptId (),
-                'average_id'      => intval ($nfce->getAverageId ()),
                 'status_id'       => strval ($nfce->getStatusId ()),
-                'qr_code'         => $nfce->getQrCode (),
-                'url_key'         => $nfce->getUrlKey (),
+                'cancel_id'       => intval ($nfce->getCancelId ()),
                 // Sales_Order
                 'increment_id'    => strval ($nfce->getIncrementId ()),
                 'protect_code'    => strval ($nfce->getProtectCode ()),
@@ -170,6 +159,31 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'region_name'  => strval ($nfce->getRegionName ()),
                 'city_name'    => strval ($nfce->getCityName ()),
             );
+
+            $responseCollection = Mage::getModel ('brazil/nfce_response')->getCollection ()
+                ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
+            ;
+
+            foreach ($responseCollection as $response)
+            {
+                $data ['response'][] = array(
+                    'entity_id'     => intval ($response->getId ()),
+                    'nfce_id'       => intval ($response->getNfceId ()),
+                    'return_id'     => intval ($response->getReturnId ()),
+                    'received_id'   => intval ($response->getReceivedId ()),
+                    'protocol_id'   => intval ($response->getProtocolId ()),
+                    'receipt_id'    => intval ($response->getReceiptId ()),
+                    'average_id'    => intval ($response->getAverageId ()),
+                    'application'   => strval ($response->getApplication ()),
+                    'reason'        => strval ($response->getReason ()),
+                    'key'           => strval ($response->getKey ()),
+                    'qr_code'       => $response->getQrCode (),
+                    'url_key'       => $response->getUrlKey (),
+                    'created_at'    => $response->getCreatedAt (),
+                    'emitted_at'    => $response->getEmittedAt (),
+                    'received_at'   => $response->getReceivedAt (),
+                );
+            }
 
             $order = $this->_initOrder ($nfce->getIncrementId (), $nfce->getProtectCode ());
 
@@ -345,7 +359,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if (!$nfce || !$nfce->getId ())
         {
-            $numberId = Mage::helper ('brazil')->getNumberId ('nfce', array ('order_id' => $order->getId ()));
+            $numberId = Mage::helper ('brazil')->getNextId ('nfce', 'number_id', array ('order_id' => $order->getId ()));
 
             $nfce = Mage::getModel ('brazil/nfce')
                 ->setNumberId ($numberId)
@@ -464,7 +478,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_canceled');
         }
 
-        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'xml' . DS . 'info';
+        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'xml';
 
         if (!is_dir ($xmlDir))
         {
@@ -567,7 +581,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 $this->_fault (sprintf ('%s_not_specified', $code));
             }
 
-            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'xml' . DS . $code;
+            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . $code;
 
             if (!is_dir ($xmlDir))
             {
@@ -596,6 +610,45 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->setUpdatedAt (date ('c'))
             ->save ()
         ;
+
+        return $this->_getNFCe ($nfce);
+    }
+
+    public function cancel ($orderIncrementId, $orderProtectCode)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $nfce = $this->_initNFCe ($order);
+
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfce_already_canceled');
+        }
+
+        if (strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED) != 0)
+        {
+            $this->_fault ('nfce_not_authorized');
+        }
+
+        if (empty ($nfce->getCancelId ()))
+        {
+            $cancelId = Mage::helper ('brazil')->getNextId ('nfce', 'cancel_id', array ('order_id' => $order->getId ()));
+
+            $nfce->setCancelId ($cancelId)
+                ->setUpdatedAt (date ('c'))
+                ->save ()
+            ;
+        }
 
         return $this->_getNFCe ($nfce);
     }

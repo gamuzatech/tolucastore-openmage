@@ -35,6 +35,11 @@
                         <acl>brazil/nfce/authorize</acl>
                         <method>authorize</method>
                     </authorize>
+                    <cancel translate="title" module="brazil">
+                        <title>Cancel a NFC-e for the order</title>
+                        <acl>brazil/nfce/cancel</acl>
+                        <method>cancel</method>
+                    </cancel>
                 </methods>
             </brazil_nfce>
         </resources>
@@ -139,6 +144,9 @@
                         <authorize translate="title" module="brazil">
                             <title>Authorize a NFC-e for the order</title>
                         </authorize>
+                        <cancel translate="title" module="brazil">
+                            <title>Cancel a NFC-e for the order</title>
+                        </cancel>
                     </nfce>
                 </brazil>
             </resources>
