@@ -12,9 +12,10 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const CFOP_TABLE = 'gamuza_brazil_cfop';
     const COUNTRY_TABLE = 'gamuza_brazil_country';
     const REGION_TABLE  = 'gamuza_brazil_region';
-    const CITY_TABLE  = 'gamuza_brazil_city';
-    const NFCE_TABLE = 'gamuza_brazil_nfce';
+    const CITY_TABLE    = 'gamuza_brazil_city';
+    const NFCE_TABLE          = 'gamuza_brazil_nfce';
     const NFCE_RESPONSE_TABLE = 'gamuza_brazil_nfce_response';
+    const NFCE_EVENT_TABLE    = 'gamuza_brazil_nfce_event';
 
     const PRODUCT_ATTRIBUTE_BRAZIL_NCM  = 'brazil_ncm';
     const PRODUCT_ATTRIBUTE_BRAZIL_CEST = 'brazil_cest';
