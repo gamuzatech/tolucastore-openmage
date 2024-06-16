@@ -184,8 +184,13 @@
 "Received At","Recebido Em"
 "This NFC-e no longer exists.","Esta NFC-e não existe."
 "This NFC-e has no response.","Esta NFC-e não tem resposta."
-"Organ","Orgão"
 "Event","Evento"
+
+"Manage NFC-e Event","Gerenciar Evento da NFC-e"
+"NFC-e Event Manager","Gerenciador de Evento da NFC-e"
+"This NFC-e has no event.","Esta NFC-e não tem evento."
+"Organ","Orgão"
+"Justification","Justificativa"
 
 "Requested order not specified.","Pedido solicitado não foi especificado."
 "Requested code not specified.","Código do pedido não foi especificado."
