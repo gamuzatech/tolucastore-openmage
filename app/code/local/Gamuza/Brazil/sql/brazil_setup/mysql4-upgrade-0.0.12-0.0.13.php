@@ -8,7 +8,7 @@
 $installer = $this;
 $installer->startSetup ();
 
-function addBrazilNfceResponseTable ($installer, $model, $description)
+function addBrazilNfceEventTable ($installer, $model, $description)
 {
     $table = $installer->getTable ($model);
 
@@ -77,6 +77,38 @@ SQLBLOCK;
             'comment'  => 'Average ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'type_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Type ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'organ_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Organ ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'event_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Event ID',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'sequence_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Sequence ID',
+        ));
+/*
+    $installer->getConnection ()
         ->addColumn ($table, 'qr_code', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'nullable' => false,
@@ -88,6 +120,7 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'URL Key',
         ));
+*/
     $installer->getConnection ()
         ->addColumn ($table, 'application', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
@@ -108,6 +141,34 @@ SQLBLOCK;
             'length'   => 255,
             'nullable' => false,
             'comment'  => 'Key',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'name', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Name',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'name', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Version',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'description', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Description',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'justification', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Justification',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
@@ -137,7 +198,7 @@ SQLBLOCK;
         ));
 }
 
-addBrazilNfceResponseTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_RESPONSE_TABLE, 'Gamuza Brazil NFC-e Response');
+addBrazilNfceEventTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_EVENT_TABLE, 'Gamuza Brazil NFC-e Event');
 
 $installer->endSetup ();
 

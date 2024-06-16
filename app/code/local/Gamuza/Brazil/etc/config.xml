@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.12</version>
+            <version>0.0.13</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -56,6 +56,9 @@
                     <nfce_response>
                         <table>gamuza_brazil_nfce_response</table>
                     </nfce_response>
+                    <nfce_event>
+                        <table>gamuza_brazil_nfce_event</table>
+                    </nfce_event>
                 </entities>
             </brazil_mysql4>
         </models>
