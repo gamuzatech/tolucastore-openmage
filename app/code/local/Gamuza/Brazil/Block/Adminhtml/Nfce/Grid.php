@@ -317,6 +317,24 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
                 ),
             ),
         ));
+        $this->addColumn ('event_action', array(
+            'header' => Mage::helper ('brazil')->__('Event'),
+            'width'  => '50px',
+            'type'   => 'action',
+            'getter' => 'getId',
+            'index'  => 'stores',
+            'filter'    => false,
+            'sortable'  => false,
+            'is_system' => true,
+            'actions' => array(
+                array(
+                    'caption' => Mage::helper ('brazil')->__('View'),
+                    'url'     => array ('base' => 'admin_brazil/adminhtml_nfce/event'),
+                    'field'   => 'nfce_id',
+                    'data-column' => 'action',
+                ),
+            ),
+        ));
         $this->addColumn ('order_action', array(
             'header' => Mage::helper ('brazil')->__('Order'),
             'width'  => '50px',

@@ -18,6 +18,11 @@
             <block type="brazil/adminhtml_nfce_response" name="nfce_response" />
         </reference>
     </admin_brazil_adminhtml_nfce_response>
+    <admin_brazil_adminhtml_nfce_event>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfce_event" name="nfce_event" />
+        </reference>
+    </admin_brazil_adminhtml_nfce_event>
     <admin_brazil_adminhtml_ibpt_index>
         <reference name="content">
             <block type="brazil/adminhtml_ibpt" name="ibpt" />

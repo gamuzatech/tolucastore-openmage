@@ -46,6 +46,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
     );
 
     protected $_authorizeAttributeList = array(
+        'environment_id',
         'qr_code',
         'url_key',
         'emitted_at',
