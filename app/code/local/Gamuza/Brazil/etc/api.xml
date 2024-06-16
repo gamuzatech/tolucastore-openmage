@@ -40,6 +40,11 @@
                         <acl>brazil/nfce/cancel</acl>
                         <method>cancel</method>
                     </cancel>
+                    <canceled translate="title" module="brazil">
+                        <title>Canceled a NFC-e for the order</title>
+                        <acl>brazil/nfce/cancel</acl>
+                        <method>canceled</method>
+                    </canceled>
                 </methods>
             </brazil_nfce>
         </resources>
@@ -147,6 +152,9 @@
                         <cancel translate="title" module="brazil">
                             <title>Cancel a NFC-e for the order</title>
                         </cancel>
+                        <canceled translate="title" module="brazil">
+                            <title>Canceled a NFC-e for the order</title>
+                        </canceled>
                     </nfce>
                 </brazil>
             </resources>

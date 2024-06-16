@@ -61,6 +61,26 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'key',
     );
 
+    protected $_cancelAttributeList = array(
+        'environment_id',
+        'emitted_at',
+        'return_id',
+        'protocol_id',
+        'received_id',
+        'received_at',
+        'application',
+        'reason',
+        'key',
+        'name',
+        'description',
+        'justification',
+        'event_id',
+        'organ_id',
+        'type_id',
+        'sequence_id',
+        'version',
+    );
+
     public function __construct ()
     {
         // parent::__construct ();
@@ -582,7 +602,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 $this->_fault (sprintf ('%s_not_specified', $code));
             }
 
-            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . $code;
+            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'response' . DS . $code;
 
             if (!is_dir ($xmlDir))
             {
@@ -599,10 +619,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
         }
 
-        /**
-         * 100 is AUTHORIZED
-         */
-        $statusId = $response->getReceivedId () == 100
+        $statusId = $response->getReceivedId () == Gamuza_Brazil_Helper_Data::NFE_RESPONSE_AUTHORIZED
             ? Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED
         ;
@@ -650,6 +667,107 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 ->save ()
             ;
         }
+
+        return $this->_getNFCe ($nfce);
+    }
+
+    public function canceled ($orderIncrementId, $orderProtectCode, $sent, $return, $data)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        if (empty ($sent))
+        {
+            $this->_fault ('sent_not_specified');
+        }
+
+        if (empty ($return))
+        {
+            $this->_fault ('return_not_specified');
+        }
+
+        if (empty ($data))
+        {
+            $this->_fault ('data_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $nfce = $this->_initNFCe ($order);
+
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfce_already_canceled');
+        }
+
+        if (strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED) != 0)
+        {
+            $this->_fault ('nfce_not_authorized');
+        }
+
+        $event = Mage::getModel ('brazil/nfce_event')
+            ->setNfceId ($nfce->getId ())
+            ->setCreatedAt (date ('c'))
+        ;
+
+        foreach ($this->_cancelAttributeList as $attribute)
+        {
+            if (array_key_exists ($attribute, $data))
+            {
+                $event->setData ($attribute, $data [$attribute]);
+            }
+            else
+            {
+                $this->_fault ('data_not_specified', $attribute);
+            }
+        }
+
+        $event->save ();
+
+        $codeList = array ('sent', 'return');
+
+        foreach ($codeList as $code)
+        {
+            $$code = base64_decode ($$code);
+
+            if (!simplexml_load_string ($$code))
+            {
+                $this->_fault (sprintf ('%s_not_specified', $code));
+            }
+
+            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'event' . DS . $code;
+
+            if (!is_dir ($xmlDir))
+            {
+                mkdir ($xmlDir, 0777, true);
+            }
+
+            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $event->getKey ());
+
+            $result = file_put_contents ($xmlFile, $$code);
+
+            if (!is_file ($xmlFile) || $result != strlen ($$code) || $result === false)
+            {
+                $this->_fault ('nfce_not_saved');
+            }
+        }
+
+        $statusId = $event->getReceivedId () == Gamuza_Brazil_Helper_Data::NFE_EVENT_CANCELED
+            ? Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED
+            : Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
+        ;
+
+        $nfce->setStatusId ($statusId)
+            ->setUpdatedAt (date ('c'))
+            ->save ()
+        ;
 
         return $this->_getNFCe ($nfce);
     }
