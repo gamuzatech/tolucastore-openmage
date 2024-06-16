@@ -39,12 +39,12 @@ SQLBLOCK;
             'comment'  => 'Environment ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'return_id', array(
+        ->addColumn ($table, 'process_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
             'nullable' => false,
-            'comment'  => 'Return ID',
+            'comment'  => 'Process ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'received_id', array(
