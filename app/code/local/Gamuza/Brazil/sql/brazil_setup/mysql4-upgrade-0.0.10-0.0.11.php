@@ -248,6 +248,14 @@ SQLBLOCK;
             'default'  => Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED,
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'cancel_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Cancel ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => false,
