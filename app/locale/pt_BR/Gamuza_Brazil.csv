@@ -72,6 +72,8 @@
 "Model","Modelo"
 "Series","Série"
 "Cancel ID","ID Cancelamento"
+"Cancel Validate","Validar Cancelamento"
+"Authorize Validate","Validar Autorização"
 
 "Manage IBPTs","Gerenciar IBPTs"
 "IBPT Manager","Gerenciador de IBPTs"
