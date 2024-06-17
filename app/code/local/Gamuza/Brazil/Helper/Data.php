@@ -229,7 +229,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
         $value = Mage::getStoreConfig ($path);
         $result = intval ($value) + 1;
 
-        fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode (array ($field => $result)), PHP_EOL));
+        fwrite ($fp, sprintf ("%s: %s%s", date ('c'), json_encode (array ($field => $value)), PHP_EOL));
 
         Mage::getModel ('core/config')->saveConfig ($path, $result);
         Mage::app ()->getCacheInstance ()->cleanType ('config');
@@ -238,7 +238,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
         flock  ($fp, LOCK_UN);
         fclose ($fp);
 
-        return $result;
+        return $value;
     }
 }
 
