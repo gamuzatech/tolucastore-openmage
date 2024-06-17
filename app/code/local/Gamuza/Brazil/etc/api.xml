@@ -129,6 +129,10 @@
                 <code>2000</code>
                 <message>Requested NFC-e is already canceled.</message>
             </nfce_already_canceled>
+            <nfce_not_canceled>
+                <code>2100</code>
+                <message>Requested NFC-e is not canceled.</message>
+            </nfce_not_canceled>
         </faults>
         <acl>
             <resources>
