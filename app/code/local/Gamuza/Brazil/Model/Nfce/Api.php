@@ -190,6 +190,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 $data ['responses'][] = array(
                     'entity_id'     => intval ($response->getId ()),
                     'nfce_id'       => intval ($response->getNfceId ()),
+                    'environment_id' => intval ($response->getEnvironmentId ()),
                     'process_id'     => intval ($response->getProcessId ()),
                     'received_id'   => intval ($response->getReceivedId ()),
                     'protocol_id'   => intval ($response->getProtocolId ()),
@@ -203,6 +204,35 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                     'created_at'    => $response->getCreatedAt (),
                     'emitted_at'    => $response->getEmittedAt (),
                     'received_at'   => $response->getReceivedAt (),
+                );
+            }
+
+            $eventCollection = Mage::getModel ('brazil/nfce_event')->getCollection ()
+                ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
+            ;
+
+            foreach ($eventCollection as $event)
+            {
+                $data ['events'][] = array(
+                    'entity_id'      => intval ($event->getId ()),
+                    'nfce_id'        => intval ($event->getNfceId ()),
+                    'environment_id' => intval ($event->getEnvironmentId ()),
+                    'process_id'     => intval ($event->getProcessId ()),
+                    'received_id'    => intval ($event->getReceivedId ()),
+                    'protocol_id'    => intval ($event->getProtocolId ()),
+                    'type_id'        => intval ($event->getTypeId ()),
+                    'organ_id'       => intval ($event->getOrganId ()),
+                    'event_id'       => intval ($event->getEventId ()),
+                    'sequence_id'    => intval ($event->getSequenceId ()),
+                    'application'    => strval ($event->getApplication ()),
+                    'reason'         => strval ($event->getReason ()),
+                    'key'            => strval ($event->getKey ()),
+                    'name'           => $event->getName (),
+                    'description'    => strval ($event->getDescription ()),
+                    'justification'  => strval ($event->getJustification ()),
+                    'created_at'     => $event->getCreatedAt (),
+                    'emitted_at'     => $event->getEmittedAt (),
+                    'received_at'    => $event->getReceivedAt (),
                 );
             }
 
@@ -387,7 +417,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if (empty ($nfce->getNumberId ()))
         {
-            $numberId = Mage::helper ('brazil')->getNextId ('nfce', 'number_id', array ('order_id' => $order->getId ()));
+            $numberId = Mage::helper ('brazil')->getIncrementId ('nfce', 'number_id', array ('order_id' => $order->getId ()));
 
             $nfce->setNumberId ($numberId);
         }
@@ -669,7 +699,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if (empty ($nfce->getCancelId ()))
         {
-            $cancelId = Mage::helper ('brazil')->getNextId ('nfce', 'cancel_id', array ('order_id' => $order->getId ()));
+            $cancelId = Mage::helper ('brazil')->getIncrementId ('nfce', 'cancel_id', array ('order_id' => $order->getId ()));
 
             $nfce->setCancelId ($cancelId)
                 ->setUpdatedAt (date ('c'))
