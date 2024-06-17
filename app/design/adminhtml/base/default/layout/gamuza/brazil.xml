@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Brazil
+ * @copyright   Copyright (c) 2024 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+    <admin_brazil_adminhtml_nfce_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfce" name="nfce" />
+        </reference>
+    </admin_brazil_adminhtml_nfce_index>
+    <admin_brazil_adminhtml_nfce_response>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfce_response" name="nfce_response" />
+        </reference>
+    </admin_brazil_adminhtml_nfce_response>
+    <admin_brazil_adminhtml_nfce_event>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfce_event" name="nfce_event" />
+        </reference>
+    </admin_brazil_adminhtml_nfce_event>
+    <admin_brazil_adminhtml_ibpt_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_ibpt" name="ibpt" />
+        </reference>
+    </admin_brazil_adminhtml_ibpt_index>
+    <admin_brazil_adminhtml_cest_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_cest" name="cest" />
+        </reference>
+    </admin_brazil_adminhtml_cest_index>
+    <admin_brazil_adminhtml_cfop_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_cfop" name="cfop" />
+        </reference>
+    </admin_brazil_adminhtml_cfop_index>
+    <admin_brazil_adminhtml_country_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_country" name="country" />
+        </reference>
+    </admin_brazil_adminhtml_country_index>
+    <admin_brazil_adminhtml_region_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_region" name="region" />
+        </reference>
+    </admin_brazil_adminhtml_region_index>
+    <admin_brazil_adminhtml_city_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_city" name="city" />
+        </reference>
+    </admin_brazil_adminhtml_city_index>
+</layout>
+

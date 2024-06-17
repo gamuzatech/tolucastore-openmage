@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.4</version>
+            <version>0.0.13</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -31,7 +31,35 @@
             </brazil>
             <brazil_mysql4>
                 <class>Gamuza_Brazil_Model_Mysql4</class>
-                <entities />
+                <entities>
+                    <ibpt>
+                        <table>gamuza_brazil_ibpt</table>
+                    </ibpt>
+                    <cest>
+                        <table>gamuza_brazil_cest</table>
+                    </cest>
+                    <cfop>
+                        <table>gamuza_brazil_cfop</table>
+                    </cfop>
+                    <country>
+                        <table>gamuza_brazil_country</table>
+                    </country>
+                    <region>
+                        <table>gamuza_brazil_region</table>
+                    </region>
+                    <city>
+                        <table>gamuza_brazil_city</table>
+                    </city>
+                    <nfce>
+                        <table>gamuza_brazil_nfce</table>
+                    </nfce>
+                    <nfce_response>
+                        <table>gamuza_brazil_nfce_response</table>
+                    </nfce_response>
+                    <nfce_event>
+                        <table>gamuza_brazil_nfce_event</table>
+                    </nfce_event>
+                </entities>
             </brazil_mysql4>
         </models>
         <resources>
@@ -106,6 +134,15 @@
                     </gamuza_brazil_sales_order_place_after>
                 </observers>
             </sales_order_place_after>
+            <!-- Gamuza_Basic -->
+            <basic_magento_api_info>
+                <observers>
+                    <gamuza_brazil_basic_magento_api_info>
+                        <class>brazil/observer</class>
+                        <method>basicMagentoApiInfo</method>
+                    </gamuza_brazil_basic_magento_api_info>
+                </observers>
+            </basic_magento_api_info>
         </events>
         <sales>
             <quote>
@@ -128,7 +165,25 @@
             </order>
         </sales>
     </global>
+    <admin>
+        <routers>
+            <admin_brazil>
+                <use>admin</use>
+                <args>
+                    <module>Gamuza_Brazil</module>
+                    <frontName>admin_brazil</frontName>
+                </args>
+            </admin_brazil>
+        </routers>
+    </admin>
     <adminhtml>
+        <layout>
+            <updates>
+                <brazil>
+                    <file>gamuza/brazil.xml</file>
+                </brazil>
+            </updates>
+        </layout>
         <translate>
             <modules>
                 <Gamuza_Brazil>
@@ -161,22 +216,54 @@
     </frontend>
     <default>
         <brazil>
-            <nfe>
-                <environment>2</environment>
+            <ibpt>
+                <validate>1</validate>
+            </ibpt>
+            <cest>
+                <validate>0</validate>
+            </cest>
+            <cfop>
+                <validate>0</validate>
+            </cfop>
+            <country>
+                <validate>0</validate>
+            </country>
+            <region>
+                <validate>0</validate>
+            </region>
+            <city>
+                <validate>0</validate>
+            </city>
+            <setting>
+                <crt_id>4</crt_id>
+                <environment_id>2</environment_id>
                 <version>4.00</version>
+                <timeout>12000</timeout>
                 <country_id>1058</country_id>
-                <number_id>1</number_id>
-                <model>55</model>
-                <series>1</series>
-            </nfe>
+                <!-- São Paulo -->
+                <region_id>35</region_id>
+                <city_id>3550308</city_id>
+            </setting>
             <nfce>
-                <environment>2</environment>
-                <version>4.00</version>
-                <country_id>1058</country_id>
+                <print_id>4</print_id>
+                <batch_id>1</batch_id>
                 <number_id>1</number_id>
-                <model>65</model>
-                <series>1</series>
+                <model_id>65</model_id>
+                <series_id>1</series_id>
+                <cancel_id>1</cancel_id>
+                <cancel_validate>1</cancel_validate>
+                <authorize_validate>1</authorize_validate>
             </nfce>
+            <nfe>
+                <print_id>1</print_id>
+                <batch_id>1</batch_id>
+                <number_id>1</number_id>
+                <model_id>55</model_id>
+                <series_id>1</series_id>
+                <cancel_id>1</cancel_id>
+                <cancel_validate>1</cancel_validate>
+                <authorize_validate>1</authorize_validate>
+            </nfe>
         </brazil>
         <payment>
             <gamuza_brazil_pix>

@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-$installer = new Mage_Sales_Model_Resource_Setup ('pdv_setup');
+$installer = new Toluca_PDV_Model_Resource_Setup ('pdv_setup');
 $installer->startSetup ();
 
 /**
@@ -15,6 +15,13 @@ $entities = array(
     'quote',
     'order',
 );
+
+/*
+if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Brazil'))
+{
+    $entities [] = 'nfce';
+}
+*/
 
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,

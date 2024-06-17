@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Basic>
-            <version>0.0.20</version>
+            <version>0.0.21</version>
         </Gamuza_Basic>
     </modules>
     <global>
@@ -251,6 +251,11 @@
                     <to_order>*</to_order>
                 </is_service>
             </sales_convert_quote>
+            <sales_convert_quote_item>
+                <gtin>
+                    <to_order_item>*</to_order_item>
+                </gtin>
+            </sales_convert_quote_item>
             <sales_convert_order>
                 <customer_cellphone>
                     <to_quote>*</to_quote>
@@ -259,6 +264,11 @@
                     <to_quote>*</to_quote>
                 </is_service>
             </sales_convert_order>
+            <sales_convert_order_item>
+                <gtin>
+                    <to_quote_item>*</to_quote_item>
+                </gtin>
+            </sales_convert_order_item>
             <!-- Address -->
             <sales_copy_order_billing_address>
                 <cellphone>
@@ -349,6 +359,14 @@
                     </admin_basic_order_cancel_after>
                 </observers>
             </order_cancel_after>
+            <sales_quote_item_set_product>
+                <observers>
+                    <gamuza_basic_sales_quote_item_set_product>
+                        <class>basic/observer</class>
+                        <method>salesQuoteItemSetProduct</method>
+                    </gamuza_basic_sales_quote_item_set_product>
+                </observers>
+            </sales_quote_item_set_product>
             <sales_order_place_after>
                 <observers>
                     <admin_basic_sales_order_place_after>
@@ -381,6 +399,15 @@
                     </admin_basic_sales_order_creditmemo_refund>
                 </observers>
             </sales_order_creditmemo_refund>
+            <!-- Gamuza_Basic -->
+            <basic_magento_api_info>
+                <observers>
+                    <gamuza_basic_basic_magento_api_info>
+                        <class>basic/observer</class>
+                        <method>basicMagentoApiInfo</method>
+                    </gamuza_basic_basic_magento_api_info>
+                </observers>
+            </basic_magento_api_info>
         </events>
         <pdf>
             <order>
@@ -410,10 +437,18 @@
             <quote>
                 <item>
                     <product_attributes>
-                        <image/>
+                        <image />
+                        <gtin />
                     </product_attributes>
                 </item>
             </quote>
+            <order>
+                <item>
+                    <product_attributes>
+                        <gtin />
+                    </product_attributes>
+                </item>
+            </order>
         </sales>
         <basic>
             <product>
@@ -524,6 +559,7 @@
                 <attributes>
                     <brand />
                     <color />
+                    <gtin />
                     <sku_position />
                     <size />
                 </attributes>
@@ -728,9 +764,6 @@
                 <validate_formkey_checkout>1</validate_formkey_checkout>
                 <min_admin_password_length>12</min_admin_password_length>
             </security>
-            <dashboard>
-                <enable_pdv>1</enable_pdv>
-            </dashboard>
             <sales>
                 <grid_auto_reload>0</grid_auto_reload>
             </sales>

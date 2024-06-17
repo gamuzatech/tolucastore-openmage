@@ -39,6 +39,15 @@ class Gamuza_Basic_Block_Adminhtml_Sales_Order_Grid
 
     protected function _prepareColumns ()
     {
+        $this->addColumn ('state_color', array(
+            'header'   => Mage::helper ('brazil')->__('Color'),
+            'index'    => 'state',
+            'type'     => 'options',
+            'width'    => '70px',
+            'options'  => Mage::getSingleton ('sales/order_config')->getStates (),
+            'renderer' => 'basic/adminhtml_widget_grid_column_renderer_color',
+        ));
+
         parent::_prepareColumns ();
 
         $this->getColumn ('real_order_id')->setData ('totals_label', $this->__('Total'));
@@ -97,15 +106,6 @@ class Gamuza_Basic_Block_Adminhtml_Sales_Order_Grid
             'filter_index' => 'payment.method',
             'filter_condition_callback' => array ($this, '_paymentmethodFilterConditionCallback'),
         ), 'shipping_method_1');
-
-        $this->addColumnAfter('color_state', array(
-            'header'   => Mage::helper('sales')->__('Color'),
-            'index'    => 'state',
-            'type'     => 'options',
-            'width'    => '70px',
-            'options'  => Mage::getSingleton('sales/order_config')->getStates(),
-            'renderer' => 'basic/adminhtml_widget_grid_column_renderer_color',
-        ), 'status');
 
         $this->sortColumnsByOrder ();
     }

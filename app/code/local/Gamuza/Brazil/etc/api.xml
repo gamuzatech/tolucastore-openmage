@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Brazil
+ * @copyright   Copyright (c) 2024 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <brazil_nfce translate="title" module="brazil">
+                <model>brazil/nfce_api</model>
+                <title>Brazil NFC-e API</title>
+                <acl>brazil/nfce</acl>
+                <methods>
+                    <list translate="title" module="brazil">
+                        <title>Retrieve the NFC-e list</title>
+                        <acl>brazil/nfce/list</acl>
+                        <method>items</method>
+                    </list>
+                    <create translate="title" module="brazil">
+                        <title>Create a NFC-e for the order</title>
+                        <acl>brazil/nfce/create</acl>
+                        <method>create</method>
+                    </create>
+                    <sign translate="title" module="brazil">
+                        <title>Sign a NFC-e for the order</title>
+                        <acl>brazil/nfce/sign</acl>
+                        <method>sign</method>
+                    </sign>
+                    <authorize translate="title" module="brazil">
+                        <title>Authorize a NFC-e for the order</title>
+                        <acl>brazil/nfce/authorize</acl>
+                        <method>authorize</method>
+                    </authorize>
+                    <cancel translate="title" module="brazil">
+                        <title>Cancel a NFC-e for the order</title>
+                        <acl>brazil/nfce/cancel</acl>
+                        <method>cancel</method>
+                    </cancel>
+                    <canceled translate="title" module="brazil">
+                        <title>Canceled a NFC-e for the order</title>
+                        <acl>brazil/nfce/cancel</acl>
+                        <method>canceled</method>
+                    </canceled>
+                </methods>
+            </brazil_nfce>
+        </resources>
+        <faults>
+            <order_not_specified>
+                <code>100</code>
+                <message>Requested order not specified.</message>
+            </order_not_specified>
+            <code_not_specified>
+                <code>200</code>
+                <message>Requested code not specified.</message>
+            </code_not_specified>
+            <key_not_specified>
+                <code>300</code>
+                <message>Requested key not specified.</message>
+            </key_not_specified>
+            <digit_not_specified>
+                <code>400</code>
+                <message>Requested digit not specified.</message>
+            </digit_not_specified>
+            <info_not_specified>
+                <code>500</code>
+                <message>Requested info not specified.</message>
+            </info_not_specified>
+            <sent_not_specified>
+                <code>600</code>
+                <message>Requested sent not specified.</message>
+            </sent_not_specified>
+            <return_not_specified>
+                <code>700</code>
+                <message>Requested return not specified.</message>
+            </return_not_specified>
+            <data_not_specified>
+                <code>800</code>
+                <message>Requested data not specified.</message>
+            </data_not_specified>
+            <order_not_exists>
+                <code>900</code>
+                <message>Requested order not exists.</message>
+            </order_not_exists>
+            <ibpt_not_imported>
+                <code>1000</code>
+                <message>Requested IBPT table was not imported.</message>
+            </ibpt_not_imported>
+            <ibpt_not_valid>
+                <code>1100</code>
+                <message>Requested IBPT table is not valid.</message>
+            </ibpt_not_valid>
+            <cest_not_imported>
+                <code>1200</code>
+                <message>Requested CEST table was not imported.</message>
+            </cest_not_imported>
+            <cest_not_valid>
+                <code>1300</code>
+                <message>Requested CEST table is not valid.</message>
+            </cest_not_valid>
+            <filters_invalid>
+                <code>1400</code>
+                <message>Invalid filters given. Details in error message.</message>
+            </filters_invalid>
+            <key_invalid>
+                <code>1500</code>
+                <message>Invalid key given.</message>
+            </key_invalid>
+            <nfce_not_exists>
+                <code>1600</code>
+                <message>Requested NFC-e not exists.</message>
+            </nfce_not_exists>
+            <nfce_not_saved>
+                <code>1700</code>
+                <message>Requested NFC-e not saved.</message>
+            </nfce_not_saved>
+            <nfce_already_authorized>
+                <code>1800</code>
+                <message>Requested NFC-e is already authorized.</message>
+            </nfce_already_authorized>
+            <nfce_not_authorized>
+                <code>1900</code>
+                <message>Requested NFC-e is not authorized.</message>
+            </nfce_not_authorized>
+            <nfce_already_canceled>
+                <code>2000</code>
+                <message>Requested NFC-e is already canceled.</message>
+            </nfce_already_canceled>
+            <nfce_not_canceled>
+                <code>2100</code>
+                <message>Requested NFC-e is not canceled.</message>
+            </nfce_not_canceled>
+        </faults>
+        <acl>
+            <resources>
+                <brazil translate="title" module="brazil">
+                    <title>Gamuza Brazil API</title>
+                    <sort_order>0</sort_order>
+                    <nfce translate="title" module="brazil">
+                        <title>NFC-e</title>
+                        <list translate="title" module="brazil">
+                            <title>Retrieve the NFC-e list</title>
+                        </list>
+                        <create translate="title" module="brazil">
+                            <title>Create a NFC-e for the order</title>
+                        </create>
+                        <sign translate="title" module="brazil">
+                            <title>Sign a NFC-e for the order</title>
+                        </sign>
+                        <authorize translate="title" module="brazil">
+                            <title>Authorize a NFC-e for the order</title>
+                        </authorize>
+                        <cancel translate="title" module="brazil">
+                            <title>Cancel a NFC-e for the order</title>
+                        </cancel>
+                        <canceled translate="title" module="brazil">
+                            <title>Canceled a NFC-e for the order</title>
+                        </canceled>
+                    </nfce>
+                </brazil>
+            </resources>
+        </acl>
+    </api>
+</config>
+

@@ -8,6 +8,9 @@
 class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Cest
     extends Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
 {
-    const FILENAME = 'cest.csv';
+    public function _getCollection ()
+    {
+        return Mage::getModel ('brazil/cest')->getCollection ();
+    }
 }
 

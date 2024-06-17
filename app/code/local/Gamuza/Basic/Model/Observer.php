@@ -25,6 +25,30 @@ class Gamuza_Basic_Model_Observer
         Mage::getDesign ()->setArea ('adminhtml')->setTheme ('zzz'); // use fallback theme
     }
 
+    public function basicMagentoApiInfo (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $info = $event->getInfo ();
+
+        $info = array_replace_recursive ($info, array(
+            'config' => array(
+                'general' => array(
+                    'store_information' => array(
+                        'taxvat'  => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT),
+                        'company' => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_COMPANY),
+                        'name'    => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
+                        'phone'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_PHONE),
+                    ),
+                ),
+                'shipping' => array(
+                    'origin' => Mage::getModel ('basic/shipping_api')->origin (Mage::app ()->getStore ()->getId ()),
+                ),
+            ),
+        ));
+
+        $event->setInfo ($info);
+    }
+
     public function catalogProductSaveBefore ($observer)
     {
         $event   = $observer->getEvent ();
@@ -308,6 +332,16 @@ CONTENT;
         );
 
         return $this;
+    }
+
+    public function salesQuoteItemSetProduct (Varien_Event_Observer $observer)
+    {
+        $quoteItem = $observer->getQuoteItem ();
+        $product   = $observer->getProduct ();
+
+        $productGTIN = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN);
+
+        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
     }
 
     public function salesOrderPreparingAfter ($observer)

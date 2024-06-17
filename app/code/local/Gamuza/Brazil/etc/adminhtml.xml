@@ -8,6 +8,55 @@
 -->
 
 <config>
+    <menu>
+        <gamuza translate="title" module="brazil">
+            <title>Gamuza</title>
+            <sort_order>1000</sort_order>
+            <children>
+                <brazil translate="title" module="brazil">
+                    <title>Brazil</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <nfce translate="title" module="brazil">
+                            <title>Manage NFC-e</title>
+                            <sort_order>10</sort_order>
+                            <action>admin_brazil/adminhtml_nfce</action>
+                        </nfce>
+                        <ibpt translate="title" module="brazil">
+                            <title>Manage IBPTs</title>
+                            <sort_order>20</sort_order>
+                            <action>admin_brazil/adminhtml_ibpt</action>
+                        </ibpt>
+                        <cest translate="title" module="brazil">
+                            <title>Manage CESTs</title>
+                            <sort_order>30</sort_order>
+                            <action>admin_brazil/adminhtml_cest</action>
+                        </cest>
+                        <cfop translate="title" module="brazil">
+                            <title>Manage CFOPs</title>
+                            <sort_order>40</sort_order>
+                            <action>admin_brazil/adminhtml_cfop</action>
+                        </cfop>
+                        <country translate="title" module="brazil">
+                            <title>Manage Countries</title>
+                            <sort_order>50</sort_order>
+                            <action>admin_brazil/adminhtml_country</action>
+                        </country>
+                        <region translate="title" module="brazil">
+                            <title>Manage Regions</title>
+                            <sort_order>60</sort_order>
+                            <action>admin_brazil/adminhtml_region</action>
+                        </region>
+                        <city translate="title" module="brazil">
+                            <title>Manage Cities</title>
+                            <sort_order>70</sort_order>
+                            <action>admin_brazil/adminhtml_city</action>
+                        </city>
+                    </children>
+                </brazil>
+            </children>
+        </gamuza>
+    </menu>
     <acl>
         <resources>
             <all>
@@ -15,6 +64,46 @@
             </all>
             <admin>
                 <children>
+                    <gamuza translate="title" module="brazil">
+                        <title>Gamuza</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <brazil translate="title" module="brazil">
+                                <title>Brazil</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <nfce translate="title" module="brazil">
+                                        <title>Manage NFC-e</title>
+                                        <sort_order>10</sort_order>
+                                    </nfce>
+                                    <ibpt translate="title" module="brazil">
+                                        <title>Manage IBPTs</title>
+                                        <sort_order>20</sort_order>
+                                    </ibpt>
+                                    <cest translate="title" module="brazil">
+                                        <title>Manage CESTs</title>
+                                        <sort_order>30</sort_order>
+                                    </cest>
+                                    <cfop translate="title" module="brazil">
+                                        <title>Manage CFOPs</title>
+                                        <sort_order>40</sort_order>
+                                    </cfop>
+                                    <country translate="title" module="brazil">
+                                        <title>Manage Countries</title>
+                                        <sort_order>50</sort_order>
+                                    </country>
+                                    <region translate="title" module="brazil">
+                                        <title>Manage Regions</title>
+                                        <sort_order>60</sort_order>
+                                    </region>
+                                    <city translate="title" module="brazil">
+                                        <title>Manage Cities</title>
+                                        <sort_order>70</sort_order>
+                                    </city>
+                                </children>
+                            </brazil>
+                        </children>
+                    </gamuza>
                     <system>
                         <children>
                             <config>

@@ -17,6 +17,25 @@ class Toluca_PDV_Model_Observer
 
     const XML_PATH_PDV_PAYMENT_METHOD_ALL = Toluca_PDV_Helper_Data::XML_PATH_PDV_PAYMENT_METHOD_ALL;
 
+    public function basicMagentoApiInfo (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $info = $event->getInfo ();
+
+        $info = array_replace_recursive ($info, array(
+            'config' => array(
+                'pdv' => array(
+                    'setting' => array(
+                        'dashboard' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DASHBOARD),
+                        'receipt'   => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_RECEIPT),
+                    ),
+                ),
+            ),
+        ));
+
+        $event->setInfo ($info);
+    }
+
     public function jsonapiCallBefore ($observer)
     {
         $isPdv = Mage::helper ('pdv')->isPDV ();

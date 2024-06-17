@@ -8,6 +8,13 @@
 class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Ncm
     extends Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
 {
-    const FILENAME = 'ncm.csv';
+    public function _getCollection ()
+    {
+        $collection = Mage::getModel ('brazil/ibpt')->getCollection ()
+            ->addFieldToFilter ('type', array ('eq' => Gamuza_Brazil_Helper_Data::IBPT_TYPE_NCM))
+        ;
+
+        return $collection;
+    }
 }
 

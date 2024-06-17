@@ -23,10 +23,394 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
+                <ibpt translate="label" module="brazil">
+                    <label>IBPT</label>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <source translate="label" module="brazil">
+                            <label>Source</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </source>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <key translate="label" module="brazil">
+                            <label>Key</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </key>
+                        <begin_at translate="label" module="brazil">
+                            <label>Begin At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </begin_at>
+                        <end_at translate="label" module="brazil">
+                            <label>End At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </end_at>
+                        <import translate="label" module="brazil">
+                            <label>Import</label>
+                            <tooltip>Download and Import IBPT Table</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="https://deolhonoimposto.ibpt.org.br/Empresa/Home">https://deolhonoimposto.ibpt.org.br/Empresa/Home</a>]]></comment>
+                            <frontend_type>import</frontend_type>
+                            <backend_model>brazil/adminhtml_system_config_backend_ibpt</backend_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        <validate translate="label" module="brazil">
+                            <label>Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validate>
+                    </fields>
+                </ibpt>
+                <cest translate="label" module="brazil">
+                    <label>CEST</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <begin_at translate="label" module="brazil">
+                            <label>Begin At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </begin_at>
+                        <end_at translate="label" module="brazil">
+                            <label>End At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </end_at>
+                        <import translate="label" module="brazil">
+                            <label>Import</label>
+                            <tooltip>Download and Import CEST Global Table</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal">http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal</a>]]></comment>
+                            <frontend_type>import</frontend_type>
+                            <backend_model>brazil/adminhtml_system_config_backend_cest</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        <validate translate="label" module="brazil">
+                            <label>Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validate>
+                    </fields>
+                </cest>
+                <cfop translate="label" module="brazil">
+                    <label>CFOP</label>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <begin_at translate="label" module="brazil">
+                            <label>Begin At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </begin_at>
+                        <end_at translate="label" module="brazil">
+                            <label>End At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </end_at>
+                        <import translate="label" module="brazil">
+                            <label>Import</label>
+                            <tooltip>Download and Import CFOP Global Table</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal">http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal</a>]]></comment>
+                            <frontend_type>import</frontend_type>
+                            <backend_model>brazil/adminhtml_system_config_backend_cfop</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        <validate translate="label" module="brazil">
+                            <label>Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validate>
+                    </fields>
+                </cfop>
+                <country translate="label" module="brazil">
+                    <label>IBGE Countries</label>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <begin_at translate="label" module="brazil">
+                            <label>Begin At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </begin_at>
+                        <end_at translate="label" module="brazil">
+                            <label>End At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </end_at>
+                        <import translate="label" module="brazil">
+                            <label>Import</label>
+                            <tooltip>Download and Import IBGE Countries Global Table</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal">http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal</a>]]></comment>
+                            <frontend_type>import</frontend_type>
+                            <backend_model>brazil/adminhtml_system_config_backend_country</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        <validate translate="label" module="brazil">
+                            <label>Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validate>
+                    </fields>
+                </country>
+                <region translate="label" module="brazil">
+                    <label>IBGE Regions</label>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <begin_at translate="label" module="brazil">
+                            <label>Begin At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </begin_at>
+                        <end_at translate="label" module="brazil">
+                            <label>End At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </end_at>
+                        <import translate="label" module="brazil">
+                            <label>Import</label>
+                            <tooltip>Download and Import IBGE Regions Global Table</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal">http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal</a>]]></comment>
+                            <frontend_type>import</frontend_type>
+                            <backend_model>brazil/adminhtml_system_config_backend_region</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        <validate translate="label" module="brazil">
+                            <label>Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validate>
+                    </fields>
+                </region>
+                <city translate="label" module="brazil">
+                    <label>IBGE Cities</label>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </version>
+                        <begin_at translate="label" module="brazil">
+                            <label>Begin At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </begin_at>
+                        <end_at translate="label" module="brazil">
+                            <label>End At</label>
+                            <frontend_type>text</frontend_type>
+                            <frontend_model>brazil/adminhtml_system_config_form_field_date</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </end_at>
+                        <import translate="label" module="brazil">
+                            <label>Import</label>
+                            <tooltip>Download and Import IBGE Cities Global Table</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal">http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal</a>]]></comment>
+                            <frontend_type>import</frontend_type>
+                            <backend_model>brazil/adminhtml_system_config_backend_city</backend_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </import>
+                        <validate translate="label" module="brazil">
+                            <label>Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validate>
+                    </fields>
+                </city>
+                <certificate translate="label comment" module="brazil">
+                    <label>Certificate</label>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <type_id translate="label" module="brazil">
+                            <label>Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_certificate_type</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </type_id>
+                        <filename translate="label" module="brazil">
+                            <label>Filename</label>
+                            <frontend_type>file</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_file</backend_model>
+                            <upload_dir allowed_extensions="pfx" config="system/filesystem/var" scope_info="1">brazil/cert</upload_dir>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><type_id>1</type_id></depends>
+                        </filename>
+                        <password translate="label" module="brazil">
+                            <label>Password</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends><type_id>1</type_id></depends>
+                        </password>
+                    </fields>
+                </certificate>
                 <csc translate="label comment" module="brazil">
                     <label>CSC</label>
                     <comment>Taxpayer Security Code</comment>
-                    <sort_order>0</sort_order>
+                    <sort_order>70</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -38,6 +422,7 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
                         </id>
                         <code translate="label" module="brazil">
                             <label>Code</label>
@@ -46,191 +431,282 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
                         </code>
                     </fields>
                 </csc>
-                <nfe translate="label" module="brazil">
-                    <label>NF-e</label>
-                    <sort_order>10</sort_order>
+                <setting translate="label" module="brazil">
+                    <label>Settings</label>
+                    <sort_order>80</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <environment translate="label" module="brazil">
-                            <label>Environment</label>
+                        <active translate="label" module="brazil">
+                            <label>Active</label>
                             <frontend_type>select</frontend_type>
-                            <source_model>brazil/adminhtml_system_config_source_nfe_environment</source_model>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>0</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </environment>
-                        <version translate="label" module="brazil">
-                            <label>Version</label>
+                        </active>
+                        <environment_id translate="label" module="brazil">
+                            <label>Environment</label>
                             <frontend_type>select</frontend_type>
-                            <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_environment</source_model>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </version>
-                        <ie translate="label" module="brazil">
-                            <label>I.E.</label>
-                            <comment>State registration</comment>
-                            <frontend_type>text</frontend_type>
+                        </environment_id>
+                        <version translate="label" module="brazil">
+                            <label>Version</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </ie>
-                        <country_id translate="label" module="brazil">
-                            <label>Country ID</label>
-                            <tooltip>Country Code</tooltip>
-                            <comment><![CDATA[1058 = Brazil]]></comment>
+                        </version>
+                        <timeout translate="label" module="brazil">
+                            <label>Timeout</label>
+                            <comment>milliseconds</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                        </timeout>
+                        <country_id translate="label" module="brazil">
+                            <label>Country</label>
+                            <tooltip>Country Code</tooltip>
+                            <comment><![CDATA[1058 = Brazil]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_ibge_country</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
                         </country_id>
                         <region_id translate="label" module="brazil">
-                            <label>Region ID</label>
+                            <label>Region</label>
                             <tooltip>UF Code</tooltip>
                             <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_ibge_region</source_model>
+                            <sort_order>50</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </region_id>
                         <city_id translate="label" module="brazil">
-                            <label>City ID</label>
+                            <label>City</label>
                             <tooltip>City Code</tooltip>
                             <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </city_id>
-                        <number_id translate="label" module="brazil">
-                            <label>Number ID</label>
-                            <frontend_type>text</frontend_type>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_ibge_city</source_model>
                             <sort_order>60</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </number_id>
-                        <model translate="label" module="brazil">
-                            <label>Model</label>
-                            <frontend_type>text</frontend_type>
+                        </city_id>
+                        <crt_id translate="label" module="brazil">
+                            <label>C.R.T.</label>
+                            <tooltip>Tax Regime Code</tooltip>
+                            <comment><![CDATA[<a target="_blank" href="http://www.sintegra.gov.br">http://www.sintegra.gov.br</a>]]></comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_crt</source_model>
                             <sort_order>70</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <comment>55 = NF-e, 65 = NFC-e</comment>
-                        </model>
-                        <series translate="label" module="brazil">
-                            <label>Series</label>
+                        </crt_id>
+                        <company_ie translate="label" module="brazil">
+                            <label>I.E.</label>
+                            <comment>State Registration</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>80</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </series>
+                        </company_ie>
+                        <company_im translate="label" module="brazil">
+                            <label>I.M.</label>
+                            <comment>Municipal Registration</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </company_im>
+                        <remove_accents translate="label" module="brazil">
+                            <label>Remove Accents</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </remove_accents>
                     </fields>
-                </nfe>
+                </setting>
                 <nfce translate="label" module="brazil">
                     <label>NFC-e</label>
-                    <sort_order>20</sort_order>
+                    <sort_order>90</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <environment translate="label" module="brazil">
-                            <label>Environment</label>
+                        <print_id translate="label" module="brazil">
+                            <label>Print</label>
                             <frontend_type>select</frontend_type>
-                            <source_model>brazil/adminhtml_system_config_source_nfe_environment</source_model>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_print</source_model>
                             <sort_order>0</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </environment>
-                        <version translate="label" module="brazil">
-                            <label>Version</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>brazil/adminhtml_system_config_source_nfe_version</source_model>
+                        </print_id>
+                        <batch_id translate="label" module="brazil">
+                            <label>Batch ID</label>
+                            <frontend_type>text</frontend_type>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </version>
-                        <ie translate="label" module="brazil">
-                            <label>I.E.</label>
-                            <comment>State registration</comment>
+                        </batch_id>
+                        <number_id translate="label" module="brazil">
+                            <label>Number ID</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </ie>
-                        <country_id translate="label" module="brazil">
-                            <label>Country ID</label>
-                            <tooltip>Country Code</tooltip>
-                            <comment><![CDATA[1058 = Brazil]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>30</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </country_id>
-                        <region_id translate="label" module="brazil">
-                            <label>Region ID</label>
-                            <tooltip>UF Code</tooltip>
-                            <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </region_id>
-                        <city_id translate="label" module="brazil">
-                            <label>City ID</label>
-                            <tooltip>City Code</tooltip>
-                            <comment><![CDATA[<a target="_blank" href="https://www.ibge.gov.br/explica/codigos-dos-municipios.php">https://www.ibge.gov.br/explica/codigos-dos-municipios.php</a>]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </city_id>
-                        <number_id translate="label" module="brazil">
-                            <label>Number ID</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>60</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
                         </number_id>
-                        <model translate="label" module="brazil">
+                        <model_id translate="label" module="brazil">
                             <label>Model</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>70</sort_order>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment>65 = NFC-e, 55 = NF-e</comment>
-                        </model>
-                        <series translate="label" module="brazil">
+                        </model_id>
+                        <series_id translate="label" module="brazil">
                             <label>Series</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>80</sort_order>
+                            <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </series>
+                        </series_id>
+                        <cancel_id translate="label" module="brazil">
+                            <label>Cancel ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_id>
+                        <cancel_validate translate="label" module="brazil">
+                            <label>Cancel Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_validate>
+                        <authorize_validate translate="label" module="brazil">
+                            <label>Authorize Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </authorize_validate>
                     </fields>
                 </nfce>
+                <!--
+                <nfe translate="label" module="brazil">
+                    <label>NF-e</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <print_id translate="label" module="brazil">
+                            <label>Print</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brazil/adminhtml_system_config_source_nfe_print</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </print_id>
+                        <batch_id translate="label" module="brazil">
+                            <label>Batch ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </batch_id>
+                        <number_id translate="label" module="brazil">
+                            <label>Number ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </number_id>
+                        <model_id translate="label" module="brazil">
+                            <label>Model</label>
+                            <frontend_type>label</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>55 = NF-e, 65 = NFC-e</comment>
+                        </model_id>
+                        <series_id translate="label" module="brazil">
+                            <label>Series</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </series_id>
+                        <cancel_id translate="label" module="brazil">
+                            <label>Cancel ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_id>
+                        <cancel_validate translate="label" module="brazil">
+                            <label>Cancel Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cancel_validate>
+                        <authorize_validate translate="label" module="brazil">
+                            <label>Authorize Validate</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </authorize_validate>
+                    </fields>
+                </nfe>
+                -->
             </groups>
         </brazil>
         <payment>
@@ -299,10 +775,18 @@
                             <show_in_store>1</show_in_store>
                             <can_be_empty>1</can_be_empty>
                         </specificcountry>
+                        <key translate="label">
+                            <label>Key</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </key>
                         <instructions translate="label">
                             <label>Instructions</label>
                             <frontend_type>textarea</frontend_type>
-                            <sort_order>80</sort_order>
+                            <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -310,7 +794,7 @@
                         <sort_order translate="label">
                             <label>Sort Order</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>90</sort_order>
+                            <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
