@@ -250,6 +250,9 @@
                 <number_id>1</number_id>
                 <model_id>65</model_id>
                 <series_id>1</series_id>
+                <cancel_id>1</cancel_id>
+                <cancel_validate>1</cancel_validate>
+                <authorize_validate>1</authorize_validate>
             </nfce>
             <nfe>
                 <print_id>1</print_id>
@@ -257,6 +260,9 @@
                 <number_id>1</number_id>
                 <model_id>55</model_id>
                 <series_id>1</series_id>
+                <cancel_id>1</cancel_id>
+                <cancel_validate>1</cancel_validate>
+                <authorize_validate>1</authorize_validate>
             </nfe>
         </brazil>
         <payment>
