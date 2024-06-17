@@ -205,12 +205,16 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFE_NUMBER_ID = 'brazil/nfe/number_id';
     const XML_PATH_BRAZIL_NFE_MODEL_ID  = 'brazil/nfe/model_id';
     const XML_PATH_BRAZIL_NFE_SERIES_ID = 'brazil/nfe/series_id';
+    const XML_PATH_BRAZIL_NFE_AUTHORIZE_VALIDATE = 'brazil/nfe/authorize_validate';
+    const XML_PATH_BRAZIL_NFE_CANCEL_VALIDATE    = 'brazil/nfe/cancel_validate';
 
     const XML_PATH_BRAZIL_NFCE_PRINT_ID  = 'brazil/nfce/print_id';
     const XML_PATH_BRAZIL_NFCE_BATCH_ID  = 'brazil/nfce/batch_id';
     const XML_PATH_BRAZIL_NFCE_NUMBER_ID = 'brazil/nfce/number_id';
     const XML_PATH_BRAZIL_NFCE_MODEL_ID  = 'brazil/nfce/model_id';
     const XML_PATH_BRAZIL_NFCE_SERIES_ID = 'brazil/nfce/series_id';
+    const XML_PATH_BRAZIL_NFCE_AUTHORIZE_VALIDATE = 'brazil/nfce/authorize_validate';
+    const XML_PATH_BRAZIL_NFCE_CANCEL_VALIDATE    = 'brazil/nfce/cancel_validate';
 
     public function getIncrementId ($type, $field, $contents = null)
     {
