@@ -215,4 +215,5 @@
 "Requested %s not specified for product: %s","%s solicitado não foi especificado para o produto: %s"
 
 "Invalid key given.","Chave fornecida é inválida."
+"There are NFC-e pending authorization!","Existem NFC-e pendentes de autorização!"
 
