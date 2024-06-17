@@ -606,22 +606,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_canceled');
         }
 
-        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
-            ->addOrderInfo ()
-            ->addFieldToFilter ('status_id', array ('nin' => array(
-                Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED,
-                Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED,
-            )))
-            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfce->getId ()))
-        ;
-
-        if ($collection->getSize () > 0)
-        {
-            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending authorization!') . PHP_EOL
-                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
-
-            $this->_fault ('nfce_not_authorized', $customMessage);
-        }
+        $this->_authorizeValidate ($nfce);
 
         $response = Mage::getModel ('brazil/nfce_response')
             ->setNfceId ($nfce->getId ())
@@ -714,20 +699,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_not_authorized');
         }
 
-        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
-            ->addOrderInfo ()
-            ->addFieldToFilter ('cancel_id', array ('gt' => 0))
-            ->addFieldToFilter ('status_id', array ('neq' => Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
-            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfce->getId ()))
-        ;
-
-        if ($collection->getSize () > 0)
-        {
-            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending cancelation!') . PHP_EOL
-                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
-
-            $this->_fault ('nfce_not_canceled', $customMessage);
-        }
+        $this->_cancelValidate ($nfce);
 
         if (empty ($nfce->getCancelId ()))
         {
@@ -966,6 +938,54 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         return $order;
+    }
+
+    protected function _authorizeValidate ($nfce)
+    {
+        if (!Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_AUTHORIZE_VALIDATE))
+        {
+            return;
+        }
+
+        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addOrderInfo ()
+            ->addFieldToFilter ('status_id', array ('nin' => array(
+                Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED,
+                Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED,
+            )))
+            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfce->getId ()))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending authorization!') . PHP_EOL
+                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
+
+            $this->_fault ('nfce_not_authorized', $customMessage);
+        }
+    }
+
+    protected function _cancelValidate ($nfce)
+    {
+        if (!Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFCE_CANCEL_VALIDATE))
+        {
+            return;
+        }
+
+        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addOrderInfo ()
+            ->addFieldToFilter ('cancel_id', array ('gt' => 0))
+            ->addFieldToFilter ('status_id', array ('neq' => Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfce->getId ()))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending cancelation!') . PHP_EOL
+                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
+
+            $this->_fault ('nfce_not_canceled', $customMessage);
+        }
     }
 
     protected function _faultOrderItem (Mage_Sales_Model_Order_Item $item, $code)
