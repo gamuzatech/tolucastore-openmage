@@ -607,18 +607,20 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addOrderInfo ()
             ->addFieldToFilter ('status_id', array ('nin' => array(
                 Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED,
                 Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED,
             )))
-            ->addFieldToFilter ('entity_id', array ('neq' => $nfce->getId ()))
+            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfce->getId ()))
         ;
 
         if ($collection->getSize () > 0)
         {
-            $message = Mage::helper ('brazil')->__('There are NFC-e pending authorization!');
+            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending authorization!') . PHP_EOL
+                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
 
-            $this->_fault ('nfce_not_authorized', $message);
+            $this->_fault ('nfce_not_authorized', $customMessage);
         }
 
         $response = Mage::getModel ('brazil/nfce_response')
@@ -710,6 +712,21 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED) != 0)
         {
             $this->_fault ('nfce_not_authorized');
+        }
+
+        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addOrderInfo ()
+            ->addFieldToFilter ('cancel_id', array ('gt' => 0))
+            ->addFieldToFilter ('status_id', array ('neq' => Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfce->getId ()))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending cancelation!') . PHP_EOL
+                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
+
+            $this->_fault ('nfce_not_canceled', $customMessage);
         }
 
         if (empty ($nfce->getCancelId ()))

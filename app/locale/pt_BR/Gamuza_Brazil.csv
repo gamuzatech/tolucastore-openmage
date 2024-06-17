@@ -206,6 +206,7 @@
 "Requested NFC-e is already authorized.","NFC-e solicitado já está autorizado."
 "Requested NFC-e is not authorized.","NFC-e solicitado não está autorizado."
 "Requested NFC-e is already canceled.","NFC-e solicitado já está cancelado."
+"Requested NFC-e is not canceled.","NFC-e solicitado não está cancelado."
 "Requested IBPT table was not imported.","Tabela IBPT solicitada não foi importada."
 "Requested IBPT table is not valid.","Tabela IBPT solicitada não é válida."
 "Requested CEST table was not imported.","Tabela CEST solicitada não foi importada."
@@ -216,4 +217,5 @@
 
 "Invalid key given.","Chave fornecida é inválida."
 "There are NFC-e pending authorization!","Existem NFC-e pendentes de autorização!"
+"There are NFC-e pending cancelation!","Existem NFC-e pendentes de cancelamento!"
 
