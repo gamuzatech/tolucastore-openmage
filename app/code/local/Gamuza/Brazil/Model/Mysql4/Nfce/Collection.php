@@ -81,5 +81,10 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
 
         return $this;
     }
+
+    public function toOptionHash ($valueField = 'id', $labelField = 'name')
+    {
+        return $this->_toOptionHash ($valueField, $labelField);
+    }
 }
 
