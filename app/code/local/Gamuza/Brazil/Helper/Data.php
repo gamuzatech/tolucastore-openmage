@@ -212,7 +212,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFCE_MODEL_ID  = 'brazil/nfce/model_id';
     const XML_PATH_BRAZIL_NFCE_SERIES_ID = 'brazil/nfce/series_id';
 
-    public function getNextId ($type, $field, $contents = null)
+    public function getIncrementId ($type, $field, $contents = null)
     {
         $filename = sprintf (
             '%s%s%s_get_%s.lock',
