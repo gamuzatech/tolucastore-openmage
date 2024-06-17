@@ -139,6 +139,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_STATUS_CANCELED   = 'canceled';
 
     const NFE_RESPONSE_AUTHORIZED = 100;
+    const NFE_RESPONSE_DUPLICATED = 204;
 
     const NFE_EVENT_CANCELED = 135;
 
