@@ -380,12 +380,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if (!$nfce || !$nfce->getId ())
         {
-            $numberId = Mage::helper ('brazil')->getNextId ('nfce', 'number_id', array ('order_id' => $order->getId ()));
-
             $nfce = Mage::getModel ('brazil/nfce')
-                ->setNumberId ($numberId)
                 ->setCreatedAt (date ('c'))
             ;
+        }
+
+        if (empty ($nfce->getNumberId ()))
+        {
+            $numberId = Mage::helper ('brazil')->getNextId ('nfce', 'number_id', array ('order_id' => $order->getId ()));
+
+            $nfce->setNumberId ($numberId);
         }
 
         if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED))
@@ -617,6 +621,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             {
                 $this->_fault ('nfce_not_saved');
             }
+        }
+
+        if ($response->getReceivedId () == Gamuza_Brazil_Helper_Data::NFE_RESPONSE_DUPLICATED)
+        {
+            $nfce->setNumberId (new Zend_Db_Expr ('NULL'));
         }
 
         $statusId = $response->getReceivedId () == Gamuza_Brazil_Helper_Data::NFE_RESPONSE_AUTHORIZED
