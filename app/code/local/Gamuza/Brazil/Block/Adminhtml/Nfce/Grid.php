@@ -38,6 +38,14 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'  => 'entity_id',
             'filter_index' => 'main_table.entity_id',
 		));
+        $this->addColumn ('status_color', array(
+            'header'   => Mage::helper ('brazil')->__('Color'),
+            'index'    => 'status_id',
+            'type'     => 'options',
+            'width'    => '70px',
+            'options'  => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_status')->toArray (),
+            'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_color',
+        ));
 /*
 		$this->addColumn ('order_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Order ID'),
