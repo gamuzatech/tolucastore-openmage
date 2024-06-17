@@ -25,6 +25,11 @@ class Gamuza_Brazil_Block_Adminhtml_Widget_Grid_Column_Renderer_Color
             case Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED:   { $color = 'red';    break; }
         }
 
+        if (strcmp ($content, Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED) != 0 && intval ($row->getCancelId ()) > 0)
+        {
+            $color = 'black';
+        }
+
         $result = <<< RESULT
         <center>
         <div style="background-color: {$color}; border: 1px solid #aaa; border-radius: 50%; height: 25px; position: relative; top: 0px; width: 25px;"></div>
