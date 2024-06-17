@@ -606,6 +606,21 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_already_canceled');
         }
 
+        $collection = Mage::getModel ('brazil/nfce')->getCollection ()
+            ->addFieldToFilter ('status_id', array ('nin' => array(
+                Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED,
+                Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED,
+            )))
+            ->addFieldToFilter ('entity_id', array ('neq' => $nfce->getId ()))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $message = Mage::helper ('brazil')->__('There are NFC-e pending authorization!');
+
+            $this->_fault ('nfce_not_authorized', $message);
+        }
+
         $response = Mage::getModel ('brazil/nfce_response')
             ->setNfceId ($nfce->getId ())
             ->setCreatedAt (date ('c'))
