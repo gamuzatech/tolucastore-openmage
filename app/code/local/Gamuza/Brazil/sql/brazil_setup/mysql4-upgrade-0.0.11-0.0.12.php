@@ -56,15 +56,17 @@ SQLBLOCK;
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'protocol_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
             'comment'  => 'Protocol ID',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'receipt_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
             'comment'  => 'Receipt ID',
         ));
