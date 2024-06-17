@@ -187,7 +187,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             foreach ($responseCollection as $response)
             {
-                $data ['response'][] = array(
+                $data ['responses'][] = array(
                     'entity_id'     => intval ($response->getId ()),
                     'nfce_id'       => intval ($response->getNfceId ()),
                     'process_id'     => intval ($response->getProcessId ()),
@@ -585,7 +585,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
             else
             {
-                $this->_fault ('data_not_specified');
+                $this->_fault ('data_not_specified', $attribute);
             }
         }
 
