@@ -22,7 +22,7 @@ class Gamuza_Brazil_Model_Observer
                     'schemes' => $schemesDirectory,
                     'directory' => $brazilDirectory,
                     'certificate' => array(
-                        'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE)),
+                        'type_id'   => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_TYPE_ID)),
                         'directory' => $certificateDirectory,
                         'filename'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME),
                         'password'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_PASSWORD),
