@@ -27,6 +27,8 @@ Mage::helper('smtppro/mysql4_install')->attemptQuery($installer, "
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ");
 
+/*
 Mage::helper('smtppro/mysql4_install')->createInstallNotice("SMTP Pro was installed successfully.", "SMTP Pro has been installed successfully. Go to the system configuration section of your Magento admin to configure SMTP Pro and get it up and running.");
+*/
 
 $installer->endSetup();
