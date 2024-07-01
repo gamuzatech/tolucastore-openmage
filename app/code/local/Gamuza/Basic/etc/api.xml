@@ -64,6 +64,11 @@
                         <method>welcome</method>
                         <acl>basic/customer/welcome</acl>
                     </welcome>
+                    <subscribe translate="title" module="basic">
+                        <title>Subscribe customer info</title>
+                        <method>subscribe</method>
+                        <acl>basic/customer/subscribe</acl>
+                    </subscribe>
                 </methods>
                 <faults>
                     <customer_not_specified>
@@ -314,6 +319,9 @@
                         <welcome translate="title" module="basic">
                             <title>Welcome customer info</title>
                         </welcome>
+                        <subscribe translate="title" module="basic">
+                            <title>Subscribe customer info</title>
+                        </subscribe>
                     </customer>
                     <!-- Customer Address -->
                     <customer_address translate="title" module="basic">
