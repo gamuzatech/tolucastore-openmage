@@ -104,5 +104,27 @@ class Gamuza_Basic_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
 
         return true;
     }
+
+    public function subscribe ($customerId)
+    {
+        if (empty ($customerId))
+        {
+            $this->_fault ('customer_not_specified');
+        }
+
+        $customer = Mage::getModel ('basic/customer_customer')->load ($customerId);
+
+        if (!$customer || !$customer->getId ())
+        {
+            $this->_fault ('customer_not_exists');
+        }
+
+        $customer->setStoreId (Mage_Core_Model_App::DISTRO_STORE_ID)
+            ->setIsSubscribed (true)
+            ->save ()
+        ;
+
+        return true;
+    }
 }
 
