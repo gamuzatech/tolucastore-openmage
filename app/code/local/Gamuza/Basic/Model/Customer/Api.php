@@ -124,6 +124,8 @@ class Gamuza_Basic_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
             ->save ()
         ;
 
+        Mage::getModel ('newsletter/subscriber')->subscribeCustomer ($customer);
+
         return true;
     }
 }
