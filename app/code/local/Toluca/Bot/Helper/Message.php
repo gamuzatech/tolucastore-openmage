@@ -434,7 +434,7 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
 
     public function getYourOrderNumberText ($order)
     {
-        return $this->__('Your order number is *%s-%s*', $order->getIncrementId (), $order->getProtectCode ());
+        return $this->__('Your order number is *%s*', $order->getIncrementId ());
     }
 
     public function getOrderInformationText ($order)
