@@ -42,7 +42,6 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'customer_taxvat',
         'customer_ie',
         'observation',
-        'fisco',
     );
 
     protected $_authorizeAttributeList = array(
@@ -485,7 +484,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function sign ($orderIncrementId, $orderProtectCode, $key, $digit, $info)
+    public function sign ($orderIncrementId, $orderProtectCode, $fisco, $key, $digit, $info)
     {
         if (empty ($orderIncrementId))
         {
@@ -495,6 +494,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (empty ($orderProtectCode))
         {
             $this->_fault ('code_not_specified');
+        }
+
+        if (empty ($fisco))
+        {
+            $this->_fault ('fisco_not_specified');
         }
 
         if (empty ($key))
@@ -549,7 +553,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_not_saved');
         }
 
-        $nfce->setKey ($key)
+        $nfce->setFisco ($fisco)
+            ->setKey ($key)
             ->setDigit ($digit)
             ->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED)
             ->setSignedAt (date ('c'))
