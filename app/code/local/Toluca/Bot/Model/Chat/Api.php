@@ -361,6 +361,9 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                 if ($product && $product->getId () > 0 && in_array ($storeId, $product->getStoreIds ()))
                 {
                     $chat->setProductId ($product->getId ())
+                        ->setSelections (new Zend_Db_Expr ('NULL'))
+                        ->setOptions (new Zend_Db_Expr ('NULL'))
+                        ->setComment (new Zend_Db_Expr ('NULL'))
                         ->setUpdatedAt (date ('c'))
                         ->save ()
                     ;
@@ -406,9 +409,6 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                             ;
 
                             $chat->setStatus (Toluca_Bot_Helper_Data::STATUS_CART)
-                                ->setSelections (new Zend_Db_Expr ('NULL'))
-                                ->setOptions (new Zend_Db_Expr ('NULL'))
-                                ->setComment (new Zend_Db_Expr ('NULL'))
                                 ->setUpdatedAt (date ('c'))
                                 ->save ()
                             ;
@@ -531,6 +531,19 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                         ->setUpdatedAt (date ('c'))
                         ->save ()
                     ;
+
+                    $collection = Mage::getModel ('bundle/option')->getCollection ()
+                        ->setProductIdFilter ($product->getId ())
+                        ->joinValues (Mage_Core_Model_App::ADMIN_STORE_ID)
+                        ->setPositionOrder ()
+                    ;
+
+                    if ($collection->clear ()->count () == count ($productSelections))
+                    {
+                        $body = self::COMMAND_ZERO;
+
+                        goto __productComment;
+                    }
 
                     break;
                 }
@@ -1473,6 +1486,11 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
             foreach ($itemBundleOption as $itemBundleOptionId => $itemBundleOptionValues)
             {
+                if (strcmp ($item->getProduct ()->getTypeId (), Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) != 0)
+                {
+                    break;
+                }
+
                 $itemBundleOptionCollection = $item->getProduct ()->getTypeInstance (true)->getOptionsCollection ($item->getProduct ());
 
                 foreach ($itemBundleOptionCollection as $option)
