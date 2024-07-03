@@ -57,80 +57,84 @@
                 <code>200</code>
                 <message>Requested code not specified.</message>
             </code_not_specified>
-            <key_not_specified>
+            <fisco_not_specified>
                 <code>300</code>
+                <message>Requested fisco not specified.</message>
+            </fisco_not_specified>
+            <key_not_specified>
+                <code>400</code>
                 <message>Requested key not specified.</message>
             </key_not_specified>
             <digit_not_specified>
-                <code>400</code>
+                <code>500</code>
                 <message>Requested digit not specified.</message>
             </digit_not_specified>
             <info_not_specified>
-                <code>500</code>
+                <code>600</code>
                 <message>Requested info not specified.</message>
             </info_not_specified>
             <sent_not_specified>
-                <code>600</code>
+                <code>700</code>
                 <message>Requested sent not specified.</message>
             </sent_not_specified>
             <return_not_specified>
-                <code>700</code>
+                <code>800</code>
                 <message>Requested return not specified.</message>
             </return_not_specified>
             <data_not_specified>
-                <code>800</code>
+                <code>900</code>
                 <message>Requested data not specified.</message>
             </data_not_specified>
             <order_not_exists>
-                <code>900</code>
+                <code>1000</code>
                 <message>Requested order not exists.</message>
             </order_not_exists>
             <ibpt_not_imported>
-                <code>1000</code>
+                <code>1100</code>
                 <message>Requested IBPT table was not imported.</message>
             </ibpt_not_imported>
             <ibpt_not_valid>
-                <code>1100</code>
+                <code>1200</code>
                 <message>Requested IBPT table is not valid.</message>
             </ibpt_not_valid>
             <cest_not_imported>
-                <code>1200</code>
+                <code>1300</code>
                 <message>Requested CEST table was not imported.</message>
             </cest_not_imported>
             <cest_not_valid>
-                <code>1300</code>
+                <code>1400</code>
                 <message>Requested CEST table is not valid.</message>
             </cest_not_valid>
             <filters_invalid>
-                <code>1400</code>
+                <code>1500</code>
                 <message>Invalid filters given. Details in error message.</message>
             </filters_invalid>
             <key_invalid>
-                <code>1500</code>
+                <code>1600</code>
                 <message>Invalid key given.</message>
             </key_invalid>
             <nfce_not_exists>
-                <code>1600</code>
+                <code>1700</code>
                 <message>Requested NFC-e not exists.</message>
             </nfce_not_exists>
             <nfce_not_saved>
-                <code>1700</code>
+                <code>1800</code>
                 <message>Requested NFC-e not saved.</message>
             </nfce_not_saved>
             <nfce_already_authorized>
-                <code>1800</code>
+                <code>1900</code>
                 <message>Requested NFC-e is already authorized.</message>
             </nfce_already_authorized>
             <nfce_not_authorized>
-                <code>1900</code>
+                <code>2000</code>
                 <message>Requested NFC-e is not authorized.</message>
             </nfce_not_authorized>
             <nfce_already_canceled>
-                <code>2000</code>
+                <code>2100</code>
                 <message>Requested NFC-e is already canceled.</message>
             </nfce_already_canceled>
             <nfce_not_canceled>
-                <code>2100</code>
+                <code>2200</code>
                 <message>Requested NFC-e is not canceled.</message>
             </nfce_not_canceled>
         </faults>
