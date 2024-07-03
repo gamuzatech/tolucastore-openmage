@@ -184,7 +184,9 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
         // validate description
         if (empty ($row [3]))
         {
+            /*
             $this->_importErrors [] = Mage::helper ('brazil')->__("Invalid %s '%s' in the Row #%s.", $headers [3], $row [3], $rowNumber);
+            */
 
             return false;
         }
