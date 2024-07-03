@@ -105,6 +105,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
         $this->_phone = preg_replace ('[\D]', null, Mage::getStoreConfig ('general/store_information/phone'));
 
+        $this->_productComment = Mage::getStoreConfigFlag ('bot/product/comment');
         $this->_orderReview = Mage::getStoreConfigFlag ('bot/checkout/order_review');
     }
 
@@ -550,7 +551,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
             }
             case Toluca_Bot_Helper_Data::STATUS_OPTION:
             {
-                if (!strcmp (strtolower (trim ($body)), self::COMMAND_ZERO))
+                if (!strcmp (strtolower (trim ($body)), self::COMMAND_ZERO) && $this->_productComment)
                 {
                     $result = Mage::helper ('bot/message')->getAddCommentForProductText ();
 
@@ -560,6 +561,10 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                     ;
 
                     break;
+                }
+                else if (!strcmp (strtolower (trim ($body)), self::COMMAND_ZERO) && !$this->_productComment)
+                {
+                    goto __productComment;
                 }
 
                 $optionId = intval ($body);
@@ -651,6 +656,8 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
             }
             case Toluca_Bot_Helper_Data::STATUS_COMMENT:
             {
+                __productComment:
+
                 $additionalOptions = null;
 
                 if (strcmp (strtolower (trim ($body)), self::COMMAND_ZERO) != 0)
