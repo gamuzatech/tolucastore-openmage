@@ -410,8 +410,10 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
 
                     $write->query ($query);
 
+                    $product = Mage::getModel ('catalog/product')->load ($option->getParentId ());
+
                     Mage::unregister('product');
-                    Mage::register('product', new Varien_Object()); // fake
+                    Mage::register('product', $product);
 
                     foreach($productIds as $id)
                     {
@@ -424,6 +426,13 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
                         ;
                     }
 
+                    $product
+                        ->load ($option->getParentId ())
+                        ->setUpdatedAt (date ('c'))
+                        ->save ()
+                    ;
+
+                    /*
                     $query = sprintf (
                         "UPDATE %s SET updated_at = '%s' WHERE entity_id = %s LIMIT 1",
                         $resource->getTableName('catalog/product'),
@@ -431,6 +440,7 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
                     );
 
                     $write->query ($query);
+                    */
                 }
 
                 $this->_getSession()->addSuccess(
