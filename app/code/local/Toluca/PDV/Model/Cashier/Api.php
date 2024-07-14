@@ -63,6 +63,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             'customer_id' => intval ($operator->getCustomerId ()),
             'quote_id'    => intval ($operator->getQuoteId ()),
             'table_id'    => intval ($operator->getTableId ()),
+            'opened_at' => $cashier->getOpenedAt (),
+            'closed_at' => $cashier->getClosedAt (),
             'history' => $cashier->getHistory (),
         );
 
@@ -95,6 +97,36 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                 'created_at' => $history->getCreatedAt (),
                 'updated_at' => $history->getUpdatedAt (),
             );
+
+            $backup = Mage::getSingleton ('backup/fs_collection')
+                ->addFieldTofilter ('filename', array ('notnull' => true))
+                ->addFieldTofilter ('basename', array ('notnull' => true))
+                ->addFieldTofilter ('path', array ('notnull' => true))
+                ->addFieldTofilter ('id', array ('notnull' => true))
+                ->addFieldTofilter ('extension', array ('eq' => 'gz'))
+                ->addFieldTofilter ('type', array ('eq' => 'db'))
+                ->addFieldTofilter ('time', array ('gt' => 0))
+                ->addFieldTofilter ('size', array ('gt' => 0))
+                ->setPageSize (2)
+                ->getFirstItem ()
+            ;
+
+            if ($backup && $backup->getId ())
+            {
+                $result ['backup'] = array(
+                    'filename'     => $backup->getFilename (),
+                    'basename'     => $backup->getBasename (),
+                    'id'           => $backup->getId (),
+                    'time'         => intval ($backup->getTime ()),
+                    'time_at'      => date ('c', $backup->getTime ()),
+                    'path'         => $backup->getPath (),
+                    'extension'    => $backup->getExtension (),
+                    'display_name' => $backup->getDisplayName (),
+                    'name'         => $backup->getName (),
+                    'type'         => $backup->getType (),
+                    'size'         => intval ($backup->getSize ()),
+                );
+            }
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
