@@ -84,5 +84,21 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return strpos ($_SERVER ['HTTP_USER_AGENT'], 'TolucaStorePDV') !== false;
     }
+
+    public function isGzip ($filename)
+    {
+        $file = gzopen ($filename, 'r');
+
+        if (!$file)
+        {
+            return false;
+        }
+
+        $result = gzread ($file, 4096);
+
+        gzclose ($file);
+
+        return $result !== false;
+    }
 }
 
