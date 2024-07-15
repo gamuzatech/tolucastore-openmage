@@ -125,6 +125,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                     'name'         => $backup->getName (),
                     'type'         => $backup->getType (),
                     'size'         => intval ($backup->getSize ()),
+                    'hash'         => hash_file ('sha256', $backup->getFilename ()),
+                    'last'         => Mage::getStoreConfig ('system/backup/last'),
                 );
             }
         }
