@@ -41,6 +41,11 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
         $this->_log ($backupManager->getBackupPath ());
 
+        Mage::getModel ('core/config')->saveConfig (
+            Gamuza_Basic_Model_Backup_Observer::XML_PATH_BACKUP_LAST,
+            hash_file ('sha256', $backupManager->getBackupPath ())
+        );
+
         return true;
     }
 
