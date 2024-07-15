@@ -28,6 +28,7 @@ class Toluca_PDV_Model_Observer
                     'setting' => array(
                         'dashboard' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DASHBOARD),
                         'receipt'   => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_RECEIPT),
+                        'backup'    => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_BACKUP),
                     ),
                 ),
             ),
