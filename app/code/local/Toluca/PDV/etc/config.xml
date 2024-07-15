@@ -219,6 +219,7 @@
             <setting>
                 <dashboard>1</dashboard>
                 <receipt>1</receipt>
+                <backup>1</backup>
             </setting>
             <cashier>
                 <include_all_orders>0</include_all_orders>
