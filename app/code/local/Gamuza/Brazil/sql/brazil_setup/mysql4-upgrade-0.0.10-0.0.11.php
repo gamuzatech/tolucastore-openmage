@@ -166,12 +166,19 @@ SQLBLOCK;
             'comment'  => 'CRT ID',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'customer_ie', array(
+        ->addColumn ($table, 'customer_rg_ie', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Customer RG / IE',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'customer_ie_icms', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
             'nullable' => false,
-            'comment'  => 'Customer IE',
+            'comment'  => 'Customer IE / ICMS',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'version', array(

@@ -40,7 +40,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         'batch_id',
         'version',
         'customer_taxvat',
-        'customer_ie',
+        'customer_rg_ie',
+        'customer_ie_icms',
         'observation',
     );
 
@@ -145,7 +146,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'code'            => strval ($nfce->getCode ()),
                 'key'             => $nfce->getKey (),
                 'digit'           => $nfce->getDigit (),
-                'customer_ie'     => intval ($nfce->getCustomerIe ()),
+                'customer_rg_ie'  => $nfce->getCustomerRgIe (),
+                'customer_ie_icms' => intval ($nfce->getCustomerIeIcms ()),
                 'observation'     => $nfce->getObservation (),
                 'fisco'           => $nfce->getFisco (),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
@@ -439,7 +441,10 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
             else
             {
-                $this->_fault ('data_not_specified');
+                $customMessage = Mage::helper ('brazil')->__('Requested data not specified.') . PHP_EOL
+                    . PHP_EOL . Mage::helper ('brazil')->__('Attribute name: %s', $attribute);
+
+                $this->_fault ('data_not_specified', $customMessage);
             }
         }
 
@@ -479,6 +484,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             || strlen ($nfce->getCustomerTaxvat ()) == 14)
         {
             $order->setCustomerTaxvat ($nfce->getCustomerTaxvat ())->save ();
+        }
+
+        if (!empty ($nfce->getCustomerRgIe ()))
+        {
+            $order->setBrazilRgIe ($nfce->getCustomerRgIe ())->save ();
+        }
+
+        if (!empty ($nfce->getCustomerIeIcms ()))
+        {
+            $order->setBrazilIeIcms ($nfce->getCustomerIeIcms ())->save ();
         }
 
         return $this->_getNFCe ($nfce);
@@ -626,7 +641,10 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
             else
             {
-                $this->_fault ('data_not_specified', $attribute);
+                $customMessage = Mage::helper ('brazil')->__('Requested data not specified.') . PHP_EOL
+                    . PHP_EOL . Mage::helper ('brazil')->__('Attribute name: %s', $attribute);
+
+                $this->_fault ('data_not_specified', $customMessage);
             }
         }
 
@@ -773,7 +791,10 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
             else
             {
-                $this->_fault ('data_not_specified', $attribute);
+                $customMessage = Mage::helper ('brazil')->__('Requested data not specified.') . PHP_EOL
+                    . PHP_EOL . Mage::helper ('brazil')->__('Attribute name: %s', $attribute);
+
+                $this->_fault ('data_not_specified', $customMessage);
             }
         }
 
