@@ -23,7 +23,11 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
     const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
 
-    const CUSTOMER_ATTRIBUTE_RG_IE = 'br_rg_ie';
+    const CUSTOMER_ATTRIBUTE_BRAZIL_RG_IE   = 'brazil_rg_ie';
+    const CUSTOMER_ATTRIBUTE_BRAZIL_IE_ICMS = 'brazil_ie_icms';
+
+    const ORDER_ATTRIBUTE_BRAZIL_RG_IE   = self::CUSTOMER_ATTRIBUTE_BRAZIL_RG_IE;
+    const ORDER_ATTRIBUTE_BRAZIL_IE_ICMS = self::CUSTOMER_ATTRIBUTE_BRAZIL_IE_ICMS;
 
     const ORDER_ATTRIBUTE_IS_PIX = 'is_pix';
 

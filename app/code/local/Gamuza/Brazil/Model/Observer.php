@@ -77,6 +77,19 @@ class Gamuza_Brazil_Model_Observer
         $quoteItem->setData (Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CFOP, $productBrazilCfop);
     }
 
+    public function salesQuoteSaveBefore (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $quote = $event->getQuote ();
+        $customer = $quote->getCustomer ();
+
+        $customerBrazilRgIe   = $customer->getData (Gamuza_Brazil_Helper_Data::CUSTOMER_ATTRIBUTE_BRAZIL_RG_IE);
+        $customerBrazilIeIcms = $customer->getData (Gamuza_Brazil_Helper_Data::CUSTOMER_ATTRIBUTE_BRAZIL_IE_ICMS);
+
+        $quote->setData (Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_RG_IE,   $customerBrazilRgIe);
+        $quote->setData (Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_IE_ICMS, $customerBrazilIeIcms);
+    }
+
     public function salesOrderPlaceAfter (Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent ();

@@ -114,7 +114,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_version')->toArray (),
 		));
 		$this->addColumn ('crt_id', array(
-		    'header'  => Mage::helper ('brazil')->__('C.R.T.'),
+		    'header'  => Mage::helper ('brazil')->__('CRT'),
 		    'align'   => 'right',
             'width'   => '50px',
 		    'index'   => 'crt_id',
@@ -251,13 +251,18 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'align'   => 'right',
 		    'index'   => 'customer_taxvat',
 		));
-		$this->addColumn ('customer_ie', array(
-		    'header'  => Mage::helper ('brazil')->__('Customer I.E.'),
+		$this->addColumn ('customer_rg_ie', array(
+		    'header'  => Mage::helper ('brazil')->__('Customer RG/IE'),
+		    'align'   => 'right',
+		    'index'   => 'customer_rg_ie',
+		));
+		$this->addColumn ('customer_ie_icms', array(
+		    'header'  => Mage::helper ('brazil')->__('Customer IE/ICMS'),
 		    'align'   => 'right',
             'width'   => '50px',
-		    'index'   => 'customer_ie',
+		    'index'   => 'customer_ie_icms',
 	        'type'    => 'options',
-            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_customer_ie')->toArray (),
+            'options' => Mage::getModel ('brazil/adminhtml_system_config_source_nfe_customer_ie_icms')->toArray (),
 		));
 		$this->addColumn ('customer_email', array(
 		    'header'  => Mage::helper ('brazil')->__('Customer Email'),
@@ -281,11 +286,13 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'align'  => 'right',
 			'index'  => 'observation',
 		));
+/*
 		$this->addColumn ('fisco', array(
 			'header' => Mage::helper ('brazil')->__('Fisco'),
             'align'  => 'right',
 			'index'  => 'fisco',
 		));
+*/
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('brazil')->__('Created At'),
 			'index'  => 'created_at',
