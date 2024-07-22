@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Brazil>
-            <version>0.0.13</version>
+            <version>0.0.14</version>
         </Gamuza_Brazil>
     </modules>
     <global>
@@ -85,6 +85,12 @@
         </resources>
         <fieldsets>
             <sales_convert_quote>
+                <brazil_rg_ie>
+                    <to_order>*</to_order>
+                </brazil_rg_ie>
+                <brazil_ie_icms>
+                    <to_order>*</to_order>
+                </brazil_ie_icms>
                 <is_pix>
                     <to_order>*</to_order>
                 </is_pix>
@@ -101,6 +107,12 @@
                 </brazil_cfop>
             </sales_convert_quote_item>
             <sales_convert_order>
+                <brazil_rg_ie>
+                    <to_quote>*</to_quote>
+                </brazil_rg_ie>
+                <brazil_ie_icms>
+                    <to_quote>*</to_quote>
+                </brazil_ie_icms>
                 <is_pix>
                     <to_quote>*</to_quote>
                 </is_pix>
@@ -126,6 +138,14 @@
                     </gamuza_brazil_sales_quote_item_set_product>
                 </observers>
             </sales_quote_item_set_product>
+            <sales_quote_save_before>
+                <observers>
+                    <gamuza_brazil_sales_quote_save_before>
+                        <class>brazil/observer</class>
+                        <method>salesQuoteSaveBefore</method>
+                    </gamuza_brazil_sales_quote_save_before>
+                </observers>
+            </sales_quote_save_before>
             <sales_order_place_after>
                 <observers>
                     <gamuza_brazil_sales_order_place_after>
