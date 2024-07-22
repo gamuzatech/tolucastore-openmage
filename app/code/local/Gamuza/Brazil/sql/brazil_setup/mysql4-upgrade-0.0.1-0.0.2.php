@@ -24,5 +24,29 @@ foreach ($entities as $entity)
     $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_IS_PIX, $options);
 }
 
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_VARCHAR,
+    'length'   => 255,
+    'visible'  => true,
+    'required' => false
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_RG_IE,   $options);
+}
+
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+    'length'   => 11,
+    'visible'  => true,
+    'required' => false
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_IE_ICMS, $options);
+}
+
 $installer->endSetup ();
 
