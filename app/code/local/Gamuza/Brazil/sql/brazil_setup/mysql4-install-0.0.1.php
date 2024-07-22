@@ -22,7 +22,7 @@ $installer->addAttribute(
         'visible'      => true,
         'required'     => false,
         'user_defined' => false,
-        'unique'       => false,
+        'unique'       => true,
     )
 );
 
@@ -57,7 +57,7 @@ $installer->addAttribute(
         'visible'      => true,
         'required'     => false,
         'user_defined' => false,
-        'unique'       => false,
+        'unique'       => true,
         'source'       => 'brazil/eav_entity_attribute_source_ie_icms',
     )
 );
