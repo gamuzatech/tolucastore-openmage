@@ -415,37 +415,9 @@
                         </password>
                     </fields>
                 </certificate>
-                <csc translate="label comment" module="brazil">
-                    <label>CSC</label>
-                    <comment>Taxpayer Security Code</comment>
-                    <sort_order>70</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <id translate="label" module="brazil">
-                            <label>ID</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>0</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
-                        </id>
-                        <code translate="label" module="brazil">
-                            <label>Code</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
-                        </code>
-                    </fields>
-                </csc>
                 <setting translate="label" module="brazil">
                     <label>Settings</label>
-                    <sort_order>80</sort_order>
+                    <sort_order>70</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -559,6 +531,34 @@
                         </remove_accents>
                     </fields>
                 </setting>
+                <csc translate="label comment" module="brazil">
+                    <label>CSC</label>
+                    <comment>Taxpayer Security Code</comment>
+                    <sort_order>80</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <id translate="label" module="brazil">
+                            <label>ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
+                        </id>
+                        <code translate="label" module="brazil">
+                            <label>Code</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[<a target="_blank" href="https://go.toluca.com.br/brazil-csc">https://go.toluca.com.br/brazil-csc</a>]]></comment>
+                        </code>
+                    </fields>
+                </csc>
                 <nfce translate="label" module="brazil">
                     <label>NFC-e</label>
                     <sort_order>90</sort_order>
