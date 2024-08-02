@@ -47,8 +47,46 @@
                     </canceled>
                 </methods>
             </brazil_nfce>
+            <brazil_nfe translate="title" module="brazil">
+                <model>brazil/nfe_api</model>
+                <title>Brazil NF-e API</title>
+                <acl>brazil/nfe</acl>
+                <methods>
+                    <list translate="title" module="brazil">
+                        <title>Retrieve the NF-e list</title>
+                        <acl>brazil/nfe/list</acl>
+                        <method>items</method>
+                    </list>
+                    <create translate="title" module="brazil">
+                        <title>Create a NF-e for the order</title>
+                        <acl>brazil/nfe/create</acl>
+                        <method>create</method>
+                    </create>
+                    <sign translate="title" module="brazil">
+                        <title>Sign a NF-e for the order</title>
+                        <acl>brazil/nfe/sign</acl>
+                        <method>sign</method>
+                    </sign>
+                    <authorize translate="title" module="brazil">
+                        <title>Authorize a NF-e for the order</title>
+                        <acl>brazil/nfe/authorize</acl>
+                        <method>authorize</method>
+                    </authorize>
+                    <cancel translate="title" module="brazil">
+                        <title>Cancel a NF-e for the order</title>
+                        <acl>brazil/nfe/cancel</acl>
+                        <method>cancel</method>
+                    </cancel>
+                    <canceled translate="title" module="brazil">
+                        <title>Canceled a NF-e for the order</title>
+                        <acl>brazil/nfe/cancel</acl>
+                        <method>canceled</method>
+                    </canceled>
+                </methods>
+            </brazil_nfe>
         </resources>
         <faults>
+            <!-- DF-e -->
             <order_not_specified>
                 <code>100</code>
                 <message>Requested order not specified.</message>
@@ -113,6 +151,7 @@
                 <code>1600</code>
                 <message>Invalid key given.</message>
             </key_invalid>
+            <!-- NFC-e -->
             <nfce_not_exists>
                 <code>1700</code>
                 <message>Requested NFC-e not exists.</message>
@@ -137,6 +176,31 @@
                 <code>2200</code>
                 <message>Requested NFC-e is not canceled.</message>
             </nfce_not_canceled>
+            <!-- NF-e -->
+            <nfe_not_exists>
+                <code>2300</code>
+                <message>Requested NF-e not exists.</message>
+            </nfe_not_exists>
+            <nfe_not_saved>
+                <code>2400</code>
+                <message>Requested NF-e not saved.</message>
+            </nfe_not_saved>
+            <nfe_already_authorized>
+                <code>2500</code>
+                <message>Requested NF-e is already authorized.</message>
+            </nfe_already_authorized>
+            <nfe_not_authorized>
+                <code>2600</code>
+                <message>Requested NF-e is not authorized.</message>
+            </nfe_not_authorized>
+            <nfe_already_canceled>
+                <code>2700</code>
+                <message>Requested NF-e is already canceled.</message>
+            </nfe_already_canceled>
+            <nfe_not_canceled>
+                <code>2800</code>
+                <message>Requested NF-e is not canceled.</message>
+            </nfe_not_canceled>
         </faults>
         <acl>
             <resources>
@@ -164,6 +228,27 @@
                             <title>Canceled a NFC-e for the order</title>
                         </canceled>
                     </nfce>
+                    <nfe translate="title" module="brazil">
+                        <title>NF-e</title>
+                        <list translate="title" module="brazil">
+                            <title>Retrieve the NF-e list</title>
+                        </list>
+                        <create translate="title" module="brazil">
+                            <title>Create a NF-e for the order</title>
+                        </create>
+                        <sign translate="title" module="brazil">
+                            <title>Sign a NF-e for the order</title>
+                        </sign>
+                        <authorize translate="title" module="brazil">
+                            <title>Authorize a NF-e for the order</title>
+                        </authorize>
+                        <cancel translate="title" module="brazil">
+                            <title>Cancel a NF-e for the order</title>
+                        </cancel>
+                        <canceled translate="title" module="brazil">
+                            <title>Canceled a NF-e for the order</title>
+                        </canceled>
+                    </nfe>
                 </brazil>
             </resources>
         </acl>
