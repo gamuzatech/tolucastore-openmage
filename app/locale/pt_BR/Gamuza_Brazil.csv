@@ -199,6 +199,18 @@
 "Organ","Orgão"
 "Justification","Justificativa"
 
+"Manage NF-e","Gerenciar NF-e"
+"NF-e Manager","Gerenciador de NF-e"
+
+"Manage NF-e Response","Gerenciar Resposta da NF-e"
+"NF-e Response Manager","Gerenciador de Resposta da NF-e"
+"This NF-e no longer exists.","Esta NF-e não existe."
+"This NF-e has no response.","Esta NF-e não tem resposta."
+
+"Manage NF-e Event","Gerenciar Evento da NF-e"
+"NF-e Event Manager","Gerenciador de Evento da NF-e"
+"This NF-e has no event.","Esta NF-e não tem evento."
+
 "Requested order not specified.","Pedido solicitado não foi especificado."
 "Requested code not specified.","Código do pedido não foi especificado."
 "Requested fisco not specified.","Fisco não foi especificado."

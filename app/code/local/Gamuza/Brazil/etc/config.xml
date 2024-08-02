@@ -32,6 +32,7 @@
             <brazil_mysql4>
                 <class>Gamuza_Brazil_Model_Mysql4</class>
                 <entities>
+                    <!-- DF-e -->
                     <ibpt>
                         <table>gamuza_brazil_ibpt</table>
                     </ibpt>
@@ -50,6 +51,7 @@
                     <city>
                         <table>gamuza_brazil_city</table>
                     </city>
+                    <!-- NFC-e -->
                     <nfce>
                         <table>gamuza_brazil_nfce</table>
                     </nfce>
@@ -59,6 +61,16 @@
                     <nfce_event>
                         <table>gamuza_brazil_nfce_event</table>
                     </nfce_event>
+                    <!-- NF-e -->
+                    <nfe>
+                        <table>gamuza_brazil_nfe</table>
+                    </nfe>
+                    <nfe_response>
+                        <table>gamuza_brazil_nfe_response</table>
+                    </nfe_response>
+                    <nfe_event>
+                        <table>gamuza_brazil_nfe_event</table>
+                    </nfe_event>
                 </entities>
             </brazil_mysql4>
         </models>
