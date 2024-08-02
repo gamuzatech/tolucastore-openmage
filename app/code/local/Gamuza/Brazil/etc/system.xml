@@ -636,7 +636,6 @@
                         </authorize_validate>
                     </fields>
                 </nfce>
-                <!--
                 <nfe translate="label" module="brazil">
                     <label>NF-e</label>
                     <sort_order>100</sort_order>
@@ -714,7 +713,6 @@
                         </authorize_validate>
                     </fields>
                 </nfe>
-                -->
             </groups>
         </brazil>
         <payment>
