@@ -22,34 +22,39 @@
                             <sort_order>10</sort_order>
                             <action>admin_brazil/adminhtml_nfce</action>
                         </nfce>
+                        <nfe translate="title" module="brazil">
+                            <title>Manage NF-e</title>
+                            <sort_order>20</sort_order>
+                            <action>admin_brazil/adminhtml_nfe</action>
+                        </nfe>
                         <ibpt translate="title" module="brazil">
                             <title>Manage IBPTs</title>
-                            <sort_order>20</sort_order>
+                            <sort_order>30</sort_order>
                             <action>admin_brazil/adminhtml_ibpt</action>
                         </ibpt>
                         <cest translate="title" module="brazil">
                             <title>Manage CESTs</title>
-                            <sort_order>30</sort_order>
+                            <sort_order>40</sort_order>
                             <action>admin_brazil/adminhtml_cest</action>
                         </cest>
                         <cfop translate="title" module="brazil">
                             <title>Manage CFOPs</title>
-                            <sort_order>40</sort_order>
+                            <sort_order>50</sort_order>
                             <action>admin_brazil/adminhtml_cfop</action>
                         </cfop>
                         <country translate="title" module="brazil">
                             <title>Manage Countries</title>
-                            <sort_order>50</sort_order>
+                            <sort_order>60</sort_order>
                             <action>admin_brazil/adminhtml_country</action>
                         </country>
                         <region translate="title" module="brazil">
                             <title>Manage Regions</title>
-                            <sort_order>60</sort_order>
+                            <sort_order>70</sort_order>
                             <action>admin_brazil/adminhtml_region</action>
                         </region>
                         <city translate="title" module="brazil">
                             <title>Manage Cities</title>
-                            <sort_order>70</sort_order>
+                            <sort_order>80</sort_order>
                             <action>admin_brazil/adminhtml_city</action>
                         </city>
                     </children>

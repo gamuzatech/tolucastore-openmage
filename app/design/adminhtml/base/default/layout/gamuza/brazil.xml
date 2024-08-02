@@ -8,6 +8,7 @@
 -->
 
 <layout version="0.1.0">
+    <!-- NFC-e -->
     <admin_brazil_adminhtml_nfce_index>
         <reference name="content">
             <block type="brazil/adminhtml_nfce" name="nfce" />
@@ -23,6 +24,23 @@
             <block type="brazil/adminhtml_nfce_event" name="nfce_event" />
         </reference>
     </admin_brazil_adminhtml_nfce_event>
+    <!-- NF-e -->
+    <admin_brazil_adminhtml_nfe_index>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfe" name="nfe" />
+        </reference>
+    </admin_brazil_adminhtml_nfe_index>
+    <admin_brazil_adminhtml_nfe_response>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfe_response" name="nfe_response" />
+        </reference>
+    </admin_brazil_adminhtml_nfe_response>
+    <admin_brazil_adminhtml_nfe_event>
+        <reference name="content">
+            <block type="brazil/adminhtml_nfe_event" name="nfe_event" />
+        </reference>
+    </admin_brazil_adminhtml_nfe_event>
+    <!-- DF-e -->
     <admin_brazil_adminhtml_ibpt_index>
         <reference name="content">
             <block type="brazil/adminhtml_ibpt" name="ibpt" />
