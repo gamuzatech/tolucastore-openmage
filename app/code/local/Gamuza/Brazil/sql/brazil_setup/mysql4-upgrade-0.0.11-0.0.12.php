@@ -8,7 +8,7 @@
 $installer = $this;
 $installer->startSetup ();
 
-function addBrazilNfceResponseTable ($installer, $model, $description)
+function addBrazilNfceResponseTable ($installer, $model, $description, $column, $name)
 {
     $table = $installer->getTable ($model);
 
@@ -23,12 +23,12 @@ SQLBLOCK;
     $installer->run ($sqlBlock);
 
     $installer->getConnection ()
-        ->addColumn ($table, 'nfce_id', array(
+        ->addColumn ($table, $column, array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
             'unsigned' => true,
             'nullable' => false,
-            'comment'  => 'NFC-e ID',
+            'comment'  => $name,
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'environment_id', array(
@@ -139,7 +139,9 @@ SQLBLOCK;
         ));
 }
 
-addBrazilNfceResponseTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_RESPONSE_TABLE, 'Gamuza Brazil NFC-e Response');
+addBrazilNfceResponseTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_RESPONSE_TABLE, 'Gamuza Brazil NFC-e Response', 'nfce_id', 'NFC-e ID');
+
+addBrazilNfceResponseTable ($installer, Gamuza_Brazil_Helper_Data::NFE_RESPONSE_TABLE, 'Gamuza Brazil NF-e Response', 'nfe_id', 'NF-e ID');
 
 $installer->endSetup ();
 
