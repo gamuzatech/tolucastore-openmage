@@ -284,5 +284,7 @@ SQLBLOCK;
 
 addBrazilNfceTable ($installer, Gamuza_Brazil_Helper_Data::NFCE_TABLE, 'Gamuza Brazil NFC-e');
 
+addBrazilNfceTable ($installer, Gamuza_Brazil_Helper_Data::NFE_TABLE, 'Gamuza Brazil NF-e');
+
 $installer->endSetup ();
 
