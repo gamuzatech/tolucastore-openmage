@@ -559,6 +559,13 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             mkdir ($xmlDir, 0777, true);
         }
 
+        $pdfDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfce' . DS . 'pdf';
+
+        if (!is_dir ($pdfDir))
+        {
+            mkdir ($pdfDir, 0777, true);
+        }
+
         $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $key);
 
         $result = file_put_contents ($xmlFile, $info);
