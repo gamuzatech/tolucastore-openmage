@@ -14,11 +14,13 @@ class Gamuza_Brazil_Model_Observer
 
         $brazilDirectory = Mage::getBaseDir ('var') . DS . 'brazil';
         $certificateDirectory = $brazilDirectory . DS . 'cert';
+        $reportsDirectory = Mage::getBaseDir ('lib') . DS . 'Gamuza' . DS . 'Brazil' . DS . 'Reports';
         $schemesDirectory = Mage::getBaseDir ('lib') . DS . 'Gamuza' . DS . 'Brazil' . DS . 'Schemes';
 
         $info = array_replace_recursive ($info, array(
             'config' => array(
                 'brazil' => array(
+                    'reports' => $reportsDirectory,
                     'schemes' => $schemesDirectory,
                     'directory' => $brazilDirectory,
                     'certificate' => array(
