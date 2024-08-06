@@ -204,6 +204,11 @@
                     <installer>Gamuza_Basic_Model_Install_Installer</installer>
                 </rewrite>
             </install>
+            <newsletter>
+                <rewrite>
+                    <observer>Gamuza_Basic_Model_Newsletter_Observer</observer>
+                </rewrite>
+            </newsletter>
             <sales>
                 <rewrite>
                     <order>Gamuza_Basic_Model_Sales_Order</order>
@@ -660,6 +665,12 @@
                 <auto_return>1</auto_return>
             </item_options>
         </cataloginventory>
+        <newsletter>
+            <scheduled_send>
+                <count_of_queue>3</count_of_queue>
+                <count_of_subscriptions>20</count_of_subscriptions>
+            </scheduled_send>
+        </newsletter>
         <customer>
             <account_share>
                 <scope>0</scope>
