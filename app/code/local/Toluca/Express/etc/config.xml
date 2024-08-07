@@ -50,6 +50,13 @@
                     <frontName>express</frontName>
                 </args>
             </toluca_express>
+            <toluca_delivery>
+                <use>standard</use>
+                <args>
+                    <module>Toluca_Express</module>
+                    <frontName>delivery</frontName>
+                </args>
+            </toluca_delivery>
         </routers>
         <translate>
             <modules>
@@ -90,6 +97,10 @@
                     <area>frontend</area>
                     <class>Toluca_Express_Controller_Router_Express</class>
                 </toluca_express>
+                <toluca_delivery>
+                    <area>frontend</area>
+                    <class>Toluca_Express_Controller_Router_Delivery</class>
+                </toluca_delivery>
             </routers>
         </web>
     </default>

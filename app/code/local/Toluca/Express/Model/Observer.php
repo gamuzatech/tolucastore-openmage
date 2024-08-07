@@ -24,8 +24,8 @@ class Toluca_Express_Model_Observer
         $category = new Varien_Data_Tree_Node (array(
             'id'        => PHP_INT_MAX,
             'is_active' => true,
-            'name'      => 'Express',
-            'url'       => '/express',
+            'name'      => 'Delivery',
+            'url'       => '/delivery',
         ), 'id', $menu->getTree (), $storeCategories);
 
         $menu->addChild ($category);
