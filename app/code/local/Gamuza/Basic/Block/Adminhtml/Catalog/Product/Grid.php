@@ -56,6 +56,10 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
 
         $store = $this->_getStore ();
 
+        $this->getColumn ('name')
+            ->setData ('html_decorators', array ('nobr'))
+        ;
+
         $this->getColumn ('set_name')
             ->setData ('header', Mage::helper ('basic')->__('Set'))
         ;
