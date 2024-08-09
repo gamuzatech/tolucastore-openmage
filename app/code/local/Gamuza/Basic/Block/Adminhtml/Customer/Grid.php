@@ -39,6 +39,10 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Grid
         $this->removeColumn ('Telephone');
         $this->removeColumn ('billing_country_id');
 
+        $this->getColumn ('name')
+            ->setData ('html_decorators', array ('nobr'))
+        ;
+
         $this->addColumnAfter('billing_city', array(
             'header'    => Mage::helper('customer')->__('City'),
             'width'     => '150',
