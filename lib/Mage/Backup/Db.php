@@ -34,6 +34,7 @@ class Mage_Backup_Db extends Mage_Backup_Abstract
      */
     public function rollback()
     {
+        ini_set('memory_limit', -1);
         set_time_limit(0);
         ignore_user_abort(true);
 
