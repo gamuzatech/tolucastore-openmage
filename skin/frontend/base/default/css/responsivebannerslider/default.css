@@ -36,7 +36,7 @@ html[xmlns] .slides {display: block;}
 
 
 video { width:100%!important; height:auto!important; }
-.videoWrapper { position:relative; padding-bottom:34%; padding-top:0; height:0; }
+.videoWrapper { display: contents; position:relative; padding-bottom:34%; padding-top:0; height:0; }
 .videoWrapper iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
 
 /* Crousel style */
