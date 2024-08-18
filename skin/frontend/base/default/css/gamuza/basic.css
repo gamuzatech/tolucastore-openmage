@@ -474,5 +474,9 @@ ol, ul {
     .skip-link.skip-active .count {
         color: #940000;
     }
+
+    #header-nav {
+        border-bottom: none;
+    }
 }
 
