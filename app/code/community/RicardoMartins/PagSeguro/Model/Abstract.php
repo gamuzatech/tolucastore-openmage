@@ -888,7 +888,7 @@ class RicardoMartins_PagSeguro_Model_Abstract extends Mage_Payment_Model_Method_
         }
     }
 
-    public function callPutAPI($suffix, $headers = array(), $body, $noV2 = false) //phpcs:ignore
+    public function callPutAPI($suffix, $headers = array(), $body = "", $noV2 = false) //phpcs:ignore
     {
         $helper = Mage::helper('ricardomartins_pagseguro');
 //        $key = $helper->getPagSeguroProKey();
