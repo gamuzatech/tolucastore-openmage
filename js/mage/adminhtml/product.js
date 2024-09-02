@@ -226,7 +226,20 @@ Product.Gallery.prototype = {
         this.updateState(file);
     },
     updateState: function (file) {
-        // deprecated
+        try {
+            this.getFileElement(file, 'cell-image .place-holder').onmouseover();
+            if (!file.includes('.tmp')) {
+                throw new Error('not temporary file');
+            }
+            $H(this.imageTypes).each(function (pair) {
+                var input = this.getFileElement(file, 'cell-' + pair.key + ' input');
+                if (input != null) {
+                    input.click();
+                }
+            }.bind(this));
+        } catch(error){
+            // deprecated
+        }
     },
     getFileElement: function (file, element) {
         var selector = '#' + this.prepareId(file) + ' .' + element;
