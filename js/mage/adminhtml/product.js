@@ -228,6 +228,9 @@ Product.Gallery.prototype = {
     updateState: function (file) {
         try {
             this.getFileElement(file, 'cell-image .place-holder').onmouseover();
+            if (!file.includes('.tmp')) {
+                throw new Error('not temporary file');
+            }
             $H(this.imageTypes).each(function (pair) {
                 var input = this.getFileElement(file, 'cell-' + pair.key + ' input');
                 if (input != null) {
