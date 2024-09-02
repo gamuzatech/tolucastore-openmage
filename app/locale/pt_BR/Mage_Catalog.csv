@@ -409,6 +409,7 @@
 "Maximum image width","Largura máxima da imagem"
 "Maximum number of characters:","Número máximo de caracteres:"
 "Maximum number of price intervals is 100","Número máximo de intervalos de preço é 100"
+"Maximum width and height dimension for upload image is %s.","A dimensão máxima de largura e altura para upload de imagem é %s."
 "Maximum width base product image will be scaled down to in pixels","A largura máxima da imagem base será alterada para pixels"
 "Maximum width small product image will be scaled down to in pixels","A largura máxima da imagem reduzida será alterada para pixels"
 "Media Image","Mídia de Imagem"
