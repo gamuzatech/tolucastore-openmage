@@ -11,6 +11,8 @@
 class Gamuza_Basic_Model_Catalog_Product_Image
     extends Mage_Catalog_Model_Product_Image
 {
+    const DEFAULT_IMAGE_PLACEHOLDER_FILE = '/placeholder/default/image.jpg';
+
     /**
      * Set filenames for base file and new file
      *
@@ -19,6 +21,11 @@ class Gamuza_Basic_Model_Catalog_Product_Image
      */
     public function setBaseFile($file)
     {
+        if (!strcmp($file, 'no_selection'))
+        {
+            $file = self::DEFAULT_IMAGE_PLACEHOLDER_FILE;
+        }
+
         parent::setBaseFile($file);
 
         if (Mage::getStoreConfigFlag('catalog/product_image/use_original'))
