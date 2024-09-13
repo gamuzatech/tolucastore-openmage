@@ -22,7 +22,7 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'filterable'       => true,
     'comparable'       => true,
     'visible_on_front' => true,
-    'unique'           => true,
+    'unique'           => false,
     'is_configurable'  => false,
     'sort_order'       => 1000,
     'visible_in_advanced_search' => true,
@@ -30,6 +30,7 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_promo_rules' => true,
     'used_in_product_listing' => true,
     'used_for_sort_by' => false,
+    'default_value' => 'SEM GTIN',
 ));
 
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_FREE_SHIPPING, array(
