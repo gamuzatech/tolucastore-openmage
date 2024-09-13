@@ -277,7 +277,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                     'base_row_invoiced'      => floatval ($item->getBaseRowInvoiced ()),
                     'gift_message_available' => intval ($item->getGiftMessageAvailable ()),
                     // custom
-                    'gtin' => strval ($item->getGtin ()),
+                    'gtin' => $item->getGtin (),
                     // DFe
                     'brazil_ncm'  => $item->getBrazilNcm (),
                     'brazil_cest' => $item->getBrazilCest (),
