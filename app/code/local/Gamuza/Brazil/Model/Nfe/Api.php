@@ -916,7 +916,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_NCM,
             Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CEST,
             Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_BRAZIL_CFOP,
-            // Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_GTIN,
+            Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_GTIN,
         );
 
         foreach ($order->getAllItems () as $item)
