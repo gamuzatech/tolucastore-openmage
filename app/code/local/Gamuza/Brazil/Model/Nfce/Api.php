@@ -241,7 +241,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
             $brazilNCM = array ();
 
-            foreach ($order->getAllItems () as $item)
+            foreach ($order->getAllVisibleItems () as $item)
             {
                 $brazilNCM [] = $item->getBrazilNcm ();
             }
@@ -250,7 +250,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 ->addFieldToFilter ('code', array ('in' => $brazilNCM))
             ;
 
-            foreach ($order->getAllItems () as $item)
+            foreach ($order->getAllVisibleItems () as $item)
             {
                 $orderItem = array(
                     'item_id'         => intval ($item->getId ()),
@@ -931,7 +931,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             Gamuza_Brazil_Helper_Data::PRODUCT_ATTRIBUTE_GTIN,
         );
 
-        foreach ($order->getAllItems () as $item)
+        foreach ($order->getAllVisibleItems () as $item)
         {
             foreach ($fieldList as $field)
             {
