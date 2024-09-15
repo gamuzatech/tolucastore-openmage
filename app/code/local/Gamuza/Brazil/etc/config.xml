@@ -271,9 +271,11 @@
                 <environment_id>2</environment_id>
                 <version>4.00</version>
                 <timeout>12000</timeout>
+                <!-- Brazil -->
                 <country_id>1058</country_id>
                 <!-- São Paulo -->
                 <region_id>35</region_id>
+                <!-- São Paulo -->
                 <city_id>3550308</city_id>
             </setting>
             <nfce>
