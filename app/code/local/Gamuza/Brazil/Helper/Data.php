@@ -193,6 +193,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CERTIFICATE_TYPE_ID  = 'brazil/certificate/type_id';
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';
     const XML_PATH_BRAZIL_CERTIFICATE_PASSWORD = 'brazil/certificate/password';
+    const XML_PATH_BRAZIL_CERTIFICATE_VALIDATE = 'brazil/certificate/validate';
 
     const XML_PATH_BRAZIL_CSC_ID   = 'brazil/csc/id';
     const XML_PATH_BRAZIL_CSC_CODE = 'brazil/csc/code';
