@@ -699,6 +699,17 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
     }
 
     /**
+     * Retrieve list of stores
+     *
+     * @param null|object|array $filters
+     * @return array
+     */
+    public function stores ($filters = null)
+    {
+        return $this->_getStoreList ($filters);
+    }
+
+    /**
      * Initialize basic order model
      *
      * @param mixed $orderIncrementId
