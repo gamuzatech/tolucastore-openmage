@@ -163,6 +163,24 @@ trait Gamuza_Mobile_Trait_Api_Resource
         return null;
     }
 
+    /**
+     * Retrieve list of stores
+     *
+     * @param null|object|array $filters
+     * @return array
+     */
+    public function _getStoreList ($filters = null)
+    {
+        $result = array(
+            array(
+                'code' => Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_CODE),
+                'name' => Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
+            ),
+        );
+
+        return $result;
+    }
+
     public function _getRemoteSessionId ($quote, $method)
     {
         $result = null;
