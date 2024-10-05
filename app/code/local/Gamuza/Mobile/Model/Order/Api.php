@@ -620,7 +620,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             {
                 $request = new Varien_Object ();
 
-                $productOptions = $item->getProductOptions ();
+                $productOptions = $item->getProductOptions () ?? array ();
 
                 if (array_key_exists ('info_buyRequest', $productOptions))
                 {

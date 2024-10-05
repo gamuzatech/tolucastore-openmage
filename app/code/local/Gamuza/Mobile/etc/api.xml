@@ -94,6 +94,12 @@
                         <method>stores</method>
                         <acl>mobile/cart/stores</acl>
                     </stores>
+                    <!-- Toluca_PDV -->
+                    <pdv translate="title" module="mobile">
+                        <title>PDV quote from shopping cart</title>
+                        <method>pdv</method>
+                        <acl>mobile/cart/pdv</acl>
+                    </pdv>
                 </methods>
                 <faults translate="message" module="mobile">
                     <customer_not_exists>
@@ -136,6 +142,11 @@
                         <code>1000</code>
                         <message>Can not create an order. </message>
                     </create_order_fault>
+                    <!-- Toluca_PDV -->
+                    <pdv_is_not_enabled>
+                        <code>10000</code>
+                        <message>PDV is not available.</message>
+                    </pdv_is_not_enabled>
                 </faults>
             </mobile_cart>
             <mobile_cart_coupon translate="title" module="mobile">
@@ -565,6 +576,10 @@
                         <stores translate="title" module="mobile">
                             <title>Stores</title>
                         </stores>
+                        <!-- Toluca_PDV -->
+                        <pdv translate="title" module="mobile">
+                            <title>PDV quote from shopping cart</title>
+                        </pdv>
                      </cart>
                      <cart_coupon translate="title" module="mobile">
                         <title>Cart Coupon</title>
