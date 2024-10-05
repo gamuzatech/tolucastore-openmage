@@ -420,11 +420,11 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             {
                 $request = new Varien_Object ();
 
-                $productOptions = $item->getProductOptions () ?? array ();
+                $productOptions = $item->getOptionsByCode ();
 
                 if (array_key_exists ('info_buyRequest', $productOptions))
                 {
-                    $buyRequest = $productOptions ['info_buyRequest'];
+                    $buyRequest = unserialize ($productOptions ['info_buyRequest']->getValue ());
 
                     if (array_key_exists ('qty', $buyRequest))
                     {
