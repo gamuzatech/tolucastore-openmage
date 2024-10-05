@@ -8,7 +8,9 @@
 class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const ORDER_ATTRIBUTE_IS_APP         = 'is_app';
+    const ORDER_ATTRIBUTE_IS_COMANDA     = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_PRINTED     = 'is_printed';
+
     const ORDER_ATTRIBUTE_CUSTOMER_STARS = 'customer_stars';
     const ORDER_ATTRIBUTE_CUSTOMER_INFO_CODE = 'customer_info_code';
     const ORDER_ATTRIBUTE_STORE_INFO_CODE = 'store_info_code';
