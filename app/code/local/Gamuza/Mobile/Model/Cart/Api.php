@@ -384,5 +384,80 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
     {
         return $this->_getStoreList ($filters);
     }
+
+    public function pdv ($code = null, $store = null, $table_id = 0, $note = null)
+    {
+        if (!Mage::helper ('core')->isModuleEnabled ('Toluca_PDV'))
+        {
+            $this->_fault ('pdv_is_not_enabled');
+        }
+
+        if (empty ($code))
+        {
+            $this->_fault ('customer_code_not_specified');
+        }
+
+        $quote = $this->_getCustomerQuote ($code, $store, false);
+
+        $cashierId  = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CASHIER);
+        $operatorId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR);
+        $customerId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER);
+
+        $cart = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, 0, $table_id, $note);
+
+        $result = false;
+
+        try
+        {
+            foreach ($quote->getAllVisibleItems () as $item)
+            {
+                $request = new Varien_Object ();
+
+                $productOptions = $item->getProductOptions () ?? array ();
+
+                if (array_key_exists ('info_buyRequest', $productOptions))
+                {
+                    $buyRequest = $productOptions ['info_buyRequest'];
+
+                    if (array_key_exists ('qty', $buyRequest))
+                    {
+                        $request->setData ('qty', $buyRequest ['qty']);
+                    }
+
+                    if (array_key_exists ('options', $buyRequest))
+                    {
+                        $request->setData ('options', $buyRequest ['options']);
+                    }
+
+                    if (array_key_exists ('additional_options', $buyRequest))
+                    {
+                        $request->setData ('additional_options', $buyRequest ['additional_options']);
+                    }
+
+                    if (array_key_exists ('super_attribute', $buyRequest))
+                    {
+                        $request->setData ('super_attribute', $buyRequest ['super_attribute']);
+                    }
+
+                    if (array_key_exists ('bundle_option', $buyRequest))
+                    {
+                        $request->setData ('bundle_option', $buyRequest ['bundle_option']);
+                    }
+                }
+
+                $cart->addProduct ($item->getProduct (), $request);
+            }
+
+            $quote->collectTotals ()->save ();
+
+            $result = true;
+        }
+        catch (Exception $e)
+        {
+            // nothing
+        }
+
+        return $result;
+    }
 }
 
