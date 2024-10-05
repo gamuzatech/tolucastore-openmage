@@ -168,6 +168,13 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
     public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $note = null)
     {
+        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $note);
+
+        return intval ($quote->getId ());
+    }
+
+    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $note)
+    {
         if (empty ($cashier_id))
         {
             $this->_fault ('cashier_not_specified');
