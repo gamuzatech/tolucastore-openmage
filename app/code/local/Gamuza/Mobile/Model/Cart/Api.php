@@ -399,6 +399,10 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         $quote = $this->_getCustomerQuote ($code, $store, false);
 
+        Mage::app ()->getStore ()->setConfig (
+            Toluca_PDV_Helper_Data::XML_PATH_DEFAULT_EMAIL_PREFIX, 'pdv'
+        );
+
         $cashierId  = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CASHIER);
         $operatorId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR);
         $customerId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER);
@@ -455,7 +459,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                 $cart->addProduct ($item->getProduct (), $request);
             }
 
-            $quote->collectTotals ()->save ();
+            $cart->collectTotals ()->save ();
 
             $result = true;
         }
