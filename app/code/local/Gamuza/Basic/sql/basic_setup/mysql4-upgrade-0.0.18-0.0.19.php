@@ -128,9 +128,10 @@ $installer->addEntityType('service', array(
 ));
 
 /**
- * Order
+ * Quote & Order
  */
 $entities = array(
+    'quote',
     'order',
 );
 
