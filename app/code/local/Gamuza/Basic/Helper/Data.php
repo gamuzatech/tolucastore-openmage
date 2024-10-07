@@ -46,6 +46,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_APP = 'is_app';
     const ORDER_ATTRIBUTE_IS_BOT = 'is_bot';
     const ORDER_ATTRIBUTE_IS_PDV = 'is_pdv';
+    const ORDER_ATTRIBUTE_IS_COMANDA = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_SERVICE = 'is_service';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
@@ -58,6 +59,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_SUFFIX_ADMIN  = 'ADMIN';
     const ORDER_SUFFIX_STORE  = 'STORE';
     const ORDER_SUFFIX_OTHER  = 'OTHER';
+    const ORDER_SUFFIX_COMANDA = 'COMANDA';
+    const ORDER_SUFFIX_SERVICE = 'SERVICE';
 
     const PRODUCT_ATTRIBUTE_BRAND = 'brand';
     const PRODUCT_ATTRIBUTE_CODE = 'code';
