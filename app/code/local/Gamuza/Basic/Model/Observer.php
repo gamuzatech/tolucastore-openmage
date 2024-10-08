@@ -310,7 +310,7 @@ CONTENT;
             ->filterByTypes (array (Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE))
         ;
 
-        if ($orderItems->count() > 0)
+        if ($orderItems->getSize() > 0)
         {
             $basic = Mage::getModel ('basic/order_service')
                 ->setOrder($order)
@@ -353,7 +353,7 @@ CONTENT;
             ->addFieldToFilter ('product_type', Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE)
         ;
 
-        if ($collection->count() > 0)
+        if ($collection->getSize() > 0)
         {
             $quote->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SERVICE, true)->save ();
         }
