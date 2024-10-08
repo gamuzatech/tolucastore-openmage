@@ -27,6 +27,8 @@ $options = array(
 foreach ($entities as $entity)
 {
     $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_APP, $options);
+    $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, $options);
+    $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, $options);
 }
 
 $options = array(
@@ -45,16 +47,6 @@ foreach ($entities as $entity)
 /**
  * Order Table
  */
-$options = array(
-    'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
-    'usigned'  => true,
-    'nullable' => false,
-    'visible'  => true,
-    'required' => false,
-);
-
-$installer->addAttribute (Mage_Sales_Model_Order::ENTITY, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, $options);
-
 $installer->getConnection ()->addColumn (
     $installer->getTable ('sales/order'),
     Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_CUSTOMER_STARS,

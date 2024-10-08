@@ -373,5 +373,74 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         return $result;
     }
+
+    /**
+     * Retrieve list of stores
+     *
+     * @param null|object|array $filters
+     * @return array
+     */
+    public function stores ($filters = null)
+    {
+        return $this->_getStoreList ($filters);
+    }
+
+    public function pdv ($code = null, $store = null, $table_id = 0, $note = null)
+    {
+        if (!Mage::helper ('core')->isModuleEnabled ('Toluca_PDV'))
+        {
+            $this->_fault ('pdv_is_not_enabled');
+        }
+
+        if (empty ($code))
+        {
+            $this->_fault ('customer_code_not_specified');
+        }
+
+        $quote = $this->_getCustomerQuote ($code, $store, false);
+
+        Mage::app ()->getStore ()->setConfig (
+            Toluca_PDV_Helper_Data::XML_PATH_DEFAULT_EMAIL_PREFIX, 'pdv'
+        );
+
+        $cashierId  = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CASHIER);
+        $operatorId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR);
+        $customerId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER);
+
+        $cartId = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, 0, $table_id, $note);
+
+        $cart = Mage::getModel ('sales/quote')
+            ->setStoreId (Mage_Core_Model_App::DISTRO_STORE_ID)
+            ->load ($cartId)
+            ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, '1')
+            ->save ()
+        ;
+
+        $result = false;
+
+        try
+        {
+            foreach ($quote->getAllItems () as $item)
+            {
+                $cartItem = clone $item;
+                $cartItem->setId (null);
+                $cartItem->setQuote ($cart);
+
+                $cart->addItem ($cartItem);
+            }
+
+            $cart->collectTotals ()->save ();
+
+            $result = true;
+
+            $quote->delete (); // discard
+        }
+        catch (Exception $e)
+        {
+            // nothing
+        }
+
+        return $result;
+    }
 }
 

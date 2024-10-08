@@ -163,6 +163,32 @@ trait Gamuza_Mobile_Trait_Api_Resource
         return null;
     }
 
+    /**
+     * Retrieve list of stores
+     *
+     * @param null|object|array $filters
+     * @return array
+     */
+    public function _getStoreList ($filters = null)
+    {
+        $mediaUrl = Mage::app ()
+            ->getStore (Mage_Core_Model_App::ADMIN_STORE_ID)
+            ->getBaseUrl (Mage_Core_Model_Store::URL_TYPE_MEDIA, false);
+
+        $result = array(
+            array(
+                'code' => Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_CODE),
+                'name' => Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
+                'thumbnail' => sprintf (
+                    '%s/store/info/%s',
+                    $mediaUrl, Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_LOGO)
+                ),
+            ),
+        );
+
+        return $result;
+    }
+
     public function _getRemoteSessionId ($quote, $method)
     {
         $result = null;

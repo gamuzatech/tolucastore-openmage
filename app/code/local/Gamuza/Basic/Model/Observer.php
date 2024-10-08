@@ -310,7 +310,7 @@ CONTENT;
             ->filterByTypes (array (Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE))
         ;
 
-        if ($orderItems->count() > 0)
+        if ($orderItems->getSize() > 0)
         {
             $basic = Mage::getModel ('basic/order_service')
                 ->setOrder($order)
@@ -342,6 +342,23 @@ CONTENT;
         $productGTIN = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN);
 
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
+    }
+
+    public function salesQuoteCollectTotalsAfter ($observer)
+    {
+        $quote = $observer->getEvent ()->getQuote ();
+
+        $collection = Mage::getResourceModel ('sales/quote_item_collection')
+            ->setQuote ($quote)
+            ->addFieldToFilter ('product_type', Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE)
+        ;
+
+        if ($collection->getSize() > 0)
+        {
+            $quote->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SERVICE, true)->save ();
+        }
+
+        return $this;
     }
 
     public function salesOrderPreparingAfter ($observer)

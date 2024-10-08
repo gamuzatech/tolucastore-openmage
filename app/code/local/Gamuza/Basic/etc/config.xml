@@ -371,6 +371,14 @@
                     </gamuza_basic_sales_quote_item_set_product>
                 </observers>
             </sales_quote_item_set_product>
+            <sales_quote_collect_totals_after>
+                <observers>
+                    <gamuza_basic_sales_quote_collect_totals_after>
+                        <class>basic/observer</class>
+                        <method>salesQuoteCollectTotalsAfter</method>
+                    </gamuza_basic_sales_quote_collect_totals_after>
+                </observers>
+            </sales_quote_collect_totals_after>
             <sales_order_place_after>
                 <observers>
                     <admin_basic_sales_order_place_after>

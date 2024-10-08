@@ -8,7 +8,9 @@
 class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const ORDER_ATTRIBUTE_IS_APP         = 'is_app';
+    const ORDER_ATTRIBUTE_IS_COMANDA     = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_PRINTED     = 'is_printed';
+
     const ORDER_ATTRIBUTE_CUSTOMER_STARS = 'customer_stars';
     const ORDER_ATTRIBUTE_CUSTOMER_INFO_CODE = 'customer_info_code';
     const ORDER_ATTRIBUTE_STORE_INFO_CODE = 'store_info_code';
@@ -18,6 +20,10 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_API_MOBILE_STORE_VIEW = 'api/mobile/store_view';
 
     const XML_PATH_DEFAULT_EMAIL_PREFIX = 'customer/create_account/email_prefix';
+
+    const XML_PATH_GENERAL_STORE_INFORMATION_CODE = 'general/store_information/code';
+    const XML_PATH_GENERAL_STORE_INFORMATION_NAME = 'general/store_information/name';
+    const XML_PATH_GENERAL_STORE_INFORMATION_LOGO = 'general/store_information/logo';
 
     const DEFAULT_CUSTOMER_TAXVAT = '02788178824';
 }

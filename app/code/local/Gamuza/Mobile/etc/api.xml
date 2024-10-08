@@ -10,6 +10,19 @@
 <config>
     <api>
         <resources>
+            <!-- Core -->
+            <mobile_store translate="title" module="mobile">
+                <title>Mobile Store API</title>
+                <model>mobile/store_api</model>
+                <acl>mobile/store</acl>
+                <methods>
+                    <list translate="title" module="mobile">
+                        <title>Retrieve store list</title>
+                        <method>items</method>
+                        <acl>mobile/store/list</acl>
+                    </list>
+                </methods>
+            </mobile_store>
             <!-- Catalog -->
             <mobile_product translate="title" module="mobile">
                 <title>Mobile Product API</title>
@@ -76,6 +89,17 @@
                         <method>draft</method>
                         <acl>mobile/cart/draft</acl>
                     </draft>
+                    <stores translate="title" module="mobile">
+                        <title>Retrieve store list</title>
+                        <method>stores</method>
+                        <acl>mobile/cart/stores</acl>
+                    </stores>
+                    <!-- Toluca_PDV -->
+                    <pdv translate="title" module="mobile">
+                        <title>PDV quote from shopping cart</title>
+                        <method>pdv</method>
+                        <acl>mobile/cart/pdv</acl>
+                    </pdv>
                 </methods>
                 <faults translate="message" module="mobile">
                     <customer_not_exists>
@@ -118,6 +142,11 @@
                         <code>1000</code>
                         <message>Can not create an order. </message>
                     </create_order_fault>
+                    <!-- Toluca_PDV -->
+                    <pdv_is_not_enabled>
+                        <code>10000</code>
+                        <message>PDV is not available.</message>
+                    </pdv_is_not_enabled>
                 </faults>
             </mobile_cart>
             <mobile_cart_coupon translate="title" module="mobile">
@@ -436,6 +465,11 @@
                         <title>Draft order information</title>
                         <acl>mobile/order/draft</acl>
                     </draft>
+                    <stores translate="title" module="mobile">
+                        <title>Retrieve store list</title>
+                        <method>stores</method>
+                        <acl>mobile/order/stores</acl>
+                    </stores>
                 </methods>
                 <faults translate="message" module="mobile">
                     <customer_not_exists>
@@ -504,6 +538,14 @@
                 <mobile translate="title" module="mobile">
                     <title>Mobile API</title>
                     <sort_order>0</sort_order>
+                    <!-- Core -->
+                    <store translate="title" module="mobile">
+                        <title>Store</title>
+                        <sort_order>10</sort_order>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                    </store>
                     <!-- Catalog -->
                     <product translate="title" module="mobile">
                         <title>Product</title>
@@ -531,6 +573,13 @@
                         <draft translate="title" module="mobile">
                             <title>Draft</title>
                         </draft>
+                        <stores translate="title" module="mobile">
+                            <title>Stores</title>
+                        </stores>
+                        <!-- Toluca_PDV -->
+                        <pdv translate="title" module="mobile">
+                            <title>PDV quote from shopping cart</title>
+                        </pdv>
                      </cart>
                      <cart_coupon translate="title" module="mobile">
                         <title>Cart Coupon</title>
@@ -607,6 +656,9 @@
                         <draft translate="title" module="mobile">
                             <title>Draft order information</title>
                         </draft>
+                        <stores translate="title" module="mobile">
+                            <title>Stores</title>
+                        </stores>
                      </order>
                 </mobile>
             </resources>
