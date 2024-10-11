@@ -106,6 +106,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_table_id'    => intval ($quote->getPdvTableId ()),
                 'store_info_code'    => $quote->getStoreInfoCode (),
                 'customer_info_code' => $quote->getCustomerInfoCode (),
+                'is_comanda' => boolval ($quote->getIsComanda ()),
             );
         }
 
@@ -161,6 +162,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'pdv_table_id'    => intval ($quote->getPdvTableId ()),
             'store_info_code'    => $quote->getStoreInfoCode (),
             'customer_info_code' => $quote->getCustomerInfoCode (),
+            'is_comanda' => boolval ($quote->getIsComanda ()),
         );
 
         return $result;
