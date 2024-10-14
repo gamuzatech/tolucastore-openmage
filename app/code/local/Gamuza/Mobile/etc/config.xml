@@ -60,6 +60,9 @@
                 <is_app>
                     <to_order>*</to_order>
                 </is_app>
+                <is_comanda>
+                    <to_order>*</to_order>
+                </is_comanda>
                 <customer_info_code>
                     <to_order>*</to_order>
                 </customer_info_code>
@@ -71,6 +74,9 @@
                 <is_app>
                     <to_quote>*</to_quote>
                 </is_app>
+                <is_comanda>
+                    <to_quote>*</to_quote>
+                </is_comanda>
                 <customer_info_code>
                     <to_quote>*</to_quote>
                 </customer_info_code>
