@@ -3,9 +3,10 @@
 ## Table of features
 
 - APP ( Android & iOS)
+- Comanda ( Android & iOS )
 - Chat & Sales Bot ( WhatsApp )
 - Point of Sale ( POS )
-- Express ( eCommerce & POS )
+- Delivery ( e-Commerce & POS )
 - PagCripto
 - PicPay
 - PagSeguro
