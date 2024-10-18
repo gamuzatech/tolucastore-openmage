@@ -218,6 +218,7 @@
         <pdv>
             <setting>
                 <dashboard>1</dashboard>
+                <preferences>1</preferences>
                 <receipt>1</receipt>
                 <backup>1</backup>
             </setting>
