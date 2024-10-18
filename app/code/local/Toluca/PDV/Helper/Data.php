@@ -43,9 +43,10 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_PDV_SETTING_DEFAULT_OPERATOR = 'pdv/setting/operator_id';
     const XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER = 'pdv/setting/customer_id';
 
-    const XML_PATH_PDV_SETTING_DASHBOARD = 'pdv/setting/dashboard';
-    const XML_PATH_PDV_SETTING_RECEIPT   = 'pdv/setting/receipt';
-    const XML_PATH_PDV_SETTING_BACKUP    = 'pdv/setting/backup';
+    const XML_PATH_PDV_SETTING_DASHBOARD   = 'pdv/setting/dashboard';
+    const XML_PATH_PDV_SETTING_PREFERENCES = 'pdv/setting/preferences';
+    const XML_PATH_PDV_SETTING_RECEIPT     = 'pdv/setting/receipt';
+    const XML_PATH_PDV_SETTING_BACKUP      = 'pdv/setting/backup';
 
     const XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS = 'pdv/cashier/include_all_orders';
 
