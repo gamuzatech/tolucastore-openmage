@@ -19,7 +19,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
     {
         $result = parent::info();
 
-        $result['tolucastore_version'] = Mage::getOpenMageVersion();
+        $result['tolucastore_version'] = str_replace ('-', '.', Mage::getOpenMageVersion());
 
         Mage::dispatchEvent ('basic_magento_api_info', array ('info' => & $result));
 
