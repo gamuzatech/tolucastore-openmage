@@ -134,7 +134,7 @@ class Mage_Catalog_Model_Url
     /**
      * Retrieve stores array or store model
      *
-     * @param int $storeId
+     * @param int|null $storeId
      * @return Mage_Core_Model_Store|array
      */
     public function getStores($storeId = null)
@@ -236,7 +236,10 @@ class Mage_Catalog_Model_Url
         }
 
         $this->clearStoreInvalidRewrites($storeId);
-        $this->refreshCategoryRewrite($this->getStores($storeId)->getRootCategoryId(), $storeId, false);
+        $store = $this->getStores($storeId);
+        if ($store instanceof Mage_Core_Model_Store) {
+            $this->refreshCategoryRewrite($store->getRootCategoryId(), $storeId, false);
+        }
         $this->refreshProductRewrites($storeId);
         $this->getResource()->clearCategoryProduct($storeId);
 
@@ -309,6 +312,7 @@ class Mage_Catalog_Model_Url
      * Refresh product rewrite
      *
      * @return $this
+     * @throws Mage_Core_Exception
      */
     protected function _refreshProductRewrite(Varien_Object $product, Varien_Object $category)
     {
@@ -499,14 +503,19 @@ class Mage_Catalog_Model_Url
     /**
      * Refresh all product rewrites for designated store
      *
-     * @param int $storeId
+     * @param int|null $storeId
      * @return $this
      */
     public function refreshProductRewrites($storeId)
     {
+        $store = $this->getStores($storeId);
+        if (!$store instanceof Mage_Core_Model_Store) {
+            return $this;
+        }
+
         $this->_categories      = [];
-        $storeRootCategoryId    = $this->getStores($storeId)->getRootCategoryId();
-        $storeRootCategoryPath  = $this->getStores($storeId)->getRootCategoryPath();
+        $storeRootCategoryId    = $store->getRootCategoryId();
+        $storeRootCategoryPath  = $store->getRootCategoryPath();
         $this->_categories[$storeRootCategoryId] = $this->getResource()->getCategory($storeRootCategoryId, $storeId);
 
         $lastEntityId = 0;
