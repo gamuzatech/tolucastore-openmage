@@ -101,6 +101,10 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
     public function clean ($codes = array())
     {
+        ini_set('memory_limit', -1);
+        set_time_limit(0);
+        ignore_user_abort(true);
+
         foreach ($codes as $id => $value)
         {
             switch ($value)
