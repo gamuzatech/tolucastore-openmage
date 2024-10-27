@@ -49,6 +49,7 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tab_Orders
                 array()
             )
             ->where ('sfoi.product_id = ?', Mage::registry('current_product')->getId())
+            ->group ('sfoi.order_id')
         ;
 
         $collection->getSelect()
