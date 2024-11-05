@@ -412,6 +412,10 @@ ol, ul {
     .header-minicart .minicart-actions .cart-link {
         bottom: 15px;
     }
+
+    #review-buttons-container > button[type="submit"] {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 979px) {
