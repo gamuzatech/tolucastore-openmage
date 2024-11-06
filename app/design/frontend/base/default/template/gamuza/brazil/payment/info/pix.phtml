@@ -29,3 +29,29 @@
 
 <?php echo $this->getChildHtml()?>
 
+<style>
+#pix-payment-clear { clear: left; }
+#pix-payment-response { max-width: 200px; margin-top: 20px; }
+</style>
+
+<div id="pix-payment-clear"></div>
+<div id="pix-payment-response"></div>
+
+<?php $_order = $this->_getOrder (); ?>
+<?php if ($_order && $_order->getId ()): ?>
+
+<?php $_qrCodeUrl = $this->_getQRCodeUrl ($_order->getId ()); ?>
+
+<script type="text/javascript">
+    new Ajax.Request ("<?php echo $_qrCodeUrl; ?>", {
+        method: 'get',
+        onSuccess: function (transport) {
+            $('pix-payment-response').innerHTML = transport.responseText;
+
+            new Effect.Appear ($('pix-payment-response'), {duration: 1});
+        },
+    });
+</script>
+
+<?php endif; ?>
+
