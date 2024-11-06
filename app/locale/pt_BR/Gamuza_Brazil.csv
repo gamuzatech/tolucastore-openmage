@@ -1,4 +1,10 @@
 "Payment via Pix","Pagamento via Pix"
+"Invalid form key. Please refresh the page.","Chave de formulário inválida. Por favor, atualize a página."
+"Customer is not logged in.","Cliente não está logado."
+"Order was not specified.","Pedido não foi especificado."
+"Order does not belong to the customer.","Pedido não pertence ao cliente."
+"Order: %s","Pedido: %s"
+"Order","Pedido"
 
 "Common Mercosur Nomenclature","Nomenclatura Comum do Mercosul"
 "Tax Replacement Specifying Code","Código Especificador da Substituição Tributária"

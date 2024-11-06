@@ -33,8 +33,36 @@ class Gamuza_Brazil_Block_Payment_Info_Pix extends Mage_Payment_Block_Info
         $amount = Mage::helper('core')->currency($this->getInfo()->getBaseAmountOrdered(), true, false);
         $data[Mage::helper('payment')->__('Amount')] = $amount;
 
+        $order = $this->_getOrder();
+
+        if ($order && $order->getId())
+        {
+            $data[Mage::helper('payment')->__('Key')] = Mage::helper('brazil/pix')->_getKey($order);
+        }
 
         return $transport->setData(array_merge($transport->getData(), $data));
+    }
+
+    public function _getOrder ()
+    {
+        if (!strcmp (Mage::app ()->getRequest ()->getActionName (), 'email'))
+        {
+            return null;
+        }
+
+        return Mage::registry ('current_order');
+    }
+
+    public function _getQRCodeUrl ($orderId)
+    {
+        $qrCodeUrl = Mage::app ()->getStore ()->isAdmin () ? 'admin_brazil/adminhtml_pix/qrcode' : 'brazil/pix/qrcode';
+
+        $result = $this->getUrl ($qrCodeUrl, array(
+            '_secure' => true, 'order_id' => $orderId,
+            'form_key' => Mage::getSingleton ('core/session')->getFormKey ()
+        ));
+
+        return $result;
     }
 }
 

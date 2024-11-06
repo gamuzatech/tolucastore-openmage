@@ -33,7 +33,7 @@ $options = array(
 
 foreach ($entities as $entity)
 {
-    $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_RG_IE,   $options);
+    $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_RG_IE, $options);
 }
 
 $options = array(
@@ -46,6 +46,23 @@ $options = array(
 foreach ($entities as $entity)
 {
     $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_BRAZIL_IE_ICMS, $options);
+}
+
+
+$entities = array(
+    'quote_payment',
+    'order_payment'
+);
+
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+    'visible'  => true,
+    'required' => false
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Brazil_Helper_Data::ORDER_PAYMENT_ATTRIBUTE_BRAZIL_PIX_KEY, $options);
 }
 
 $installer->endSetup ();
