@@ -227,6 +227,15 @@
         </translate>
     </adminhtml>
     <frontend>
+        <routers>
+            <brazil>
+                <use>standard</use>
+                <args>
+                    <module>Gamuza_Brazil</module>
+                    <frontName>brazil</frontName>
+                </args>
+            </brazil>
+        </routers>
         <translate>
             <modules>
                 <Gamuza_Brazil>
