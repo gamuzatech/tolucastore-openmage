@@ -36,6 +36,8 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ATTRIBUTE_IS_PIX = 'is_pix';
 
+    const ORDER_PAYMENT_ATTRIBUTE_BRAZIL_PIX_KEY = 'brazil_pix_key';
+
     const IBPT_TYPE_NCM   = 0;
     const IBPT_TYPE_NBS   = 1;
     const IBPT_TYPE_LC116 = 2;
@@ -151,6 +153,11 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_RESPONSE_DUPLICATED = 204;
 
     const NFE_EVENT_CANCELED = 135;
+
+    const XML_PATH_GENERAL_STORE_INFORMATION_COMPANY = 'general/store_information/company';
+    const XML_PATH_GENERAL_STORE_INFORMATION_NAME    = 'general/store_information/name';
+
+    const XML_PATH_PAYMENT_GAMUZA_BRAZIL_PIX_KEY = 'payment/gamuza_brazil_pix/key';
 
     const XML_PATH_BRAZIL_IBPT_IMPORT   = 'brazil/ibpt/import';
     const XML_PATH_BRAZIL_IBPT_KEY      = 'brazil/ibpt/key';
