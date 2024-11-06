@@ -18,7 +18,7 @@ class Gamuza_Brazil_Helper_Pix extends Mage_Core_Helper_Abstract
 
         $pix[00] = '01'; // Payload Format Indicator - FIXED: 01
         $pix[01] = '12'; // Use Only Once!
-        $pix[26][00] = 'br.gov.bcb.pix';
+        $pix[26][00] = 'BR.GOV.BCB.PIX';
         $pix[26][01] = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_PAYMENT_GAMUZA_BRAZIL_PIX_KEY);
         $pix[26][02] = sprintf (
             '%s-%s-%s',
