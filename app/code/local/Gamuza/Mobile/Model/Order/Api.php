@@ -110,6 +110,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'pagcripto_amount', 'pagcripto_confirmations', 'pagcripto_received_amount',
         'picpay_status', 'picpay_url',
         'openpix_status', 'openpix_url', 'openpix_transaction_id', 'openpix_correlation_id',
+        'brazil_pix_key',
     );
 
     protected $_orderStatusHistoryAttributes = array(
