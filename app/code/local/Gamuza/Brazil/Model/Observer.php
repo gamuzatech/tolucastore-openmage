@@ -59,6 +59,11 @@ class Gamuza_Brazil_Model_Observer
                         'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_SERIES_ID)),
                     ),
                 ),
+                'payment' => array(
+                    'gamuza_brazil_pix' => array(
+                        'key' => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_PAYMENT_GAMUZA_BRAZIL_PIX_KEY),
+                    ),
+                ),
             ),
         ));
 
