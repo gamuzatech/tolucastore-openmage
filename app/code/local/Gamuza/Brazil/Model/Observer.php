@@ -107,6 +107,14 @@ class Gamuza_Brazil_Model_Observer
         )))
         {
             $order->setData (Gamuza_Brazil_Helper_Data::ORDER_ATTRIBUTE_IS_PIX, true)->save ();
+
+            $order->getPayment ()
+                ->setData (
+                    Gamuza_Brazil_Helper_Data::ORDER_PAYMENT_ATTRIBUTE_BRAZIL_PIX_KEY,
+                    Mage::helper ('brazil/pix')->_getKey ($order)
+                )
+                ->save ()
+            ;
         }
     }
 }
