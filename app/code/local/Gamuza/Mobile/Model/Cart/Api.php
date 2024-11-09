@@ -203,6 +203,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             $result ['brazil_pix'] = array (
                 'key'          => Mage::getStoreConfig ('payment/gamuza_brazil_pix/key'),
                 'instructions' => Mage::getStoreConfig ('payment/gamuza_brazil_pix/instructions'),
+                'brazil_pix_key' => $payment->getData (Gamuza_Brazil_Helper_Data::ORDER_PAYMENT_ATTRIBUTE_BRAZIL_PIX_KEY),
             );
         }
 
