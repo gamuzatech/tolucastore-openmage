@@ -111,9 +111,10 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     public function getLocaleCode ($scope = 'default', $scope_id = 0)
     {
         $read = Mage::getSingleton('core/resource')->getConnection('core_read');
+        $table = Mage::getSingleton('core/resource')->getTableName('core_config_data');
 
         return $read->fetchOne(
-            " SELECT value FROM core_config_data " .
+            " SELECT value FROM $table " .
             " WHERE scope = '$scope' AND scope_id = $scope_id " .
             " AND path = 'general/locale/code'"
         );
