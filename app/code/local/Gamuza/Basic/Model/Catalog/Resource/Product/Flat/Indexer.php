@@ -33,9 +33,11 @@ class Gamuza_Basic_Model_Catalog_Resource_Product_Flat_Indexer
 
         $ids = $read->fetchAll ($query);
 
+        $table = $resource->getTableName ('catalog_product_entity');
+
         for ($i = 0; $i < count ($ids); $i ++)
         {
-            $query = sprintf ('UPDATE catalog_product_entity SET sku_position = %s WHERE entity_id = %s LIMIT 1', ($i + 1), $ids [$i]['entity_id']);
+            $query = sprintf ('UPDATE %s SET sku_position = %s WHERE entity_id = %s LIMIT 1', $table, ($i + 1), $ids [$i]['entity_id']);
 
             $write->query ($query);
         }
