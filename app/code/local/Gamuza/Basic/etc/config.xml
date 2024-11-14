@@ -616,6 +616,9 @@
                 <default>gamuza</default>
                 <fallback>magento2</fallback>
             </theme>
+            <library>
+                <bootstrap>1</bootstrap>
+            </library>
         </design>
         <trans_email>
             <ident_general>
