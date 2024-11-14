@@ -20,7 +20,14 @@ class Gamuza_Basic_Block_Adminhtml_Sales_Order_View_Info
      */
     public function getAddressEditLink($address, $label='')
     {
-        // nothing
+        $order = $address->getOrder();
+
+        if ($order && !strcmp($order->getState(), Mage_Sales_Model_Order::STATE_NEW))
+        {
+            return parent::getAddressEditLink($address, $label);
+        }
+
+        return null;
     }
 }
 
