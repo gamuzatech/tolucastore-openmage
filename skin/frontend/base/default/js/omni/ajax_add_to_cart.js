@@ -30,6 +30,10 @@
     },
 
     onclick: function(el) {
+        if (typeof productAddToCartForm != typeof undefined && !productAddToCartForm.validator.validate()) {
+            return false;
+        }
+
         OmniAddToCart.showLoader();
         // Make sure onclick is empty before we start, valid specially on non simple products on product page
         if(el.attr('onclick')) { el.attr('onclick',''); }
@@ -40,6 +44,7 @@
             setLocation(url);
             return false;
         }
+
         var origFormKey = url.split('/').filter(function(el) { return el.trim().length > 0; }).pop();
 
         var matchFormKey = url.match(/{"form_key":"([a-zA-Z0-9]+)"}/);
