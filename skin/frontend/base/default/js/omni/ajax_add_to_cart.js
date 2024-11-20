@@ -69,7 +69,6 @@
                 OmniAddToCart.updateMinicart(origFormKey, newQty);
             }
             OmniAddToCart.hideLoader(); 
-            OmniAddToCart.showSuccess();
         });
 
         request.fail(function( jqXHR, textStatus ) {
@@ -95,10 +94,12 @@
         }
         this.minicart.showError(message);
         $j('#minicart-success-message').fadeOut('slow');
+
+        OmniAddToCart.showDialog(message);
     },
 
-    showSuccess: function() {
-        var message = Translator.translate("Item was added successfully.");
+    showDialog: function(message) {
+        var message = Translator.translate(message);
         $j("<div>" + message + "</div>").dialog({
             modal: true,
             title: Translator.translate("Cart"),
@@ -112,6 +113,8 @@
         this.minicart.updateCartQty(qty);
         this.minicart.showSuccess( Translator.translate("Item was added successfully.") );
         $j('#minicart-error-message').fadeOut('slow');
+
+        OmniAddToCart.showDialog("Item was added successfully.");
     },
 
     openMinicart: function() {
