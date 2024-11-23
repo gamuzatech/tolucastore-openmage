@@ -174,5 +174,11 @@
             <remove name="bundle.prices"/>
         </reference>
     </PRODUCT_TYPE_bundle>
+
+    <wishlist_index_index>
+        <reference name="customer.wishlist.buttons">
+            <remove name="customer.wishlist.button.share" />
+        </reference>
+    </wishlist_index_index>
 </layout>
 

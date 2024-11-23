@@ -103,11 +103,6 @@ $coreConfig->deleteConfig ('customer/address/taxvat_show');
 $coreConfig->deleteConfig ('customer/address/gender_show');
 
 /**
- * Wishlist
- */
-$coreConfig->saveConfig ('wishlist/general/active', '0');
-
-/**
  * Sales
  */
 $coreConfig->saveConfig ('sales/minimum_order/active', '1');
