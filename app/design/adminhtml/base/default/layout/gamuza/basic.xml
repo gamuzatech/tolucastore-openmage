@@ -77,6 +77,12 @@
         </block>
     </adminhtml_catalog_product_orders>
 
+    <adminhtml_catalog_product_wishlist>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="basic/adminhtml_catalog_product_edit_tab_wishlist" name="catalog.product.edit.tab.wishlist"/>
+        </block>
+    </adminhtml_catalog_product_wishlist>
+
     <adminhtml_customer_attribute_edit>
         <reference name="left">
             <remove name="website_switcher" />
