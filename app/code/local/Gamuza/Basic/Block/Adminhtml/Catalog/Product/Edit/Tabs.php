@@ -25,6 +25,15 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
                     'class' => 'ajax',
                 ));
             }
+
+            if (Mage::helper('core')->isModuleOutputEnabled('Mage_Wishlist'))
+            {
+                $this->addTab('wishlist', array(
+                    'label' => Mage::helper('catalog')->__('Wishlist'),
+                    'url'   => $this->getUrl('*/*/wishlist', ['_current' => true]),
+                    'class' => 'ajax',
+                ));
+            }
         }
 
         return $result;
