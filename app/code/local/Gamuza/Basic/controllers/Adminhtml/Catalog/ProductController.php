@@ -487,5 +487,17 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $this->loadLayout();
         $this->renderLayout();
     }
+
+    /**
+     * Get wishlist fieldset block
+     *
+     * @throws Mage_Core_Exception
+     */
+    public function wishlistAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
 }
 
