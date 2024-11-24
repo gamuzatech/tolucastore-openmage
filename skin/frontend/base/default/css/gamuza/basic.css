@@ -100,6 +100,14 @@ ol, ul {
     width: 100%; /* firefox */
 }
 
+.button.button-secondary,
+.button.button-secondary:active,
+.button.button-secondary:focus,
+.button.button-secondary:hover {
+    background-color: #0472ad;
+    color: white;
+}
+
 .button2 span, .button2 span span {
     text-decoration: none;
 }
