@@ -224,6 +224,11 @@
                     <quote>Gamuza_Basic_Model_Sales_Resource_Quote</quote>
                 </rewrite>
             </sales_resource>
+            <wishlist>
+                <rewrite>
+                    <item>Gamuza_Basic_Model_Wishlist_Item</item>
+                </rewrite>
+            </wishlist>
         </models>
         <resources>
             <basic_setup>
