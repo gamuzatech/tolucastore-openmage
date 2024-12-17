@@ -22,6 +22,13 @@
 <a href="https://github.com/openmage/magento-lts/actions/workflows/security-php.yml"><img src="https://github.com/openmage/magento-lts/actions/workflows/security-php.yml/badge.svg" alt="PHP Security workflow Badge" /></a>
 <a href="https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml"><img src="https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml/badge.svg" alt="CI workflow Badge" /></a>
 
+[![Version](http://poser.pugx.org/openmage/magento-lts/version)](https://packagist.org/packages/openmage/magento-lts)
+![https://packagist.org/packages/openmage/magento-lts](https://poser.pugx.org/openmage/magento-lts/license.svg)
+![https://packagist.org/packages/openmage/magento-lts](https://poser.pugx.org/openmage/magento-lts/d/total.svg)
+![https://github.com/openmage/magento-lts/actions/workflows/security-php.yml](https://github.com/openmage/magento-lts/actions/workflows/security-php.yml/badge.svg)
+![https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml](https://github.com/OpenMage/magento-lts/actions/workflows/workflow.yml/badge.svg)
+![https://www.php-fig.org/per/coding-style/](https://img.shields.io/badge/Coding%20standard-PER2.0-white.svg)
+
 # Toluca Store ERP - Long Term Support
 
 This repository is the home of an **unofficial** community-driven project. It's goal is to be a dependable alternative
