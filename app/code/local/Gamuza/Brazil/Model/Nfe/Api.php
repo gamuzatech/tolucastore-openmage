@@ -386,7 +386,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = false)
+    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = true)
     {
         if (empty ($orderIncrementId))
         {
