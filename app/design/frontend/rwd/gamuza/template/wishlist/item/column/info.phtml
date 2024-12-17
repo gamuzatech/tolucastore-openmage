@@ -25,7 +25,7 @@ $product = $item->getProduct();
 <div class="wishlist-sku">
     <span><?php echo $this->__('SKU'); ?> <?php echo $this->escapeHtml($product->getSku()) ?></span>
 </div>
-<!--
+<?php if (Mage::getStoreConfigFlag('wishlist/general/comment')): ?>
 <textarea name="description[<?php echo $item->getWishlistItemId() ?>]" rows="3" cols="5" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Comment')) ?>" placeholder="<?php echo $this->helper('wishlist')->defaultCommentString(); ?>"><?php echo ($this->escapeHtml($item->getDescription() ? $item->getDescription() : '')) ?></textarea>
 
 <?php if($this->getSortedChildren()): ?>
@@ -35,5 +35,5 @@ $product = $item->getProduct();
     <?php endforeach ?>
     </div>
 <?php endif ?>
--->
+<?php endif ?>
 
