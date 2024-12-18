@@ -42,7 +42,7 @@ class Gamuza_OpenPix_Model_Payment_Method_Payment extends Mage_Payment_Model_Met
 
         $storeName = Mage::getStoreConfig (Mage_Core_Model_Store::XML_PATH_STORE_STORE_NAME);
 
-        $customerName   = sprintf ("%s %s", $order->getCustomerFirstname (), $order->getCustomerLastname ());
+        $customerName   = sprintf ("%s %s", $order->getBillingAddress ()->getFirstname (), $order->getBillingAddress ()->getLastname ());
         $customerEmail  = $order->getCustomerEmail ();
         $customerPhone  = preg_replace ('[\D]', '', $order->getBillingAddress ()->getCellphone ());
         $customerTaxvat = preg_replace ('[\D]', '', $order->getCustomerTaxvat ());
