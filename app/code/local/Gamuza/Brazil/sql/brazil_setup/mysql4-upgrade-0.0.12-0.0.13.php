@@ -56,9 +56,8 @@ SQLBLOCK;
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'protocol_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 11,
-            'unsigned' => true,
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
             'nullable' => false,
             'comment'  => 'Protocol ID',
         ));
