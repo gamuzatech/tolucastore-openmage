@@ -46,6 +46,9 @@ class Gamuza_PicPay_Model_Payment_Method_Payment extends Mage_Payment_Model_Meth
 
         $customerEmail = $order->getCustomerEmail ();
 
+        $customerFirstname = $order->getBillingAddress ()->getFirstname ();
+        $customerLastname  = $order->getBillingAddress ()->getLastname ();
+
         $customerPhone = preg_replace ('[\D]', '', $order->getBillingAddress ()->getCellphone ());
 
         $post = array(
@@ -56,8 +59,8 @@ class Gamuza_PicPay_Model_Payment_Method_Payment extends Mage_Payment_Model_Meth
             'expiresAt'   => null,
             'purchaseMode' => 'online',
             'buyer' => array(
-                'firstName' => $order->getCustomerFirstname (),
-                'lastName'  => $order->getCustomerLastname (),
+                'firstName' => $customerFirstname,
+                'lastName'  => $customerLastname,
                 'document'  => $customerTaxvat ? $customerTaxvat : self::DEFAULT_CUSTOMER_TAXVAT,
                 'email'     => $customerEmail ? $customerEmail : self::DEFAULT_CUSTOMER_EMAIL,
                 'phone'     => $customerPhone,
