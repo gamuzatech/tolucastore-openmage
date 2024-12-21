@@ -17,7 +17,7 @@ class Gamuza_Basic_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_
      *
      * @var array
      */
-    protected $_publicActions = array ('pending');
+    protected $_publicActions = array ('pending', 'redirect');
 
     public function pendingAction()
     {
@@ -30,6 +30,18 @@ class Gamuza_Basic_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_
         ;
 
         $this->getResponse ()->setBody ($collection->getFirstItem ()->getQty ());
+    }
+
+    public function redirectAction ()
+    {
+        $orderId = $this->getRequest ()->getParam ('order_id');
+
+        if (intval ($orderId) > 0)
+        {
+            return $this->_redirect ('adminhtml/sales_order/view', array ('order_id' => $orderId));
+        }
+
+        return $this->_redirect ('adminhtml/sales_order/index');
     }
 
     /**
