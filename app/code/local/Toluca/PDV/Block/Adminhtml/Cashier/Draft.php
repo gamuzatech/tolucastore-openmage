@@ -96,7 +96,7 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Temp
         return $collection;
     }
 
-    private function _getOrderCollection ($cashier, $operator, $history)
+    public function _getOrderCollection ($cashier, $operator, $history)
     {
         $collection = Mage::getModel ('sales/order')->getCollection ()
             ->addFieldToFilter ('is_pdv', array ('eq' => true))
