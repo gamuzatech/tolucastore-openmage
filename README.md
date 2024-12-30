@@ -1,6 +1,6 @@
 <img src="https://dl.dropboxusercontent.com/s/qi0b31um3y3nxo6/tolucastore-admin-panel.png" alt="TolucaStore Admin Panel"/>
 
-## Table of features
+## Features
 
 - APP ( Android & iOS)
 - Comanda ( Android & iOS )
@@ -45,7 +45,7 @@ See: https://docs.openmage.org/
 
 ---
 
-## Public Communication
+## Support
 
 * [Toluca Store](https://t.me/tolucastore) (Telegram)
 * [Gamuza Technologies](https://t.me/gamuzatech) (Telegram)
@@ -54,15 +54,9 @@ See: https://docs.openmage.org/
 
 * [Enéias Ramos de Melo](https://github.com/eneiasramos)
 
-## Maintainers
+## Sponsorship
 
-* [Daniel Fahlke](https://github.com/Flyingmana)
-* [David Robinson](https://github.com/drobinson)
-* [Fabrizio Balliano](https://github.com/fballiano)
-* [Lee Saferite](https://github.com/LeeSaferite)
-* [Mohamed Elidrissi](https://github.com/elidrissidev)
-* [Ng Kiat Siong](https://github.com/kiatng)
-* [Tymoteusz Motylewski](https://github.com/tmotyl)
+* [opencollective](https://opencollective.com/openmage) (maintained by [Daniel Fahlke](https://github.com/Flyingmana) and [Colin Mollenhour](https://github.com/colinmollenhour))
 
 ## License
 
