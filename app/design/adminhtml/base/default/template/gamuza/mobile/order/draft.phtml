@@ -40,18 +40,18 @@ echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_
 foreach ($_order->getAllItems() as $item)
 {
     echo $this->getLineSeparator(sprintf('SKU %s', $item->getSku())).PHP_EOL;
-    echo $item->getName() . PHP_EOL;
+    echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
 
     $_productOptions = $item->getProductOptions();
 
     foreach ($_productOptions ['options'] as $option)
     {
-        echo sprintf('%s: %s', $option ['label'], $option ['value']) . PHP_EOL;
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
     }
 
     foreach ($_productOptions ['additional_options'] as $option)
     {
-        echo sprintf('%s: %s', $option ['label'], $option ['value']) . PHP_EOL;
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
     }
 
     if ($item->getParentItemId ())
@@ -63,7 +63,7 @@ foreach ($_order->getAllItems() as $item)
     $_qty = floatval($item->getQtyOrdered() ?: $item->getQty());
     $_rowTotal = Mage::helper('core')->currency($item->getBaseRowTotal(), true, false);
 
-    echo Mage::helper('basic')->__('Price: %s Qty: %s Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
+    echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
 }
 
 echo $this->getLineSeparator() . PHP_EOL;
