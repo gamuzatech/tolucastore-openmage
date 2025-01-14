@@ -44,7 +44,6 @@ class Gamuza_Mobile_Block_Payment_Info_Cashondelivery extends Mage_Payment_Block
             return $this->_paymentSpecificInformation;
         }
 
-        $transport = parent::_prepareSpecificInformation($transport);
         $data = array();
 
         if ($changeType = $this->getChangeTypeName())
@@ -58,7 +57,7 @@ class Gamuza_Mobile_Block_Payment_Info_Cashondelivery extends Mage_Payment_Block
             $data[Mage::helper('payment')->__('Change Amount')] = Mage::helper('core')->currency ($this->getInfo()->getAdditionalInformation('change_amount'), true, false);
         }
 
-        return $transport->setData(array_merge($data, $transport->getData()));
+        return parent::_prepareSpecificInformation($data);
     }
 }
 
