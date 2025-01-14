@@ -49,6 +49,26 @@ class Toluca_PDV_Model_Observer
         }
     }
 
+    public function paymentInfoBlockPrepareSpecificInformation ($observer)
+    {
+        $isPdv = Mage::helper ('pdv')->isPDV ();
+
+        if ($isPdv)
+        {
+            $event = $observer->getEvent ();
+            $transport = $event->getTransport ();
+
+            $data = $transport->getData();
+
+            foreach ($data as $id => $value)
+            {
+                $data[$id] = sprintf('<b><u>%s</u></b>', $value);
+            }
+
+            $transport->setData($data);
+        }
+    }
+
     public function salesOrderPlaceAfter ($observer)
     {
         $event = $observer->getEvent ();
