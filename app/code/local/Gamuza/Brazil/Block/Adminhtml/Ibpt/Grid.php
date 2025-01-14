@@ -17,13 +17,6 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 		$this->setSaveParametersInSession (true);
     }
 
-    protected function _getStore()
-    {
-        $storeId = (int) $this->getRequest()->getParam('store', 0);
-
-        return Mage::app()->getStore($storeId);
-    }
-
 	protected function _prepareCollection ()
 	{
 		$collection = Mage::getModel ('brazil/ibpt')->getCollection ();
@@ -35,8 +28,6 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 
 	protected function _prepareColumns ()
 	{
-        $store = $this->_getStore();
-
 		$this->addColumn ('entity_id', array(
 		    'header' => Mage::helper ('brazil')->__('ID'),
 		    'align'  => 'right',
@@ -70,30 +61,26 @@ class Gamuza_Brazil_Block_Adminhtml_Ibpt_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('national_federal', array(
 		    'header'  => Mage::helper ('brazil')->__('National Federal'),
 		    'align'   => 'right',
-            'type'    => 'price',
+            'type'    => 'number',
 		    'index'   => 'national_federal',
-            'currency_code' => $store->getBaseCurrency ()->getCode (),
 		));
 		$this->addColumn ('imported_federal', array(
 		    'header'  => Mage::helper ('brazil')->__('Imported Federal'),
 		    'align'   => 'right',
-            'type'    => 'price',
+            'type'    => 'number',
 		    'index'   => 'imported_federal',
-            'currency_code' => $store->getBaseCurrency ()->getCode (),
 		));
 		$this->addColumn ('state', array(
 		    'header'  => Mage::helper ('brazil')->__('State'),
 		    'align'   => 'right',
-            'type'    => 'price',
+            'type'    => 'number',
 		    'index'   => 'state',
-            'currency_code' => $store->getBaseCurrency ()->getCode (),
 		));
 		$this->addColumn ('local', array(
 		    'header'  => Mage::helper ('brazil')->__('Local'),
 		    'align'   => 'right',
-            'type'    => 'price',
+            'type'    => 'number',
 		    'index'   => 'local',
-            'currency_code' => $store->getBaseCurrency ()->getCode (),
 		));
 		$this->addColumn ('key', array(
 		    'header'  => Mage::helper ('brazil')->__('Key'),
