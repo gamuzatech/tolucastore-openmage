@@ -369,6 +369,9 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             ),
         ));
 
+        $this->addExportType('*/*/exportCsv', Mage::helper('pdv')->__('CSV'));
+        $this->addExportType('*/*/exportExcel', Mage::helper('pdv')->__('Excel XML'));
+
 		return parent::_prepareColumns ();
 	}
 

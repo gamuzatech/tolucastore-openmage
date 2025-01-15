@@ -111,5 +111,25 @@ class Gamuza_Brazil_Adminhtml_NfeController extends Mage_Adminhtml_Controller_Ac
 
         return $nfe;
     }
+
+    /**
+     * Export order grid to CSV format
+     */
+    public function exportCsvAction()
+    {
+        $fileName = 'nfes.csv';
+        $grid     = $this->getLayout()->createBlock('brazil/adminhtml_nfe_grid');
+        $this->_prepareDownloadResponse($fileName, $grid->getCsvFile());
+    }
+
+    /**
+     *  Export order grid to Excel XML format
+     */
+    public function exportExcelAction()
+    {
+        $fileName   = 'nfes.xml';
+        $grid       = $this->getLayout()->createBlock('brazil/adminhtml_nfe_grid');
+        $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
+    }
 }
 
