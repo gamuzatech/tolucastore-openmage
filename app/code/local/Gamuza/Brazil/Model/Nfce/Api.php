@@ -840,7 +840,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             }
         }
 
-        $statusId = $event->getReceivedId () == Gamuza_Brazil_Helper_Data::NFE_EVENT_CANCELED
+        $statusId = in_array ($event->getReceivedId (), array (Gamuza_Brazil_Helper_Data::NFE_EVENT_CANCELED, Gamuza_Brazil_Helper_Data::NFE_EVENT_HOMOLOGATED))
             ? Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
         ;
