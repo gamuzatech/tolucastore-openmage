@@ -58,6 +58,10 @@ class Gamuza_Brazil_Model_Observer
                         'model_id'  => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_MODEL_ID)),
                         'series_id' => intval (Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_SERIES_ID)),
                     ),
+                    'cashier' => array(
+                        'show_history_nfes'  => Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CASHIER_SHOW_HISTORY_NFES),
+                        'show_history_nfces' => Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CASHIER_SHOW_HISTORY_NFCES),
+                    ),
                 ),
                 'payment' => array(
                     'gamuza_brazil_pix' => array(

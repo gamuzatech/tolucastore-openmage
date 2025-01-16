@@ -307,6 +307,10 @@
                 <cancel_validate>1</cancel_validate>
                 <authorize_validate>1</authorize_validate>
             </nfe>
+            <cashier>
+                <show_history_nfes>0</show_history_nfes>
+                <show_history_nfces>0</show_history_nfces>
+            </cashier>
         </brazil>
         <payment>
             <gamuza_brazil_pix>

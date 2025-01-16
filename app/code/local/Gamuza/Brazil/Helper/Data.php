@@ -232,6 +232,9 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFCE_AUTHORIZE_VALIDATE = 'brazil/nfce/authorize_validate';
     const XML_PATH_BRAZIL_NFCE_CANCEL_VALIDATE    = 'brazil/nfce/cancel_validate';
 
+    const XML_PATH_BRAZIL_CASHIER_SHOW_HISTORY_NFES  = 'brazil/cashier/show_history_nfes';
+    const XML_PATH_BRAZIL_CASHIER_SHOW_HISTORY_NFCES = 'brazil/cashier/show_history_nfces';
+
     public function getIncrementId ($type, $field, $contents = null)
     {
         $filename = sprintf (
