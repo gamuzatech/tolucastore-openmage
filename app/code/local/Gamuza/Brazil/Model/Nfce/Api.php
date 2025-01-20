@@ -1180,7 +1180,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if ($collection->getSize () > 0)
         {
-            $customMessage = Mage::helper ('brazil')->__('There are NF-e pending correction!') . PHP_EOL
+            $customMessage = Mage::helper ('brazil')->__('There are NFC-e pending correction!') . PHP_EOL
                 . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
 
             $this->_fault ('nfce_not_authorized', $customMessage);

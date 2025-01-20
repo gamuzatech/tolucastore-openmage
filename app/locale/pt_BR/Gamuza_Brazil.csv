@@ -251,5 +251,8 @@
 "There are NFC-e pending authorization!","Existem NFC-e pendentes de autorização!"
 "There are NFC-e pending correction!","Existem NFC-e pendentes de correção!"
 "There are NFC-e pending cancelation!","Existem NFC-e pendentes de cancelamento!"
+"There are NF-e pending authorization!","Existem NF-e pendentes de autorização!"
+"There are NF-e pending correction!","Existem NF-e pendentes de correção!"
+"There are NF-e pending cancelation!","Existem NF-e pendentes de cancelamento!"
 "Attribute name: %s", "Nome do atributo: %s"
 
