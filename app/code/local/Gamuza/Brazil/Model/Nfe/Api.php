@@ -799,7 +799,6 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFe ($nfe);
     }
 
-
     public function corrected ($orderIncrementId, $orderProtectCode, $sent, $return, $data)
     {
         if (empty ($orderIncrementId))
