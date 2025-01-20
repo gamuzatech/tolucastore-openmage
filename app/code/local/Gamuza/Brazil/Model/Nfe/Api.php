@@ -61,6 +61,26 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         'key',
     );
 
+    protected $_correctAttributeList = array(
+        'environment_id',
+        'emitted_at',
+        'process_id',
+        'protocol_id',
+        'received_id',
+        'received_at',
+        'application',
+        'reason',
+        'key',
+        'name',
+        'description',
+        'justification',
+        'event_id',
+        'organ_id',
+        'type_id',
+        'sequence_id',
+        'version',
+    );
+
     protected $_cancelAttributeList = array(
         'environment_id',
         'emitted_at',
@@ -154,6 +174,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'updated_at'      => $nfe->getUpdatedAt (),
                 'signed_at'       => $nfe->getSignedAt (),
                 'status_id'       => strval ($nfe->getStatusId ()),
+                'correct_id'      => intval ($nfe->getCorrectId ()),
                 'cancel_id'       => intval ($nfe->getCancelId ()),
                 // Sales_Order
                 'increment_id'    => strval ($nfe->getIncrementId ()),
@@ -696,6 +717,47 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFe ($nfe);
     }
 
+    public function correct ($orderIncrementId, $orderProtectCode)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $nfe = $this->_initNFe ($order);
+
+        if (!strcmp ($nfe->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfe_already_canceled');
+        }
+
+        if (strcmp ($nfe->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED) != 0)
+        {
+            $this->_fault ('nfe_not_authorized');
+        }
+
+        $this->_correctValidate ($nfe);
+
+        if (empty ($nfe->getCorrectId ()))
+        {
+            $correctId = Mage::helper ('brazil')->getIncrementId ('nfe', 'correct_id', array ('order_id' => $order->getId ()));
+
+            $nfe->setCorrectId ($correctId)
+                ->setUpdatedAt (date ('c'))
+                ->save ()
+            ;
+        }
+
+        return $this->_getNFe ($nfe);
+    }
+
     public function cancel ($orderIncrementId, $orderProtectCode)
     {
         if (empty ($orderIncrementId))
@@ -733,6 +795,106 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 ->save ()
             ;
         }
+
+        return $this->_getNFe ($nfe);
+    }
+
+
+    public function corrected ($orderIncrementId, $orderProtectCode, $sent, $return, $data)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        if (empty ($sent))
+        {
+            $this->_fault ('sent_not_specified');
+        }
+
+        if (empty ($return))
+        {
+            $this->_fault ('return_not_specified');
+        }
+
+        if (empty ($data))
+        {
+            $this->_fault ('data_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $nfe = $this->_initNFe ($order);
+
+        if (!strcmp ($nfe->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfe_already_canceled');
+        }
+
+        if (strcmp ($nfe->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED) != 0)
+        {
+            $this->_fault ('nfe_not_authorized');
+        }
+
+        $event = Mage::getModel ('brazil/nfe_event')
+            ->setNfeId ($nfe->getId ())
+            ->setCreatedAt (date ('c'))
+        ;
+
+        foreach ($this->_correctAttributeList as $attribute)
+        {
+            if (array_key_exists ($attribute, $data))
+            {
+                $event->setData ($attribute, $data [$attribute]);
+            }
+            else
+            {
+                $customMessage = Mage::helper ('brazil')->__('Requested data not specified.') . PHP_EOL
+                    . PHP_EOL . Mage::helper ('brazil')->__('Attribute name: %s', $attribute);
+
+                $this->_fault ('data_not_specified', $customMessage);
+            }
+        }
+
+        $event->save ();
+
+        $codeList = array ('sent', 'return');
+
+        foreach ($codeList as $code)
+        {
+            $$code = base64_decode ($$code);
+
+            if (!simplexml_load_string ($$code))
+            {
+                $this->_fault (sprintf ('%s_not_specified', $code));
+            }
+
+            $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . 'nfe' . DS . 'event' . DS . $code;
+
+            if (!is_dir ($xmlDir))
+            {
+                mkdir ($xmlDir, 0777, true);
+            }
+
+            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $event->getKey ());
+
+            $result = file_put_contents ($xmlFile, $$code);
+
+            if (!is_file ($xmlFile) || $result != strlen ($$code) || $result === false)
+            {
+                $this->_fault ('nfe_not_saved');
+            }
+        }
+
+        $nfe->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED)
+            ->setUpdatedAt (date ('c'))
+            ->save ()
+        ;
 
         return $this->_getNFe ($nfe);
     }
@@ -985,6 +1147,29 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         if ($collection->getSize () > 0)
         {
             $customMessage = Mage::helper ('brazil')->__('There are NF-e pending authorization!') . PHP_EOL
+                . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
+
+            $this->_fault ('nfe_not_authorized', $customMessage);
+        }
+    }
+
+    protected function _correctValidate ($nfe)
+    {
+        if (!Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_NFE_CORRECT_VALIDATE))
+        {
+            return;
+        }
+
+        $collection = Mage::getModel ('brazil/nfe')->getCollection ()
+            ->addOrderInfo ()
+            ->addFieldToFilter ('correct_id', array ('gt' => 0))
+            ->addFieldToFilter ('status_id', array ('neq' => Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+            ->addFieldToFilter ('main_table.entity_id', array ('neq' => $nfe->getId ()))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $customMessage = Mage::helper ('brazil')->__('There are NF-e pending correction!') . PHP_EOL
                 . PHP_EOL . implode (PHP_EOL, $collection->toOptionHash ('number_id', 'increment_id'));
 
             $this->_fault ('nfe_not_authorized', $customMessage);

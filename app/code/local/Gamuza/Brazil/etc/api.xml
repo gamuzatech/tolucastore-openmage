@@ -35,6 +35,16 @@
                         <acl>brazil/nfce/authorize</acl>
                         <method>authorize</method>
                     </authorize>
+                    <correct translate="title" module="brazil">
+                        <title>Correct a NFC-e for the order</title>
+                        <acl>brazil/nfce/correct</acl>
+                        <method>correct</method>
+                    </correct>
+                    <corrected translate="title" module="brazil">
+                        <title>Correted a NFC-e for the order</title>
+                        <acl>brazil/nfce/correct</acl>
+                        <method>corrected</method>
+                    </corrected>
                     <cancel translate="title" module="brazil">
                         <title>Cancel a NFC-e for the order</title>
                         <acl>brazil/nfce/cancel</acl>
@@ -72,6 +82,16 @@
                         <acl>brazil/nfe/authorize</acl>
                         <method>authorize</method>
                     </authorize>
+                    <correct translate="title" module="brazil">
+                        <title>Correct a NF-e for the order</title>
+                        <acl>brazil/nfe/correct</acl>
+                        <method>correct</method>
+                    </correct>
+                    <corrected translate="title" module="brazil">
+                        <title>Corrected a NF-e for the order</title>
+                        <acl>brazil/nfe/correct</acl>
+                        <method>corrected</method>
+                    </corrected>
                     <cancel translate="title" module="brazil">
                         <title>Cancel a NF-e for the order</title>
                         <acl>brazil/nfe/cancel</acl>
@@ -221,6 +241,12 @@
                         <authorize translate="title" module="brazil">
                             <title>Authorize a NFC-e for the order</title>
                         </authorize>
+                        <correct translate="title" module="brazil">
+                            <title>Correct a NFC-e for the order</title>
+                        </correct>
+                        <corrected translate="title" module="brazil">
+                            <title>Corrected a NFC-e for the order</title>
+                        </corrected>
                         <cancel translate="title" module="brazil">
                             <title>Cancel a NFC-e for the order</title>
                         </cancel>
@@ -242,6 +268,12 @@
                         <authorize translate="title" module="brazil">
                             <title>Authorize a NF-e for the order</title>
                         </authorize>
+                        <correct translate="title" module="brazil">
+                            <title>Correct a NF-e for the order</title>
+                        </correct>
+                        <corrected translate="title" module="brazil">
+                            <title>Corrected a NF-e for the order</title>
+                        </corrected>
                         <cancel translate="title" module="brazil">
                             <title>Cancel a NF-e for the order</title>
                         </cancel>

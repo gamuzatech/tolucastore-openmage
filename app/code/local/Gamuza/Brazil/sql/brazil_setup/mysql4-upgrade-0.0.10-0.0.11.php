@@ -263,6 +263,14 @@ SQLBLOCK;
             'comment'  => 'Cancel ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'correct_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => true,
+            'comment'  => 'Correct ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => false,

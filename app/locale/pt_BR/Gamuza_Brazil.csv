@@ -79,9 +79,11 @@
 "Number ID","ID Número"
 "Model","Modelo"
 "Series","Série"
+"Correct ID","ID Correção"
 "Cancel ID","ID Cancelamento"
 "Cancel Validate","Validar Cancelamento"
 "Authorize Validate","Validar Autorização"
+"Correct Validate","Validar Correção"
 
 "Show History NFes","Exibir NFes do Histórico"
 "Show History NFCes","Exibir NFCes do Histórico"
@@ -247,6 +249,7 @@
 
 "Invalid key given.","Chave fornecida é inválida."
 "There are NFC-e pending authorization!","Existem NFC-e pendentes de autorização!"
+"There are NFC-e pending correction!","Existem NFC-e pendentes de correção!"
 "There are NFC-e pending cancelation!","Existem NFC-e pendentes de cancelamento!"
 "Attribute name: %s", "Nome do atributo: %s"
 
