@@ -282,6 +282,36 @@
                     </origin>
                 </methods>
             </basic_shipping>
+            <!-- Report -->
+            <basic_report translate="title" module="basic">
+                <model>basic/report_api</model>
+                <title>Basic Report API</title>
+                <acl>basic/report</acl>
+                <methods>
+                    <accounting translate="title" module="basic">
+                        <title>Get info about current financial reporting</title>
+                        <acl>basic/report/accounting</acl>
+                    </accounting>
+                </methods>
+                <faults>
+                    <types_not_specified>
+                        <code>100</code>
+                        <message>Requested types was not specified.</message>
+                    </types_not_specified>
+                    <range_not_specified>
+                        <code>200</code>
+                        <message>Requested range was not specified.</message>
+                    </range_not_specified>
+                    <locale_not_specified>
+                        <code>300</code>
+                        <message>Requested locale was not specified.</message>
+                    </locale_not_specified>
+                    <type_not_exists>
+                        <code>400</code>
+                        <message>Requested type not exists.</message>
+                    </type_not_exists>
+                </faults>
+            </basic_report>
         </resources>
         <acl>
             <resources>
@@ -400,6 +430,13 @@
                             <title>Retrieve info about current Shipping origin</title>
                         </origin>
                     </shipping>
+                    <!-- Report -->
+                    <report translate="title" module="basic">
+                        <title>Report</title>
+                        <accounting translate="title" module="basic">
+                            <title>Get info about current financial reporting</title>
+                        </accounting>
+                    </report>
                 </basic>
             </resources>
         </acl>
