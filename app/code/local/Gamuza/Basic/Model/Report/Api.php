@@ -106,11 +106,16 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
                         $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . str_replace('brazil_', "", $type) . DS . 'response' . DS . 'info';
 
                         $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $item->getIncrementId (), $item->getProtectCode (), $item->getKey ());
-                    }
 
-                    $result['csv'][] = array(
-                        'value' => $xmlFile,
-                    );
+                        if (!is_file ($xmlFile))
+                        {
+                            $xmlFile = sprintf ('%s%s%s-%s-%s-%s.xml', $xmlDir, DS, $item->getIncrementId (), $item->getProtectCode (), $item->getNumberId (), $item->getKey ());
+                        }
+
+                        $result['csv'][] = array(
+                            'value' => $xmlFile,
+                        );
+                    }
 
                     break;
                 }
