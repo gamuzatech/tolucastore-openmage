@@ -92,6 +92,29 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
             $csvFile['count'] = $grid->getCollection()->getSize();
 
             $result['csv'][] = $csvFile;
+
+            /**
+             * Brazil XMLs
+             */
+            switch ($type)
+            {
+                case 'brazil_nfce':
+                case 'brazil_nfe':
+                {
+                    foreach ($grid->getCollection() as $item)
+                    {
+                        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . str_replace('brazil_', "", $type) . DS . 'response' . DS . 'info';
+
+                        $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $item->getIncrementId (), $item->getProtectCode (), $item->getKey ());
+                    }
+
+                    $result['csv'][] = array(
+                        'value' => $xmlFile,
+                    );
+
+                    break;
+                }
+            }
         }
 
         return $result;
