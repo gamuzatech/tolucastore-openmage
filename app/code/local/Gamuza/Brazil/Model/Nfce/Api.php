@@ -592,7 +592,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             mkdir ($xmlDir, 0777, true);
         }
 
-        $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $key);
+        $xmlFile = sprintf ('%s%s%s-%s-nfce-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfce->getNumberId (), $key);
 
         $result = file_put_contents ($xmlFile, $info);
 
@@ -701,7 +701,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 mkdir ($xmlDir, 0777, true);
             }
 
-            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfce->getKey ());
+            $xmlFile = sprintf ('%s%s%s-%s-nfce-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfce->getNumberId (), $nfce->getKey ());
 
             $result = file_put_contents ($xmlFile, $$code);
 
@@ -892,7 +892,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 mkdir ($xmlDir, 0777, true);
             }
 
-            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $event->getKey ());
+            $xmlFile = sprintf ('%s%s%s-%s-nfce-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfce->getNumberId (), $event->getKey ());
 
             $result = file_put_contents ($xmlFile, $$code);
 
@@ -991,7 +991,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 mkdir ($xmlDir, 0777, true);
             }
 
-            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $event->getKey ());
+            $xmlFile = sprintf ('%s%s%s-%s-nfce-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfce->getNumberId (), $event->getKey ());
 
             $result = file_put_contents ($xmlFile, $$code);
 

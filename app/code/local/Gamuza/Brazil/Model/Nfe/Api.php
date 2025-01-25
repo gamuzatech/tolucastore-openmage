@@ -580,7 +580,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             mkdir ($xmlDir, 0777, true);
         }
 
-        $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $key);
+        $xmlFile = sprintf ('%s%s%s-%s-nfe-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfe->getNumberId (), $key);
 
         $result = file_put_contents ($xmlFile, $info);
 
@@ -689,7 +689,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 mkdir ($xmlDir, 0777, true);
             }
 
-            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfe->getKey ());
+            $xmlFile = sprintf ('%s%s%s-%s-nfe-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfe->getNumberId (), $nfe->getKey ());
 
             $result = file_put_contents ($xmlFile, $$code);
 
@@ -880,7 +880,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 mkdir ($xmlDir, 0777, true);
             }
 
-            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $event->getKey ());
+            $xmlFile = sprintf ('%s%s%s-%s-nfe-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfe->getNumberId (), $event->getKey ());
 
             $result = file_put_contents ($xmlFile, $$code);
 
@@ -979,7 +979,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 mkdir ($xmlDir, 0777, true);
             }
 
-            $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $event->getKey ());
+            $xmlFile = sprintf ('%s%s%s-%s-nfe-%s-%s.xml', $xmlDir, DS, $order->getIncrementId (), $order->getProtectCode (), $nfe->getNumberId (), $event->getKey ());
 
             $result = file_put_contents ($xmlFile, $$code);
 
