@@ -101,15 +101,17 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
                 case 'brazil_nfce':
                 case 'brazil_nfe':
                 {
+                    $type = str_replace('brazil_', "", $type);
+
                     foreach ($grid->getCollection() as $item)
                     {
-                        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . str_replace('brazil_', "", $type) . DS . 'response' . DS . 'info';
+                        $xmlDir = Mage::app ()->getConfig ()->getVarDir ('brazil') . DS . $type . DS . 'response' . DS . 'info';
 
                         $xmlFile = sprintf ('%s%s%s-%s-%s.xml', $xmlDir, DS, $item->getIncrementId (), $item->getProtectCode (), $item->getKey ());
 
                         if (!is_file ($xmlFile))
                         {
-                            $xmlFile = sprintf ('%s%s%s-%s-%s-%s.xml', $xmlDir, DS, $item->getIncrementId (), $item->getProtectCode (), $item->getNumberId (), $item->getKey ());
+                            $xmlFile = sprintf ('%s%s%s-%s-%s-%s-%s.xml', $xmlDir, DS, $item->getIncrementId (), $item->getProtectCode (), $type, $item->getNumberId (), $item->getKey ());
                         }
 
                         $result['csv'][] = array(
