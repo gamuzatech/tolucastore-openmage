@@ -104,6 +104,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_customer_id' => intval ($quote->getPdvCustomerId ()),
                 'pdv_history_id'  => intval ($quote->getPdvHistoryId ()),
                 'pdv_table_id'    => intval ($quote->getPdvTableId ()),
+                'pdv_card_id'     => intval ($quote->getPdvCardId ()),
                 'store_info_code'    => $quote->getStoreInfoCode (),
                 'customer_info_code' => $quote->getCustomerInfoCode (),
                 'is_comanda' => boolval ($quote->getIsComanda ()),
@@ -160,6 +161,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'pdv_customer_id' => intval ($quote->getPdvCustomerId ()),
             'pdv_history_id'  => intval ($quote->getPdvHistoryId ()),
             'pdv_table_id'    => intval ($quote->getPdvTableId ()),
+            'pdv_card_id'     => intval ($quote->getPdvCardId ()),
             'store_info_code'    => $quote->getStoreInfoCode (),
             'customer_info_code' => $quote->getCustomerInfoCode (),
             'is_comanda' => boolval ($quote->getIsComanda ()),
@@ -168,14 +170,14 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $note = null)
+    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null)
     {
-        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $note);
+        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note);
 
         return intval ($quote->getId ());
     }
 
-    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $note)
+    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note)
     {
         if (empty ($cashier_id))
         {
@@ -264,6 +266,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID, $customer_id)
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID,  $history->getId ())
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID,    $table_id)
+            ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CARD_ID,     $card_id)
             ->setCustomerGroupId (0)
             ->setCustomerIsGuest (1)
             ->setIsSuperMode (true)
@@ -353,6 +356,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         $operator->setQuoteId ($quote->getId ())
             ->setCustomerId ($customer->getId ())
             ->setTableId ($table_id)
+            ->setCardId ($card_id)
             ->save ()
         ;
 

@@ -14,7 +14,8 @@
 "Word Wrap","Quebra de Linha"
 "Price: %s Qty: %s Total: %s","Preço: %s Qtde: %s Total: %s"
 "Subtotal: %s Shipping: %s","Subtotal: %s Entrega: %s"
-"Dining Table: %s","Mesa: %s"
+"Table: %s","Mesa: %s"
+"Card: %s","Cartão: %s"
 "Customer #%s","Cliente #%s"
 "PDV is not available.","PDV não está disponível."
 

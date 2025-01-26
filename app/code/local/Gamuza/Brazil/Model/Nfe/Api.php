@@ -196,6 +196,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_history_id'  => intval ($nfe->getPdvHistoryId ()),
                 'pdv_sequence_id' => intval ($nfe->getPdvSequenceId ()),
                 'pdv_table_id'    => intval ($nfe->getPdvTableId ()),
+                'pdv_card_id'     => intval ($nfe->getPdvCardId ()),
                 // IBGE
                 'country_name' => strval ($nfe->getCountryName ()),
                 'region_code'  => strval ($nfe->getRegionCode ()),

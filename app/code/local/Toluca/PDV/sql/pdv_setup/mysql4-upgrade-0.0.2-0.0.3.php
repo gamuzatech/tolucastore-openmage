@@ -54,6 +54,7 @@ foreach ($entities as $entity)
     $installer->addAttribute ($entity, Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID,  $options);
     $installer->addAttribute ($entity, Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_SEQUENCE_ID, $options);
     $installer->addAttribute ($entity, Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID,    $options);
+    $installer->addAttribute ($entity, Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CARD_ID,     $options);
 }
 
 $installer->endSetup ();

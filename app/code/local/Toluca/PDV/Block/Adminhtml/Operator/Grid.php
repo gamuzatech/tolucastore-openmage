@@ -53,10 +53,16 @@ class Toluca_PDV_Block_Adminhtml_Operator_Grid extends Mage_Adminhtml_Block_Widg
 		    'index'  => 'quote_id',
 		));
 		$this->addColumn ('table_id', array(
-		    'header' => Mage::helper ('pdv')->__('Dining Table ID'),
+		    'header' => Mage::helper ('pdv')->__('Table ID'),
 		    'align'  => 'right',
 		    'type'   => 'number',
 		    'index'  => 'table_id',
+		));
+		$this->addColumn ('card_id', array(
+		    'header' => Mage::helper ('pdv')->__('Card ID'),
+		    'align'  => 'right',
+		    'type'   => 'number',
+		    'index'  => 'card_id',
 		));
 		$this->addColumn ('code', array(
 		    'header'  => Mage::helper ('pdv')->__('Code'),

@@ -38,6 +38,7 @@ class Gamuza_Brazil_Model_Mysql4_Nfe_Collection
                     'pdv_history_id',
                     'pdv_sequence_id',
                     'pdv_table_id',
+                    'pdv_card_id',
                 )
             )
         ;

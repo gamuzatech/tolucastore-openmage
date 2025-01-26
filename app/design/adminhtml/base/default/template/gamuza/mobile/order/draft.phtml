@@ -7,14 +7,9 @@
 
 $_order = $this->getOrder();
 
-echo Mage::helper('basic')->__('Dining Table: %s', intval($_order->getPdvTableId())) . PHP_EOL;
-
-$_customerNote = $_order->getCustomerNote();
-
-if (!empty($_customerNote))
-{
-    echo $_customerNote . PHP_EOL;
-}
+echo sprintf('%s %s %s', Mage::helper('basic')->__('Table: %s', intval($_order->getPdvTableId())),
+                         Mage::helper('basic')->__('Card: %s', intval($_order->getPdvCardId())),
+                         $_order->getCustomerNote()) . PHP_EOL;
 
 echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
 

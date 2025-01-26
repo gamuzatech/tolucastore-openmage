@@ -87,6 +87,14 @@ SQLBLOCK;
             'comment'  => 'Table ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'card_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Card ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'order_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,

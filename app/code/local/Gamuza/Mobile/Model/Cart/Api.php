@@ -386,7 +386,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return $this->_getStoreList ($filters);
     }
 
-    public function pdv ($code = null, $store = null, $table_id = 0, $note = null)
+    public function pdv ($code = null, $store = null, $table_id = 0, $card_id = 0, $note = null)
     {
         if (!Mage::helper ('core')->isModuleEnabled ('Toluca_PDV'))
         {
@@ -408,7 +408,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         $operatorId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR);
         $customerId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER);
 
-        $cartId = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, 0, $table_id, $note);
+        $cartId = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, 0, $table_id, $card_id, $note);
 
         $cart = Mage::getModel ('sales/quote')
             ->setStoreId (Mage_Core_Model_App::DISTRO_STORE_ID)
