@@ -27,6 +27,14 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
             $this->_fault('locale_not_specified');
         }
 
+        $defaultFilter = array(
+            'created_at' => array(
+                'from' => $from,
+                'to' => $to,
+                'locale' => $locale,
+            ),
+        );
+
         $result = array(
             'csv' => array(),
         );
@@ -39,7 +47,9 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
             {
                 case 'order':
                 {
-                    $blockName = 'adminhtml/sales_order_grid';
+                    $blockName = 'basic/adminhtml_sales_order_grid';
+
+                    $defaultFilter['state_color'] = Mage_Sales_Model_Order::STATE_COMPLETE;
 
                     break;
                 }
@@ -59,11 +69,15 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
                 {
                     $blockName = 'brazil/adminhtml_nfce_grid';
 
+                    $defaultFilter['status_id'] = Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED;
+
                     break;
                 }
                 case 'brazil_nfe':
                 {
                     $blockName = 'brazil/adminhtml_nfe_grid';
+
+                    $defaultFilter['status_id'] = Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED;
 
                     break;
                 }
@@ -76,15 +90,7 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
             }
 
             $grid = Mage::app()->getLayout()->createBlock($blockName)
-                ->setDefaultFilter(
-                    array(
-                        'created_at' => array(
-                            'from' => $from,
-                            'to' => $to,
-                            'locale' => $locale,
-                        ),
-                    ),
-                )
+                ->setDefaultFilter($defaultFilter)
             ;
 
             $csvFile = $grid->getCsvFile();
