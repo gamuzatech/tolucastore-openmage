@@ -18,7 +18,8 @@ class Gamuza_Basic_Model_Catalog_Resource_Product_Collection
 
     public function joinField ($alias, $table, $field, $bind, $cond = null, $joinType = 'inner')
     {
-        if (!strcmp ($alias, 'qty') && Mage::helper ('catalog')->isModuleEnabled ('Mage_CatalogInventory'))
+        if (!strcmp ($alias, 'qty') && !strcmp($table, 'cataloginventory/stock_item')
+            && Mage::helper ('catalog')->isModuleEnabled ('Mage_CatalogInventory'))
         {
             $this->joinField(
                 'is_in_stock',
