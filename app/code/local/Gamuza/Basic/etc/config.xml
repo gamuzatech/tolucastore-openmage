@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Basic>
-            <version>0.0.21</version>
+            <version>0.0.22</version>
         </Gamuza_Basic>
     </modules>
     <global>
@@ -140,7 +140,9 @@
             <catalog>
                 <rewrite>
                     <category>Gamuza_Basic_Model_Catalog_Category</category>
+                    <product>Gamuza_Basic_Model_Catalog_Product</product>
                     <product_image>Gamuza_Basic_Model_Catalog_Product_image</product_image>
+                    <product_link>Gamuza_Basic_Model_Catalog_Product_Link</product_link>
                     <product_option>Gamuza_Basic_Model_Catalog_Product_Option</product_option>
                     <product_type_configurable>Gamuza_Basic_Model_Catalog_Product_Type_Configurable</product_type_configurable>
                     <observer>Gamuza_Basic_Model_Catalog_Observer</observer>
@@ -447,6 +449,14 @@
                         <can_use_qty_decimals>0</can_use_qty_decimals>
                         <index_priority>100</index_priority>
                     </service>
+                    <material translate="label" module="basic">
+                        <label>Raw Material Product</label>
+                        <model>basic/catalog_product_type_material</model>
+                        <composite>0</composite>
+                        <is_qty>0</is_qty>
+                        <can_use_qty_decimals>0</can_use_qty_decimals>
+                        <index_priority>100</index_priority>
+                    </material>
                 </type>
             </product>
         </catalog>

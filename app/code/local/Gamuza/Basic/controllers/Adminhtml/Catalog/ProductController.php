@@ -499,5 +499,38 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $this->loadLayout();
         $this->renderLayout();
     }
+
+    /**
+     * Get raw material fieldset block
+     *
+     * @throws Mage_Core_Exception
+     */
+    public function materialGridAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    /**
+     * Initialize product before saving
+     * @throws Mage_Core_Exception|Zend_Json_Exception
+     */
+    protected function _initProductSave()
+    {
+        $product = parent::_initProductSave();
+
+        /**
+         * Init product links data (material)
+         */
+        $links = $this->getRequest()->getPost('links');
+
+        if (isset($links['material']))
+        {
+            $product->setMaterialLinkData(Mage::helper('adminhtml/js')->decodeGridSerializedInput($links['material']));
+        }
+
+        return $product;
+    }
 }
 

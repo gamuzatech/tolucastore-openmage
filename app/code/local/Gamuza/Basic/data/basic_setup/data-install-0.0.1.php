@@ -64,7 +64,7 @@ $applyToAttributes = array(
 
 foreach ($applyToAttributes as $attributeCode)
 {
-    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,configurable,virtual,bundle,downloadable,service');
+    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,configurable,virtual,bundle,downloadable,service,material');
 }
 
 $applyToAttributes = array(
@@ -75,6 +75,15 @@ $applyToAttributes = array(
 foreach ($applyToAttributes as $attributeCode)
 {
     $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,virtual,service');
+}
+
+$applyToAttributes = array(
+    'weight',
+);
+
+foreach ($applyToAttributes as $attributeCode)
+{
+    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,bundle,material');
 }
 
 $rootCategoryId = Mage::getModel ('core/store')

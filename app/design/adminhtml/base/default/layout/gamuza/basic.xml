@@ -83,6 +83,25 @@
         </block>
     </adminhtml_catalog_product_wishlist>
 
+    <adminhtml_catalog_product_materialgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="basic/adminhtml_catalog_product_edit_tab_material" name="catalog.product.edit.tab.material"/>
+            <block type="adminhtml/widget_grid_serializer" name="material_grid_serializer">
+                <reference name="material_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>catalog.product.edit.tab.material</grid_block_name>
+                        <data_callback>getSelectedMaterialProducts</data_callback>
+                        <hidden_input_name>links[material]</hidden_input_name>
+                        <reload_param_name>products_material</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>qty</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_catalog_product_materialgrid>
+
     <adminhtml_customer_attribute_edit>
         <reference name="left">
             <remove name="website_switcher" />
