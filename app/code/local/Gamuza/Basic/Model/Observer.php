@@ -381,6 +381,33 @@ CONTENT;
         return $this;
     }
 
+    public function salesOrderInvoicePay ($observer)
+    {
+        $event   = $observer->getEvent ();
+        $invoice = $event->getInvoice ();
+        $order   = $invoice->getOrder ();
+
+        foreach ($order->getAllItems () as $item)
+        {
+            $product = $item->getProduct ();
+
+            foreach ($product->getMaterialProducts () as $productMaterial)
+            {
+                $productMaterialQty = $productMaterial->getQty () * $item->getQtyOrdered ();
+
+                $stockItem = Mage::getModel('cataloginventory/stock_item')->loadByProduct($productMaterial);
+
+                if ($stockItem && $stockItem->getId () && $stockItem->getQty () > $productMaterialQty)
+                {
+                    $stockItem->subtractQty ($productMaterialQty)
+                        ->setSaveMovementMessage (__('Product raw material ( %s ) %s', $product->getSku (), $product->getName ()))
+                        ->save ()
+                    ;
+                }
+            }
+        }
+    }
+
     public function salesOrderCreditmemoRefund ($observer)
     {
         $this->_updateOrderServiceState (

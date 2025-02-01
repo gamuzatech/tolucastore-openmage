@@ -86,6 +86,7 @@
 "Service Product","Produto de Serviço"
 "Raw Material Product","Produto de Matéria Prima"
 "Raw Material","Matéria Prima"
+"Product raw material ( %s ) %s","Produto matéria prima ( %s ) %s"
 "Not Logged In","Deslogado"
 "General","Geral"
 "Wholesale","Atacado"
