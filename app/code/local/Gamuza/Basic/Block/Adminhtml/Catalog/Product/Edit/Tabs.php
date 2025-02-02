@@ -17,10 +17,7 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
 
         $product = Mage::registry('current_product');
 
-        if ($product && $product->getId ()
-            && !in_array ($product->getTypeId (), array(
-                Gamuza_Basic_Model_Catalog_Product_Type_Material::TYPE_MATERIAL
-            )))
+        if ($product && $product->getId ())
         {
             if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/view'))
             {
@@ -40,11 +37,16 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
                 ));
             }
 
-            $this->addTab('material', array(
-                'label' => Mage::helper('catalog')->__('Raw Material'),
-                'url'   => $this->getUrl('*/*/materialGrid', ['_current' => true]),
-                'class' => 'ajax',
-            ));
+            if (!in_array ($product->getTypeId (), array(
+                Gamuza_Basic_Model_Catalog_Product_Type_Material::TYPE_MATERIAL
+            )))
+            {
+                $this->addTabAfter('material', array(
+                    'label' => Mage::helper('catalog')->__('Raw Material'),
+                    'url'   => $this->getUrl('*/*/materialGrid', ['_current' => true]),
+                    'class' => 'ajax',
+                ), 'categories');
+            }
         }
 
         return $result;

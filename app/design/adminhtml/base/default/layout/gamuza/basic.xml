@@ -71,18 +71,6 @@
         </reference>
     </adminhtml_catalog_product_action_attribute_edit>
 
-    <adminhtml_catalog_product_orders>
-        <block type="core/text_list" name="root" output="toHtml">
-            <block type="basic/adminhtml_catalog_product_edit_tab_orders" name="catalog.product.edit.tab.orders"/>
-        </block>
-    </adminhtml_catalog_product_orders>
-
-    <adminhtml_catalog_product_wishlist>
-        <block type="core/text_list" name="root" output="toHtml">
-            <block type="basic/adminhtml_catalog_product_edit_tab_wishlist" name="catalog.product.edit.tab.wishlist"/>
-        </block>
-    </adminhtml_catalog_product_wishlist>
-
     <adminhtml_catalog_product_materialgrid>
         <block type="core/text_list" name="root" output="toHtml">
             <block type="basic/adminhtml_catalog_product_edit_tab_material" name="catalog.product.edit.tab.material"/>
@@ -101,6 +89,18 @@
             </block>
         </block>
     </adminhtml_catalog_product_materialgrid>
+
+    <adminhtml_catalog_product_orders>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="basic/adminhtml_catalog_product_edit_tab_orders" name="catalog.product.edit.tab.orders"/>
+        </block>
+    </adminhtml_catalog_product_orders>
+
+    <adminhtml_catalog_product_wishlist>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="basic/adminhtml_catalog_product_edit_tab_wishlist" name="catalog.product.edit.tab.wishlist"/>
+        </block>
+    </adminhtml_catalog_product_wishlist>
 
     <adminhtml_customer_attribute_edit>
         <reference name="left">

@@ -477,6 +477,18 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
     }
 
     /**
+     * Get raw material fieldset block
+     *
+     * @throws Mage_Core_Exception
+     */
+    public function materialGridAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    /**
      * Get orders fieldset block
      *
      * @throws Mage_Core_Exception
@@ -494,18 +506,6 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
      * @throws Mage_Core_Exception
      */
     public function wishlistAction()
-    {
-        $this->_initProduct();
-        $this->loadLayout();
-        $this->renderLayout();
-    }
-
-    /**
-     * Get raw material fieldset block
-     *
-     * @throws Mage_Core_Exception
-     */
-    public function materialGridAction()
     {
         $this->_initProduct();
         $this->loadLayout();
