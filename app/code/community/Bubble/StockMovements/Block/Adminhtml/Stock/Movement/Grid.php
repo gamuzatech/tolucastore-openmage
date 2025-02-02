@@ -13,7 +13,7 @@ class Bubble_StockMovements_Block_Adminhtml_Stock_Movement_Grid extends Mage_Adm
         $this->setId('StockMovementGrid');
         $this->setSaveParametersInSession(true);
         $this->setFilterVisibility(!$this->getProduct());
-        $this->setDefaultSort('created_at');
+        $this->setDefaultSort('movement_id');
         $this->setDefaultDir('DESC');
     }
 
@@ -137,5 +137,16 @@ class Bubble_StockMovements_Block_Adminhtml_Stock_Movement_Grid extends Mage_Adm
         );
 
         return $html;
+    }
+
+    /**
+     * Return row url
+     *
+     * @param Varien_Object $row
+     * @return string
+     */
+    public function getRowUrl($row)
+    {
+        // nothing
     }
 }
