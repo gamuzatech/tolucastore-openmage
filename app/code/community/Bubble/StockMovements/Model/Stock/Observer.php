@@ -12,7 +12,7 @@ class Bubble_StockMovements_Model_Stock_Observer
         $layout = Mage::getSingleton('core/layout');
         /** @var Mage_Adminhtml_Block_Catalog_Product_Edit_Tabs $block */
         $block = $layout->getBlock('product_tabs');
-        if ($block && $block->getProduct() && $block->getProduct()->getTypeId() == 'simple') {
+        if ($block && $block->getProduct() && !$block->getProduct()->isComposite()) {
             $block->addTab('stock_movements', array(
                 'after' => 'inventory',
                 'label' => Mage::helper('bubble_stockmovements')->__('Stock Movements'),
