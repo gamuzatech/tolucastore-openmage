@@ -198,7 +198,7 @@ class Gamuza_Basic_Model_Observer
 
     public function cleanExpiredQuotes()
     {
-        Mage::dispatchEvent('clear_expired_quotes_before', array('sales_observer' => $this));
+        Mage::getModel('sales/observer')->cleanExpiredQuotes(null);
 
         /** @var $quotes Mage_Sales_Model_Mysql4_Quote_Collection */
         $quotes = Mage::getModel('sales/quote')->getCollection()
