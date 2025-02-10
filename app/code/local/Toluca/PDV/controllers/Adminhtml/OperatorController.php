@@ -14,7 +14,7 @@ class Toluca_PDV_Adminhtml_OperatorController extends Mage_Adminhtml_Controller_
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('pdv/operator')
+		$this->loadLayout ()->_setActiveMenu ('toluca/pdv/operator')
             ->_addBreadcrumb(
                 Mage::helper ('pdv')->__('Operators Manager'),
                 Mage::helper ('pdv')->__('Operators Manager')

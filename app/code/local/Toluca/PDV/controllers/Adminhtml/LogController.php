@@ -14,7 +14,7 @@ class Toluca_PDV_Adminhtml_LogController extends Mage_Adminhtml_Controller_Actio
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('pdv/log')
+		$this->loadLayout ()->_setActiveMenu ('toluca/pdv/log')
             ->_addBreadcrumb(
                 Mage::helper ('pdv')->__('Logs Manager'),
                 Mage::helper ('pdv')->__('Logs Manager')

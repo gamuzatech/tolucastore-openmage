@@ -14,7 +14,7 @@ class Toluca_PDV_Adminhtml_CashierController extends Mage_Adminhtml_Controller_A
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('pdv/cashier')
+		$this->loadLayout ()->_setActiveMenu ('toluca/pdv/cashier')
             ->_addBreadcrumb(
                 Mage::helper ('pdv')->__('Cashiers Manager'),
                 Mage::helper ('pdv')->__('Cashiers Manager')

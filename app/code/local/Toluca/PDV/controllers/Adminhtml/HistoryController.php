@@ -14,7 +14,7 @@ class Toluca_PDV_Adminhtml_HistoryController extends Mage_Adminhtml_Controller_A
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('pdv/history')
+		$this->loadLayout ()->_setActiveMenu ('toluca/pdv/history')
             ->_addBreadcrumb(
                 Mage::helper ('pdv')->__('History Manager'),
                 Mage::helper ('pdv')->__('History Manager')
