@@ -35,6 +35,17 @@
             </responsivebannerslider>
         </blocks>
     </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <admin_toluca_banner before="Magebees_Responsivebannerslider">Toluca_Banner_Adminhtml</admin_toluca_banner>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <adminhtml>
 		<layout>
 			<updates>
