@@ -16,7 +16,7 @@ class Toluca_Bot_Adminhtml_PromotionController extends Mage_Adminhtml_Controller
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('bot/promotion')
+		$this->loadLayout ()->_setActiveMenu ('toluca/bot/promotion')
             ->_addBreadcrumb(
                 Mage::helper ('bot')->__('Promotions Manager'),
                 Mage::helper ('bot')->__('Promotions Manager')

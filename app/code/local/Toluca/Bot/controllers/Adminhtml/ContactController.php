@@ -14,7 +14,7 @@ class Toluca_Bot_Adminhtml_ContactController extends Mage_Adminhtml_Controller_A
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('bot/contact')
+		$this->loadLayout ()->_setActiveMenu ('toluca/bot/contact')
             ->_addBreadcrumb(
                 Mage::helper ('bot')->__('Contacts Manager'),
                 Mage::helper ('bot')->__('Contacts Manager')

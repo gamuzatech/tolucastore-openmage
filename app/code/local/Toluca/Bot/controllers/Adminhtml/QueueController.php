@@ -14,7 +14,7 @@ class Toluca_Bot_Adminhtml_QueueController extends Mage_Adminhtml_Controller_Act
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('bot/queue')
+		$this->loadLayout ()->_setActiveMenu ('toluca/bot/queue')
             ->_addBreadcrumb(
                 Mage::helper ('bot')->__('Queue Manager'),
                 Mage::helper ('bot')->__('Queue Manager')

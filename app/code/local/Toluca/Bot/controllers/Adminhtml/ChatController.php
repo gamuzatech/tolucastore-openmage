@@ -16,7 +16,7 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('bot/chat')
+		$this->loadLayout ()->_setActiveMenu ('toluca/bot/chat')
             ->_addBreadcrumb(
                 Mage::helper ('bot')->__('Chats Manager'),
                 Mage::helper ('bot')->__('Chats Manager')
