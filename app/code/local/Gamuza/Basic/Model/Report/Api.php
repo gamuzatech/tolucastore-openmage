@@ -10,7 +10,7 @@
  */
 class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
 {
-    public function accounting($types = array(), $from, $to, $locale)
+    public function accounting($types = array(), $from, $to, $locale, $dir, $limit)
     {
         if (empty($types))
         {
@@ -25,6 +25,16 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
         if (empty($locale))
         {
             $this->_fault('locale_not_specified');
+        }
+
+        if (empty($dir))
+        {
+            $this->_fault('dir_not_specified');
+        }
+
+        if (empty($limit))
+        {
+            $this->_fault('limit_not_specified');
         }
 
         $defaultFilter = array(
@@ -91,6 +101,8 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
 
             $grid = Mage::app()->getLayout()->createBlock($blockName)
                 ->setDefaultFilter($defaultFilter)
+                ->setDefaultDir($dir)
+                ->setDefaultLimit($limit)
             ;
 
             $csvFile = $grid->getCsvFile();
@@ -104,6 +116,28 @@ class Gamuza_Basic_Model_Report_Api extends Mage_Core_Model_Magento_Api
              */
             switch ($type)
             {
+                case 'pdv_history':
+                {
+                    $emulation = Mage::getModel ('core/app_emulation');
+
+                    $oldEnvironment = $emulation->startEnvironmentEmulation(
+                        Mage_Core_Model_App::ADMIN_STORE_ID,
+                        Mage_Core_Model_App_Area::AREA_ADMINHTML,
+                        true
+                    );
+
+                    $pdf = Mage::getModel ('pdv/pdf_history')->getPdf ($grid);
+
+                    $emulation->stopEnvironmentEmulation ($oldEnvironment);
+
+                    $pdfFile = str_replace ('csv', 'pdf', $csvFile);
+
+                    file_put_contents ($pdfFile ['value'], $pdf->render ());
+
+                    $result['pdf'][] = $pdfFile;
+
+                    break;
+                }
                 case 'brazil_nfce':
                 case 'brazil_nfe':
                 {
