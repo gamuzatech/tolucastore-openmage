@@ -187,6 +187,11 @@
                 </observers>
             </basic_install_installer_finish_after>
         </events>
+        <pdf>
+            <history>
+                <default>pdv/pdf_items_history_default</default>
+            </history>
+        </pdf>
     </global>
     <admin>
         <routers>

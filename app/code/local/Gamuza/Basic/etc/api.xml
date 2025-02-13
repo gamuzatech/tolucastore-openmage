@@ -306,8 +306,16 @@
                         <code>300</code>
                         <message>Requested locale was not specified.</message>
                     </locale_not_specified>
-                    <type_not_exists>
+                    <dir_not_specified>
                         <code>400</code>
+                        <message>Requested direction was not specified.</message>
+                    </dir_not_specified>
+                    <limit_not_specified>
+                        <code>500</code>
+                        <message>Requested limit was not specified.</message>
+                    </limit_not_specified>
+                    <type_not_exists>
+                        <code>600</code>
                         <message>Requested type not exists.</message>
                     </type_not_exists>
                 </faults>
