@@ -36,6 +36,12 @@ class Toluca_PDV_Model_History extends Mage_Core_Model_Abstract
         $pixAmount          = floatval ($this->getPixAmount ());
         $refundAmount       = floatval ($this->getRefundAmount ());
 
+        $this->setSubtotalAmount (
+            $moneyAmount + $changeAmount + $machineAmount
+            + $pagcriptoAmount + $picpayAmount + $openpixAmount
+            + $creditcardAmount + $billetAmount + $banktransferAmount + $checkAmount + $pixAmount
+        );
+
         $this->setTotalAmount (
             $closeAmount + $machineAmount
             + $pagcriptoAmount + $picpayAmount + $openpixAmount

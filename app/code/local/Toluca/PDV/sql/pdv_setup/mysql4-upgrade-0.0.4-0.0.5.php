@@ -177,6 +177,14 @@ SQLBLOCK;
         ));
 
     $installer->getConnection ()
+        ->addColumn ($table, 'subtotal_amount', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'length'   => '12,4',
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Subtotal Amount',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'refund_amount', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
             'length'   => '12,4',

@@ -92,6 +92,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                 'banktransfer_amount' => floatval ($history->getBanktransferAmount ()),
                 'check_amount'        => floatval ($history->getCheckAmount ()),
                 'pix_amount'          => floatval ($history->getPixAmount ()),
+                'subtotal_amount' => floatval ($history->getSubtotalAmount ()),
                 'refund_amount'   => floatval ($history->getRefundAmount ()),
                 'shipping_amount' => floatval ($history->getShippingAmount ()),
                 'total_amount'    => floatval ($history->getTotalAmount ()),
@@ -306,6 +307,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setBanktransferAmount (0)
             ->setCheckAmount (0)
             ->setPixAmount (0)
+            ->setSubtotalAmount (0)
             ->setRefundAmount (0)
             ->setShippingAmount (0)
             ->setTotalAmount (0)
