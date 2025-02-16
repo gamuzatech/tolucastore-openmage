@@ -180,7 +180,14 @@ abstract class Toluca_PDV_Model_Pdf_Abstract extends Mage_Sales_Model_Order_Pdf_
 
             if (is_file($image))
             {
-                $image = Zend_Pdf_Image::imageWithPath($image);
+                $extension = exif_imagetype($image) == IMAGETYPE_PNG ? 'png' : 'jpeg';
+                $filename = sprintf('%s.%s', tempnam(sys_get_temp_dir(), 'pdf-logo-'), $extension);
+
+                copy($image, $filename);
+
+                $image = Zend_Pdf_Image::imageWithPath($filename);
+
+                unlink($filename);
 
                 $top         = 830; //top border of the page
                 $widthLimit  = 270; //half of the page width
@@ -216,7 +223,7 @@ abstract class Toluca_PDV_Model_Pdf_Abstract extends Mage_Sales_Model_Order_Pdf_
                 //coordinates after transformation are rounded by Zend
                 $page->drawImage($image, $x1, $y1, $x2, $y2);
 
-                $this->y = $y1 - 10;
+                $this->y = $y1 - 20;
             }
         }
     }
