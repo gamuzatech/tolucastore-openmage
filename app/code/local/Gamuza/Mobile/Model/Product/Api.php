@@ -12,8 +12,10 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
     protected $_attributeCodes = array (
         'brand',
         'brand_value',
+        'code',
         'color',
         'color_value',
+        'custom_url',
         'description',
         'free_shipping',
         'gift_message_available',
@@ -251,6 +253,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
                     'is_in_stock'           => boolval ($stockItem->getIsInStock ()),
                     'enable_qty_increments' => boolval ($stockItem->getEnableQtyIncrements ()),
                     'qty_increments'        => intval ($stockItem->getQtyIncrements ()),
+                    'use_config_manage_stock' => boolval ($stockItem->getUseConfigManageStock ()),
                 );
             }
 

@@ -27,13 +27,19 @@
         </div>
         <?php endif; ?>
         <?php if(!$_product->isGrouped()): ?>
+        <?php if (!$_product->getCustomUrl()): ?>
         <div class="qty-wrapper">
             <label for="qty"><?php echo $this->__('Qty:') ?></label>
             <input type="text" pattern="\d*(\.\d+)?" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" />
         </div>
+        <?php endif; ?>
         <?php endif ?>
         <div class="add-to-cart-buttons">
+            <?php if (!$_product->getCustomUrl()): ?>
             <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+            <?php else: ?>
+            <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart-url" onclick="window.open('<?php echo $_product->getCustomUrl(); ?>')"><span><span><?php echo $buttonTitle ?></span></span></button>
+            <?php endif; ?>
             <?php echo $this->getChildHtml('', true, true) ?>
         </div>
     </div>
