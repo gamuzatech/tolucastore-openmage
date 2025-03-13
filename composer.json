@@ -1,13 +1,14 @@
 {
     "name": "openmage/magento-lts",
     "description": "A fork of Magento-1 that is accepting bug fixes (backward compatible, drop in replacement for official Magento)",
+    "homepage": "https://www.openmage.org/",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
     "type": "magento-source",
     "require": {
-        "php": ">=7.4 <8.5",
+        "php": ">=8.1 <8.5",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-dom": "*",
@@ -32,7 +33,7 @@
         "flowjs/flowjs": "dev-master",
         "magento-hackathon/magento-composer-installer": "^3.1 || ^2.1 || ^4.0",
         "mklkj/tinymce-i18n": "^25.2",
-        "nnnick/chartjs": "^4.4.7",
+        "nnnick/chartjs": "^4.4",
         "openmage/composer-plugin": "^3.0",
         "pelago/emogrifier": "^7.0",
         "phpseclib/mcrypt_compat": "^2.0.3",
@@ -45,7 +46,7 @@
         "symfony/polyfill-php82": "^1.31",
         "symfony/polyfill-php83": "^1.31",
         "symfony/polyfill-php84": "^1.31",
-        "symfony/string": "^5.4",
+        "symfony/string": "^6.4",
         "symfony/translation-contracts": "^2.5",
         "tinymce/tinymce": "^7.5"
     },
@@ -143,7 +144,7 @@
             "phpstan/extension-installer": true
         },
         "platform": {
-            "php": "7.4"
+            "php": "8.1"
         },
         "sort-packages": true
     },
