@@ -15,7 +15,6 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         'code',
         'color',
         'color_value',
-        'custom_url',
         'description',
         'free_shipping',
         'gift_message_available',
@@ -374,6 +373,8 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
             $resultProduct ['category_id']   = intval ($product->getData ('category_id'));
             $resultProduct ['category_name'] = $product->getData ('category_name');
+
+            Mage::dispatchEvent ('gamuza_mobile_product_list_api_product_after', array ('product' => $product, 'result' => & $resultProduct));
 
             $result [] = $resultProduct;
         }
