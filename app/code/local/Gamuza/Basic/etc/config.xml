@@ -67,6 +67,11 @@
                     <sales_order_items_renderer>Gamuza_Basic_Block_Bundle_Sales_Order_Items_Renderer</sales_order_items_renderer>
                 </rewrite>
             </bundle>
+            <catalog>
+                <rewrite>
+                    <product_list_toolbar>Gamuza_Basic_Block_Catalog_Product_List_Toolbar</product_list_toolbar>
+                </rewrite>
+            </catalog>
             <checkout>
                 <rewrite>
                     <cart_shipping>Gamuza_Basic_Block_Checkout_Cart_Shipping</cart_shipping>
@@ -140,6 +145,7 @@
             <catalog>
                 <rewrite>
                     <category>Gamuza_Basic_Model_Catalog_Category</category>
+                    <config>Gamuza_Basic_Model_Catalog_Config</config>
                     <product>Gamuza_Basic_Model_Catalog_Product</product>
                     <product_image>Gamuza_Basic_Model_Catalog_Product_image</product_image>
                     <product_link>Gamuza_Basic_Model_Catalog_Product_Link</product_link>
@@ -667,6 +673,7 @@
         </trans_email>
         <catalog>
             <frontend>
+                <default_direction>asc</default_direction>
                 <list_allow_all>1</list_allow_all>
                 <flat_catalog_category>1</flat_catalog_category>
                 <flat_catalog_product>1</flat_catalog_product>
