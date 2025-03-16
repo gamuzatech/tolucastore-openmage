@@ -96,6 +96,9 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         $storeCategoryId  = Mage::app ()->getStore ($storeId)->getRootCategoryId ();
         $baseCategoryPath = Mage_Catalog_Model_Category::TREE_ROOT_ID . '/' . $storeCategoryId;
 
+        $defaultSortBy    = Mage::getStoreConfig (Gamuza_Basic_Model_Catalog_Config::XML_PATH_LIST_DEFAULT_SORT_BY,   $storeId);
+        $defaultDirection = Mage::getStoreConfig (Gamuza_Basic_Model_Catalog_Config::XML_PATH_LIST_DEFAULT_DIRECTION, $storeId);
+
         $status = Mage_Catalog_Model_Product_Status::STATUS_DISABLED;
 /*
         $typeIds = array(
@@ -149,8 +152,15 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
         $collection->getSelect ()->reset (Zend_Db_Select::ORDER)
             ->order ('ccfs.position')
-            ->order ('e.name')
+            ->order ('at_category_id.position ' . $defaultDirection)
         ;
+
+        if (!strcmp ($defaultSortBy, 'position'))
+        {
+            $defaultSortBy = 'name'; // default
+        }
+
+        $collection->getSelect ()->order (sprintf ('%s %s', $defaultSortBy, $defaultDirection));
 
         /** @var $apiHelper Mage_Api_Helper_Data */
         $apiHelper = Mage::helper ('api');
