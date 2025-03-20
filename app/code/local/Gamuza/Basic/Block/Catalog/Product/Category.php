@@ -29,7 +29,7 @@ class Gamuza_Basic_Block_Catalog_Product_Category
             {
                 foreach ($category->getChildrenCategories () as $child)
                 {
-                    if ($child->getProductCount ())
+                    if ($child->getProductCount () && $child->getProductCollection ()->getSize ())
                     {
                         $categories [$child->getId ()] = $child;
                     }
@@ -37,7 +37,7 @@ class Gamuza_Basic_Block_Catalog_Product_Category
             }
             else
             {
-                if ($category->getProductCount ())
+                if ($category->getProductCount () && $category->getProductCollection ()->getSize ())
                 {
                     $categories [$category->getId ()] = $category;
                 }
