@@ -24,6 +24,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         'name',
         'news_from_date',
         'news_to_date',
+        'offer_type',
         'price',
         'price_type',
         'price_view',

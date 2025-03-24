@@ -69,6 +69,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_SIZE = 'size';
     const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
     const PRODUCT_ATTRIBUTE_FREE_SHIPPING = 'free_shipping';
+    const PRODUCT_ATTRIBUTE_OFFER_TYPE = 'offer_type';
     const PRODUCT_ATTRIBUTE_PRICE_TYPE   = 'price_type';
     const PRODUCT_ATTRIBUTE_SKU_POSITION = 'sku_position';
 
@@ -91,6 +92,9 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_STATUS_SHIPPED   = 'shipped';
     const ORDER_STATUS_DELIVERED = 'delivered';
     const ORDER_STATUS_REFUNDED  = 'refunded';
+
+    const OFFER_TYPE_CLEARANCE = 'clearance';
+    const OFFER_TYPE_LIGHTNING = 'lightning';
 
     const SQL_PT_BR = 'pt_BR' . DS . 'sql' . DS . 'sql_pt_br_19_utf8.txt';
 
