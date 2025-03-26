@@ -46,6 +46,11 @@ class Gamuza_Basic_Block_Catalog_Product_List_Category
         $this->_productCollection->addCategoryFilter ($this->getCategory ());
         $this->_productCollection->setPageSize (10);
 
+        if (!Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_CATALOG_FRONTEND_LIST_RANDOM))
+        {
+            $this->_productCollection->getSelect ()->reset (Zend_Db_Select::ORDER);
+        }
+
         return $this->_productCollection;
     }
 }

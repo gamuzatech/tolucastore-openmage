@@ -104,6 +104,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_GENERAL_STORE_INFORMATION_LOGO    = 'general/store_information/logo';
     const XML_PATH_GENERAL_STORE_INFORMATION_PHONE   = 'general/store_information/phone';
 
+    const XML_PATH_CATALOG_FRONTEND_LIST_RANDOM = 'catalog/frontend/list_random';
+
     const XML_PATH_CATALOG_PRODUCT_ALLOW_COMMENT = 'catalog/product/allow_comment';
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_PRICE = 'catalog/product/bundle_price';
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_OPTION_SELECT_PRICE = 'catalog/product/bundle_option_select_price';

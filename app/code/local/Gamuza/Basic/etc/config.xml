@@ -674,6 +674,7 @@
         <catalog>
             <frontend>
                 <default_direction>asc</default_direction>
+                <list_random>1</list_random>
                 <list_allow_all>1</list_allow_all>
                 <flat_catalog_category>1</flat_catalog_category>
                 <flat_catalog_product>1</flat_catalog_product>
