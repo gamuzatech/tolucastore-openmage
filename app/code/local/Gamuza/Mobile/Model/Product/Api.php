@@ -161,7 +161,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
             $defaultSortBy = 'name'; // default
         }
 
-        $collection->getSelect ()->order (sprintf ('%s %s', $defaultSortBy, $defaultDirection));
+        $collection->getSelect ()->order (sprintf ('e.%s %s', $defaultSortBy, $defaultDirection));
 
         /** @var $apiHelper Mage_Api_Helper_Data */
         $apiHelper = Mage::helper ('api');
