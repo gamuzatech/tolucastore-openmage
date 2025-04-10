@@ -114,6 +114,9 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_QUEUE         = 'newsletter/scheduled_send/count_of_queue';
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_SUBSCRIPTIONS = 'newsletter/scheduled_send/count_of_subscriptions';
 
+    const XML_PATH_ADMIN_CUSTOMER_GRID_NAME_NOBR = 'admin/customer/grid_name_nobr';
+    const XML_PATH_ADMIN_PRODUCT_GRID_NAME_NOBR  = 'admin/product/grid_name_nobr';
+
     public function getLocaleCode ($scope = 'default', $scope_id = 0)
     {
         $read = Mage::getSingleton('core/resource')->getConnection('core_read');

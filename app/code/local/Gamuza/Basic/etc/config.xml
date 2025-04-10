@@ -816,6 +816,12 @@
                 <validate_formkey_checkout>1</validate_formkey_checkout>
                 <min_admin_password_length>12</min_admin_password_length>
             </security>
+            <product>
+                <grid_name_nobr>1</grid_name_nobr>
+            </product>
+            <customer>
+                <grid_name_nobr>1</grid_name_nobr>
+            </customer>
             <sales>
                 <grid_auto_reload>0</grid_auto_reload>
             </sales>

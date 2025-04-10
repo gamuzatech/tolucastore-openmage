@@ -15,6 +15,13 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
 
     protected $_categoryVarName = 'category';
 
+    protected function _construct ()
+    {
+        parent::_construct ();
+
+        $this->_nobr = Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_ADMIN_PRODUCT_GRID_NAME_NOBR);
+    }
+
     protected function _prepareCollection()
     {
         parent::_prepareCollection();
@@ -57,7 +64,7 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
         $store = $this->_getStore ();
 
         $this->getColumn ('name')
-            ->setData ('html_decorators', array ('nobr'))
+            ->setData ('html_decorators', $this->_nobr ? array ('nobr') : array ())
         ;
 
         $this->getColumn ('set_name')

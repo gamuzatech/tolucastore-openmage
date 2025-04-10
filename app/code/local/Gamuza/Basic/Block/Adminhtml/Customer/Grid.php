@@ -10,6 +10,13 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Grid
 {
     protected $_isExport = true;
 
+    protected function _construct ()
+    {
+        parent::_construct ();
+
+        $this->_nobr = Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_ADMIN_CUSTOMER_GRID_NAME_NOBR);
+    }
+
     protected function _prepareCollection ()
     {
         $collection = Mage::getResourceModel('customer/customer_collection')
@@ -40,7 +47,7 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Grid
         $this->removeColumn ('billing_country_id');
 
         $this->getColumn ('name')
-            ->setData ('html_decorators', array ('nobr'))
+            ->setData ('html_decorators', $this->_nobr ? array ('nobr') : array ())
         ;
 
         $this->addColumnAfter('billing_city', array(
