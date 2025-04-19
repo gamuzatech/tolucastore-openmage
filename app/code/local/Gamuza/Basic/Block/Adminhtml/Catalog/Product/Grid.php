@@ -117,12 +117,18 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
             'type'     => 'number',
         ), 'special_price');
 
+        $this->addColumnAfter ('created_at', array(
+            'header'   => Mage::helper ('basic')->__('Created At'),
+            'index'    => 'created_at',
+            'type'     => 'datetime',
+            'width'    => '100px',
+        ), 'status');
         $this->addColumnAfter ('updated_at', array(
             'header'   => Mage::helper ('basic')->__('Updated At'),
             'index'    => 'updated_at',
             'type'     => 'datetime',
             'width'    => '100px',
-        ), 'status');
+        ), 'created_at');
 
         $this->sortColumnsByOrder ();
 

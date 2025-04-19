@@ -87,6 +87,13 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Grid
             'options'   => Mage::getModel ('basic/adminhtml_system_config_source_customer_gender')->toOptionArray (),
         ), 'dob');
 
+        $this->addColumnAfter ('updated_at', array(
+            'header'   => Mage::helper ('basic')->__('Updated At'),
+            'index'    => 'updated_at',
+            'type'     => 'datetime',
+            'width'    => '100px',
+        ), 'customer_since');
+
         $this->sortColumnsByOrder();
 
         return $result;
