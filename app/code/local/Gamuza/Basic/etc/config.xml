@@ -86,6 +86,7 @@
                 <rewrite>
                     <html_head>Gamuza_Basic_Block_Page_Html_Head</html_head>
                     <html_header>Gamuza_Basic_Block_Page_Html_Header</html_header>
+                    <html_notices>Gamuza_Basic_Block_Page_Html_Notices</html_notices>
                 </rewrite>
             </page>
             <aoe_scheduler>
@@ -631,6 +632,7 @@
         <design>
             <head>
                 <default_title>Toluca Store</default_title>
+                <app_notice_url><![CDATA[https://app.toluca.com.br]]></app_notice_url>
             </head>
             <header>
                 <logo_src><![CDATA[images/logo.png]]></logo_src>

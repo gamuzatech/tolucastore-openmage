@@ -195,6 +195,21 @@ ol, ul {
     width: 50px;
 }
 
+.global-site-notice.app-notice {
+    background: black;
+    color: white;
+    font-size: unset;
+    line-height: unset;
+}
+
+.global-site-notice.app-notice .notice-inner {
+    line-height: 1em;
+}
+
+.global-site-notice.app-notice .notice-inner a {
+    color: white;
+}
+
 .header-minicart .block-subtitle {
     color: black;
     font-size: 12px;
