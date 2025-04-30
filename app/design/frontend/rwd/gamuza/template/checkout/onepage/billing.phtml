@@ -50,7 +50,7 @@
                         </div>
                     </div>
         <?php endif ?>
-        <?php if(!$this->isCustomerLoggedIn()): ?>
+        <?php if(!$this->isCustomerLoggedIn() && !Mage::getStoreConfigFlag(Gamuza_Basic_Model_Customer_Customer::XML_PATH_GENERATE_HUMAN_FRIENDLY_EMAIL)): ?>
                     <div class="field">
                         <label for="billing:email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
                         <div class="input-box">
