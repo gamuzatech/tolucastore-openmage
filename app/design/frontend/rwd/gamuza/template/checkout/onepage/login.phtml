@@ -116,3 +116,16 @@
     }
 //]]>
 </script>
+<?php $_checkoutGuestCheckout = Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_GUEST_CHECKOUT); ?>
+<?php $_checkoutGuestSelected = Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_GUEST_SELECTED); ?>
+<?php if ($_checkoutGuestCheckout && $_checkoutGuestSelected): ?>
+<script type="text/javascript">
+//<![CDATA[
+    $j(window).on('load', function() {
+        $j('radio#login:guest').click();
+        $j('div#checkout-step-login div.col-2 div.buttons-set button').click();
+    });
+//]]>
+</script>
+<?php endif; ?>
+

@@ -97,6 +97,7 @@ ol, ul {
 
 .btn-express {
     margin-left: 0 !important;
+    padding: 12px;
     width: 100%; /* firefox */
 }
 

@@ -111,6 +111,9 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_CATALOG_PRODUCT_BUNDLE_OPTION_SELECT_PRICE = 'catalog/product/bundle_option_select_price';
     const XML_PATH_CATALOG_PRODUCT_CUSTOM_OPTIONS = 'catalog/product/custom_options';
 
+    const XML_PATH_CHECKOUT_OPTIONS_GUEST_CHECKOUT = 'checkout/options/guest_checkout';
+    const XML_PATH_CHECKOUT_OPTIONS_GUEST_SELECTED = 'checkout/options/guest_selected';
+
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_QUEUE         = 'newsletter/scheduled_send/count_of_queue';
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_SUBSCRIPTIONS = 'newsletter/scheduled_send/count_of_subscriptions';
 
