@@ -18,16 +18,16 @@ trait Gamuza_Brazil_Trait_Controller_Pix
 
         $isAdmin = Mage::app ()->getStore ()->isAdmin ();
 
-        if (!$isAdmin && !$this->_getSession ()->isLoggedIn ())
-        {
-            return $this->_throwException (Mage::helper ('brazil')->__('Customer is not logged in.'));
-        }
-
         $order = $this->_getOrder ();
 
         if (!$order || !$order->getId ())
         {
             return $this->_throwException (Mage::helper ('brazil')->__('Order was not specified.'));
+        }
+
+        if (!$isAdmin && !$this->_getSession ()->isLoggedIn () && !$order->getCustomerIsGuest())
+        {
+            return $this->_throwException (Mage::helper ('brazil')->__('Customer is not logged in.'));
         }
 
         if (!$isAdmin && ($order->getCustomerId () != $this->_getSession ()->getCustomer ()->getId ()))
