@@ -8,5 +8,7 @@
 class Toluca_Express_Helper_Data extends Mage_Core_Helper_Abstract
 {
     const XML_PATH_EXPRESS_SETTING_ACTIVE = 'express/setting/active';
+
+    const XML_PATH_EXPRESS_REDIRECT_ACTIVE = 'express/redirect/active';
 }
 

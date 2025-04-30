@@ -83,13 +83,24 @@
                     </express_catalog_add_topmenu_items>
                 </observers>
             </basic_catalog_add_topmenu_items>
+            <controller_action_predispatch>
+                <observers>
+                    <toluca_express_controller_action_predispatch>
+                        <class>express/observer</class>
+                        <method>controllerActionPredispatch</method>
+                    </toluca_express_controller_action_predispatch>
+                </observers>
+            </controller_action_predispatch>
         </events>
     </frontend>
     <default>
         <express>
             <setting>
-                <active>1</active>
+                <active>0</active>
             </setting>
+            <redirect>
+                <active>0</active>
+            </redirect>
         </express>
         <web>
             <routers>

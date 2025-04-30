@@ -34,5 +34,28 @@ class Toluca_Express_Model_Observer
 
         return $this;
     }
+
+    public function controllerActionPredispatch ($observer)
+    {
+        if (!Mage::getStoreConfigFlag (Toluca_Express_Helper_Data::XML_PATH_EXPRESS_REDIRECT_ACTIVE))
+        {
+            return $this;
+        }
+
+        $event = $observer->getEvent ();
+        $controller = $event->getControllerAction ();
+        $request = $controller->getRequest ();
+
+        if (!strcmp ($request->getRouteName (), 'cms')
+            && !strcmp ($request->getControllerName (), 'index')
+            && !strcmp ($request->getActionName (), 'index'))
+        {
+            $controller->getResponse ()
+                ->setRedirect (Mage::getUrl ('delivery'))
+                ->sendResponse ();
+
+            exit (0);
+        }
+    }
 }
 
