@@ -58,6 +58,37 @@
                     </filters_invalid>
                 </faults>
             </mobile_product>
+            <!-- Catalog Search -->
+            <mobile_catalogsearch translate="title" module="mobile">
+                <title>Mobile Catalog Search API</title>
+                <model>mobile/catalogSearch_api</model>
+                <acl>mobile/catalogsearch</acl>
+                <methods>
+                    <result translate="title" module="mobile">
+                        <title>Retrieve catalog search result</title>
+                        <method>result</method>
+                        <acl>mobile/catalogsearch/result</acl>
+                    </result>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <query_not_specified>
+                        <code>100</code>
+                        <message>Requested query not specified.</message>
+                    </query_not_specified>
+                    <query_invalid_length>
+                        <code>200</code>
+                        <message>Query length is invalid.</message>
+                    </query_invalid_length>
+                    <query_no_result>
+                        <code>300</code>
+                        <message>Query has not result.</message>
+                    </query_no_result>
+                    <query_no_product>
+                        <code>400</code>
+                        <message>Query has not product.</message>
+                    </query_no_product>
+                </faults>
+            </mobile_catalogsearch>
             <!-- Checkout -->
             <mobile_cart translate="title" module="mobile">
                 <title>Mobile Cart API</title>
@@ -554,6 +585,14 @@
                             <title>List</title>
                         </list>
                     </product>
+                    <!-- Catalog Search -->
+                    <catalogsearch translate="title" module="mobile">
+                        <title>Catalog Search</title>
+                        <sort_order>10</sort_order>
+                        <result translate="title" module="mobile">
+                            <title>Result</title>
+                        </result>
+                    </catalogsearch>
                     <!-- Checkout -->
                     <cart translate="title" module="mobile">
                         <title>Cart</title>
