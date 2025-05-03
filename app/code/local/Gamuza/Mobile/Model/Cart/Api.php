@@ -421,13 +421,28 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         try
         {
+            $oldToNew = [];
+
             foreach ($quote->getAllItems () as $item)
             {
                 $cartItem = clone $item;
                 $cartItem->setId (null);
                 $cartItem->setQuote ($cart);
 
+                $oldToNew [$item->getId()] = $cartItem;
+
                 $cart->addItem ($cartItem);
+            }
+
+            foreach ($quote->getAllItems() as $item)
+            {
+                if ($item->getParentItemId())
+                {
+                    $child = $oldToNew[$item->getId()];
+                    $parent = $oldToNew[$item->getParentItemId()];
+
+                    $child->setParentItem($parent);
+                }
             }
 
             $cart->collectTotals ()->save ();
