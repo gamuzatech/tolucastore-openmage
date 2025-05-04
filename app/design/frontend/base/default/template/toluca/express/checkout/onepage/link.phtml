@@ -1,0 +1,16 @@
+<?php
+/**
+ * @package     Toluca_Express
+ * @copyright   Copyright (c) 2025 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+
+<?php if (Mage::getStoreConfigFlag ('express/setting/active')): ?>
+<button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Proceed to Checkout')) ?>"
+        class="button btn-proceed-checkout btn-checkout btn btn-success btn-lg btn-express fixed-bottom"
+        onclick="window.location='<?php echo Mage::getUrl('checkout/onepage/index', array('_secure' => true)) ?>';">
+        <span><span><?php echo $this->__('Proceed to Checkout'); ?></span></span>
+</button>
+<?php endif; ?>
+
