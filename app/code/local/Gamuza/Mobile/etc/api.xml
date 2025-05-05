@@ -81,11 +81,11 @@
                     </query_invalid_length>
                     <query_no_result>
                         <code>300</code>
-                        <message>Query has not result.</message>
+                        <message>Query has no result.</message>
                     </query_no_result>
                     <query_no_product>
                         <code>400</code>
-                        <message>Query has not product.</message>
+                        <message>Query has no product.</message>
                     </query_no_product>
                 </faults>
             </mobile_catalogsearch>

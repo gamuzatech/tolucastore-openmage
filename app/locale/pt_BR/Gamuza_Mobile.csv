@@ -18,4 +18,8 @@
 "Card: %s","Cartão: %s"
 "Customer #%s","Cliente #%s"
 "PDV is not available.","PDV não está disponível."
+"Requested query not specified.","Consulta solicitada não especificada."
+"Query length is invalid.","O comprimento da consulta é inválido."
+"Query has no result.","A consulta não tem resultado."
+"Query has no product.","A consulta não possui produto."
 
