@@ -12,6 +12,51 @@ class Gamuza_Mobile_Model_CatalogSearch_Api extends Mage_Api_Model_Resource_Abst
 {
     const FILTER_REQUEST_VAR_PRICE = 'price';
 
+    protected $_attributeCodes = array (
+        'brand',
+        'brand_value',
+        'code',
+        'color',
+        'color_value',
+        'description',
+        'free_shipping',
+        'gift_message_available',
+        'has_options',
+        'image',
+        'image_label',
+        'name',
+        'news_from_date',
+        'news_to_date',
+        'offer_type',
+        'price',
+        'price_type',
+        'price_view',
+        'required_options',
+        'short_description',
+        'size',
+        'size_value',
+        'sku',
+        'sku_position',
+        'small_image',
+        'small_image_label',
+        'special_from_date',
+        'special_price',
+        'special_to_date',
+        'status',
+        'thumbnail',
+        'thumbnail_label',
+        'type_id',
+        'url_key',
+        'url_path',
+        'visibility',
+        'volume_altura',
+        'volume_comprimento',
+        'volume_largura',
+        'weight',
+        'created_at',
+        'updated_at',
+    );
+
     protected $_productAttributes = array (
         'entity_id', 'type_id', 'name', 'short_description',
         'price', 'special_price', 'special_from_date', 'special_to_date',
@@ -171,6 +216,7 @@ class Gamuza_Mobile_Model_CatalogSearch_Api extends Mage_Api_Model_Resource_Abst
         ;
 
         $collection->addAttributeToSelect ($this->_productAttributes)
+            ->addAttributeToSelect ($this->_attributeCodes)
             ->setFlag ('require_stock_items', true)
             // ->joinTable ('cataloginventory/stock_item', 'product_id = entity_id', array ('is_in_stock'))
         ;
