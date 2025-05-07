@@ -86,6 +86,28 @@
         </web>
         <design>
             <groups>
+                <theme>
+                    <fields>
+                        <local translate="label">
+                            <label>Local</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>theme -> default -> local -> fallback</comment>
+                        </local>
+                        <local_ua_regexp translate="comment">
+                            <label></label>
+                            <frontend_model>adminhtml/system_config_form_field_regexceptions</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_design_exception</backend_model>
+                            <sort_order>75</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </local_ua_regexp>
+                    </fields>
+                </theme>
                 <library translate="label comment">
                     <label>Library</label>
                     <sort_order>3</sort_order>

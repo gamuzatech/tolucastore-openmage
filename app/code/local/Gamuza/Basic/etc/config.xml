@@ -650,6 +650,7 @@
             <theme>
                 <admin>gamuza</admin>
                 <default>gamuza</default>
+                <local>gamuza</local>
                 <fallback>magento2</fallback>
             </theme>
             <library>

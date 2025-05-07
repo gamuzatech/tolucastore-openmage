@@ -17,6 +17,7 @@ class Gamuza_Basic_Model_Core_Design_Fallback extends Mage_Core_Model_Design_Fal
         $result = array(
             array(),
             array('_theme' => $this->_getDefaultTheme()),
+            array('_theme' => $this->_getLocalTheme()),
             array('_theme' => $this->_getFallbackTheme()),
             array('_theme' => Mage_Core_Model_Design_Package::DEFAULT_THEME),
         );
@@ -51,6 +52,15 @@ class Gamuza_Basic_Model_Core_Design_Fallback extends Mage_Core_Model_Design_Fal
         }
 
         return $theme;
+    }
+
+    /**
+     * Local theme getter
+     * @return string
+     */
+    protected function _getLocalTheme()
+    {
+        return $this->getStore()->getConfig('design/theme/local');
     }
 
     /**
