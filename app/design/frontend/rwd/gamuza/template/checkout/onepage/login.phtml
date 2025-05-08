@@ -127,5 +127,16 @@
     });
 //]]>
 </script>
+<?php $_checkoutRegisterSelected = Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_REGISTER_SELECTED); ?>
+<?php if ($_checkoutGuestCheckout && $_checkoutRegisterSelected): ?>
+<script type="text/javascript">
+//<![CDATA[
+    $j(window).on('load', function() {
+        $j('input[value="register"]').click();
+        $j('div#checkout-step-login div.col-2 div.buttons-set button').click();
+    });
+//]]>
+</script>
+<?php endif; ?>
 <?php endif; ?>
 
