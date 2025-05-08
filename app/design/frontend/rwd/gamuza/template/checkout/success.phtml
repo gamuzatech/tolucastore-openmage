@@ -63,4 +63,9 @@
 
 <div class="buttons-set">
     <button type="button" class="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+    <button type="button" class="_button btn btn-primary" title="<?php echo Mage::helper('core')->quoteEscape($this->__('My Orders')) ?>" onclick="window.location='<?php echo $this->getUrl('sales/order/history') ?>'"><span><span><?php echo $this->__('My Orders') ?></span></span></button>
+<?php endif ?>
+
 </div>
+
