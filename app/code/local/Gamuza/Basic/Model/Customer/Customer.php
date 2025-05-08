@@ -21,6 +21,7 @@ class Gamuza_Basic_Model_Customer_Customer
     public const EXCEPTION_CELLPHONE_EXISTS = 6;
 
     public const XML_PATH_GENERATE_HUMAN_FRIENDLY_EMAIL = 'customer/create_account/generate_human_friendly_email';
+    public const XML_PATH_GENERATE_HUMAN_FRIENDLY_PASSWORD = 'customer/create_account/generate_human_friendly_password';
 
     public const XML_PATH_VALIDATE_CUSTOMER_CELLPHONE = 'customer/address/validate_cellphone';
 

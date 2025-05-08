@@ -263,3 +263,18 @@
     var billingRegionUpdater = new RegionUpdater('billing:country_id', 'billing:region', 'billing:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'billing:postcode');
 //]]>
 </script>
+<?php if(!$this->isCustomerLoggedIn() && Mage::getStoreConfigFlag(Gamuza_Basic_Model_Customer_Customer::XML_PATH_GENERATE_HUMAN_FRIENDLY_PASSWORD)): ?>
+<script type="text/javascript">
+//<![CDATA[
+    $j(window).on('load', function() {
+        const customerPassword = Array.from(crypto.getRandomValues(new Uint8Array(6)), b => "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"[b % 62]).join("");
+        $j('input[name="billing[customer_password]"]').val(customerPassword).hide();
+        $j('input[name="billing[confirm_password]"]').val(customerPassword).hide();
+        $j('label[for="billing:customer_password"]').hide();
+        $j('label[for="billing:confirm_password"]').hide();
+        $j('li.fields#register-customer-password p.form-instructions').hide();
+    });
+//]]>
+</script>
+<?php endif ?>
+

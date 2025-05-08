@@ -140,6 +140,7 @@
 "Display <b>bundle option select price</b> on product page","Exibir <b>preço da opção select do pacote</b> na página de produto"
 "Display <b>all custom options</b> in admin panel","Exibir <b>todas opções personalizadas</b> no painel administrativo"
 "Generate Human-Friendly Customer Email","Gerar Email Amigável p/ Cliente"
+"Generate Human-Friendly Customer Password","Gerar Senha Amigável p/ Cliente"
 "Validate Cellphone","Validar Celular"
 "Allow comment","Permitir comentário"
 "Bundle price","Preço do pacote"
