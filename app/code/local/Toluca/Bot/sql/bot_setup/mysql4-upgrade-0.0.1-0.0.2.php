@@ -27,6 +27,7 @@ $options = array(
 foreach ($entities as $entity)
 {
     $installer->addAttribute ($entity, Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_IS_BOT, $options);
+    $installer->addAttribute ($entity, Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_IS_ZAP, $options);
 }
 
 $options = array(

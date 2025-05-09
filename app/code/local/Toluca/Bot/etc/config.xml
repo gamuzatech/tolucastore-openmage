@@ -82,6 +82,9 @@
                 <bot_type>
                     <to_order>*</to_order>
                 </bot_type>
+                <is_zap>
+                    <to_order>*</to_order>
+                </is_zap>
             </sales_convert_quote>
             <sales_convert_order>
                 <is_bot>
@@ -90,8 +93,21 @@
                 <bot_type>
                     <to_quote>*</to_quote>
                 </bot_type>
+                <is_zap>
+                    <to_quote>*</to_quote>
+                </is_zap>
             </sales_convert_order>
         </fieldsets>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <toluca_bot_sales_order_place_after>
+                        <class>bot/observer</class>
+                        <method>salesOrderPlaceAfter</method>
+                    </toluca_bot_sales_order_place_after>
+                </observers>
+            </sales_order_place_after>
+        </events>
     </global>
     <admin>
         <routers>
