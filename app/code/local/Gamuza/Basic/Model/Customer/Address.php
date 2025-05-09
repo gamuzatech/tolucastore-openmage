@@ -6,7 +6,7 @@
  */
 
 use libphonenumber\PhoneNumberUtil;
-use libphonenumber\PhoneNumberFormat;
+use libphonenumber\PhoneNumberType;
 use libphonenumber\NumberParseException;
 
 /**
@@ -105,6 +105,13 @@ class Gamuza_Basic_Model_Customer_Address extends Mage_Customer_Model_Address
                 $nationalNumber = $phoneNumber->getNationalNumber();
 
                 if (strlen ($nationalNumber) < self::CELLPHONE_LENGTH_MINIMUM)
+                {
+                    $phoneError = true;
+                }
+
+                $numberType = $phoneUtil->getNumberType($phoneNumber);
+
+                if ($numberType != PhoneNumberType::MOBILE)
                 {
                     $phoneError = true;
                 }
