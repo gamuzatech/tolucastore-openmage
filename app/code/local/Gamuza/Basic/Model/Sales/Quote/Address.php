@@ -61,6 +61,11 @@ class Gamuza_Basic_Model_Sales_Quote_Address extends Mage_Sales_Model_Quote_Addr
         ) {
             $this->addError(Mage::helper('customer')->__('Please enter the state/province.'));
         }
+
+        if (!Mage::helper('basic/customer_address')->validateCellphone($this->getCellphone(), $this->getCountryId()))
+        {
+            $this->addError(Mage::helper('customer')->__('Invalid cellphone number for %s.', $this->getCountryId()));
+        }
     }
 }
 

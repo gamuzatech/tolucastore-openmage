@@ -5,17 +5,11 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-use libphonenumber\PhoneNumberUtil;
-use libphonenumber\PhoneNumberType;
-use libphonenumber\NumberParseException;
-
 /**
  * Address abstract model
  */
 class Gamuza_Basic_Model_Customer_Address extends Mage_Customer_Model_Address
 {
-    const CELLPHONE_LENGTH_MINIMUM = 10;
-
     /**
      * Return Region ID
      *
@@ -89,42 +83,9 @@ class Gamuza_Basic_Model_Customer_Address extends Mage_Customer_Model_Address
             $this->addError(Mage::helper('customer')->__('Please enter the state/province.'));
         }
 
-        $phoneUtil  = PhoneNumberUtil::getInstance();
-        $phoneError = false;
-
-        try
+        if (!Mage::helper('basic/customer_address')->validateCellphone($this->getCellphone(), $this->getCountryId()))
         {
-            $phoneNumber = $phoneUtil->parse($this->getCellphone(), $this->getCountryId());
-
-            if (!$phoneUtil->isValidNumber($phoneNumber))
-            {
-                $phoneError = true;
-            }
-            else
-            {
-                $nationalNumber = $phoneNumber->getNationalNumber();
-
-                if (strlen ($nationalNumber) < self::CELLPHONE_LENGTH_MINIMUM)
-                {
-                    $phoneError = true;
-                }
-
-                $numberType = $phoneUtil->getNumberType($phoneNumber);
-
-                if ($numberType != PhoneNumberType::MOBILE)
-                {
-                    $phoneError = true;
-                }
-            }
-        }
-        catch (NumberParseException $e)
-        {
-            $phoneError = true;
-        }
-
-        if ($phoneError)
-        {
-            $this->addError(Mage::helper('customer')->__('Invalid cellphone number for region %s.', $this->getCountryId()));
+            $this->addError(Mage::helper('customer')->__('Invalid cellphone number for %s.', $this->getCountryId()));
         }
     }
 }
