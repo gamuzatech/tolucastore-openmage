@@ -5,11 +5,17 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+use libphonenumber\PhoneNumberUtil;
+use libphonenumber\PhoneNumberFormat;
+use libphonenumber\NumberParseException;
+
 /**
  * Address abstract model
  */
 class Gamuza_Basic_Model_Customer_Address extends Mage_Customer_Model_Address
 {
+    const CELLPHONE_LENGTH_MINIMUM = 10;
+
     /**
      * Return Region ID
      *
@@ -81,6 +87,37 @@ class Gamuza_Basic_Model_Customer_Address extends Mage_Customer_Model_Address
             && Mage::helper('directory')->isRegionRequired($this->getCountryId())
         ) {
             $this->addError(Mage::helper('customer')->__('Please enter the state/province.'));
+        }
+
+        $phoneUtil  = PhoneNumberUtil::getInstance();
+        $phoneError = false;
+
+        try
+        {
+            $phoneNumber = $phoneUtil->parse($this->getCellphone(), $this->getCountryId());
+
+            if (!$phoneUtil->isValidNumber($phoneNumber))
+            {
+                $phoneError = true;
+            }
+            else
+            {
+                $nationalNumber = $phoneNumber->getNationalNumber();
+
+                if (strlen ($nationalNumber) < self::CELLPHONE_LENGTH_MINIMUM)
+                {
+                    $phoneError = true;
+                }
+            }
+        }
+        catch (NumberParseException $e)
+        {
+            $phoneError = true;
+        }
+
+        if ($phoneError)
+        {
+            $this->addError(Mage::helper('customer')->__('Invalid cellphone number for region %s.', $this->getCountryId()));
         }
     }
 }

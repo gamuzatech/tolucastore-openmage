@@ -62,6 +62,9 @@
                     <label for="cellphone" class="required"><em>*</em><?php echo $this->__('Cellphone') ?></label>
                     <div class="input-box">
                         <input type="tel" name="cellphone" id="cellphone" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Cellphone')) ?>" value="<?php echo $this->escapeHtml($this->getAddress()->getCellphone()) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('cellphone') ?>" />
+                        <p class="form-instructions">
+                            <?php echo $this->__('Enter your cellphone (area code + cellphone) e.g.: 11912345678') ?>
+                        </p>
                     </div>
                 </div>
                 <?php $_telephone = $this->getLayout()->createBlock('basic/customer_widget_telephone') ?>

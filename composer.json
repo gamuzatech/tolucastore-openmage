@@ -33,6 +33,7 @@
         "empiricompany/openmage_ignition": "^1.5",
         "ezyang/htmlpurifier": "^4.17",
         "flowjs/flowjs": "dev-master",
+        "giggsey/libphonenumber-for-php": "^9.0",
         "magento-hackathon/magento-composer-installer": "^3.1 || ^2.1 || ^4.0",
         "mklkj/tinymce-i18n": "^25.2",
         "nnnick/chartjs": "^4.4",
