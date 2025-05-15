@@ -131,6 +131,11 @@ class Gamuza_Basic_Model_Observer
 
         $mediaGallery = $product->getMediaGallery ();
 
+        if (empty ($mediaGallery ['images']))
+        {
+            return $this;
+        }
+
         foreach ($mediaGallery ['images'] as $image)
         {
             $file = $mediaDir . DS . 'catalog' . DS . 'product' . DS . $image ['file'];
