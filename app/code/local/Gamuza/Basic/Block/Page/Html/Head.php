@@ -154,14 +154,12 @@ class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
         {
             $product = Mage::registry ('product');
 
-            $productFinalPrice = $product->getFinalPrice ();
-
-            if ($product && $product->getId () && $productFinalPrice)
+            if ($product && $product->getId () && $product->getFinalPrice ())
             {
                 $result = sprintf (
-                    '%s %s',
+                    '%s # %s',
                     $product->getName (),
-                    Mage::helper ('core')->formatPrice ($productFinalPrice, false),
+                    Mage::helper ('core')->formatPrice ($product->getFinalPrice (), false),
                 );
 
                 return $result;
@@ -177,7 +175,26 @@ class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
         if (empty ($description))
         {
-            return $this->getDescription ();
+            $description = $this->getDescription ();
+        }
+
+        if (strpos ($this->_pathInfo, self::CATALOG_PRODUCT_VIEW_PATH_INFO) !== false)
+        {
+            $product = Mage::registry ('product');
+
+            if ($product && $product->getId () && $product->getShortDescription ())
+            {
+                $description = $product->getShortDescription ();
+            }
+
+            if ($product && $product->getId () && $product->getFinalPrice ())
+            {
+                $description = sprintf (
+                    '%s # %s',
+                    $description,
+                    Mage::helper ('core')->formatPrice ($product->getFinalPrice (), false),
+                );
+            }
         }
 
         return $description;
