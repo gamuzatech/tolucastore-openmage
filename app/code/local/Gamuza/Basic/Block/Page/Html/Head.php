@@ -12,6 +12,15 @@ class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 {
     const CATALOG_PRODUCT_VIEW_PATH_INFO = 'catalog/product/view/id/';
 
+    protected $_pathInfo = null;
+
+    protected function _construct ()
+    {
+        parent::_construct ();
+
+        $this->_pathInfo = Mage::app ()->getRequest ()->getPathInfo ();
+    }
+
     /**
      * Getter for path to Favicon
      *
@@ -113,19 +122,19 @@ class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
     public function getImageUrl ()
     {
-        $pathInfo = Mage::app ()->getRequest ()->getPathInfo ();
-
-        if (strpos ($pathInfo, self::CATALOG_PRODUCT_VIEW_PATH_INFO) !== false)
+        if (strpos ($this->_pathInfo, self::CATALOG_PRODUCT_VIEW_PATH_INFO) !== false)
         {
             $product = Mage::registry ('product');
 
             if ($product && $product->getId () && $product->getImage ())
             {
-                return sprintf (
+                $result = sprintf (
                     '%s/catalog/product/%s',
                     Mage::getBaseUrl (Mage_Core_Model_Store::URL_TYPE_MEDIA),
                     $product->getImage ()
                 );
+
+                return $result;
             }
         }
         else
@@ -141,6 +150,24 @@ class Gamuza_Basic_Block_Page_Html_Head extends Mage_Page_Block_Html_Head
 
     public function getPageTitle ()
     {
+        if (strpos ($this->_pathInfo, self::CATALOG_PRODUCT_VIEW_PATH_INFO) !== false)
+        {
+            $product = Mage::registry ('product');
+
+            $productFinalPrice = $product->getFinalPrice ();
+
+            if ($product && $product->getId () && $productFinalPrice)
+            {
+                $result = sprintf (
+                    '%s %s',
+                    $product->getName (),
+                    Mage::helper ('core')->formatPrice ($productFinalPrice, false),
+                );
+
+                return $result;
+            }
+        }
+
         return $this->getLayout()->getBlock('head')->getTitle ();
     }
 
