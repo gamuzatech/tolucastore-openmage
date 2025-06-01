@@ -33,9 +33,7 @@ umask(0);
 
 try
 {
-    Mage_Core_Model_Resource_Setup::applyAllUpdates ();
-
-    Mage_Core_Model_Resource_Setup::applyAllDataUpdates ();
+    Mage::getModel ('basic/magento_api')->upgrade (shell_get_args ());
 }
 catch (Exception $e)
 {

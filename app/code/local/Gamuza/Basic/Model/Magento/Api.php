@@ -215,6 +215,45 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         return $result;
     }
 
+    public function upgrade ($codes = array())
+    {
+        ini_set('memory_limit', -1);
+        set_time_limit(0);
+        ignore_user_abort(true);
+
+        foreach ($codes as $id => $value)
+        {
+            $codes [$id] = sprintf ('%s_setup', $value);
+        }
+
+        $resource = Mage::getSingleton ('core/resource');
+        $write = $resource->getConnection ('core_write');
+        $table = $resource->getTableName ('core/resource');
+
+        $select = $write->select ()
+            ->from ($table)
+            ->where ('code IN (?)', $codes);
+
+        $rows = $write->fetchAll ($select);
+
+        foreach ($rows as $value)
+        {
+            $this->_log ('UPGRADE: %s', $value ['code']);
+
+            $write->delete ($table, ['code = ?' => $value ['code']]);
+        }
+
+        $this->_log ('SETUP: applyAllUpdates');
+
+        Mage_Core_Model_Resource_Setup::applyAllUpdates ();
+
+        $this->_log ('SETUP: applyAllDataUpdates');
+
+        Mage_Core_Model_Resource_Setup::applyAllDataUpdates ();
+
+        return true;
+    }
+
     private function _log ($text)
     {
         if (!strcmp (php_sapi_name (), 'cli'))

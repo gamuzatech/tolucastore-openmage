@@ -40,6 +40,10 @@
                         <title>Generate info about current Magento session</title>
                         <acl>basic/magento/session</acl>
                     </session>
+                    <upgrade translate="title" module="basic">
+                        <title>Upgrade info about current Magento installation</title>
+                        <acl>basic/magento/upgrade</acl>
+                    </upgrade>
                 </methods>
                 <faults>
                     <user_not_exists>
@@ -347,6 +351,9 @@
                         <session translate="title" module="basic">
                             <title>Generate info about current Magento session</title>
                         </session>
+                        <upgrade translate="title" module="basic">
+                            <title>Upgrade info about current Magento installation</title>
+                        </upgrade>
                     </magento>
                     <!-- Customer -->
                     <customer translate="title" module="basic">
