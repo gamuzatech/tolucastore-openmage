@@ -9,7 +9,7 @@ $installer = new Mage_Customer_Model_Entity_Setup('basic_setup');
 $installer->startSetup ();
 
 /**
- * Cellphone
+ * Customer Cellphone
  */
 $installer->addAttribute(
     'customer',
@@ -41,7 +41,7 @@ $attribute->setData ('used_in_forms', $forms)
 $attribute->save ();
 
 /**
- * SecondaryName
+ * Customer SecondaryName
  */
 $installer->addAttribute(
     'customer',
@@ -76,7 +76,7 @@ $attribute->setData ('used_in_forms', $forms)
 $attribute->save ();
 
 /**
- * Code
+ * Customer Code
  */
 $installer->addAttribute(
     'customer',
@@ -107,7 +107,7 @@ $attribute->setData ('used_in_forms', $forms)
 $attribute->save ();
 
 /**
- * Cellphone
+ * Customer Address Cellphone
  */
 $installer->addAttribute(
     'customer_address',

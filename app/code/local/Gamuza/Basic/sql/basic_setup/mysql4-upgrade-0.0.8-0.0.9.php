@@ -8,6 +8,9 @@
 $installer = new Mage_Catalog_Model_Resource_Setup('basic_setup');
 $installer->startSetup ();
 
+/**
+ * Product GTIN
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN, array(
     'group'            => Mage::helper ('basic')->__('General'),
     'label'            => Mage::helper ('basic')->__('GTIN'),
@@ -33,6 +36,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'default_value' => 'SEM GTIN',
 ));
 
+/**
+ * Product Free Shipping
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_FREE_SHIPPING, array(
     'group'            => Mage::helper ('basic')->__('General'),
     'label'            => Mage::helper ('basic')->__('Free Shipping'),
@@ -57,6 +63,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => true,
 ));
 
+/**
+ * Product Offer Type
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_OFFER_TYPE, array(
     'group'            => Mage::helper ('basic')->__('General'),
     'label'            => Mage::helper ('basic')->__('Offer Type'),
@@ -81,6 +90,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => false,
 ));
 
+/**
+ * Product Code
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_CODE, array(
     'group'            => Mage::helper ('basic')->__('ERP'),
     'label'            => Mage::helper ('basic')->__('Code'),

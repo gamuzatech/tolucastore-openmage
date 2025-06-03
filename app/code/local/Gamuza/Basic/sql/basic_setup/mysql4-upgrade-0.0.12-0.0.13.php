@@ -8,6 +8,9 @@
 $installer = new Mage_Catalog_Model_Resource_Setup ('basic_setup');
 $installer->startSetup ();
 
+/**
+ * Product SKU Position
+ */
 $installer->addAttribute (Mage_Catalog_Model_Product::ENTITY, Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_SKU_POSITION, array(
     'type'             => 'static',
     'label'            => Mage::helper ('basic')->__('SKU Position'),

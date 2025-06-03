@@ -8,6 +8,9 @@
 $installer = new Mage_Catalog_Model_Resource_Setup('basic_setup');
 $installer->startSetup ();
 
+/**
+ * Product Customer Of Supplier
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_CUSTOMER_OF_SUPPLIER, array(
     'group'            => Mage::helper ('basic')->__('Supply Chain'),
     'label'            => Mage::helper ('basic')->__('Supplier'),
@@ -32,6 +35,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => false,
 ));
 
+/**
+ * Product Customer Of Manufacturer
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_CUSTOMER_OF_MANUFACTURER, array(
     'group'            => Mage::helper ('basic')->__('Supply Chain'),
     'label'            => Mage::helper ('basic')->__('Manufacturer'),
@@ -56,6 +62,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => false,
 ));
 
+/**
+ * Product Customer Of Distributer
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_CUSTOMER_OF_DISTRIBUTER, array(
     'group'            => Mage::helper ('basic')->__('Supply Chain'),
     'label'            => Mage::helper ('basic')->__('Distributer'),
@@ -80,6 +89,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => false,
 ));
 
+/**
+ * Product Customer Of Seller
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_CUSTOMER_OF_SELLER, array(
     'group'            => Mage::helper ('basic')->__('Supply Chain'),
     'label'            => Mage::helper ('basic')->__('Seller'),
@@ -104,6 +116,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => false,
 ));
 
+/**
+ * Product Customer Of Reseller
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_CUSTOMER_OF_RESELLER, array(
     'group'            => Mage::helper ('basic')->__('Supply Chain'),
     'label'            => Mage::helper ('basic')->__('Reseller'),

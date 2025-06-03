@@ -24,6 +24,9 @@ function updateCatalogCategoryTable ($installer, $model, $comment)
 
 updateCatalogCategoryTable ($installer, 'catalog_category_entity', 'Mage Catalog Category Table');
 
+/**
+ * Category Include In Home
+ */
 $installer->addAttribute ('catalog_category', Gamuza_Basic_Helper_Data::CATEGORY_ATTRIBUTE_INCLUDE_IN_HOME, array(
     'type'             => 'int',
     'source'           => 'eav/entity_attribute_source_boolean',
@@ -42,6 +45,9 @@ $installer->addAttribute ('catalog_category', Gamuza_Basic_Helper_Data::CATEGORY
     'sort_order'       => 1000,
 ));
 
+/**
+ * Category SKU
+ */
 $installer->addAttribute ('catalog_category', Gamuza_Basic_Helper_Data::CATEGORY_ATTRIBUTE_SKU, array(
     'type'             => 'static',
     'backend'          => 'basic/catalog_category_attribute_backend_sku',
@@ -60,6 +66,9 @@ $installer->addAttribute ('catalog_category', Gamuza_Basic_Helper_Data::CATEGORY
     'sort_order'       => 2000,
 ));
 
+/**
+ * Category Code
+ */
 $installer->addAttribute ('catalog_category', Gamuza_Basic_Helper_Data::CATEGORY_ATTRIBUTE_CODE, array(
     'type'             => 'varchar',
     'label'            => Mage::helper ('basic')->__('Code'),

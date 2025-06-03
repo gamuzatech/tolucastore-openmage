@@ -8,6 +8,9 @@
 $installer = new Mage_Catalog_Model_Resource_Setup('basic_setup');
 $installer->startSetup ();
 
+/**
+ * Product Brand
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_BRAND, array(
     'group'            => Mage::helper ('basic')->__('Attribute Options'),
     'label'            => Mage::helper ('basic')->__('Brand'),
@@ -32,6 +35,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => true,
 ));
 
+/**
+ * Product Color
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_COLOR, array(
     'group'            => Mage::helper ('basic')->__('Attribute Options'),
     'label'            => Mage::helper ('basic')->__('Color'),
@@ -56,6 +62,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => true,
 ));
 
+/**
+ * Product Manufacturer
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_MANUFACTURER, array(
     'group'            => Mage::helper ('basic')->__('Attribute Options'),
     'label'            => Mage::helper ('basic')->__('Manufacturer'),
@@ -80,6 +89,9 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
     'used_for_sort_by' => true,
 ));
 
+/**
+ * Product Size
+ */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_SIZE, array(
     'group'            => Mage::helper ('basic')->__('Attribute Options'),
     'label'            => Mage::helper ('basic')->__('Size'),

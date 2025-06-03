@@ -8,6 +8,9 @@
 $installer = new Mage_Sales_Model_Resource_Setup ('basic_setup');
 $installer->startSetup ();
 
+/**
+ * OrderItem & QuoteItem
+ */
 $entities = array(
     'quote_item',
     'order_item',

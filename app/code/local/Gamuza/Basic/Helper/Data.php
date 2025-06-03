@@ -48,9 +48,11 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_PDV = 'is_pdv';
     const ORDER_ATTRIBUTE_IS_COMANDA = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_SERVICE = 'is_service';
+    const ORDER_ATTRIBUTE_IS_WEIGHTED = 'is_weighted';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
 
+    const ORDER_ITEM_ATTRIBUTE_CUSTOM_WEIGHT = 'custom_weight';
     const ORDER_ITEM_ATTRIBUTE_GTIN = 'gtin';
 
     const ORDER_SUFFIX_APP    = 'APP';
@@ -68,6 +70,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_MANUFACTURER = 'manufacturer';
     const PRODUCT_ATTRIBUTE_SIZE = 'size';
     const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
+    const PRODUCT_ATTRIBUTE_BALANCE_WEIGHT = 'balance_weight';
     const PRODUCT_ATTRIBUTE_FREE_SHIPPING = 'free_shipping';
     const PRODUCT_ATTRIBUTE_OFFER_TYPE = 'offer_type';
     const PRODUCT_ATTRIBUTE_PRICE_TYPE   = 'price_type';

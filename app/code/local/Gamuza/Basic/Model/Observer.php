@@ -310,6 +310,16 @@ CONTENT;
         $event = $observer->getEvent ();
         $order = $event->getOrder();
 
+        foreach ($order->getAllItems () as $item)
+        {
+            if ($item->getCustomWeight () > 0)
+            {
+                $order->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_WEIGHTED, true)->save ();
+
+                break;
+            }
+        }
+
         $orderItems = Mage::getResourceModel ('sales/order_item_collection')
             ->setOrderFilter ($order)
             ->filterByTypes (array (Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE))
@@ -352,6 +362,16 @@ CONTENT;
     public function salesQuoteCollectTotalsAfter ($observer)
     {
         $quote = $observer->getEvent ()->getQuote ();
+
+        foreach ($quote->getAllItems () as $item)
+        {
+            if ($item->getCustomWeight () > 0)
+            {
+                $quote->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_WEIGHTED, true)->save ();
+
+                break;
+            }
+        }
 
         $collection = Mage::getResourceModel ('sales/quote_item_collection')
             ->setQuote ($quote)
