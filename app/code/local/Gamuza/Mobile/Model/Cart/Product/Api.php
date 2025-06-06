@@ -135,13 +135,17 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
 
                 if ($quote->getIsSuperMode ())
                 {
+                    $finalPrice = $result->getProduct ()->getFinalPrice ();
+
+                    $customWeight = @ $productItem ['custom_weight'];
+
                     if (!empty ($productItem ['custom_discount']))
                     {
                         $customDiscount = $productItem ['custom_discount'];
 
                         $discountAmount = $result->getProduct ()->getFinalPrice () * ($customDiscount / 100);
 
-                        $productItem ['custom_price'] = $result->getProduct ()->getFinalPrice () - $discountAmount;
+                        $productItem ['custom_price'] = $finalPrice - $discountAmount;
                     }
 
                     if (!empty ($productItem ['custom_price']))
@@ -151,6 +155,8 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                         $result->setIsSuperMode(true)
                             ->setOriginalCustomPrice ($customPrice)
                             ->setCustomPrice ($customPrice)
+                            ->setOriginalBasePrice ($finalPrice)
+                            ->setCustomWeight ($customWeight)
                             ->save ()
                         ;
                     }
@@ -508,6 +514,9 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'minimum_currency'    => $minimumCurrency,
                 'minimum_description' => $minimumDescription,
                 'minimum_message'     => $minimumMessage,
+                // custom
+                'original_base_price' => floatval ($item->getOriginalBasePrice ()),
+                'custom_weight'       => floatval ($item->getCustomWeight ()),
             );
 
             foreach ($this->_imageCodes as $code)
