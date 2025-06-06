@@ -284,6 +284,9 @@
                 <custom_weight>
                     <to_order_item>*</to_order_item>
                 </custom_weight>
+                <original_base_price>
+                    <to_order_item>*</to_order_item>
+                </original_base_price>
             </sales_convert_quote_item>
             <sales_convert_order>
                 <customer_cellphone>
@@ -303,6 +306,9 @@
                 <custom_weight>
                     <to_quote_item>*</to_quote_item>
                 </custom_weight>
+                <original_base_price>
+                    <to_quote_item>*</to_quote_item>
+                </original_base_price>
             </sales_convert_order_item>
             <!-- Address -->
             <sales_copy_order_billing_address>

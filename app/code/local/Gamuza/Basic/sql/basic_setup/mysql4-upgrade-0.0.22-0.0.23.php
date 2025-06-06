@@ -75,6 +75,7 @@ $options = array(
 foreach ($entities as $entity)
 {
     $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_CUSTOM_WEIGHT, $options);
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_ORIGINAL_BASE_PRICE, $options);
 }
 
 $installer->endSetup ();

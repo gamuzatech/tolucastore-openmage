@@ -52,6 +52,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
 
+    const ORDER_ITEM_ATTRIBUTE_ORIGINAL_BASE_PRICE = 'original_base_price';
     const ORDER_ITEM_ATTRIBUTE_CUSTOM_WEIGHT = 'custom_weight';
     const ORDER_ITEM_ATTRIBUTE_GTIN = 'gtin';
 
