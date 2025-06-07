@@ -631,6 +631,14 @@
             </collection>
         </product>
     </frontend>
+    <crontab>
+        <jobs>
+            <gamuza_basic_warmer>
+                <schedule><cron_expr>0 * * * *</cron_expr></schedule>
+                <run><model>basic/observer::warmer</model></run>
+            </gamuza_basic_warmer>
+        </jobs>
+    </crontab>
     <default>
         <general>
             <country>

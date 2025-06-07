@@ -201,6 +201,48 @@ class Gamuza_Basic_Model_Observer
         }
     }
 
+    public function warmer()
+    {
+        $stores = Mage::app()->getStores();
+
+        foreach ($stores as $store)
+        {
+            try
+            {
+                $storeId = $store->getId();
+
+                $baseUrl = Mage::app()->getStore($storeId)->getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB, true);
+
+                $ch = curl_init();
+
+                curl_setopt($ch, CURLOPT_URL, $baseUrl);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+
+                $result = curl_exec($ch);
+
+                $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+                curl_close($ch);
+
+                if ($httpCode != 200)
+                {
+                    throw new Exception(sprintf('MISS: %s', $baseUrl));
+                }
+
+                Mage::log(sprintf('HIT: %s', $baseUrl), null, 'gamuza_basic_warmer.log');
+            }
+            catch (Exception $e)
+            {
+                Mage::log($e->getMessage(), null, 'gamuza_basic_warmer.log');
+            }
+        }
+    }
+
     public function cleanExpiredQuotes()
     {
         Mage::getModel('sales/observer')->cleanExpiredQuotes(null);
