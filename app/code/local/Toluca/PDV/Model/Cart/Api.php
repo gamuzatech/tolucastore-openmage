@@ -10,7 +10,7 @@
  */
 class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 {
-    public function items ($cashier_id, $operator_id, $customer_id = 0)
+    public function items ($cashier_id, $operator_id, $customer_id = 0, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null)
     {
         if (empty ($cashier_id))
         {
@@ -57,6 +57,26 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         if (!empty ($customer_id))
         {
             $collection->addFieldToFilter ('pdv_customer_id', array ('eq' => $customer_id));
+        }
+
+        if (!empty ($quote_id))
+        {
+            $collection->addFieldToFilter ('entity_id', array ('eq' => $quote_id));
+        }
+
+        if (!empty ($table_id))
+        {
+            $collection->addFieldToFilter ('pdv_table_id', array ('eq' => $table_id));
+        }
+
+        if (!empty ($card_id))
+        {
+            $collection->addFieldToFilter ('pdv_card_id', array ('eq' => $card_id));
+        }
+
+        if (!empty ($note))
+        {
+            $collection->addFieldToFilter ('customer_note', array ('eq' => $note));
         }
 
         $resource = Mage::getSingleton ('core/resource');
