@@ -25,6 +25,9 @@ class Toluca_PDV_Model_Observer
             'config' => array(
                 'pdv' => array(
                     'setting' => array(
+                        'cashier_id'  => Mage::getStoreConfigAsInt (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CASHIER),
+                        'operator_id' => Mage::getStoreConfigAsInt (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR),
+                        'customer_id' => Mage::getStoreConfigAsInt (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER),
                         'dashboard'   => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DASHBOARD),
                         'preferences' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_PREFERENCES),
                         'receipt'     => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_RECEIPT),
