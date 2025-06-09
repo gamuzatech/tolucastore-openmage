@@ -58,6 +58,11 @@ foreach ($_order->getAllItems() as $item)
     $_qty = floatval($item->getQtyOrdered() ?: $item->getQty());
     $_rowTotal = Mage::helper('core')->currency($item->getBaseRowTotal(), true, false);
 
+    if ($_order->getIsWeighted() && $item->getCustomWeight())
+    {
+        echo sprintf('%s: %s', Mage::helper('basic')->__('Weight'), intval($item->getCustomWeight())) . PHP_EOL;
+    }
+
     echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
 }
 

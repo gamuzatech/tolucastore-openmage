@@ -12,7 +12,7 @@
 "Payment method is not available.","Forma de pagamento não disponível."
 "Order Draft","Rascunho do Pedido"
 "Word Wrap","Quebra de Linha"
-"Price: %s Qty: %s Total: %s","Preço: %s Qtde: %s Total: %s"
+"Price: %s <b><u>Qty: %s</u></b> Total: %s","Preço: %s <b><u>Qtde: %s</u></b> Total: %s"
 "Subtotal: %s Shipping: %s","Subtotal: %s Entrega: %s"
 "Table: %s","Mesa: %s"
 "Card: %s","Cartão: %s"
