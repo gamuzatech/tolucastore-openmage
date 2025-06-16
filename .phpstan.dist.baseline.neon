@@ -5497,6 +5497,30 @@ parameters:
 			path: app/design/adminhtml/default/default/template/system/config/form/field/array.phtml
 
 		-
+			message: '#^Access to protected property Mage_Adminhtml_Block_System_Config_Form_Field_Csp_Hosts\:\:\$_addAfter\.$#'
+			identifier: property.protected
+			count: 4
+			path: app/design/adminhtml/default/default/template/system/config/form/field/csp.phtml
+
+		-
+			message: '#^Access to protected property Mage_Adminhtml_Block_System_Config_Form_Field_Csp_Hosts\:\:\$_addButtonLabel\.$#'
+			identifier: property.protected
+			count: 2
+			path: app/design/adminhtml/default/default/template/system/config/form/field/csp.phtml
+
+		-
+			message: '#^Access to protected property Mage_Adminhtml_Block_System_Config_Form_Field_Csp_Hosts\:\:\$_columns\.$#'
+			identifier: property.protected
+			count: 5
+			path: app/design/adminhtml/default/default/template/system/config/form/field/csp.phtml
+
+		-
+			message: '#^Call to protected method _renderCellTemplate\(\) of class Mage_Adminhtml_Block_System_Config_Form_Field_Csp_Hosts\.$#'
+			identifier: method.protected
+			count: 2
+			path: app/design/adminhtml/default/default/template/system/config/form/field/csp.phtml
+
+		-
 			message: '#^Unreachable statement \- code above always terminates\.$#'
 			identifier: deadCode.unreachable
 			count: 1
@@ -6283,7 +6307,7 @@ parameters:
 			path: lib/Varien/Data/Collection/Db.php
 
 		-
-			message: '#^Parameter \#2 \$callback of function array_filter expects \(callable\(mixed\)\: bool\)\|null, Closure\(mixed\)\: array\<int\<0, max\>, string\> given\.$#'
+			message: '#^Parameter \#2 \$callback of function array_filter expects \(callable\(mixed\)\: bool\)\|null, Closure\(mixed\)\: array\<int\<0, max\>, non\-empty\-string\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: lib/Varien/Data/Collection/Db.php
