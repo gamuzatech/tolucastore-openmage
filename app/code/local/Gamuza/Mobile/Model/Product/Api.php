@@ -72,15 +72,13 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         // parent::__construct ();
 
         $this->_entityTypeId = Mage::getModel ('eav/entity')
-            ->setType (Mage_Catalog_Model_Product::ENTITY)
+            ->setType (Mage_Catalog_Model_Category::ENTITY)
             ->getTypeId ()
         ;
 
-        /*
-        $this->_freeshippingAttribute = Mage::getModel ('eav/entity_attribute')
-            ->loadByCode ($this->_entityTypeId, 'free_shipping')
+        $this->_nameAttribute = Mage::getModel ('eav/entity_attribute')
+            ->loadByCode ($this->_entityTypeId, 'name')
         ;
-        */
     }
 
     /**
@@ -93,8 +91,6 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
     {
         $storeId = Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_API_MOBILE_STORE_VIEW, $store);
 
-        // Mage::app ()->setCurrentStore ($storeId); // for bundle selections
-
         $storeCategoryId  = Mage::app ()->getStore ($storeId)->getRootCategoryId ();
         $baseCategoryPath = Mage_Catalog_Model_Category::TREE_ROOT_ID . '/' . $storeCategoryId;
 
@@ -102,36 +98,18 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         $defaultDirection = Mage::getStoreConfig (Gamuza_Basic_Model_Catalog_Config::XML_PATH_LIST_DEFAULT_DIRECTION, $storeId);
 
         $status = Mage_Catalog_Model_Product_Status::STATUS_DISABLED;
-/*
-        $typeIds = array(
-            Mage_Catalog_Model_Product_Type::TYPE_SIMPLE,
-            Mage_Catalog_Model_Product_Type::TYPE_BUNDLE,
-            Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE
-        );
-*/
+
         $visibility = array(
             Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_CATALOG,
             Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH
         );
 
-        Mage::app ()->getStore ()->setConfig (
-            Mage_Catalog_Helper_Product_Flat::XML_PATH_USE_PRODUCT_FLAT, '1'
-        );
-
-        $collection = Mage::getResourceModel ('mobile/catalog_product_collection'); // ->getCollection ();
-
-        $collection->getSelect ()->reset (Zend_Db_Select::FROM)
-            ->from (array ('e' => Mage::getSingleton ('core/resource')->getTableName ('catalog_product_flat_' . $storeId)))
-            ->order ('e.name')
-        ;
-
-        $collection /* after from */
+        $collection = Mage::getResourceModel ('mobile/catalog_product_collection')
             ->addStoreFilter ($storeId)
             ->setFlag ('require_stock_items', true)
+            ->setOrder ('name', 'ASC')
+            ->addAttributeToFilter ('name', array ('notnull' => true))
             ->addAttributeToFilter ('status', array ('neq' => $status))
-            /*
-            ->addAttributeToFilter ('type_id', array ('in' => $typeIds))
-            */
             ->addAttributeToFilter ('visibility', array ('in' => $visibility))
             ->addAttributeToSelect ($this->_attributeCodes)
             /* compare to category_product_index table (filter inactive stores) */
@@ -144,15 +122,19 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
         $collection->getSelect ()->group ('e.entity_id')
             ->join(
-                array ('ccfs' => 'catalog_category_flat_store_' . $storeId),
+                array ('ccfs' => 'catalog_category_entity'),
                 'ccfs.entity_id = at_category_id.category_id',
-                array ('category_name' => "ccfs.name")
+                array ('category_position' => 'ccfs.position')
+            )
+            ->join(
+                array ('at_category_name' => 'catalog_category_entity_' . $this->_nameAttribute->getBackendType ()),
+                sprintf (
+                    'at_category_name.entity_id = ccfs.entity_id AND at_category_name.attribute_id = %d AND at_category_name.store_id = %d',
+                    $this->_nameAttribute->getAttributeId (), Mage_Core_Model_App::ADMIN_STORE_ID,
+                ),
+                array ('category_name' => 'at_category_name.value')
             )
             ->where ("ccfs.path LIKE '{$baseCategoryPath}/%'")
-            ->order ('ccfs.path')
-        ;
-
-        $collection->getSelect ()->reset (Zend_Db_Select::ORDER)
             ->order ('ccfs.position')
             ->order ('at_category_id.position ' . $defaultDirection)
         ;
@@ -236,20 +218,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
             foreach ($this->_boolCodes as $code)
             {
-                if (!strcmp ($code, 'free_shipping__'))
-                {
-                    foreach ($this->_freeshippingAttribute->getSource ()->getAllOptions () as $option)
-                    {
-                        if (!strcmp ($resultProduct [$code], $option ['value']))
-                        {
-                            $resultProduct [$code] = !strcmp ($option ['label'], 'Sim') ? true : false;
-                        }
-                    }
-                }
-                else
-                {
                     $resultProduct [$code] = boolval ($resultProduct [$code]);
-                }
             }
 
             $stockItem = $product->getStockItem ();
