@@ -56,7 +56,7 @@ See: https://docs.openmage.org/
 
 ## Sponsorship
 
-* [opencollective](https://opencollective.com/openmage) [Colin Mollenhour](https://github.com/colinmollenhour))
+* [opencollective](https://opencollective.com/openmage) (maintained by [Colin Mollenhour](https://github.com/colinmollenhour))
 
 ## License
 
