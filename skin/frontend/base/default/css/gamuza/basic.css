@@ -351,6 +351,19 @@ ol, ul {
     font-weight: bold;
 }
 
+.products-grid .product-image img.lazy,
+.products-list > li .product-image img.lazy {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.products-grid .product-image img.loaded,
+.products-grid .product-image img.error,
+.products-list > li .product-image img.loaded,
+.products-list > li .product-image img.error {
+    opacity: 1;
+}
+
 .products-grid .product-name a,
 .products-list .product-name a {
     color: #636363;

@@ -26,5 +26,9 @@ $j(document).ready(function(){
             }
         });
     });
+
+    var lazyLoad = new LazyLoad({
+        use_native: true,
+    });
 });
 

@@ -84,6 +84,12 @@
 
             <action method="appendItem">
                 <type>skin_js</type>
+                <name>js/vanilla-lazyload-19.3.1/vanilla-lazyload.min.js</name>
+                <params />
+            </action>
+
+            <action method="appendItem">
+                <type>skin_js</type>
                 <name>js/gamuza/basic.js</name>
                 <params />
             </action>
