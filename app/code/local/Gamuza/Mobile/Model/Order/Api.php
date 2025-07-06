@@ -73,7 +73,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'bs_customer_bal_total_refunded', 'customer_bal_total_refunded',
         'brazil_rg_ie', 'brazil_ie_icms',
         'pdv_cashier_id', 'pdv_operator_id', 'pdv_customer_id', 'pdv_history_id', 'pdv_sequence_id', 'pdv_table_id', 'pdv_card_id',
-        'is_comanda',
+        'is_comanda', 'is_weighted',
     );
 
     protected $_orderAddressAttributes = array(
@@ -166,7 +166,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
     protected $_boolAttributes = array(
         /* list */
         'is_virtual', 'customer_is_guest', 'customer_note_notify', 'email_sent', 'is_motoboy',
-        'is_comanda',
+        'is_comanda', 'is_weighted',
         /* info */
         'free_shipping', 'is_qty_decimal', 'no_discount', 'is_nominal', 'gift_message_available',
         'is_customer_notified', 'is_visible_on_front'
