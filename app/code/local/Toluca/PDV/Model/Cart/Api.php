@@ -128,6 +128,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'store_info_code'    => $quote->getStoreInfoCode (),
                 'customer_info_code' => $quote->getCustomerInfoCode (),
                 'is_comanda' => boolval ($quote->getIsComanda ()),
+                'is_weighted' => boolval ($quote->getIsWeighted ()),
             );
         }
 
@@ -185,6 +186,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'store_info_code'    => $quote->getStoreInfoCode (),
             'customer_info_code' => $quote->getCustomerInfoCode (),
             'is_comanda' => boolval ($quote->getIsComanda ()),
+            'is_weighted' => boolval ($quote->getIsWeighted ()),
         );
 
         return $result;
