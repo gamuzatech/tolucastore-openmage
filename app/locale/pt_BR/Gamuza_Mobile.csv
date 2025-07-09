@@ -16,6 +16,8 @@
 "Subtotal: %s Shipping: %s","Subtotal: %s Entrega: %s"
 "Table: %s","Mesa: %s"
 "Card: %s","Cartão: %s"
+"Operator: %s","Operador: %s"
+"Cashier: %s","Caixa: %s"
 "Customer #%s","Cliente #%s"
 "PDV is not available.","PDV não está disponível."
 "Requested query not specified.","Consulta solicitada não especificada."

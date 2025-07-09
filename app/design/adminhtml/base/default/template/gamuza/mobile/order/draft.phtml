@@ -7,9 +7,11 @@
 
 $_order = $this->getOrder();
 
-echo sprintf('%s %s %s', Mage::helper('basic')->__('Table: %s', intval($_order->getPdvTableId())),
-                         Mage::helper('basic')->__('Card: %s', intval($_order->getPdvCardId())),
-                         $_order->getCustomerNote()) . PHP_EOL;
+echo sprintf('%s %s %s %s %s', Mage::helper('basic')->__('Table: %s', intval($_order->getPdvTableId())),
+                               Mage::helper('basic')->__('Card: %s', intval($_order->getPdvCardId())),
+                               Mage::helper('basic')->__('Operator: %s', intval($_order->getPdvOperatorId())),
+                               Mage::helper('basic')->__('Cashier: %s', intval($_order->getPdvCashierId())),
+                               $_order->getCustomerNote()) . PHP_EOL;
 
 echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
 
