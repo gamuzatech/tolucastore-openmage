@@ -39,7 +39,7 @@ foreach ($_order->getAllItems() as $item)
     echo $this->getLineSeparator() . PHP_EOL;
     echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
 
-    $_productOptions = $item->getProductOptions();
+    $_productOptions = $item->getProductOptions() ?? $this->getProductOptions($item);
 
     foreach ($_productOptions ['options'] as $option)
     {

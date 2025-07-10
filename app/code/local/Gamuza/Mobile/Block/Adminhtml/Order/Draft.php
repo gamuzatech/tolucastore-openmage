@@ -63,5 +63,44 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
 
         return $result;
     }
+
+    public function getProductOptions ($item)
+    {
+        $itemBuyRequest = $item->getBuyRequest ();
+
+        $itemOptions = $itemBuyRequest->getData('options');
+
+        $options = array ();
+
+        foreach ($itemOptions as $itemOptionId => $itemOptionValues)
+        {
+            $itemOptionValues = explode (',', $itemOptionValues);
+
+            foreach ($item->getProduct ()->getOptions () as $option)
+            {
+                if ($option->getOptionId () == $itemOptionId)
+                {
+                    $values = array ();
+
+                    foreach ($option->getValues() as $value)
+                    {
+                        if (in_array ($value->getOptionTypeId (), $itemOptionValues))
+                        {
+                            $values [] = $value->getTitle () ?? $value->getDefaultTitle ();
+                        }
+                    }
+
+                    $options [] = array (
+                        'label' => $option->getTitle () ?? $option->getDefaultTitle (),
+                        'value' => implode (', ', $values),
+                    );
+                }
+            }
+        }
+
+        $itemBuyRequest->setOptions ($options);
+
+        return $itemBuyRequest->getData ();
+    }
 }
 
