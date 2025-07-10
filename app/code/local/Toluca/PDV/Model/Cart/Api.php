@@ -330,7 +330,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'region'     => Mage::getStoreConfig ('shipping/origin/region_id',  $storeId),
                 'country_id' => Mage::getStoreConfig ('shipping/origin/country_id', $storeId),
                 'postcode'   => $shippingPostcode,
-                'cellphone'  => Mage::getStoreConfig ('general/store_information/phone', $storeId),
+                'cellphone'  => $customer->getCellphone (),
                 'use_for_shipping' => 1,
             )
         ), $storeId);
