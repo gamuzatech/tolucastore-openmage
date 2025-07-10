@@ -131,8 +131,8 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
             ->addAttributeToFilter ('status', array ('neq' => $status))
             /*
             ->addAttributeToFilter ('type_id', array ('in' => $typeIds))
-            */
             ->addAttributeToFilter ('visibility', array ('in' => $visibility))
+            */
             ->addAttributeToSelect ($this->_attributeCodes)
             /* compare to category_product_index table (filter inactive stores) */
             ->joinField(
@@ -179,6 +179,11 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         catch (Mage_Core_Exception $e)
         {
             $this->_fault ('filters_invalid', $e->getMessage ());
+        }
+
+        if (!array_key_exists ('visibility', $filters))
+        {
+            $collection->addAttributeToFilter ('visibility', array ('in' => $visibility));
         }
 
         $collection->addOptionsToResult ();
