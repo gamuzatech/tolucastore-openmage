@@ -11,6 +11,8 @@
 class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 {
     const XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS;
+    const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS;
+    const XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS;
 
     public function info ($cashier_id, $operator_id)
     {
@@ -584,12 +586,12 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->addFieldToFilter ('pdv_history_id', array ('eq' => $history->getId ()))
         ;
 
-        if (!Mage::getStoreConfigFlag ('pdv/cashier/show_operator_orders'))
+        if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS))
         {
             $collection->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()));
         }
 
-        if (!Mage::getStoreConfigFlag ('pdv/cashier/show_pending_orders'))
+        if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS))
         {
              $collection->addFieldToFilter ('state', array ('in' => array (
                  Mage_Sales_Model_Order::STATE_PROCESSING,
