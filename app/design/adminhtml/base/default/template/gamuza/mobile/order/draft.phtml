@@ -36,7 +36,7 @@ echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_
 
 foreach ($_order->getAllItems() as $item)
 {
-    echo $this->getLineSeparator(sprintf('SKU %s', $item->getSku())).PHP_EOL;
+    echo $this->getLineSeparator() . PHP_EOL;
     echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
 
     $_productOptions = $item->getProductOptions();
@@ -66,6 +66,8 @@ foreach ($_order->getAllItems() as $item)
     }
 
     echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
+
+    echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;
 }
 
 echo $this->getLineSeparator() . PHP_EOL;
@@ -74,7 +76,8 @@ $_subtotal = Mage::helper('core')->currency($_order->getBaseSubtotal(), true, fa
 $_shipping = Mage::helper('core')->currency($_order->getBaseShippingAmount(), true, false);
 $_total    = Mage::helper('core')->currency($_order->getBaseGrandTotal(), true, false);
 
-echo Mage::helper('sales')->__('Subtotal: %s Shipping: %s', $_subtotal, $_shipping) . PHP_EOL;
+echo Mage::helper('sales')->__('Subtotal: %s', $_subtotal) . PHP_EOL;
+echo Mage::helper('sales')->__('Shipping Amount: %s', $_shipping) . PHP_EOL;
 echo Mage::helper('sales')->__('Grand Total: %s', $_total) . PHP_EOL;
 echo $this->getLineSeparator() . PHP_EOL;
 
