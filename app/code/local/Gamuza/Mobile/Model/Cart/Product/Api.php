@@ -74,6 +74,11 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 continue;
             }
 
+            if (!empty($productItem['custom_weight']))
+            {
+                $productByItem->addCustomOption('custom_weight', $productItem['custom_weight']);
+            }
+
             $productRequest = $this->_getProductRequest($productItem);
 
             /**
@@ -139,6 +144,22 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
 
                     $customWeight = @ $productItem ['custom_weight'];
 
+                    if (!empty ($customWeight))
+                    {
+                        $option = Mage::getModel ('sales/quote_item_option')
+                            ->setCode ('custom_weight')
+                            ->setValue ($customWeight)
+                            ->setItem ($result)
+                            ->setProduct ($result->getProduct ())
+                        ;
+
+                        $result->addOption ($option)
+                            ->setCustomWeight ($customWeight)
+                            ->setIsSuperMode(true)
+                            ->save ()
+                        ;
+                    }
+
                     if (!empty ($productItem ['custom_discount']))
                     {
                         $customDiscount = $productItem ['custom_discount'];
@@ -156,7 +177,6 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                             ->setOriginalCustomPrice ($customPrice)
                             ->setCustomPrice ($customPrice)
                             ->setOriginalBasePrice ($finalPrice)
-                            ->setCustomWeight ($customWeight)
                             ->save ()
                         ;
                     }
@@ -346,6 +366,11 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 $errors[] = Mage::helper('checkout')->__("One item of products do not have identifier or sku");
 
                 continue;
+            }
+
+            if (!empty($productItem['custom_weight']))
+            {
+                $productByItem->addCustomOption('custom_weight', $productItem['custom_weight']);
             }
 
             try
