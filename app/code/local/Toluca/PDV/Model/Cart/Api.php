@@ -10,6 +10,8 @@
  */
 class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 {
+    const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS;
+
     public function items ($cashier_id, $operator_id, $customer_id = 0, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null)
     {
         if (empty ($cashier_id))
@@ -50,9 +52,15 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
             ->addFieldToFilter ('is_pdv',          array ('eq' => true))
-            ->addFieldToFilter ('pdv_cashier_id',  array ('eq' => $cashier->getId ()))
-            ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()))
         ;
+
+        if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS))
+        {
+            $collection
+                ->addFieldToFilter ('pdv_cashier_id',  array ('eq' => $cashier->getId ()))
+                ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator->getId ()))
+            ;
+        }
 
         if (!empty ($customer_id))
         {
