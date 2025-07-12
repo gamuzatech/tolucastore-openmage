@@ -253,11 +253,17 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
-            ->addFieldToFilter ('pdv_cashier_id',  array ('eq' => $cashier_id))
-            ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator_id))
             ->addFieldToFilter ('pdv_customer_id', array ('eq' => $customer_id))
             ->addFieldToFilter ('entity_id',       array ('eq' => $quote_id))
         ;
+
+        if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS))
+        {
+            $collection
+		    ->addFieldToFilter ('pdv_cashier_id',  array ('eq' => $cashier_id))
+		    ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operator_id))
+            ;
+        }
 
         $quote = $collection->getFirstItem ();
 
