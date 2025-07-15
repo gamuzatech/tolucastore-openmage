@@ -102,5 +102,15 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
 
         return $itemBuyRequest->getData ();
     }
+
+    public function isItemPrinted ($item)
+    {
+        if ($this->getIsForced ())
+        {
+            return false;
+        }
+
+        return boolval ($item->getIsPrinted ());
+    }
 }
 

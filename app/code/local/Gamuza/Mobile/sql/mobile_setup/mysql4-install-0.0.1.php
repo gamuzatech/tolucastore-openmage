@@ -45,6 +45,27 @@ foreach ($entities as $entity)
 }
 
 /**
+ * Quote & Order Item
+ */
+$entities = array(
+    'quote_item',
+    'order_item',
+);
+
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
+    'usigned'  => true,
+    'nullable' => false,
+    'visible'  => true,
+    'required' => false,
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, $options);
+}
+
+/**
  * Order Table
  */
 $installer->getConnection ()->addColumn (

@@ -678,7 +678,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param string $orderIncrementId
      * @return array
      */
-    public function draft($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    public function draft($orderIncrementId = null, $orderProtectCode = null, $code = null, $forced = false)
     {
         if (empty ($orderIncrementId))
         {
@@ -698,6 +698,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
             ->setOrder ($order)
             ->setTemplate ('gamuza/mobile/order/draft.phtml')
+            ->setIsForced ($forced)
             ->toHtml ();
 
         return $result;

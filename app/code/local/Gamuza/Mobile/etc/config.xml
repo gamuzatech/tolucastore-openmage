@@ -70,6 +70,11 @@
                     <to_order>*</to_order>
                 </store_info_code>
             </sales_convert_quote>
+            <sales_convert_quote_item>
+                <is_printed>
+                    <to_order_item>*</to_order_item>
+                </is_printed>
+            </sales_convert_quote_item>
             <sales_convert_order>
                 <is_app>
                     <to_quote>*</to_quote>
@@ -84,6 +89,13 @@
                     <to_quote>*</to_quote>
                 </store_info_code>
             </sales_convert_order>
+            <!--
+            <sales_convert_order_item>
+                <is_printed>
+                    <to_quote_item>*</to_quote_item>
+                </is_printed>
+            </sales_convert_order_item>
+            -->
         </fieldsets>
         <payment>
             <machine>
