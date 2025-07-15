@@ -409,7 +409,23 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         $operatorId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR);
         $customerId = Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CUSTOMER);
 
-        $cartId = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, 0, $table_id, $card_id, $note);
+        $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('pdv_customer_id', array ('eq' => $customerId))
+            ->addFieldToFilter ('pdv_table_id',    array ('eq' => $table_id))
+            ->addFieldToFilter ('pdv_card_id',     array ('eq' => $card_id))
+        ;
+
+        if (!Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS))
+        {
+            $collection
+                ->addFieldToFilter ('pdv_cashier_id',  array ('eq' => $cashierId))
+                ->addFieldToFilter ('pdv_operator_id', array ('eq' => $operatorId))
+            ;
+        }
+
+        $cartId = $collection->getFirstItem ()->getId ();
+
+        $cartId = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, $cartId, $table_id, $card_id, $note);
 
         $cart = Mage::getModel ('sales/quote')
             ->setStoreId (Mage_Core_Model_App::DISTRO_STORE_ID)
