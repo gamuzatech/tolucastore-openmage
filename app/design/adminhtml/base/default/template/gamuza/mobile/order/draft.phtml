@@ -5,6 +5,13 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+if ($this->getOrderSequence())
+{
+    echo sprintf ('<h1>%s</h1>', Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
+
+    echo $this->getLineSeparator() . PHP_EOL;
+}
+
 $_order = $this->getOrder();
 
 echo sprintf('%s %s %s %s %s', Mage::helper('basic')->__('Table: %s', intval($_order->getPdvTableId())),
@@ -13,7 +20,7 @@ echo sprintf('%s %s %s %s %s', Mage::helper('basic')->__('Table: %s', intval($_o
                                Mage::helper('basic')->__('Cashier: %s', intval($_order->getPdvCashierId())),
                                $_order->getCustomerNote()) . PHP_EOL;
 
-echo $this->getLineSeparator(Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
+echo $this->getLineSeparator() . PHP_EOL;
 
 echo sprintf('<b><u>%s</u></b> %s', $this->getOrderNumber(), $this->getOrderDatetime()) . PHP_EOL;
 
