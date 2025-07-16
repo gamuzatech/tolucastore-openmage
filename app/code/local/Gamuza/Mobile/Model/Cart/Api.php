@@ -431,6 +431,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             ->setStoreId (Mage_Core_Model_App::DISTRO_STORE_ID)
             ->load ($cartId)
             ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, '1')
+            ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
             ->save ()
         ;
 
