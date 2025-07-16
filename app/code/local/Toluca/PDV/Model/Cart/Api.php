@@ -200,6 +200,64 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
+    public function catch ($quote_id, $cashier_id, $operator_id)
+    {
+        if (empty ($quote_id))
+        {
+            $this->_fault ('quote_not_specified');
+        }
+
+        if (empty ($cashier_id))
+        {
+            $this->_fault ('cashier_not_specified');
+        }
+
+        if (empty ($operator_id))
+        {
+            $this->_fault ('operator_not_specified');
+        }
+
+        $quote = Mage::getModel ('sales/quote')
+            ->setStoreId (Mage_Core_Model_App::DISTRO_STORE_ID)
+            ->load ($quote_id)
+        ;
+
+        if (!$quote || !$quote->getId ())
+        {
+            $this->_fault ('quote_not_exists');
+        }
+
+        $cashier = Mage::getModel ('pdv/cashier')->load ($cashier_id);
+
+        if (!$cashier || !$cashier->getId ())
+        {
+            $this->_fault ('cashier_not_exists');
+        }
+
+        $operator = Mage::getModel ('pdv/operator')->load ($operator_id);
+
+        if (!$operator || !$operator->getId ())
+        {
+            $this->_fault ('operator_not_exists');
+        }
+
+        $history = Mage::getModel ('pdv/history')->load ($cashier->getHistoryId ());
+
+        if (!$history || !$history->getId ())
+        {
+            $this->_fault ('history_not_exists');
+        }
+
+        $quote->setIsActive (true)
+            ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID,  $cashier_id)
+            ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID, $operator_id)
+            ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID,  $history->getId ())
+            ->save ()
+        ;
+
+        return intval ($quote->getId());
+    }
+
     public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null)
     {
         $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note);

@@ -61,6 +61,10 @@
                         <title>Get cart information</title>
                         <acl>pdv/cart/info</acl>
                     </info>
+                    <catch translate="title" module="pdv">
+                        <title>Catch cart information</title>
+                        <acl>pdv/cart/catch</acl>
+                    </catch>
                     <create translate="title" module="pdv">
                         <title>Create cart information</title>
                         <acl>pdv/cart/create</acl>
@@ -203,6 +207,9 @@
                         <info translate="title" module="pdv">
                             <title>Get cart information</title>
                         </info>
+                        <catch translate="title" module="pdv">
+                            <title>Catch cart information</title>
+                        </catch>
                         <create translate="title" module="pdv">
                             <title>Create cart information</title>
                         </create>
