@@ -79,6 +79,11 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 $productByItem->addCustomOption('custom_weight', $productItem['custom_weight']);
             }
 
+            if (!empty($productItem['unique_id']))
+            {
+                $productByItem->addCustomOption('unique_id', $productItem['unique_id']);
+            }
+
             $productRequest = $this->_getProductRequest($productItem);
 
             /**
@@ -155,6 +160,24 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
 
                         $result->addOption ($option)
                             ->setCustomWeight ($customWeight)
+                            ->setIsSuperMode(true)
+                            ->save ()
+                        ;
+                    }
+
+                    $uniqueId = @ $productItem ['unique_id'];
+
+                    if (!empty ($uniqueId))
+                    {
+                        $option = Mage::getModel ('sales/quote_item_option')
+                            ->setCode ('unique_id')
+                            ->setValue ($uniqueId)
+                            ->setItem ($result)
+                            ->setProduct ($result->getProduct ())
+                        ;
+
+                        $result->addOption ($option)
+                            ->setUniqueId ($uniqueId)
                             ->setIsSuperMode(true)
                             ->save ()
                         ;
@@ -373,6 +396,11 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 $productByItem->addCustomOption('custom_weight', $productItem['custom_weight']);
             }
 
+            if (!empty($productItem['unique_id']))
+            {
+                $productByItem->addCustomOption('unique_id', $productItem['unique_id']);
+            }
+
             try
             {
                 /** @var $quoteItem Mage_Sales_Model_Quote_Item */
@@ -542,6 +570,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 // custom
                 'original_base_price' => floatval ($item->getOriginalBasePrice ()),
                 'custom_weight'       => floatval ($item->getCustomWeight ()),
+                'unique_id'           => $item->getUniqueId (),
             );
 
             foreach ($this->_imageCodes as $code)

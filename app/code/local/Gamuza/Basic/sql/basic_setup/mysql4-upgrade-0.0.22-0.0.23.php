@@ -78,5 +78,18 @@ foreach ($entities as $entity)
     $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_ORIGINAL_BASE_PRICE, $options);
 }
 
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_VARCHAR,
+    'length'   => 255,
+    'nullable' => true,
+    'visible'  => true,
+    'required' => false,
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_UNIQUE_ID, $options);
+}
+
 $installer->endSetup ();
 
