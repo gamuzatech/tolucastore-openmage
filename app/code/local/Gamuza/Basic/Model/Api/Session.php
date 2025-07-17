@@ -18,7 +18,7 @@ class Gamuza_Basic_Model_Api_Session extends Mage_Api_Model_Session
     {
 //        parent::start($sessionName=null);
 
-        $this->_currentSessId = hash('sha512', time() . uniqid('', true) . $sessionName);
+        $this->_currentSessId = hash('sha512', time() . uniqid('s_', true) . $sessionName);
 
         $this->sessionIds[] = $this->getSessionId();
 
