@@ -25,4 +25,5 @@
 "Query length is invalid.","O comprimento da consulta é inválido."
 "Query has no result.","A consulta não tem resultado."
 "Query has no product.","A consulta não possui produto."
+"Cart #%s","Carrinho #%s"
 

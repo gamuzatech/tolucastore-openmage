@@ -44,7 +44,7 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
 
     public function getOrderNumber ()
     {
-        return sprintf ('%s', $this->getOrder()->getRealOrderId ());
+        return sprintf ('%s', $this->getOrder()->getRealOrderId () ?? $this->getOrder()->getId());
     }
 
     public function getOrderDatetime ()
