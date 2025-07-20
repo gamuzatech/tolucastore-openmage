@@ -76,6 +76,11 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Grid extends Mage_Adminhtml_Block_Widge
             'options' => Mage::getModel ('pdv/adminhtml_system_config_source_cashier_status')->toArray (),
 		));
 
+		$this->addColumn ('remote_ip', array(
+		    'header'  => Mage::helper ('pdv')->__('Remote IP'),
+		    'index'   => 'remote_ip',
+		));
+
 		$this->addColumn ('opened_at', array(
 			'header' => Mage::helper ('pdv')->__('Opened At'),
 			'index'  => 'opened_at',

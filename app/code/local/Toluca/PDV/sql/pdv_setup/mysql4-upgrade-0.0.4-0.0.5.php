@@ -221,6 +221,14 @@ SQLBLOCK;
             'nullable' => true,
             'comment'  => 'Updated At',
         ));
+
+    $installer->getConnection ()
+        ->addColumn ($table, 'remote_ip', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Remote Ip',
+        ));
 }
 
 addPDVHistoryTable ($installer, Toluca_PDV_Helper_Data::HISTORY_TABLE, 'Toluca PDV History');

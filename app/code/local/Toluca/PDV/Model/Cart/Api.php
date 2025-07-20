@@ -334,7 +334,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
         $storeId = Mage_Core_Model_App::DISTRO_STORE_ID;
 
-        $remoteIp = Mage::helper ('core/http')->getRemoteAddr (false);
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
 
         /**
          * NOTE: uniq_id instead customer_id
@@ -451,6 +451,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setCustomerId ($customer->getId ())
             ->setTableId ($table_id)
             ->setCardId ($card_id)
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 

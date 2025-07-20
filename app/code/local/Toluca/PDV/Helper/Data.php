@@ -86,6 +86,11 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
         return sprintf ('%s+%s@%s', $customerPrefix, $customerCode, $customerDomain);
     }
 
+    public function getRemoteIp ()
+    {
+        return $_SERVER ['HTTP_X_REMOTE_IP'] ?? Mage::helper ('core/http')->getRemoteAddr (false);
+    }
+
     public function isPDV ()
     {
         return strpos ($_SERVER ['HTTP_USER_AGENT'], 'TolucaStorePDV') !== false;

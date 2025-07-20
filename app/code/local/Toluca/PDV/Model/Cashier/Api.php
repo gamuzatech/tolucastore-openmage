@@ -68,6 +68,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             'card_id '    => intval ($operator->getCardId ()),
             'opened_at' => $cashier->getOpenedAt (),
             'closed_at' => $cashier->getClosedAt (),
+            'remote_ip' => $cashier->getRemoteIp (),
             'history' => $cashier->getHistory (),
         );
 
@@ -100,6 +101,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                 'total_amount'    => floatval ($history->getTotalAmount ()),
                 'created_at' => $history->getCreatedAt (),
                 'updated_at' => $history->getUpdatedAt (),
+                'remote_ip' => $history->getRemoteIp (),
             );
 
             $backup = Mage::getSingleton ('backup/fs_collection')
@@ -267,10 +269,13 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('operator_not_exists');
         }
 
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+
         $operator->setQuoteId (0)
             ->setCustomerId (0)
             ->setTableId (0)
             ->setCardId (0)
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -289,6 +294,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
             return intval ($cashier->getId ());
         }
+
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
 
         $history = Mage::getModel ('pdv/history')
             ->setCashierId ($cashier->getId ())
@@ -314,6 +321,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setShippingAmount (0)
             ->setTotalAmount (0)
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -321,6 +329,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setHistoryId ($history->getId ())
             ->setSequenceId (0)
             ->setOpenedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -328,6 +337,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setCustomerId (0)
             ->setTableId (0)
             ->setCardId (0)
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -339,6 +349,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setTotalAmount ($amount)
             ->setMessage ($message)
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -361,10 +372,13 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('history_not_exists');
         }
 
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+
         $reinforceAmount = floatval ($history->getReinforceAmount ());
 
         $history->setReinforceAmount ($reinforceAmount + $amount)
             ->setUpdatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -376,6 +390,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setTotalAmount ($amount)
             ->setMessage ($message)
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -397,6 +412,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         {
             $this->_fault ('history_not_exists');
         }
+
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
 
         $openAmount = floatval ($history->getOpenAmount ());
         $reinforceAmount = floatval ($history->getReinforceAmount ());
@@ -425,6 +442,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
         $history->setBleedAmount ($bleedAmount + (- $amount))
             ->setUpdatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -436,6 +454,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setTotalAmount (- $amount)
             ->setMessage ($message)
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -457,6 +476,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         {
             $this->_fault ('history_not_exists');
         }
+
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
 
         $openAmount      = floatval ($history->getOpenAmount ());
         $reinforceAmount = floatval ($history->getReinforceAmount ());
@@ -502,11 +523,13 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         $history->setCloseAmount (- $amount)
             ->setClosedAt (date ('c'))
             ->setUpdatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
         $cashier->setStatus (Toluca_PDV_Helper_Data::CASHIER_STATUS_CLOSED)
             ->setClosedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 
@@ -518,6 +541,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setTotalAmount (- $amount)
             ->setMessage ($message)
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
             ->save ()
         ;
 

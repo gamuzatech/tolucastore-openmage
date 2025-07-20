@@ -173,6 +173,11 @@ class Toluca_PDV_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget_Gr
             'type'   => 'datetime',
 		));
 */
+		$this->addColumn ('remote_ip', array(
+			'header' => Mage::helper ('pdv')->__('Remote IP'),
+			'index'  => 'remote_ip',
+		));
+
         $this->addExportType('*/*/exportCsv', Mage::helper('pdv')->__('CSV'));
         $this->addExportType('*/*/exportExcel', Mage::helper('pdv')->__('Excel XML'));
 
