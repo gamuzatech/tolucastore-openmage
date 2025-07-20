@@ -10,6 +10,8 @@
  */
 class Gamuza_Basic_Model_Observer
 {
+    const PRINTING_VALUE_NO = Gamuza_Basic_Model_Eav_Entity_Attribute_Source_Product_Printing::VALUE_NO;
+
     const SALES_QUOTE_LIFETIME = 86400;
 
     public function adminhtmlCmsPageEditTabContentPrepareForm ($observer)
@@ -397,8 +399,10 @@ CONTENT;
         $product   = $observer->getProduct ();
 
         $productGTIN = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN);
+        $productPrinting = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_PRINTING);
 
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
+        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, !strcmp ($productPrinting, self::PRINTING_VALUE_NO));
     }
 
     public function salesQuoteCollectTotalsAfter ($observer)

@@ -504,6 +504,7 @@
                     <product_attributes>
                         <image />
                         <gtin />
+                        <printing />
                     </product_attributes>
                 </item>
             </quote>
@@ -625,6 +626,7 @@
                     <brand />
                     <color />
                     <gtin />
+                    <printing />
                     <sku_position />
                     <size />
                 </attributes>
