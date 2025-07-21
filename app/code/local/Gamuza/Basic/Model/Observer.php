@@ -402,7 +402,13 @@ CONTENT;
         $productPrinting = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_PRINTING);
 
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
-        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, !strcmp ($productPrinting, self::PRINTING_VALUE_NO));
+
+        $quoteItemIsPrinted = $quoteItem->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
+
+        if (strcmp ($quoteItemIsPrinted, '1') != 0 && !strcmp ($productPrinting, self::PRINTING_VALUE_NO))
+        {
+            $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, '1');
+        }
     }
 
     public function salesQuoteCollectTotalsAfter ($observer)
