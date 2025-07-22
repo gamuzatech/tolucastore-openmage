@@ -114,6 +114,15 @@ class Toluca_PDV_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget_Gr
 		    'header'  => Mage::helper ('pdv')->__('Message'),
 		    'index'   => 'message',
 		));
+		$this->addColumn ('created_at', array(
+			'header' => Mage::helper ('pdv')->__('Created At'),
+			'index'  => 'created_at',
+            'type'   => 'datetime',
+		));
+		$this->addColumn ('remote_ip', array(
+			'header' => Mage::helper ('pdv')->__('Remote IP'),
+			'index'  => 'remote_ip',
+		));
 		$this->addColumn ('customer_id', array(
 		    'header'  => Mage::helper ('pdv')->__('Customer'),
 		    'index'   => 'customer_id',
@@ -161,21 +170,10 @@ class Toluca_PDV_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget_Gr
             'currency_code' => $store->getBaseCurrency()->getCode(),
             'default' => 0,
 		));
-		$this->addColumn ('created_at', array(
-			'header' => Mage::helper ('pdv')->__('Created At'),
-			'index'  => 'created_at',
-            'type'   => 'datetime',
-		));
-/*
 		$this->addColumn ('updated_at', array(
 			'header' => Mage::helper ('pdv')->__('Updated At'),
 			'index'  => 'updated_at',
             'type'   => 'datetime',
-		));
-*/
-		$this->addColumn ('remote_ip', array(
-			'header' => Mage::helper ('pdv')->__('Remote IP'),
-			'index'  => 'remote_ip',
 		));
 
         $this->addExportType('*/*/exportCsv', Mage::helper('pdv')->__('CSV'));
