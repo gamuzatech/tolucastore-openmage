@@ -13,6 +13,16 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
     const XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS;
+    const XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP;
+
+    public $_validateRemoteIp = false;
+
+    public function __construct()
+    {
+        // parent::__construct();
+
+        $this->_validateRemoteIp = Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP);
+    }
 
     public function info ($cashier_id, $operator_id)
     {
@@ -463,7 +473,14 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
     public function close ($operator_id, $password, $amount, $message)
     {
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+
         list ($cashier, $operator) = $this->_getCashier ($operator_id, $password, $amount);
+
+        if ($cashier->getRemoteIp () != $remoteIp && $this->_validateRemoteIp)
+        {
+            $this->_fault ('data_invalid');
+        }
 
         if ($cashier->getStatus () == Toluca_PDV_Helper_Data::CASHIER_STATUS_CLOSED)
         {
@@ -476,8 +493,6 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         {
             $this->_fault ('history_not_exists');
         }
-
-        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
 
         $openAmount      = floatval ($history->getOpenAmount ());
         $reinforceAmount = floatval ($history->getReinforceAmount ());

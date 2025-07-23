@@ -167,6 +167,11 @@
                 <code>2200</code>
                 <message>Customer address is not set.</message>
             </address_is_not_set>
+
+            <data_invalid>
+                <code>2300</code>
+                <message>Invalid data given. Details in error message.</message>
+            </data_invalid>
         </faults>
         <acl>
             <resources>
