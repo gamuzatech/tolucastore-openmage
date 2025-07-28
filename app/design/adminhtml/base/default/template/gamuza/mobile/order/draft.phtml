@@ -66,6 +66,8 @@ foreach ($_order->getAllItems() as $item)
 
     if ($item->getParentItemId ())
     {
+        echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;
+
         continue; // skip
     }
 
