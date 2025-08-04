@@ -38,6 +38,10 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const LOG_TYPE_REFUND    = 'refund';
     const LOG_TYPE_CLOSE     = 'close';
 
+    const XML_PATH_GENERAL_STORE_INFORMATION_CODE = 'general/store_information/code';
+    const XML_PATH_GENERAL_STORE_INFORMATION_NAME = 'general/store_information/name';
+    const XML_PATH_GENERAL_STORE_INFORMATION_LOGO = 'general/store_information/logo';
+
     const XML_PATH_DEFAULT_EMAIL_PREFIX = 'customer/create_account/email_prefix';
 
     const XML_PATH_PDV_SETTING_DEFAULT_CASHIER  = 'pdv/setting/cashier_id';

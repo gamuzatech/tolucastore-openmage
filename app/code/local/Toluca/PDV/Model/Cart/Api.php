@@ -137,6 +137,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_info_code' => $quote->getCustomerInfoCode (),
                 'is_comanda' => boolval ($quote->getIsComanda ()),
                 'is_weighted' => boolval ($quote->getIsWeighted ()),
+                'is_printed' => boolval ($quote->getIsPrinted ()),
+                'store' => $this->_getStoreInfo ($quote->getStoreId ()),
             );
         }
 
@@ -195,6 +197,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'customer_info_code' => $quote->getCustomerInfoCode (),
             'is_comanda' => boolval ($quote->getIsComanda ()),
             'is_weighted' => boolval ($quote->getIsWeighted ()),
+            'is_printed' => boolval ($quote->getIsPrinted ()),
+            'store' => $this->_getStoreInfo ($quote->getStoreId ()),
         );
 
         return $result;
@@ -456,6 +460,24 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         ;
 
         return $quote;
+    }
+
+    protected function _getStoreInfo ($storeId)
+    {
+        $mediaUrl = Mage::app ()
+            ->getStore (Mage_Core_Model_App::ADMIN_STORE_ID)
+            ->getBaseUrl (Mage_Core_Model_Store::URL_TYPE_MEDIA, false);
+
+        $result = array(
+            'code' => Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_CODE, $storeId),
+            'name' => Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME, $storeId),
+            'thumbnail' => sprintf (
+                '%s/store/info/%s',
+                $mediaUrl, Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_LOGO, $storeId)
+            ),
+        );
+
+        return $result;
     }
 }
 
