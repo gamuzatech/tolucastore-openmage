@@ -445,11 +445,18 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
      * @param  $store
      * @return array
      */
-    public function items($code = null, $store = null, $media = null)
+    public function items($code = null, $store = null, $media = null, $prefix = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
+        }
+
+        if (!empty ($prefix))
+        {
+            Mage::app ()->getStore ()->setConfig (
+                Gamuza_Mobile_Helper_Data::XML_PATH_DEFAULT_EMAIL_PREFIX, $prefix
+            );
         }
 
         $quote = $this->_getCustomerQuote($code, $store);
