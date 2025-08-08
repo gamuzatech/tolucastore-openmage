@@ -50,7 +50,9 @@ try
         Gamuza_Mobile_Helper_Data::XML_PATH_DEFAULT_EMAIL_PREFIX, $prefix
     );
 
-    $contents = Mage::getModel('mobile/cart_api')->draft($code, null);
+    $forced = getenv ('DRAFT_CART_IS_PRINTED_FORCED', true);
+
+    $contents = Mage::getModel('mobile/cart_api')->draft($code, null, $forced);
 
     $dir = Mage::getConfig()->getOptions()->getVarDir() . DS . 'draft';
 
