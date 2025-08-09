@@ -5,14 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-if ($this->getOrderSequence())
-{
-    echo sprintf ('<h1>%s</h1>', Mage::helper('basic')->__('Order #%s', $this->getOrderSequence())) . PHP_EOL;
-}
-else
-{
-    echo sprintf ('<h1>%s</h1>', Mage::helper('basic')->__('Cart #%s', $this->getOrderNumber())) . PHP_EOL;
-}
+echo sprintf ('<h1>%s</h1>', $this->getOrderTitle()) . PHP_EOL;
 
 if ($this->getQuoteId())
 {
