@@ -42,6 +42,11 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
         return $result;
     }
 
+    public function getQuoteId ()
+    {
+        return $this->getOrder ()->getQuoteId ();
+    }
+
     public function getOrderNumber ()
     {
         return sprintf ('%s', $this->getOrder()->getRealOrderId () ?? $this->getOrder()->getId());
