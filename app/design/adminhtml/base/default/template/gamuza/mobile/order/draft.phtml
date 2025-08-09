@@ -12,7 +12,7 @@ if ($this->getQuoteId())
     echo sprintf ('<b>%s</b>', Mage::helper('basic')->__('Cart #%s', $this->getQuoteId())) . PHP_EOL;
 }
 
-echo $this->getLineSeparator() . PHP_EOL;
+echo $this->getLineSeparator($this->getLocation()) . PHP_EOL;
 
 $_order = $this->getOrder();
 
