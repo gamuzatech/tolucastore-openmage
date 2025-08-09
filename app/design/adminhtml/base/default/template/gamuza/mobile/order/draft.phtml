@@ -14,6 +14,11 @@ else
     echo sprintf ('<h1>%s</h1>', Mage::helper('basic')->__('Cart #%s', $this->getOrderNumber())) . PHP_EOL;
 }
 
+if ($this->getQuoteId())
+{
+    echo sprintf ('<h2>%s</h2>', Mage::helper('basic')->__('Cart #%s', $this->getQuoteId())) . PHP_EOL;
+}
+
 echo $this->getLineSeparator() . PHP_EOL;
 
 $_order = $this->getOrder();
