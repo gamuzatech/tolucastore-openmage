@@ -14,7 +14,7 @@ else
     echo sprintf ('<h1>%s</h1>', Mage::helper('basic')->__('Cart #%s', $this->getOrderNumber())) . PHP_EOL;
 }
 
-echo $this->getLineSeparator() . PHP_EOL;
+echo $this->getLineSeparator($this->getLocation()) . PHP_EOL;
 
 $_order = $this->getOrder();
 
