@@ -51,9 +51,10 @@ try
     );
 
     $forced = getenv ('DRAFT_CART_IS_PRINTED_FORCED', true);
+    $full   = getenv ('DRAFT_CART_IS_PRINTED_FULL', true);
     $location = getenv ('DRAFT_CART_PRINTER_LOCATION', true);
 
-    $contents = Mage::getModel('mobile/cart_api')->draft($code, null, $forced, $location);
+    $contents = Mage::getModel('mobile/cart_api')->draft($code, null, $forced, $full, $location);
 
     $dir = Mage::getConfig()->getOptions()->getVarDir() . DS . 'draft';
 

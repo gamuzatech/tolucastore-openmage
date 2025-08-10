@@ -43,9 +43,10 @@ try
     $orderProtectCode = substr($argv[1], $order + 1);
 
     $forced = getenv ('DRAFT_ORDER_IS_PRINTED_FORCED', true);
+    $full   = getenv ('DRAFT_ORDER_IS_PRINTED_FULL', true);
     $location = getenv ('DRAFT_ORDER_PRINTER_LOCATION', true);
 
-    $contents = Mage::getModel('mobile/order_api')->draft($orderIncrementId, $orderProtectCode, null, $forced, $location);
+    $contents = Mage::getModel('mobile/order_api')->draft($orderIncrementId, $orderProtectCode, null, $forced, $full, $location);
 
     $dir = Mage::getConfig()->getOptions()->getVarDir() . DS . 'draft';
 
