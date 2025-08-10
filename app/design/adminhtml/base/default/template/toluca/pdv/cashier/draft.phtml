@@ -88,6 +88,15 @@ if ($_cashierSequenceId > 0)
 
         echo sprintf ('%s %s: %s', intval ($orderProduct->getProductCount ()), $orderProduct->getName (), $productAmount) . PHP_EOL;
     }
+
+    echo $this->getLineSeparator (Mage::helper ('pdv')->__('Categories')) . PHP_EOL;
+
+    foreach ($this->getOrderCategories ($_cashier, $_operator, $_history) as $orderProduct)
+    {
+        $productAmount = Mage::helper ('core')->currency ($orderProduct->getProductAmount (), true, false);
+
+        echo sprintf ('%s %s: %s', intval ($orderProduct->getProductCount ()), $orderProduct->getCategoryName (), $productAmount) . PHP_EOL;
+    }
 }
 
 echo $this->getLineSeparator () . PHP_EOL;
