@@ -355,7 +355,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return true;
     }
 
-    public function draft ($code = null, $store = null, $forced = false, $location = null)
+    public function draft ($code = null, $store = null, $forced = false, $full = true, $location = null)
     {
         if (empty ($code))
         {
@@ -371,6 +371,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             ->setOrder ($quote)
             ->setTemplate ('gamuza/mobile/order/draft.phtml')
             ->setIsForced ($forced)
+            ->setIsFull ($full)
             ->setLocation ($location)
             ->toHtml ();
 

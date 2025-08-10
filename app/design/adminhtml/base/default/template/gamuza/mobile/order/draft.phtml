@@ -34,9 +34,14 @@ echo $this->getLineSeparator(Mage::helper('basic')->__('Customer #%s', $_custome
 
 echo sprintf('%s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
 
+if ($this->getIsFull()):
+
 echo sprintf('%s %s %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
 echo sprintf('%s %s', $_address->getStreet4(), $_address->getPostcode()) . PHP_EOL;
 echo sprintf('%s %s %s', $_address->getCity(), $_address->getRegionCode(), $_address->getCountryId()) . PHP_EOL;
+
+endif; // full
+
 echo $this->getLineSeparator() . PHP_EOL;
 
 $_itemsQty = $_order->getTotalQtyOrdered() ?: $_order->getItemsQty ();
@@ -84,6 +89,8 @@ foreach ($_order->getAllItems() as $item)
 }
 
 echo $this->getLineSeparator() . PHP_EOL;
+
+if ($this->getIsFull()):
 
 $_subtotal = Mage::helper('core')->currency($_order->getBaseSubtotal(), true, false);
 $_shipping = Mage::helper('core')->currency($_order->getBaseShippingAmount(), true, false);
@@ -136,6 +143,8 @@ else
 }
 
 echo $this->getLineSeparator() . PHP_EOL;
+
+endif; // full
 
 $_storeName  = Mage::getStoreConfig('general/store_information/name',  $_order->getStoreId());
 $_storePhone = Mage::getStoreConfig('general/store_information/phone', $_order->getStoreId());
