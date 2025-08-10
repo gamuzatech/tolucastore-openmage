@@ -96,6 +96,34 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Temp
         return $collection;
     }
 
+    public function getOrderCategories ($cashier, $operator, $history)
+    {
+        $nameAttribute = Mage::getModel ('eav/entity_attribute')->loadByCode (Mage_Catalog_Model_Category::ENTITY, 'name');
+
+        $collection = $this->getOrderProducts ($cashier, $operator, $history);
+
+        $collection->getSelect ()
+            ->join(
+                array ('ccp' => Mage::getSingleton ('core/resource')->getTablename ('catalog/category_product')),
+                'main_table.product_id = ccp.product_id',
+                array(
+                    'category_id' => 'ccp.category_id',
+                )
+            )
+            ->join(
+                array ('ccev' => Mage::getSingleton ('core/resource')->getTableName ('catalog_category_entity_' . $nameAttribute->getBackendType ())),
+                sprintf ('ccp.category_id = ccev.entity_id and ccev.store_id = 0 and ccev.attribute_id = %s', $nameAttribute->getAttributeId ()),
+                array(
+                    'category_name' => 'ccev.value',
+                )
+            )
+            ->reset (Zend_Db_Select::GROUP)
+            ->group ('ccp.category_id')
+        ;
+
+        return $collection;
+    }
+
     public function _getOrderCollection ($cashier, $operator, $history)
     {
         $collection = Mage::getModel ('sales/order')->getCollection ()
