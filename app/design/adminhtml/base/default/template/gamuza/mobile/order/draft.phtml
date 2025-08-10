@@ -106,6 +106,8 @@ echo Mage::helper('sales')->__('Shipping Amount: %s', $_shipping) . PHP_EOL;
 echo Mage::helper('sales')->__('Grand Total: %s', $_total) . PHP_EOL;
 echo $this->getLineSeparator() . PHP_EOL;
 
+endif; // full
+
 $_shippingDescription = $_order->getShippingDescription() ?: $_address->getShippingDescription();
 
 if ($_shippingDescription)
@@ -148,8 +150,6 @@ else
 }
 
 echo $this->getLineSeparator() . PHP_EOL;
-
-endif; // full
 
 $_storeName  = Mage::getStoreConfig('general/store_information/name',  $_order->getStoreId());
 $_storePhone = Mage::getStoreConfig('general/store_information/phone', $_order->getStoreId());
