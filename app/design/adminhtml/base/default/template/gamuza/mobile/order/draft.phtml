@@ -28,9 +28,7 @@ echo sprintf('<b><u>%s</u></b> %s', $this->getOrderNumber(), $this->getOrderDate
 
 $_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
 
-$_customerId = $_order->getPdvCustomerId() ? $_order->getPdvCustomerId() : $_order->getCustomerId();
-
-echo $this->getLineSeparator(Mage::helper('basic')->__('Customer #%s', $_customerId)) . PHP_EOL;
+echo $this->getLineSeparator() . PHP_EOL;
 
 echo sprintf('%s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
 
