@@ -45,8 +45,6 @@ echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_
 
 foreach ($_order->getAllItems() as $item)
 {
-    if ($this->isItemPrinted ($item)) continue;
-
     echo $this->getLineSeparator() . PHP_EOL;
     echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
 
