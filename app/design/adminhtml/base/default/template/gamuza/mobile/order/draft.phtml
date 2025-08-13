@@ -41,7 +41,7 @@ $_itemsQty = $_order->getTotalQtyOrdered() ?: $_order->getItemsQty ();
 
 echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_EOL;
 
-foreach ($_order->getAllItems() as $item)
+foreach ($_order->getAllVisibleItems() as $item)
 {
     echo $this->getLineSeparator() . PHP_EOL;
     echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
@@ -70,13 +70,6 @@ foreach ($_order->getAllItems() as $item)
     foreach ($_productOptions ['additional_options'] as $option)
     {
         echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
-    }
-
-    if ($item->getParentItemId ())
-    {
-        echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;
-
-        continue; // skip
     }
 
     $_price = Mage::helper('core')->currency($item->getPrice(), true, false);
