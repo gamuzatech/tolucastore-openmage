@@ -48,6 +48,20 @@ foreach ($_order->getAllItems() as $item)
 
     $_productOptions = $item->getProductOptions() ?? $this->getProductOptions($item);
 
+    foreach ($_productOptions['bundle_options'] as $option)
+    {
+        $optionValue = $option['value'];
+
+        if (is_array($optionValue))
+        {
+            $optionValue = implode(', ', array_map(function ($item) {
+                return $item['title'];
+            }, $optionValue));
+        }
+
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $optionValue) . PHP_EOL;
+    }
+
     foreach ($_productOptions ['options'] as $option)
     {
         echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;

@@ -81,7 +81,47 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
 
     public function getProductOptions ($item)
     {
+        $product = $item->getProduct ();
+
         $itemBuyRequest = $item->getBuyRequest ();
+
+        $bundleOptions = array ();
+
+        if (!strcmp ($product->getTypeId (), Mage_Catalog_Model_Product_Type::TYPE_BUNDLE))
+        {
+            $itemBundleOption = $itemBuyRequest->getData ('bundle_option');
+
+            foreach ($itemBundleOption as $itemBundleOptionId => $itemBundleOptionValues)
+            {
+                // $itemBundleOptionValues = explode (',', $itemBundleOptionValues);
+
+                $optionsCollection    = $product->getTypeInstance (true)->getOptionsCollection ($product);
+                $selectionsCollection = $product->getTypeInstance (true)->getSelectionsCollection ($optionsCollection->getAllIds (), $product);
+
+                foreach ($optionsCollection->appendSelections ($selectionsCollection) as $option)
+                {
+                    if ($option->getId () == $itemBundleOptionId)
+                    {
+                        $selections = array ();
+
+                        foreach ($option->getSelections() as $selection)
+                        {
+                            if (in_array ($selection->getSelectionId (), $itemBundleOptionValues))
+                            {
+                                $selections [] = $selection->getName () ?? $selection->getDefaultName ();
+                            }
+                        }
+
+                        $bundleOptions [] = array (
+                            'label' => $option->getTitle () ?? $option->getDefaultTitle (),
+                            'value' => implode (', ', $selections),
+                        );
+                    }
+                }
+            }
+        }
+
+        $itemBuyRequest->setBundleOptions ($bundleOptions);
 
         $itemOptions = $itemBuyRequest->getData('options');
 
@@ -91,7 +131,7 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
         {
             $itemOptionValues = explode (',', $itemOptionValues);
 
-            foreach ($item->getProduct ()->getOptions () as $option)
+            foreach ($product->getOptions () as $option)
             {
                 if ($option->getOptionId () == $itemOptionId)
                 {
