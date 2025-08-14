@@ -375,6 +375,39 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return $result;
     }
 
+    public function kitchen ($code = null, $store = null)
+    {
+        if (empty ($code))
+        {
+            $this->_fault ('customer_code_not_specified');
+        }
+
+        $quote = $this->_getCustomerQuote ($code, $store);
+
+        $result = null;
+
+        foreach ($quote->getAllVisibleItems () as $item)
+        {
+            if ($item->getIsPrinted ())
+            {
+                continue; // skip
+            }
+
+            $html = Mage::app ()
+                ->getLayout ()
+                ->createBlock ('mobile/adminhtml_order_kitchen')
+                ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
+                ->setOrder ($quote)
+                ->setSku ($item->getSku ())
+                ->setTemplate ('gamuza/mobile/order/kitchen.phtml')
+                ->toHtml ();
+
+            $result .= $html;
+        }
+
+        return $result;
+    }
+
     /**
      * Retrieve list of stores
      *

@@ -705,6 +705,50 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
     }
 
     /**
+     * Retrieve full order information
+     *
+     * @param string $orderIncrementId
+     * @return array
+     */
+    public function kitchen($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        $order = $this->_initOrder($orderIncrementId, $orderProtectCode);
+
+        $result = null;
+
+        foreach ($order->getAllVisibleItems () as $item)
+        {
+            if ($item->getIsPrinted ())
+            {
+                continue; // skip
+            }
+
+            $html = Mage::app ()
+                ->getLayout ()
+                ->createBlock ('mobile/adminhtml_order_kitchen')
+                ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
+                ->setOrder ($order)
+                ->setSku ($item->getSku ())
+                ->setTemplate ('gamuza/mobile/order/kitchen.phtml')
+                ->toHtml ();
+
+            $result .= $html;
+        }
+
+        return $result;
+    }
+
+    /**
      * Retrieve list of stores
      *
      * @param null|object|array $filters

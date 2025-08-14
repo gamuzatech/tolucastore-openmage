@@ -120,6 +120,11 @@
                         <method>draft</method>
                         <acl>mobile/cart/draft</acl>
                     </draft>
+                    <kitchen translate="title" module="mobile">
+                        <title>Kitchen quote from shopping cart</title>
+                        <method>kitchen</method>
+                        <acl>mobile/cart/kitchen</acl>
+                    </kitchen>
                     <stores translate="title" module="mobile">
                         <title>Retrieve store list</title>
                         <method>stores</method>
@@ -496,6 +501,10 @@
                         <title>Draft order information</title>
                         <acl>mobile/order/draft</acl>
                     </draft>
+                    <kitchen translate="title" module="mobile">
+                        <title>Kitchen order information</title>
+                        <acl>mobile/order/kitchen</acl>
+                    </kitchen>
                     <stores translate="title" module="mobile">
                         <title>Retrieve store list</title>
                         <method>stores</method>
@@ -612,6 +621,9 @@
                         <draft translate="title" module="mobile">
                             <title>Draft</title>
                         </draft>
+                        <kitchen translate="title" module="mobile">
+                            <title>Kitchen</title>
+                        </kitchen>
                         <stores translate="title" module="mobile">
                             <title>Stores</title>
                         </stores>
@@ -695,6 +707,9 @@
                         <draft translate="title" module="mobile">
                             <title>Draft order information</title>
                         </draft>
+                        <kitchen translate="title" module="mobile">
+                            <title>Kitchen order information</title>
+                        </kitchen>
                         <stores translate="title" module="mobile">
                             <title>Stores</title>
                         </stores>

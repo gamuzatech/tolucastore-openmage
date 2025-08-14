@@ -152,6 +152,8 @@
 "Minimum admin password length","Tamanho mínimo da senha admin"
 "Requested customer ID was not specified.","Customer ID não foi especificado."
 "Local Eat In","Comer no Local"
+"Eat In","Comer"
+"Pickup","Retirar"
 "Country Code","Código País"
 "Scheduled Send","Envio Agendado"
 "Count of Queue","Contagem de Fila"

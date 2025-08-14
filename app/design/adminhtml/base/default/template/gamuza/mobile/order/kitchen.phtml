@@ -1,0 +1,70 @@
+<?php
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2025 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+echo sprintf ('<h1>%s %s</h1>', $this->getOrderTitle(), $this->getShippingMethod()) . PHP_EOL;
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_order = $this->getOrder();
+
+$_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
+
+echo sprintf('%s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
+
+foreach ($this->getAllVisibleItems() as $item)
+{
+    echo $this->getLineSeparator() . PHP_EOL;
+    echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
+
+    $_productOptions = $item->getProductOptions() ?? $this->getProductOptions($item);
+
+    foreach ($_productOptions['bundle_options'] as $option)
+    {
+        $optionValue = $option['value'];
+
+        if (is_array($optionValue))
+        {
+            $optionValue = implode(', ', array_map(function ($item) {
+                return $item['title'];
+            }, $optionValue));
+        }
+
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $optionValue) . PHP_EOL;
+    }
+
+    foreach ($_productOptions ['options'] as $option)
+    {
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
+    }
+
+    foreach ($_productOptions ['additional_options'] as $option)
+    {
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
+    }
+
+    $_price = Mage::helper('core')->currency($item->getPrice(), true, false);
+    $_qty = floatval($item->getQtyOrdered() ?: $item->getQty());
+    $_rowTotal = Mage::helper('core')->currency($item->getBaseRowTotal(), true, false);
+
+    if ($_order->getIsWeighted() && $item->getCustomWeight())
+    {
+        echo sprintf('%s: %s', Mage::helper('basic')->__('Weight'), intval($item->getCustomWeight())) . PHP_EOL;
+    }
+
+    echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
+
+    echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;
+}
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+echo sprintf('<b><u>%s</u></b> %s', $this->getOrderNumber(), $this->getOrderDatetime()) . PHP_EOL;
+
+echo sprintf('Toluca Store APP %s', Mage::getModel('core/date')->date('d/m/Y H:i:s')) . PHP_EOL . PHP_EOL;
+
+?>
+<cut>
