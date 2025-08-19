@@ -15,6 +15,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const OPERATOR_TABLE = 'toluca_pdv_operator';
     const HISTORY_TABLE  = 'toluca_pdv_history';
     const LOG_TABLE      = 'toluca_pdv_log';
+    const PRINT_TABLE    = 'toluca_pdv_print';
 
     const ORDER_ATTRIBUTE_IS_SUPER_MODE = 'is_super_mode';
     const ORDER_ATTRIBUTE_IS_PDV = 'is_pdv';
@@ -37,6 +38,9 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const LOG_TYPE_ORDER     = 'order';
     const LOG_TYPE_REFUND    = 'refund';
     const LOG_TYPE_CLOSE     = 'close';
+
+    const PRINT_TYPE_CASHIER = 'cashier';
+    const PRINT_TYPE_KITCHEN = 'kitchen';
 
     const XML_PATH_GENERAL_STORE_INFORMATION_CODE = 'general/store_information/code';
     const XML_PATH_GENERAL_STORE_INFORMATION_NAME = 'general/store_information/name';

@@ -41,6 +41,8 @@
 "Close","Fechamento"
 "Manage Logs","Gerenciar Logs"
 "Logs Manager","Gerenciador de Logs"
+"Manage Prints","Gerenciar Impressões"
+"Prints Manager","Gerenciador de Impressões"
 "Requested cashier ID was not specified.","ID do Caixa não foi especificado."
 "Requested cashier amount was not specified.","Valor do Caixa não foi especificado."
 "Requested operator ID was not specified.","ID Operador não foi especificado."
@@ -78,4 +80,5 @@
 "Orders Qty","Qtde Pedidos"
 "Remote IP","IP Remoto"
 "Validate Remote IP","Validar IP Remoto"
+"Kitchen","Cozinha"
 

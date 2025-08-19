@@ -28,5 +28,10 @@
             <block type="pdv/adminhtml_log" name="log" />
         </reference>
     </admin_pdv_adminhtml_log_index>
+    <admin_pdv_adminhtml_print_index>
+        <reference name="content">
+            <block type="pdv/adminhtml_print" name="print" />
+        </reference>
+    </admin_pdv_adminhtml_print_index>
 </layout>
 
