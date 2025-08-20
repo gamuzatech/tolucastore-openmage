@@ -51,7 +51,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
      */
     protected function _createNewQuote ($customerCode, $customerEmail, $storeId)
     {
-        $remoteIp = Mage::helper('core/http')->getRemoteAddr(false);
+        $remoteIp = Mage::helper ('mobile')->getRemoteIp ();
 
         $firstName = Mage::getStoreConfig ('general/store_information/name', $storeId);
         $lastName  = Mage::getStoreConfig ('general/store_information/name', $storeId);

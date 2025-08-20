@@ -26,5 +26,11 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_GENERAL_STORE_INFORMATION_LOGO = 'general/store_information/logo';
 
     const DEFAULT_CUSTOMER_TAXVAT = '02788178824';
+
+    public function getRemoteIp ()
+    {
+        return $_SERVER ['HTTP_X_REMOTE_IP'] ?? $_SERVER ['HTTP_X_LOCAL_IP']
+            ?? Mage::helper ('core/http')->getRemoteAddr (false);
+    }
 }
 
