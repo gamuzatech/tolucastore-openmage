@@ -155,6 +155,12 @@ SQLBLOCK;
             'nullable' => true,
             'comment'  => 'Updated At',
         ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'printed_at', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
+            'nullable' => true,
+            'comment'  => 'Printed At',
+        ));
 }
 
 addPDVPrintTable ($installer, Toluca_PDV_Helper_Data::PRINT_TABLE, 'Toluca PDV Print');

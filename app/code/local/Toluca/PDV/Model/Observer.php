@@ -356,6 +356,8 @@ class Toluca_PDV_Model_Observer
         $customer = Mage::getModel ('customer/customer')->load ($orderPdvCustomerId);
         $history = Mage::getModel ('pdv/history')->load ($orderPdvHistoryId);
 
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+
         $print = Mage::getModel ('pdv/print')
             ->setTypeId ($type)
             ->setCustomerId ($customer->getId ())
@@ -365,7 +367,7 @@ class Toluca_PDV_Model_Observer
             ->setCardId ($orderPdvCardId)
             ->setCashierId ($cashier->getId ())
             ->setOperatorId ($operator->getId ())
-            ->setRemoteIp ($order->getRemoteIp ())
+            ->setRemoteIp ($remoteIp)
             ->setCreatedAt (date ('c'))
             ->save ()
         ;

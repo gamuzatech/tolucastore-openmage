@@ -178,6 +178,12 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
             'type'   => 'datetime',
 			'filter_index' => 'main_table.updated_at',
 		));
+		$this->addColumn ('printed_at', array(
+			'header' => Mage::helper ('pdv')->__('Printed At'),
+			'index'  => 'printed_at',
+            'type'   => 'datetime',
+			'filter_index' => 'main_table.printed_at',
+		));
 
         $this->addExportType('*/*/exportCsv', Mage::helper('pdv')->__('CSV'));
         $this->addExportType('*/*/exportExcel', Mage::helper('pdv')->__('Excel XML'));
