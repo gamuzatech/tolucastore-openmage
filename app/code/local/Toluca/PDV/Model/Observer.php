@@ -328,5 +328,71 @@ class Toluca_PDV_Model_Observer
             $apiUser->getResource()->save($apiUser->setIsSystem(true));
         }
     }
+
+    public function mobileOrderApiDraftBefore ($observer)
+    {
+        $event = $observer->getEvent ();
+        $type  = $event->getType ();
+        $order = $event->getOrder ();
+        $item  = $event->getItem ();
+
+        $orderIsPdv = boolval ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV));
+
+        if (!$orderIsPdv)
+        {
+            return $this; // cancel
+        }
+
+        $orderPdvCashierId  = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID);
+        $orderPdvOperatorId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID);
+        $orderPdvCustomerId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID);
+        $orderPdvHistoryId  = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID);
+        $orderPdvSequenceId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_SEQUENCE_ID);
+        $orderPdvTableId    = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID);
+        $orderPdvCardId     = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CARD_ID);
+
+        $cashier = Mage::getModel ('pdv/cashier')->load ($orderPdvCashierId);
+        $operator = Mage::getModel ('pdv/operator')->load ($orderPdvOperatorId);
+        $customer = Mage::getModel ('customer/customer')->load ($orderPdvCustomerId);
+        $history = Mage::getModel ('pdv/history')->load ($orderPdvHistoryId);
+
+        $print = Mage::getModel ('pdv/print')
+            ->setTypeId ($type)
+            ->setCustomerId ($customer->getId ())
+            ->setHistoryId ($history->getId ())
+            ->setSequenceId ($orderPdvSequenceId)
+            ->setTableId ($orderPdvTableId)
+            ->setCardId ($orderPdvCardId)
+            ->setCashierId ($cashier->getId ())
+            ->setOperatorId ($operator->getId ())
+            ->setRemoteIp ($order->getRemoteIp ())
+            ->setCreatedAt (date ('c'))
+            ->save ()
+        ;
+
+        if ($order->getQuoteId () > 0)
+        {
+            $print->setOrderId ($order->getId ())
+                ->setQuoteId ($order->getQuoteId ())
+                ->setUpdatedAt (date ('c'))
+            ;
+        }
+        else
+        {
+            $print->setQuoteId ($order->getId ())
+                ->setUpdatedAt (date ('c'))
+            ;
+        }
+
+        if ($item && $item->getId () > 0)
+        {
+            $print->setItemId ($item->getId ())
+                ->setProductId ($item->getProductId ())
+                ->setUpdatedAt (date ('c'))
+            ;
+        }
+
+        $print->save ();
+    }
 }
 

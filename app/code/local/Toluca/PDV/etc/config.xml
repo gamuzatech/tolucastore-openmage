@@ -189,6 +189,15 @@
                     </pdv_install_installer_finish_after>
                 </observers>
             </basic_install_installer_finish_after>
+            <!-- Gamuza_Mobile -->
+            <mobile_order_api_draft_before>
+                <observers>
+                    <pdv_mobile_order_api_draft_before>
+                        <class>Toluca_PDV_Model_Observer</class>
+                        <method>mobileOrderApiDraftBefore</method>
+                    </pdv_mobile_order_api_draft_before>
+                </observers>
+            </mobile_order_api_draft_before>
         </events>
         <pdf>
             <history>

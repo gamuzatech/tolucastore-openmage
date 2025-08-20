@@ -133,6 +133,11 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 		    'header' => Mage::helper ('pdv')->__('Order Inc. ID'),
 		    'index'  => 'increment_id',
 		));
+		$this->addColumn ('item_id', array(
+		    'header'  => Mage::helper ('pdv')->__('Item ID'),
+		    'index'   => 'item_id',
+		    'type'    => 'number',
+		));
 		/*
 		$this->addColumn ('product_id', array(
 		    'header'  => Mage::helper ('pdv')->__('Product ID'),

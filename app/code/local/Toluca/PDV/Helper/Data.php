@@ -39,7 +39,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const LOG_TYPE_REFUND    = 'refund';
     const LOG_TYPE_CLOSE     = 'close';
 
-    const PRINT_TYPE_CASHIER = 'cashier';
+    const PRINT_TYPE_DRAFT   = 'draft';
     const PRINT_TYPE_KITCHEN = 'kitchen';
 
     const XML_PATH_GENERAL_STORE_INFORMATION_CODE = 'general/store_information/code';
