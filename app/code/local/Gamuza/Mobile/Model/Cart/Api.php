@@ -364,6 +364,8 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         $quote = $this->_getCustomerQuote ($code, $store);
 
+        Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $quote, 'type' => __FUNCTION__));
+
         $result = Mage::app ()
             ->getLayout ()
             ->createBlock ('mobile/adminhtml_order_draft')
@@ -392,6 +394,8 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             {
                 continue; // skip
             }
+
+            Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $quote, 'type' => __FUNCTION__, 'item' => $item));
 
             $html = Mage::app ()
                 ->getLayout ()

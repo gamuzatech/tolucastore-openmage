@@ -693,6 +693,8 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
 
         $order = $this->_initOrder($orderIncrementId, $orderProtectCode);
 
+        Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $order, 'type' => __FUNCTION__));
+
         $result = Mage::app ()
             ->getLayout ()
             ->createBlock ('mobile/adminhtml_order_draft')
@@ -732,6 +734,8 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             {
                 continue; // skip
             }
+
+            Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $order, 'type' => __FUNCTION__, 'item' => $item));
 
             $html = Mage::app ()
                 ->getLayout ()
