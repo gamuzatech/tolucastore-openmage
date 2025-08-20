@@ -59,6 +59,12 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_BOT_NOTIFICATION_ORDER = 'bot/notification/order';
 
+    public function getRemoteIp ()
+    {
+        return $_SERVER ['HTTP_X_REMOTE_IP'] ?? $_SERVER ['HTTP_X_LOCAL_IP']
+            ?? Mage::helper ('core/http')->getRemoteAddr (false);
+    }
+
     public function uniqid ()
     {
         return hash ('sha512', uniqid (rand (), true));

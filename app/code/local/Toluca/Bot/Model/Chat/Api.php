@@ -175,7 +175,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
         $shippingPostcode = preg_replace ('[\D]', null, Mage::getStoreConfig ('shipping/origin/postcode', $storeId));
 
-        $remoteIp = Mage::helper ('core/http')->getRemoteAddr (false);
+        $remoteIp = Mage::helper ('bot')->getRemoteIp ();
 
         if (!$collection->count ())
         {
