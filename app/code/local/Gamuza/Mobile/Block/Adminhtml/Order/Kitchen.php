@@ -69,7 +69,7 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Kitchen
 
         foreach ($this->getOrder ()->getAllVisibleItems () as $item)
         {
-            if ($this->getSku () && $this->getSku () != $item->getSku ())
+            if ($this->getItem () && $this->getItem ()->getId () != $item->getId ())
             {
                 continue; // skip
             }

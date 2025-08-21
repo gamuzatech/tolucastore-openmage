@@ -402,7 +402,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                 ->createBlock ('mobile/adminhtml_order_kitchen')
                 ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
                 ->setOrder ($quote)
-                ->setSku ($item->getSku ())
+                ->setItem ($item)
                 ->setTemplate ('gamuza/mobile/order/kitchen.phtml')
                 ->toHtml ();
 

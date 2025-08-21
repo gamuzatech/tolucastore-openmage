@@ -742,7 +742,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
                 ->createBlock ('mobile/adminhtml_order_kitchen')
                 ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
                 ->setOrder ($order)
-                ->setSku ($item->getSku ())
+                ->setItem ($item)
                 ->setTemplate ('gamuza/mobile/order/kitchen.phtml')
                 ->toHtml ();
 
