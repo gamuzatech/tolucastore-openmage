@@ -45,15 +45,15 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Kitchen
 
                     break;
                 }
-                case 'freeshipping':
-                {
-                    $result = Mage::helper ('basic')->__('Shipping');
-
-                    break;
-                }
                 case 'pickup':
                 {
                     $result = Mage::helper ('basic')->__('Pickup');
+
+                    break;
+                }
+                default:
+                {
+                    $result = Mage::helper ('basic')->__('Shipping');
 
                     break;
                 }
