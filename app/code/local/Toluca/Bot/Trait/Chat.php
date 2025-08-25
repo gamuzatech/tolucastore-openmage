@@ -41,13 +41,13 @@ trait Toluca_Bot_Trait_Chat
 
         $jsonData = json_decode ($rawData, true);
 
-        $result = Mage::getModel ('bot/chat_api')->message(
+        $result = array ('result' => Mage::getModel ('bot/chat_api')->message(
             $jsonData ['botType'],
             $jsonData ['from'],
             $jsonData ['to'],
             $jsonData ['senderName'],
             $jsonData ['senderMessage'],
-        );
+        ));
 
         $this->getResponse()
             ->clearHeaders ()

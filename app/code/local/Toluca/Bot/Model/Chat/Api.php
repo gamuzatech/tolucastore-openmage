@@ -116,7 +116,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 /*
         if (strpos ($to, $this->_phone) === false)
         {
-            return array ('result' => '[ WRONG NUMBER ]');
+            return array ('text' => '[ WRONG NUMBER ]');
         }
 */
         Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
@@ -253,7 +253,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
             $this->_saveMessage ($result, $chat);
 
-            return array ('result' => $result);
+            return array ('text' => $result);
         }
 
         $chat = $collection->getFirstItem ();
@@ -264,7 +264,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
         if ($chat->getIsMuted ())
         {
-            return array ('result' => '', 'muted' => 1);
+            return array ('text' => '', 'muted' => 1);
         }
 
         $body = Mage::helper ('core')->removeAccents ($senderMessage);
@@ -282,7 +282,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
             $this->_saveMessage ($result, $chat);
 
-            return array ('result' => $result, 'muted' => 1);
+            return array ('text' => $result, 'muted' => 1);
         }
 
         switch ($chat->getStatus ())
@@ -1219,7 +1219,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
 
         $this->_saveMessage ($result, $chat);
 
-        return array ('result' => $result);
+        return array ('text' => $result);
     }
 
     private function _saveMessage ($text, $chat, $type = Toluca_Bot_Helper_Data::MESSAGE_TYPE_ANSWER)
