@@ -1243,39 +1243,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    private function _getProductCollection ($storeId, $category)
-    {
-        $websiteId = Mage::app ()->getStore ($storeId)->getWebsite ()->getId ();
-
-        $collection = Mage::getModel ('catalog/product')->getCollection ()
-            ->addAttributeToSelect ('name')
-            ->addAttributeToSelect ('price')
-            ->addAttributeToSelect ('special_price')
-            ->addAttributeToSelect ('special_from_date')
-            ->addAttributeToSelect ('special_to_date')
-            ->addAttributeToSelect ('sku_position')
-            ->addAttributeToFilter ('type_id', array ('in' => array (
-                Mage_Catalog_Model_Product_Type::TYPE_SIMPLE,
-                Mage_Catalog_Model_Product_Type::TYPE_BUNDLE
-            )))
-            ->addCategoryFilter ($category)
-            ->setVisibility (Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
-            ->addFinalPrice ()
-        ;
-
-        $collection->getSelect ()
-            ->join(
-                array ('ciss' => Mage::getSingleton ('core/resource')->getTableName ('cataloginventory_stock_status')),
-                'e.entity_id = ciss.product_id AND ciss.stock_status = 1',
-                array ()
-            )
-            ->where ('ciss.website_id = ?', $websiteId)
-        ;
-
-        return $collection;
-    }
-
-    private function _getProductList ($storeId, $categoryId)
+    protected function _getProductList ($storeId, $categoryId)
     {
         $category = Mage::getModel ('catalog/category')->load ($categoryId);
 
@@ -1283,22 +1251,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
             . Mage::helper ('bot/message')->getEnterProductCodeToCartText () . PHP_EOL . PHP_EOL
         ;
 
-        $collection = $this->_getProductCollection ($storeId, $category);
-
-        foreach ($collection as $product)
-        {
-            $strLen = self::PRODUCT_ID_LENGTH - strlen ($product->getSkuPosition ());
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            if (!floatval ($product->getFinalPrice ()))
-            {
-                $product->setData ('final_price', $product->getData ('price'));
-            }
-
-            $productPrice = Mage::helper ('core')->currency ($product->getFinalPrice (), true, false);
-
-            $result .= sprintf ('*%s*%s%s *%s*', $product->getSkuPosition (), $strPad, $product->getName (), $productPrice) . PHP_EOL;
-        }
+        $result .= parent::_getProductList ($storeId, $categoryId);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeListToCategoriesText (self::COMMAND_ZERO);
 
