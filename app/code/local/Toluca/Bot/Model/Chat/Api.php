@@ -184,6 +184,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                 ->setIsActive (true)
                 ->setIsMultiShipping (false)
                 ->setRemoteIp ($remoteIp)
+                ->setCustomerCellphone ($from)
                 ->setCustomerFirstname ($senderName [0])
                 ->setCustomerLastname ($senderName [1])
                 ->setCustomerEmail (self::DEFAULT_CUSTOMER_EMAIL)
