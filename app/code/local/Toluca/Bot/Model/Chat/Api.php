@@ -1232,58 +1232,11 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         ;
     }
 
-    private function _getCategoryCollection ($storeId)
-    {
-        $websiteId = Mage::app ()->getStore ($storeId)->getWebsite ()->getId ();
-
-        $collection = Mage::getModel ('catalog/category')->getCollection ()
-            ->addIsActiveFilter ()
-            ->addNameToResult ()
-            ->addFieldToFilter ('level', array ('gteq' => '2'))
-        ;
-
-        $collection->getSelect ()
-            ->where ('main_table.is_active = 1')
-            ->group ('main_table.entity_id')
-            ->order ('main_table.position')
-            ->join(
-                array ('ccp' => Mage::getSingleton ('core/resource')->getTableName ('catalog_category_product')),
-                'main_table.entity_id = ccp.category_id',
-                array(
-                    'products_count' => 'COUNT(ccp.product_id)',
-                )
-            )
-            ->join(
-                array ('cpf' => Mage::getSingleton ('core/resource')->getTableName ('catalog_product_flat_' . $storeId)),
-                'ccp.product_id = cpf.entity_id',
-                array ()
-            )
-            ->where ('cpf.status = ?',     Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
-            ->where ('cpf.visibility = ?', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
-            ->join(
-                array ('ciss' => Mage::getSingleton ('core/resource')->getTableName ('cataloginventory_stock_status')),
-                'cpf.entity_id = ciss.product_id AND ciss.stock_status = 1',
-                array ()
-            )
-            ->where ('ciss.website_id = ?', $websiteId)
-        ;
-
-        return $collection;
-    }
-
-    private function _getCategoryList ($storeId)
+    protected function _getCategoryList ($storeId)
     {
         $result = Mage::helper ('bot/message')->getEnterCategoryCodeText () . PHP_EOL . PHP_EOL;
 
-        $collection = $this->_getCategoryCollection ($storeId);
-
-        foreach ($collection as $category)
-        {
-            $strLen = self::CATEGORY_ID_LENGTH - strlen ($category->getPosition ());
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            $result .= sprintf ('*%s*%s%s', $category->getPosition (), $strPad, $category->getName ()) . PHP_EOL;
-        }
+        $result .= parent::_getCategoryList ($storeId);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getEnterZapToAttendantText ();
 
