@@ -52,6 +52,22 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
     const STATUS_ORDER    = 'order';
     const STATUS_ZAP      = 'zap';
 
+    const CATEGORY_ID_LENGTH = 5;
+    const PRODUCT_ID_LENGTH  = 5;
+    const OPTION_ID_LENGTH   = 5;
+    const VALUE_ID_LENGTH    = 5;
+    const SHIPPING_ID_LENGTH = 5;
+    const PAYMENT_ID_LENGTH  = 5;
+    const CCTYPE_ID_LENGTH   = 5;
+    const QUANTITY_LENGTH    = 5;
+
+    const COMMAND_ZERO = '0';
+    const COMMAND_ONE  = '1';
+    const COMMAND_OK   = 'ok';
+
+    const DEFAULT_CUSTOMER_EMAIL  = 'store@toluca.com.br';
+    const DEFAULT_CUSTOMER_TAXVAT = '02788178824';
+
     const XML_PATH_BOT_INFORMATION_STORE_URL    = 'bot/information/store_url';
     const XML_PATH_BOT_INFORMATION_WHATSAPP_URL = 'bot/information/whatsapp_url';
 

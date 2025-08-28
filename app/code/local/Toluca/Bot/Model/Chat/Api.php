@@ -8,24 +8,8 @@
 /**
  * Chat API
  */
-class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
+class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    const CATEGORY_ID_LENGTH = 5;
-    const PRODUCT_ID_LENGTH  = 5;
-    const OPTION_ID_LENGTH   = 5;
-    const VALUE_ID_LENGTH    = 5;
-    const SHIPPING_ID_LENGTH = 5;
-    const PAYMENT_ID_LENGTH  = 5;
-    const CCTYPE_ID_LENGTH   = 5;
-    const QUANTITY_LENGTH    = 5;
-
-    const COMMAND_ZERO    = '0';
-    const COMMAND_ONE     = '1';
-    const COMMAND_OK      = 'ok';
-
-    const DEFAULT_CUSTOMER_EMAIL  = 'store@toluca.com.br';
-    const DEFAULT_CUSTOMER_TAXVAT = '02788178824';
-
     protected $_shippingMethods = array(
         '1' => 'pickup_store',
         '2' => 'eatin_local',
