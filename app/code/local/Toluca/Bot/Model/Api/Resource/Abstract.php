@@ -135,5 +135,78 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
         return $result;
     }
+
+    protected function _getBundleOptions ($productId)
+    {
+        $collection = Mage::getModel ('bundle/option')->getCollection ()
+            ->setProductIdFilter ($productId)
+            ->joinValues (Mage_Core_Model_App::ADMIN_STORE_ID)
+            ->setPositionOrder ()
+        ;
+
+        foreach ($collection as $option)
+        {
+            $strLen = self::OPTION_ID_LENGTH - strlen ($option->getPosition ());
+            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+            $required = $option->getRequired () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
+
+            $result .= sprintf ('*%s*%s%s%s', $option->getPosition (), $strPad, $option->getDefaultTitle (), $required) . PHP_EOL;
+        }
+
+        return $result;
+    }
+
+    protected function _getBundleSelections ($option)
+    {
+        $collection = Mage::getModel ('bundle/selection')->getCollection ()
+            ->addAttributeToFilter ('name', array ('notnull' => true))
+            ->addAttributeToSelect ('price')
+            ->setOptionIdsFilter ($option->getId ())
+            ->setPositionOrder ()
+        ;
+
+        foreach ($collection as $selection)
+        {
+            $strLen = self::VALUE_ID_LENGTH - strlen ($selection->getPosition ());
+            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+            $selectionPrice = Mage::helper ('core')->currency ($selection->getFinalPrice (), true, false);
+
+            $result .= sprintf ('*%s*%s%s *%s*', $selection->getPosition (), $strPad, $selection->getName (), $selectionPrice) . PHP_EOL;
+        }
+
+        return $result;
+    }
+
+    protected function _getProductOptions ($product)
+    {
+        foreach ($product->getOptions () as $option)
+        {
+            $strLen = self::OPTION_ID_LENGTH - strlen ($option->getSortOrder ());
+            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+            $require = $option->getIsRequire () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
+
+            $result .= sprintf ('*%s*%s%s%s', $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
+        }
+
+        return $result;
+    }
+
+    protected function _getProductValues ($option)
+    {
+        foreach ($option->getValues () as $value)
+        {
+            $strLen = self::VALUE_ID_LENGTH - strlen ($value->getSortOrder ());
+            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+            $valuePrice = Mage::helper ('core')->currency ($value->getPrice (), true, false);
+
+            $result .= sprintf ('*%s*%s%s *%s*', $value->getSortOrder (), $strPad, $value->getTitle (), $valuePrice) . PHP_EOL;
+        }
+
+        return $result;
+    }
 }
 

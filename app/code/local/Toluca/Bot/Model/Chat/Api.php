@@ -1258,34 +1258,20 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    private function _getBundleOptions ($productId)
+    protected function _getBundleOptions ($productId)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
         ;
 
-        $collection = Mage::getModel ('bundle/option')->getCollection ()
-            ->setProductIdFilter ($productId)
-            ->joinValues (Mage_Core_Model_App::ADMIN_STORE_ID)
-            ->setPositionOrder ()
-        ;
-
-        foreach ($collection as $option)
-        {
-            $strLen = self::OPTION_ID_LENGTH - strlen ($option->getPosition ());
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            $required = $option->getRequired () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
-
-            $result .= sprintf ('*%s*%s%s%s', $option->getPosition (), $strPad, $option->getDefaultTitle (), $required) . PHP_EOL;
-        }
+        $result .= parent::_getBundleOptions ($productId);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeCommandToContinueText (self::COMMAND_ZERO);
 
         return $result;
     }
 
-    private function _getBundleSelections ($option)
+    protected function _getBundleSelections ($option)
     {
         if (!strcmp ($option->getType (), 'checkbox'))
         {
@@ -1296,50 +1282,27 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
             $result = Mage::helper ('bot/message')->getEnterOneValueCodeToOptionText ($option->getTitle ()) . PHP_EOL . PHP_EOL;
         }
 
-        $collection = Mage::getModel ('bundle/selection')->getCollection ()
-            ->addAttributeToFilter ('name', array ('notnull' => true))
-            ->addAttributeToSelect ('price')
-            ->setOptionIdsFilter ($option->getId ())
-            ->setPositionOrder ()
-        ;
-
-        foreach ($collection as $selection)
-        {
-            $strLen = self::VALUE_ID_LENGTH - strlen ($selection->getPosition ());
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            $selectionPrice = Mage::helper ('core')->currency ($selection->getFinalPrice (), true, false);
-
-            $result .= sprintf ('*%s*%s%s *%s*', $selection->getPosition (), $strPad, $selection->getName (), $selectionPrice) . PHP_EOL;
-        }
+        $result .= parent::_getBundleSelections ($option);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeCommandToContinueText (self::COMMAND_ZERO);
 
         return $result;
     }
 
-    private function _getProductOptions ($product)
+    protected function _getProductOptions ($product)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
         ;
 
-        foreach ($product->getOptions () as $option)
-        {
-            $strLen = self::OPTION_ID_LENGTH - strlen ($option->getSortOrder ());
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            $require = $option->getIsRequire () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
-
-            $result .= sprintf ('*%s*%s%s%s', $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
-        }
+        $result .= parent::_getProductOptions ($product);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeCommandToContinueText (self::COMMAND_ZERO);
 
         return $result;
     }
 
-    private function _getProductValues ($option)
+    protected function _getProductValues ($option)
     {
         if (!strcmp ($option->getType (), 'checkbox'))
         {
@@ -1350,15 +1313,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
             $result = Mage::helper ('bot/message')->getEnterOneValueCodeToOptionText ($option->getTitle ()) . PHP_EOL . PHP_EOL;
         }
 
-        foreach ($option->getValues () as $value)
-        {
-            $strLen = self::VALUE_ID_LENGTH - strlen ($value->getSortOrder ());
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            $valuePrice = Mage::helper ('core')->currency ($value->getPrice (), true, false);
-
-            $result .= sprintf ('*%s*%s%s *%s*', $value->getSortOrder (), $strPad, $value->getTitle (), $valuePrice) . PHP_EOL;
-        }
+        $result .= parent::_getProductValues ($option);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeCommandToContinueText (self::COMMAND_ZERO);
 
