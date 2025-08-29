@@ -104,6 +104,18 @@
                     </list>
                 </methods>
             </bot_category>
+            <bot_product translate="title" module="bot">
+                <model>bot/product_api</model>
+                <title>Bot Product API</title>
+                <acl>bot/product</acl>
+                <methods>
+                    <list translate="title" module="bot">
+                        <title>List products from the bot</title>
+                        <acl>bot/product/list</acl>
+                        <method>items</method>
+                    </list>
+                </methods>
+            </bot_product>
         </resources>
         <acl>
             <resources>
@@ -146,6 +158,12 @@
                             <title>List categories from the bot</title>
                         </list>
                     </category>
+                    <product translate="title" module="bot">
+                        <title>Product</title>
+                        <list translate="title" module="bot">
+                            <title>List products from the bot</title>
+                        </list>
+                    </product>
                 </bot>
             </resources>
         </acl>
