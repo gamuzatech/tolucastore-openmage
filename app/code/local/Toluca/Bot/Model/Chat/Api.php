@@ -339,9 +339,9 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
                 $productId = intval ($body);
 
-                $category = Mage::getModel ('catalog/category')->load ($chat->getCategoryId ());
+                $categoryId = $chat->getCategoryId ();
 
-                $collection = $this->_getProductCollection ($storeId, $category)
+                $collection = $this->_getProductCollection ($storeId, $categoryId)
                     ->addAttributeToFilter ('sku_position', array ('eq' => $productId))
                 ;
 
