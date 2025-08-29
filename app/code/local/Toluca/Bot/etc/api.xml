@@ -114,6 +114,11 @@
                         <acl>bot/product/list</acl>
                         <method>items</method>
                     </list>
+                    <info translate="title" module="bot">
+                        <title>Info products from the bot</title>
+                        <acl>bot/product/info</acl>
+                        <method>info</method>
+                    </info>
                 </methods>
             </bot_product>
         </resources>
@@ -163,6 +168,9 @@
                         <list translate="title" module="bot">
                             <title>List products from the bot</title>
                         </list>
+                        <info translate="title" module="bot">
+                            <title>Info products from the bot</title>
+                        </info>
                     </product>
                 </bot>
             </resources>
