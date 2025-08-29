@@ -140,8 +140,10 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getBundleOptions ($productId)
+    protected function _getBundleOptions ($productId, $selections = false)
     {
+        $result = null;
+
         $collection = Mage::getModel ('bundle/option')->getCollection ()
             ->setProductIdFilter ($productId)
             ->joinValues (Mage_Core_Model_App::ADMIN_STORE_ID)
@@ -156,6 +158,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             $required = $option->getRequired () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
             $result .= sprintf ('*%s*%s%s%s', $option->getPosition (), $strPad, $option->getDefaultTitle (), $required) . PHP_EOL;
+
+            if ($selections)
+            {
+                $result .= PHP_EOL . $this->_getBundleSelections ($option) . PHP_EOL;
+            }
         }
 
         return $result;
@@ -163,6 +170,8 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
     protected function _getBundleSelections ($option)
     {
+        $result = null;
+
         $collection = Mage::getModel ('bundle/selection')->getCollection ()
             ->addAttributeToFilter ('name', array ('notnull' => true))
             ->addAttributeToSelect ('price')
@@ -183,8 +192,10 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getProductOptions ($productId)
+    protected function _getProductOptions ($productId, $values = false)
     {
+        $result = null;
+
         $product = Mage::getModel ('catalog/product')->load ($productId);
 
         foreach ($product->getOptions () as $option)
@@ -195,6 +206,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             $require = $option->getIsRequire () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
             $result .= sprintf ('*%s*%s%s%s', $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
+
+            if ($values)
+            {
+                $result .= PHP_EOL . $this->_getProductValues ($option) . PHP_EOL;
+            }
         }
 
         return $result;
@@ -202,6 +218,8 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
     protected function _getProductValues ($option)
     {
+        $result = null;
+
         foreach ($option->getValues () as $value)
         {
             $strLen = self::VALUE_ID_LENGTH - strlen ($value->getSortOrder ());
