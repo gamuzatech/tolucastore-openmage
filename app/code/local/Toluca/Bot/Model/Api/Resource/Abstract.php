@@ -67,6 +67,8 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
     protected function _getCategoryList ($storeId)
     {
+        $result = null;
+
         $collection = $this->_getCategoryCollection ($storeId);
 
         foreach ($collection as $category)
@@ -80,9 +82,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getProductCollection ($storeId, $category)
+    protected function _getProductCollection ($storeId, $categoryId)
     {
         $websiteId = Mage::app ()->getStore ($storeId)->getWebsite ()->getId ();
+
+        $category = Mage::getModel ('catalog/category')->load ($categoryId);
 
         $collection = Mage::getModel ('catalog/product')->getCollection ()
             ->addAttributeToSelect ('name')
@@ -114,9 +118,9 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
     protected function _getProductList ($storeId, $categoryId)
     {
-        $category = Mage::getModel ('catalog/category')->load ($categoryId);
+        $result = null;
 
-        $collection = $this->_getProductCollection ($storeId, $category);
+        $collection = $this->_getProductCollection ($storeId, $categoryId);
 
         foreach ($collection as $product)
         {
