@@ -183,8 +183,10 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getProductOptions ($product)
+    protected function _getProductOptions ($productId)
     {
+        $product = Mage::getModel ('catalog/product')->load ($productId);
+
         foreach ($product->getOptions () as $option)
         {
             $strLen = self::OPTION_ID_LENGTH - strlen ($option->getSortOrder ());
