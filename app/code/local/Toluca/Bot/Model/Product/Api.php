@@ -26,5 +26,27 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
         return $result;
     }
+
+    public function info ($productId)
+    {
+        $result = null;
+
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId    = Mage::app ()->getStore ()->getId ();
+        $categoryId = Mage::app ()->getStore ()->getRootCategoryId ();
+
+        $collection = $this->_getProductCollection ($storeId, $categoryId);
+
+        $collection->addAttributeToFilter ('sku_position', array ('eq' => $productId));
+
+        $productId = $collection->getFirstItem ()->getId ();
+
+        $result .= $this->_getBundleOptions ($productId, true);
+
+        $result .= $this->_getProductOptions ($productId, true);
+
+        return $result;
+    }
 }
 

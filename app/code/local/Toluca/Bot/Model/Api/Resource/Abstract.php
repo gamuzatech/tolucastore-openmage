@@ -268,6 +268,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             $required = $option->getRequired () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
             $result .= sprintf ('*%s*%s%s%s', $option->getPosition (), $strPad, $option->getDefaultTitle (), $required) . PHP_EOL;
+
+            if ($selections)
+            {
+                $result .= PHP_EOL . $this->_getBundleSelections ($option) . PHP_EOL;
+            }
         }
 
         return $result;
@@ -304,7 +309,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getProductOptions ($productId)
+    protected function _getProductOptions ($productId, $values = false)
     {
         $result = null;
 
@@ -318,6 +323,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             $require = $option->getIsRequire () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
             $result .= sprintf ('*%s*%s%s%s', $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
+
+            if ($values)
+            {
+                $result .= PHP_EOL . $this->_getProductValues ($option) . PHP_EOL;
+            }
         }
 
         return $result;
