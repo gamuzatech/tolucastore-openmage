@@ -373,7 +373,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
                     if (!empty ($product->getOptions ()))
                     {
-                        $result = $this->_getProductOptions ($product);
+                        $result = $this->_getProductOptions ($product->getId ());
 
                         $chat->setStatus (Toluca_Bot_Helper_Data::STATUS_OPTION)
                             ->setUpdatedAt (date ('c'))
@@ -442,7 +442,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
                     if (!empty ($product->getOptions ()))
                     {
-                        $result = $this->_getProductOptions ($product);
+                        $result = $this->_getProductOptions ($product->getId ());
 
                         $chatStatus = Toluca_Bot_Helper_Data::STATUS_OPTION;
                     }
@@ -600,7 +600,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
                 {
                     $product = Mage::getModel ('catalog/product')->load ($chat->getProductId ());
 
-                    $result = $this->_getProductOptions ($product);
+                    $result = $this->_getProductOptions ($product->getId ());
                 }
 
                 break;
@@ -629,7 +629,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
                 {
                     $product = Mage::getModel ('catalog/product')->load ($chat->getProductId ());
 
-                    $result = $this->_getProductOptions ($product);
+                    $result = $this->_getProductOptions ($product->getId ());
 
                     $productOptions = json_decode ($chat->getOptions (), true);
 
@@ -1289,13 +1289,13 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    protected function _getProductOptions ($product)
+    protected function _getProductOptions ($productId)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
         ;
 
-        $result .= parent::_getProductOptions ($product);
+        $result .= parent::_getProductOptions ($productId);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeCommandToContinueText (self::COMMAND_ZERO);
 
