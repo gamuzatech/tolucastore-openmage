@@ -339,9 +339,9 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
                 $productId = intval ($body);
 
-                $categoryId = $chat->getCategoryId ();
+                $category = Mage::getModel ('catalog/category')->load ($chat->getCategoryId ());
 
-                $collection = $this->_getProductCollection ($storeId, $categoryId)
+                $collection = $this->_getProductCollection ($storeId, $category->getId ())
                     ->addAttributeToFilter ('sku_position', array ('eq' => $productId))
                 ;
 
@@ -1258,7 +1258,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    protected function _getBundleOptions ($productId, $selections = false)
+    protected function _getBundleOptions ($productId)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
@@ -1289,7 +1289,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    protected function _getProductOptions ($productId, $values = false)
+    protected function _getProductOptions ($productId)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
