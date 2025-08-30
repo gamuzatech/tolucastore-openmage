@@ -140,13 +140,22 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getBundleOptions ($productId)
+    protected function _getBundleOptionsCollection ($productId)
     {
         $collection = Mage::getModel ('bundle/option')->getCollection ()
             ->setProductIdFilter ($productId)
             ->joinValues (Mage_Core_Model_App::ADMIN_STORE_ID)
             ->setPositionOrder ()
         ;
+
+        return $collection;
+    }
+
+    protected function _getBundleOptions ($productId)
+    {
+        $result = null;
+
+        $collection = $this->_getBundleOptionsCollection ($productId);
 
         foreach ($collection as $option)
         {
@@ -161,7 +170,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getBundleSelections ($option)
+    protected function _getBundleSelectionsCollection ($option)
     {
         $collection = Mage::getModel ('bundle/selection')->getCollection ()
             ->addAttributeToFilter ('name', array ('notnull' => true))
@@ -169,6 +178,15 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             ->setOptionIdsFilter ($option->getId ())
             ->setPositionOrder ()
         ;
+
+        return $collection;
+    }
+
+    protected function _getBundleSelections ($option)
+    {
+        $result = null;
+
+        $collection = $this->_getBundleSelectionsCollection ($option);
 
         foreach ($collection as $selection)
         {
@@ -185,6 +203,8 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
     protected function _getProductOptions ($productId)
     {
+        $result = null;
+
         $product = Mage::getModel ('catalog/product')->load ($productId);
 
         foreach ($product->getOptions () as $option)
@@ -202,6 +222,8 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
     protected function _getProductValues ($option)
     {
+        $result = null;
+
         foreach ($option->getValues () as $value)
         {
             $strLen = self::VALUE_ID_LENGTH - strlen ($value->getSortOrder ());
