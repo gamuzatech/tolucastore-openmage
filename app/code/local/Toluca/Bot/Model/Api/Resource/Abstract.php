@@ -129,6 +129,115 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $message;
     }
 
+    protected function _getQuote ($botType, $from, $to, $senderName, $senderMessage)
+    {
+        $from = preg_replace ('[\D]', null, $from);
+        $to   = preg_replace ('[\D]', null, $to);
+/*
+        if (strpos ($to, $this->_phone) === false)
+        {
+            return array ('text' => '[ WRONG NUMBER ]');
+        }
+*/
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId = Mage::app ()->getStore ()->getId ();
+
+        if (!empty ($senderName))
+        {
+             $senderName = explode (' ', $senderName, 2);
+        }
+
+        if (is_array ($senderName) && count ($senderName) == 1)
+        {
+            $senderName [1] = '------';
+        }
+
+        if (!$senderName || !is_array ($senderName) || count ($senderName) != 2)
+        {
+            $senderName = array(
+                0 => Mage::helper ('bot')->__('Firstname'),
+                1 => Mage::helper ('bot')->__('Lastname'),
+            );
+        }
+
+        $shippingPostcode = preg_replace ('[\D]', null, Mage::getStoreConfig ('shipping/origin/postcode', $storeId));
+
+        $remoteIp = Mage::helper ('bot')->getRemoteIp ();
+
+        $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active', array ('eq' => '1'))
+            ->addFieldToFilter ('store_id',  array ('eq' => $storeId))
+            ->addFieldToFilter ('customer_cellphone', array ('eq' => $from))
+            ->addFieldToFilter ('customer_group_id',  array ('eq' => '0'))
+            ->addFieldToFilter ('customer_is_guest',  array ('eq' => '1'))
+            ->addFieldToFilter (Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_IS_BOT, array ('eq' => '1'))
+            ->addFieldToFilter (Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_BOT_TYPE, array ('eq' => $botType))
+        ;
+
+        $collection->getSelect ()
+            ->order ('created_at DESC')
+            ->limit (1)
+        ;
+
+        $quote = $collection->getFirstItem ();
+
+        if (!$collection->count ())
+        {
+            $quote = Mage::getModel ('sales/quote')
+                ->setStoreId ($storeId)
+                ->setIsActive (true)
+                ->setIsMultiShipping (false)
+                ->setRemoteIp ($remoteIp)
+                ->setCustomerCellphone ($from)
+                ->setCustomerFirstname ($senderName [0])
+                ->setCustomerLastname ($senderName [1])
+                ->setCustomerEmail (self::DEFAULT_CUSTOMER_EMAIL)
+                ->setCustomerTaxvat (self::DEFAULT_CUSTOMER_TAXVAT)
+                ->save ()
+            ;
+
+            $customerData = array(
+                'mode'      => Mage_Checkout_Model_Type_Onepage::METHOD_GUEST,
+                'firstname' => $senderName [0],
+                'lastname'  => $senderName [1],
+                'email'     => self::DEFAULT_CUSTOMER_EMAIL,
+                'taxvat'    => self::DEFAULT_CUSTOMER_TAXVAT,
+            );
+
+            Mage::getModel ('checkout/cart_customer_api')->set ($quote->getId (), $customerData, $storeId);
+
+            $quote->setData (Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_IS_BOT, true)
+                ->setData (Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_BOT_TYPE, $botType)
+                ->setCustomerGroupId (0)
+                ->setCustomerIsGuest (1)
+                ->save ()
+            ;
+
+            Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
+                array(
+                    'mode'       => 'billing',
+                    'firstname'  => $senderName [0],
+                    'lastname'   => $senderName [1],
+                    'street'     => array (
+                        Mage::getStoreConfig ('shipping/origin/street_line1', $storeId),
+                        Mage::getStoreConfig ('shipping/origin/street_line2', $storeId),
+                        Mage::getStoreConfig ('shipping/origin/street_line3', $storeId),
+                        Mage::getStoreConfig ('shipping/origin/street_line4', $storeId),
+                    ),
+                    'city'       => Mage::getStoreConfig ('shipping/origin/city',      $storeId),
+                    'region'     => Mage::getStoreConfig ('shipping/origin/region_id', $storeId),
+                    'country_id' => Mage::getStoreConfig ('shipping/origin/country_id', $storeId),
+                    'postcode'   => $shippingPostcode,
+                    'cellphone'  => substr ($from, -13),
+                    'use_for_shipping' => 1,
+                )
+            ), $storeId);
+        }
+
+        return $quote;
+    }
+
     protected function _getCategoryCollection ($storeId)
     {
         $websiteId = Mage::app ()->getStore ($storeId)->getWebsite ()->getId ();
@@ -254,7 +363,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getBundleOptions ($productId)
+    protected function _getBundleOptions ($productId, $selections = false)
     {
         $result = null;
 
