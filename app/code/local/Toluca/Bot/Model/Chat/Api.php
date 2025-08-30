@@ -1258,7 +1258,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    protected function _getBundleOptions ($productId)
+    protected function _getBundleOptions ($productId, $selections = false)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
@@ -1289,7 +1289,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    protected function _getProductOptions ($productId)
+    protected function _getProductOptions ($productId, $values = false)
     {
         $result = Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL . PHP_EOL
             . Mage::helper ('bot/message')->getEnterProductOptionCodeText () . PHP_EOL . PHP_EOL
@@ -1316,93 +1316,6 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         $result .= parent::_getProductValues ($option);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeCommandToContinueText (self::COMMAND_ZERO);
-
-        return $result;
-    }
-
-    private function _getCartReview ($quoteId, $storeId)
-    {
-        $result = Mage::helper ('bot/message')->getThisIsYourShoppingCartText () . PHP_EOL . PHP_EOL;
-
-        $quote = Mage::getModel ('sales/quote')->load ($quoteId);
-
-        foreach ($quote->getAllVisibleItems () as $item)
-        {
-            $strLen = self::QUANTITY_LENGTH - strlen ($item ['qty'] . 'x');
-            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
-
-            $itemRowTotal = Mage::helper ('core')->currency ($item ['row_total'], true, false);
-
-            $result .= sprintf ('*%s*%s%s *%s*', $item ['qty'] . 'x', $strPad, $item ['name'], $itemRowTotal) . PHP_EOL . PHP_EOL;
-
-            $itemBundleOption = $item->getBuyRequest ()->getData ('bundle_option');
-
-            foreach ($itemBundleOption as $itemBundleOptionId => $itemBundleOptionValues)
-            {
-                if (strcmp ($item->getProduct ()->getTypeId (), Mage_Catalog_Model_Product_Type::TYPE_BUNDLE) != 0)
-                {
-                    break;
-                }
-
-                $itemBundleOptionCollection = $item->getProduct ()->getTypeInstance (true)->getOptionsCollection ($item->getProduct ());
-
-                foreach ($itemBundleOptionCollection as $option)
-                {
-                    if ($option->getId () == $itemBundleOptionId)
-                    {
-                        $result .= sprintf ('*%s*: ', $option->getDefaultTitle ());
-
-                        $itemBundleSelectionsTitles = array ();
-
-                        $itemBundleSelectionsCollection = $item->getProduct ()->getTypeInstance (true)->getSelectionsCollection (array ($option->getId ()), $item->getProduct ());
-
-                        foreach ($itemBundleSelectionsCollection as $selection)
-                        {
-                            if (in_array ($selection->getSelectionId (), $itemBundleOptionValues))
-                            {
-                                $selectionPrice = Mage::helper ('core')->currency ($selection->getPrice (), true, false);
-
-                                $itemBundleSelectionsTitles [] = sprintf ('%s *%s*', $selection->getName (), $selectionPrice);
-                            }
-                        }
-
-                        $result .= implode (', ', $itemBundleSelectionsTitles) . PHP_EOL . PHP_EOL;
-                    }
-                }
-            }
-
-            $itemOptions = $item->getBuyRequest ()->getData ('options');
-
-            foreach ($itemOptions as $itemOptionId => $itemOptionValues)
-            {
-                foreach ($item->getProduct ()->getOptions () as $option)
-                {
-                    if ($option->getOptionId () == $itemOptionId)
-                    {
-                        $result .= sprintf ('*%s*: ', $option->getDefaultTitle ());
-
-                        $itemOptionValuesTitles = array ();
-
-                        foreach ($option->getValues() as $value)
-                        {
-                            if (in_array ($value->getOptionTypeId (), $itemOptionValues))
-                            {
-                                $itemOptionValuesTitles [] = $value->getDefaultTitle ();
-                            }
-                        }
-
-                        $result .= implode (', ', $itemOptionValuesTitles) . PHP_EOL . PHP_EOL;
-                    }
-                }
-            }
-
-            $itemAdditionalOptions = $item->getBuyRequest ()->getData ('additional_options');
-
-            foreach ($itemAdditionalOptions as $additionalOption)
-            {
-                $result .= sprintf ('*%s*: %s', $additionalOption ['label'], $additionalOption ['value']) . PHP_EOL . PHP_EOL;
-            }
-        }
 
         return $result;
     }
