@@ -418,6 +418,17 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
+    protected function _getProductOptionsCollection ($productId, $storeId)
+    {
+        $collection = Mage::getModel ('catalog/product_option')->getCollection ()
+            ->addFieldToFilter ('main_table.product_id', array ('eq' => $productId))
+            ->addTitleToResult ($storeId)
+            // ->addValuesToResult ($storeId)
+        ;
+
+        return $collection;
+    }
+
     protected function _getProductOptions ($productId, $values = false)
     {
         $result = null;
@@ -440,6 +451,18 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         }
 
         return $result;
+    }
+
+    protected function _getProductValuesCollection ($option, $storeId)
+    {
+        $collection = Mage::getModel ('catalog/product_option_value')->getCollection ()
+            ->addTitleToResult ($storeId)
+            ->addPriceToResult ($storeId)
+            ->addOptionToFilter ($option->getId ())
+            // ->getValuesByOption ($matches [0])
+        ;
+
+        return $collection;
     }
 
     protected function _getProductValues ($option)

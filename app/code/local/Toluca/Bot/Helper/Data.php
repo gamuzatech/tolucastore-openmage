@@ -83,6 +83,19 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
             ?? Mage::helper ('core/http')->getRemoteAddr (false);
     }
 
+    public function headers ()
+    {
+        $result = array(
+            'botType'       => $_SERVER ['HTTP_X_BOT_TYPE'],
+            'from'          => $_SERVER ['HTTP_X_SENDER_FROM'],
+            'to'            => $_SERVER ['HTTP_X_SENDER_TO'],
+            'senderName'    => $_SERVER ['HTTP_X_SENDER_NAME'],
+            'senderMessage' => $_SERVER ['HTTP_X_SENDER_MESSAGE'],
+        );
+
+        return $result;
+    }
+
     public function uniqid ()
     {
         return hash ('sha512', uniqid (rand (), true));
