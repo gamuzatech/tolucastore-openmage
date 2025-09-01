@@ -121,6 +121,18 @@
                     </info>
                 </methods>
             </bot_product>
+            <bot_cart translate="title" module="bot">
+                <model>bot/cart_api</model>
+                <title>Bot Cart API</title>
+                <acl>bot/cart</acl>
+                <methods>
+                    <info translate="title" module="bot">
+                        <title>Info products from the bot</title>
+                        <acl>bot/cart/info</acl>
+                        <method>info</method>
+                    </info>
+                </methods>
+            </bot_cart>
             <bot_cart_product translate="title" module="bot">
                 <model>bot/cart_product_api</model>
                 <title>Bot Cart Product API</title>
@@ -184,6 +196,12 @@
                             <title>Info products from the bot</title>
                         </info>
                     </product>
+                    <cart translate="title" module="bot">
+                        <title>Cart</title>
+                        <info translate="title" module="bot">
+                            <title>Info products from the bot</title>
+                        </info>
+                    </cart>
                     <cart_product translate="title" module="bot">
                         <title>Cart Product</title>
                         <add translate="title" module="bot">

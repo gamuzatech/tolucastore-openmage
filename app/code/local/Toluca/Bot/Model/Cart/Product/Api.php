@@ -110,7 +110,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
         $productsData = array(
             array(
-                'product_id' => $productId,
+                'product_id'         => $productId,
                 'bundle_option'      => $bundleOptions,
                 'options'            => $customOptions,
                 'additional_options' => $additionalOptions,
