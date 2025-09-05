@@ -230,6 +230,23 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $history->setOrderAmount (floatval ($collection->getFirstItem ()->getSumBaseGrandTotal ()));
         }
 
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+
+        $print = Mage::getModel ('pdv/print')
+            ->setTypeId (Toluca_PDV_Helper_Data::PRINT_TYPE_CASHIER)
+            ->setCustomerId ($operator->getCustomerId ())
+            ->setQuoteId ($operator->getQuoteId ())
+            ->setHistoryId ($history->getId ())
+            ->setSequenceId ($cashier->getSequenceId ())
+            ->setTableId ($operator->getTableId ())
+            ->setCardId ($operator->getCardId ())
+            ->setCashierId ($cashier->getId ())
+            ->setOperatorId ($operator->getId ())
+            ->setRemoteIp ($remoteIp)
+            ->setCreatedAt (date ('c'))
+            ->save ()
+        ;
+
         $result = Mage::app ()
             ->getLayout ()
             ->createBlock ('pdv/adminhtml_cashier_draft')

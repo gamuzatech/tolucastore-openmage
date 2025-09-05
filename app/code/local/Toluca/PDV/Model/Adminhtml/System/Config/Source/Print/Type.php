@@ -20,6 +20,7 @@ class Toluca_PDV_Model_Adminhtml_System_Config_Source_Print_Type
         $result = array(
             array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_DRAFT,   'label' => Mage::helper ('pdv')->__('Draft')),
             array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_KITCHEN, 'label' => Mage::helper ('pdv')->__('Kitchen')),
+            array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_CASHIER, 'label' => Mage::helper ('pdv')->__('Cashier')),
         );
 
         return $result;
@@ -35,6 +36,7 @@ class Toluca_PDV_Model_Adminhtml_System_Config_Source_Print_Type
         $result = array(
             Toluca_PDV_Helper_Data::PRINT_TYPE_DRAFT   => Mage::helper ('pdv')->__('Draft'),
             Toluca_PDV_Helper_Data::PRINT_TYPE_KITCHEN => Mage::helper ('pdv')->__('Kitchen'),
+            Toluca_PDV_Helper_Data::PRINT_TYPE_CASHIER => Mage::helper ('pdv')->__('Cashier'),
         );
 
         return $result;
