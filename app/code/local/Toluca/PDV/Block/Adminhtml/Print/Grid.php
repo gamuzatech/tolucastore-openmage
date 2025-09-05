@@ -166,6 +166,12 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 			'index'  => 'remote_ip',
 			'filter_index' => 'main_table.remote_ip',
 		));
+		$this->addColumn ('job_id', array(
+			'header' => Mage::helper ('pdv')->__('Job ID'),
+			'align'   => 'right',
+			'index'  => 'job_id',
+			'type'    => 'number',
+		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('pdv')->__('Created At'),
 			'index'  => 'created_at',
