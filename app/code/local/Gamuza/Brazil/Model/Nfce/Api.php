@@ -1015,6 +1015,37 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
+    public function draft ($orderIncrementId, $orderProtectCode)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $nfce = $this->_initNFCe ($order);
+
+        if (!strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfce_already_canceled');
+        }
+
+        if (strcmp ($nfce->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED) != 0)
+        {
+            $this->_fault ('nfce_not_authorized');
+        }
+
+        Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $order, 'type' => 'nfce', 'nfce' => $nfce));
+
+        return $this->_getNFCe ($nfce);
+    }
+
     /**
      * Initialize order model
      *
