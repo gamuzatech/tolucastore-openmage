@@ -170,6 +170,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_ie_icms' => intval ($nfce->getCustomerIeIcms ()),
                 'observation'     => $nfce->getObservation (),
                 'fisco'           => $nfce->getFisco (),
+                'is_printed'      => boolval ($nfce->getIsPrinted ()),
                 'created_at'      => strval ($nfce->getCreatedAt ()),
                 'updated_at'      => $nfce->getUpdatedAt (),
                 'signed_at'       => $nfce->getSignedAt (),
