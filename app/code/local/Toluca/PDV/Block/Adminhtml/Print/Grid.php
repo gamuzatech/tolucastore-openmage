@@ -155,6 +155,11 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 		    'index'   => 'name',
 			'filter_index' => 'cpev.value',
 		));
+		$this->addColumn ('nfce_id', array(
+		    'header'  => Mage::helper ('pdv')->__('NFC-e ID'),
+		    'index'   => 'nfce_id',
+		    'type'    => 'number',
+		));
 		$this->addColumn ('qty_printed', array(
 		    'header'  => Mage::helper ('pdv')->__('Qty'),
 		    'align'   => 'right',

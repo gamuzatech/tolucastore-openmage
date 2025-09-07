@@ -42,6 +42,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const PRINT_TYPE_DRAFT   = 'draft';
     const PRINT_TYPE_KITCHEN = 'kitchen';
     const PRINT_TYPE_CASHIER = 'cashier';
+    const PRINT_TYPE_NFCE    = 'nfce';
 
     const XML_PATH_GENERAL_STORE_INFORMATION_CODE = 'general/store_information/code';
     const XML_PATH_GENERAL_STORE_INFORMATION_NAME = 'general/store_information/name';
