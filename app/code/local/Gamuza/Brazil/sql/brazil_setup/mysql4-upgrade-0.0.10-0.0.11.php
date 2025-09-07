@@ -271,6 +271,13 @@ SQLBLOCK;
             'comment'  => 'Correct ID',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'is_printed', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Is Printed',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => false,

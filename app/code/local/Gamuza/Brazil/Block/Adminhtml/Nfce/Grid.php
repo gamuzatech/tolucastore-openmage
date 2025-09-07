@@ -293,6 +293,13 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 			'index'  => 'fisco',
 		));
 */
+		$this->addColumn ('is_printed', array(
+			'header' => Mage::helper ('brazil')->__('Is Printed'),
+            'align'  => 'right',
+			'index'  => 'is_printed',
+			'type'   => 'options',
+			'options' => Mage::getModel ('adminhtml/system_config_source_yesno')->toArray (),
+		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('brazil')->__('Created At'),
 			'index'  => 'created_at',
