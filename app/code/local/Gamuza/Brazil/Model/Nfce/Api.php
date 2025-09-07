@@ -1042,7 +1042,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_not_authorized');
         }
 
-        Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $order, 'type' => 'nfce', 'nfce' => $nfce));
+        Mage::dispatchEvent ('brazil_nfce_api_draft_before', array ('order' => $order, 'type' => 'nfce', 'nfce' => $nfce));
 
         return $this->_getNFCe ($nfce);
     }

@@ -159,7 +159,7 @@
             <sales_order_invoice_pay>
                 <observers>
                     <pdv_sales_order_invoice_pay>
-                        <class>Toluca_PDV_Model_Observer</class>
+                        <class>pdv/observer</class>
                         <method>salesOrderInvoicePay</method>
                     </pdv_sales_order_invoice_pay>
                 </observers>
@@ -167,7 +167,7 @@
             <sales_order_creditmemo_refund>
                 <observers>
                     <pdv_sales_order_creditmemo_refund>
-                        <class>Toluca_PDV_Model_Observer</class>
+                        <class>pdv/observer</class>
                         <method>salesOrderCreditmemoRefund</method>
                     </pdv_sales_order_creditmemo_refund>
                 </observers>
@@ -184,16 +184,25 @@
             <basic_install_installer_finish_after>
                 <observers>
                     <pdv_install_installer_finish_after>
-                        <class>Toluca_PDV_Model_Observer</class>
+                        <class>pdv/observer</class>
                         <method>installInstallerFinishAfter</method>
                     </pdv_install_installer_finish_after>
                 </observers>
             </basic_install_installer_finish_after>
+            <!-- Gamuza_Brazil -->
+            <brazil_nfce_api_draft_before>
+                <observers>
+                    <pdv_brazil_nfce_api_draft_before>
+                        <class>pdv/observer</class>
+                        <method>mobileOrderApiDraftBefore</method>
+                    </pdv_brazil_nfce_api_draft_before>
+                </observers>
+            </brazil_nfce_api_draft_before>
             <!-- Gamuza_Mobile -->
             <mobile_order_api_draft_before>
                 <observers>
                     <pdv_mobile_order_api_draft_before>
-                        <class>Toluca_PDV_Model_Observer</class>
+                        <class>pdv/observer</class>
                         <method>mobileOrderApiDraftBefore</method>
                     </pdv_mobile_order_api_draft_before>
                 </observers>
