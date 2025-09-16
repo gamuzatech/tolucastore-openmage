@@ -275,6 +275,9 @@
             <city>
                 <validate>0</validate>
             </city>
+            <certificate>
+                <days_validate>14</days_validate>
+            </certificate>
             <setting>
                 <crt_id>4</crt_id>
                 <environment_id>2</environment_id>

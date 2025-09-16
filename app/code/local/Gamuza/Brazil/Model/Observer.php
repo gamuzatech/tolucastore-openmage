@@ -28,6 +28,7 @@ class Gamuza_Brazil_Model_Observer
                         'directory' => $certificateDirectory,
                         'filename'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME),
                         'password'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_PASSWORD),
+                        'days_validate' => Mage::getStoreConfigAsInt (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_DAYS_VALIDATE),
                     ),
                     'setting' => array(
                         'active'         => Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_ACTIVE),
