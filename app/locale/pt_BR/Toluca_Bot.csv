@@ -14,6 +14,8 @@
 "Example: Address Flowers 123 Zilda Village","Exemplo: Rua Flores 123 Vila Zilda"
 "Please enter the code of the delivery method:","Por favor digite o código da forma de entrega:"
 "No delivery method was found for your address!","Nenhuma forma de entrega foi encontrada para o seu endereço!"
+"Delivery method successfully set to your cart!","Método de entrega definido no carrinho com sucesso!"
+"It was not possible to set the delivery method to the cart!","Não foi possível definir o método de entrega no carrinho!"
 "Please enter the code of the payment method:","Por favor digite o código da forma de pagamento:"
 "No payment method was found for your address!","Nenhuma forma de pagamento foi encontrada para o seu endereço!"
 "Please enter *ok* to confirm your order:","Por favor digite *ok* para confirmar o seu pedido:"

@@ -145,6 +145,23 @@
                     </add>
                 </methods>
             </bot_cart_product>
+            <bot_cart_shipping translate="title" module="bot">
+                <model>bot/cart_shipping_api</model>
+                <title>Bot Cart Shipping API</title>
+                <acl>bot/cart_shipping</acl>
+                <methods>
+                    <list translate="title" module="bot">
+                        <title>List shippings from the bot</title>
+                        <acl>bot/cart_shipping/list</acl>
+                        <method>items</method>
+                    </list>
+                    <set translate="title" module="bot">
+                        <title>Set shipping method to the bot</title>
+                        <acl>bot/cart_shipping/set</acl>
+                        <method>set</method>
+                    </set>
+                </methods>
+            </bot_cart_shipping>
         </resources>
         <acl>
             <resources>
@@ -208,6 +225,15 @@
                             <title>Add products from the bot</title>
                         </add>
                     </cart_product>
+                    <cart_shipping translate="title" module="bot">
+                        <title>Cart Shipping</title>
+                        <list translate="title" module="bot">
+                            <title>List shippings from the bot</title>
+                        </list>
+                        <set translate="title" module="bot">
+                            <title>Set shipping method to the bot</title>
+                        </set>
+                    </cart_shipping>
                 </bot>
             </resources>
         </acl>
