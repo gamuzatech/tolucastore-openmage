@@ -91,7 +91,7 @@ class Gamuza_Mobile_Model_Cart_Shipping_Api extends Mage_Checkout_Model_Cart_Shi
         }
 
         $quoteShippingAddress->collectTotals ()->save ();
-        $quoteShippingAddress->setCollectShippingRates (true); // FORCE RELOAD
+        $quoteShippingAddress->setCollectShippingRates (true)->save (); // FORCE RELOAD
 
         try
         {
