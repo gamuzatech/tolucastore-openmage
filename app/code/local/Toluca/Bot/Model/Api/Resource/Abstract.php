@@ -26,6 +26,35 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
     const DEFAULT_CUSTOMER_EMAIL  = Toluca_Bot_Helper_Data::DEFAULT_CUSTOMER_EMAIL;
     const DEFAULT_CUSTOMER_TAXVAT = Toluca_Bot_Helper_Data::DEFAULT_CUSTOMER_TAXVAT;
 
+    protected $_shippingMethods = array(
+        '1' => 'pickup_store',
+        '2' => 'eatin_local',
+        '3' => 'freeshipping_freeshipping',
+        '4' => 'flatrate_flatrate',
+        '5' => 'tablerate_bestway',
+
+        '6'  => 'pedroteixeira_correios_10065',
+        '7'  => 'pedroteixeira_correios_04510',
+        '8'  => 'pedroteixeira_correios_04014',
+        '9'  => 'pedroteixeira_correios_40290',
+        '10' => 'pedroteixeira_correios_04162',
+
+        '11' => 'pedroteixeira_correios_04669',
+        '12' => 'pedroteixeira_correios_04693',
+        '13' => 'pedroteixeira_correios_40215',
+        '14' => 'pedroteixeira_correios_40045',
+    );
+
+    public function __construct ()
+    {
+        // parent::__construct ();
+
+        $this->_phone = preg_replace ('[\D]', null, Mage::getStoreConfig ('general/store_information/phone'));
+
+        $this->_productComment = Mage::getStoreConfigFlag ('bot/product/comment');
+        $this->_orderReview = Mage::getStoreConfigFlag ('bot/checkout/order_review');
+    }
+
     protected function _getCategoryCollection ($storeId)
     {
         $websiteId = Mage::app ()->getStore ($storeId)->getWebsite ()->getId ();
@@ -322,6 +351,19 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         }
 
         return $result;
+    }
+
+    protected function _getAllowedShipping ($shippingMethods, $shippingId)
+    {
+        foreach ($shippingMethods as $method)
+        {
+            if (!strcmp ($method ['code'], $this->_shippingMethods [$shippingId]))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
 

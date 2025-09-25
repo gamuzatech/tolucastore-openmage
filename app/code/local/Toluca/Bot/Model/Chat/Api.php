@@ -10,25 +10,6 @@
  */
 class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    protected $_shippingMethods = array(
-        '1' => 'pickup_store',
-        '2' => 'eatin_local',
-        '3' => 'freeshipping_freeshipping',
-        '4' => 'flatrate_flatrate',
-        '5' => 'tablerate_bestway',
-
-        '6'  => 'pedroteixeira_correios_10065',
-        '7'  => 'pedroteixeira_correios_04510',
-        '8'  => 'pedroteixeira_correios_04014',
-        '9'  => 'pedroteixeira_correios_40290',
-        '10' => 'pedroteixeira_correios_04162',
-
-        '11' => 'pedroteixeira_correios_04669',
-        '12' => 'pedroteixeira_correios_04693',
-        '13' => 'pedroteixeira_correios_40215',
-        '14' => 'pedroteixeira_correios_40045',
-    );
-
     protected $_paymentMethods = array(
         '1' => 'cashondelivery',
         '2' => 'machineondelivery',
@@ -82,16 +63,6 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         '10' => 'USDC',
         '11' => 'USDT',
     );
-
-    public function __construct ()
-    {
-        // parent::__construct ();
-
-        $this->_phone = preg_replace ('[\D]', null, Mage::getStoreConfig ('general/store_information/phone'));
-
-        $this->_productComment = Mage::getStoreConfigFlag ('bot/product/comment');
-        $this->_orderReview = Mage::getStoreConfigFlag ('bot/checkout/order_review');
-    }
 
     public function message ($botType, $from, $to, $senderName, $senderMessage)
     {
@@ -1192,7 +1163,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
                     $quote = Mage::getModel ('sales/quote')->load ($chat->getQuoteId ());
 
-                    if ($quote && $quote->getId ()) $quote->delete ();
+                    if ($quote && $quote->getId ()) $quote->delete (); // discard
                 }
                 else
                 {
@@ -1381,19 +1352,6 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         }
 
         return $result;
-    }
-
-    private function _getAllowedShipping ($shippingMethods, $shippingId)
-    {
-        foreach ($shippingMethods as $method)
-        {
-            if (!strcmp ($method ['code'], $this->_shippingMethods [$shippingId]))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private function _getAllowedPayment ($paymentMethods, $paymentId)
