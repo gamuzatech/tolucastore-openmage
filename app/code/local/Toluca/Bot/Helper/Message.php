@@ -17,6 +17,8 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const PRODUCT_NOT_ADDED_TO_CART  = 'product_not_added_to_cart';
     const ENTER_DELIVERY_METHOD      = 'enter_delivery_method';
     const NO_DELIVERY_METHOD_FOUND   = 'no_delivery_method_found';
+    const DELIVERY_METHOD_SET_TO_CART     = 'delivery_method_set_to_cart';
+    const DELIVERY_METHOD_NOT_SET_TO_CART = 'delivery_method_not_set_to_cart';
     const ENTER_PAYMENT_METHOD       = 'enter_payment_method';
     const NO_PAYMENT_METHOD_FOUND    = 'no_payment_method_found';
     const ENTER_TO_CONFIRM_ORDER     = 'enter_to_confirm_order';
@@ -78,6 +80,16 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     public function getNoDeliveryMethodFoundText ()
     {
         return $this->getText (self::NO_DELIVERY_METHOD_FOUND);
+    }
+
+    public function getDeliveryMethodSetToCartText ()
+    {
+        return $this->getText (self::DELIVERY_METHOD_SET_TO_CART);
+    }
+
+    public function getDeliveryMethodNotSetToCartText ()
+    {
+        return $this->getText (self::DELIVERY_METHOD_NOT_SET_TO_CART);
     }
 
     public function getEnterPaymentMethodText ()
@@ -209,6 +221,18 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
             case self::NO_DELIVERY_METHOD_FOUND:
             {
                 $result = $this->__('No delivery method was found for your address!');
+
+                break;
+            }
+            case self::DELIVERY_METHOD_SET_TO_CART:
+            {
+                $result = '*' . $this->__('Delivery method successfully set to your cart!') . '*';
+
+                break;
+            }
+            case self::DELIVERY_METHOD_NOT_SET_TO_CART:
+            {
+                $result = '*' . $this->__('It was not possible to set the delivery method to the cart!') . '*';
 
                 break;
             }
