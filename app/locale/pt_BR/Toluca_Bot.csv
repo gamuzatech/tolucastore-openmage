@@ -18,6 +18,8 @@
 "It was not possible to set the delivery method to the cart!","Não foi possível definir o método de entrega no carrinho!"
 "Please enter the code of the payment method:","Por favor digite o código da forma de pagamento:"
 "No payment method was found for your address!","Nenhuma forma de pagamento foi encontrada para o seu endereço!"
+"Payment method successfully set to your cart!","Método de pagamento definido no carrinho com sucesso!"
+"It was not possible to set the payment method to the cart!","Não foi possível definir o método de pagamento no carrinho!"
 "Please enter *ok* to confirm your order:","Por favor digite *ok* para confirmar o seu pedido:"
 "Your order number is *%s*","O número do seu pedido é *%s*"
 "Thank you for shopping at store *%s*!","Obrigado por comprar na loja *%s*!"

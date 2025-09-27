@@ -21,6 +21,8 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const DELIVERY_METHOD_NOT_SET_TO_CART = 'delivery_method_not_set_to_cart';
     const ENTER_PAYMENT_METHOD       = 'enter_payment_method';
     const NO_PAYMENT_METHOD_FOUND    = 'no_payment_method_found';
+    const PAYMENT_METHOD_SET_TO_CART     = 'payment_method_set_to_cart';
+    const PAYMENT_METHOD_NOT_SET_TO_CART = 'payment_method_not_set_to_cart';
     const ENTER_TO_CONFIRM_ORDER     = 'enter_to_confirm_order';
 
     const ENTER_CATEGORY_CODE        = 'enter_category_code';
@@ -100,6 +102,16 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     public function getNoPaymentMethodFoundText ()
     {
         return $this->getText (self::NO_PAYMENT_METHOD_FOUND);
+    }
+
+    public function getPaymentMethodSetToCartText ()
+    {
+        return $this->getText (self::PAYMENT_METHOD_SET_TO_CART);
+    }
+
+    public function getPaymentMethodNotSetToCartText ()
+    {
+        return $this->getText (self::PAYMENT_METHOD_NOT_SET_TO_CART);
     }
 
     public function getEnterToConfirmOrderText ()
@@ -245,6 +257,18 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
             case self::NO_PAYMENT_METHOD_FOUND:
             {
                 $result = $this->__('No payment method was found for your address!');
+
+                break;
+            }
+            case self::PAYMENT_METHOD_SET_TO_CART:
+            {
+                $result = '*' . $this->__('Payment method successfully set to your cart!') . '*';
+
+                break;
+            }
+            case self::PAYMENT_METHOD_NOT_SET_TO_CART:
+            {
+                $result = '*' . $this->__('It was not possible to set the payment method to the cart!') . '*';
 
                 break;
             }

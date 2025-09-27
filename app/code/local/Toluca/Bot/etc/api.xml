@@ -162,6 +162,23 @@
                     </set>
                 </methods>
             </bot_cart_shipping>
+            <bot_cart_payment translate="title" module="bot">
+                <model>bot/cart_payment_api</model>
+                <title>Bot Cart Payment API</title>
+                <acl>bot/cart_payment</acl>
+                <methods>
+                    <list translate="title" module="bot">
+                        <title>List payments from the bot</title>
+                        <acl>bot/cart_payment/list</acl>
+                        <method>items</method>
+                    </list>
+                    <set translate="title" module="bot">
+                        <title>Set payment method to the bot</title>
+                        <acl>bot/cart_payment/set</acl>
+                        <method>set</method>
+                    </set>
+                </methods>
+            </bot_cart_payment>
         </resources>
         <acl>
             <resources>
@@ -234,6 +251,15 @@
                             <title>Set shipping method to the bot</title>
                         </set>
                     </cart_shipping>
+                    <cart_payment translate="title" module="bot">
+                        <title>Cart Payment</title>
+                        <list translate="title" module="bot">
+                            <title>List payments from the bot</title>
+                        </list>
+                        <set translate="title" module="bot">
+                            <title>Set payment method to the bot</title>
+                        </set>
+                    </cart_payment>
                 </bot>
             </resources>
         </acl>
