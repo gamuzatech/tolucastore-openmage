@@ -131,6 +131,11 @@
                         <acl>bot/cart/info</acl>
                         <method>info</method>
                     </info>
+                    <review translate="title" module="bot">
+                        <title>Review products from the bot</title>
+                        <acl>bot/cart/review</acl>
+                        <method>review</method>
+                    </review>
                 </methods>
             </bot_cart>
             <bot_cart_product translate="title" module="bot">
@@ -235,6 +240,9 @@
                         <info translate="title" module="bot">
                             <title>Info products from the bot</title>
                         </info>
+                        <review translate="title" module="bot">
+                            <title>Review products from the bot</title>
+                        </review>
                     </cart>
                     <cart_product translate="title" module="bot">
                         <title>Cart Product</title>

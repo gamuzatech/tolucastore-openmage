@@ -35,5 +35,31 @@ class Toluca_Bot_Model_Cart_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
         return $result;
     }
+
+    public function review ()
+    {
+        $result = null;
+
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId = Mage::app ()->getStore ()->getId ();
+
+        $headers = Mage::helper ('bot')->headers ();
+
+        list ($botType, $from, $to, $senderName, $senderMessage) = array_values ($headers);
+
+        try
+        {
+            $quote = $this->_getQuote ($botType, $from, $to, $senderName, $senderMessage);
+
+            $result = $this->_getCheckoutReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL;
+        }
+        catch (Mage_Api_Exception $e)
+        {
+            $result = Mage::helper ('bot')->__('Obs: %s', $e->getCustomMessage ()) . PHP_EOL . PHP_EOL;
+        }
+
+        return $result;
+    }
 }
 
