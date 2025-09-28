@@ -19,9 +19,11 @@ class Toluca_Bot_Model_Adminhtml_System_Config_Source_Bot_Type
     public function toArray ()
     {
         $result = array(
-            Toluca_Bot_Helper_Data::BOT_TYPE_SIGNAL   => Mage::helper ('bot')->__('Signal'),
-            Toluca_Bot_Helper_Data::BOT_TYPE_TELEGRAM => Mage::helper ('bot')->__('Telegram'),
-            Toluca_Bot_Helper_Data::BOT_TYPE_WHATSAPP => Mage::helper ('bot')->__('WhatsApp'),
+            Toluca_Bot_Helper_Data::BOT_TYPE_ADMIN  => Mage::helper ('bot')->__('Admin'),
+            Toluca_Bot_Helper_Data::BOT_TYPE_URA    => Mage::helper ('bot')->__('U.R.A.'),
+            Toluca_Bot_Helper_Data::BOT_TYPE_OPENAI => Mage::helper ('bot')->__('OpenAI'),
+            Toluca_Bot_Helper_Data::BOT_TYPE_GEMINI => Mage::helper ('bot')->__('Gemini'),
+            Toluca_Bot_Helper_Data::BOT_TYPE_CLAUDE => Mage::helper ('bot')->__('Claude'),
         );
 
         return $result;

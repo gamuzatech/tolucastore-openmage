@@ -19,9 +19,11 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ATTRIBUTE_IS_ZAP = 'is_zap';
 
-    const BOT_TYPE_SIGNAL   = 'signal';
-    const BOT_TYPE_TELEGRAM = 'telegram';
-    const BOT_TYPE_WHATSAPP = 'whatsapp';
+    const BOT_TYPE_ADMIN  = 'admin';
+    const BOT_TYPE_URA    = 'ura';
+    const BOT_TYPE_OPENAI = 'openai';
+    const BOT_TYPE_GEMINI = 'gemini';
+    const BOT_TYPE_CLAUDE = 'claude';
 
     const MESSAGE_TYPE_QUESTION = 'question';
     const MESSAGE_TYPE_ANSWER   = 'answer';
