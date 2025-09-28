@@ -12,6 +12,7 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const BUY_THROUGH_THE_APP        = 'buy_through_the_app';
     const PLEASE_WAIT_AN_ATTENDANT   = 'please_wait_an_attendant';
     const PLEASE_ENTER_THE_ADDRESS   = 'please_enter_the_address';
+    const CUSTOMER_ADDRESS_SET_TO_CART = 'customer_address_set_to_cart';
     const ADD_COMMENT_FOR_PRODUCT    = 'add_comment_for_product';
     const PRODUCT_ADDED_TO_CART      = 'product_added_to_cart';
     const PRODUCT_NOT_ADDED_TO_CART  = 'product_not_added_to_cart';
@@ -57,6 +58,11 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     public function getPleaseEnterTheAddressText ()
     {
         return $this->getText (self::PLEASE_ENTER_THE_ADDRESS);
+    }
+
+    public function getCustomerAddressSetToCartText ()
+    {
+        return $this->getText (self::CUSTOMER_ADDRESS_SET_TO_CART);
     }
 
     public function getAddCommentForProductText ()
@@ -200,6 +206,12 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
                 $result = $this->__('Please enter the *street*, the *number* and the *district* where you live:') . PHP_EOL . PHP_EOL
                     . $this->__('Example: Address Flowers 123 Zilda Village')
                 ;
+
+                break;
+            }
+            case self::CUSTOMER_ADDRESS_SET_TO_CART:
+            {
+                $result = $this->__('Customer address successfully set to your cart!') . PHP_EOL . PHP_EOL;
 
                 break;
             }

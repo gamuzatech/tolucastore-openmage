@@ -155,6 +155,18 @@
                     </add>
                 </methods>
             </bot_cart_product>
+            <bot_cart_customer translate="title" module="bot">
+                <model>bot/cart_customer_api</model>
+                <title>Bot Cart Customer API</title>
+                <acl>bot/cart_customer</acl>
+                <methods>
+                    <address translate="title" module="bot">
+                        <title>Set customer address to the bot</title>
+                        <acl>bot/cart_customer/address</acl>
+                        <method>address</method>
+                    </address>
+                </methods>
+            </bot_cart_customer>
             <bot_cart_shipping translate="title" module="bot">
                 <model>bot/cart_shipping_api</model>
                 <title>Bot Cart Shipping API</title>
@@ -258,6 +270,12 @@
                             <title>Add products from the bot</title>
                         </add>
                     </cart_product>
+                    <cart_customer translate="title" module="bot">
+                        <title>Cart Customer</title>
+                        <address translate="title" module="bot">
+                            <title>Set customer address to the bot</title>
+                        </address>
+                    </cart_customer>
                     <cart_shipping translate="title" module="bot">
                         <title>Cart Shipping</title>
                         <list translate="title" module="bot">
