@@ -61,5 +61,45 @@ class Toluca_Bot_Model_Cart_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
         return $result;
     }
+
+    public function order ()
+    {
+        $result = null;
+
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId = Mage::app ()->getStore ()->getId ();
+
+        $headers = Mage::helper ('bot')->headers ();
+
+        list ($botType, $from, $to, $senderName, $senderMessage) = array_values ($headers);
+
+        Mage::app ()->getStore ()->setConfig (Mage_Checkout_Helper_Data::XML_PATH_GUEST_CHECKOUT, '1');
+
+        try
+        {
+            $quote = $this->_getQuote ($botType, $from, $to, $senderName, $senderMessage);
+
+            $incrementId = Mage::getModel ('checkout/cart_api')->createOrder ($quote->getId (), $storeId);
+
+            $storeName = Mage::getStoreConfig (Mage_Core_Model_Store::XML_PATH_STORE_STORE_NAME);
+
+            $order = Mage::getModel ('sales/order')->loadByIncrementId ($incrementId);
+
+            $result .= Mage::helper ('bot/message')->getYourOrderNumberText ($order) . PHP_EOL . PHP_EOL
+                . Mage::helper ('bot/message')->getOrderInformationText ($order)
+                . Mage::helper ('bot/message')->getThankYouForShoppingText ($storeName) . PHP_EOL . PHP_EOL
+                . Mage::helper ('bot/message')->getBuyThroughTheAppText ()
+            ;
+
+            $quote->delete (); // discard
+        }
+        catch (Mage_Api_Exception $e)
+        {
+            $result = Mage::helper ('bot')->__('Obs: %s', $e->getCustomMessage ()) . PHP_EOL . PHP_EOL;
+        }
+
+        return $result;
+    }
 }
 

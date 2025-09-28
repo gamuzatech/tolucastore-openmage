@@ -136,6 +136,11 @@
                         <acl>bot/cart/review</acl>
                         <method>review</method>
                     </review>
+                    <order translate="title" module="bot">
+                        <title>Create order from the bot</title>
+                        <acl>bot/cart/order</acl>
+                        <method>order</method>
+                    </order>
                 </methods>
             </bot_cart>
             <bot_cart_product translate="title" module="bot">
@@ -243,6 +248,9 @@
                         <review translate="title" module="bot">
                             <title>Review products from the bot</title>
                         </review>
+                        <order translate="title" module="bot">
+                            <title>Create order from the bot</title>
+                        </order>
                     </cart>
                     <cart_product translate="title" module="bot">
                         <title>Cart Product</title>
