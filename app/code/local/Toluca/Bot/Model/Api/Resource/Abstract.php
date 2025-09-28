@@ -45,6 +45,60 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         '14' => 'pedroteixeira_correios_40045',
     );
 
+    protected $_paymentMethods = array(
+        '1' => 'cashondelivery',
+        '2' => 'machineondelivery',
+        '3' => 'banktransfer',
+        '4' => 'checkmo',
+
+        '5' => 'gamuza_pagcripto_payment',
+        '6' => 'gamuza_picpay_payment',
+        '7' => 'gamuza_openpix_payment',
+
+        '8' => 'pagseguropro_boleto',
+
+        '9' => 'free',
+
+        '10' => 'gamuza_brazil_pix',
+    );
+
+    protected $_paymentCcTypes = array(
+        '1'  => 'AE',
+        '2'  => 'AL',
+        '3'  => 'AU',
+        '4'  => 'BC',
+        '5'  => 'CC',
+        '6'  => 'DC',
+        '7'  => 'DI',
+        '8'  => 'EC',
+        '9'  => 'ED',
+        '10' => 'ELO',
+        '11' => 'HI',
+        '12' => 'HC',
+        '13' => 'JCB',
+        '14' => 'MC',
+        '15' => 'SM',
+        '16' => 'SO',
+        '17' => 'TI',
+        '18' => 'VI',
+        '19' => 'VE',
+        '20' => 'VR',
+    );
+
+    protected $_paymentCriptoTypes = array(
+        '1'  => 'BCH',
+        '2'  => 'BNB',
+        '3'  => 'BUSD',
+        '4'  => 'BTC',
+        '5'  => 'DASH',
+        '6'  => 'DOGE',
+        '7'  => 'ETH',
+        '8'  => 'LTC',
+        '9'  => 'NANO',
+        '10' => 'USDC',
+        '11' => 'USDT',
+    );
+
     public function __construct ()
     {
         // parent::__construct ();
@@ -353,6 +407,69 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
+    protected function _getCheckoutReview ($quoteId, $storeId)
+    {
+        $result = $this->_getCartReview ($quoteId, $storeId);
+
+        $info = Mage::getModel ('checkout/cart_api')->info ($quoteId, $storeId);
+
+        $result .= sprintf ('*%s*: %s', Mage::helper ('bot')->__('Address'), implode (' ', explode ("\n", $info ['shipping_address']['street'])))
+            . PHP_EOL . PHP_EOL
+        ;
+
+        $shippingDescription = $info ['shipping_address']['shipping_description'];
+        $shippingAmount      = Mage::helper ('core')->currency ($info ['shipping_address']['shipping_amount'], true, false);
+
+        $result .= sprintf ('*%s*: %s *%s*', Mage::helper ('bot')->__('Shipping'), $shippingDescription, $shippingAmount)
+            . PHP_EOL . PHP_EOL
+        ;
+
+        $paymentMethod = $info ['payment']['method'];
+        $paymentTitle  = Mage::getStoreconfig ("payment/{$paymentMethod}/title", $storeId);
+
+        $grandTotal = Mage::helper ('core')->currency ($info ['shipping_address']['grand_total'], true, false);
+
+        $result .= sprintf ('*%s*: %s  *%s*', Mage::helper ('bot')->__('Payment'), $paymentTitle, $grandTotal)
+            . PHP_EOL . PHP_EOL
+        ;
+
+        switch ($paymentMethod)
+        {
+            case 'cashondelivery':
+            {
+                $paymentChange = $info ['payment']['additional_information']['change_type'];
+                $paymentCash   = $info ['payment']['additional_information']['cash_amount'];
+
+                $result .= Mage::helper ('bot/message')->getNeedChangeForMoneyText ($paymentChange, $paymentCash) . PHP_EOL . PHP_EOL;
+
+                break;
+            }
+            case 'machineondelivery':
+            {
+                $paymentCcType = $info ['payment']['cc_type'];
+
+                $result .= Mage::helper ('bot/message')->getCardTypeForMachineText ($paymentCcType) . PHP_EOL . PHP_EOL;
+
+                break;
+            }
+            case 'gamuza_pagcripto_payment':
+            {
+                $paymentCcType = $info ['payment']['cc_type'];
+
+                $result .= Mage::helper ('bot/message')->getCurrencyTypeForCriptoText ($paymentCcType) . PHP_EOL . PHP_EOL;
+
+                break;
+            }
+        }
+
+        if ($this->_orderReview)
+        {
+            $result .= Mage::helper ('bot/message')->getEnterToConfirmOrderText ();
+        }
+
+        return $result;
+    }
+
     protected function _getAllowedShipping ($shippingMethods, $shippingId)
     {
         foreach ($shippingMethods as $method)
@@ -364,6 +481,131 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         }
 
         return false;
+    }
+
+    protected function _getAllowedPayment ($paymentMethods, $paymentId)
+    {
+        foreach ($paymentMethods as $method)
+        {
+            if (!strcmp ($method ['code'], $this->_paymentMethods [$paymentId]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    protected function _getAllowedCcType ($paymentMethods, $paymentId)
+    {
+        foreach ($paymentMethods as $method)
+        {
+            if (!strcmp ($method ['code'], 'machineondelivery'))
+            {
+                foreach ($method ['cc_types'] as $id => $cctype)
+                {
+                    if (!strcmp ($id, $this->_paymentCcTypes [$paymentId]))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected function _getAllowedCriptoType ($paymentMethods, $paymentId)
+    {
+        foreach ($paymentMethods as $method)
+        {
+            if (!strcmp ($method ['code'], 'gamuza_pagcripto_payment'))
+            {
+                foreach ($method ['cc_types'] as $id => $cctype)
+                {
+                    if (!strcmp ($id, $this->_paymentCriptoTypes [$paymentId]))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    protected function _getCardList ($quoteId, $storeId)
+    {
+        $paymentMethods = Mage::getModel ('bot/checkout_cart_payment_api')->getPaymentMethodsList ($quoteId, $storeId);
+
+        foreach ($paymentMethods as $paymentId => $paymentValue)
+        {
+            if (!strcmp ($paymentValue ['code'], 'machineondelivery'))
+            {
+                foreach ($paymentValue ['cc_types'] as $id => $cctype)
+                {
+                    if (!in_array ($id, $this->_paymentCcTypes))
+                    {
+                        unset ($paymentValue ['cc_types'][$id]);
+                    }
+                }
+
+                $result = Mage::helper ('bot/message')->getChooseTypeOfCardText () . PHP_EOL . PHP_EOL;
+
+                foreach ($this->_paymentCcTypes as $id => $cctype)
+                {
+                    foreach ($paymentValue ['cc_types'] as $_id => $_cctype)
+                    {
+                        if (!strcmp ($cctype, $_id))
+                        {
+                            $strLen = self::CCTYPE_ID_LENGTH - strlen ($id);
+                            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+                            $result .= sprintf ("*%s*%s%s", $id, $strPad, $_cctype) . PHP_EOL;
+                        }
+                    }
+                }
+
+                return $result;
+            }
+        }
+    }
+
+    protected function _getCriptoList ($quoteId, $storeId)
+    {
+        $paymentMethods = Mage::getModel ('bot/checkout_cart_payment_api')->getPaymentMethodsList ($quoteId, $storeId);
+
+        foreach ($paymentMethods as $paymentId => $paymentValue)
+        {
+            if (!strcmp ($paymentValue ['code'], 'gamuza_pagcripto_payment'))
+            {
+                foreach ($paymentValue ['cc_types'] as $id => $cctype)
+                {
+                    if (!in_array ($id, $this->_paymentCriptoTypes))
+                    {
+                        unset ($paymentValue ['cc_types'][$id]);
+                    }
+                }
+
+                $result = Mage::helper ('bot/message')->getChooseTypeOfCriptoText () . PHP_EOL . PHP_EOL;
+
+                foreach ($this->_paymentCriptoTypes as $id => $cctype)
+                {
+                    foreach ($paymentValue ['cc_types'] as $_id => $_cctype)
+                    {
+                        if (!strcmp ($cctype, $_id))
+                        {
+                            $strLen = self::CCTYPE_ID_LENGTH - strlen ($id);
+                            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+                            $result .= sprintf ("*%s*%s%s", $id, $strPad, $_cctype) . PHP_EOL;
+                        }
+                    }
+                }
+
+                return $result;
+            }
+        }
     }
 }
 
