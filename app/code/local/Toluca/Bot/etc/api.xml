@@ -92,6 +92,18 @@
                     </message>
                 </methods>
             </bot_chat>
+            <bot_message translate="title" module="bot">
+                <model>bot/message_api</model>
+                <title>Bot Message API</title>
+                <acl>bot/message</acl>
+                <methods>
+                    <list translate="title" module="bot">
+                        <title>Get list of messages from the chat</title>
+                        <acl>bot/message/list</acl>
+                        <method>items</method>
+                    </list>
+                </methods>
+            </bot_message>
             <bot_category translate="title" module="bot">
                 <model>bot/category_api</model>
                 <title>Bot Category API</title>
@@ -237,6 +249,12 @@
                             <title>Send a message to the chat</title>
                         </message>
                     </chat>
+                    <message translate="title" module="bot">
+                        <title>Message</title>
+                        <list translate="title" module="bot">
+                            <title>Get list of messages from the chat</title>
+                        </list>
+                    </message>
                     <category translate="title" module="bot">
                         <title>Category</title>
                         <list translate="title" module="bot">
