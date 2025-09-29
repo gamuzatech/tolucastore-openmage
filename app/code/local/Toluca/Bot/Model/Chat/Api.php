@@ -1131,24 +1131,6 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return array ('text' => $result);
     }
 
-    private function _saveMessage ($text, $chat, $type = Toluca_Bot_Helper_Data::MESSAGE_TYPE_ANSWER)
-    {
-        $message = Mage::getModel ('bot/message')
-            ->setChatId ($chat->getId ())
-            ->setBotType ($chat->getTypeId ())
-            ->setTypeId ($type)
-            ->setRemoteIp ($chat->getRemoteIp ())
-            ->setEmail ($chat->getEmail ())
-            ->setNumber ($chat->getNumber ())
-            ->setPhone ($chat->getPhone ())
-            ->setFirstname ($chat->getFirstname ())
-            ->setLastname ($chat->getLastname ())
-            ->setMessage ($text)
-            ->setCreatedAt (date ('c'))
-            ->save ()
-        ;
-    }
-
     protected function _getCategoryList ($storeId)
     {
         $result = Mage::helper ('bot/message')->getEnterCategoryCodeText () . PHP_EOL . PHP_EOL;
