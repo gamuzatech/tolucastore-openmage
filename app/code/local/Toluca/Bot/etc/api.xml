@@ -102,6 +102,11 @@
                         <acl>bot/message/list</acl>
                         <method>items</method>
                     </list>
+                    <add translate="title" module="bot">
+                        <title>Add messages to the chat</title>
+                        <acl>bot/message/add</acl>
+                        <method>add</method>
+                    </add>
                 </methods>
             </bot_message>
             <bot_category translate="title" module="bot">
@@ -254,6 +259,9 @@
                         <list translate="title" module="bot">
                             <title>Get list of messages from the chat</title>
                         </list>
+                        <add translate="title" module="bot">
+                            <title>Add messages to the chat</title>
+                        </add>
                     </message>
                     <category translate="title" module="bot">
                         <title>Category</title>
