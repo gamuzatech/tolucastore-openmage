@@ -124,13 +124,18 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
         $storeId = Mage::app ()->getStore ()->getId ();
 
         $collection = Mage::getModel ('bot/chat')->getCollection ()
+            ->addFieldToFilter ('is_active', array ('eq' => true))
             ->addFieldToFilter ('store_id',  array ('eq' => $storeId))
             ->addFieldToFilter ('quote_id',  array ('gt' => 0))
+            /*
             ->addFieldToFilter ('order_id',  array ('eq' => 0))
+            */
             ->addFieldToFilter ('type_id',   array ('eq' => $botType))
             ->addFieldToFilter ('number',    array ('eq' => $from))
             ->addFieldToFilter ('phone',     array ('eq' => $to))
+            /*
             ->addFieldToFilter ('status',    array ('neq' => Toluca_Bot_Helper_Data::STATUS_ORDER))
+            */
         ;
 
         $collection->getSelect ()
@@ -193,6 +198,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
             ;
 
             $chat = Mage::getModel ('bot/chat')
+                ->setIsActive (true)
                 ->setTypeId ($botType)
                 ->setStoreId ($storeId)
                 ->setQuoteId ($quote->getId ())
@@ -1196,6 +1202,7 @@ class Toluca_Bot_Model_Chat_Api extends Mage_Api_Model_Resource_Abstract
                     $chat->setStatus (Toluca_Bot_Helper_Data::STATUS_ORDER)
                         ->setOrderId ($order->getId ())
                         ->setUpdatedAt (date ('c'))
+                        ->setIsActive (false)
                         ->save ()
                     ;
 

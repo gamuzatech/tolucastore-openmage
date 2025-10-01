@@ -172,6 +172,13 @@ SQLBLOCK;
             'comment'  => 'Is Notified',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'is_active', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Is Active',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DATETIME,
             'nullable' => false,

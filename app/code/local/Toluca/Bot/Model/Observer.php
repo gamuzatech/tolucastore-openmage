@@ -16,6 +16,7 @@ class Toluca_Bot_Model_Observer
     {
         /** @var $chats Toluca_Bot_Model_Mysql4_Chat_Collection */
         $chats = Mage::getModel('bot/chat')->getCollection()
+            ->addFieldToFilter('is_active', array ('eq' => true))
             ->addFieldToFilter('status', array ('neq' => Toluca_Bot_Helper_Data::STATUS_ORDER))
         ;
 

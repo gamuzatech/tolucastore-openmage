@@ -118,9 +118,17 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
 	        'type'    => 'options',
             'options' => Mage::getModel ('adminhtml/system_config_source_yesno')->toArray (),
 		));
+/*
 		$this->addColumn ('is_notified', array(
 		    'header'  => Mage::helper ('bot')->__('Is Notified'),
 		    'index'   => 'is_notified',
+	        'type'    => 'options',
+            'options' => Mage::getModel ('adminhtml/system_config_source_yesno')->toArray (),
+		));
+*/
+		$this->addColumn ('is_active', array(
+		    'header'  => Mage::helper ('bot')->__('Is Active'),
+		    'index'   => 'is_active',
 	        'type'    => 'options',
             'options' => Mage::getModel ('adminhtml/system_config_source_yesno')->toArray (),
 		));
