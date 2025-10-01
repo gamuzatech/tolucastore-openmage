@@ -92,6 +92,14 @@ class Toluca_Bot_Model_Cart_Api extends Toluca_Bot_Model_Api_Resource_Abstract
                 . Mage::helper ('bot/message')->getBuyThroughTheAppText ()
             ;
 
+            $chat = $this->_getChat ($botType, $from, $to, $senderName, $senderMessage);
+
+            $chat->setStatus (Toluca_Bot_Helper_Data::STATUS_ORDER)
+                ->setOrderId ($order->getId ())
+                ->setUpdatedAt (date ('c'))
+                ->save ()
+            ;
+
             $quote->delete (); // discard
         }
         catch (Mage_Api_Exception $e)

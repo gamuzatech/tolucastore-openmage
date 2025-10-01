@@ -129,6 +129,40 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $message;
     }
 
+    protected function _getChat ($botType, $from, $to, $senderName, $senderMessage)
+    {
+        $from = preg_replace ('[\D]', null, $from);
+        $to   = preg_replace ('[\D]', null, $to);
+/*
+        if (strpos ($to, $this->_phone) === false)
+        {
+            return array ('text' => '[ WRONG NUMBER ]');
+        }
+*/
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId = Mage::app ()->getStore ()->getId ();
+
+        $collection = Mage::getModel ('bot/chat')->getCollection ()
+            ->addFieldToFilter ('store_id',  array ('eq' => $storeId))
+            ->addFieldToFilter ('quote_id',  array ('gt' => 0))
+            ->addFieldToFilter ('order_id',  array ('eq' => 0))
+            ->addFieldToFilter ('type_id',   array ('eq' => $botType))
+            ->addFieldToFilter ('number',    array ('eq' => $from))
+            ->addFieldToFilter ('phone',     array ('eq' => $to))
+            ->addFieldToFilter ('status',    array ('neq' => Toluca_Bot_Helper_Data::STATUS_ORDER))
+        ;
+
+        $collection->getSelect ()
+            ->order ('created_at DESC')
+            ->limit (1)
+        ;
+
+        $chat = $collection->getFirstItem ();
+
+        return $chat;
+    }
+
     protected function _getQuote ($botType, $from, $to, $senderName, $senderMessage)
     {
         $from = preg_replace ('[\D]', null, $from);
