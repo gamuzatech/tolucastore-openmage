@@ -144,13 +144,18 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         $storeId = Mage::app ()->getStore ()->getId ();
 
         $collection = Mage::getModel ('bot/chat')->getCollection ()
+            ->addFieldToFilter ('is_active', array ('eq' => true))
             ->addFieldToFilter ('store_id',  array ('eq' => $storeId))
             ->addFieldToFilter ('quote_id',  array ('gt' => 0))
+            /*
             ->addFieldToFilter ('order_id',  array ('eq' => 0))
+            */
             ->addFieldToFilter ('type_id',   array ('eq' => $botType))
             ->addFieldToFilter ('number',    array ('eq' => $from))
             ->addFieldToFilter ('phone',     array ('eq' => $to))
+            /*
             ->addFieldToFilter ('status',    array ('neq' => Toluca_Bot_Helper_Data::STATUS_ORDER))
+            */
         ;
 
         $collection->getSelect ()
