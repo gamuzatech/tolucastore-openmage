@@ -218,6 +218,18 @@
                     </set>
                 </methods>
             </bot_cart_payment>
+            <bot_order translate="title" module="bot">
+                <model>bot/order_api</model>
+                <title>Bot Order API</title>
+                <acl>bot/order</acl>
+                <methods>
+                    <list translate="title" module="bot">
+                        <title>List orders from the bot</title>
+                        <acl>bot/order/list</acl>
+                        <method>items</method>
+                    </list>
+                </methods>
+            </bot_order>
         </resources>
         <acl>
             <resources>
@@ -320,6 +332,12 @@
                             <title>Set payment method to the bot</title>
                         </set>
                     </cart_payment>
+                    <order translate="title" module="bot">
+                        <title>Order</title>
+                        <list translate="title" module="bot">
+                            <title>List orders from the bot</title>
+                        </list>
+                    </order>
                 </bot>
             </resources>
         </acl>

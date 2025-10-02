@@ -60,6 +60,7 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
     const PAYMENT_ID_LENGTH  = 5;
     const CCTYPE_ID_LENGTH   = 5;
     const QUANTITY_LENGTH    = 5;
+    const ORDER_ID_LENGTH    = 20;
 
     const COMMAND_ZERO = '0';
     const COMMAND_ONE  = '1';

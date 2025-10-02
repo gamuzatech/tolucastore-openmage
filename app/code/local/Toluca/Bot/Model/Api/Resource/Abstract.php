@@ -18,6 +18,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
     const PAYMENT_ID_LENGTH  = Toluca_Bot_Helper_Data::PAYMENT_ID_LENGTH;
     const CCTYPE_ID_LENGTH   = Toluca_Bot_Helper_Data::CCTYPE_ID_LENGTH;
     const QUANTITY_LENGTH    = Toluca_Bot_Helper_Data::QUANTITY_LENGTH;
+    const ORDER_ID_LENGTH    = Toluca_Bot_Helper_Data::ORDER_ID_LENGTH;
 
     const COMMAND_ZERO = Toluca_Bot_Helper_Data::COMMAND_ZERO;
     const COMMAND_ONE  = Toluca_Bot_Helper_Data::COMMAND_ONE;
