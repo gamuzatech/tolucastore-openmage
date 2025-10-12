@@ -89,6 +89,12 @@ class Gamuza_Mobile_Model_Payment_Method_Cashondelivery extends Mage_Payment_Mod
 
             $info->setAdditionalInformation('change_amount', $cashAmount - $baseGrandTotal);
         }
+        else
+        {
+            $info->setAdditionalInformation('change_type',   0);
+            $info->setAdditionalInformation('cash_amount',   0);
+            $info->setAdditionalInformation('change_amount', 0);
+        }
 
         if($errorMsg)
         {
