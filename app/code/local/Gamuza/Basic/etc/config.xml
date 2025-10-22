@@ -718,6 +718,9 @@
             <product_image>
                 <use_original>1</use_original>
             </product_image>
+            <category>
+                <store_switcher_level>2</store_switcher_level>
+            </category>
             <search>
                 <search_type>3</search_type>
             </search>

@@ -32,11 +32,14 @@ class Gamuza_Basic_Block_Adminhtml_Store_Switcher_Category
      */
     public function getCategories()
     {
+        $storeSwitcherLevel = Mage::getStoreConfigAsInt('catalog/category/store_switcher_level');
+
         $result = array();
 
         $collection = Mage::getModel('catalog/category')->getCollection()
             ->addIsActiveFilter()
             ->addNameToResult()
+            ->addLevelFilter($storeSwitcherLevel)
             ->setOrder('level')
             ->setOrder('position');
 
