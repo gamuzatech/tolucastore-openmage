@@ -16,6 +16,7 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const ADD_COMMENT_FOR_PRODUCT    = 'add_comment_for_product';
     const PRODUCT_ADDED_TO_CART      = 'product_added_to_cart';
     const PRODUCT_NOT_ADDED_TO_CART  = 'product_not_added_to_cart';
+    const CUSTOMER_CART_DELETED      = 'customer_cart_deleted';
     const ENTER_DELIVERY_METHOD      = 'enter_delivery_method';
     const NO_DELIVERY_METHOD_FOUND   = 'no_delivery_method_found';
     const DELIVERY_METHOD_SET_TO_CART     = 'delivery_method_set_to_cart';
@@ -78,6 +79,11 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     public function getProductNotAddedToCartText ()
     {
         return $this->getText (self::PRODUCT_NOT_ADDED_TO_CART);
+    }
+
+    public function getCustomerCartDeletedText ()
+    {
+        return $this->getText (self::CUSTOMER_CART_DELETED);
     }
 
     public function getEnterDeliveryMethodText ()
@@ -233,6 +239,12 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
             case self::PRODUCT_NOT_ADDED_TO_CART:
             {
                 $result = '*' . $this->__('It was not possible to add the product to the cart!') . '*';
+
+                break;
+            }
+            case self::CUSTOMER_CART_DELETED:
+            {
+                $result = '*' . $this->__('Your shopping cart has been successfully emptied!') . '*';
 
                 break;
             }

@@ -158,6 +158,11 @@
                         <acl>bot/cart/order</acl>
                         <method>order</method>
                     </order>
+                    <clear translate="title" module="bot">
+                        <title>Clear products from the bot</title>
+                        <acl>bot/cart/clear</acl>
+                        <method>clear</method>
+                    </clear>
                 </methods>
             </bot_cart>
             <bot_cart_product translate="title" module="bot">
@@ -301,6 +306,9 @@
                         <order translate="title" module="bot">
                             <title>Create order from the bot</title>
                         </order>
+                        <clear translate="title" module="bot">
+                            <title>Clear products from the bot</title>
+                        </clear>
                     </cart>
                     <cart_product translate="title" module="bot">
                         <title>Cart Product</title>
