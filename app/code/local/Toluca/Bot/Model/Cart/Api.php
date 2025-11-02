@@ -62,7 +62,7 @@ class Toluca_Bot_Model_Cart_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    public function order ()
+    public function order ($shippingId = null, $paymentId = null)
     {
         $result = null;
 

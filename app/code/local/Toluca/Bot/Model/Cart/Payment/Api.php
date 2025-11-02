@@ -10,7 +10,7 @@
  */
 class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    public function items ()
+    public function items ($shippingId = null)
     {
         $result = null;
 
@@ -75,7 +75,7 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
         return $result;
     }
 
-    public function set ($paymentId, $paymentChange = null, $paymentCcTypeId = null, $paymentCriptoTypeId = null)
+    public function set ($paymentId, $paymentChange = null, $paymentCcTypeId = null, $paymentCriptoTypeId = null, $shippingId = null)
     {
         $result = null;
 

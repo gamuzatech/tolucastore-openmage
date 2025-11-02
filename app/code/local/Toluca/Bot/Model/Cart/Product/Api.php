@@ -127,6 +127,33 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
             Mage::getModel ('checkout/cart_product_api')->add ($quote->getId (), $productsData, $storeId);
 
+            $chat = $this->_getChat ($botType, $from, $to, $senderName, $senderMessage);
+
+            $chat->setStatus (Toluca_Bot_Helper_Data::STATUS_PRODUCT)
+                ->setProductId ($productId)
+                ->setSelections (new Zend_Db_Expr ('NULL'))
+                ->setOptions (new Zend_Db_Expr ('NULL'))
+                ->setComment (new Zend_Db_Expr ('NULL'))
+                ->setUpdatedAt (date ('c'))
+            ;
+
+            if (!empty($bundleOptions))
+            {
+                $chat->setSelections(json_encode($bundleOptions));
+            }
+
+            if (!empty($customOptions))
+            {
+                $chat->setOptions(json_encode($customOptions));
+            }
+
+            if (!empty($comment))
+            {
+                $chat->setComment($comment);
+            }
+
+            $chat->save ();
+
             $result = Mage::helper ('bot/message')->getProductAddedToCartText () . PHP_EOL . PHP_EOL
                 . $this->_getCartReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL
             ;

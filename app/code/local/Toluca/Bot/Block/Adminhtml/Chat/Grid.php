@@ -79,13 +79,17 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
             'type'    => 'options',
             'options' => $products,
 		));
-		$this->addColumn ('product_options', array(
-		    'header'  => Mage::helper ('bot')->__('Options'),
-		    'index'   => 'product_options',
+		$this->addColumn ('selections', array(
+		    'header'  => Mage::helper ('bot')->__('Selections'),
+		    'index'   => 'selections',
 		));
-		$this->addColumn ('product_comment', array(
+		$this->addColumn ('options', array(
+		    'header'  => Mage::helper ('bot')->__('Options'),
+		    'index'   => 'options',
+		));
+		$this->addColumn ('comment', array(
 		    'header'  => Mage::helper ('bot')->__('Comment'),
-		    'index'   => 'product_comment',
+		    'index'   => 'comment',
 		));
 		$this->addColumn ('number', array(
 		    'header'  => Mage::helper ('bot')->__('Number'),
