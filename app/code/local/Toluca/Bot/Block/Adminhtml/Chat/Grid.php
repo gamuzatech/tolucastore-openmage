@@ -63,6 +63,10 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
 		    'header'  => Mage::helper ('bot')->__('Phone'),
 		    'index'   => 'phone',
 		));
+		$this->addColumn ('quote_id', array(
+		    'header' => Mage::helper ('bot')->__('Cart'),
+		    'index'  => 'quote_id',
+		));
 		$this->addColumn ('increment_id', array(
 		    'header' => Mage::helper ('bot')->__('Order'),
 		    'index'  => 'increment_id',
