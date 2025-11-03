@@ -10,7 +10,7 @@
  */
 class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    public function items ()
+    public function items ($filters = null, $limit = 2)
     {
         $result = array ();
 
@@ -40,6 +40,23 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
             */
         ;
 
+        /** @var $apiHelper Mage_Api_Helper_Data */
+        $apiHelper = Mage::helper ('api');
+
+        $filters = $apiHelper->parseFilters ($filters, $this->_filtersMap);
+
+        try
+        {
+            foreach ($filters as $field => $value)
+            {
+                $collection->addFieldToFilter ($field, $value);
+            }
+        }
+        catch (Mage_Core_Exception $e)
+        {
+            $this->_fault ('filters_invalid', $e->getMessage ());
+        }
+
         $collection->getSelect ()
             ->order ('created_at DESC')
             ->limit (1)
@@ -51,6 +68,11 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
             $collection = Mage::getModel ('bot/message')->getCollection ()
                 ->addFieldToFilter ('chat_id', array ('eq' => $chat->getId ()))
+            ;
+
+            $collection->getSelect ()
+                ->order ('created_at DESC')
+                ->limit ($limit)
             ;
 
             foreach ($collection as $message)
