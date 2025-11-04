@@ -396,6 +396,16 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
         return $this->__('Or type *%s* to list the categories again:', $command);
     }
 
+    public function getCategoryInvalidIdOrNameText ($categoryId, $categoryName, $category)
+    {
+        return $this->__('Category ID *%s* has a different name *%s* ( received *%s* )', $categoryId, $category->getName (), $categoryName);
+    }
+
+    public function getProductInvalidIdOrNameText ($productId, $productName, $product)
+    {
+        return $this->__('Product ID *%s* has a different name *%s* ( received *%s* )', $productId, $product->getName (), $productName);
+    }
+
     public function getTypeClearToRestartText ($command)
     {
         return $this->__('Or type *%s* to clean your shopping cart:', $command);

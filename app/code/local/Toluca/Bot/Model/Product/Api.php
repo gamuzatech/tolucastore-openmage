@@ -20,9 +20,23 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
             ->addFieldToFilter ('main_table.position', array ('eq' => $categoryId))
         ;
 
-        $categoryId = $collection->getFirstItem ()->getId ();
+        $_categoryId = $collection->getFirstItem ()->getId ();
 
-        $result = $this->_getProductList ($storeId, $categoryId);
+        $_category = Mage::getModel ('catalog/category')->load ($_categoryId);
+
+        if ($_category && $_category->getId ())
+        {
+            if ($categoryName != null && !str_contains ($_category->getName (), $categoryName))
+            {
+                $result = Mage::helper ('bot/message')->getCategoryInvalidIdOrNameText ($categoryId, $categoryName, $_category) . PHP_EOL . PHP_EOL
+                    . Mage::helper ('bot/message')->getProductNotAddedToCartText () . PHP_EOL . PHP_EOL
+                ;
+
+                return $result;
+            }
+        }
+
+        $result = $this->_getProductList ($storeId, $_categoryId);
 
         return $result;
     }
@@ -40,11 +54,39 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
         $collection->addAttributeToFilter ('sku_position', array ('eq' => $productId));
 
-        $productId = $collection->getFirstItem ()->getId ();
+        $_productId = $collection->getFirstItem ()->getId ();
 
-        $result .= $this->_getBundleOptions ($productId, true);
+        $_product = Mage::getModel ('catalog/product')->load ($_productId);
 
-        $result .= $this->_getProductOptions ($productId, true);
+        if ($_product && $_product->getId ())
+        {
+            if ($productName != null && !str_contains ($_product->getName (), $productName))
+            {
+                $result = Mage::helper ('bot/message')->getProductInvalidIdOrNameText ($productId, $productName, $_product) . PHP_EOL . PHP_EOL
+                    . Mage::helper ('bot/message')->getProductNotAddedToCartText () . PHP_EOL . PHP_EOL
+                ;
+
+                return $result;
+            }
+
+            $strLen = self::PRODUCT_ID_LENGTH - strlen ($_product->getSkuPosition ());
+            $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
+
+            if (!floatval ($_product->getFinalPrice ()))
+            {
+                $_product->setData ('final_price', $_product->getData ('price'));
+            }
+
+            $productPrice = Mage::helper ('core')->currency ($_product->getFinalPrice (), true, false);
+
+            $result .= sprintf ('*%s*%s%s *%s*', $_product->getSkuPosition (), $strPad, $_product->getName (), $productPrice) . PHP_EOL . PHP_EOL
+                . $_product->getShortDescription () . PHP_EOL . PHP_EOL
+            ;
+        }
+
+        $result .= $this->_getBundleOptions ($_productId, true);
+
+        $result .= $this->_getProductOptions ($_productId, true);
 
         return $result;
     }

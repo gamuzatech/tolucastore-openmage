@@ -34,6 +34,8 @@
 "Buy also through the *Toluca Store* app at app.toluca.com.br","Compre também pelo app *Toluca Store* em app.toluca.com.br"
 "All right","Tudo bem"
 "Or type *%s* to list the categories again:","Ou digite *%s* para listar as categorias novamente:"
+"Category ID *%s* has a different name *%s* ( received *%s* )","Categoria ID *%s* tem outro nome *%s* ( recebido *%s* )"
+"Product ID *%s* has a different name *%s* ( received *%s* )","Produto ID *%s* tem outro nome *%s* ( recebido *%s* )"
 "Firstname","Nome"
 "Lastname","Sobrenome"
 "Or at any time enter *%s* to call the attendant.","Ou a qualquer momento digite *%s* para chamar o atendente."

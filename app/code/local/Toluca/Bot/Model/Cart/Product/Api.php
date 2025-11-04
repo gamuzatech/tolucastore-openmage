@@ -23,7 +23,21 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
             ->addAttributeToFilter ('sku_position', array ('eq' => $productId))
         ;
 
-        $productId = $collection->getFirstItem ()->getId ();
+        $_productId = $collection->getFirstItem ()->getId ();
+
+        $_product = Mage::getModel ('catalog/product')->load ($_productId);
+
+        if ($_product && $_product->getId ())
+        {
+            if ($productName != null && !str_contains ($_product->getName (), $productName))
+            {
+                $result = Mage::helper ('bot/message')->getProductInvalidIdOrNameText ($productId, $productName, $_product) . PHP_EOL . PHP_EOL
+                    . Mage::helper ('bot/message')->getProductNotAddedToCartText () . PHP_EOL . PHP_EOL
+                ;
+
+                return $result;
+            }
+        }
 
         $bundleOptions = null;
         $customOptions = null;
@@ -33,7 +47,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
         {
             foreach ($bundle as $bundleId => $selectionId)
             {
-                $bundleCollection = $this->_getBundleOptionsCollection ($productId)
+                $bundleCollection = $this->_getBundleOptionsCollection ($_productId)
                     ->addFieldToFilter ('main_table.position', array ('eq' => $bundleId))
                 ;
 
@@ -46,7 +60,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
                     $selectionCollection = $this->_getBundleSelectionsCollection ($option);
 
                     $selectionCollection->getSelect ()
-                        ->where ('selection.parent_product_id = ?', $productId)
+                        ->where ('selection.parent_product_id = ?', $_productId)
                         ->where ('selection.position IN (?)', $matches [0])
                         ->reset (Zend_Db_Select::COLUMNS)
                         ->columns (array(
@@ -67,7 +81,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
         {
             foreach ($options as $optionId => $valueId)
             {
-                $optionsCollection = $this->_getProductOptionsCollection ($productId, $storeId)
+                $optionsCollection = $this->_getProductOptionsCollection ($_productId, $storeId)
                     ->addFieldToFilter ('main_table.sort_order', array ('eq' => $optionId))
                 ;
 
@@ -110,7 +124,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
         $productsData = array(
             array(
-                'product_id'         => $productId,
+                'product_id'         => $_productId,
                 'bundle_option'      => $bundleOptions,
                 'options'            => $customOptions,
                 'additional_options' => $additionalOptions,
@@ -130,7 +144,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
             $chat = $this->_getChat ($botType, $from, $to, $senderName, $senderMessage);
 
             $chat->setStatus (Toluca_Bot_Helper_Data::STATUS_PRODUCT)
-                ->setProductId ($productId)
+                ->setProductId ($_productId)
                 ->setSelections (new Zend_Db_Expr ('NULL'))
                 ->setOptions (new Zend_Db_Expr ('NULL'))
                 ->setComment (new Zend_Db_Expr ('NULL'))
