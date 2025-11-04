@@ -67,7 +67,7 @@ class Toluca_Bot_Model_Cart_Shipping_Api extends Toluca_Bot_Model_Api_Resource_A
         return $result;
     }
 
-    public function set ($shippingId)
+    public function set ($shippingId, $shippingName = null)
     {
         $result = null;
 
