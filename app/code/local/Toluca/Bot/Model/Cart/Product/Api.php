@@ -31,11 +31,19 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
         {
             if ($productName != null && !str_contains ($_product->getName (), $productName))
             {
+                /*
                 $result = Mage::helper ('bot/message')->getProductInvalidIdOrNameText ($productId, $productName, $_product) . PHP_EOL . PHP_EOL
                     . Mage::helper ('bot/message')->getProductNotAddedToCartText () . PHP_EOL . PHP_EOL
                 ;
 
                 return $result;
+                */
+
+                $collection = $this->_getProductCollection ($storeId, $categoryId)
+                    ->addAttributeToFilter ('name', array ('like' => $productName . '%'))
+                ;
+
+                $_productId = $collection->getFirstItem ()->getId ();
             }
         }
 

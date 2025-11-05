@@ -28,11 +28,19 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
         {
             if ($categoryName != null && !str_contains ($_category->getName (), $categoryName))
             {
+                /*
                 $result = Mage::helper ('bot/message')->getCategoryInvalidIdOrNameText ($categoryId, $categoryName, $_category) . PHP_EOL . PHP_EOL
                     . Mage::helper ('bot/message')->getProductNotAddedToCartText () . PHP_EOL . PHP_EOL
                 ;
 
                 return $result;
+                */
+
+                $collection = $this->_getCategoryCollection ($storeId)
+                    ->addFieldToFilter ('main_table.name', array ('like' => $categoryName . '%'))
+                ;
+
+                $_categoryId = $collection->getFirstItem ()->getId ();
             }
         }
 
@@ -62,13 +70,26 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
         {
             if ($productName != null && !str_contains ($_product->getName (), $productName))
             {
+                /*
                 $result = Mage::helper ('bot/message')->getProductInvalidIdOrNameText ($productId, $productName, $_product) . PHP_EOL . PHP_EOL
                     . Mage::helper ('bot/message')->getProductNotAddedToCartText () . PHP_EOL . PHP_EOL
                 ;
 
                 return $result;
-            }
+                */
 
+                $collection = $this->_getProductCollection ($storeId, $categoryId)
+                    ->addAttributeToFilter ('name', array ('like' => $productName . '%'))
+                ;
+
+                $_productId = $collection->getFirstItem ()->getId ();
+
+                $_product = Mage::getModel ('catalog/product')->load ($_productId);
+            }
+        }
+
+        if ($_product && $_product->getId ())
+        {
             $strLen = self::PRODUCT_ID_LENGTH - strlen ($_product->getSkuPosition ());
             $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
 
