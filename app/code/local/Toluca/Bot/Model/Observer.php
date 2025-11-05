@@ -12,6 +12,26 @@ class Toluca_Bot_Model_Observer
 {
     const BOT_CHAT_LIFETIME = 86400;
 
+    public function basicMagentoApiInfo (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $info = $event->getInfo ();
+
+        $botNotificationStatus = Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_STATUS);
+
+        $info = array_replace_recursive ($info, array(
+            'config' => array(
+                'bot' => array(
+                    'notification' => array(
+                        'status' => $botNotificationStatus ? explode (',', $botNotificationStatus) : array (),
+                    ),
+                ),
+            ),
+        ));
+
+        $event->setInfo ($info);
+    }
+
     public function cleanExpiredChats()
     {
         /** @var $chats Toluca_Bot_Model_Mysql4_Chat_Collection */

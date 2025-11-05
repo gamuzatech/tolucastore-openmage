@@ -107,6 +107,15 @@
                     </toluca_bot_sales_order_place_after>
                 </observers>
             </sales_order_place_after>
+            <!-- Gamuza_Basic -->
+            <basic_magento_api_info>
+                <observers>
+                    <toluca_bot_basic_magento_api_info>
+                        <class>bot/observer</class>
+                        <method>basicMagentoApiInfo</method>
+                    </toluca_bot_basic_magento_api_info>
+                </observers>
+            </basic_magento_api_info>
         </events>
     </global>
     <admin>
