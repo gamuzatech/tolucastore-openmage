@@ -53,13 +53,32 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
         if (is_array ($bundle) && count ($bundle) > 0)
         {
-            foreach ($bundle as $bundleId => $selectionId)
+            foreach ($bundle as $bundleItem)
             {
+                $bundleId      = $bundleItem ['bundleId'];
+                $bundleName    = $bundleItem ['bundleName'];
+                $selectionId   = $bundleItem ['selectionId'];
+                $selectionName = $bundleItem ['selectionName'];
+
                 $bundleCollection = $this->_getBundleOptionsCollection ($_productId)
                     ->addFieldToFilter ('main_table.position', array ('eq' => $bundleId))
                 ;
 
                 $option = $bundleCollection->getFirstItem ();
+
+                if ($option && $option->getId ())
+                {
+                    $optionTitle = $option->getTitle () ?? $option->getDefaultTitle ();
+
+                    if ($bundleName != null && !str_contains ($optionTitle, $bundleName))
+                    {
+                        $bundleCollection = $this->_getBundleOptionsCollection ($_productId)
+                            ->addFieldToFilter ('option_value.title', array ('like' => $bundleName . '%'))
+                        ;
+
+                        $option = $bundleCollection->getFirstItem ();
+                    }
+                }
 
                 if ($option && $option->getId () > 0)
                 {
@@ -79,6 +98,31 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
                     if ($selectionCollection->count () > 0)
                     {
+                        $selection = $selectionCollection->getFirstItem ();
+
+                        if ($selection && $selection->getData ('id'))
+                        {
+                            $selectionTitle = $selection->getData ('name');
+
+                            if ($selectionName != null && !str_contains ($selectionTitle, $selectionName))
+                            {
+                                $selectionCollection = $this->_getBundleSelectionsCollection ($option);
+
+                                $selectionCollection->getSelect ()
+                                    ->where ('selection.parent_product_id = ?', $_productId)
+                                    ->where ('e.name LIKE ?', $selectionName . '%')
+                                    ->reset (Zend_Db_Select::COLUMNS)
+                                    ->columns (array(
+                                        'id'   => 'selection.selection_id',
+                                        'name' => 'e.name'
+                                    ))
+                                ;
+                            }
+                        }
+                    }
+
+                    if ($selectionCollection->count () > 0)
+                    {
                         $bundleOptions [$option->getId ()] = array_keys ($selectionCollection->toOptionHash ());
                     }
                 }
@@ -87,13 +131,32 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
         if (is_array ($options) && count ($options) > 0)
         {
-            foreach ($options as $optionId => $valueId)
+            foreach ($options as $optionItem)
             {
+                $optionId   = $optionItem ['optionId'];
+                $optionName = $optionItem ['optionName'];
+                $valueId    = $optionItem ['valueId'];
+                $valueName  = $optionItem ['valueName'];
+
                 $optionsCollection = $this->_getProductOptionsCollection ($_productId, $storeId)
                     ->addFieldToFilter ('main_table.sort_order', array ('eq' => $optionId))
                 ;
 
                 $option = $optionsCollection->getFirstItem ();
+
+                if ($option && $option->getId ())
+                {
+                    $optionTitle = $option->getTitle () ?? $option->getDefaultTitle ();
+
+                    if ($optionName != null && !str_contains ($optionTitle, $optionName))
+                    {
+                        $optionsCollection = $this->_getProductOptionsCollection ($_productId, $storeId)
+                            ->addFieldToFilter ('default_option_title.title', array ('like' => $optionName . '%'))
+                        ;
+
+                        $option = $optionsCollection->getFirstItem ();
+                    }
+                }
 
                 if ($option && $option->getId () > 0)
                 {
@@ -110,6 +173,31 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
                             'name' => 'default_value_title.title'
                         ))
                     ;
+
+                    if ($valuesCollection->count () > 0)
+                    {
+                        $value = $valuesCollection->getFirstItem ();
+
+                        if ($value && $value->getData ('id'))
+                        {
+                            $valueTitle = $value->getData ('name');
+
+                            if ($valueName != null && !str_contains ($valueTitle, $valueName))
+                            {
+                                $valuesCollection = $this->_getProductValuesCollection ($option, $storeId)
+                                    ->addFieldToFilter ('default_value_title.title', array ('like' => $valueName . '%'))
+                                ;
+
+                                $valuesCollection->getSelect ()
+                                    ->reset (Zend_Db_Select::COLUMNS)
+                                    ->columns (array(
+                                        'id'   => 'main_table.option_type_id',
+                                        'name' => 'default_value_title.title'
+                                    ))
+                                ;
+                            }
+                        }
+                    }
 
                     if ($valuesCollection->count () > 0)
                     {
