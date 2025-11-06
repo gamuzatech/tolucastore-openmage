@@ -409,6 +409,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
         $collection = $this->_getBundleOptionsCollection ($productId);
 
+        if ($collection->getSize () > 0)
+        {
+            $result = sprintf ('%s:', Mage::helper ('bundle')->__('Bundle Items')) . PHP_EOL . PHP_EOL;
+        }
+
         foreach ($collection as $option)
         {
             $strLen = self::OPTION_ID_LENGTH - strlen ($option->getPosition ());
@@ -474,6 +479,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         $result = null;
 
         $product = Mage::getModel ('catalog/product')->load ($productId);
+
+        if (!empty ($product->getOptions ()) && count ($product->getOptions ()) > 0)
+        {
+            $result = sprintf ('%s:', Mage::helper ('catalog')->__('Custom Options')) . PHP_EOL . PHP_EOL;
+        }
 
         foreach ($product->getOptions () as $option)
         {
