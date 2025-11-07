@@ -225,6 +225,7 @@
             </newsletter>
             <sales>
                 <rewrite>
+                    <quote_address_total_shipping>Gamuza_Basic_Model_Sales_Quote_Address_Total_Shipping</quote_address_total_shipping>
                     <order>Gamuza_Basic_Model_Sales_Order</order>
                     <quote_address>Gamuza_Basic_Model_Sales_Quote_Address</quote_address>
                     <order_creditmemo>Gamuza_Basic_Model_Sales_Order_Creditmemo</order_creditmemo>
