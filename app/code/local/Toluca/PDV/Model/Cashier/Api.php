@@ -14,14 +14,17 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS;
     const XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP;
+    const XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW;
 
     public $_validateRemoteIp = false;
+    public $_allowNegativeFlow = false;
 
     public function __construct()
     {
         // parent::__construct();
 
         $this->_validateRemoteIp = Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP);
+        $this->_allowNegativeFlow = Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW);
     }
 
     public function info ($cashier_id, $operator_id)
@@ -473,7 +476,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             + $openpixAmount + $checkAmount + $pixAmount
             + $refundAmount;
 
-        if ($amount > $closeAmount)
+        if ($amount > $closeAmount && !$this->_allowNegativeFlow)
         {
             $closeAmount = Mage::helper ('core')->currency ($closeAmount, true, false);
 
