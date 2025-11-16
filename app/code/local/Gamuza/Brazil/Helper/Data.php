@@ -53,6 +53,9 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_CERTIFICATE_A3 = 2;
     const NFE_CERTIFICATE_A1_BYTE_ARRAY = 3;
 
+    const NFE_CERTIFICATE_A3_MIDDLEWARE_DEFAULT = 'default';
+    const NFE_CERTIFICATE_A3_MIDDLEWARE_SAFENET = 'safenet';
+
     const NFE_VERSION_3_10 = '3.10';
     const NFE_VERSION_4_00 = '4.00';
 
@@ -201,6 +204,8 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CERTIFICATE_TYPE_ID  = 'brazil/certificate/type_id';
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';
     const XML_PATH_BRAZIL_CERTIFICATE_PASSWORD = 'brazil/certificate/password';
+    const XML_PATH_BRAZIL_CERTIFICATE_SERIAL   = 'brazil/certificate/serial';
+    const XML_PATH_BRAZIL_CERTIFICATE_MIDDLEWARE    = 'brazil/certificate/middleware';
     const XML_PATH_BRAZIL_CERTIFICATE_DAYS_VALIDATE = 'brazil/certificate/days_validate';
 
     const XML_PATH_BRAZIL_CSC_ID   = 'brazil/csc/id';
