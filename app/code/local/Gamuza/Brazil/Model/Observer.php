@@ -29,6 +29,7 @@ class Gamuza_Brazil_Model_Observer
                         'filename'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME),
                         'password'  => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_PASSWORD),
                         'serial'    => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_SERIAL),
+                        'cache'     => Mage::getStoreConfigFlag (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_CACHE),
                         'middleware'    => Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_MIDDLEWARE),
                         'days_validate' => Mage::getStoreConfigAsInt (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_DAYS_VALIDATE),
                     ),

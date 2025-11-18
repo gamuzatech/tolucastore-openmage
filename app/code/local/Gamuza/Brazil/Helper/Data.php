@@ -205,6 +205,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_CERTIFICATE_FILENAME = 'brazil/certificate/filename';
     const XML_PATH_BRAZIL_CERTIFICATE_PASSWORD = 'brazil/certificate/password';
     const XML_PATH_BRAZIL_CERTIFICATE_SERIAL   = 'brazil/certificate/serial';
+    const XML_PATH_BRAZIL_CERTIFICATE_CACHE    = 'brazil/certificate/cache';
     const XML_PATH_BRAZIL_CERTIFICATE_MIDDLEWARE    = 'brazil/certificate/middleware';
     const XML_PATH_BRAZIL_CERTIFICATE_DAYS_VALIDATE = 'brazil/certificate/days_validate';
 

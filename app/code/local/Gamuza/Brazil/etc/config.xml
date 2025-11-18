@@ -276,6 +276,7 @@
                 <validate>0</validate>
             </city>
             <certificate>
+                <cache>1</cache>
                 <days_validate>14</days_validate>
             </certificate>
             <setting>
