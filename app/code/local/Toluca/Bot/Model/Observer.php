@@ -17,12 +17,16 @@ class Toluca_Bot_Model_Observer
         $event = $observer->getEvent ();
         $info = $event->getInfo ();
 
+        $botNotificationSite   = Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_SITE);
+        $botNotificationOrder  = Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_ORDER);
         $botNotificationStatus = Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_STATUS);
 
         $info = array_replace_recursive ($info, array(
             'config' => array(
                 'bot' => array(
                     'notification' => array(
+                        'site'   => $botNotificationSite,
+                        'order'  => $botNotificationOrder,
                         'status' => $botNotificationStatus ? explode (',', $botNotificationStatus) : array (),
                     ),
                 ),
