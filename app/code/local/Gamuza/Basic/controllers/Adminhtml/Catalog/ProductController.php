@@ -12,6 +12,13 @@ require_once (Mage::getModuleDir('controllers', 'Mage_Adminhtml') . DS . 'Catalo
  */
 class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Catalog_ProductController
 {
+    /**
+     * Array of actions which can be processed without secret key validation
+     *
+     * @var array
+     */
+    protected $_publicActions = array ('redirect');
+
     public function massStockQtyAction()
     {
         $productIds = $this->getRequest()->getParam('product');
@@ -510,6 +517,18 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $this->_initProduct();
         $this->loadLayout();
         $this->renderLayout();
+    }
+
+    public function redirectAction ()
+    {
+        $productId = $this->getRequest ()->getParam ('product_id');
+
+        if (intval ($productId) > 0)
+        {
+            return $this->_redirect ('adminhtml/catalog_product/edit', array ('id' => $productId));
+        }
+
+        return $this->_redirect ('adminhtml/catalog_product/index');
     }
 
     /**
