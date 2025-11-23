@@ -52,6 +52,18 @@
                     </user_not_exists>
                 </faults>
             </basic_magento>
+            <basic_catalog_product_attribute translate="title" module="basic">
+                <model>basic/catalog_product_attribute_api</model>
+                <title>Basic Catalog Product Attribute API</title>
+                <acl>basic/catalog_product_attribute</acl>
+                <methods>
+                    <list translate="title" module="basic">
+                        <title>Retrieve catalog product attribute list</title>
+                        <method>items</method>
+                        <acl>basic/catalog_product_attribute/list</acl>
+                    </list>
+                </methods>
+            </basic_catalog_product_attribute>
             <!-- Customer -->
             <basic_customer translate="title" module="basic">
                 <model>basic/customer_api</model>
@@ -355,6 +367,13 @@
                             <title>Upgrade info about current Magento installation</title>
                         </upgrade>
                     </magento>
+                    <!-- Catalog -->
+                    <catalog_product_attribute translate="title" module="basic">
+                        <title>Catalog Product Attribute</title>
+                        <list translate="title" module="basic">
+                            <title>Retrieve catalog product attribute list</title>
+                        </list>
+                    </catalog_product_attribute>
                     <!-- Customer -->
                     <customer translate="title" module="basic">
                         <title>Customer</title>
