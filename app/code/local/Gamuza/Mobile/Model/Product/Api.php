@@ -173,6 +173,13 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         {
             foreach ($filters as $field => $value)
             {
+                // hack for OR condition.
+                if (!strcmp (strtoupper ($field), 'OR'))
+                {
+                    $field = $value;
+                    $value = null;
+                }
+
                 $collection->addFieldToFilter ($field, $value);
             }
         }
