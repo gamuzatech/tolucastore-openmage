@@ -18,6 +18,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         'color_value',
         'description',
         'free_shipping',
+        'gtin',
         'gift_message_available',
         'has_options',
         'image',
