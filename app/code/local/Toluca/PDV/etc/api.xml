@@ -10,6 +10,18 @@
 <config>
     <api>
         <resources>
+            <!-- Balance -->
+            <pdv_balance translate="title" module="pdv">
+                <model>pdv/balance_api</model>
+                <title>PDV Balance API</title>
+                <acl>pdv/balance</acl>
+                <methods>
+                    <weight translate="title" module="pdv">
+                        <title>Get a balance weight</title>
+                        <acl>pdv/balance/weight</acl>
+                    </weight>
+                </methods>
+            </pdv_balance>
             <!-- Cashier -->
             <pdv_cashier translate="title" module="pdv">
                 <model>pdv/cashier_api</model>
@@ -178,6 +190,13 @@
                 <pdv translate="title" module="pdv">
                     <title>PDV API</title>
                     <sort_order>0</sort_order>
+                    <!-- Balance -->
+                    <balance translate="title" module="pdv">
+                        <title>Balance</title>
+                        <weight translate="title" module="pdv">
+                            <title>Get a balance weight</title>
+                        </weight>
+                    </balance>
                     <!-- Cashier -->
                     <cashier translate="title" module="pdv">
                         <title>Cashier</title>

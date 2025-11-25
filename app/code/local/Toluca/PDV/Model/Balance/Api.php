@@ -1,0 +1,99 @@
+<?php
+/**
+ * @package     Toluca_PDV
+ * @copyright   Copyright (c) 2025 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+/**
+ * Balance API
+ */
+class Toluca_PDV_Model_Balance_Api extends Mage_Api_Model_Resource_Abstract
+{
+    public const SCOPE = 'desktop';
+
+    public const SCOPE_ID = '-999999';
+
+    public function weight ()
+    {
+        $resource = Mage::getSingleton ('core/resource');
+        $read = $resource->getConnection ('core_read');
+        $table = $resource->getTableName ('core/config_data');
+
+        $query = sprintf(
+            ' SELECT path, value FROM %s '
+            . " WHERE scope = '%s' AND scope_id = '%s' "
+            . " AND path LIKE 'balance_device.%%' ",
+            $table, self::SCOPE, self::SCOPE_ID
+        );
+
+        $pairs = $read->fetchPairs ($query);
+
+        if (!array_key_exists ('balance_device.config', $pairs))
+        {
+            return -1;
+        }
+
+        $result = -1;
+
+        $config = $pairs ['balance_device.config'];
+
+        switch ($config)
+        {
+            case 'serial':
+            {
+                $device = $pairs ['balance_device.port_name'];
+
+                $fp = fopen ($device, 'r');
+
+                if (!$fp)
+                {
+                    $error_message = Mage::helper ('pdv')->__('Cannot open filename');
+                    $error_code = -1;
+
+                    $this->_fault ('data_invalid', sprintf ('%s [ %s ]', $error_message, $error_code));
+                }
+
+                stream_set_blocking ($fp, false);
+
+                while (($buffer = fgets ($fp)) !== false)
+                {
+                    $result = $buffer;
+                }
+
+                fclose ($fp);
+
+                break;
+            }
+            case 'tcp':
+            {
+                $ip       = $pairs ['balance_device.tcp_ip'];
+                $port     = $pairs ['balance_device.tcp_port'];
+                $attempts = $pairs ['balance_device.attempts'];
+                $timeout  = $pairs ['balance_device.timeout'];
+
+                $fp = fsockopen ($ip, $port, $error_code, $error_message, floatval ($attempts));
+
+                if (!$fp)
+                {
+                    $error_message = Mage::helper ('pdv')->__($error_message);
+
+                    $this->_fault ('data_invalid', sprintf ('%s [ %s ]', $error_message, $error_code));
+                }
+
+                stream_set_timeout ($fp, intval ($timeout));
+
+                while (($buffer = fgets ($fp)) !== false)
+                {
+                    $result = $buffer;
+                }
+
+                fclose ($fp);
+
+                break;
+            }
+        }
+
+        return $result;
+    }
+}
