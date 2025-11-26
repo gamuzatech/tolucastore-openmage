@@ -20,7 +20,9 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         /* info */
         'items_count', 'customer_gender',
         /* address */
-        'region_id'
+        'region_id',
+        /* item */
+        'custom_weight',
     );
 
     protected $_floatAttributes = array(

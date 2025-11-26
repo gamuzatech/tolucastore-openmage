@@ -280,6 +280,16 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 continue;
             }
 
+            if (!empty($productItem['custom_weight']))
+            {
+                $productByItem->addCustomOption('custom_weight', $productItem['custom_weight']);
+            }
+
+            if (!empty($productItem['unique_id']))
+            {
+                $productByItem->addCustomOption('unique_id', $productItem['unique_id']);
+            }
+
             try {
 
             /** @var $quoteItem Mage_Sales_Model_Quote_Item */
@@ -576,6 +586,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'minimum_message'     => $minimumMessage,
                 // custom
                 'original_base_price' => floatval ($item->getOriginalBasePrice ()),
+                'custom_price'        => floatval ($item->getCustomPrice ()),
                 'custom_weight'       => floatval ($item->getCustomWeight ()),
                 'unique_id'           => $item->getUniqueId (),
             );
