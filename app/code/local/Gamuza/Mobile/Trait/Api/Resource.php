@@ -73,6 +73,13 @@ trait Gamuza_Mobile_Trait_Api_Resource
                 ->save()
             ;
 
+            if (Mage::helper ('mobile')->isComanda ())
+            {
+                $quote->setIsSuperMode (true)
+                    ->save()
+                ;
+            }
+
             $customerData = array(
                 'mode'      => Mage_Checkout_Model_Type_Onepage::METHOD_GUEST,
                 'firstname' => $firstName,

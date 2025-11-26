@@ -32,5 +32,10 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
         return $_SERVER ['HTTP_X_REMOTE_IP'] ?? $_SERVER ['HTTP_X_LOCAL_IP']
             ?? Mage::helper ('core/http')->getRemoteAddr (false);
     }
+
+    public function isComanda ()
+    {
+        return strpos ($_SERVER ['HTTP_USER_AGENT'], 'TolucaStoreComanda') !== false;
+    }
 }
 
