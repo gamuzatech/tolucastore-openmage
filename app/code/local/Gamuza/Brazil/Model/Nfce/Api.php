@@ -534,7 +534,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $this->_getNFCe ($nfce);
     }
 
-    public function sign ($orderIncrementId, $orderProtectCode, $fisco, $key, $digit, $info)
+    public function sign ($orderIncrementId, $orderProtectCode, $fisco, $key, $digit, $digest, $signature, $info)
     {
         if (empty ($orderIncrementId))
         {
@@ -564,6 +564,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (!ctype_digit ($digit))
         {
             $this->_fault ('digit_not_specified');
+        }
+
+        if (strlen ($digest) != 28)
+        {
+            $this->_fault ('digest_not_specified');
+        }
+
+        if (strlen ($signature) != 344)
+        {
+            $this->_fault ('signature_not_specified');
         }
 
         $info = base64_decode ($info);
@@ -606,6 +616,8 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         $nfce->setFisco ($fisco)
             ->setKey ($key)
             ->setDigit ($digit)
+            ->setDigestValue ($digest)
+            ->setSignatureValue ($signature)
             ->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_SIGNED)
             ->setSignedAt (date ('c'))
             ->setUpdatedAt (date ('c'))

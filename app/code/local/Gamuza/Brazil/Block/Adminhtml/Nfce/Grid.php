@@ -292,6 +292,16 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'align'  => 'right',
 			'index'  => 'fisco',
 		));
+		$this->addColumn ('digest_value', array(
+			'header' => Mage::helper ('brazil')->__('Digest Value'),
+            'align'  => 'right',
+			'index'  => 'digest_value',
+		));
+		$this->addColumn ('signature_value', array(
+			'header' => Mage::helper ('brazil')->__('Signature Value'),
+            'align'  => 'right',
+			'index'  => 'signature_value',
+		));
 */
 		$this->addColumn ('is_printed', array(
 			'header' => Mage::helper ('brazil')->__('Is Printed'),

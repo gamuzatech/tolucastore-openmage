@@ -247,6 +247,19 @@ SQLBLOCK;
             'comment'  => 'Fisco',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'digest_value', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'Digest Value',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'signature_value', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'nullable' => false,
+            'comment'  => 'Signature Value',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'status_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
