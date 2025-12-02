@@ -75,7 +75,7 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
             // delete old data
             $condition = [];
             $adapter->delete ($this->getMainTable (), $condition);
-            $adapter->truncateTable ($this->getMainTable ());
+            $adapter->getConnection()->exec("TRUNCATE TABLE {$this->getMainTable()}");
 
             while (($csvLine = $io->streamReadCsv (self::LINE_DELIMITER)) !== false)
             {
@@ -233,14 +233,14 @@ class Gamuza_Brazil_Model_Mysql4_Ibpt extends Mage_Core_Model_Mysql4_Abstract
 
         $row [8] = $this->_convertDate ($row [8]); // begin_at
         $row [9] = $this->_convertDate ($row [9], 86400 - 1); // end_at
-
+/*
         $now = time ();
 
         if (strtotime ($row [8]) > $now || strtotime ($row [9]) < $now)
         {
             Mage::throwException (Mage::helper ('brazil')->__('Requested IBPT table is not valid.'));
         }
-
+*/
         // validate key
         if (empty ($row [10]))
         {

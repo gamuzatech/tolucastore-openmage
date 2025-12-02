@@ -96,7 +96,7 @@ class Gamuza_Brazil_Model_Mysql4_Cest extends Mage_Core_Model_Mysql4_Abstract
             // delete old data
             $condition = [];
             $adapter->delete ($this->getMainTable (), $condition);
-            $adapter->truncateTable ($this->getMainTable ());
+            $adapter->getConnection()->exec("TRUNCATE TABLE {$this->getMainTable()}");
 
             while (($csvLine = $io->streamReadCsv (self::LINE_DELIMITER)) !== false)
             {
