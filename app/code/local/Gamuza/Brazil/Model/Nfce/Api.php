@@ -181,6 +181,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'increment_id'    => strval ($nfce->getIncrementId ()),
                 'protect_code'    => strval ($nfce->getProtectCode ()),
                 'customer_id'     => intval ($nfce->getCustomerId ()),
+                'customer_cellphone'  => strval ($nfce->getCustomerCellphone ()),
                 'customer_email'  => strval ($nfce->getCustomerEmail ()),
                 'customer_firstname' => strval ($nfce->getCustomerFirstname ()),
                 'customer_lastname'  => strval ($nfce->getCustomerLastname ()),

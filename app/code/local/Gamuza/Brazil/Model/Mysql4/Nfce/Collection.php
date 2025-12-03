@@ -23,6 +23,7 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
                     'increment_id',
                     'protect_code',
                     'customer_id',
+                    'customer_cellphone',
                     'customer_email',
                     'customer_firstname',
                     'customer_lastname',
