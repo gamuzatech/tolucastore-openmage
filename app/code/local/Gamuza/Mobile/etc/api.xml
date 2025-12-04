@@ -24,6 +24,18 @@
                 </methods>
             </mobile_store>
             <!-- Catalog -->
+            <mobile_category translate="title" module="mobile">
+                <title>Mobile Category API</title>
+                <model>mobile/category_api</model>
+                <acl>mobile/category</acl>
+                <methods>
+                    <list translate="title" module="mobile">
+                        <title>Retrieve category list</title>
+                        <method>items</method>
+                        <acl>mobile/category/list</acl>
+                    </list>
+                </methods>
+            </mobile_category>
             <mobile_product translate="title" module="mobile">
                 <title>Mobile Product API</title>
                 <model>mobile/product_api</model>
@@ -587,6 +599,13 @@
                         </list>
                     </store>
                     <!-- Catalog -->
+                    <category translate="title" module="mobile">
+                        <title>Category</title>
+                        <sort_order>20</sort_order>
+                        <list translate="title" module="mobile">
+                            <title>List</title>
+                        </list>
+                    </category>
                     <product translate="title" module="mobile">
                         <title>Product</title>
                         <sort_order>20</sort_order>

@@ -224,7 +224,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
             foreach ($this->_imageCodes as $code)
             {
-                $value = $product->getData ($code);
+                $value = $product->getData ($code) ?? 'no_selection';
 
                 if (!empty ($value) && !strcmp ($value, 'no_selection'))
                 {
