@@ -72,7 +72,11 @@ class Toluca_PDV_Model_Balance_Api extends Mage_Api_Model_Resource_Abstract
                 $attempts = $pairs ['balance_device.attempts'];
                 $timeout  = $pairs ['balance_device.timeout'];
 
+                /*
                 $fp = fsockopen ($ip, $port, $error_code, $error_message, floatval ($attempts));
+                */
+
+                $fp = stream_socket_client ("tcp://{$ip}:{$port}", $error_code, $error_message, floatval ($attempts));
 
                 if (!$fp)
                 {
@@ -83,12 +87,28 @@ class Toluca_PDV_Model_Balance_Api extends Mage_Api_Model_Resource_Abstract
 
                 stream_set_timeout ($fp, intval ($timeout));
 
+                /*
                 while (($buffer = fgets ($fp)) !== false)
                 {
                     $result = $buffer;
                 }
+                */
+
+                $buffer = "";
+
+                while (strpos ($buffer, "\r") === false)
+                {
+                    $chunk = fread ($fp, 16);
+
+                    if (empty ($chunk)) continue;
+
+                    $buffer .= $chunk;
+                }
 
                 fclose ($fp);
+
+                $result = trim (str_replace (["\x02", "\r", "\n"], "", $buffer));
+                $result = floatval ($result) * 1000; // gram
 
                 break;
             }
