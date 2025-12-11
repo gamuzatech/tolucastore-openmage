@@ -13,7 +13,7 @@ $_order = $this->getOrder();
 
 $_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
 
-echo sprintf('%s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
+echo sprintf('%s %s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getLastname(), $_address->getCellphone()) . PHP_EOL;
 
 foreach ($this->getAllVisibleItems() as $item)
 {

@@ -30,7 +30,7 @@ $_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_or
 
 echo $this->getLineSeparator() . PHP_EOL;
 
-echo sprintf('%s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getCellphone()) . PHP_EOL;
+echo sprintf('%s %s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getLastname(), $_address->getCellphone()) . PHP_EOL;
 
 echo sprintf('%s %s %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
 echo sprintf('%s %s', $_address->getStreet4(), $_address->getPostcode()) . PHP_EOL;
