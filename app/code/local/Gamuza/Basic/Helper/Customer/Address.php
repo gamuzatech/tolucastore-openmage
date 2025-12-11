@@ -19,6 +19,8 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
      */
     const CELLPHONE_LENGTH_MINIMUM = 10;
 
+    const CELLPHONE_BYPASS_NUMBER = '999999999';
+
     public function validateCellphone($cellphone, $countryId)
     {
         $result = true;
@@ -27,11 +29,16 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
 
         try
         {
+            $cellphone = $cellphone ?? '000000000';
+
             $phoneNumber = $phoneUtil->parse($cellphone, $countryId);
 
             if (!$phoneUtil->isValidNumber($phoneNumber))
             {
-                $result = false;
+                if (!str_ends_with ($cellphone, self::CELLPHONE_BYPASS_NUMBER))
+                {
+                    $result = false;
+                }
             }
             else
             {
@@ -52,6 +59,8 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
         }
         catch (NumberParseException $e)
         {
+            Mage::log ($e->getMessage (), null, 'cellphone.log');
+
             $result = false;
         }
 
