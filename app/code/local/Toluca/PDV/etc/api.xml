@@ -83,6 +83,22 @@
                     </create>
                 </methods>
             </pdv_cart>
+            <!-- Comanda -->
+            <pdv_comanda translate="title" module="pdv">
+                <model>pdv/comanda_api</model>
+                <title>PDV Comanda API</title>
+                <acl>pdv/comanda</acl>
+                <methods>
+                    <notify translate="title" module="pdv">
+                        <title>Notify cart information</title>
+                        <acl>pdv/comanda/notify</acl>
+                    </notify>
+                    <resolve translate="title" module="pdv">
+                        <title>Resolve cart information</title>
+                        <acl>pdv/comanda/resolve</acl>
+                    </resolve>
+                </methods>
+            </pdv_comanda>
         </resources>
         <faults translate="message" module="pdv">
             <cashier_not_specified>
@@ -238,6 +254,16 @@
                             <title>Create cart information</title>
                         </create>
                     </cart>
+                    <!-- Comanda -->
+                    <comanda translate="title" module="pdv">
+                        <title>Comanda</title>
+                        <notify translate="title" module="pdv">
+                            <title>Notify cart information</title>
+                        </notify>
+                        <resolve translate="title" module="pdv">
+                            <title>Resolve cart information</title>
+                        </resolve>
+                    </comanda>
                 </pdv>
             </resources>
         </acl>

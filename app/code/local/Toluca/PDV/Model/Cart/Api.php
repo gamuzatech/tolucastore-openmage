@@ -138,6 +138,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'is_comanda' => boolval ($quote->getIsComanda ()),
                 'is_weighted' => boolval ($quote->getIsWeighted ()),
                 'is_printed' => boolval ($quote->getIsPrinted ()),
+                'is_comanda_alert' => boolval ($quote->getIsComandaAlert ()),
+                'is_comanda_bill' => boolval ($quote->getIsComandaBill ()),
                 'store' => $this->_getStoreInfo ($quote->getStoreId ()),
             );
         }
@@ -198,6 +200,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'is_comanda' => boolval ($quote->getIsComanda ()),
             'is_weighted' => boolval ($quote->getIsWeighted ()),
             'is_printed' => boolval ($quote->getIsPrinted ()),
+            'is_comanda_alert' => boolval ($quote->getIsComandaAlert ()),
+            'is_comanda_bill' => boolval ($quote->getIsComandaBill ()),
             'store' => $this->_getStoreInfo ($quote->getStoreId ()),
         );
 
