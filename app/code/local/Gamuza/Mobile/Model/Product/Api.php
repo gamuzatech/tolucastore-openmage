@@ -7,6 +7,8 @@
 
 class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 {
+    use Gamuza_Mobile_Trait_Api_Resource;
+
     const PRICE_TYPE_FIXED = 'fixed';
 
     protected $_attributeCodes = array (
@@ -203,6 +205,8 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
             ->getBaseUrl (Mage_Core_Model_Store::URL_TYPE_MEDIA, false)
         ;
 
+        $storeList = $this->_getStoreList ();
+
         foreach ($collection as $product)
         {
             $resultProduct = array (
@@ -294,7 +298,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 
             $resultProduct ['store_ids'] = array_map (function ($n) { return intval ($n); }, $product->getStoreIds ());
 
-            $resultProduct ['cart_store'] = null;
+            $resultProduct ['cart_store'] = $storeList [0];
 
             $resultProduct ['cart_wishlist'] = null;
 
