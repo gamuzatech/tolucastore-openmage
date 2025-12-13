@@ -72,6 +72,10 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_PDV_PAYMENT_METHOD_ALL = 'pdv/payment_method';
 
+    public const SCOPE = 'desktop';
+
+    public const SCOPE_ID = '-999999';
+
     public function getTotals (Mage_Adminhtml_Block_Widget_Grid $grid)
     {
         $fieldsTotals = $grid->_fieldsTotals;
@@ -104,6 +108,30 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $_SERVER ['HTTP_X_REMOTE_IP'] ?? $_SERVER ['HTTP_X_LOCAL_IP']
             ?? Mage::helper ('core/http')->getRemoteAddr (false);
+    }
+
+    public function getStoreConfig ($path)
+    {
+        $collection = Mage::getModel ('core/config_data')->getCollection ()
+            ->addFieldToFilter ('scope',    self::SCOPE)
+            ->addFieldToFilter ('scope_id', self::SCOPE_ID)
+            ->addFieldToFilter ('path', array ('like' => $path))
+        ;
+
+        if ($collection->getSize () == 1)
+        {
+            return $collection->getFirstItem ()->getValue ();
+        }
+
+        $collection->getSelect ()
+            ->reset (Zend_Db_Select::COLUMNS)
+            ->columns (array (
+                'id'   => 'path',
+                'name' => 'value',
+            ))
+        ;
+
+        return $collection->toOptionHash ();
     }
 
     public function isPDV ()

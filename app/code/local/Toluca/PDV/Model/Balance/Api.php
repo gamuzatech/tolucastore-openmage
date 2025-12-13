@@ -10,24 +10,9 @@
  */
 class Toluca_PDV_Model_Balance_Api extends Mage_Api_Model_Resource_Abstract
 {
-    public const SCOPE = 'desktop';
-
-    public const SCOPE_ID = '-999999';
-
     public function weight ()
     {
-        $resource = Mage::getSingleton ('core/resource');
-        $read = $resource->getConnection ('core_read');
-        $table = $resource->getTableName ('core/config_data');
-
-        $query = sprintf(
-            ' SELECT path, value FROM %s '
-            . " WHERE scope = '%s' AND scope_id = '%s' "
-            . " AND path LIKE 'balance_device.%%' ",
-            $table, self::SCOPE, self::SCOPE_ID
-        );
-
-        $pairs = $read->fetchPairs ($query);
+        $pairs = Mage::helper ('pdv')->getStoreConfig ('balance_device.%');
 
         if (!array_key_exists ('balance_device.config', $pairs))
         {
