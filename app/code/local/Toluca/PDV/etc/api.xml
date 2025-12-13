@@ -99,6 +99,18 @@
                     </resolve>
                 </methods>
             </pdv_comanda>
+            <!-- Desktop -->
+            <pdv_desktop translate="title" module="pdv">
+                <model>pdv/desktop_api</model>
+                <title>PDV Desktop API</title>
+                <acl>pdv/desktop</acl>
+                <methods>
+                    <config translate="title" module="pdv">
+                        <title>Get config information</title>
+                        <acl>pdv/desktop/config</acl>
+                    </config>
+                </methods>
+            </pdv_desktop>
         </resources>
         <faults translate="message" module="pdv">
             <cashier_not_specified>
@@ -264,6 +276,13 @@
                             <title>Resolve cart information</title>
                         </resolve>
                     </comanda>
+                    <!-- Desktop -->
+                    <desktop translate="title" module="pdv">
+                        <title>Desktop</title>
+                        <config translate="title" module="pdv">
+                            <title>Get config information</title>
+                        </config>
+                    </desktop>
                 </pdv>
             </resources>
         </acl>

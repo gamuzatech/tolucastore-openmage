@@ -74,7 +74,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
 
     public const SCOPE = 'desktop';
 
-    public const SCOPE_ID = '-999999';
+    public const SCOPE_ID = -999999;
 
     public function getTotals (Mage_Adminhtml_Block_Widget_Grid $grid)
     {
