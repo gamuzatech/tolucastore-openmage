@@ -11,20 +11,25 @@ class Gamuza_Brazil_Helper_Pix extends Mage_Core_Helper_Abstract
 {
     public function _getKey ($order)
     {
+        $key = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_PAYMENT_GAMUZA_BRAZIL_PIX_KEY);
+
         $company = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_COMPANY);
         $name    = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME);
 
         $city = sprintf ('%s %s', $order->getBillingAddress ()->getCity (), $order->getBillingAddress ()->getRegionCode ());
 
+        $key     = preg_replace ('/\s+/',       "", $key);
+        $company = preg_replace ('/[^a-zA-Z]/', "", $company);
+        $name    = preg_replace ('/[^a-zA-Z]/', "", $name);
+        $city    = preg_replace ('/\s+/',       "", $city);
+
         $pix[00] = '01'; // Payload Format Indicator - FIXED: 01
         $pix[01] = '12'; // Use Only Once!
         $pix[26][00] = 'BR.GOV.BCB.PIX';
-        $pix[26][01] = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_PAYMENT_GAMUZA_BRAZIL_PIX_KEY);
+        $pix[26][01] = $key;
         $pix[26][02] = sprintf (
-            '%s-%s-%s',
-            Mage::helper ('brazil')->__('Order'),
+            '%s',
             $order->getIncrementId (),
-            preg_replace('/\s+/', "", $name)
         );
 
         $pix[52] = '0000'; // Merchant Category Code '0000' or MCC ISO18245

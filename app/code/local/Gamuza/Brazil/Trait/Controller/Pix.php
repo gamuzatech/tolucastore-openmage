@@ -35,12 +35,14 @@ trait Gamuza_Brazil_Trait_Controller_Pix
             return $this->_throwException (Mage::helper ('brazil')->__('Order does not belong to the customer.'));
         }
 
+        /*
         $key = $order->getPayment ()->getData (Gamuza_Brazil_Helper_Data::ORDER_PAYMENT_ATTRIBUTE_BRAZIL_PIX_KEY);
 
         if (!empty ($key))
         {
             return $this->_getQRCode ($key);
         }
+        */
 
         $key = $this->_getHelper ()->_getKey ($order);
 
