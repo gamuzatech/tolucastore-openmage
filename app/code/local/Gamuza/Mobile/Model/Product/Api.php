@@ -9,6 +9,9 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
 {
     use Gamuza_Mobile_Trait_Api_Resource;
 
+    const DESKTOP_SCOPE    = 'desktop';
+    const DESKTOP_SCOPE_ID = -999999;
+
     const PRICE_TYPE_FIXED = 'fixed';
 
     protected $_attributeCodes = array (
@@ -84,6 +87,18 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
             ->loadByCode ($this->_entityTypeId, 'free_shipping')
         ;
         */
+
+        $collection = Mage::getModel ('core/config_data')->getCollection ()
+            ->addFieldToFilter ('scope',    self::DESKTOP_SCOPE)
+            ->addFieldToFilter ('scope_id', self::DESKTOP_SCOPE_ID)
+            ->addFieldToFilter ('path',  array ('eq' => 'pdv.use_product_id'))
+            ->addFieldToFilter ('value', array ('notnull' => true))
+        ;
+
+        foreach ($collection as $item)
+        {
+            $this->_attributeCodes [] = $item->getValue ();
+        }
     }
 
     /**

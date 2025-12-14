@@ -72,9 +72,8 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_PDV_PAYMENT_METHOD_ALL = 'pdv/payment_method';
 
-    public const SCOPE = 'desktop';
-
-    public const SCOPE_ID = -999999;
+    const DESKTOP_SCOPE    = 'desktop';
+    const DESKTOP_SCOPE_ID = -999999;
 
     public function getTotals (Mage_Adminhtml_Block_Widget_Grid $grid)
     {
@@ -113,8 +112,8 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     public function getStoreConfig ($path)
     {
         $collection = Mage::getModel ('core/config_data')->getCollection ()
-            ->addFieldToFilter ('scope',    self::SCOPE)
-            ->addFieldToFilter ('scope_id', self::SCOPE_ID)
+            ->addFieldToFilter ('scope',    self::DESKTOP_SCOPE)
+            ->addFieldToFilter ('scope_id', self::DESKTOP_SCOPE_ID)
             ->addFieldToFilter ('path', array ('like' => $path))
         ;
 
