@@ -74,6 +74,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_PRINTING = 'printing';
     const PRODUCT_ATTRIBUTE_SIZE = 'size';
     const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
+    const PRODUCT_ATTRIBUTE_BALANCE_ITEM = 'balance_item';
     const PRODUCT_ATTRIBUTE_BALANCE_WEIGHT = 'balance_weight';
     const PRODUCT_ATTRIBUTE_FREE_SHIPPING = 'free_shipping';
     const PRODUCT_ATTRIBUTE_OFFER_TYPE = 'offer_type';

@@ -15,6 +15,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
     const PRICE_TYPE_FIXED = 'fixed';
 
     protected $_attributeCodes = array (
+        'balance_item',
         'balance_weight',
         'brand',
         'brand_value',
@@ -65,7 +66,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
     protected $_imageCodes = array ('image', 'small_image', 'thumbnail');
     protected $_floatCodes = array ('price', 'weight');
     protected $_intCodes   = array ('sku_position', 'status', 'visibility');
-    protected $_boolCodes  = array ('balance_weight', 'free_shipping', 'gift_message_available', 'has_options', 'required_options');
+    protected $_boolCodes  = array ('balance_item', 'balance_weight', 'free_shipping', 'gift_message_available', 'has_options', 'required_options');
 
     protected $_filtersMap = array(
         'product_id' => 'entity_id',
