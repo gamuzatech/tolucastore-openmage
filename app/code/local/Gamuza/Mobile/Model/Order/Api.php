@@ -175,6 +175,8 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
 
     protected $_strAttributes = array ('fax', 'postcode', 'telephone', 'cellphone');
 
+    protected $_imageCodes = array ('image', 'small_image', 'thumbnail');
+
     /**
      * Retrieve list of orders. Filtration could be applied
      *
@@ -296,7 +298,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param string $orderIncrementId
      * @return array
      */
-    public function info($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    public function info($orderIncrementId = null, $orderProtectCode = null, $store = null, $media = null, $code = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -413,6 +415,13 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             }
         }
 
+        $storeId = Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_API_MOBILE_STORE_VIEW, $store);
+
+        $mediaUrl = Mage::app ()
+            ->getStore (!empty ($media) ? $media : $storeId)
+            ->getBaseUrl (Mage_Core_Model_Store::URL_TYPE_MEDIA, false)
+        ;
+
         $result['items'] = array();
 
         foreach ($order->getAllVisibleItems() as $item)
@@ -465,6 +474,29 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             }
 
             unset ($orderItem ['product_options']);
+
+            $product = $item->getProduct ();
+
+            foreach ($this->_imageCodes as $code)
+            {
+                $value = $product->getData ($code) ?? 'no_selection';
+
+                if (!empty ($value) && !strcmp ($value, 'no_selection'))
+                {
+                    $value = Mage::getSingleton ('mobile/core_design_package')
+                        ->setStore (!empty ($media) ? $media : $storeId)
+                        ->setPackageName ('rwd')
+                        ->setTheme ('magento2')
+                        ->getSkinUrl ("images/catalog/product/placeholder/{$code}.jpg")
+                    ;
+                }
+                else if (!empty ($value) && strcmp ($value, 'no_selection'))
+                {
+                    $value = $mediaUrl . 'catalog/product' . $value; // no_cache
+                }
+
+                $orderItem [$code] = $value;
+            }
 
             $result['items'][] = $orderItem;
         }
