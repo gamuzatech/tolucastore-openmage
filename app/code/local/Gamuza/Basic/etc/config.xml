@@ -761,6 +761,7 @@
                 <email_domain><![CDATA[toluca.com.br]]></email_domain>
                 <confirm>0</confirm>
                 <generate_human_friendly_email>1</generate_human_friendly_email>
+                <generate_human_friendly_password>1</generate_human_friendly_password>
             </create_account>
             <online_customers>
                 <online_minutes_interval>1</online_minutes_interval>
@@ -847,6 +848,12 @@
                 <checkout_multiple>0</checkout_multiple>
             </option>
         </shipping>
+        <checkout>
+            <options>
+                <guest_selected>1</guest_selected>
+                <register_selected>1</register_selected>
+            </options>
+        </checkout>
         <admin>
             <startup>
                 <page>sales/order</page>
