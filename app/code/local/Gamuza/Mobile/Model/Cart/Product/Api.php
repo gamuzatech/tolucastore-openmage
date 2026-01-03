@@ -134,6 +134,25 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 $productRequest->setData ('bundle_option', $bundleOption);
             }
 
+            /**
+             * Stock
+             */
+            $stockItem = Mage::getModel ('catalogInventory/stock_item')->loadByProduct ($productByItem);
+
+            if (!$stockItem || !$stockItem->getId () || !$stockItem->getIsInStock ())
+            {
+                $errors [] = sprintf ('%s: %s', Mage::helper ('mobile')->__('This product is currently out of stock.'), $productByItem->getName ());
+
+                continue;
+            }
+
+            if ($stockItem && $stockItem->getId () && $stockItem->getMinSaleQty () > $productRequest->getQty ())
+            {
+                $errors [] = sprintf ('%s: %s', Mage::helper ('mobile')->__('The minimum quantity allowed for purchase is %s.', $stockItem->getMinSaleQty ()), $productByItem->getName ());
+
+                continue;
+            }
+
             try
             {
                 $result = $quote->addProduct($productByItem, $productRequest);

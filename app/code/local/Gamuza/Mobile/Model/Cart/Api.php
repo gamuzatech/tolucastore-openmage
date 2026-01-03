@@ -281,7 +281,12 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
             if (!$stockItem || !$stockItem->getId () || !$stockItem->getIsInStock ())
             {
-                $this->_fault ('create_order_fault', Mage::helper ('mobile')->__('This product is currently out of stock: %s', $item->getProduct ()->getName ()));
+                $this->_fault ('create_order_fault', sprintf ('%s: %s', Mage::helper ('mobile')->__('This product is currently out of stock.'), $item->getProduct ()->getName ()));
+            }
+
+            if ($stockItem && $stockItem->getId () && $stockItem->getMinSaleQty () > $item->getQty ())
+            {
+                $this->_fault ('create_order_fault', sprintf ('%s: %s', Mage::helper ('mobile')->__('The minimum quantity allowed for purchase is %s.', $stockItem->getMinSaleQty ()), $item->getProduct ()->getName ()));
             }
         }
 
