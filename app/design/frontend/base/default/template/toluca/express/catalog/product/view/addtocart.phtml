@@ -20,7 +20,7 @@ productAddToCartForm.submit = function(url){
             enctype: form.attr('enctype'),
             data: form.serialize(),
         })
-        .success(function(data) {
+        .done(function(data) {
             message = "<?php echo Mage::helper('express')->__('Product was added to your shopping cart.'); ?>";
 
             productsModal.hide();
@@ -32,7 +32,7 @@ productAddToCartForm.submit = function(url){
 
             button.removeAttr('disabled');
         })
-        .done(function(data){
+        .always(function(data){
             $j("<div>" + message + "</div>").dialog({
                 modal: true,
                 title: "<?php echo Mage::helper('express')->__('Cart'); ?>",
