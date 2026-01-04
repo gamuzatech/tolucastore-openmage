@@ -377,6 +377,14 @@
                     </admin_basic_catalog_product_save_after>
                 </observers>
             </catalog_product_save_after>
+            <checkout_cart_product_add_before>
+                <observers>
+                    <admin_basic_checkout_cart_product_add_before>
+                        <class>basic/observer</class>
+                        <method>checkoutCartProductAddBefore</method>
+                    </admin_basic_checkout_cart_product_add_before>
+                </observers>
+            </checkout_cart_product_add_before>
             <checkout_cart_product_add_after>
                 <observers>
                     <admin_basic_checkout_cart_product_add_after>

@@ -164,6 +164,48 @@ class Gamuza_Basic_Model_Observer
         return $this;
     }
 
+    public function checkoutCartProductAddBefore ($observer)
+    {
+        $event = $observer->getEvent ();
+        $request = $event->getRequest ();
+        $product = $event->getProduct ();
+
+        /**
+         * Options MaxLength
+         */
+        $options = $request->getData ('options');
+
+        if (is_array ($options) && count ($options) > 0)
+        {
+            foreach ($options as $id => $value)
+            {
+                if (!is_array ($value)) continue;
+
+                $valueCount = count ($value);
+
+                $productOptions = $product->getOptions ();
+
+                if ($valueCount > 0 && count ($productOptions) > 0)
+                {
+                    foreach ($productOptions as $option)
+                    {
+                        if ($option->getOptionId () == $id)
+                        {
+                            $optionMaxLength = intval ($option->getMaxLength ());
+
+                            if ($optionMaxLength > 0 && $valueCount > $optionMaxLength)
+                            {
+                                $message = Mage::helper ('checkout')->__("You can select up to %s options in '%s'", $option->getMaxLength (), $option->getTitle ());
+
+                                throw new Mage_Core_Exception ($message);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public function checkoutCartProductAddAfter($observer)
     {
         $event = $observer->getEvent ();
