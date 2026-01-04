@@ -103,7 +103,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                     {
                         foreach ($productOptions as $option)
                         {
-                            if ($option->getOptionId () == $id && $option->getIsRequire ())
+                            if ($option->getOptionId () == $id /* && $option->getIsRequire () */)
                             {
                                 $optionMaxLength = intval ($option->getMaxLength ());
 
