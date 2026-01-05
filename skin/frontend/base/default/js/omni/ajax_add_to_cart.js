@@ -109,6 +109,17 @@
             modal: true,
             title: Translator.translate("Cart"),
             buttons: [{text: "OK", click: function() { $j(this).dialog("close"); }}],
+            open: function () {
+                $j(".ui-widget-overlay").css({background: "#000", opacity: 0.8});
+                const dlg = $j(this);
+                setTimeout(function () {
+                    dlg.dialog("option", "position", {
+                        my: "center",
+                        at: "center",
+                        of: window
+                    });
+                }, 0);
+            }
         });
     },
 
