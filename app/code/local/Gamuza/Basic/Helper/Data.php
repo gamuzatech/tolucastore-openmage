@@ -104,6 +104,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const OFFER_TYPE_CLEARANCE = 'clearance';
     const OFFER_TYPE_LIGHTNING = 'lightning';
 
+    const STORE_DEFAULT_EMAIL_PREFIX = 'store';
+
     const SQL_PT_BR = 'pt_BR' . DS . 'sql' . DS . 'sql_pt_br_19_utf8.txt';
 
     const XML_PATH_GENERAL_STORE_INFORMATION_TAXVAT  = 'general/store_information/taxvat';
