@@ -73,13 +73,6 @@ trait Gamuza_Mobile_Trait_Api_Resource
                 ->save()
             ;
 
-            if (Mage::helper ('mobile')->isComanda ())
-            {
-                $quote->setIsSuperMode (true)
-                    ->save()
-                ;
-            }
-
             $customerData = array(
                 'mode'      => Mage_Checkout_Model_Type_Onepage::METHOD_GUEST,
                 'firstname' => $firstName,
@@ -97,6 +90,15 @@ trait Gamuza_Mobile_Trait_Api_Resource
                 ->setCustomerIsGuest (1)
                 ->save()
             ;
+
+            if (Mage::helper ('mobile')->isComanda ())
+            {
+                $quote->setIsSuperMode (true)
+                    ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, '1')
+                    ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
+                    ->save()
+                ;
+            }
 
             $shippingPostcode = preg_replace ('[\D]', null, Mage::getStoreConfig ('shipping/origin/postcode', $storeId));
 
