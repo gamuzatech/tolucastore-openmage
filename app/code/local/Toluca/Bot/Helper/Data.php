@@ -66,7 +66,7 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
     const COMMAND_ONE  = '1';
     const COMMAND_OK   = 'ok';
 
-    const DEFAULT_CUSTOMER_EMAIL  = 'store@toluca.com.br';
+    const DEFAULT_CUSTOMER_EMAIL  = 'bot@toluca.com.br';
     const DEFAULT_CUSTOMER_TAXVAT = '02788178824';
 
     const XML_PATH_BOT_INFORMATION_STORE_URL    = 'bot/information/store_url';
