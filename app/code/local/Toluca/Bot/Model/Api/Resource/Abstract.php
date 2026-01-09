@@ -58,7 +58,9 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
         '28' => 'pagseguropro_boleto',
 
+        /*
         '29' => 'free',
+        */
 
         '30' => 'gamuza_brazil_pix',
     );
