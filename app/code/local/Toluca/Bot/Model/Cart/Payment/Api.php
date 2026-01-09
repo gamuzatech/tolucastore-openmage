@@ -12,7 +12,7 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
 {
     public function items ($shippingId = null, $shippingName = null)
     {
-        $result = null;
+        $result = Mage::helper ('bot/message')->getEnterPaymentMethodText () . PHP_EOL . PHP_EOL;
 
         Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
 

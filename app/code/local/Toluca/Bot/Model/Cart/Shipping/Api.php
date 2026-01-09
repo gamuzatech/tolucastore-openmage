@@ -12,7 +12,7 @@ class Toluca_Bot_Model_Cart_Shipping_Api extends Toluca_Bot_Model_Api_Resource_A
 {
     public function items ()
     {
-        $result = null;
+        $result = Mage::helper ('bot/message')->getEnterDeliveryMethodText () . PHP_EOL . PHP_EOL;
 
         Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
 
