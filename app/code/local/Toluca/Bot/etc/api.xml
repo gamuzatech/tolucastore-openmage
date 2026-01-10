@@ -107,6 +107,11 @@
                         <acl>bot/message/add</acl>
                         <method>add</method>
                     </add>
+                    <mute translate="title" module="bot">
+                        <title>Mute messages to the chat</title>
+                        <acl>bot/message/mute</acl>
+                        <method>mute</method>
+                    </mute>
                 </methods>
             </bot_message>
             <bot_category translate="title" module="bot">
@@ -279,6 +284,9 @@
                         <add translate="title" module="bot">
                             <title>Add messages to the chat</title>
                         </add>
+                        <mute translate="title" module="bot">
+                            <title>Mute messages to the chat</title>
+                        </mute>
                     </message>
                     <category translate="title" module="bot">
                         <title>Category</title>

@@ -90,6 +90,9 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
                     'message'    => $message->getMessage (),
                     'phone'      => $message->getPhone (),
                     'created_at' => $message->getCreatedAt (),
+                    'chat'       => array(
+                        'is_muted' => $chat->getIsMuted (),
+                    )
                 );
             }
         }
@@ -189,6 +192,52 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
         }
 
         return intval ($message->getId ());
+    }
+
+    public function mute ()
+    {
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId = Mage::app ()->getStore ()->getId ();
+
+        $headers = Mage::helper ('bot')->headers ();
+
+        list ($botType, $from, $to, $senderName, $senderMessage) = array_values ($headers);
+
+        $from = preg_replace ('[\D]', null, $from);
+        $to   = preg_replace ('[\D]', null, $to);
+
+        $collection = Mage::getModel ('bot/chat')->getCollection ()
+            ->addFieldToFilter ('is_active', array ('eq' => true))
+            ->addFieldToFilter ('store_id',  array ('eq' => $storeId))
+            ->addFieldToFilter ('quote_id',  array ('gt' => 0))
+            /*
+            ->addFieldToFilter ('order_id',  array ('eq' => 0))
+            */
+            ->addFieldToFilter ('type_id',   array ('eq' => $botType))
+            ->addFieldToFilter ('number',    array ('eq' => $from))
+            ->addFieldToFilter ('phone',     array ('eq' => $to))
+            /*
+            ->addFieldToFilter ('status',    array ('neq' => Toluca_Bot_Helper_Data::STATUS_ORDER))
+            */
+        ;
+
+        $collection->getSelect ()
+            ->order ('created_at DESC')
+            ->limit (1)
+        ;
+
+        $chat = $collection->getFirstItem ();
+
+        if ($chat && $chat->getId ())
+        {
+            $chat->setIsMuted (true)
+                ->setUpdatedAt (date ('c'))
+                ->save ()
+            ;
+        }
+
+        return intval ($chat->getId ());
     }
 }
 
