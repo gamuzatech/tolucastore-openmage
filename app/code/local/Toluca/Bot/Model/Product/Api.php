@@ -43,6 +43,17 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
                 $_categoryId = $collection->getFirstItem ()->getId ();
             }
         }
+        else
+        {
+            if ($categoryName != null)
+            {
+                $collection = $this->_getCategoryCollection ($storeId)
+                    ->addFieldToFilter ('main_table.name', array ('like' => $categoryName . '%'))
+                ;
+
+                $_categoryId = $collection->getFirstItem ()->getId ();
+            }
+        }
 
         $result = $this->_getProductList ($storeId, $_categoryId, $productName);
 

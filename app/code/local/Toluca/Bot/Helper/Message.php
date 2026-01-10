@@ -181,9 +181,8 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
             }
             case self::BUY_THROUGH_THE_APP:
             {
-/*
                 $result = $this->__('Buy also through the *Toluca Store* app at app.toluca.com.br');
-
+/*
                 $storeUrl = Mage::app ()
                     ->getStore (Mage_Core_Model_App::DISTRO_STORE_ID)
                     ->getBaseUrl (Mage_Core_Model_Store::URL_TYPE_LINK)
@@ -194,9 +193,9 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
 
                 $result = sprintf (
                     "%s: %s\n\n%s: %s\n\n%s: %s",
-                    $this->__('APP'),   self::DEFAULT_APP_URL,
                     $this->__('Store'), $storeUrl,
                     $this->__('Robot'), $whatsappUrl,
+                    $this->__('APP'),   $result,
                 );
 
                 break;
