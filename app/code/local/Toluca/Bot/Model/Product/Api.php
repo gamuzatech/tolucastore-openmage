@@ -10,7 +10,7 @@
  */
 class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    public function items ($categoryId, $categoryName = null)
+    public function items ($categoryId, $categoryName = null, $productName = null)
     {
         Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
 
@@ -44,7 +44,7 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
             }
         }
 
-        $result = $this->_getProductList ($storeId, $_categoryId);
+        $result = $this->_getProductList ($storeId, $_categoryId, $productName);
 
         return $result;
     }

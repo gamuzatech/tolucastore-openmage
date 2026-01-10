@@ -336,7 +336,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $result;
     }
 
-    protected function _getProductCollection ($storeId, $categoryId)
+    protected function _getProductCollection ($storeId, $categoryId, $productName = null)
     {
         $websiteId = Mage::app ()->getStore ($storeId)->getWebsite ()->getId ();
 
@@ -358,6 +358,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             ->addFinalPrice ()
         ;
 
+        if ($productName != null)
+        {
+            $collection->addFieldToFilter ('name', array ('like' => sprintf ('%%%s%%', str_replace (" ", '%%', $productName))));
+        }
+
         $collection->getSelect ()
             ->join(
                 array ('ciss' => Mage::getSingleton ('core/resource')->getTableName ('cataloginventory_stock_status')),
@@ -370,11 +375,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getProductList ($storeId, $categoryId)
+    protected function _getProductList ($storeId, $categoryId, $productName = null)
     {
         $result = null;
 
-        $collection = $this->_getProductCollection ($storeId, $categoryId);
+        $collection = $this->_getProductCollection ($storeId, $categoryId, $productName);
 
         foreach ($collection as $product)
         {
