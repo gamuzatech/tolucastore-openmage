@@ -278,6 +278,9 @@
                 <is_weighted>
                     <to_order>*</to_order>
                 </is_weighted>
+                <printer_id>
+                    <to_order>*</to_order>
+                </printer_id>
             </sales_convert_quote>
             <sales_convert_quote_item>
                 <gtin>
@@ -289,6 +292,9 @@
                 <original_base_price>
                     <to_order_item>*</to_order_item>
                 </original_base_price>
+                <printer_id>
+                    <to_order_item>*</to_order_item>
+                </printer_id>
             </sales_convert_quote_item>
             <sales_convert_order>
                 <customer_cellphone>
@@ -300,6 +306,9 @@
                 <is_weighted>
                     <to_quote>*</to_quote>
                 </is_weighted>
+                <printer_id>
+                    <to_quote>*</to_quote>
+                </printer_id>
             </sales_convert_order>
             <sales_convert_order_item>
                 <gtin>
@@ -311,6 +320,9 @@
                 <original_base_price>
                     <to_quote_item>*</to_quote_item>
                 </original_base_price>
+                <printer_id>
+                    <to_quote_item>*</to_quote_item>
+                </printer_id>
             </sales_convert_order_item>
             <!-- Address -->
             <sales_copy_order_billing_address>
@@ -512,8 +524,9 @@
             <quote>
                 <item>
                     <product_attributes>
-                        <image />
                         <gtin />
+                        <image />
+                        <printer_id />
                         <printing />
                     </product_attributes>
                 </item>
@@ -522,6 +535,9 @@
                 <item>
                     <product_attributes>
                         <gtin />
+                        <image />
+                        <printer_id />
+                        <printing />
                     </product_attributes>
                 </item>
             </order>
@@ -636,6 +652,8 @@
                     <brand />
                     <color />
                     <gtin />
+                    <image />
+                    <printer_id />
                     <printing />
                     <sku_position />
                     <size />
