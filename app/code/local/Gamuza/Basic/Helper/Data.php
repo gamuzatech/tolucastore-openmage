@@ -52,11 +52,13 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_WEIGHTED = 'is_weighted';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
+    const ORDER_ATTRIBUTE_PRINTER_ID = 'printer_id';
 
     const ORDER_ITEM_ATTRIBUTE_ORIGINAL_BASE_PRICE = 'original_base_price';
     const ORDER_ITEM_ATTRIBUTE_CUSTOM_WEIGHT = 'custom_weight';
     const ORDER_ITEM_ATTRIBUTE_GTIN = 'gtin';
     const ORDER_ITEM_ATTRIBUTE_IS_PRINTED = 'is_printed';
+    const ORDER_ITEM_ATTRIBUTE_PRINTER_ID = 'printer_id';
     const ORDER_ITEM_ATTRIBUTE_UNIQUE_ID = 'unique_id';
 
     const PAYMENT_ATTRIBUTE_DEFERRED_INSTALLMENTS_QTY = 'deferred_installments_qty';
@@ -78,6 +80,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_CODE = 'code';
     const PRODUCT_ATTRIBUTE_COLOR = 'color';
     const PRODUCT_ATTRIBUTE_MANUFACTURER = 'manufacturer';
+    const PRODUCT_ATTRIBUTE_PRINTER_ID = 'printer_id';
     const PRODUCT_ATTRIBUTE_PRINTING = 'printing';
     const PRODUCT_ATTRIBUTE_SIZE = 'size';
     const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
