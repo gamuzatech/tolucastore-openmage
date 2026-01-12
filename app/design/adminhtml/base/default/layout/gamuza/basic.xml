@@ -29,6 +29,27 @@
                 <name>css/gamuza/basic/calendar-win2k-1.css</name>
                 <params>media="all"</params>
             </action>
+
+            <action method="appendItem">
+                <type>skin_css</type>
+                <name>css/chosen-1.8.7/chosen.min.css</name>
+                <params>media="all"</params>
+            </action>
+
+            <action method="appendItem">
+                <type>js</type>
+                <name>lib/jquery/jquery.min.js</name>
+            </action>
+
+            <action method="appendItem">
+                <type>js</type>
+                <name>lib/jquery/noconflict.js</name>
+            </action>
+
+            <action method="appendItem">
+                <type>skin_js</type>
+                <name>js/chosen-1.8.7/chosen.jquery.min.js</name>
+            </action>
         </reference>
         <!--
         <reference name="notifications">
@@ -37,6 +58,7 @@
         </reference>
         -->
         <reference name="before_body_end">
+            <block type="adminhtml/template" template="gamuza/basic/product/chosen.phtml" />
             <block type="adminhtml/template" template="gamuza/basic/order/pending.phtml" />
         </reference>
     </default>

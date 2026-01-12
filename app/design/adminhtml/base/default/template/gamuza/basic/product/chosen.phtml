@@ -1,0 +1,19 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+
+<script type="text/javascript">
+$j(document).ready(function () {
+    $j('select.chosen-select').chosen({
+        width: '100%',
+        no_results_text: Translator.translate("No results match") + ":",
+    });
+
+    $j('select.chosen-select').closest('div.hor-scroll').removeClass('hor-scroll');
+});
+</script>
+

@@ -9,6 +9,9 @@
 
 <jstranslator>
     <!-- js.js -->
+    <no-results-match translate="message" module="basic">
+        <message>No results match</message>
+    </no-results-match>
     <sales-order-pending translate="message" module="basic">
         <message>You have %s pending orders!</message>
     </sales-order-pending>
