@@ -29,5 +29,17 @@ foreach ($entities as $entity)
     $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE, $options);
 }
 
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+    'nullable' => false,
+    'visible'  => true,
+    'required' => false,
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_PRINTER_ID, $options);
+}
+
 $installer->endSetup ();
 
