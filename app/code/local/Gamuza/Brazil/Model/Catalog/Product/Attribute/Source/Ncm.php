@@ -12,6 +12,7 @@ class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Ncm
     {
         $collection = Mage::getModel ('brazil/ibpt')->getCollection ()
             ->addFieldToFilter ('type', array ('eq' => Gamuza_Brazil_Helper_Data::IBPT_TYPE_NCM))
+            ->addFieldToFilter ('exception', array ('null' => true))
         ;
 
         return $collection;
