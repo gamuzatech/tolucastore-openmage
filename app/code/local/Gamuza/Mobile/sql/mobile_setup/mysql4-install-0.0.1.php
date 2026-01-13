@@ -42,6 +42,7 @@ foreach ($entities as $entity)
 {
     $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_CUSTOMER_INFO_CODE, $options);
     $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_STORE_INFO_CODE, $options);
+    $installer->addAttribute ($entity, Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_USER_AGENT, $options);
 }
 
 /**

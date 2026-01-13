@@ -69,6 +69,9 @@
                 <store_info_code>
                     <to_order>*</to_order>
                 </store_info_code>
+                <user_agent>
+                    <to_order>*</to_order>
+                </user_agent>
             </sales_convert_quote>
             <sales_convert_quote_item>
                 <is_printed>
@@ -88,6 +91,9 @@
                 <store_info_code>
                     <to_quote>*</to_quote>
                 </store_info_code>
+                <user_agent>
+                    <to_quote>*</to_quote>
+                </user_agent>
             </sales_convert_order>
             <!--
             <sales_convert_order_item>

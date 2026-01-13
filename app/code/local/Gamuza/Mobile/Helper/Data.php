@@ -15,6 +15,8 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_CUSTOMER_INFO_CODE = 'customer_info_code';
     const ORDER_ATTRIBUTE_STORE_INFO_CODE = 'store_info_code';
 
+    const ORDER_ATTRIBUTE_USER_AGENT = 'user_agent';
+
     const XML_GLOBAL_PAYMENT_MACHINE_TYPES = 'global/payment/machine/types';
 
     const XML_PATH_API_MOBILE_STORE_VIEW = 'api/mobile/store_view';
@@ -31,6 +33,12 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return $_SERVER ['HTTP_X_REMOTE_IP'] ?? $_SERVER ['HTTP_X_LOCAL_IP']
             ?? Mage::helper ('core/http')->getRemoteAddr (false);
+    }
+
+    public function getUserAgent ()
+    {
+        return $_SERVER ['HTTP_X_USER_AGENT']
+            ?? Mage::helper ('core/http')->getHttpUserAgent (false);
     }
 
     public function isComanda ()

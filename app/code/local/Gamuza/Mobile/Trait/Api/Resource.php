@@ -52,6 +52,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
     protected function _createNewQuote ($customerCode, $customerEmail, $storeId)
     {
         $remoteIp = Mage::helper ('mobile')->getRemoteIp ();
+        $userAgent = Mage::helper ('mobile')->getUserAgent ();
 
         $firstName = Mage::getStoreConfig ('general/store_information/name', $storeId);
         $lastName  = Mage::getStoreConfig ('general/store_information/name', $storeId);
@@ -66,6 +67,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
                 ->setIsActive(true)
                 ->setIsMultiShipping(false)
                 ->setRemoteIp($remoteIp)
+                ->setUserAgent ($userAgent)
                 ->setCustomerFirstname ($firstName)
                 ->setCustomerLastname ($lastName)
                 ->setCustomerEmail ($customerEmail)

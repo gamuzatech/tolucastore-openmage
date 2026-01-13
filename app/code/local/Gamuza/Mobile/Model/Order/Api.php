@@ -58,7 +58,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'customer_dob', 'increment_id', 'applied_rule_ids', 'base_currency_code',
         'customer_email', 'customer_firstname', 'customer_lastname', 'customer_taxvat',
         'discount_description', 'global_currency_code', 'order_currency_code',
-        'remote_ip', 'shipping_method', 'store_currency_code', 'store_name',
+        'remote_ip', 'user_agent', 'shipping_method', 'store_currency_code', 'store_name',
         'customer_note', 'created_at', 'updated_at', 'total_item_count',
         'customer_gender', 'coupon_rule_name', 'gift_message_id',
         'firstname', 'lastname', 'telephone', 'postcode',
