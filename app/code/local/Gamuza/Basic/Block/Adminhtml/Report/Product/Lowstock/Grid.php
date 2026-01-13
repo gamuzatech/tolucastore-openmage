@@ -44,6 +44,8 @@ class Gamuza_Basic_Block_Adminhtml_Report_Product_Lowstock_Grid
             'filter'    => 'adminhtml/widget_grid_column_filter_range',
             'index'     => 'notify_stock_qty',
             'type'      => 'number',
+            'filter_index' => 'lowstock_inventory_item.notify_stock_qty',
+            'filter_condition_callback' => array ($this, '_notifyStockQtyFilterConditionCallback'),
         ));
 
         return $result;
@@ -62,6 +64,29 @@ class Gamuza_Basic_Block_Adminhtml_Report_Product_Lowstock_Grid
         ));
 
         return $result;
+    }
+
+    protected function _notifyStockQtyFilterConditionCallback ($collection, $column)
+    {
+        $value = $column->getFilter ()->getValue ();
+
+        if (!empty ($value))
+        {
+            $from = $value ['from'];
+            $to   = $value ['to'];
+
+            if (isset ($from))
+            {
+                $this->getCollection ()->getSelect ()->where (sprintf ('%s >= ?', $column->getFilterIndex ()), $from);
+            }
+
+            if (isset ($to))
+            {
+                $this->getCollection ()->getSelect ()->where (sprintf ('%s <= ?', $column->getFilterIndex ()), $to);
+            }
+        }
+
+        return $this;
     }
 }
 
