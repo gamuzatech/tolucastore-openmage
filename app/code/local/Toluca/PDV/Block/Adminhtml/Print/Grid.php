@@ -171,6 +171,11 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 			'index'  => 'remote_ip',
 			'filter_index' => 'main_table.remote_ip',
 		));
+		$this->addColumn ('user_agent', array(
+		    'header'  => Mage::helper ('pdv')->__('User Agent'),
+		    'index'   => 'user_agent',
+			'filter_index' => 'main_table.user_agent',
+		));
 		$this->addColumn ('job_id', array(
 			'header' => Mage::helper ('pdv')->__('Job ID'),
 			'align'   => 'right',

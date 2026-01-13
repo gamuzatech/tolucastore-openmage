@@ -100,6 +100,13 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'Remote Ip',
         ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'user_agent', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'User Agent',
+        ));
 
     $installer->getConnection ()
         ->addColumn ($table, 'opened_at', array(

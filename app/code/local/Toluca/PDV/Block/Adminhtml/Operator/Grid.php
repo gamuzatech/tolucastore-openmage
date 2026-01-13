@@ -82,6 +82,10 @@ class Toluca_PDV_Block_Adminhtml_Operator_Grid extends Mage_Adminhtml_Block_Widg
 		    'header'  => Mage::helper ('pdv')->__('Remote IP'),
 		    'index'   => 'remote_ip',
 		));
+		$this->addColumn ('user_agent', array(
+		    'header'  => Mage::helper ('pdv')->__('User Agent'),
+		    'index'   => 'user_agent',
+		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('pdv')->__('Created At'),
 			'index'  => 'created_at',

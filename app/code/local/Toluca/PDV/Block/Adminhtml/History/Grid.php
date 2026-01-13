@@ -278,6 +278,10 @@ class Toluca_PDV_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widge
 			'header' => Mage::helper ('pdv')->__('Remote IP'),
 			'index'  => 'remote_ip',
 		));
+		$this->addColumn ('user_agent', array(
+		    'header'  => Mage::helper ('pdv')->__('User Agent'),
+		    'index'   => 'user_agent',
+		));
 
         $this->addExportType('*/*/exportCsv', Mage::helper('pdv')->__('CSV'));
         $this->addExportType('*/*/exportExcel', Mage::helper('pdv')->__('Excel XML'));

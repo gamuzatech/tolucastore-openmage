@@ -123,6 +123,10 @@ class Toluca_PDV_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget_Gr
 			'header' => Mage::helper ('pdv')->__('Remote IP'),
 			'index'  => 'remote_ip',
 		));
+		$this->addColumn ('user_agent', array(
+		    'header'  => Mage::helper ('pdv')->__('User Agent'),
+		    'index'   => 'user_agent',
+		));
 		$this->addColumn ('customer_id', array(
 		    'header'  => Mage::helper ('pdv')->__('Customer'),
 		    'index'   => 'customer_id',

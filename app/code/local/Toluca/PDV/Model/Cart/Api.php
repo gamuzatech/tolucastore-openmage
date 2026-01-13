@@ -122,6 +122,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_cellphone' => $quote->getCustomerCellphone (),
                 'customer_is_guest'  => boolval ($quote->getCustomerIsGuest ()),
                 'remote_ip' => $quote->getRemoteIp (),
+                'user_agent' => $quote->getUserAgent (),
                 'customer_taxvat' => $quote->getCustomerTaxvat (),
                 'base_subtotal' => floatval ($quote->getBaseSubtotal ()),
                 'base_subtotal_with_discount' => floatval ($quote->getBaseSubtotalWithDiscount ()),
@@ -184,6 +185,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'customer_cellphone' => $quote->getCustomerCellphone (),
             'customer_is_guest'  => boolval ($quote->getCustomerIsGuest ()),
             'remote_ip' => $quote->getRemoteIp (),
+            'user_agent' => $quote->getUserAgent (),
             'customer_taxvat' => $quote->getCustomerTaxvat (),
             'base_subtotal' => floatval ($quote->getBaseSubtotal ()),
             'base_subtotal_with_discount' => floatval ($quote->getBaseSubtotalWithDiscount ()),
@@ -343,6 +345,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         $storeId = Mage_Core_Model_App::DISTRO_STORE_ID;
 
         $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+        $userAgent = Mage::helper ('pdv')->getUserAgent ();
 
         /**
          * NOTE: uniq_id instead customer_id
@@ -354,6 +357,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setIsActive (true)
             ->setIsMultiShipping (false)
             ->setRemoteIp ($remoteIp)
+            ->setUserAgent ($userAgent)
             ->setCustomerFirstname ($customer->getFirstname ())
             ->setCustomerLastname ($customer->getLastname ())
             ->setCustomerEmail ($customerEmail)
@@ -460,6 +464,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setTableId ($table_id)
             ->setCardId ($card_id)
             ->setRemoteIp ($remoteIp)
+            ->setUserAgent ($userAgent)
             ->save ()
         ;
 
