@@ -581,13 +581,13 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'message'                 => $item->getMessage (),
                 // Basic stock data
                 'stock_qty'               => intval($stockItem->getQty()),
-                'min_qty'                 => $stockItem->getMinQty(),
-                'backorders'              => $stockItem->getBackorders(),
-                'min_sale_qty'            => $stockItem->getMinSaleQty(),
-                'max_sale_qty'            => $stockItem->getMaxSaleQty(),
+                'min_qty'                 => intval($stockItem->getMinQty()),
+                'backorders'              => intval($stockItem->getBackorders()),
+                'min_sale_qty'            => intval($stockItem->getMinSaleQty()),
+                'max_sale_qty'            => intval($stockItem->getMaxSaleQty()),
                 'is_in_stock'             => boolval($stockItem->getIsInStock()),
                 'qty_increments'          => intval($qtyIncrements) > 1 ? $qtyIncrements : 1,
-                'enable_qty_increments'   => $stockItem->getEnableQtyIncrements(),
+                'enable_qty_increments'   => boolval($stockItem->getEnableQtyIncrements()),
                 'is_decimal_divided'      => boolval($stockItem->getIsDecimalDivided()),
                 'ordered_items'           => intval($stockItem->getOrderedItems()),
                 // custom options
