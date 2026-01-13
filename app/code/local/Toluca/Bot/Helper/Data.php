@@ -86,6 +86,12 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
             ?? Mage::helper ('core/http')->getRemoteAddr (false);
     }
 
+    public function getUserAgent ()
+    {
+        return $_SERVER ['HTTP_X_USER_AGENT']
+            ?? Mage::helper ('core/http')->getHttpUserAgent (false);
+    }
+
     public function headers ()
     {
         $result = array(

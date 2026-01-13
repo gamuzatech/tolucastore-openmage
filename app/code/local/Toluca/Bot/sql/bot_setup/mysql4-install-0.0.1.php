@@ -114,6 +114,13 @@ SQLBLOCK;
             'comment'  => 'Remote IP',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'user_agent', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => false,
+            'comment'  => 'User Agent',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'number', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,

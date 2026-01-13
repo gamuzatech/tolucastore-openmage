@@ -83,6 +83,7 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
                     'bot_type'   => $message->getBotType (),
                     'type_id'    => $message->getTypeId (),
                     'remote_ip'  => $message->getRemoteIp (),
+                    'user_agent' => $message->getUserAgent (),
                     'email'      => $message->getEmail (),
                     'number'     => $message->getNumber (),
                     'firstname'  => $message->getFirstname (),
@@ -158,6 +159,7 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
         }
 
         $remoteIp = Mage::helper ('bot')->getRemoteIp ();
+        $userAgent = Mage::helper ('bot')->getUserAgent ();
 
         if (!$collection->count ())
         {
@@ -171,6 +173,7 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
                 ->setFirstname ($senderName [0])
                 ->setLastname ($senderName [1])
                 ->setRemoteIp ($remoteIp)
+                ->setUserAgent ($userAgent)
                 ->setEmail (self::DEFAULT_CUSTOMER_EMAIL)
                 ->setStatus (Toluca_Bot_Helper_Data::STATUS_CATEGORY)
                 ->setCreatedAt (date ('c'))

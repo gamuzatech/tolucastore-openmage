@@ -82,6 +82,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         $shippingPostcode = preg_replace ('[\D]', null, Mage::getStoreConfig ('shipping/origin/postcode', $storeId));
 
         $remoteIp = Mage::helper ('bot')->getRemoteIp ();
+        $userAgent = Mage::helper ('bot')->getUserAgent ();
 
         if (!$collection->count ())
         {
@@ -90,6 +91,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
                 ->setIsActive (true)
                 ->setIsMultiShipping (false)
                 ->setRemoteIp ($remoteIp)
+                ->setUserAgent ($userAgent)
                 ->setCustomerCellphone ($from)
                 ->setCustomerFirstname ($senderName [0])
                 ->setCustomerLastname ($senderName [1])
@@ -108,6 +110,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
                 ->setFirstname ($senderName [0])
                 ->setLastname ($senderName [1])
                 ->setRemoteIp ($remoteIp)
+                ->setUserAgent ($userAgent)
                 ->setEmail (self::DEFAULT_CUSTOMER_EMAIL)
                 ->setStatus (Toluca_Bot_Helper_Data::STATUS_CATEGORY)
                 ->setCreatedAt (date ('c'))
