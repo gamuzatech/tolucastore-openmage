@@ -8,9 +8,15 @@
 class Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Cfop
     extends Gamuza_Brazil_Model_Catalog_Product_Attribute_Source_Abstract
 {
+    public const MEI = 'MEI';
+
     public function _getCollection ()
     {
-        return Mage::getModel ('brazil/cfop')->getCollection ();
+        $collection = Mage::getModel ('brazil/cfop')->getCollection ()
+            ->addFieldToFilter ('description', array ('nlike' => sprintf ('%%%s%%', self::MEI)))
+        ;
+
+        return $collection;
     }
 }
 
