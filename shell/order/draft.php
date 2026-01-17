@@ -35,12 +35,14 @@ try
 {
     if ($argc != 2) exit(1);
 
-    Mage::app()->getTranslator()->init(Mage_Core_Model_App_Area::AREA_ADMINHTML, true);
-
     $order = strrpos($argv[1], '-');
 
     $orderIncrementId = substr($argv[1], 0, $order);
     $orderProtectCode = substr($argv[1], $order + 1);
+
+    Mage::app()->getTranslator()->init(Mage_Core_Model_App_Area::AREA_ADMINHTML, true);
+
+    Mage::getSingleton('core/session', array('name' => Mage_Core_Model_App_Area::AREA_ADMINHTML));
 
     $contents = Mage::getModel('mobile/order_api')->draft($orderIncrementId, $orderProtectCode);
 

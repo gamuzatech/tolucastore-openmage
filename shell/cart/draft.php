@@ -35,14 +35,14 @@ try
 {
     if ($argc != 2) exit(1);
 
-    Mage::app()->getTranslator()->init(Mage_Core_Model_App_Area::AREA_ADMINHTML, true);
-
     $quote = strrpos($argv[1], '-');
 
     $id     = substr($argv[1], 0, $quote);
     $prefix = substr($argv[1], $quote + 1);
 
     $code = hash('crc32b', $id);
+
+    Mage::app()->getTranslator()->init(Mage_Core_Model_App_Area::AREA_ADMINHTML, true);
 
     Mage::getSingleton('core/session', array('name' => Mage_Core_Model_App_Area::AREA_ADMINHTML));
 
