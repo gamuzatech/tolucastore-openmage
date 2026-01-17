@@ -165,6 +165,7 @@
             </catalog_resource>
             <checkout>
                 <rewrite>
+                    <session>Gamuza_Basic_Model_Checkout_Session</session>
                     <type_onepage>Gamuza_Basic_Model_Checkout_Type_Onepage</type_onepage>
                 </rewrite>
             </checkout>

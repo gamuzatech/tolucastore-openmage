@@ -172,6 +172,12 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
         return $object;
     }
 
+    public function getUserAgent ()
+    {
+        return $_SERVER ['HTTP_X_USER_AGENT']
+            ?? Mage::helper ('core/http')->getHttpUserAgent (false);
+    }
+
     public function hasAttributeSets ()
     {
         return Mage::getModel ('basic/config')
