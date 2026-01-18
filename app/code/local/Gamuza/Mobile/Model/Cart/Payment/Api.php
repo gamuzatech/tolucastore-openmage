@@ -57,7 +57,9 @@ class Gamuza_Mobile_Model_Cart_Payment_Api extends Mage_Checkout_Model_Cart_Paym
                         /* checkmo */
                         'mailing_address' => $method->getConfigData('mailing_address'),
                         /* banktransfer */
-                        'instructions' => $method->getConfigData('instructions')
+                        'instructions' => $method->getConfigData('instructions'),
+                        /* basic_deferred_payment */
+                        'basic_deferred_payment' => $this->_getDeferredAvailableInformation ($quote, $method),
                     );
                 }
             }

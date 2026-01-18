@@ -176,6 +176,28 @@ trait Gamuza_Mobile_Trait_Api_Resource
         return null;
     }
 
+    public function _getDeferredAvailableInformation ($quote, $method)
+    {
+        $result = array ();
+
+        if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Basic')
+            && $method->getCode () == Gamuza_Basic_Model_Payment_Method_Deferred::CODE)
+        {
+            $result = array(
+                'installments_qty' => $method->_getInstallmentsAvailableQtys (),
+                'interval_days'    => $method->_getIntervalAvailableDays (),
+                'first_due_days'   => $method->_getFirstDueAvailableDays (),
+            );
+        }
+
+        if (empty ($result))
+        {
+            return null;
+        }
+
+        return $result;
+    }
+
     /**
      * Retrieve list of stores
      *
