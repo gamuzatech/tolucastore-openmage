@@ -78,6 +78,10 @@ INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
 INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
+    VALUES ('default', 0, 'payment/basic_deferred_payment/title', 'Pagamento à Prazo')
+    ON DUPLICATE KEY UPDATE `updated_at` = NULL;
+
+INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     VALUES ('default', 0, 'payment/gamuza_blockchain_info/title', 'Pagar com Bitcoin')
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 

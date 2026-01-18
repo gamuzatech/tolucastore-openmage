@@ -178,4 +178,13 @@
 "Invalid filters given. Details in error message.","Filtros inválidos fornecidos. Detalhes na mensagem de erro."
 "Store Switcher Level","Nível do Alternador de Lojas"
 "No results match","Nenhum resultado encontrado"
+"Deferred Payment","Pagamento à Prazo"
+"Installments Qty","Qtde de Parcelas"
+"Interval Days","Intervalo em Dias"
+"First Due Days","Primeiro Vencimento"
+"%d Installments","%s Parcelas"
+"%d Days","%d Dias"
+"Installments qty are not allowed for this payment method.","Qtde de parcelas não são permitidas para este tipo de pagamento."
+"Interval days are not allowed for this payment method.","Intervalo em Dias não são permitidos para este tipo de pagamento."
+"First due days are not allowed for this payment method.","Primeiro vencimento não é permitido para este tipo de pagamento."
 

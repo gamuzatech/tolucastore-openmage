@@ -59,6 +59,10 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ITEM_ATTRIBUTE_IS_PRINTED = 'is_printed';
     const ORDER_ITEM_ATTRIBUTE_UNIQUE_ID = 'unique_id';
 
+    const PAYMENT_ATTRIBUTE_DEFERRED_INSTALLMENTS_QTY = 'deferred_installments_qty';
+    const PAYMENT_ATTRIBUTE_DEFERRED_INTERVAL_DAYS    = 'deferred_interval_days';
+    const PAYMENT_ATTRIBUTE_DEFERRED_FIRST_DUE_DAYS   = 'deferred_first_due_days';
+
     const ORDER_SUFFIX_APP    = 'APP';
     const ORDER_SUFFIX_BOT    = 'BOT';
     const ORDER_SUFFIX_PDV    = 'PDV';

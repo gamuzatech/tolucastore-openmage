@@ -1,0 +1,68 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+/**
+ * @see Saas_Payment_Block_Form_Cashondelivery
+ */
+?>
+<?php /* if ($this->getInstructions()): ?>
+    <ul class="form-list checkout-agreements" id="payment_form_<?php echo $this->getMethodCode() ?>" style="display:none;">
+        <li>
+            <div class="<?php echo $this->getMethodCode() ?>-instructions-content agreement-content">
+                <?php echo nl2br($this->getInstructions()) ?>
+            </div>
+        </li>
+    </ul>
+<?php endif; */ ?>
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list checkout-agreements" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <?php if ($this->getInstructions()): ?>
+    <li>
+        <div class="<?php echo $this->getMethodCode() ?>-instructions-content agreement-content">
+            <?php echo nl2br($this->getInstructions()) ?>
+        </div>
+    </li>
+    <?php endif; ?>
+    <li>
+        <label for="<?php echo $_code ?>_installments_qty" class="required"><em>*</em><?php echo $this->__('Installments Qty') ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_installments_qty" name="payment[deferred_installments_qty]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Installments Qty')) ?>" class="required-entry validate-select">
+                <option value=""><?php echo $this->__('--Please Select--') ?></option>
+            <?php $_installmentsQty = $this->getInfoData('deferred_installments_qty') ?? -1 ?>
+            <?php foreach ($this->getInstallmentsAvailableQtys() as $_installmentCode => $_installmentName): ?>
+                <option value="<?php echo $_installmentCode ?>"<?php if($_installmentCode == $_installmentsQty): ?> selected="selected"<?php endif ?>><?php echo $_installmentName ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_interval_days" class="required"><em>*</em><?php echo $this->__('Interval Days') ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_interval_days" name="payment[deferred_interval_days]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Interval Days')) ?>" class="required-entry validate-select">
+                <option value=""><?php echo $this->__('--Please Select--') ?></option>
+            <?php $_intervalDays = $this->getInfoData('deferred_interval_days') ?? -1 ?>
+            <?php foreach ($this->getIntervalAvailableDays() as $_intervalCode => $_intervalName): ?>
+                <option value="<?php echo $_intervalCode ?>"<?php if($_intervalCode == $_intervalDays): ?> selected="selected"<?php endif ?>><?php echo $_intervalName ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_first_due_days" class="required"><em>*</em><?php echo $this->__('First Due Days') ?></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_first_due_days" name="payment[deferred_first_due_days]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('First Due Days')) ?>" class="required-entry validate-select">
+                <option value=""><?php echo $this->__('--Please Select--') ?></option>
+            <?php $_firstDueDays = $this->getInfoData('deferred_first_due_days') ?? -1 ?>
+            <?php foreach ($this->getFirstDueAvailableDays() as $_firstDueCode => $_firstDueName): ?>
+                <option value="<?php echo $_firstDueCode ?>"<?php if($_firstDueCode == $_firstDueDays): ?> selected="selected"<?php endif ?>><?php echo $_firstDueName ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </li>
+    <?php echo $this->getChildHtml() ?>
+</ul>
+
