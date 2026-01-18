@@ -48,6 +48,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_PDV = 'is_pdv';
     const ORDER_ATTRIBUTE_IS_COMANDA = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_SERVICE = 'is_service';
+    const ORDER_ATTRIBUTE_IS_PRINTED  = 'is_printed';
     const ORDER_ATTRIBUTE_IS_WEIGHTED = 'is_weighted';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
@@ -184,6 +185,11 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
             ->getAttributeSets (Mage_Catalog_Model_Product::ENTITY)
             ->getSize ()
         ;
+    }
+
+    public function isComanda ()
+    {
+        return strpos ($_SERVER ['HTTP_USER_AGENT'], 'TolucaStoreComanda') !== false;
     }
 
     public function isMobile ()

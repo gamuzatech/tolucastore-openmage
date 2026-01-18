@@ -96,8 +96,10 @@ trait Gamuza_Mobile_Trait_Api_Resource
             if (Mage::helper ('mobile')->isComanda ())
             {
                 $quote->setIsSuperMode (true)
+                    /*
                     ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, '1')
                     ->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
+                    */
                     ->save()
                 ;
             }

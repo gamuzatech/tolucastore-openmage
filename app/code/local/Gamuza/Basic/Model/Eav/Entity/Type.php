@@ -64,7 +64,7 @@ class Gamuza_Basic_Model_Eav_Entity_Type extends Mage_Eav_Model_Entity_Type
         $isComanda = $quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA);
         $isService = $quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SERVICE);
 
-        if ($isComanda)
+        if ($isComanda || Mage::helper ('basic')->isComanda ())
         {
             $suffix = Gamuza_Basic_Helper_Data::ORDER_SUFFIX_COMANDA;
         }

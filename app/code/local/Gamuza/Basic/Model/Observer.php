@@ -396,6 +396,15 @@ CONTENT;
         $event = $observer->getEvent ();
         $order = $event->getOrder();
 
+        if (Mage::helper ('basic')->isComanda ())
+        {
+            $order->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_APP, true)
+                ->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, '1')
+                ->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
+                ->save()
+            ;
+        }
+
         foreach ($order->getAllItems () as $item)
         {
             if ($item->getCustomWeight () > 0)
