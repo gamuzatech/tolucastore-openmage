@@ -27,6 +27,15 @@ class Gamuza_Basic_Model_Payment_Method_Deferred extends Mage_Payment_Model_Meth
     protected $_formBlockType = 'basic/payment_form_deferred';
     protected $_infoBlockType = 'basic/payment_info_deferred';
 
+    private $_percentageFees = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->_percentageFees = Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_PAYMENT_BASIC_DEFERRED_PAYMENT_PERCENTAGE_FEES);
+    }
+
     /**
      * Assign data to info model instance
      *
@@ -56,6 +65,11 @@ class Gamuza_Basic_Model_Payment_Method_Deferred extends Mage_Payment_Model_Meth
         if ($data->getDeferredFirstDueDays() !== null)
         {
             $info->setDeferredFirstDueDays($data->getDeferredFirstDueDays());
+        }
+
+        if ($this->_percentageFees !== null)
+        {
+            $info->setDeferredPercentageFees ($this->_percentageFees);
         }
 
         return $this;

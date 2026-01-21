@@ -182,6 +182,7 @@
 "Installments Qty","Qtde de Parcelas"
 "Interval Days","Intervalo em Dias"
 "First Due Days","Primeiro Vencimento"
+"Percentage Fees","Porcentagem de Juros"
 "%d Installments","%s Parcelas"
 "%d Days","%d Dias"
 "Installments qty are not allowed for this payment method.","Qtde de parcelas não são permitidas para este tipo de pagamento."

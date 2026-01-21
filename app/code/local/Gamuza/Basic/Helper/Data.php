@@ -62,6 +62,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PAYMENT_ATTRIBUTE_DEFERRED_INSTALLMENTS_QTY = 'deferred_installments_qty';
     const PAYMENT_ATTRIBUTE_DEFERRED_INTERVAL_DAYS    = 'deferred_interval_days';
     const PAYMENT_ATTRIBUTE_DEFERRED_FIRST_DUE_DAYS   = 'deferred_first_due_days';
+    const PAYMENT_ATTRIBUTE_DEFERRED_PERCENTAGE_FEES  = 'deferred_percentage_fees';
+    const PAYMENT_ATTRIBUTE_DEFERRED_AMOUNT_FEES      = 'deferred_amount_fees';
 
     const ORDER_SUFFIX_APP    = 'APP';
     const ORDER_SUFFIX_BOT    = 'BOT';
@@ -132,6 +134,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_QUEUE         = 'newsletter/scheduled_send/count_of_queue';
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_SUBSCRIPTIONS = 'newsletter/scheduled_send/count_of_subscriptions';
+
+    const XML_PATH_PAYMENT_BASIC_DEFERRED_PAYMENT_PERCENTAGE_FEES = 'payment/basic_deferred_payment/percentage_fees';
 
     const XML_PATH_ADMIN_CUSTOMER_GRID_NAME_NOBR = 'admin/customer/grid_name_nobr';
     const XML_PATH_ADMIN_PRODUCT_GRID_NAME_NOBR  = 'admin/product/grid_name_nobr';
