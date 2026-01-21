@@ -113,6 +113,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'picpay_status', 'picpay_url',
         'openpix_status', 'openpix_url', 'openpix_transaction_id', 'openpix_correlation_id',
         'deferred_installments_qty', 'deferred_interval_days', 'deferred_first_due_days',
+        'deferred_percentage_fees', 'deferred_amount_fees',
         'brazil_pix_key',
     );
 

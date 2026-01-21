@@ -301,6 +301,12 @@
                 <deferred_first_due_days>
                     <to_order_payment>*</to_order_payment>
                 </deferred_first_due_days>
+                <deferred_percentage_fees>
+                    <to_order_payment>*</to_order_payment>
+                </deferred_percentage_fees>
+                <deferred_amount_fees>
+                    <to_order_payment>*</to_order_payment>
+                </deferred_amount_fees>
             </sales_convert_quote_payment>
             <sales_convert_order>
                 <customer_cellphone>
@@ -334,6 +340,12 @@
                 <deferred_first_due_days>
                     <to_quote_payment>*</to_quote_payment>
                 </deferred_first_due_days>
+                <deferred_percentage_fees>
+                    <to_quote_payment>*</to_quote_payment>
+                </deferred_percentage_fees>
+                <deferred_amount_fees>
+                    <to_quote_payment>*</to_quote_payment>
+                </deferred_amount_fees>
             </sales_convert_order_payment>
             <!-- Address -->
             <sales_copy_order_billing_address>

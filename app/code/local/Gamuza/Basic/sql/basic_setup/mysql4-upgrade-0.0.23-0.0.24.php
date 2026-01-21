@@ -27,5 +27,18 @@ foreach ($entities as $entity)
     $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_FIRST_DUE_DAYS,   $options);
 }
 
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+    'length'   => '12,4',
+    'visible'  => true,
+    'required' => false
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_PERCENTAGE_FEES, $options);
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_AMOUNT_FEES,     $options);
+}
+
 $installer->endSetup ();
 
