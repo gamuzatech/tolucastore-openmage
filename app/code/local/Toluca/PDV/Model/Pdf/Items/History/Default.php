@@ -24,12 +24,15 @@ class Toluca_PDV_Model_Pdf_Items_History_Default
         $feed = 35;
 
         /**
-         * draw OpenedAt
+         * draw OpenedAt and ClosedAt
          */
         $lines = array ();
 
+        $openedAt = !empty ($item->getOpenedAt ()) ? Mage::helper ('core')->formatDate ($item->getOpenedAt ()) : 'xxxxxxxxxx';
+        $closedAt = !empty ($item->getClosedAt ()) ? Mage::helper ('core')->formatDate ($item->getClosedAt ()) : Mage::helper ('pdv')->__('Opened');
+
         $lines [0] = array(array(
-            'text'   => Mage::helper ('core')->formatDate ($item->getOpenedAt ()),
+            'text'   => sprintf ('%s - %s', $openedAt, $closedAt),
             'feed'   => $feed,
         ));
 
