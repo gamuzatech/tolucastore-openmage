@@ -89,6 +89,8 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
                     'firstname'  => $message->getFirstname (),
                     'lastname'   => $message->getLastname (),
                     'message'    => $message->getMessage (),
+                    'tool_content'  => $message->getToolContent (),
+                    'final_content' => $message->getFinalContent (),
                     'phone'      => $message->getPhone (),
                     'created_at' => $message->getCreatedAt (),
                     'chat'       => array(
@@ -101,7 +103,7 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
         return $result;
     }
 
-    public function add ($type, $text)
+    public function add ($type, $text, $tool = null, $final = null)
     {
         $result = null;
 
@@ -182,7 +184,7 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
             ;
         }
 
-        $message = $this->_saveMessage ($text, $chat, $type);
+        $message = $this->_saveMessage ($text, $chat, $type, $tool, $final);
 
         if (!strcmp ($type, Toluca_Bot_Helper_Data::MESSAGE_TYPE_ANSWER)
             && !strcmp ($chat->getStatus (), Toluca_Bot_Helper_Data::STATUS_ORDER)

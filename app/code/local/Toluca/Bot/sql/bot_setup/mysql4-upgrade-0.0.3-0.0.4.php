@@ -93,6 +93,18 @@ SQLBLOCK;
             'comment'  => 'Message',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'tool_content', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'nullable' => false,
+            'comment'  => 'Tool Content',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'final_content', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'nullable' => false,
+            'comment'  => 'final_content',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'phone', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,

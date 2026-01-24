@@ -92,6 +92,22 @@ class Toluca_Bot_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widge
             'nl2br'    => true,
             'bolder'   => true,
 		));
+		$this->addColumn ('tool_content', array(
+			'header'   => Mage::helper ('bot')->__('Tool'),
+			'index'    => 'tool_content',
+			'renderer' => 'bot/adminhtml_widget_grid_column_renderer_longtext',
+			'truncate' => 2500,
+			'nl2br'    => true,
+			'bolder'   => true,
+		));
+		$this->addColumn ('final_content', array(
+			'header'   => Mage::helper ('bot')->__('Final'),
+			'index'    => 'final_content',
+			'renderer' => 'bot/adminhtml_widget_grid_column_renderer_longtext',
+			'truncate' => 2500,
+			'nl2br'    => true,
+			'bolder'   => true,
+		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('bot')->__('Created At'),
 			'index'  => 'created_at',

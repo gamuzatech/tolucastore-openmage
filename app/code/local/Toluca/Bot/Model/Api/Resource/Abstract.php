@@ -112,7 +112,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         $this->_orderReview = Mage::getStoreConfigFlag ('bot/checkout/order_review');
     }
 
-    protected function _saveMessage ($text, $chat, $type = Toluca_Bot_Helper_Data::MESSAGE_TYPE_ANSWER)
+    protected function _saveMessage ($text, $chat, $type = Toluca_Bot_Helper_Data::MESSAGE_TYPE_ANSWER, $tool = null, $final = null)
     {
         $message = Mage::getModel ('bot/message')
             ->setChatId ($chat->getId ())
@@ -126,6 +126,8 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             ->setFirstname ($chat->getFirstname ())
             ->setLastname ($chat->getLastname ())
             ->setMessage ($text)
+            ->setToolContent ($tool)
+            ->setFinalContent ($final)
             ->setCreatedAt (date ('c'))
             ->save ()
         ;
