@@ -118,7 +118,7 @@ SQLBLOCK;
 
 addBasicOrderServiceTable ($installer, Gamuza_Basic_Helper_Data::BASIC_ORDER_SERVICE_TABLE, 'Gamuza Basic Order Service Table');
 
-$installer->addEntityType('service', array(
+$installer->addEntityType('order_service', array(
     'entity_model' => 'basic/order_service',
     'table'        => 'basic/order_service',
     'increment_model'      => 'eav/entity_increment_numeric',

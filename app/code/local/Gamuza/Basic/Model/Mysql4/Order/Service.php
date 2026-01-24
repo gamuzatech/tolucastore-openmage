@@ -9,7 +9,7 @@ class Gamuza_Basic_Model_Mysql4_Order_Service extends Mage_Sales_Model_Resource_
 {
     protected $_useIncrementId = true;
 
-    protected $_entityTypeForIncrementId = 'service';
+    protected $_entityTypeForIncrementId = 'order_service';
 
     protected function _construct ()
     {

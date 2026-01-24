@@ -516,10 +516,10 @@
                 <default>basic/sales_order_pdf_items_order_default</default>
                 <grouped>basic/sales_order_pdf_items_order_grouped</grouped>
             </order>
-            <service>
+            <order_service>
                 <default>basic/sales_order_pdf_items_service_default</default>
                 <grouped>basic/sales_order_pdf_items_service_grouped</grouped>
-            </service>
+            </order_service>
         </pdf>
         <catalog>
             <product>

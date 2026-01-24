@@ -13,7 +13,7 @@ class Gamuza_Basic_Model_Order_Service extends Mage_Sales_Model_Abstract
     public const STATE_CANCELED   = 'canceled';
     public const STATE_REFUNDED   = 'refunded';
 
-    public const HISTORY_ENTITY_NAME = 'service';
+    public const HISTORY_ENTITY_NAME = 'order_service';
 
     protected function _construct ()
     {

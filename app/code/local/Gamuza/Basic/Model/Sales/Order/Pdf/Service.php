@@ -14,7 +14,7 @@ class Gamuza_Basic_Model_Sales_Order_Pdf_Service extends Gamuza_Basic_Model_Sale
     {
         $this->_beforeGetPdf();
 
-        $this->_initRenderer('service');
+        $this->_initRenderer('order_service');
 
         $pdf = new Zend_Pdf();
         $this->_setPdf($pdf);
