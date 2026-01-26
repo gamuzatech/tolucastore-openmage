@@ -52,5 +52,15 @@ class Gamuza_Basic_Model_Order_Service extends Mage_Sales_Model_Abstract
 
         return $this->_order->setHistoryEntityName(self::HISTORY_ENTITY_NAME);
     }
+
+    public function getSubtotal()
+    {
+        return $this->getSubtotalAmount();
+    }
+
+    public function getGrandTotal()
+    {
+        return $this->getTotalAmount();
+    }
 }
 
