@@ -98,6 +98,13 @@ class Gamuza_Brazil_Model_Observer
         $quote = $event->getQuote ();
         $customer = $quote->getCustomer ();
 
+        if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
+            && $quote->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV)
+            && ($pdvCustomerId = $quote->getData(Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID)))
+        {
+            $customer = Mage::getModel ('customer/customer')->load ($pdvCustomerId);
+        }
+
         $customerBrazilRgIe   = $customer->getData (Gamuza_Brazil_Helper_Data::CUSTOMER_ATTRIBUTE_BRAZIL_RG_IE);
         $customerBrazilIeIcms = $customer->getData (Gamuza_Brazil_Helper_Data::CUSTOMER_ATTRIBUTE_BRAZIL_IE_ICMS);
 
