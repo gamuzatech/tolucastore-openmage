@@ -1,14 +1,14 @@
 <?php
 /**
  * @package     Gamuza_Basic
- * @copyright   Copyright (c) 2023 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
 /**
- * Sales Order Service Pdf default items renderer
+ * Sales Quote Draft Pdf default items renderer
  */
-class Gamuza_Basic_Model_Sales_Order_Pdf_Items_Service_Default
+class Gamuza_Basic_Model_Sales_Quote_Pdf_Items_Draft_Default
     extends Mage_Sales_Model_Order_Pdf_Items_Abstract
 {
     /**
