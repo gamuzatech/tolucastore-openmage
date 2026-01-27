@@ -36,6 +36,7 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
                     'pdv_cashier_id',
                     'pdv_operator_id',
                     'pdv_customer_id',
+                    'pdv_customer_email',
                     'pdv_history_id',
                     'pdv_sequence_id',
                     'pdv_table_id',

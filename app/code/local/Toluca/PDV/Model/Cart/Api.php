@@ -131,6 +131,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_cashier_id'  => intval ($quote->getPdvCashierId ()),
                 'pdv_operator_id' => intval ($quote->getPdvOperatorId ()),
                 'pdv_customer_id' => intval ($quote->getPdvCustomerId ()),
+                'pdv_customer_email' => $quote->getPdvCustomerEmail (),
                 'pdv_history_id'  => intval ($quote->getPdvHistoryId ()),
                 'pdv_table_id'    => intval ($quote->getPdvTableId ()),
                 'pdv_card_id'     => intval ($quote->getPdvCardId ()),
@@ -194,6 +195,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'pdv_cashier_id'  => intval ($quote->getPdvCashierId ()),
             'pdv_operator_id' => intval ($quote->getPdvOperatorId ()),
             'pdv_customer_id' => intval ($quote->getPdvCustomerId ()),
+            'pdv_customer_email' => $quote->getPdvCustomerEmail (),
             'pdv_history_id'  => intval ($quote->getPdvHistoryId ()),
             'pdv_table_id'    => intval ($quote->getPdvTableId ()),
             'pdv_card_id'     => intval ($quote->getPdvCardId ()),
@@ -370,6 +372,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID, $cashier_id)
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID, $operator_id)
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID, $customer_id)
+            ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_EMAIL, $customer->getEmail ())
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID,  $history->getId ())
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID,    $table_id)
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CARD_ID,     $card_id)

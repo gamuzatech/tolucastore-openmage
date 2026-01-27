@@ -59,5 +59,18 @@ foreach ($entities as $entity)
     $installer->addAttribute ($entity, Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CARD_ID,     $options);
 }
 
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_VARCHAR,
+    'length'   => 255,
+    'nullable' => true,
+    'visible'  => true,
+    'required' => false,
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_EMAIL, $options);
+}
+
 $installer->endSetup ();
 

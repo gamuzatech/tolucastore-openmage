@@ -194,6 +194,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'pdv_cashier_id'  => intval ($nfe->getPdvCashierId ()),
                 'pdv_operator_id' => intval ($nfe->getPdvOperatorId ()),
                 'pdv_customer_id' => intval ($nfe->getPdvCustomerId ()),
+                'pdv_customer_email' => $nfe->getPdvCustomerEmail (),
                 'pdv_history_id'  => intval ($nfe->getPdvHistoryId ()),
                 'pdv_sequence_id' => intval ($nfe->getPdvSequenceId ()),
                 'pdv_table_id'    => intval ($nfe->getPdvTableId ()),

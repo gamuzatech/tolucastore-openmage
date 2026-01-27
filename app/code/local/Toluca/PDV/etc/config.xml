@@ -88,6 +88,9 @@
                 <pdv_customer_id>
                     <to_order>*</to_order>
                 </pdv_customer_id>
+                <pdv_customer_email>
+                    <to_order>*</to_order>
+                </pdv_customer_email>
                 <pdv_history_id>
                     <to_order>*</to_order>
                 </pdv_history_id>
@@ -117,6 +120,9 @@
                 <pdv_customer_id>
                     <to_quote>*</to_quote>
                 </pdv_customer_id>
+                <pdv_customer_email>
+                    <to_quote>*</to_quote>
+                </pdv_customer_email>
                 <pdv_history_id>
                     <to_quote>*</to_quote>
                 </pdv_history_id>
