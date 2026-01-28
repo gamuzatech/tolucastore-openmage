@@ -245,6 +245,67 @@ class Gamuza_Basic_Model_Observer
         }
     }
 
+    public function deferred ()
+    {
+        $percentageFees = Mage::getStoreConfigAsFloat (Gamuza_Basic_Helper_Data::XML_PATH_PAYMENT_BASIC_DEFERRED_PAYMENT_PERCENTAGE_FEES);
+
+        if ($percentageFees <= 0)
+        {
+            return $this;
+        }
+
+        $paymentMethodCode = Gamuza_Basic_Model_Payment_Method_Deferred::CODE;
+
+        $collection = Mage::getModel ('sales/order')->getCollection ()
+            ->addFieldToFilter ('state', array('eq' => Mage_Sales_Model_Order::STATE_NEW))
+        ;
+
+        $collection->getSelect ()
+            ->join(
+                array ('sfop' => Mage::getSingleton ('core/resource')->getTableName ('sales/order_payment')),
+                "main_table.entity_id = sfop.parent_id AND sfop.method = '{$paymentMethodCode}'",
+                array ()
+            )
+            ->reset (Zend_Db_Select::COLUMNS)
+            ->columns (array(
+                'created_at'       => 'main_table.created_at',
+                'base_grand_total' => 'main_table.base_grand_total',
+                'payment_id'       => 'sfop.entity_id',
+                'interval_days'    => 'sfop.deferred_interval_days',
+            ))
+        ;
+
+        foreach ($collection as $order)
+        {
+            $payment = Mage::getModel ('sales/order_payment')->load ($order->getPaymentId ());
+
+            if (!$payment || !$payment->getId ())
+            {
+                continue;
+            }
+
+            $createdAt = $order->getCreatedAt ();
+            $baseGrandTotal = $order->getBaseGrandTotal ();
+            $intervalDays = $order->getIntervalDays ();
+
+            if (!$createdAt || !$baseGrandTotal || !$intervalDays)
+            {
+                continue;
+            }
+
+            $diffSeconds = time () - strtotime ($createdAt);
+            $diffDays = intdiv ($diffSeconds, 86400);
+
+            if ($diffDays > $intervalDays)
+            {
+                $feeAmount = $baseGrandTotal * ($percentageFees / 100);
+                $totalAmount = intdiv ($diffDays, $intervalDays) * $feeAmount;
+
+                $payment->setData ('deferred_total_amount', $totalAmount)->save ();
+            }
+        }
+    }
+
     public function warmer()
     {
         $stores = Mage::app()->getStores();

@@ -680,6 +680,10 @@
     </frontend>
     <crontab>
         <jobs>
+            <gamuza_basic_deferred>
+                <schedule><cron_expr>0 * * * *</cron_expr></schedule>
+                <run><model>basic/observer::deferred</model></run>
+            </gamuza_basic_deferred>
             <gamuza_basic_warmer>
                 <schedule><cron_expr>0 * * * *</cron_expr></schedule>
                 <run><model>basic/observer::warmer</model></run>

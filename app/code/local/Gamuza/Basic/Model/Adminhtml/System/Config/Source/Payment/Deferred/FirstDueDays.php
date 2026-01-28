@@ -19,7 +19,7 @@ class Gamuza_Basic_Model_Adminhtml_System_Config_Source_Payment_Deferred_FirstDu
     {
         $result = array ();
 
-        for ($i = 0; $i <= 120; $i += 15)
+        for ($i = 1; $i <= 120; $i += 15)
         {
             $result [$i] = Mage::helper ('basic')->__('%d Days', $i);
         }
