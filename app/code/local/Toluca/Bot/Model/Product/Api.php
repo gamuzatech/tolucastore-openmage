@@ -112,7 +112,7 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
             $productPrice = Mage::helper ('core')->currency ($_product->getFinalPrice (), true, false);
 
             $result .= sprintf ('*%s*%s%s *%s*', $_product->getSkuPosition (), $strPad, $_product->getName (), $productPrice) . PHP_EOL . PHP_EOL
-                // . $_product->getShortDescription () . PHP_EOL . PHP_EOL
+                . $_product->getShortDescription () . PHP_EOL . PHP_EOL
             ;
         }
 
