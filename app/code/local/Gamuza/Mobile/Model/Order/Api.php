@@ -113,7 +113,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'picpay_status', 'picpay_url',
         'openpix_status', 'openpix_url', 'openpix_transaction_id', 'openpix_correlation_id',
         'deferred_installments_qty', 'deferred_interval_days', 'deferred_first_due_days',
-        'deferred_percentage_fees', 'deferred_amount_fees',
+        'deferred_fee_percentage', 'deferred_fee_amount',
         'brazil_pix_key',
     );
 
@@ -251,7 +251,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         $orderCollection->getSelect ()->join (
             array ('payment' => Mage::getSingleton ('core/resource')->getTableName ('sales/order_payment')),
             'main_table.entity_id = payment.parent_id',
-            array ('payment_method' => 'payment.method')
+            array ('payment_method' => 'payment.method', 'deferred_fee_amount')
         );
 
         foreach ($orderCollection as $order)
@@ -287,6 +287,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             $result ['applied_rule_ids'] = explode (',', $result ['applied_rule_ids']);
 
             $result ['payment_method'] = $order->getPaymentMethod ();
+            $result ['deferred_fee_amount'] = $order->getDeferredFeeAmount ();
 
             $orders [] = $result;
         }
