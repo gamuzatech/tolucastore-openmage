@@ -36,8 +36,8 @@ $options = array(
 
 foreach ($entities as $entity)
 {
-    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_PERCENTAGE_FEES, $options);
-    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_AMOUNT_FEES,     $options);
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_FEE_PERCENTAGE, $options);
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::PAYMENT_ATTRIBUTE_DEFERRED_FEE_AMOUNT,     $options);
 }
 
 $installer->endSetup ();

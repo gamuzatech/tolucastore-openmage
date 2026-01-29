@@ -247,9 +247,9 @@ class Gamuza_Basic_Model_Observer
 
     public function deferred ()
     {
-        $percentageFees = Mage::getStoreConfigAsFloat (Gamuza_Basic_Helper_Data::XML_PATH_PAYMENT_BASIC_DEFERRED_PAYMENT_PERCENTAGE_FEES);
+        $feePercentage = Mage::getStoreConfigAsFloat (Gamuza_Basic_Helper_Data::XML_PATH_PAYMENT_BASIC_DEFERRED_PAYMENT_FEE_PERCENTAGE);
 
-        if ($percentageFees <= 0)
+        if ($feePercentage <= 0)
         {
             return $this;
         }
@@ -298,10 +298,13 @@ class Gamuza_Basic_Model_Observer
 
             if ($diffDays > $intervalDays)
             {
-                $feeAmount = $baseGrandTotal * ($percentageFees / 100);
+                $feeAmount = $baseGrandTotal * ($feePercentage / 100);
                 $totalAmount = intdiv ($diffDays, $intervalDays) * $feeAmount;
 
-                $payment->setData ('deferred_total_amount', $totalAmount)->save ();
+                $payment->setData ('deferred_fee_amount', $totalAmount)
+                    ->setData ('deferred_fee_percentage', $feePercentage)
+                    ->save ()
+                ;
             }
         }
     }

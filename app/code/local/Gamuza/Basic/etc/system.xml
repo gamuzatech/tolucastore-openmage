@@ -738,14 +738,14 @@
                             <show_in_store>0</show_in_store>
                             <can_be_empty>0</can_be_empty>
                         </first_due_days>
-                        <percentage_fees translate="label comment">
-                            <label>Percentage Fees</label>
+                        <fee_percentage translate="label comment">
+                            <label>Fee Percentage</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                        </percentage_fees>
+                        </fee_percentage>
                         <order_status translate="label">
                             <label>New Order Status</label>
                             <frontend_type>select</frontend_type>

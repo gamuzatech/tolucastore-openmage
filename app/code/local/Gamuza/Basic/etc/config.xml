@@ -53,6 +53,7 @@
                     <sales_order_grid>Gamuza_Basic_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
                     <sales_order_create_customer_grid>Gamuza_Basic_Block_Adminhtml_Sales_Order_Create_Customer_Grid</sales_order_create_customer_grid>
                     <sales_order_creditmemo_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_Creditmemo_View</sales_order_creditmemo_view>
+                    <sales_order_invoice_totals>Gamuza_Basic_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
                     <sales_order_invoice_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_Invoice_View</sales_order_invoice_view>
                     <sales_order_shipment_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_Shipment_View</sales_order_shipment_view>
                     <sales_order_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_View</sales_order_view>
@@ -560,6 +561,15 @@
                     </product_attributes>
                 </item>
             </order>
+            <order_invoice>
+                <totals>
+                    <basic_deferred_payment>
+                        <class>basic/invoice_total_deferred</class>
+                        <after>subtotal</after>
+                        <before>grand_total</before>
+                    </basic_deferred_payment>
+                </totals>
+            </order_invoice>
         </sales>
         <basic>
             <product>
