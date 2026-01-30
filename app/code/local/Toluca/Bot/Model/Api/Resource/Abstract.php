@@ -363,10 +363,12 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             ->addFinalPrice ()
         ;
 
+        /*
         if ($productName != null)
         {
             $collection->addFieldToFilter ('name', array ('like' => sprintf ('%%%s%%', str_replace (" ", '%%', $productName))));
         }
+        */
 
         $collection->getSelect ()
             ->join(

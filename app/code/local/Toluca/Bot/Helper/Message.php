@@ -385,6 +385,11 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
         return $this->__('Or type *%s* to go to cart:', $command);
     }
 
+    public function getCategoriesListText()
+    {
+        return $this->__('Here is the list of our categories:');
+    }
+
     public function getProductsForCategoryText ($categoryName)
     {
         return $this->__('Here is the list of our products for category *%s*:', $categoryName);

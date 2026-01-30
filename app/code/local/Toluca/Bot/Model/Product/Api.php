@@ -57,6 +57,11 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
         $result = $this->_getProductList ($storeId, $_categoryId, $productName);
 
+        if ($result != null)
+        {
+            $result = Mage::helper ('bot/message')->getProductsForCategoryText ($categoryName) . PHP_EOL . PHP_EOL . $result;
+        }
+
         return $result;
     }
 

@@ -18,6 +18,11 @@ class Toluca_Bot_Model_Category_Api extends Toluca_Bot_Model_Api_Resource_Abstra
 
         $result = $this->_getCategoryList ($storeId);
 
+        if ($result != null)
+        {
+            $result = Mage::helper ('bot/message')->getCategoriesListText () . PHP_EOL . PHP_EOL . $result;
+        }
+
         return $result;
     }
 }
