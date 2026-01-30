@@ -514,6 +514,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             }
         }
 
+        if (!empty ($product->getOptions ()) && count ($product->getOptions ()) > 0)
+        {
+            $result .= Mage::helper ('bot/message')->getChooseOptionForProductText () . PHP_EOL;
+        }
+
         return $result;
     }
 
