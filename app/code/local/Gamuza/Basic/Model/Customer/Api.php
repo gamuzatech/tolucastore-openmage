@@ -31,6 +31,21 @@ class Gamuza_Basic_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
             )
         ;
 
+	if (!empty($filters['full_name']['full_name']['like']))
+	{
+	    $value = $filters['full_name']['full_name']['like'];
+
+	    $collection->addAttributeToSelect('firstname', 'left')
+	        ->addAttributeToSelect('lastname', 'left')
+                ->getSelect()->where(
+		    "CONCAT(at_firstname.value, ' ', at_lastname.value) LIKE ?",
+		    $value
+	        )
+	    ;
+
+	    unset($filters['full_name']);
+	}
+
         /** @var Mage_Api_Helper_Data $apiHelper */
         $apiHelper = Mage::helper('api');
 
