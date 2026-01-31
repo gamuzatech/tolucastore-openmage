@@ -21,6 +21,7 @@ $installer->updateAttribute ('catalog_product', 'sku',               'is_visible
 $installer->updateAttribute ('catalog_product', 'sku',               'used_in_product_listing', '1');
 $installer->updateAttribute ('catalog_product', 'description',       'is_required',    '0');
 $installer->updateAttribute ('catalog_product', 'short_description', 'frontend_input', 'text');
+$installer->updateAttribute ('catalog_product', 'short_description', 'is_searchable',  '0');
 $installer->updateAttribute ('catalog_product', 'url_key',           'frontend_input', 'label');
 $installer->updateAttribute ('catalog_product', 'tax_class_id',      'default_value',  '0');
 $installer->updateAttribute ('catalog_product', 'gtin',              'default_value',  'SEM GTIN');
