@@ -68,6 +68,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS = 'pdv/cashier/show_operator_carts';
     const XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP = 'pdv/cashier/validate_remote_ip';
     const XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW = 'pdv/cashier/allow_negative_flow';
+    const XML_PATH_PDV_CASHIER_ALLOW_BROKEN_FLOW = 'pdv/cashier/allow_broken_flow';
 
     const XML_PATH_PDV_PAYMENT_METHOD_CASHONDELIVERY = 'pdv/payment_method/money';
 

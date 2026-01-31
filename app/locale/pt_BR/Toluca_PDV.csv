@@ -83,6 +83,7 @@
 "Job ID","ID Job"
 "Validate Remote IP","Validar IP Remoto"
 "Allow Negative Flow","Permitir Fluxo Negativo"
+"Allow Broken Flow","Permitir Fluxo Quebrado"
 "Draft","Rascunho"
 "Kitchen","Cozinha"
 "Item ID","ID Item"
