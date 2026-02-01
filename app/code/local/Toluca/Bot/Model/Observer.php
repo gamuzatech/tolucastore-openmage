@@ -42,6 +42,7 @@ class Toluca_Bot_Model_Observer
         $chats = Mage::getModel('bot/chat')->getCollection()
             ->addFieldToFilter('is_active', array ('eq' => true))
             ->addFieldToFilter('status', array ('neq' => Toluca_Bot_Helper_Data::STATUS_ORDER))
+            ->addFieldToFilter('type_id', array ('eq' => Toluca_Bot_Helper_Data::BOT_TYPE_URA))
         ;
 
         $chats->addFieldToFilter('updated_at', array('to'=>date("Y-m-d H:i:s", mktime(23, 59, 59) - self::BOT_CHAT_LIFETIME)));
