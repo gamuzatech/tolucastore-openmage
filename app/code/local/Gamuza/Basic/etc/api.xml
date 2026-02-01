@@ -440,7 +440,7 @@
                     </order_status>
                     <!-- Order PDF -->
                     <order_pdf translate="title" module="basic">
-                        <title>PDF</title>
+                        <title>Order PDF</title>
                         <order translate="title" module="basic">
                             <title>Create order PDF information</title>
                         </order>
@@ -459,7 +459,7 @@
                     </order_pdf>
                     <!-- Shipping -->
                     <shipping translate="title" module="basic">
-                        <title>Magento</title>
+                        <title>Shipping</title>
                         <origin translate="title" module="basic">
                             <title>Retrieve info about current Shipping origin</title>
                         </origin>

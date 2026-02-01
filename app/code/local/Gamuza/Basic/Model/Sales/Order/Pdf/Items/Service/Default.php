@@ -37,7 +37,7 @@ class Gamuza_Basic_Model_Sales_Order_Pdf_Items_Service_Default
 
         // draw QTY
         $lines[0][] = [
-            'text'  => $item->getQty() * 1,
+            'text'  => $item->getQtyOrdered() * 1,
             'feed'  => 435,
             'align' => 'right'
         ];

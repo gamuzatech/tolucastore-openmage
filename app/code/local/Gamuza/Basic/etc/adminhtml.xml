@@ -12,7 +12,7 @@
         <sales>
             <children>
                 <service>
-                    <title>Services</title>
+                    <title>Order Services</title>
                     <sort_order>55</sort_order>
                     <action>admin_basic/adminhtml_order_service</action>
                 </service>
@@ -58,7 +58,7 @@
                     <sales>
                         <children>
                             <service>
-                                <title>Services</title>
+                                <title>Order Services</title>
                                 <sort_order>55</sort_order>
                             </service>
                         </children>

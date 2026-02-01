@@ -35,21 +35,21 @@ class Gamuza_Basic_Adminhtml_Order_ServiceController extends Mage_Adminhtml_Cont
 	}
 
     /**
-     * Export order grid to CSV format
+     * Export order service grid to CSV format
      */
     public function exportCsvAction()
     {
-        $fileName = 'services.csv';
+        $fileName = 'order_services.csv';
         $grid     = $this->getLayout()->createBlock('basic/adminhtml_order_service_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getCsvFile());
     }
 
     /**
-     *  Export order grid to Excel XML format
+     *  Export order service grid to Excel XML format
      */
     public function exportExcelAction()
     {
-        $fileName   = 'orders.xml';
+        $fileName   = 'order_services.xml';
         $grid       = $this->getLayout()->createBlock('basic/adminhtml_order_service_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
     }

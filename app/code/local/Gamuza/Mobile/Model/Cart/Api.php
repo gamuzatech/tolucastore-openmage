@@ -445,6 +445,9 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         $quote = $this->_getCustomerQuote ($code, $store, false);
 
+        /**
+         * getCustomerEmail
+         */
         Mage::app ()->getStore ()->setConfig (
             Toluca_PDV_Helper_Data::XML_PATH_DEFAULT_EMAIL_PREFIX, 'pdv'
         );
