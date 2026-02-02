@@ -270,14 +270,14 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return intval ($quote->getId());
     }
 
-    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null)
+    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null, $cellphone = null)
     {
-        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note);
+        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $cellphone);
 
         return intval ($quote->getId ());
     }
 
-    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note)
+    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $cellphone)
     {
         if (empty ($cashier_id))
         {
@@ -313,6 +313,15 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         if (!$customer || !$customer->getId ())
         {
             $this->_fault ('customer_not_exists');
+        }
+
+        $countryId = Mage::getStoreConfig ('shipping/origin/country_id');
+
+        $customerCellphone = !empty ($cellphone) ? $cellphone : $customer->getCellphone ();
+
+        if (!$customer->validateCellphone ($customerCellphone, $countryId))
+        {
+            $this->_fault ('customer_invalid_cellphone');
         }
 
         $history = Mage::getModel ('pdv/history')->load ($cashier->getHistoryId ());
@@ -365,7 +374,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setCustomerEmail ($customerEmail)
             ->setCustomerTaxvat ($customer->getTaxvat ())
             ->setCustomerNote ($note)
-            ->setCustomerCellphone ($customer->getCellphone ())
+            ->setCustomerCellphone ($customerCellphone)
         ;
 
         $quote->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV, true)
@@ -417,7 +426,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'region'     => Mage::getStoreConfig ('shipping/origin/region_id',  $storeId),
                 'country_id' => Mage::getStoreConfig ('shipping/origin/country_id', $storeId),
                 'postcode'   => $shippingPostcode,
-                'cellphone'  => $customer->getCellphone (),
+                'cellphone'  => $customerCellphone,
                 'use_for_shipping' => 1,
             )
         ), $storeId);
@@ -433,6 +442,9 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
             $customerBillingCellphone  = preg_replace ('[\D]', null, $customerBillingAddress->getCellphone ());
             $customerShippingCellphone = preg_replace ('[\D]', null, $customerShippingAddress->getCellphone ());
+
+            $customerBillingCellphone = !empty ($cellphone) ? $cellphone : $customerBillingCellphone;
+            $customerShippingCellphone = !empty ($cellphone) ? $cellphone : $customerShippingCellphone;
 
             Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
                 array(

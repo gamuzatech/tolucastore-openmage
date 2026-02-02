@@ -80,5 +80,10 @@ class Gamuza_Basic_Model_Customer_Customer
 
         return ($minLength < $absoluteMinLength) ? $absoluteMinLength : $minLength;
     }
+
+    public function validateCellphone ($cellphone, $countryId)
+    {
+        return Mage::helper ('basic/customer_address')->validateCellphone ($cellphone, $countryId);
+    }
 }
 

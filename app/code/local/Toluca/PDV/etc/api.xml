@@ -212,6 +212,11 @@
                 <code>2300</code>
                 <message>Invalid data given. Details in error message.</message>
             </data_invalid>
+
+            <customer_invalid_cellphone>
+                <code>2400</code>
+                <message>Customer cellphone is invalid.</message>
+            </customer_invalid_cellphone>
         </faults>
         <acl>
             <resources>
