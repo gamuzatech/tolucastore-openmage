@@ -120,6 +120,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_GENERAL_STORE_INFORMATION_NAME    = 'general/store_information/name';
     const XML_PATH_GENERAL_STORE_INFORMATION_LOGO    = 'general/store_information/logo';
     const XML_PATH_GENERAL_STORE_INFORMATION_PHONE   = 'general/store_information/phone';
+    const XML_PATH_GENERAL_STORE_INFORMATION_HOURS   = 'general/store_information/hours';
 
     const XML_PATH_CATALOG_FRONTEND_LIST_RANDOM = 'catalog/frontend/list_random';
 

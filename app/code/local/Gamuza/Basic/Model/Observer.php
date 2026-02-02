@@ -40,6 +40,7 @@ class Gamuza_Basic_Model_Observer
                         'company' => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_COMPANY),
                         'name'    => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_NAME),
                         'phone'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_PHONE),
+                        'hours'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_HOURS),
                     ),
                 ),
                 'shipping' => array(
