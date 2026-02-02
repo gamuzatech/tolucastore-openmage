@@ -217,6 +217,19 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
                 array('shipping_firstname' => $shippingFirstnameField, 'shipping_lastname' => $shippingLastnameField))
         ;
 
+	if (!empty($filters['customer_full_name']['customer_full_name']['like']))
+	{
+	    $value = $filters['customer_full_name']['customer_full_name']['like'];
+
+	    $orderCollection->getSelect()->where(
+		    "CONCAT(customer_firstname, ' ', customer_lastname) LIKE ?",
+		    $value
+	        )
+	    ;
+
+	    unset($filters['customer_full_name']);
+	}
+
         $orderCollection->setOrder ('increment_id', Zend_Db_Select::SQL_DESC);
 
         /** @var $apiHelper Mage_Api_Helper_Data */
