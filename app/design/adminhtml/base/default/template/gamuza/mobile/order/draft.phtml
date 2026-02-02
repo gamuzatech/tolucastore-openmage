@@ -130,6 +130,11 @@ if ($_paymentMethod)
         foreach ($_paymentInfo->getSpecificInformation() as $id => $value)
         {
             echo sprintf('%s: %s', $id, $value) . PHP_EOL;
+
+            if (str_contains($value, 'BR.GOV.BCB.PIX'))
+            {
+                echo sprintf('<qr>%s</qr>', $value) . PHP_EOL;
+            }
         }
     }
 }

@@ -50,6 +50,11 @@ class Gamuza_Brazil_Block_Payment_Info_Pix extends Mage_Payment_Block_Info
             return null;
         }
 
+        if ($this->getInfo () && $this->getInfo ()->getOrder ())
+        {
+            return $this->getInfo ()->getOrder ();
+        }
+
         return Mage::registry ('current_order');
     }
 
