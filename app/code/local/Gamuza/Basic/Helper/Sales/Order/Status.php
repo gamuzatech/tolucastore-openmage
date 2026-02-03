@@ -7,6 +7,23 @@
 
 class Gamuza_Basic_Helper_Sales_Order_Status extends Mage_Core_Helper_Abstract
 {
+    public function pending ($order)
+    {
+        $status  = Gamuza_Basic_Model_Sales_Order::STATUS_PENDING;
+        $comment = Mage::helper ('basic')->__('The order was received.');
+
+        $order->queueOrderUpdateEmail (true, $comment, true)
+            ->addStatusHistoryComment ($comment, $status)
+            ->setIsCustomerNotified (true)
+            ->setIsVisibleOnFront (true)
+            ->save ()
+            ->getOrder ()
+            ->save ()
+        ;
+
+        Mage::dispatchEvent ('sales_order_pending_after', array ('order' => $order));
+    }
+
     public function canceled ($order)
     {
         $status  = Gamuza_Basic_Model_Sales_Order::STATUS_CANCELED;

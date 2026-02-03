@@ -496,6 +496,8 @@ CONTENT;
             $order->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SERVICE, true)->save ();
         }
 
+        Mage::helper ('basic/sales_order_status')->pending ($order);
+
         return $this;
     }
 
