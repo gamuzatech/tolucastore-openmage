@@ -57,6 +57,12 @@ class Toluca_Bot_Model_Observer
         $event = $observer->getEvent ();
         $order = $event->getOrder();
 
+        if (Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_SITE)
+            && str_ends_with ($order->getIncrementId (), '-STORE'))
+        {
+            $order->setData (Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_IS_ZAP, true)->save ();
+        }
+
         if (Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_ORDER))
         {
             $order->setData (Toluca_Bot_Helper_Data::ORDER_ATTRIBUTE_IS_ZAP, true)->save ();
