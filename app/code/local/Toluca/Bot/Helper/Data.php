@@ -19,6 +19,13 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ATTRIBUTE_IS_ZAP = 'is_zap';
 
+    const ORDER_STATUS_PENDING   = 'pending';
+    const ORDER_STATUS_PREPARING = 'preparing';
+    const ORDER_STATUS_PAID      = 'paid';
+    const ORDER_STATUS_SHIPPED   = 'shipped';
+    const ORDER_STATUS_DELIVERED = 'delivered';
+    const ORDER_STATUS_REFUNDED  = 'refunded';
+
     const BOT_TYPE_ADMIN  = 'admin';
     const BOT_TYPE_URA    = 'ura';
     const BOT_TYPE_OPENAI = 'openai';

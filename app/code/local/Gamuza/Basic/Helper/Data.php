@@ -102,6 +102,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_PRICE_VIEW_PRICE_STATIC   = 5;
     const PRODUCT_PRICE_VIEW_PRICE_AVERAGE  = 6;
 
+    const ORDER_STATUS_PENDING   = 'pending';
     const ORDER_STATUS_PREPARING = 'preparing';
     const ORDER_STATUS_PAID      = 'paid';
     const ORDER_STATUS_SHIPPED   = 'shipped';
