@@ -8,5 +8,6 @@
 class Gamuza_Mobile_Block_Adminhtml_Order_Messenger
     extends Gamuza_Mobile_Block_Adminhtml_Order_Draft
 {
+    protected $_separator = "";
 }
 

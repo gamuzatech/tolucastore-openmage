@@ -7,6 +7,8 @@
 
 class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Template
 {
+    protected $_separator = '-'; // default
+
     private $_wordwrap = 48; // default
 
     public function __construct ()
@@ -23,7 +25,7 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
 
     public function getLineSeparator ($title = null)
     {
-        $result = str_repeat ('-', $this->_wordwrap);
+        $result = str_repeat ($this->_separator, $this->_wordwrap);
 
         if (empty ($title))
         {
