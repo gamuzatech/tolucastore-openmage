@@ -1,0 +1,138 @@
+<?php
+/**
+ * @package     Gamuza_Mobile
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+
+echo sprintf ('<h1>%s</h1>', $this->getOrderTitle()) . PHP_EOL;
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_order = $this->getOrder();
+
+echo sprintf('<b><u>%s</u></b> %s', $this->getOrderNumber(), $this->getOrderDatetime()) . PHP_EOL;
+
+$_address = $_order->getShippingAddress() ? $_order->getShippingAddress() : $_order->getBillingAddress();
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+echo sprintf('%s %s <b><u>%s</u></b>', $_address->getFirstname(), $_address->getLastname(), $_address->getCellphone()) . PHP_EOL;
+
+echo sprintf('%s <b><u>%s</u></b> %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
+echo sprintf('%s %s', $_address->getStreet4(), $_address->getPostcode()) . PHP_EOL;
+echo sprintf('%s %s %s', $_address->getCity(), $_address->getRegionCode(), $_address->getCountryId()) . PHP_EOL;
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_itemsQty = $_order->getTotalQtyOrdered() ?: $_order->getItemsQty ();
+
+echo Mage::helper('sales')->__('Total Items Qty: %s', intval($_itemsQty)) . PHP_EOL;
+
+foreach ($_order->getAllVisibleItems() as $item)
+{
+    echo $this->getLineSeparator() . PHP_EOL;
+    echo sprintf('<b><u>%s</u></b>', $item->getName()) . PHP_EOL;
+
+    $_productOptions = $item->getProductOptions() ?? $this->getProductOptions($item);
+
+    foreach ($_productOptions['bundle_options'] as $option)
+    {
+        $optionValue = $option['value'];
+
+        if (is_array($optionValue))
+        {
+            $optionValue = implode(', ', array_map(function ($item) {
+                return $item['title'];
+            }, $optionValue));
+        }
+
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $optionValue) . PHP_EOL;
+    }
+
+    foreach ($_productOptions ['options'] as $option)
+    {
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
+    }
+
+    foreach ($_productOptions ['additional_options'] as $option)
+    {
+        echo sprintf('%s: <b><u>%s</u></b>', $option ['label'], $option ['value']) . PHP_EOL;
+    }
+
+    $_price = Mage::helper('core')->currency($item->getPrice(), true, false);
+    $_qty = floatval($item->getQtyOrdered() ?: $item->getQty());
+    $_rowTotal = Mage::helper('core')->currency($item->getBaseRowTotal(), true, false);
+
+    if ($_order->getIsWeighted() && $item->getCustomWeight())
+    {
+        echo sprintf('%s: %s', Mage::helper('basic')->__('Weight'), intval($item->getCustomWeight())) . PHP_EOL;
+    }
+
+    echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
+
+    echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;
+}
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_subtotal = Mage::helper('core')->currency($_order->getBaseSubtotal(), true, false);
+$_shipping = Mage::helper('core')->currency($_order->getBaseShippingAmount(), true, false);
+$_total    = Mage::helper('core')->currency($_order->getBaseGrandTotal(), true, false);
+
+echo Mage::helper('sales')->__('Subtotal: %s', $_subtotal) . PHP_EOL;
+echo Mage::helper('sales')->__('Shipping Amount: %s', $_shipping) . PHP_EOL;
+echo Mage::helper('sales')->__('Grand Total: %s', $_total) . PHP_EOL;
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_shippingDescription = $_order->getShippingDescription() ?: $_address->getShippingDescription();
+
+if ($_shippingDescription)
+{
+    echo $_shippingDescription . PHP_EOL;
+}
+else
+{
+    echo Mage::helper('adminhtml')->__('The shipping module is not available.') . PHP_EOL;
+}
+
+$_paymentMethod = null;
+
+try
+{
+    $_paymentMethod = $_order->getPayment()->getMethodInstance();
+}
+catch (Exception $e)
+{
+    Mage::logException ($e);
+}
+
+if ($_paymentMethod)
+{
+    echo $_paymentMethod->getTitle() . PHP_EOL;
+
+    $_paymentInfo = Mage::helper('payment')->getInfoBlock($_order->getPayment());
+
+    if ($_paymentInfo)
+    {
+        foreach ($_paymentInfo->getSpecificInformation() as $id => $value)
+        {
+            echo sprintf('%s: %s', $id, $value) . PHP_EOL;
+        }
+    }
+}
+else
+{
+    echo Mage::helper('adminhtml')->__('Payment method is not available.') . PHP_EOL;
+}
+
+echo $this->getLineSeparator() . PHP_EOL;
+
+$_storeName  = Mage::getStoreConfig('general/store_information/name',  $_order->getStoreId());
+$_storePhone = Mage::getStoreConfig('general/store_information/phone', $_order->getStoreId());
+
+echo sprintf('%s %s', $_storeName, $_storePhone) . PHP_EOL;
+
+echo sprintf('Toluca Store APP %s', Mage::getModel('core/date')->date('d/m/Y H:i:s')) . PHP_EOL . PHP_EOL;
+
+?>
+<cut>

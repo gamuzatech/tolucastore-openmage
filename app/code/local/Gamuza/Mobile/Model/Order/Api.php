@@ -801,6 +801,39 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
     }
 
     /**
+     * Retrieve messenger order information
+     *
+     * @param string $orderIncrementId
+     * @return array
+     */
+    public function messenger($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        $order = $this->_initOrder($orderIncrementId, $orderProtectCode);
+
+        Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $order, 'type' => __FUNCTION__));
+
+        $result = Mage::app ()
+            ->getLayout ()
+            ->createBlock ('mobile/adminhtml_order_messenger')
+            ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
+            ->setOrder ($order)
+            ->setTemplate ('gamuza/mobile/order/messenger.phtml')
+            ->toHtml ();
+
+        return $result;
+    }
+
+    /**
      * Retrieve list of stores
      *
      * @param null|object|array $filters

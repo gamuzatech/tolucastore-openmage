@@ -517,6 +517,10 @@
                         <title>Kitchen order information</title>
                         <acl>mobile/order/kitchen</acl>
                     </kitchen>
+                    <messenger translate="title" module="mobile">
+                        <title>Messenger order information</title>
+                        <acl>mobile/order/messenger</acl>
+                    </messenger>
                     <stores translate="title" module="mobile">
                         <title>Retrieve store list</title>
                         <method>stores</method>
@@ -726,6 +730,9 @@
                         <draft translate="title" module="mobile">
                             <title>Draft order information</title>
                         </draft>
+                        <messenger translate="title" module="mobile">
+                            <title>Messenger order information</title>
+                        </messenger>
                         <kitchen translate="title" module="mobile">
                             <title>Kitchen order information</title>
                         </kitchen>
