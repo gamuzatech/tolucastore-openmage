@@ -26,7 +26,7 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
 
     protected function _initChat()
     {
-        $id = $this->getRequest ()->getParam ('id');
+        $id = $this->getRequest ()->getParam ('chat_id');
 
         $chat = Mage::getModel ('bot/chat')->load ($id);
 
@@ -38,6 +38,21 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
 
             $this->setFlag('', self::FLAG_NO_DISPATCH, true);
 
+            return false;
+        }
+
+        Mage::register('bot_chat',     $chat);
+        Mage::register('current_chat', $chat);
+
+        return $chat;
+    }
+
+    protected function _initMessage()
+    {
+        $chat = $this->_initChat ();
+
+        if (!$chat || !$chat->getId ())
+        {
             return false;
         }
 
@@ -56,9 +71,6 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
             return false;
         }
 
-        Mage::register('bot_chat',     $chat);
-        Mage::register('current_chat', $chat);
-
         return $chat;
     }
 
@@ -74,7 +86,7 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
 
     public function messageAction ()
     {
-        $chat = $this->_initChat ();
+        $chat = $this->_initMessage ();
 
         if ($chat && $chat->getId ())
         {

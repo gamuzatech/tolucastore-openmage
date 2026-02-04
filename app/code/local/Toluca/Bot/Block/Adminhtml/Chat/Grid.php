@@ -153,7 +153,7 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
             'filter_index' => 'main_table.updated_at',
 		));
 
-        $this->addColumn ('action', array(
+        $this->addColumn ('message_history', array(
             'header'   => Mage::helper ('bot')->__('History'),
             'width'    => '50px',
             'type'     => 'action',
@@ -164,7 +164,7 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
             'actions'  => array(
                 array(
                     'caption' => Mage::helper ('bot')->__('Messages'),
-                    'field'   => 'id',
+                    'field'   => 'chat_id',
                     'url'     => array(
                         'base'   => '*/*/message',
                         'params' => array ('store' => $this->getRequest ()->getParam ('store'))
