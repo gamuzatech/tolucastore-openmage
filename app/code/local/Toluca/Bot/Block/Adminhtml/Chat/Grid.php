@@ -154,7 +154,7 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
 		));
 
         $this->addColumn ('action', array(
-            'header'   => Mage::helper ('bot')->__('Action'),
+            'header'   => Mage::helper ('bot')->__('History'),
             'width'    => '50px',
             'type'     => 'action',
             'getter'   => 'getId',
@@ -163,10 +163,10 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
             'sortable' => false,
             'actions'  => array(
                 array(
-                    'caption' => Mage::helper ('bot')->__('History'),
+                    'caption' => Mage::helper ('bot')->__('Messages'),
                     'field'   => 'id',
                     'url'     => array(
-                        'base'   => '*/*/history',
+                        'base'   => '*/*/message',
                         'params' => array ('store' => $this->getRequest ()->getParam ('store'))
                     ),
                 )

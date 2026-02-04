@@ -13,11 +13,11 @@
             <block type="bot/adminhtml_chat" name="chat" />
         </reference>
     </admin_bot_adminhtml_chat_index>
-    <admin_bot_adminhtml_chat_history>
+    <admin_bot_adminhtml_chat_message>
         <reference name="content">
-            <block type="bot/adminhtml_history" name="history" />
+            <block type="bot/adminhtml_message" name="message" />
         </reference>
-    </admin_bot_adminhtml_chat_history>
+    </admin_bot_adminhtml_chat_message>
     <admin_bot_adminhtml_contact_index>
         <reference name="content">
             <block type="bot/adminhtml_contact" name="contact" />

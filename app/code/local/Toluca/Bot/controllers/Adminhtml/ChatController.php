@@ -7,8 +7,6 @@
 
 class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Action
 {
-    use Toluca_Bot_Trait_Chat;
-
 	protected function _isAllowed ()
 	{
 	    return Mage::getSingleton ('admin/session')->isAllowed ('toluca/bot/chat');
@@ -49,7 +47,7 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
 
         if (!$collection->getSize ())
         {
-            $this->_getSession ()->addError ($this->__('This chat has no history.'));
+            $this->_getSession ()->addError ($this->__('This chat has no messages.'));
 
             $this->_redirect('*/*/index');
 
@@ -74,14 +72,14 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
 		$this->renderLayout ();
 	}
 
-    public function historyAction ()
+    public function messageAction ()
     {
         $chat = $this->_initChat ();
 
         if ($chat && $chat->getId ())
         {
 	        $this->_title ($this->__('Bot'));
-	        $this->_title ($this->__('History Manager'));
+	        $this->_title ($this->__('Messages History'));
 
 		    $this->_initAction ();
 

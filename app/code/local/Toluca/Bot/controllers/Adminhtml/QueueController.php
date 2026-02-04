@@ -47,7 +47,7 @@ class Toluca_Bot_Adminhtml_QueueController extends Mage_Adminhtml_Controller_Act
 
         if (!$collection->getSize ())
         {
-            $this->_getSession ()->addError ($this->__('This queue has no history.'));
+            $this->_getSession ()->addError ($this->__('This queue has no messages.'));
 
             $this->_redirect('*/*/index');
 
@@ -72,14 +72,14 @@ class Toluca_Bot_Adminhtml_QueueController extends Mage_Adminhtml_Controller_Act
 		$this->renderLayout ();
 	}
 
-    public function historyAction ()
+    public function messageAction ()
     {
         $queue = $this->_initQueue ();
 
         if ($queue && $queue->getId ())
         {
 	        $this->_title ($this->__('Bot'));
-	        $this->_title ($this->__('History Manager'));
+	        $this->_title ($this->__('Messages History'));
 
 		    $this->_initAction ();
 

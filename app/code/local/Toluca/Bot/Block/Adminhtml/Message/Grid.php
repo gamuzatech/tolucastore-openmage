@@ -5,13 +5,13 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Toluca_Bot_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Toluca_Bot_Block_Adminhtml_Message_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 	public function __construct ()
 	{
 		parent::__construct ();
 
-		$this->setId ('botHistoryGrid');
+		$this->setId ('botMessageGrid');
 		$this->setDefaultSort ('entity_id');
 		$this->setDefaultDir ('DESC');
 		$this->setSaveParametersInSession (true);

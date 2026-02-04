@@ -5,14 +5,14 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Toluca_Bot_Block_Adminhtml_History extends Mage_Adminhtml_Block_Widget_Grid_Container
+class Toluca_Bot_Block_Adminhtml_Message extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
 	public function __construct ()
 	{
 	    $this->_blockGroup = 'bot';
-	    $this->_controller = 'adminhtml_history';
+	    $this->_controller = 'adminhtml_message';
 
-	    $this->_headerText = Mage::helper ('bot')->__('History Manager');
+	    $this->_headerText = Mage::helper ('bot')->__('Messages History');
 
 	    parent::__construct();
 
