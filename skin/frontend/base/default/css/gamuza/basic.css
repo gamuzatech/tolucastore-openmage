@@ -74,6 +74,10 @@ ol, ul {
     display: none;
 }
 
+.availability.out-of-stock span {
+    color: red;
+}
+
 .block-account li a:focus,
 .block-cms-menu li a:focus {
     outline-color: #d90f0f;

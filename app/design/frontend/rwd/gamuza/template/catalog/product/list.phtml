@@ -115,6 +115,11 @@
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                         <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
                     </div>
+                    <div class="desc std">
+                        <?php if (!$_product->getStockItem() || !boolval($_product->getStockItem()->getData('is_in_stock'))): ?>
+                            <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif ?>
+                    </div>
                 </div>
             </div>
         </li>
@@ -155,6 +160,9 @@
                     }
                     ?>
                     <?php echo $this->getPriceHtml($_product, true) ?>
+                    <?php if (!$_product->getStockItem() || !boolval($_product->getStockItem()->getData('is_in_stock'))): ?>
+                        <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif ?>
                     <?php if($_product->getRatingSummary()): ?>
                     <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                     <?php endif ?>
