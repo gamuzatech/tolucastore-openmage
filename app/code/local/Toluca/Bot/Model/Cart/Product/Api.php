@@ -10,7 +10,7 @@
  */
 class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    public function add ($productId, $productName = null, $qty = 1, $bundle = null, $options = null, $comment = null)
+    public function add ($productId, $productName = null, $qty = 1, $bundle = null, $options = null, $comment = null, $categoryId = null, $categoryName = null)
     {
         $result = null;
 

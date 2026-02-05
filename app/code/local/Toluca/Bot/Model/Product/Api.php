@@ -65,7 +65,7 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
         return $result;
     }
 
-    public function info ($productId, $productName = null)
+    public function info ($productId, $productName = null, $categoryId = null, $categoryName = null)
     {
         $result = null;
 

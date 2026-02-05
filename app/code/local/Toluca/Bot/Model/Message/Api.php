@@ -105,8 +105,6 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
     public function add ($type, $text, $tool = null, $final = null)
     {
-        $result = null;
-
         Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
 
         $storeId = Mage::app ()->getStore ()->getId ();

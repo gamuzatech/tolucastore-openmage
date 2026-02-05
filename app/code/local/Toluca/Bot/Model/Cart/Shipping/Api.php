@@ -101,6 +101,22 @@ class Toluca_Bot_Model_Cart_Shipping_Api extends Toluca_Bot_Model_Api_Resource_A
                 }
             }
 
+            foreach ($shippingMethods as $method)
+            {
+                if (!strcmp ($method ['method_title'], $shippingName))
+                {
+                    foreach ($this->_shippingMethods as $id => $code)
+                    {
+                        if (!strcmp ($method ['code'], $code))
+                        {
+                            $shippingId = $id;
+
+                            break 2;
+                        }
+                    }
+                }
+            }
+
             if (!empty ($this->_shippingMethods [$shippingId]) && $this->_getAllowedShipping ($shippingMethods, $shippingId))
             {
                 Mage::getModel ('checkout/cart_shipping_api')->setShippingMethod ($quote->getId (), $this->_shippingMethods [$shippingId], $storeId);

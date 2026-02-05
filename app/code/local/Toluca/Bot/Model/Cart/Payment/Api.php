@@ -101,6 +101,22 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
                 }
             }
 
+            foreach ($paymentMethods as $method)
+            {
+                if (!strcmp ($method ['title'], $paymentName))
+                {
+                    foreach ($this->_paymentMethods as $id => $code)
+                    {
+                        if (!strcmp ($method ['code'], $code))
+                        {
+                            $paymentId = $id;
+
+                            break 2;
+                        }
+                    }
+                }
+            }
+
             if (!empty ($this->_paymentMethods [$paymentId]) && $this->_getAllowedPayment ($paymentMethods, $paymentId))
             {
                 switch ($this->_paymentMethods [$paymentId])
