@@ -11,6 +11,7 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
     const CONTACT_TABLE   = 'toluca_bot_contact';
     const LOG_TABLE       = 'toluca_bot_log';
     const MESSAGE_TABLE   = 'toluca_bot_message';
+    const TOOL_TABLE      = 'toluca_bot_tool';
     const PROMOTION_TABLE = 'toluca_bot_promotion';
     const QUEUE_TABLE     = 'toluca_bot_queue';
 
@@ -34,6 +35,8 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
 
     const MESSAGE_TYPE_QUESTION = 'question';
     const MESSAGE_TYPE_ANSWER   = 'answer';
+
+    const TOOL_TYPE_FUNCTION = 'function';
 
     const QUEUE_STATUS_PENDING  = 'pending';
     const QUEUE_STATUS_SENDING  = 'sending';
