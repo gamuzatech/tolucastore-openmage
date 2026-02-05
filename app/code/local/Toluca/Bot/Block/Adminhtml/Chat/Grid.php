@@ -173,6 +173,26 @@ class Toluca_Bot_Block_Adminhtml_Chat_Grid extends Mage_Adminhtml_Block_Widget_G
             ),
         ));
 
+        $this->addColumn ('tool_history', array(
+            'header'   => Mage::helper ('bot')->__('History'),
+            'width'    => '50px',
+            'type'     => 'action',
+            'getter'   => 'getId',
+            'index'    => 'stores',
+            'filter'   => false,
+            'sortable' => false,
+            'actions'  => array(
+                array(
+                    'caption' => Mage::helper ('bot')->__('Tools'),
+                    'field'   => 'chat_id',
+                    'url'     => array(
+                        'base'   => '*/*/tool',
+                        'params' => array ('store' => $this->getRequest ()->getParam ('store'))
+                    ),
+                )
+            ),
+        ));
+
         $this->addExportType('*/*/exportCsv', Mage::helper('bot')->__('CSV'));
         $this->addExportType('*/*/exportExcel', Mage::helper('bot')->__('Excel XML'));
 
