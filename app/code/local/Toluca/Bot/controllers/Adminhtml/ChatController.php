@@ -74,6 +74,33 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
         return $chat;
     }
 
+    protected function _initTool()
+    {
+        $chat = $this->_initChat ();
+
+        if (!$chat || !$chat->getId ())
+        {
+            return false;
+        }
+
+        $collection = Mage::getModel ('bot/tool')->getCollection ()
+            ->addFieldToFilter ('chat_id', array ('eq' => $chat->getId ()))
+        ;
+
+        if (!$collection->getSize ())
+        {
+            $this->_getSession ()->addError ($this->__('This chat has no tools.'));
+
+            $this->_redirect('*/*/index');
+
+            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
+
+            return false;
+        }
+
+        return $chat;
+    }
+
 	public function indexAction ()
 	{
 	    $this->_title ($this->__('Bot'));
@@ -92,6 +119,21 @@ class Toluca_Bot_Adminhtml_ChatController extends Mage_Adminhtml_Controller_Acti
         {
 	        $this->_title ($this->__('Bot'));
 	        $this->_title ($this->__('Messages History'));
+
+		    $this->_initAction ();
+
+		    $this->renderLayout ();
+        }
+    }
+
+    public function toolAction ()
+    {
+        $chat = $this->_initTool ();
+
+        if ($chat && $chat->getId ())
+        {
+	        $this->_title ($this->__('Bot'));
+	        $this->_title ($this->__('Tools History'));
 
 		    $this->_initAction ();
 

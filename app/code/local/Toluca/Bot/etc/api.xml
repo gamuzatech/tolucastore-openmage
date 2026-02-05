@@ -114,6 +114,23 @@
                     </mute>
                 </methods>
             </bot_message>
+            <bot_tool translate="title" module="bot">
+                <model>bot/tool_api</model>
+                <title>Bot Tool API</title>
+                <acl>bot/tool</acl>
+                <methods>
+                    <list translate="title" module="bot">
+                        <title>Get list of tools from the chat</title>
+                        <acl>bot/tool/list</acl>
+                        <method>items</method>
+                    </list>
+                    <add translate="title" module="bot">
+                        <title>Add tools to the chat</title>
+                        <acl>bot/tool/add</acl>
+                        <method>add</method>
+                    </add>
+                </methods>
+            </bot_tool>
             <bot_category translate="title" module="bot">
                 <model>bot/category_api</model>
                 <title>Bot Category API</title>
@@ -288,6 +305,15 @@
                             <title>Mute messages to the chat</title>
                         </mute>
                     </message>
+                    <tool translate="title" module="bot">
+                        <title>Tool</title>
+                        <list translate="title" module="bot">
+                            <title>Get list of tools from the chat</title>
+                        </list>
+                        <add translate="title" module="bot">
+                            <title>Add tools to the chat</title>
+                        </add>
+                    </tool>
                     <category translate="title" module="bot">
                         <title>Category</title>
                         <list translate="title" module="bot">

@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Toluca_Bot>
-            <version>0.0.8</version>
+            <version>0.0.9</version>
         </Toluca_Bot>
     </modules>
     <global>
@@ -44,6 +44,9 @@
                     <message>
                         <table>toluca_bot_message</table>
                     </message>
+                    <tool>
+                        <table>toluca_bot_tool</table>
+                    </tool>
                     <promotion>
                         <table>toluca_bot_promotion</table>
                     </promotion>

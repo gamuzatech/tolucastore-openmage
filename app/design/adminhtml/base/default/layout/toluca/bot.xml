@@ -18,6 +18,11 @@
             <block type="bot/adminhtml_message" name="message" />
         </reference>
     </admin_bot_adminhtml_chat_message>
+    <admin_bot_adminhtml_chat_tool>
+        <reference name="content">
+            <block type="bot/adminhtml_tool" name="tool" />
+        </reference>
+    </admin_bot_adminhtml_chat_tool>
     <admin_bot_adminhtml_contact_index>
         <reference name="content">
             <block type="bot/adminhtml_contact" name="contact" />
