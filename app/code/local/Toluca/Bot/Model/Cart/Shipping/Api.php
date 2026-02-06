@@ -49,7 +49,11 @@ class Toluca_Bot_Model_Cart_Shipping_Api extends Toluca_Bot_Model_Api_Resource_A
 
                             $shippingPrice = Mage::helper ('core')->currency ($method ['price'], true, false);
 
-                            $result .= sprintf ("*%s*%s%s *%s*", $_id, $strPad, $method ['method_title'], $shippingPrice) . PHP_EOL;
+                            $shippingLabelId    = ' shippingId: ';
+                            $shippingLabelName  = ' shippingName: ';
+                            $shippingLabelPrice = ' shippingPrice: ';
+
+                            $result .= sprintf ("%s*%s*%s%s%s %s*%s*", $shippingLabelId, $_id, $strPad, $shippingLabelName, $method ['method_title'], $shippingLabelPrice, $shippingPrice) . PHP_EOL;
                         }
                     }
                 }

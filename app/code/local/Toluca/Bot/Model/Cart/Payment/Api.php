@@ -41,19 +41,23 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
                             $paymentPrice = Mage::helper ('core')->currency ($quote->getBaseGrandTotal (), true, false);
 
-                            $result .= sprintf ("*%s*%s%s *%s*", $_id, $strPad, $method ['title'], $paymentPrice) . PHP_EOL;
+                            $paymentLabelId    = ' paymentId: ';
+                            $paymentLabelName  = ' paymentName: ';
+                            $paymentLabelPrice = ' paymentPrice: ';
+
+                            $result .= sprintf ("%s*%s*%s%s%s %s*%s*", $paymentLabelId, $_id, $strPad, $paymentLabelName, $method ['title'], $paymentLabelPrice, $paymentPrice) . PHP_EOL;
 
                             switch ($_method)
                             {
                                 case 'machineondelivery':
                                 {
-                                    $result .= PHP_EOL . $this->_getCardList ($quote->getId (), $storeId) . PHP_EOL;
+                                    $result .= PHP_EOL . $this->_getCardList ($quote->getId (), $storeId, true) . PHP_EOL;
 
                                     break;
                                 }
                                 case 'gamuza_pagcripto_payment':
                                 {
-                                    $result .= PHP_EOL . $this->_getCriptoList ($quote->getId (), $storeId) . PHP_EOL;
+                                    $result .= PHP_EOL . $this->_getCriptoList ($quote->getId (), $storeId, true) . PHP_EOL;
 
                                     break;
                                 }
