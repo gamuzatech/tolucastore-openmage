@@ -55,7 +55,7 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
             }
         }
 
-        $result = $this->_getProductList ($storeId, $_categoryId, $productName);
+        $result = $this->_getProductList ($storeId, $_categoryId, $productName, true);
 
         if ($result != null)
         {
@@ -116,14 +116,19 @@ class Toluca_Bot_Model_Product_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
             $productPrice = Mage::helper ('core')->currency ($_product->getFinalPrice (), true, false);
 
-            $result .= sprintf ('*%s*%s%s *%s*', $_product->getSkuPosition (), $strPad, $_product->getName (), $productPrice) . PHP_EOL . PHP_EOL
-                . $_product->getShortDescription () . PHP_EOL . PHP_EOL
+            $productLabelId    = ' productId: ';
+            $productLabelName  = ' productName: ';
+            $productLabelPrice = ' productPrice: ';
+            $productLabelShort = ' productDescription: ';
+
+            $result .= sprintf ('%s*%s*%s%s%s %s*%s*', $productLabelId, $_product->getSkuPosition (), $strPad, $productLabelName, $_product->getName (), $productLabelPrice, $productPrice) . PHP_EOL . PHP_EOL
+                . $productLabelShort . $_product->getShortDescription () . PHP_EOL . PHP_EOL
             ;
         }
 
-        $result .= $this->_getBundleOptions ($_productId, true);
+        $result .= $this->_getBundleOptions ($_productId, true, true);
 
-        $result .= $this->_getProductOptions ($_productId, true);
+        $result .= $this->_getProductOptions ($_productId, true, true);
 
         return $result;
     }

@@ -344,7 +344,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getCategoryList ($storeId)
+    protected function _getCategoryList ($storeId, $labels = false)
     {
         $result = null;
 
@@ -355,7 +355,10 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
             $strLen = self::CATEGORY_ID_LENGTH - strlen ($category->getPosition ());
             $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
 
-            $result .= sprintf ('*%s*%s%s', $category->getPosition (), $strPad, $category->getName ()) . PHP_EOL;
+            $categoryLabelId   = $labels ? ' categoryId: '   : "";
+            $categoryLabelName = $labels ? ' categoryName: ' : "";
+
+            $result .= sprintf ('%s*%s*%s%s%s', $categoryLabelId, $category->getPosition (), $strPad, $categoryLabelName, $category->getName ()) . PHP_EOL;
         }
 
         return $result;
@@ -402,7 +405,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getProductList ($storeId, $categoryId, $productName = null)
+    protected function _getProductList ($storeId, $categoryId, $productName = null, $labels = false)
     {
         $result = null;
 
@@ -420,7 +423,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
             $productPrice = Mage::helper ('core')->currency ($product->getFinalPrice (), true, false);
 
-            $result .= sprintf ('*%s*%s%s *%s*', $product->getSkuPosition (), $strPad, $product->getName (), $productPrice) . PHP_EOL;
+            $productLabelId    = $labels ? ' productId: '    : "";
+            $productLabelName  = $labels ? ' productName: '  : "";
+            $productLabelPrice = $labels ? ' productPrice: ' : "";
+
+            $result .= sprintf ('%s*%s*%s%s%s %s*%s*', $productLabelId, $product->getSkuPosition (), $strPad, $productLabelName, $product->getName (), $productLabelPrice, $productPrice) . PHP_EOL;
         }
 
         return $result;
@@ -437,7 +444,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getBundleOptions ($productId, $selections = false)
+    protected function _getBundleOptions ($productId, $selections = false, $labels = false)
     {
         $result = null;
 
@@ -455,11 +462,14 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
             $required = $option->getRequired () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
-            $result .= sprintf ('*%s*%s%s%s', $option->getPosition (), $strPad, $option->getDefaultTitle (), $required) . PHP_EOL;
+            $bundleLabelId   = $labels ? ' bundleId: '   : "";
+            $bundleLabelName = $labels ? ' bundleName: ' : "";
+
+            $result .= sprintf ('%s*%s*%s%s%s%s', $bundleLabelId, $option->getPosition (), $strPad, $bundleLabelName, $option->getDefaultTitle (), $required) . PHP_EOL;
 
             if ($selections)
             {
-                $result .= PHP_EOL . $this->_getBundleSelections ($option) . PHP_EOL;
+                $result .= PHP_EOL . $this->_getBundleSelections ($option, $labels) . PHP_EOL;
             }
         }
 
@@ -478,7 +488,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getBundleSelections ($option)
+    protected function _getBundleSelections ($option, $labels = false)
     {
         $result = null;
 
@@ -491,7 +501,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
             $selectionPrice = Mage::helper ('core')->currency ($selection->getFinalPrice (), true, false);
 
-            $result .= sprintf ('*%s*%s%s *%s*', $selection->getPosition (), $strPad, $selection->getName (), $selectionPrice) . PHP_EOL;
+            $selectionLabelId    = $labels ? ' selectionId: '    : "";
+            $selectionLabelName  = $labels ? ' selectionName: '  : "";
+            $selectionLabelPrice = $labels ? ' selectionPrice: ' : "";
+
+            $result .= sprintf ('%s*%s*%s%s%s %s*%s*', $selectionLabelId, $selection->getPosition (), $strPad, $selectionLabelName, $selection->getName (), $selectionLabelPrice, $selectionPrice) . PHP_EOL;
         }
 
         return $result;
@@ -508,7 +522,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getProductOptions ($productId, $values = false)
+    protected function _getProductOptions ($productId, $values = false, $labels = false)
     {
         $result = null;
 
@@ -526,11 +540,14 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
             $require = $option->getIsRequire () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
-            $result .= sprintf ('*%s*%s%s%s', $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
+            $optionLabelId   = $labels ? ' optionId: '   : "";
+            $optionLabelName = $labels ? ' optionName: ' : "";
+
+            $result .= sprintf ('%s*%s*%s%s%s%s', $optionLabelId, $option->getSortOrder (), $strPad, $optionLabelName, $option->getTitle (), $require) . PHP_EOL;
 
             if ($values)
             {
-                $result .= PHP_EOL . $this->_getProductValues ($option) . PHP_EOL;
+                $result .= PHP_EOL . $this->_getProductValues ($option, $labels) . PHP_EOL;
             }
         }
 
@@ -554,7 +571,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $collection;
     }
 
-    protected function _getProductValues ($option)
+    protected function _getProductValues ($option, $labels = false)
     {
         $result = null;
 
@@ -565,7 +582,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
             $valuePrice = Mage::helper ('core')->currency ($value->getPrice (), true, false);
 
-            $result .= sprintf ('*%s*%s%s *%s*', $value->getSortOrder (), $strPad, $value->getTitle (), $valuePrice) . PHP_EOL;
+            $valueLabelId    = $labels ? ' valueId: '    : "";
+            $valueLabelName  = $labels ? ' valueName: '  : "";
+            $valueLabelPrice = $labels ? ' valuePrice: ' : "";
+
+            $result .= sprintf ('%s*%s*%s%s%s %s*%s*', $valueLabelId, $value->getSortOrder (), $strPad, $valueLabelName, $value->getTitle (), $valueLabelPrice, $valuePrice) . PHP_EOL;
         }
 
         return $result;
@@ -785,7 +806,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return false;
     }
 
-    protected function _getCardList ($quoteId, $storeId)
+    protected function _getCardList ($quoteId, $storeId, $labels = false)
     {
         $paymentMethods = Mage::getModel ('bot/checkout_cart_payment_api')->getPaymentMethodsList ($quoteId, $storeId);
 
@@ -812,7 +833,10 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
                             $strLen = self::CCTYPE_ID_LENGTH - strlen ($id);
                             $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
 
-                            $result .= sprintf ("*%s*%s%s", $id, $strPad, $_cctype) . PHP_EOL;
+                            $paymentCcTypeLabelId    = $labels ? ' paymentCcTypeId: '    : "";
+                            $paymentCcTypeLabelName  = $labels ? ' paymentCcTypeName: '  : "";
+
+                            $result .= sprintf ("%s*%s*%s%s%s", $paymentCcTypeLabelId, $id, $strPad, $paymentCcTypeLabelName, $_cctype) . PHP_EOL;
                         }
                     }
                 }
@@ -822,7 +846,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         }
     }
 
-    protected function _getCriptoList ($quoteId, $storeId)
+    protected function _getCriptoList ($quoteId, $storeId, $labels = false)
     {
         $paymentMethods = Mage::getModel ('bot/checkout_cart_payment_api')->getPaymentMethodsList ($quoteId, $storeId);
 
@@ -849,7 +873,10 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
                             $strLen = self::CCTYPE_ID_LENGTH - strlen ($id);
                             $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
 
-                            $result .= sprintf ("*%s*%s%s", $id, $strPad, $_cctype) . PHP_EOL;
+                            $paymentCriptoTypeLabelId    = $labels ? ' paymentCriptoTypeId: '    : "";
+                            $paymentCriptoTypeLabelName  = $labels ? ' paymentCriptoTypeName: '  : "";
+
+                            $result .= sprintf ("%s*%s*%s%s%s", $paymentCriptoTypeLabelId, $id, $strPad, $paymentCriptoTypeLabelName, $_cctype) . PHP_EOL;
                         }
                     }
                 }

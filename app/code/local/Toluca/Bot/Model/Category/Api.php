@@ -16,7 +16,7 @@ class Toluca_Bot_Model_Category_Api extends Toluca_Bot_Model_Api_Resource_Abstra
 
         $storeId = Mage::app ()->getStore ()->getId ();
 
-        $result = $this->_getCategoryList ($storeId);
+        $result = $this->_getCategoryList ($storeId, true);
 
         if ($result != null)
         {
