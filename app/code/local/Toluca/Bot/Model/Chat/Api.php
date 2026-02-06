@@ -1145,7 +1145,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    protected function _getProductList ($storeId, $categoryId)
+    protected function _getProductList ($storeId, $categoryId, $productName = null)
     {
         $category = Mage::getModel ('catalog/category')->load ($categoryId);
 
@@ -1153,7 +1153,7 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
             . Mage::helper ('bot/message')->getEnterProductCodeToCartText () . PHP_EOL . PHP_EOL
         ;
 
-        $result .= parent::_getProductList ($storeId, $categoryId);
+        $result .= parent::_getProductList ($storeId, $categoryId, $productName);
 
         $result .= PHP_EOL . Mage::helper ('bot/message')->getTypeListToCategoriesText (self::COMMAND_ZERO);
 
