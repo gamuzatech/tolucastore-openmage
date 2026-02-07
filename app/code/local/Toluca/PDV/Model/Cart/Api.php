@@ -270,14 +270,14 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return intval ($quote->getId());
     }
 
-    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null, $cellphone = null)
+    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null, $name = null, $cellphone = null)
     {
-        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $cellphone);
+        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $name, $cellphone);
 
         return intval ($quote->getId ());
     }
 
-    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $cellphone)
+    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $name, $cellphone)
     {
         if (empty ($cashier_id))
         {
@@ -317,6 +317,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
 
         $countryId = Mage::getStoreConfig ('shipping/origin/country_id');
 
+        $customerFirstname = !empty ($name) ? $name : $customer->getFirstname ();
+        $customerLastname  = !empty ($name) ? 'xxx' : $customer->getLastname ();
         $customerCellphone = !empty ($cellphone) ? $cellphone : $customer->getCellphone ();
 
         if (!$customer->validateCellphone ($customerCellphone, $countryId))
@@ -369,8 +371,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setIsMultiShipping (false)
             ->setRemoteIp ($remoteIp)
             ->setUserAgent ($userAgent)
-            ->setCustomerFirstname ($customer->getFirstname ())
-            ->setCustomerLastname ($customer->getLastname ())
+            ->setCustomerFirstname ($customerFirstname)
+            ->setCustomerLastname ($customerLastname)
             ->setCustomerEmail ($customerEmail)
             ->setCustomerTaxvat ($customer->getTaxvat ())
             ->setCustomerNote ($note)
@@ -401,8 +403,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             /*
             'entity_id' => $customer->getId (),
             */
-            'firstname' => $customer->getFirstname (),
-            'lastname'  => $customer->getLastname (),
+            'firstname' => $customerFirstname,
+            'lastname'  => $customerLastname,
             'email'     => $customerEmail,
             'taxvat'    => $customer->getTaxvat (),
         );
@@ -414,8 +416,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
             array(
                 'mode'       => 'billing',
-                'firstname'  => $customer->getFirstname (),
-                'lastname'   => $customer->getLastname (),
+                'firstname'  => $customerFirstname,
+                'lastname'   => $customerLastname,
                 'street'     => array(
                     Mage::getStoreConfig ('shipping/origin/street_line1', $storeId),
                     Mage::getStoreConfig ('shipping/origin/street_line2', $storeId),
@@ -437,6 +439,12 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         if ($customerBillingAddress && $customerBillingAddress->getId () && $customerBillingAddress->validate () === true
             && $customerShippingAddress && $customerShippingAddress->getId () && $customerShippingAddress->validate () === true)
         {
+            $customerBillingFirstname  = !empty ($name) ? $name : $customerBillingAddress->getFirstname ();
+            $customerShippingFirstname = !empty ($name) ? $name : $customerShippingAddress->getFirstname ();
+
+            $customerBillingLastname  = !empty ($name) ? 'xxx' : $customerBillingAddress->getLastname ();
+            $customerShippingLastname = !empty ($name) ? 'xxx' : $customerShippingAddress->getLastname ();
+
             $customerBillingPostcode  = preg_replace ('[\D]', null, $customerBillingAddress->getPostcode ());
             $customerShippingPostcode = preg_replace ('[\D]', null, $customerShippingAddress->getPostcode ());
 
@@ -449,8 +457,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
                 array(
                     'mode'       => 'billing',
-                    'firstname'  => $customerBillingAddress->getFirstname (),
-                    'lastname'   => $customerBillingAddress->getLastname (),
+                    'firstname'  => $customerBillingFirstname,
+                    'lastname'   => $customerBillingLastname,
                     'street'     => $customerBillingAddress->getStreet (),
                     'city'       => $customerBillingAddress->getCity (),
                     'region'     => $customerBillingAddress->getRegionId (),
@@ -460,8 +468,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 ),
                 array(
                     'mode'       => 'shipping',
-                    'firstname'  => $customerShippingAddress->getFirstname (),
-                    'lastname'   => $customerShippingAddress->getLastname (),
+                    'firstname'  => $customerShippingFirstname,
+                    'lastname'   => $customerShippingLastname,
                     'street'     => $customerShippingAddress->getStreet (),
                     'city'       => $customerShippingAddress->getCity (),
                     'region'     => $customerShippingAddress->getRegionId (),
