@@ -135,12 +135,12 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         return $message;
     }
 
-    protected function _saveTool ($name, $path, $chat, $type = Toluca_Bot_Helper_Data::TOOL_TYPE_FUNCTION, $body = null, $result = null, $message = null)
+    protected function _saveTool ($name, $path, $chat, $type = Toluca_Bot_Helper_Data::TOOL_TYPE_FUNCTION, $body = null, $result = null, $messageId = null)
     {
         $tool = Mage::getModel ('bot/tool')
             ->setChatId ($chat->getId ())
             ->setBotType ($chat->getTypeId ())
-            ->setMessageId ($message)
+            ->setMessageId ($messageId)
             ->setTypeId ($type)
             ->setRemoteIp ($chat->getRemoteIp ())
             ->setUserAgent ($chat->getUserAgent ())
