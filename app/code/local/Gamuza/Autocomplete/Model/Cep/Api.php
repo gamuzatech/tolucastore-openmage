@@ -21,6 +21,8 @@ class Gamuza_Autocomplete_Model_Cep_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('zipcode_not_exists');
         }
 
+        $result ['complemento'] = "";
+
         return $result;
     }
 }
