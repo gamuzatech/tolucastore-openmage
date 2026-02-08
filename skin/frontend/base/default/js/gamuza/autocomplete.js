@@ -34,7 +34,7 @@ function autocomplete (object, type)
                 $(type + "city").value = transport.responseJSON.localidade;
                 $(type + "street_1").value  = transport.responseJSON.logradouro;
                 $(type + "street_2").value  = '';
-                $(type + "street_3").value  = transport.responseJSON.complemento;
+                $(type + "street_3").value  = ''; // transport.responseJSON.complemento;
                 $(type + "street_4").value  = transport.responseJSON.bairro;
                 $(type + "street_2").focus();
             }
