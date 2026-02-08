@@ -25,6 +25,13 @@ class Toluca_Bot_Block_Adminhtml_Tool_Grid extends Mage_Adminhtml_Block_Widget_G
             ->addFieldToFilter ('chat_id', array ('eq' => $chat->getId ()))
         ;
 
+		$messageId = $this->getRequest ()->getParam ('message_id');
+
+		if (!empty ($messageId))
+		{
+			$collection->addFieldToFilter ('message_id', array ('eq' => $messageId));
+		}
+
 		$this->setCollection ($collection);
 
 		return parent::_prepareCollection ();
@@ -103,6 +110,26 @@ class Toluca_Bot_Block_Adminhtml_Tool_Grid extends Mage_Adminhtml_Block_Widget_G
 			'index'  => 'created_at',
             'type'   => 'datetime',
 		));
+
+        $this->addColumn ('message_history', array(
+            'header'   => Mage::helper ('bot')->__('History'),
+            'width'    => '50px',
+            'type'     => 'action',
+            'getter'   => 'getChatId',
+            'index'    => 'stores',
+            'filter'   => false,
+            'sortable' => false,
+            'actions'  => array(
+                array(
+                    'caption' => Mage::helper ('bot')->__('Messages'),
+                    'field'   => 'chat_id',
+                    'url'     => array(
+                        'base'   => '*/*/message',
+                        'params' => array ('store' => $this->getRequest ()->getParam ('store'))
+                    ),
+                )
+            ),
+        ));
 
 		return parent::_prepareColumns ();
 	}

@@ -80,7 +80,7 @@ class Toluca_Bot_Model_Tool_Api extends Toluca_Bot_Model_Api_Resource_Abstract
                 $result [] = array(
                     'entity_id'  => intval ($tool->getId ()),
                     'chat_id'    => intval ($tool->getChatId ()),
-                    'message_id' => intval ($tool->getChatId ()),
+                    'message_id' => intval ($tool->getMessageId ()),
                     'bot_type'   => $tool->getBotType (),
                     'type_id'    => $tool->getTypeId (),
                     'remote_ip'  => $tool->getRemoteIp (),
@@ -100,7 +100,7 @@ class Toluca_Bot_Model_Tool_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         return $result;
     }
 
-    public function add ($type, $name, $path, $body = null, $result = null, $message = null)
+    public function add ($type, $name, $path, $body = null, $result = null, $messageId = null)
     {
         Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
 
@@ -179,7 +179,7 @@ class Toluca_Bot_Model_Tool_Api extends Toluca_Bot_Model_Api_Resource_Abstract
             ;
         }
 
-        $tool = $this->_saveTool ($name, $path, $chat, $type, $body, $result, $message);
+        $tool = $this->_saveTool ($name, $path, $chat, $type, $body, $result, $messageId);
 
         return intval ($tool->getId ());
     }

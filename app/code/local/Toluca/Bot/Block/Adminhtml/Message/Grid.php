@@ -114,6 +114,29 @@ class Toluca_Bot_Block_Adminhtml_Message_Grid extends Mage_Adminhtml_Block_Widge
             'type'   => 'datetime',
 		));
 
+		$this->addColumn ('tool_history', array(
+			'header'   => Mage::helper ('bot')->__('History'),
+			'width'    => '50px',
+			'type'     => 'action',
+			'getter'   => 'getId',
+			'index'    => 'stores',
+			'filter'   => false,
+			'sortable' => false,
+			'actions'  => array(
+				array(
+					'caption' => Mage::helper ('bot')->__('Tools'),
+					'field'   => 'message_id',
+					'url'     => array(
+					'base'   => '*/*/tool',
+					'params' => array (
+						'store' => $this->getRequest ()->getParam ('store'),
+						'chat_id' => $this->getRequest ()->getParam ('chat_id'),
+						)
+					),
+				)
+			),
+		));
+
 		return parent::_prepareColumns ();
 	}
 
