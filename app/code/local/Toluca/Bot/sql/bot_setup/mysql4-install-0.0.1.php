@@ -81,7 +81,7 @@ SQLBLOCK;
         ->addColumn ($table, 'selections', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Selections',
         ));
     $installer->getConnection ()
@@ -96,14 +96,14 @@ SQLBLOCK;
         ->addColumn ($table, 'options', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Options',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'comment', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Comment',
         ));
     $installer->getConnection ()

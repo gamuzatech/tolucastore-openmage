@@ -24,6 +24,10 @@ class Toluca_Bot_Model_Observer
         $info = array_replace_recursive ($info, array(
             'config' => array(
                 'bot' => array(
+                    'information' => array(
+                        'store_url' => Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_INFORMATION_STORE_URL),
+                        'whatsapp_url' => Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_INFORMATION_WHATSAPP_URL),
+                    ),
                     'notification' => array(
                         'site'   => $botNotificationSite,
                         'order'  => $botNotificationOrder,
