@@ -126,6 +126,13 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
                         $bundleOptions [$option->getId ()] = array_keys ($selectionCollection->toOptionHash ());
                     }
                 }
+                else
+                {
+                    $options [] = array (
+                        'optionId' => $bundleId,    'optionName' => $bundleName,
+                        'valueId'  => $selectionId, 'valueName'  => $selectionName,
+                    );
+                }
             }
         }
 
