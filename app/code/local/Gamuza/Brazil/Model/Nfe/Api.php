@@ -494,10 +494,13 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
 
         $polynomial = hash ('crc32b', $order->getId ());
 
+        $code = hexdec ($polynomial);
+        $code = str_pad ($code, 8, '0', STR_PAD_LEFT);
+
         $nfe->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED)
             ->setOrderId ($order->getId ())
             ->setDestinyId ($destinyId)
-            ->setCode (hexdec ($polynomial))
+            ->setCode ($code)
             ->save ()
         ;
 
