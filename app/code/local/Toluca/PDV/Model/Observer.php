@@ -57,6 +57,9 @@ class Toluca_PDV_Model_Observer
 
         if ($isPdv)
         {
+            /**
+             * getCustomerEmail
+             */
             Mage::app ()->getStore ()->setConfig (
                 Toluca_PDV_Helper_Data::XML_PATH_DEFAULT_EMAIL_PREFIX, 'pdv'
             );
