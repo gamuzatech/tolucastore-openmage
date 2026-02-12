@@ -94,7 +94,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'is_nominal', 'discount_refunded', 'base_discount_refunded',
         'gift_message_id', 'gift_message_available', 'mobile_product_code',
         'custom_weight', 'original_base_price',
-        'is_printed',
+        'is_printed', 'created_at',
     );
 
     protected $_orderPaymentAttributes = array(
