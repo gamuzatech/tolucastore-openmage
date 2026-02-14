@@ -281,6 +281,9 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
                 ->save ()
             ;
 
+            /*
+             * StoreAddress
+             */
             Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
                 array(
                     'mode'       => 'billing',
@@ -300,6 +303,43 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
                     'use_for_shipping' => 1,
                 )
             ), $storeId);
+
+            /*
+             * CustomerAddress
+             */
+            $collection = Mage::getModel ('customer/customer')->getCollection ()
+                ->addAttributeToFilter ('cellphone', array ('like' => '%' . substr ($from, 2)))
+                ->addAttributeToSelect ('default_billing', 'left')
+                ->addAttributeToSelect ('firstname', 'left')
+                ->addAttributeToSelect ('lastname', 'left')
+            ;
+
+            $collection->getSelect ()
+                ->order ('entity_id DESC')
+                ->limit (1)
+            ;
+
+            $customer = $collection->getFirstItem ();
+
+            if ($customer && $customer->getId () && $customer->getDefaultBilling ())
+            {
+                $shippingPostcode = preg_replace ('[\D]', null, $customer->getDefaultBillingAddress ()->getPostcode ());
+
+                Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
+                    array(
+                        'mode'       => 'billing',
+                        'firstname'  => $customer->getFirstname (),
+                        'lastname'   => $customer->getLastname (),
+                        'street'     => $customer->getDefaultBillingAddress ()->getStreet (),
+                        'city'       => $customer->getDefaultBillingAddress ()->getCity (),
+                        'region'     => $customer->getDefaultBillingAddress ()->getRegionId (),
+                        'country_id' => $customer->getDefaultBillingAddress ()->getCountryId (),
+                        'postcode'   => $shippingPostcode,
+                        'cellphone'  => substr ($from, 2),
+                        'use_for_shipping' => 1,
+                    )
+                ), $storeId);
+            }
         }
 
         return $quote;
@@ -683,6 +723,7 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         if (empty ($shippingDescription))
         {
             $shippingDescription = Mage::helper ('bot')->__('Shipping method is not defined');
+            $shippingAmount = "";
         }
 
         $result .= sprintf ('*%s*: %s *%s*', Mage::helper ('bot')->__('Shipping'), $shippingDescription, $shippingAmount)
@@ -692,12 +733,13 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         $paymentMethod = $info ['payment']['method'];
         $paymentTitle  = Mage::getStoreconfig ("payment/{$paymentMethod}/title", $storeId);
 
+        $grandTotal = Mage::helper ('core')->currency ($info ['shipping_address']['grand_total'], true, false);
+
         if (empty ($paymentMethod))
         {
             $paymentTitle = Mage::helper ('bot')->__('Payment method is not defined');
+            $grandTotal = "";
         }
-
-        $grandTotal = Mage::helper ('core')->currency ($info ['shipping_address']['grand_total'], true, false);
 
         $result .= sprintf ('*%s*: %s  *%s*', Mage::helper ('bot')->__('Payment'), $paymentTitle, $grandTotal)
             . PHP_EOL . PHP_EOL
