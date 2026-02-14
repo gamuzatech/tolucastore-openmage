@@ -274,6 +274,7 @@ class Toluca_Bot_Model_Cart_Product_Api extends Toluca_Bot_Model_Api_Resource_Ab
 
             $result = Mage::helper ('bot/message')->getProductAddedToCartText () . PHP_EOL . PHP_EOL
                 . $this->_getCartReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL
+                . Mage::helper ('bot/message')->getNowToFinalizeOrder () . PHP_EOL . PHP_EOL
             ;
         }
         catch (Mage_Api_Exception $e)
