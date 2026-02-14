@@ -10,7 +10,7 @@
  */
 class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    public function items ($filters = null, $limit = 2)
+    public function items ($filters = null, $limit = null)
     {
         $result = array ();
 

@@ -10,7 +10,7 @@
  */
 class Toluca_Bot_Model_Cart_Customer_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 {
-    public function address ($streetName, $streetNumber = null, $streetDistrict = null)
+    public function address ($streetName, $streetNumber = null, $streetDistrict = 'xxxxxx')
     {
         $result = null;
 
