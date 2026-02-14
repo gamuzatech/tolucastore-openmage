@@ -581,6 +581,11 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
         $quote = Mage::getModel ('sales/quote')->load ($quoteId);
 
+        if (!$quote->getItemsCount())
+        {
+            $result .= Mage::helper ('bot/message')->getYourShoppingCartIsEmptyText () . PHP_EOL . PHP_EOL;
+        }
+
         foreach ($quote->getAllVisibleItems () as $item)
         {
             $strLen = self::QUANTITY_LENGTH - strlen ($item ['qty'] . 'x');
@@ -675,12 +680,22 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
         $shippingDescription = $info ['shipping_address']['shipping_description'];
         $shippingAmount      = Mage::helper ('core')->currency ($info ['shipping_address']['shipping_amount'], true, false);
 
+        if (empty ($shippingDescription))
+        {
+            $shippingDescription = Mage::helper ('bot')->__('Shipping method is not defined');
+        }
+
         $result .= sprintf ('*%s*: %s *%s*', Mage::helper ('bot')->__('Shipping'), $shippingDescription, $shippingAmount)
             . PHP_EOL . PHP_EOL
         ;
 
         $paymentMethod = $info ['payment']['method'];
         $paymentTitle  = Mage::getStoreconfig ("payment/{$paymentMethod}/title", $storeId);
+
+        if (empty ($paymentMethod))
+        {
+            $paymentTitle = Mage::helper ('bot')->__('Payment method is not defined');
+        }
 
         $grandTotal = Mage::helper ('core')->currency ($info ['shipping_address']['grand_total'], true, false);
 

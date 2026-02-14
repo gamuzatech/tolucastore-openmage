@@ -34,6 +34,7 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const CHOOSE_OPTION_FOR_PRODUCT  = 'choose_options_for_product';
     const ENTER_PRODUCT_OPTION_CODE  = 'enter_product_option_code';
     const THIS_IS_YOUR_SHOPPING_CART = 'this_is_your_shopping_cart';
+    const YOUR_SHOPPING_CART_IS_EMPTY = 'your_shopping_cart_is_empty';
 
     const DEFAULT_APP_URL = 'https://app.toluca.com.br';
 
@@ -165,6 +166,11 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     public function getThisIsYourShoppingCartText ()
     {
         return $this->getText (self::THIS_IS_YOUR_SHOPPING_CART);
+    }
+
+    public function getYourShoppingCartIsEmptyText ()
+    {
+        return $this->getText (self::YOUR_SHOPPING_CART_IS_EMPTY);
     }
 
     private function getText ($code)
@@ -346,6 +352,12 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
             case self::THIS_IS_YOUR_SHOPPING_CART:
             {
                 $result = $this->__('This is your shopping cart:');
+
+                break;
+            }
+            case self::YOUR_SHOPPING_CART_IS_EMPTY:
+            {
+                $result = $this->__('Shopping Cart is Empty');
 
                 break;
             }
