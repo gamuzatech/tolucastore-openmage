@@ -26,6 +26,7 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     const PAYMENT_METHOD_SET_TO_CART     = 'payment_method_set_to_cart';
     const PAYMENT_METHOD_NOT_SET_TO_CART = 'payment_method_not_set_to_cart';
     const ENTER_TO_CONFIRM_ORDER     = 'enter_to_confirm_order';
+    const NOW_TO_FINALIZE_ORDER      = 'now_to_finalize_order';
 
     const ENTER_CATEGORY_CODE        = 'enter_category_code';
     const ENTER_ZAP_TO_ATTENDANT     = 'enter_zap_to_attendant';
@@ -129,6 +130,11 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
     public function getEnterToConfirmOrderText ()
     {
         return $this->getText (self::ENTER_TO_CONFIRM_ORDER);
+    }
+
+    public function getNowToFinalizeOrder ()
+    {
+        return $this->getText (self::NOW_TO_FINALIZE_ORDER);
     }
 
     public function getEnterCategoryCodeText ()
@@ -298,6 +304,12 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
             case self::ENTER_TO_CONFIRM_ORDER:
             {
                 $result = $this->__('Please enter *ok* to confirm your order:');
+
+                break;
+            }
+            case self::NOW_TO_FINALIZE_ORDER:
+            {
+                $result = $this->__('Would you like to finalize your order now?');
 
                 break;
             }

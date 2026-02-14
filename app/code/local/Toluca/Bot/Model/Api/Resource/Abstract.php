@@ -521,15 +521,19 @@ class Toluca_Bot_Model_Api_Resource_Abstract extends Mage_Api_Model_Resource_Abs
 
         foreach ($product->getOptions () as $option)
         {
+            $label = Mage::helper ('bot')->__('Option');
+
             $strLen = self::OPTION_ID_LENGTH - strlen ($option->getSortOrder ());
             $strPad = str_pad ("", $strLen, ' ', STR_PAD_RIGHT);
 
             $require = $option->getIsRequire () ? sprintf (' *(%s)* ', Mage::helper ('bot')->__('required')) : null;
 
-            $result .= sprintf ('*%s*%s%s%s', $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
+            $result .= sprintf ('%s *%s*%s%s%s', $label, $option->getSortOrder (), $strPad, $option->getTitle (), $require) . PHP_EOL;
 
             if ($values)
             {
+                $result .= PHP_EOL . Mage::helper ('bot')->__('Values of the option') . PHP_EOL;
+
                 $result .= PHP_EOL . $this->_getProductValues ($option) . PHP_EOL;
             }
         }

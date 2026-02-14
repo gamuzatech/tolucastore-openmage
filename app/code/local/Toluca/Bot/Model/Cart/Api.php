@@ -26,7 +26,9 @@ class Toluca_Bot_Model_Cart_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         {
             $quote = $this->_getQuote ($botType, $from, $to, $senderName, $senderMessage);
 
-            $result = $this->_getCartReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL;
+            $result = $this->_getCartReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL
+                . Mage::helper ('bot/message')->getNowToFinalizeOrder () . PHP_EOL . PHP_EOL
+            ;
         }
         catch (Mage_Api_Exception $e)
         {
@@ -52,7 +54,9 @@ class Toluca_Bot_Model_Cart_Api extends Toluca_Bot_Model_Api_Resource_Abstract
         {
             $quote = $this->_getQuote ($botType, $from, $to, $senderName, $senderMessage);
 
-            $result = $this->_getCheckoutReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL;
+            $result = $this->_getCheckoutReview ($quote->getId (), $storeId) . PHP_EOL . PHP_EOL
+                . Mage::helper ('bot/message')->getNowToFinalizeOrder () . PHP_EOL . PHP_EOL
+            ;
         }
         catch (Mage_Api_Exception $e)
         {

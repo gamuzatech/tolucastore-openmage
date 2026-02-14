@@ -22,6 +22,7 @@
 "Payment method successfully set to your cart!","Método de pagamento definido no carrinho com sucesso!"
 "It was not possible to set the payment method to the cart!","Não foi possível definir o método de pagamento no carrinho!"
 "Please enter *ok* to confirm your order:","Por favor digite *ok* para confirmar o seu pedido:"
+"Would you like to finalize your order now?","Gostaria de finalizar o seu pedido agora?"
 "Your order number is *%s*","O número do seu pedido é *%s*"
 "Thank you for shopping at store *%s*!","Obrigado por comprar na loja *%s*!"
 "Developed by Toluca Store | app.toluca.com.br","Desenvolvido por Toluca Store | app.toluca.com.br"
@@ -149,4 +150,5 @@
 "Import Customers to Whatsapp","Importar Clientes para Whatsapp"
 "Notification","Notificação"
 "Your shopping cart has been successfully emptied!","O seu carrinho foi apagado com sucesso!"
+"Values of the option","Valores da opção"
 
