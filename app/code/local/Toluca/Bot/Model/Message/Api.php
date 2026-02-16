@@ -242,5 +242,24 @@ class Toluca_Bot_Model_Message_Api extends Toluca_Bot_Model_Api_Resource_Abstrac
 
         return intval ($chat->getId ());
     }
+
+    public function welcome ()
+    {
+        Mage::app ()->setCurrentStore (Mage_Core_Model_App::DISTRO_STORE_ID);
+
+        $storeId = Mage::app ()->getStore ()->getId ();
+
+        $headers = Mage::helper ('bot')->headers ();
+
+        list ($botType, $from, $to, $senderName, $senderMessage) = array_values ($headers);
+
+        $result = Mage::helper ('bot/message')->getGreetingText ($senderName) . PHP_EOL . PHP_EOL
+            . Mage::helper ('bot/message')->getWelcomeText () . PHP_EOL . PHP_EOL
+            . Mage::helper ('bot/message')->getStoreUrlText () . PHP_EOL . PHP_EOL
+            . Mage::helper ('bot/message')->getHelpCustomerText () . PHP_EOL . PHP_EOL
+        ;
+
+        return $result;
+    }
 }
 

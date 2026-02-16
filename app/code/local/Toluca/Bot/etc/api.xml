@@ -112,6 +112,11 @@
                         <acl>bot/message/mute</acl>
                         <method>mute</method>
                     </mute>
+                    <welcome translate="title" module="bot">
+                        <title>Welcome messages to the chat</title>
+                        <acl>bot/message/welcome</acl>
+                        <method>welcome</method>
+                    </welcome>
                 </methods>
             </bot_message>
             <bot_tool translate="title" module="bot">
@@ -304,6 +309,9 @@
                         <mute translate="title" module="bot">
                             <title>Mute messages to the chat</title>
                         </mute>
+                        <welcome translate="title" module="bot">
+                            <title>Welcome messages to the chat</title>
+                        </welcome>
                     </message>
                     <tool translate="title" module="bot">
                         <title>Tool</title>

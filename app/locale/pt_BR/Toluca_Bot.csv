@@ -2,6 +2,8 @@
 "Good afternoon","Boa tarde"
 "Good evening","Boa noite"
 "*Welcome* to the robot of *%s*!","*Bem-Vindo* ao robô da loja *%s*!"
+"This is the link to our store %s","Este é o link para a nossa loja %s"
+"How can I help you today?","Como posso te ajudar hoje?"
 "Please enter one of the options below:","Por favor digite uma das opções abaixo:"
 "Please enter the category code to continue:","Por favor digite o código de uma categoria para continuar:"
 "Please enter the product code to insert into the cart:","Por favor digite o código do produto para inserir no carrinho:"

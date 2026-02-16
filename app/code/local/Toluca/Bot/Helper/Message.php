@@ -399,6 +399,18 @@ class Toluca_Bot_Helper_Message extends Mage_Core_Helper_Abstract
         return $this->__('*Welcome* to the robot of *%s*!', $storeName);
     }
 
+    public function getStoreUrlText ()
+    {
+        $storeUrl = Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_INFORMATION_STORE_URL);
+
+        return $this->__('This is the link to our store %s', $storeUrl);
+    }
+
+    public function getHelpCustomerText ()
+    {
+        return $this->__('How can I help you today?');
+    }
+
     public function getTypeCommandToContinueText ($command)
     {
         return $this->__('Or type *%s* to continue:', $command);
