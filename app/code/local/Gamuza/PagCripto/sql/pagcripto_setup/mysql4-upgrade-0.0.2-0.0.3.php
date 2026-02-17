@@ -100,6 +100,7 @@ SQLBLOCK;
     $installer->getConnection ()
         ->addColumn ($table, 'confirmations', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
             'unsigned' => true,
             'nullable' => false,
             'comment'  => 'Confirmations',

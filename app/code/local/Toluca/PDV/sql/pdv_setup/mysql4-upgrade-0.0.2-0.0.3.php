@@ -25,7 +25,7 @@ if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Brazil'))
 
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
-    'usigned'  => true,
+    'unsigned' => true,
     'nullable' => false,
     'visible'  => true,
     'required' => false,
@@ -42,7 +42,7 @@ foreach ($entities as $entity)
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
     'length'   => 11,
-    'usigned'  => true,
+    'unsigned' => true,
     'nullable' => false,
     'visible'  => true,
     'required' => false,

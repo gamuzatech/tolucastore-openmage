@@ -18,7 +18,7 @@ $entities = array(
 
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
-    'usigned'  => true,
+    'unsigned' => true,
     'nullable' => false,
     'visible'  => true,
     'required' => false,
@@ -55,7 +55,7 @@ $entities = array(
 
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
-    'usigned'  => true,
+    'unsigned' => true,
     'nullable' => false,
     'visible'  => true,
     'required' => false,

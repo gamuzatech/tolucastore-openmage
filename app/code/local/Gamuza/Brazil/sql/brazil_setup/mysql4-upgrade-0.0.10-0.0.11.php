@@ -57,7 +57,8 @@ SQLBLOCK;
     $installer->getConnection ()
         ->addColumn ($table, 'number_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
-            'length'   => 255,
+            'length'   => 11,
+            'unsigned' => true,
             'nullable' => false,
             'comment'  => 'Number ID',
         ));
