@@ -166,5 +166,11 @@
             <block type="basic/adminhtml_order_service" name="service" />
         </reference>
     </admin_basic_adminhtml_order_service_index>
+
+    <admin_basic_adminhtml_quote_draft_index>
+        <reference name="content">
+            <block type="basic/adminhtml_quote_draft" name="draft" />
+        </reference>
+    </admin_basic_adminhtml_quote_draft_index>
 </layout>
 

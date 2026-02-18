@@ -352,6 +352,23 @@ class Gamuza_Basic_Model_Observer
         }
     }
 
+    public function clearExpiredQuotesBefore ($observer)
+    {
+        $event = $observer->getEvent ();
+        $sales = $event->getSalesObserver ();
+
+        $sales->setExpireQuotesAdditionalFilterFields (array(
+            'is_draft' => array(
+                array ('null' => true),
+                array ('eq'   => 0)
+            ),
+            'draft_id' => array(
+                array ('null' => true),
+                array ('eq'   => 0)
+            ),
+        ));
+    }
+
     public function cleanExpiredQuotes()
     {
         Mage::getModel('sales/observer')->cleanExpiredQuotes(null);
@@ -496,6 +513,13 @@ CONTENT;
             $order->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SERVICE, true)->save ();
         }
 
+        $draft = Mage::getModel ('basic/quote_draft')->load ($order->getQuoteId (), 'quote_id');
+
+        if ($draft && $draft->getId ())
+        {
+            $draft->setOrder ($order)->save ();
+        }
+
         Mage::helper ('basic/sales_order_status')->pending ($order);
 
         return $this;
@@ -506,6 +530,11 @@ CONTENT;
         $this->_updateOrderServiceState (
             $observer->getEvent ()->getOrder (),
             Gamuza_Basic_Model_Order_Service::STATE_CANCELED
+        );
+
+        $this->_updateOrderDraftState(
+            $observer->getEvent ()->getOrder (),
+            Gamuza_Basic_Model_Quote_Draft::STATE_CANCELED
         );
 
         return $this;
@@ -563,6 +592,11 @@ CONTENT;
             Gamuza_Basic_Model_Order_Service::STATE_PROCESSING
         );
 
+        $this->_updateOrderDraftState(
+            $observer->getEvent ()->getOrder (),
+            Gamuza_Basic_Model_Quote_Draft::STATE_PROCESSING
+        );
+
         return $this;
     }
 
@@ -571,6 +605,11 @@ CONTENT;
         $this->_updateOrderServiceState (
             $observer->getEvent ()->getOrder (),
             Gamuza_Basic_Model_Order_Service::STATE_CLOSED
+        );
+
+        $this->_updateOrderDraftState(
+            $observer->getEvent ()->getOrder (),
+            Gamuza_Basic_Model_Quote_Draft::STATE_CLOSED
         );
 
         return $this;
@@ -610,6 +649,11 @@ CONTENT;
             Gamuza_Basic_Model_Order_Service::STATE_REFUNDED
         );
 
+        $this->_updateOrderDraftState(
+            $observer->getEvent ()->getCreditmemo ()->getOrder (),
+            Gamuza_Basic_Model_Quote_Draft::STATE_REFUNDED
+        );
+
         return $this;
     }
 
@@ -622,6 +666,19 @@ CONTENT;
             if ($service && $service->getId ())
             {
                 $service->setState ($state)->save ();
+            }
+        }
+    }
+
+    private function _updateOrderDraftState ($order, $state)
+    {
+        if ($order->getData (Gamuza_Basic_Helper_Data::QUOTE_ATTRIBUTE_IS_DRAFT))
+        {
+            $draft = Mage::getModel ('basic/quote_draft')->load ($order->getQuoteId (), 'quote_id');
+
+            if ($draft && $draft->getId ())
+            {
+                $draft->setState ($state)->save ();
             }
         }
     }

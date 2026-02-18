@@ -286,6 +286,32 @@
                     </service_not_exists>
                 </faults>
             </basic_order_pdf>
+            <!-- Quote PDF -->
+            <basic_quote_pdf translate="title" module="basic">
+                <model>basic/quote_pdf_api</model>
+                <title>Basic Quote PDF API</title>
+                <acl>basic/quote_pdf</acl>
+                <methods>
+                    <draft translate="title" module="basic">
+                        <title>Create quote draft PDF information</title>
+                        <acl>basic/quote_pdf/draft</acl>
+                    </draft>
+                </methods>
+                <faults>
+                    <quote_not_specified>
+                        <code>100</code>
+                        <message>Requested quote ID was not specified.</message>
+                    </quote_not_specified>
+                    <quote_not_exists>
+                        <code>200</code>
+                        <message>Requested quote was not found.</message>
+                    </quote_not_exists>
+                    <draft_not_exists>
+                        <code>300</code>
+                        <message>Requested quote draft was not found.</message>
+                    </draft_not_exists>
+                </faults>
+            </basic_quote_pdf>
             <!-- Shipping -->
             <basic_shipping translate="title" module="basic">
                 <model>basic/shipping_api</model>
@@ -457,6 +483,13 @@
                             <title>Create order service PDF information</title>
                         </service>
                     </order_pdf>
+                    <!-- Quote PDF -->
+                    <quote_pdf translate="title" module="basic">
+                        <title>Quote PDF</title>
+                        <draft translate="title" module="basic">
+                            <title>Create quote draft PDF information</title>
+                        </draft>
+                    </quote_pdf>
                     <!-- Shipping -->
                     <shipping translate="title" module="basic">
                         <title>Shipping</title>

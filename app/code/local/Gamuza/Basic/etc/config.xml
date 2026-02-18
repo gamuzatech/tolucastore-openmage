@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Basic>
-            <version>0.0.24</version>
+            <version>0.0.25</version>
         </Gamuza_Basic>
     </modules>
     <global>
@@ -112,6 +112,9 @@
                     <order_service>
                         <table>basic_order_service</table>
                     </order_service>
+                    <quote_draft>
+                        <table>basic_quote_draft</table>
+                    </quote_draft>
                 </entities>
             </basic_mysql4>
             <adminhtml>
@@ -280,6 +283,12 @@
                 <is_weighted>
                     <to_order>*</to_order>
                 </is_weighted>
+                <is_draft>
+                    <to_order>*</to_order>
+                </is_draft>
+                <draft_id>
+                    <to_order>*</to_order>
+                </draft_id>
             </sales_convert_quote>
             <sales_convert_quote_item>
                 <gtin>
@@ -319,6 +328,12 @@
                 <is_weighted>
                     <to_quote>*</to_quote>
                 </is_weighted>
+                <is_draft>
+                    <to_quote>*</to_quote>
+                </is_draft>
+                <draft_id>
+                    <to_quote>*</to_quote>
+                </draft_id>
             </sales_convert_order>
             <sales_convert_order_item>
                 <gtin>
@@ -430,6 +445,14 @@
                     </admin_basic_checkout_cart_product_add_after>
                 </observers>
             </checkout_cart_product_add_after>
+            <clear_expired_quotes_before>
+                <observers>
+                    <admin_basic_clear_expired_quotes_before>
+                        <class>basic/observer</class>
+                        <method>clearExpiredQuotesBefore</method>
+                    </admin_basic_clear_expired_quotes_before>
+                </observers>
+            </clear_expired_quotes_before>
             <controller_action_predispatch>
                 <observers>
                     <gamuza_basic_controller_action_predispatch>
@@ -521,6 +544,10 @@
                 <default>basic/sales_order_pdf_items_service_default</default>
                 <grouped>basic/sales_order_pdf_items_service_grouped</grouped>
             </order_service>
+            <quote_draft>
+                <default>basic/sales_quote_pdf_items_draft_default</default>
+                <grouped>basic/sales_quote_pdf_items_draft_grouped</grouped>
+            </quote_draft>
         </pdf>
         <catalog>
             <product>

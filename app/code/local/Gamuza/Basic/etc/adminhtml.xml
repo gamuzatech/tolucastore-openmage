@@ -16,6 +16,11 @@
                     <sort_order>55</sort_order>
                     <action>admin_basic/adminhtml_order_service</action>
                 </service>
+                <draft>
+                    <title>Quote Drafts</title>
+                    <sort_order>55</sort_order>
+                    <action>admin_basic/adminhtml_quote_draft</action>
+                </draft>
             </children>
         </sales>
         <shipping>
@@ -61,6 +66,10 @@
                                 <title>Order Services</title>
                                 <sort_order>55</sort_order>
                             </service>
+                            <draft>
+                                <title>Quote Drafts</title>
+                                <sort_order>55</sort_order>
+                            </draft>
                         </children>
                     </sales>
                     <shipping>
