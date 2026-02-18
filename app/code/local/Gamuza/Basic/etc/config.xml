@@ -690,6 +690,14 @@
     </frontend>
     <crontab>
         <jobs>
+            <sales_clean_quotes>
+                <schedule>
+                    <cron_expr/>
+                </schedule>
+                <run>
+                    <model>basic/observer::cleanExpiredQuotes</model>
+                </run>
+            </sales_clean_quotes>
             <gamuza_basic_deferred>
                 <schedule><cron_expr>0 * * * *</cron_expr></schedule>
                 <run><model>basic/observer::deferred</model></run>
