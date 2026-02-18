@@ -58,6 +58,8 @@ foreach ($this->getAllVisibleItems() as $item)
     echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
 
     echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;
+
+    echo sprintf('%s: %s', Mage::helper('sales')->__('Created At'), $this->getOrderItemDatetime ($item)) . PHP_EOL;
 }
 
 echo $this->getLineSeparator() . PHP_EOL;

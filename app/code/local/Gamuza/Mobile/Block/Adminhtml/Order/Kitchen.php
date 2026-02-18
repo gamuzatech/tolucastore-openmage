@@ -79,5 +79,10 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Kitchen
 
         return $result;
     }
+
+    public function getOrderItemDatetime ($item)
+    {
+        return Mage::helper ('core')->formatDate ($item->getCreatedAt (), 'medium', true);
+    }
 }
 
