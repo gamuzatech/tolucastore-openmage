@@ -15,8 +15,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const DESKTOP_API_NAME  = 'Toluca Store Desktop';
     const DESKTOP_API_EMAIL = 'desktop@toluca.com.br';
 
-    const BASIC_QUOTE_DRAFT_TABLE = 'basic_quote_draft';
-
+    const BASIC_ORDER_DRAFT_TABLE   = 'basic_order_draft';
     const BASIC_ORDER_SERVICE_TABLE = 'basic_order_service';
 
     const CATEGORY_ATTRIBUTE_INCLUDE_IN_HOME = 'include_in_home';

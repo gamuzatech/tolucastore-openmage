@@ -124,7 +124,7 @@ SQLBLOCK;
         ));
 }
 
-addBasicQuoteDraftTable ($installer, Gamuza_Basic_Helper_Data::BASIC_QUOTE_DRAFT_TABLE, 'Gamuza Basic Quote Draft Table');
+addBasicQuoteDraftTable ($installer, Gamuza_Basic_Helper_Data::BASIC_ORDER_DRAFT_TABLE, 'Gamuza Basic Order Draft Table');
 
 $installer->addEntityType('quote_draft', array(
     'entity_model' => 'basic/quote_draft',

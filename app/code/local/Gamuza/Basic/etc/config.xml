@@ -113,7 +113,7 @@
                         <table>basic_order_service</table>
                     </order_service>
                     <quote_draft>
-                        <table>basic_quote_draft</table>
+                        <table>basic_order_draft</table>
                     </quote_draft>
                 </entities>
             </basic_mysql4>
