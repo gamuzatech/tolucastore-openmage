@@ -716,7 +716,6 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <can_be_empty>0</can_be_empty>
                         </installments_qty>
                         <interval_days translate="label">
                             <label>Interval Days</label>
@@ -726,7 +725,6 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <can_be_empty>0</can_be_empty>
                         </interval_days>
                         <first_due_days translate="label">
                             <label>First Due Days</label>
@@ -736,7 +734,6 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <can_be_empty>0</can_be_empty>
                         </first_due_days>
                         <fee_percentage translate="label comment">
                             <label>Fee Percentage</label>

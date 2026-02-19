@@ -47,7 +47,9 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
                             {
                                 case 'machineondelivery':
                                 {
+                                    /*
                                     $result .= PHP_EOL . $this->_getCardList ($quote->getId (), $storeId) . PHP_EOL;
+                                    */
 
                                     break;
                                 }
@@ -133,6 +135,11 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
                     }
                     case 'machineondelivery':
                     {
+                        $paymentData = array(
+                            'method'  => 'machineondelivery',
+                            'cc_type' => Mage::getStoreConfig ('payment/machineondelivery/cc_type'),
+                        );
+
                         if (!empty ($this->_paymentCcTypes [$paymentCcTypeId]) && $this->_getAllowedCcType ($paymentMethods, $paymentCcTypeId))
                         {
                             $paymentData = array(
@@ -144,7 +151,9 @@ class Toluca_Bot_Model_Cart_Payment_Api extends Toluca_Bot_Model_Api_Resource_Ab
                         {
                             $errorMsg = Mage::helper('payment')->__('Credit card type is not allowed for this payment method.');
 
+                            /*
                             throw new Mage_Api_Exception (405, $errorMsg);
+                            */
                         }
 
                         break;

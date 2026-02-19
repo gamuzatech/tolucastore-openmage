@@ -272,6 +272,7 @@
             <machineondelivery>
                 <active>1</active>
                 <cctypes>AE,AL,AU,BC,CC,DC,DI,EC,ED,ELO,HI,HC,JCB,MC,SM,SO,TI,VI,VE,VR</cctypes>
+                <cc_type>VI</cc_type>
                 <model>mobile/payment_method_machineondelivery</model>
                 <order_status>pending</order_status>
                 <title>Machine On Delivery</title>
