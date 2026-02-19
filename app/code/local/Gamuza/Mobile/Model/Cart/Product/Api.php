@@ -608,6 +608,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'original_base_price' => floatval ($item->getOriginalBasePrice ()),
                 'custom_price'        => floatval ($item->getCustomPrice ()),
                 'custom_weight'       => floatval ($item->getCustomWeight ()),
+                'is_printed'          => boolval ($item->getIsPrinted ()),
                 'unique_id'           => $item->getUniqueId (),
             );
 
