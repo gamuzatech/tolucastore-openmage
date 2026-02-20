@@ -12,6 +12,11 @@ if ($this->getQuoteId())
     echo sprintf ('<b>%s</b>', Mage::helper('basic')->__('Cart #%s', $this->getQuoteId())) . PHP_EOL;
 }
 
+if ($this->getFontGrow())
+{
+    echo '<big>' . PHP_EOL;
+}
+
 echo $this->getLineSeparator() . PHP_EOL;
 
 $_order = $this->getOrder();

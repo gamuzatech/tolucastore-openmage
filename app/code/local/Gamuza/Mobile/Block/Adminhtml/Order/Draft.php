@@ -9,13 +9,20 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
 {
     protected $_separator = '-'; // default
 
+    private $_fontgrow = 0;  // default
     private $_wordwrap = 48; // default
 
     public function __construct ()
     {
         parent::__construct ();
 
+        $this->_fontgrow = intval (Mage::getStoreConfig ('sales/order_draft/font_grow'));
         $this->_wordwrap = intval (Mage::getStoreConfig ('sales/order_draft/word_wrap'));
+    }
+
+    public function getFontGrow ()
+    {
+        return $this->_fontgrow;
     }
 
     public function getWordWrap ()
