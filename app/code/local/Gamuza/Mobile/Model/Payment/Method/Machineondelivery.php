@@ -37,8 +37,12 @@ class Gamuza_Mobile_Model_Payment_Method_Machineondelivery extends Mage_Payment_
         {
             $data = new Varien_Object($data);
         }
+
+        $ccType = $this->getConfigData('cc_type');
+        $ccType = $data->getCcType() ?? $ccType;
+
         $info = $this->getInfoInstance();
-        $info->setCcType($data->getCcType());
+        $info->setCcType($ccType);
 
         return $this;
     }
@@ -59,8 +63,6 @@ class Gamuza_Mobile_Model_Payment_Method_Machineondelivery extends Mage_Payment_
         $info = $this->getInfoInstance();
         $errorMsg = false;
         $availableTypes = explode(',',$this->getConfigData('cctypes'));
-
-        $ccType = '';
 
         if (!in_array($info->getCcType(), $availableTypes))
         {
