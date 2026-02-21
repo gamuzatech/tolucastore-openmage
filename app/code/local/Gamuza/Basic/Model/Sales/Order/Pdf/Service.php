@@ -34,7 +34,7 @@ class Gamuza_Basic_Model_Sales_Order_Pdf_Service extends Gamuza_Basic_Model_Sale
             $order = $service->getOrder();
 
             /* Add image */
-            $this->insertLogo($page, $service->getStore());
+            $this->insertLogo($page, $service->getStore(), 128, 128);
 
             /* Add address */
             $this->insertAddress($page, $service->getStore());

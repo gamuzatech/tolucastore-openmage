@@ -15,6 +15,72 @@ class Gamuza_Basic_Model_Sales_Quote_Pdf_Abstract extends Mage_Sales_Model_Order
         // nothing
     }
 
+    /**
+     * Insert logo to pdf page
+     *
+     * @param Zend_Pdf_Page $page
+     * @param null|string|bool|int|Mage_Core_Model_Store $store $store
+     */
+    protected function insertLogo (&$page, $store = null, $pixelWidth = null, $pixelHeight = null)
+    {
+        $this->y = $this->y ? $this->y : 815;
+
+        $image = Mage::getStoreConfig('sales/identity/logo', $store);
+
+        if ($image)
+        {
+            $image = Mage::getBaseDir('media') . '/sales/store/logo/' . $image;
+
+            if (is_file($image))
+            {
+                $extension = exif_imagetype($image) == IMAGETYPE_PNG ? 'png' : 'jpeg';
+                $filename = sprintf('%s.%s', tempnam(sys_get_temp_dir(), 'pdf-logo-'), $extension);
+
+                copy($image, $filename);
+
+                $image = Zend_Pdf_Image::imageWithPath($filename);
+
+                unlink($filename);
+
+                $top         = 830; //top border of the page
+                $widthLimit  = 270; //half of the page width
+                $heightLimit = 270; //assuming the image is not a "skyscraper"
+
+                $width  = $pixelWidth  ?? $image->getPixelWidth();
+                $height = $pixelHeight ?? $image->getPixelHeight();
+
+                //preserving aspect ratio (proportions)
+                $ratio = $width / $height;
+
+                if ($ratio > 1 && $width > $widthLimit)
+                {
+                    $width  = $widthLimit;
+                    $height = $width / $ratio;
+                }
+                elseif ($ratio < 1 && $height > $heightLimit)
+                {
+                    $height = $heightLimit;
+                    $width  = $height * $ratio;
+                }
+                elseif ($ratio == 1 && $height > $heightLimit)
+                {
+                    $height = $heightLimit;
+                    $width  = $widthLimit;
+                }
+
+                $y1 = $top - $height;
+                $y2 = $top;
+                $x1 = 25;
+                $x2 = $x1 + $width;
+
+                //coordinates after transformation are rounded by Zend
+                $page->drawImage($image, $x1, $y1, $x2, $y2);
+
+                $this->y = $y1 - 20;
+            }
+        }
+    }
+
     public function newPage(array $settings = [])
     {
         /* Add new table head */
