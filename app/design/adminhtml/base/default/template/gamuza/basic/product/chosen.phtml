@@ -8,6 +8,14 @@
 
 <script type="text/javascript">
 $j(document).ready(function () {
+    var brazilNCM  = $j("#brazil_ncm");
+    var brazilCEST = $j("#brazil_cest");
+    var brazilCFOP = $j("#brazil_cfop");
+
+    if (brazilNCM  && brazilNCM.length)  brazilNCM.removeAttr("disabled");
+    if (brazilCEST && brazilCEST.length) brazilCEST.removeAttr("disabled");
+    if (brazilCFOP && brazilCFOP.length) brazilCFOP.removeAttr("disabled");
+
     $j('select.chosen-select').chosen({
         width: '100%',
         no_results_text: Translator.translate("No results match") + ":",
