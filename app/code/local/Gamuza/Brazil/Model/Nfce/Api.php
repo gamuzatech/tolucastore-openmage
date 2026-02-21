@@ -202,6 +202,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'base_shipping_amount' => floatval ($nfce->getBaseShippingAmount ()),
                 'base_shipping_discount_amount' => floatval ($nfce->getBaseShippingDiscountAmount ()),
                 'payment_authorization_amount'  => floatval ($nfce->getPaymentAuthorizationAmount ()),
+                'base_grand_total' => floatval ($nfce->getBaseGrandTotal ()),
                 // Toluca_PDV
                 'is_pdv'          => boolval ($nfce->getIsPdv ()),
                 'pdv_cashier_id'  => intval ($nfce->getPdvCashierId ()),
