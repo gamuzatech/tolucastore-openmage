@@ -316,8 +316,8 @@
                 <correct_validate>1</correct_validate>
             </nfe>
             <cashier>
-                <show_history_nfes>0</show_history_nfes>
-                <show_history_nfces>0</show_history_nfces>
+                <show_history_nfes>1</show_history_nfes>
+                <show_history_nfces>1</show_history_nfces>
             </cashier>
         </brazil>
         <payment>

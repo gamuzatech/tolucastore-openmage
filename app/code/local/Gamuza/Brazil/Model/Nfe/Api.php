@@ -118,6 +118,18 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             ->addIBGEInfo ()
         ;
 
+        if (!empty($filters['customer_full_name']['customer_full_name']['like']))
+        {
+            $value = $filters['customer_full_name']['customer_full_name']['like'];
+
+            $collection->getSelect()->where(
+                "CONCAT(customer_firstname, ' ', customer_lastname) LIKE ?",
+                $value
+            );
+
+            unset($filters['customer_full_name']);
+        }
+
         /** @var $apiHelper Mage_Api_Helper_Data */
         $apiHelper = Mage::helper ('api');
 
