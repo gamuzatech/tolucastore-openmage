@@ -15,6 +15,6 @@ class Gamuza_Basic_Model_Backup_Db extends Mage_Backup_Model_Db
      * default 100 Kb
      *
      */
-    public const BUFFER_LENGTH = parent::BUFFER_LENGTH * 1024;
+    public const BUFFER_LENGTH = parent::BUFFER_LENGTH * parent::BUFFER_LENGTH;
 }
 
