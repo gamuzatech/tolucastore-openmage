@@ -46,6 +46,9 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
             hash_file ('sha256', $backupManager->getBackupPath ())
         );
 
+        Mage::app ()->getCacheInstance ()->cleanType ('config');
+        Mage::dispatchEvent ('adminhtml_cache_refresh_type', array ('type' => 'config'));
+
         return true;
     }
 
