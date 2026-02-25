@@ -424,7 +424,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = false)
+    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = true)
     {
         if (empty ($orderIncrementId))
         {
@@ -1112,7 +1112,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $nfce;
     }
 
-    protected function _initIBPT (Mage_Sales_Model_Order $order, $updateIBPT)
+    protected function _initIBPT (Mage_Sales_Model_Order $order, $updateIBPT = true)
     {
         if (!$order || !$order->getId ())
         {
