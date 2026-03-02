@@ -60,6 +60,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_PDV_SETTING_DASHBOARD   = 'pdv/setting/dashboard';
     const XML_PATH_PDV_SETTING_PREFERENCES = 'pdv/setting/preferences';
+    const XML_PATH_PDV_SETTING_EMAIL       = 'pdv/setting/email';
     const XML_PATH_PDV_SETTING_RECEIPT     = 'pdv/setting/receipt';
     const XML_PATH_PDV_SETTING_BACKUP      = 'pdv/setting/backup';
 
