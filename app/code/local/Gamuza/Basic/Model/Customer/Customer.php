@@ -69,6 +69,48 @@ class Gamuza_Basic_Model_Customer_Customer
     }
 
     /**
+     * Customer addresses collection
+     *
+     * @return Mage_Customer_Model_Resource_Address_Collection
+     * @throws Mage_Core_Exception
+     */
+    public function getAddressesCollection()
+    {
+        if ($this->_addressesCollection === null)
+        {
+            $this->_addressesCollection = $this->getAddressCollection()
+                ->setCustomerFilter($this)
+                ->addAttributeToSelect('*')
+                /*
+                ->setOrder('entity_id', 'desc')
+                */;
+
+                $defaultBilling  = intval($this->getDefaultBilling());
+                $defaultShipping = intval($this->getDefaultShipping());
+
+                $this->_addressesCollection->getSelect()
+                    ->order(
+                        new Zend_Db_Expr("
+                            CASE
+                                WHEN e.entity_id = {$defaultBilling} THEN 0
+                                WHEN e.entity_id = {$defaultShipping} THEN 1
+                                ELSE 2
+                            END
+                        ")
+                    )
+                    ->order('e.entity_id DESC')
+                ;
+            foreach ($this->_addressesCollection as $address)
+            {
+                $address->setCustomer($this);
+                $address->setDataChanges(false);
+            }
+        }
+
+        return $this->_addressesCollection;
+    }
+
+    /**
      * Retrieve minimum length of password
      *
      * @return int
