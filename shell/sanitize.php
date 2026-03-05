@@ -35,6 +35,9 @@ try
 {
     $coreConfig = Mage::getModel ('core/config');
 
+    $coreConfig->deleteConfig ('accounting.name',  'desktop', -999999);
+    $coreConfig->deleteConfig ('accounting.email', 'desktop', -999999);
+
     $coreConfig->deleteConfig ('email.user',     'desktop', -999999);
     $coreConfig->deleteConfig ('email.password', 'desktop', -999999);
 
@@ -45,7 +48,8 @@ try
     $coreConfig->deleteConfig ('mega_cmd.session_id',   'desktop', -999999);
 
     $coreConfig->deleteConfig ('system.accounting_on_login', 'desktop', -999999);
-    $coreConfig->deleteConfig ('system.cron_username',       'desktop', -999999);
+
+    $coreConfig->saveConfig ('system.cron_username', getenv ('USER'), 'desktop', -999999);
 }
 catch (Exception $e)
 {
