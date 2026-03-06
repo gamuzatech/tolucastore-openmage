@@ -14,6 +14,8 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
     {
         $from = preg_replace ('[\D]', null, $from);
         $to   = preg_replace ('[\D]', null, $to);
+
+        $bypass = !strcmp ($from, $to); // me
 /*
         if (strpos ($to, $this->_phone) === false)
         {
@@ -173,16 +175,16 @@ class Toluca_Bot_Model_Chat_Api extends Toluca_Bot_Model_Api_Resource_Abstract
 
         $this->_saveMessage ($senderMessage, $chat, Toluca_Bot_Helper_Data::MESSAGE_TYPE_QUESTION);
 
-        if ($chat->getIsMuted ())
+        if ($chat->getIsMuted () && !$bypass)
         {
-            return array ('text' => '', 'muted' => 1);
+            return array ('text' => "", 'muted' => 1);
         }
 
         $body = Mage::helper ('core')->removeAccents ($senderMessage);
 
         $result = null;
 
-        if (!strcmp (strtolower (trim ($body)), Toluca_Bot_Helper_Data::STATUS_ZAP))
+        if (!strcmp (strtolower (trim ($body)), Toluca_Bot_Helper_Data::STATUS_ZAP) && !$bypass)
         {
             $chat->setIsMuted (true)
                 ->setUpdatedAt (date ('c'))
