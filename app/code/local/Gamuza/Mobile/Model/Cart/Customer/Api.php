@@ -22,14 +22,14 @@ class Gamuza_Mobile_Model_Cart_Customer_Api extends Mage_Checkout_Model_Cart_Cus
      * @param  int|string $store
      * @return int
      */
-    public function _setAddresses($code = null, $customerAddressData = null, $store = null)
+    public function _setAddresses($code = null, $customerAddressData = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $customerAddressData = $this->_prepareCustomerAddressData($customerAddressData);
 

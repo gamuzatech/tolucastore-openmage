@@ -85,7 +85,7 @@ class Gamuza_Mobile_Model_CatalogSearch_Api extends Mage_Api_Model_Resource_Abst
         $this->_storeId = Mage::getStoreConfig ('api/mobile/store_view');
     }
 
-    public function result ($text, $params = array (), $code = null)
+    public function result ($text, $params = array (), $code = null, $store = null, $dob = null)
     {
         Mage::app ()->getRequest ()->setParam (Mage_CatalogSearch_Helper_Data::QUERY_VAR_NAME, $text);
         Mage::app ()->getRequest ()->setQuery ($params);

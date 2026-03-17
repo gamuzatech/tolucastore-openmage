@@ -61,14 +61,14 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $store
      * @return array
      */
-    public function amount($code = null, $store = null)
+    public function amount($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $result = $this->_getAttributes($quote, 'quote', $this->_quoteAmountAttributes);
 
@@ -96,14 +96,14 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $store
      * @return void
      */
-    public function totals($code = null, $store = null)
+    public function totals($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $totals = $quote->getTotals();
 
@@ -129,9 +129,9 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $agreements array
      * @return string
      */
-    public function createOrder($code = null, $agreements = null, $store = null)
+    public function createOrder($code = null, $agreements = null, $store = null, $dob = null)
     {
-        $order = $this->_createOrder ($code, $agreements, $store);
+        $order = $this->_createOrder ($code, $agreements, $store, $dob);
 
         $result = array(
             'order' => $this->_getAttributes ($order, 'order', $this->_orderAttributes),
@@ -230,7 +230,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $agreements array
      * @return string
      */
-    protected function _createOrder($code = null, $agreements = null, $store = null)
+    protected function _createOrder($code = null, $agreements = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
@@ -254,7 +254,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             }
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         if ($quote->getIsMultiShipping())
         {
@@ -349,28 +349,28 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $store
      * @return bool
      */
-    public function clear ($code = null, $store = null)
+    public function clear ($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob);
 
         $quote->delete (); // discard
 
         return true;
     }
 
-    public function draft ($code = null, $store = null)
+    public function draft ($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob);
 
         Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $quote, 'type' => __FUNCTION__));
 
@@ -385,14 +385,14 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return $result;
     }
 
-    public function kitchen ($code = null, $store = null)
+    public function kitchen ($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob);
 
         $result = null;
 
@@ -431,7 +431,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return $this->_getStoreList ($filters);
     }
 
-    public function pdv ($code = null, $store = null, $table_id = 0, $card_id = 0, $note = null, $name = null, $cellphone = null)
+    public function pdv ($code = null, $store = null, $dob = null, $table_id = 0, $card_id = 0, $note = null, $name = null, $cellphone = null)
     {
         if (!Mage::helper ('core')->isModuleEnabled ('Toluca_PDV'))
         {
@@ -443,7 +443,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store, false);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob, false);
 
         /**
          * getCustomerEmail

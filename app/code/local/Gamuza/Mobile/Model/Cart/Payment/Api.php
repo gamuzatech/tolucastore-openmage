@@ -19,14 +19,14 @@ class Gamuza_Mobile_Model_Cart_Payment_Api extends Mage_Checkout_Model_Cart_Paym
      * @param int $store
      * @return array
      */
-    public function _getPaymentMethodsList($code = null, $store = null)
+    public function _getPaymentMethodsList($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $total = $quote->getBaseSubtotal();
 
@@ -76,14 +76,14 @@ class Gamuza_Mobile_Model_Cart_Payment_Api extends Mage_Checkout_Model_Cart_Paym
      * @param  $store
      * @return bool
      */
-    public function _setPaymentMethod($code = null, $paymentData = null, $store = null)
+    public function _setPaymentMethod($code = null, $paymentData = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $paymentData = $this->_preparePaymentData($paymentData);
 

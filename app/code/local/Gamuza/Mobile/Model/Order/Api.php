@@ -185,7 +185,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param null|object|array $filters
      * @return array
      */
-    public function items($filters = null, $code = null)
+    public function items($filters = null, $code = null, $store = null, $dob = null)
     {
         $orders = array();
 
@@ -314,7 +314,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param string $orderIncrementId
      * @return array
      */
-    public function info($orderIncrementId = null, $orderProtectCode = null, $store = null, $media = null, $code = null)
+    public function info($orderIncrementId = null, $orderProtectCode = null, $store = null, $media = null, $code = null, $dob = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -575,7 +575,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param  string $comment
      * @return boolean
      */
-    public function rate ($orderIncrementId = null, $orderProtectCode = null, $stars = null, $comment = null, $code = null)
+    public function rate ($orderIncrementId = null, $orderProtectCode = null, $stars = null, $comment = null, $code = null, $store = null, $dob = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -636,7 +636,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param  string $store
      * @return boolean
      */
-    public function reorder ($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null)
+    public function reorder ($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null, $dob = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -664,7 +664,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             // nothing
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store, true);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob, true);
 
         $result = false;
 
@@ -727,7 +727,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param string $orderIncrementId
      * @return array
      */
-    public function draft($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    public function draft($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null, $dob = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -760,7 +760,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param string $orderIncrementId
      * @return array
      */
-    public function kitchen($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    public function kitchen($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null, $dob = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -806,7 +806,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param string $orderIncrementId
      * @return array
      */
-    public function messenger($orderIncrementId = null, $orderProtectCode = null, $code = null)
+    public function messenger($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null, $dob = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -850,7 +850,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param mixed $orderIncrementId
      * @return Mage_Sales_Model_Order
      */
-    protected function _initOrder($orderIncrementId, $orderProtectCode = null, $code = null)
+    protected function _initOrder($orderIncrementId, $orderProtectCode = null, $code = null, $store = null, $dob = null)
     {
         $order = Mage::getModel('sales/order')->getCollection()
             ->addFieldToFilter ('increment_id', array ('eq' => $orderIncrementId))

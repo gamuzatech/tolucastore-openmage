@@ -18,9 +18,9 @@ class Gamuza_Mobile_Model_Cart_Coupon_Api extends Mage_Checkout_Model_Cart_Coupo
      * @param  $storeId
      * @return bool
      */
-    public function addCoupon($code = null, $couponCode = null, $store = null)
+    public function addCoupon($code = null, $couponCode = null, $store = null, $dob = null)
     {
-        return $this->applyCoupon($code, $couponCode, $store);
+        return $this->applyCoupon($code, $couponCode, $store, $dob);
     }
 
     /**
@@ -28,11 +28,11 @@ class Gamuza_Mobile_Model_Cart_Coupon_Api extends Mage_Checkout_Model_Cart_Coupo
      * @param  $storeId
      * @return void
      */
-    public function removeCoupon($code = null, $store = null)
+    public function removeCoupon($code = null, $store = null, $dob = null)
     {
         $couponCode = '';
 
-        return $this->applyCoupon($code, $couponCode, $store);
+        return $this->applyCoupon($code, $couponCode, $store, $dob);
     }
 
     /**
@@ -40,14 +40,14 @@ class Gamuza_Mobile_Model_Cart_Coupon_Api extends Mage_Checkout_Model_Cart_Coupo
      * @param  $storeId
      * @return string
      */
-    public function getCoupon($code = null, $store = null)
+    public function getCoupon($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         return $quote->getCouponCode();
     }
@@ -58,14 +58,14 @@ class Gamuza_Mobile_Model_Cart_Coupon_Api extends Mage_Checkout_Model_Cart_Coupo
      * @param  $store
      * @return bool
      */
-    protected function applyCoupon($code = null, $couponCode = null, $store = null)
+    protected function applyCoupon($code = null, $couponCode = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         if (!$quote->getItemsCount())
         {

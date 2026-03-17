@@ -28,14 +28,14 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
      * @param  $store
      * @return bool
      */
-    public function add($code = null, $productsData = null, $store = null)
+    public function add($code = null, $productsData = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store, true);
+        $quote = $this->_getCustomerQuote($code, $store, $dob, true);
 
         if (empty ($productsData))
         {
@@ -253,14 +253,14 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
      * @param  $store
      * @return bool
      */
-    public function update($code = null, $productsData = null, $store = null)
+    public function update($code = null, $productsData = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         if (empty ($productsData))
         {
@@ -374,14 +374,14 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
      * @param  $store
      * @return bool
      */
-    public function remove($code = null, $productsData = null, $store = null)
+    public function remove($code = null, $productsData = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         if (empty ($productsData))
         {
@@ -474,7 +474,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
      * @param  $store
      * @return array
      */
-    public function items($code = null, $store = null, $media = null, $prefix = null)
+    public function items($code = null, $store = null, $dob = null, $media = null, $prefix = null)
     {
         if (empty ($code))
         {
@@ -488,7 +488,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
             );
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         if (!$quote->getItemsCount())
         {

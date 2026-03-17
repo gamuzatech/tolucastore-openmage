@@ -14,7 +14,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
      * @param string|int $store
      * @return Mage_Sales_Model_Quote
      */
-    protected function _getCustomerQuote($customerCode, $store = null, $createNewQuote = false)
+    protected function _getCustomerQuote($customerCode, $store = null, $customerDob = null, $createNewQuote = false)
     {
         $storeId = Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_API_MOBILE_STORE_VIEW, $store);
 
@@ -30,7 +30,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
 
         if ((!$quote || !$quote->getId()) && $createNewQuote)
         {
-            $quote = $this->_createNewQuote ($customerCode, $customerEmail, $storeId);
+            $quote = $this->_createNewQuote ($customerCode, $customerEmail, $customerDob, $storeId);
         }
 
         if (!$quote || !$quote->getId())
@@ -39,6 +39,8 @@ trait Gamuza_Mobile_Trait_Api_Resource
         }
 
         $quote->afterLoad();
+
+        $quote->setCustomerDob ($customerDob)->save (); // age_gate
 
         return $quote;
     }
@@ -49,7 +51,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
      * @param int|string $store
      * @return int
      */
-    protected function _createNewQuote ($customerCode, $customerEmail, $storeId)
+    protected function _createNewQuote ($customerCode, $customerEmail, $customerDob, $storeId)
     {
         $remoteIp = Mage::helper ('mobile')->getRemoteIp ();
         $userAgent = Mage::helper ('mobile')->getUserAgent ();
@@ -71,6 +73,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
                 ->setCustomerFirstname ($firstName)
                 ->setCustomerLastname ($lastName)
                 ->setCustomerEmail ($customerEmail)
+                ->setCustomerDob ($customerDob)
                 ->setCustomerTaxvat (Gamuza_Mobile_Helper_Data::DEFAULT_CUSTOMER_TAXVAT)
                 ->save()
             ;
@@ -80,6 +83,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
                 'firstname' => $firstName,
                 'lastname'  => $lastName,
                 'email'     => $customerEmail,
+                'dob'       => $customerDob,
                 'taxvat'    => Gamuza_Mobile_Helper_Data::DEFAULT_CUSTOMER_TAXVAT,
             );
 

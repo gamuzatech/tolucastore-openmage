@@ -30,14 +30,14 @@ class Gamuza_Mobile_Model_Cart_Shipping_Api extends Mage_Checkout_Model_Cart_Shi
      * @param  $store
      * @return bool
      */
-    public function _setShippingMethod($code = null, $shippingMethod = null, $store = null)
+    public function _setShippingMethod($code = null, $shippingMethod = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $quoteShippingAddress = $quote->getShippingAddress();
 
@@ -74,14 +74,14 @@ class Gamuza_Mobile_Model_Cart_Shipping_Api extends Mage_Checkout_Model_Cart_Shi
      * @param  $store
      * @return array
      */
-    public function _getShippingMethodsList($code = null, $store = null)
+    public function _getShippingMethodsList($code = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store);
+        $quote = $this->_getCustomerQuote($code, $store, $dob);
 
         $quoteShippingAddress = $quote->getShippingAddress();
 

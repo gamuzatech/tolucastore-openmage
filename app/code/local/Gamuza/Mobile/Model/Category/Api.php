@@ -48,7 +48,7 @@ class Gamuza_Mobile_Model_Category_Api extends Mage_Catalog_Model_Api_Resource
      * @param null|object|array $filters
      * @return array
      */
-    public function items ($filters = null, $store = null, $media = null, $code = null)
+    public function items ($filters = null, $store = null, $media = null, $code = null, $dob = null)
     {
         $storeId = Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_API_MOBILE_STORE_VIEW, $store);
 
