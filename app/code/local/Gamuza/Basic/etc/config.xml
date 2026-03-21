@@ -82,6 +82,7 @@
             <customer>
                 <rewrite>
                     <account_navigation>Gamuza_Basic_Block_Customer_Account_Navigation</account_navigation>
+                    <widget_dob>Gamuza_Basic_Block_Customer_Widget_Dob</widget_dob>
                 </rewrite>
             </customer>
             <page>
