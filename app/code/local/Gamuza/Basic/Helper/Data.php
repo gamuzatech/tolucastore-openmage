@@ -85,6 +85,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_PRINTING = 'printing';
     const PRODUCT_ATTRIBUTE_SIZE = 'size';
     const PRODUCT_ATTRIBUTE_GTIN = 'gtin';
+    const PRODUCT_ATTRIBUTE_AGE_GATE = 'age_gate';
     const PRODUCT_ATTRIBUTE_BALANCE_ITEM = 'balance_item';
     const PRODUCT_ATTRIBUTE_BALANCE_WEIGHT = 'balance_weight';
     const PRODUCT_ATTRIBUTE_FREE_SHIPPING = 'free_shipping';
@@ -142,6 +143,11 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_NEWSLETTER_SCHEDULED_SEND_COUNT_OF_SUBSCRIPTIONS = 'newsletter/scheduled_send/count_of_subscriptions';
 
     const XML_PATH_PAYMENT_BASIC_DEFERRED_PAYMENT_FEE_PERCENTAGE = 'payment/basic_deferred_payment/fee_percentage';
+
+    const XML_PATH_SALES_MINIMUM_AGE_ACTIVE        = 'sales/minimum_age/active';
+    const XML_PATH_SALES_MINIMUM_AGE_AMOUNT        = 'sales/minimum_age/amount';
+    const XML_PATH_SALES_MINIMUM_AGE_DESCRIPTION   = 'sales/minimum_age/description';
+    const XML_PATH_SALES_MINIMUM_AGE_ERROR_MESSAGE = 'sales/minimum_age/error_message';
 
     const XML_PATH_ADMIN_CUSTOMER_GRID_NAME_NOBR = 'admin/customer/grid_name_nobr';
     const XML_PATH_ADMIN_PRODUCT_GRID_NAME_NOBR  = 'admin/product/grid_name_nobr';

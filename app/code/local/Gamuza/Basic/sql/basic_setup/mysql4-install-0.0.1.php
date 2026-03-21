@@ -98,7 +98,11 @@ $coreConfig->saveConfig ('customer/address/prefix_show',     '0');
 $coreConfig->saveConfig ('customer/address/middlename_show', '0');
 $coreConfig->saveConfig ('customer/address/suffix_show',     '0');
 
+$coreConfig->saveConfig ('customer/address/dob_show', 'opt');
+
+/*
 $coreConfig->deleteConfig ('customer/address/dob_show');
+*/
 $coreConfig->deleteConfig ('customer/address/taxvat_show');
 $coreConfig->deleteConfig ('customer/address/gender_show');
 

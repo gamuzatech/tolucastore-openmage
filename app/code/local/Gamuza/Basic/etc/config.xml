@@ -477,6 +477,14 @@
                     </gamuza_basic_sales_quote_item_set_product>
                 </observers>
             </sales_quote_item_set_product>
+            <sales_quote_item_qty_set_after>
+                <observers>
+                    <gamuza_basic_sales_quote_item_qty_set_after>
+                        <class>basic/observer</class>
+                        <method>salesQuoteItemQtySetAfter</method>
+                    </gamuza_basic_sales_quote_item_qty_set_after>
+                </observers>
+            </sales_quote_item_qty_set_after>
             <sales_quote_collect_totals_after>
                 <observers>
                     <gamuza_basic_sales_quote_collect_totals_after>
@@ -575,6 +583,7 @@
             <quote>
                 <item>
                     <product_attributes>
+                        <age_gate />
                         <image />
                         <gtin />
                         <printing />
@@ -705,6 +714,7 @@
         <product>
             <collection>
                 <attributes>
+                    <age_gate />
                     <brand />
                     <color />
                     <gtin />
@@ -923,6 +933,10 @@
                 <active>1</active>
                 <amount>0</amount>
             </minimum_order>
+            <minimum_age>
+                <active>1</active>
+                <amount>18</amount>
+            </minimum_age>
             <gift_options>
                 <allow_order>0</allow_order>
                 <allow_items>0</allow_items>

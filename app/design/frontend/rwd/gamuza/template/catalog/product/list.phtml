@@ -120,6 +120,14 @@
                             <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                         <?php endif ?>
                     </div>
+                    <div class="desc std">
+                        <?php $_productAgeAmount = Mage::getStoreConfigAsInt(Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_AMOUNT); ?>
+                        <?php if ($_product->getAgeGate() && $_productAgeAmount > 0): ?>
+                            <p class="error">
+                                <?php echo Mage::helper ('basic')->__('This product is restricted to adults %d years or older!', $_productAgeAmount); ?>
+                            </p>
+                        <?php endif ?>
+                    </div>
                 </div>
             </div>
         </li>
@@ -162,6 +170,12 @@
                     <?php echo $this->getPriceHtml($_product, true) ?>
                     <?php if (!$_product->getStockItem() || !boolval($_product->getStockItem()->getData('is_in_stock'))): ?>
                         <p class="action availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                    <?php endif ?>
+                    <?php $_productAgeAmount = Mage::getStoreConfigAsInt(Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_AMOUNT); ?>
+                    <?php if ($_product->getAgeGate() && $_productAgeAmount > 0): ?>
+                        <p class="error">
+                            <?php echo Mage::helper ('basic')->__('This product is restricted to adults %d years or older!', $_productAgeAmount); ?>
+                        </p>
                     <?php endif ?>
                     <?php if($_product->getRatingSummary()): ?>
                     <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>

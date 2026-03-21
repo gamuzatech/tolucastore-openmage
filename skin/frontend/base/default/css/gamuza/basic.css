@@ -311,6 +311,10 @@ ol, ul {
     display: unset;
 }
 
+.product-view .product-shop .age-gate {
+    font-weight: bold;
+}
+
 .product-view .product-shop .product-name .h1,
 .product-view .product-img-box .product-name h1 {
     color: #636363;

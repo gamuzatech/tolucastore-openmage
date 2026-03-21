@@ -558,6 +558,76 @@ CONTENT;
         }
     }
 
+    public function salesQuoteItemQtySetAfter ($observer)
+    {
+        $event = $observer->getEvent ();
+        $item = $event->getItem ();
+        $quote = $item->getQuote ();
+        $product = $item->getProduct ();
+
+        if ($quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_PDV))
+        {
+            return $this;
+        }
+
+        if (!$product->getAgeGate () || !Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_ACTIVE))
+        {
+            return $this;
+        }
+
+        $amount = Mage::getStoreConfigAsInt (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_AMOUNT);
+
+        if (!$amount)
+        {
+            return $this;
+        }
+
+        $dob = $quote->getCustomerDob ();
+
+        $timezone = Mage::app ()->getStore ()->getConfig ('general/locale/timezone');
+
+        $birth = new DateTime ($dob);
+        $today = new DateTime ('today', new DateTimeZone ($timezone));
+
+        $age = $birth->diff ($today);
+
+        if ($age->y < $amount)
+        {
+            $description = Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_DESCRIPTION);
+            $message = Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_ERROR_MESSAGE);
+
+            $error = sprintf ('%s %s', $description, $message);
+
+            $item->addErrorInfo ('age_gate', 6, $error);
+
+            $quote->addErrorInfo ('error', 'age_gate', 6, $error);
+        }
+        else
+        {
+            if ($item->getHasError ())
+            {
+                $params = array(
+                    'origin' => 'age_gate',
+                    'code'   => 6,
+                );
+
+                $item->removeErrorInfosByParams ($params);
+            }
+
+            if ($quote->getHasError ())
+            {
+                $params = array(
+                    'origin' => 'age_gate',
+                    'code'   => 6,
+                );
+
+                $quote->removeErrorInfosByParams (null, $params);
+            }
+        }
+
+        return $this;
+    }
+
     public function salesQuoteCollectTotalsAfter ($observer)
     {
         $quote = $observer->getEvent ()->getQuote ();

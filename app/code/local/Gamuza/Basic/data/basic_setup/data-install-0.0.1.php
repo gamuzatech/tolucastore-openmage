@@ -107,7 +107,7 @@ $installer->updateAttribute ('customer', 'prefix',     'is_visible', '0');
 $installer->updateAttribute ('customer', 'middlename', 'is_visible', '0');
 $installer->updateAttribute ('customer', 'suffix',     'is_visible', '0');
 
-$installer->updateAttribute ('customer', 'dob',    'is_visible', '0');
+$installer->updateAttribute ('customer', 'dob',    'is_visible', '1');
 $installer->updateAttribute ('customer', 'taxvat', 'is_visible', '0');
 $installer->updateAttribute ('customer', 'gender', 'is_visible', '0');
 
