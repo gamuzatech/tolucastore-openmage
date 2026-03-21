@@ -947,7 +947,7 @@
                 <amount>0</amount>
             </minimum_order>
             <minimum_age>
-                <active>1</active>
+                <active>0</active>
                 <amount>18</amount>
             </minimum_age>
             <gift_options>
