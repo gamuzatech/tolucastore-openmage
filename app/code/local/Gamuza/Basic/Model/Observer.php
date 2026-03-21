@@ -10,6 +10,8 @@
  */
 class Gamuza_Basic_Model_Observer
 {
+    const AGE_GATE_VALUE_YES = Mage_Eav_Model_Entity_Attribute_Source_Boolean::VALUE_YES;
+
     const PRINTING_VALUE_NO = Gamuza_Basic_Model_Eav_Entity_Attribute_Source_Product_Printing::VALUE_NO;
 
     const SALES_QUOTE_LIFETIME = 86400;
@@ -545,8 +547,13 @@ CONTENT;
         $quoteItem = $observer->getQuoteItem ();
         $product   = $observer->getProduct ();
 
+        $productAgeGate = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_AGE_GATE);
         $productGTIN = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN);
         $productPrinting = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_PRINTING);
+
+        $quoteItemIsAgeGate = !strcmp ($productAgeGate, self::AGE_GATE_VALUE_YES) ? '1' : null;
+
+        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_AGE_GATE, $quoteItemIsAgeGate);
 
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
 
@@ -564,6 +571,12 @@ CONTENT;
         $item = $event->getItem ();
         $quote = $item->getQuote ();
         $product = $item->getProduct ();
+
+        if (!$item || !$item->getId () || !$product || !$product->getId ()
+            || !$quote || !$quote->getId () /* || $quote->getIsSuperMode () */)
+        {
+            return $this;
+        }
 
         if ($quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_PDV))
         {
@@ -631,6 +644,20 @@ CONTENT;
     public function salesQuoteCollectTotalsAfter ($observer)
     {
         $quote = $observer->getEvent ()->getQuote ();
+
+        $quoteIsAgeGate = null;
+
+        foreach ($quote->getAllItems () as $item)
+        {
+            if ($item->getIsAgeGate () > 0)
+            {
+                $quoteIsAgeGate = '1';
+
+                break;
+            }
+        }
+
+        $quote->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_AGE_GATE, $quoteIsAgeGate)->save ();
 
         foreach ($quote->getAllItems () as $item)
         {

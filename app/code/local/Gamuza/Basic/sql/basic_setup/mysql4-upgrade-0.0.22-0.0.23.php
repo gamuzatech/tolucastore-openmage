@@ -80,6 +80,7 @@ $options = array(
 
 foreach ($entities as $entity)
 {
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_AGE_GATE, $options);
     $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_WEIGHTED, $options);
 }
 
@@ -90,6 +91,19 @@ $entities = array(
     'quote_item',
     'order_item',
 );
+
+$options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_BOOLEAN,
+    'unsigned' => true,
+    'nullable' => false,
+    'visible'  => true,
+    'required' => false,
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_AGE_GATE, $options);
+}
 
 $options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,

@@ -280,6 +280,9 @@
                 <is_service>
                     <to_order>*</to_order>
                 </is_service>
+                <is_age_gate>
+                    <to_order>*</to_order>
+                </is_age_gate>
                 <is_weighted>
                     <to_order>*</to_order>
                 </is_weighted>
@@ -300,6 +303,9 @@
                 <original_base_price>
                     <to_order_item>*</to_order_item>
                 </original_base_price>
+                <is_age_gate>
+                    <to_order_item>*</to_order_item>
+                </is_age_gate>
             </sales_convert_quote_item>
             <sales_convert_quote_payment>
                 <deferred_installments_qty>
@@ -325,6 +331,9 @@
                 <is_service>
                     <to_quote>*</to_quote>
                 </is_service>
+                <is_age_gate>
+                    <to_quote>*</to_quote>
+                </is_age_gate>
                 <is_weighted>
                     <to_quote>*</to_quote>
                 </is_weighted>
@@ -345,6 +354,9 @@
                 <original_base_price>
                     <to_quote_item>*</to_quote_item>
                 </original_base_price>
+                <is_age_gate>
+                    <to_quote_item>*</to_quote_item>
+                </is_age_gate>
             </sales_convert_order_item>
             <sales_convert_order_payment>
                 <deferred_installments_qty>
