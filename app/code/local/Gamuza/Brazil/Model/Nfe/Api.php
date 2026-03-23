@@ -185,6 +185,9 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'created_at'      => strval ($nfe->getCreatedAt ()),
                 'updated_at'      => $nfe->getUpdatedAt (),
                 'signed_at'       => $nfe->getSignedAt (),
+                'authorized_at'   => $nfe->getAuthorizedAt (),
+                'corrected_at'    => $nfe->getCorrectedAt (),
+                'canceled_at'     => $nfe->getCanceledAt (),
                 'status_id'       => strval ($nfe->getStatusId ()),
                 'correct_id'      => intval ($nfe->getCorrectId ()),
                 'cancel_id'       => intval ($nfe->getCancelId ()),
@@ -740,6 +743,11 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_DENIED
         ;
 
+        if ($statusId == Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED)
+        {
+            $nfe->setAuthorizedAt ($response->getReceivedAt ());
+        }
+
         $nfe->setStatusId ($statusId)
             ->setUpdatedAt (date ('c'))
             ->save ()
@@ -922,6 +930,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $nfe->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED)
+            ->setCorrectedAt ($event->getReceivedAt ())
             ->setUpdatedAt (date ('c'))
             ->save ()
         ;
@@ -1024,6 +1033,11 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             ? Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED
             : Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED
         ;
+
+        if ($statusId == Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED)
+        {
+            $nfe->setCanceledAt ($event->getReceivedAt ());
+        }
 
         $nfe->setStatusId ($statusId)
             ->setUpdatedAt (date ('c'))

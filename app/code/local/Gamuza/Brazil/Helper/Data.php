@@ -155,8 +155,12 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const NFE_RESPONSE_AUTHORIZED = 100;
     const NFE_RESPONSE_DUPLICATED = 204;
 
+    const NFE_EVENT_CORRECTED = 135;
     const NFE_EVENT_CANCELED = 135;
     const NFE_EVENT_HOMOLOGATED = 155;
+
+    const NFE_EVENT_TYPE_CORRECTED = 110110;
+    const NFE_EVENT_TYPE_CANCELED  = 110111;
 
     const XML_PATH_GENERAL_STORE_INFORMATION_COMPANY = 'general/store_information/company';
     const XML_PATH_GENERAL_STORE_INFORMATION_NAME    = 'general/store_information/name';
