@@ -119,6 +119,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const OFFER_TYPE_CLEARANCE = 'clearance';
     const OFFER_TYPE_LIGHTNING = 'lightning';
 
+    const SALES_RULE_ATTRIBUTE_WEEKDAY_IDS = 'weekday_ids';
+
     const STORE_DEFAULT_EMAIL_PREFIX = 'store';
 
     const SQL_PT_BR = 'pt_BR' . DS . 'sql' . DS . 'sql_pt_br_19_utf8.txt';

@@ -29,7 +29,22 @@ function updateCustomerGroupTable ($installer, $model, $comment)
         ));
 }
 
+function updateSalesRuleTable ($installer, $model, $comment)
+{
+    $table = $installer->getTable ($model);
+
+    $installer->getConnection ()
+        ->addColumn ($table, Gamuza_Basic_Helper_Data::SALES_RULE_ATTRIBUTE_WEEKDAY_IDS, array(
+            'type' => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'length'   => 255,
+            'nullable' => true,
+            'comment'  => 'Sales Rule Weekday IDs',
+        ));
+}
+
 updateCustomerGroupTable ($installer, 'customer_group', 'Customer Group');
+
+updateSalesRuleTable ($installer, 'salesrule', 'Sales Rule');
 
 $installer->endSetup ();
 
