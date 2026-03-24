@@ -24,6 +24,31 @@ class Gamuza_Basic_Model_Observer
         $form->getElement ('content')->setRequired (false);
     }
 
+    public function adminhtmlPromoQuoteEditTabMainPrepareForm ($observer)
+    {
+        $event = $observer->getEvent ();
+        $form  = $event->getForm ();
+        $fieldset = $form->getElement ('base_fieldset');
+
+        $fieldset->addField ('weekday_ids', 'multiselect', array(
+            'name'   => 'weekday_ids[]',
+            'label'  => Mage::helper ('basic')->__('Weekdays'),
+            'title'  => Mage::helper ('basic')->__('Weekdays'),
+            'values' => Mage::getModel ('basic/adminhtml_system_config_source_weekdays')->toOptionArray (),
+        ), 'to_date');
+
+        $model = Mage::registry ('current_promo_quote_rule');
+
+        if ($model && $model->getId () && !empty ($model->getWeekdayIds ()))
+        {
+            $form->addValues(
+                array(
+                    'weekday_ids' => $model->getWeekdayIds (),
+                )
+            );
+        }
+    }
+
     public function adminhtmlControllerActionPredispatchStart ($observer)
     {
         Mage::getDesign ()->setArea ('adminhtml')->setTheme ('zzz'); // use fallback theme
