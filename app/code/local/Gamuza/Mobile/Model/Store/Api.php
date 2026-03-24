@@ -15,7 +15,7 @@ class Gamuza_Mobile_Model_Store_Api extends Mage_Api_Model_Resource_Abstract
      * @param null|object|array $filters
      * @return array
      */
-    public function items ($filters = null)
+    public function items ($filters = null, $code = null, $store = null, $dob = null)
     {
         return $this->_getStoreList ($filters);
     }
