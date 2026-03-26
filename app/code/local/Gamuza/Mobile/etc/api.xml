@@ -486,6 +486,25 @@
                     </shipping_methods_list_could_not_be_retrieved>
                 </faults>
             </mobile_cart_shipping>
+            <!-- Customer -->
+            <mobile_customer translate="title" module="mobile">
+                <title>Mobile Customer API</title>
+                <model>mobile/customer_api</model>
+                <acl>mobile/customer</acl>
+                <methods>
+                    <draft translate="title" module="mobile">
+                        <title>Retrieve customer draft</title>
+                        <method>draft</method>
+                        <acl>mobile/customer/draft</acl>
+                    </draft>
+                </methods>
+                <faults translate="message" module="mobile">
+                    <not_exists>
+                        <code>100</code>
+                        <message>Customer not exists.</message>
+                    </not_exists>
+                </faults>
+            </mobile_customer>
             <!-- Sales -->
             <mobile_order translate="title" module="mobile">
                 <title>Mobile Order API</title>
@@ -711,6 +730,14 @@
                             <title>List</title>
                         </list>
                      </cart_shipping>
+                    <!-- Customer -->
+                     <customer translate="title" module="mobile">
+                        <title>Customer</title>
+                        <sort_order>90</sort_order>
+                        <draft translate="title" module="mobile">
+                            <title>Draft</title>
+                        </draft>
+                     </customer>
                     <!-- Sales -->
                      <order translate="title" module="mobile">
                         <title>Order</title>

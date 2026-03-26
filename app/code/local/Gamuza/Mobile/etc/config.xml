@@ -264,6 +264,9 @@
             <create_account>
                 <email_prefix>app</email_prefix>
             </create_account>
+            <customer_draft>
+                <word_wrap>48</word_wrap>
+            </customer_draft>
         </customer>
         <payment>
             <cashondelivery>
