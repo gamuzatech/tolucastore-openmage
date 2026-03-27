@@ -57,6 +57,11 @@ class Gamuza_Mobile_Block_Adminhtml_Customer_Draft extends Mage_Adminhtml_Block_
             ->addFieldToFilter ('state', array ('eq' => Mage_Sales_Model_Order::STATE_NEW))
         ;
 
+        if (is_array ($this->getOrderIds ()) && count ($this->getOrderIds ()) > 0)
+        {
+            $collection->addFieldToFilter ('entity_id', array ('in' => $this->getOrderIds ()));
+        }
+
         $customerId = $this->getCustomer ()->getId ();
 
         $condition = sprintf ('customer_id = %s', $customerId);

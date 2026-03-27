@@ -16,7 +16,7 @@ class Gamuza_Mobile_Model_Customer_Api extends Mage_Customer_Model_Customer_Api
      * @param int $customerId
      * @return string|null
      */
-    public function draft ($customerId)
+    public function draft ($customerId, $orderIds = null)
     {
         $customer = Mage::getModel ('customer/customer')->load ($customerId);
 
@@ -30,6 +30,7 @@ class Gamuza_Mobile_Model_Customer_Api extends Mage_Customer_Model_Customer_Api
             ->createBlock ('mobile/adminhtml_customer_draft')
             ->setArea (Mage_Core_Model_App_Area::AREA_ADMINHTML)
             ->setCustomer ($customer)
+            ->setOrderIds ($orderIds)
             ->setTemplate ('gamuza/mobile/customer/draft.phtml')
             ->toHtml ();
 

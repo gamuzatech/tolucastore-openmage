@@ -34,12 +34,13 @@ foreach ($_orders as $_order)
 {
     echo $this->getLineSeparator($this->getOrderSequence($_order)) . PHP_EOL;
 
+    echo sprintf('<b><u>%s</u></b> %s', $this->getOrderNumber($_order), $this->getOrderDatetime($_order)) . PHP_EOL;
+
     $_subtotal = Mage::helper('core')->currency($_order->getBaseSubtotal(), true, false);
     $_shipping = Mage::helper('core')->currency($_order->getBaseShippingAmount(), true, false);
     $_fee      = Mage::helper('core')->currency($_order->getPayment()->getDeferredFeeAmount(), true, false);
     $_total    = Mage::helper('core')->currency($_order->getBaseGrandTotal(), true, false);
 
-    echo sprintf('<b><u>%s</u></b> %s', $this->getOrderNumber($_order), $this->getOrderDatetime($_order)) . PHP_EOL;
     echo sprintf(
         "%s: %s\t%s: %s\n%s: %s\t%s: %s",
         Mage::helper('sales')->__('Subtotal'), $_subtotal,
