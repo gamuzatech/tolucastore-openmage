@@ -54,9 +54,17 @@ class Gamuza_Mobile_Block_Adminhtml_Customer_Draft extends Mage_Adminhtml_Block_
     public function getOrdersList ()
     {
         $collection = Mage::getModel ('sales/order')->getCollection ()
-            ->addFieldToFilter ('customer_id', array ('eq' => $this->getCustomer ()->getId ()))
             ->addFieldToFilter ('state', array ('eq' => Mage_Sales_Model_Order::STATE_NEW))
         ;
+
+        $customerId = $this->getCustomer ()->getId ();
+
+        $condition = sprintf ('customer_id = %s', $customerId);
+
+        if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV'))
+        {
+            $condition .= sprintf (' OR pdv_customer_id = %s ', $customerId);
+        }
 
         $collection->getSelect ()
             ->join (
@@ -67,6 +75,7 @@ class Gamuza_Mobile_Block_Adminhtml_Customer_Draft extends Mage_Adminhtml_Block_
                     'deferred_fee_amount',
                 )
             )
+            ->where ($condition)
             ->order ('entity_id DESC')
         ;
 

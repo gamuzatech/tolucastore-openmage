@@ -9,11 +9,21 @@ $_customer = $this->getCustomer();
 
 echo sprintf('%s %s <b><u>%s</u></b>', $_customer->getFirstname(), $_customer->getLastname(), $_customer->getCellphone()) . PHP_EOL;
 
+echo $this->getLineSeparator() . PHP_EOL;
+
 $_address = $_customer->getDefaultShippingAddress() ? $_customer->getDefaultShippingAddress() : $_customer->getDefaultBillingAddress();
 
-echo sprintf('%s <b><u>%s</u></b> %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
-echo sprintf('%s %s', $_address->getStreet4(), $_address->getPostcode()) . PHP_EOL;
-echo sprintf('%s %s %s', $_address->getCity(), $_address->getRegionCode(), $_address->getCountryId()) . PHP_EOL;
+if ($_address && $_address->getId () > 0)
+{
+    echo sprintf('%s <b><u>%s</u></b> %s', $_address->getStreet1(), $_address->getStreet2(), $_address->getStreet3()) . PHP_EOL;
+    echo sprintf('%s %s', $_address->getStreet4(), $_address->getPostcode()) . PHP_EOL;
+    echo sprintf('%s %s %s', $_address->getCity(), $_address->getRegionCode(), $_address->getCountryId()) . PHP_EOL;
+}
+else
+{
+    echo Mage::helper ('customer')->__('This customer has no saved addresses.') . PHP_EOL;
+}
+
 echo $this->getLineSeparator() . PHP_EOL;
 
 $_orders = $this->getOrdersList();
@@ -55,6 +65,7 @@ echo Mage::helper('sales')->__('Subtotal: %s', $_subtotal) . PHP_EOL;
 echo Mage::helper('sales')->__('Shipping Amount: %s', $_shipping) . PHP_EOL;
 echo Mage::helper('sales')->__('Fee Amount: %s', $_fee) . PHP_EOL;
 echo Mage::helper('sales')->__('Grand Total: %s', $_total) . PHP_EOL;
+
 echo $this->getLineSeparator() . PHP_EOL;
 
 $_storeName  = Mage::getStoreConfig('general/store_information/name',  $_customer->getStoreId());
