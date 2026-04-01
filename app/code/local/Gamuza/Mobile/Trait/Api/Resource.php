@@ -40,7 +40,10 @@ trait Gamuza_Mobile_Trait_Api_Resource
 
         $quote->afterLoad();
 
-        $quote->setCustomerDob ($customerDob)->save (); // age_gate
+        if ($quote->getCustomerDob () !== $customerDob)
+        {
+            $quote->setCustomerDob ($customerDob)->save (); // age_gate
+        }
 
         return $quote;
     }
