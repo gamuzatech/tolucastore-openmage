@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Basic_Model_Adminhtml_System_Config_Source_weekdays
+class Gamuza_Basic_Model_Adminhtml_System_Config_Source_weekday
 {
     protected $_weekdays = array(
         'mon' => 1,

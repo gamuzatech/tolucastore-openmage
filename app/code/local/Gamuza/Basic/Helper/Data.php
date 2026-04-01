@@ -94,6 +94,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const PRODUCT_ATTRIBUTE_OFFER_TYPE = 'offer_type';
     const PRODUCT_ATTRIBUTE_PRICE_TYPE   = 'price_type';
     const PRODUCT_ATTRIBUTE_SKU_POSITION = 'sku_position';
+    const PRODUCT_ATTRIBUTE_WEEKDAY_IDS = 'weekday_ids';
 
     const PRODUCT_ATTRIBUTE_CUSTOMER_OF_SUPPLIER = 'customer_of_supplier';
     const PRODUCT_ATTRIBUTE_CUSTOMER_OF_MANUFACTURER = 'customer_of_manufacturer';

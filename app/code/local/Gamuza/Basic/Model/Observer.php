@@ -34,7 +34,7 @@ class Gamuza_Basic_Model_Observer
             'name'   => 'weekday_ids[]',
             'label'  => Mage::helper ('basic')->__('Weekdays'),
             'title'  => Mage::helper ('basic')->__('Weekdays'),
-            'values' => Mage::getModel ('basic/adminhtml_system_config_source_weekdays')->toOptionArray (),
+            'values' => Mage::getModel ('basic/adminhtml_system_config_source_weekday')->toOptionArray (),
         ), 'to_date');
 
         $model = Mage::registry ('current_promo_quote_rule');
@@ -608,16 +608,19 @@ CONTENT;
             return $this;
         }
 
+        /**
+         * AgeGate
+         */
         if (!$product->getAgeGate () || !Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_ACTIVE))
         {
-            return $this;
+            goto __weekdays;
         }
 
         $amount = Mage::getStoreConfigAsInt (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_AMOUNT);
 
         if (!$amount)
         {
-            return $this;
+            goto __weekdays;
         }
 
         $dob = $quote->getCustomerDob ();
@@ -631,6 +634,8 @@ CONTENT;
 
         if ($age->y < $amount)
         {
+            $type = 'error_age_gate_' . $item->getId ();
+
             $description = Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_DESCRIPTION);
             $message = Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_SALES_MINIMUM_AGE_ERROR_MESSAGE);
 
@@ -638,7 +643,7 @@ CONTENT;
 
             $item->addErrorInfo ('age_gate', 6, $error);
 
-            $quote->addErrorInfo ('error', 'age_gate', 6, $error);
+            $quote->addErrorInfo ($type, 'age_gate', 6, $error);
         }
         else
         {
@@ -657,6 +662,64 @@ CONTENT;
                 $params = array(
                     'origin' => 'age_gate',
                     'code'   => 6,
+                );
+
+                $quote->removeErrorInfosByParams (null, $params);
+            }
+        }
+
+    __weekdays:
+
+        /**
+         * Weekdays
+         */
+        $weekdayIds = $product->getWeekdayIds ();
+
+        if (empty ($weekdayIds))
+        {
+            return $this;
+        }
+
+        if (!is_array ($weekdayIds))
+        {
+            $weekdayIds = explode (',', $weekdayIds);
+        }
+
+        $weekdayIds = array_map ('intval', $weekdayIds);
+
+        $day = (int) Mage::getModel ('core/date')->date ('N');
+
+        if (!in_array ($day, $weekdayIds, true))
+        {
+            $type = 'error_weekday_ids_' . $item->getId ();
+
+            $weekdays = Mage::getModel ('basic/adminhtml_system_config_source_weekday')->toArray ();
+
+            $days = implode (', ', array_intersect_key ($weekdays, array_flip ($weekdayIds)));
+
+            $error = Mage::helper ('basic')->__('%s available for sale only %s', $item->getName (), $days);
+
+            $item->addErrorInfo ('weekday_ids', 7, $error);
+
+            $quote->addErrorInfo ($type, 'weekday_ids', 7, $error);
+        }
+        else
+        {
+            if ($item->getHasError ())
+            {
+                $params = array(
+                    'origin' => 'weekday_ids',
+                    'code'   => 7,
+                );
+
+                $item->removeErrorInfosByParams ($params);
+            }
+
+            if ($quote->getHasError ())
+            {
+                $params = array(
+                    'origin' => 'weekday_ids',
+                    'code'   => 7,
                 );
 
                 $quote->removeErrorInfosByParams (null, $params);

@@ -607,6 +607,7 @@
                         <image />
                         <gtin />
                         <printing />
+                        <weekday_ids />
                     </product_attributes>
                 </item>
             </quote>
@@ -749,6 +750,7 @@
                     <printing />
                     <sku_position />
                     <size />
+                    <weekday_ids />
                 </attributes>
             </collection>
         </product>

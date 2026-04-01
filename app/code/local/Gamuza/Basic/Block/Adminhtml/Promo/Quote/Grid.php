@@ -23,7 +23,7 @@ class Gamuza_Basic_Block_Adminhtml_Promo_Quote_Grid
             'align'     => 'left',
             'index'     => 'weekday_ids',
             'type'      => 'options',
-            'options'   => Mage::getModel ('basic/adminhtml_system_config_source_weekdays')->toArray (),
+            'options'   => Mage::getModel ('basic/adminhtml_system_config_source_weekday')->toArray (),
         ), 'to_date');
 
         return parent::_prepareColumns();

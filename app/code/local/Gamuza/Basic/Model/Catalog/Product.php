@@ -10,6 +10,28 @@
  */
 class Gamuza_Basic_Model_Catalog_Product extends Mage_Catalog_Model_Product
 {
+    protected function _beforeSave ()
+    {
+        $this->setWeekdayIds (
+            is_array ($this->getWeekdayIds ())
+            ? implode (',', $this->getWeekdayIds ())
+            : null
+        );
+
+        return parent::_beforeSave ();
+    }
+
+    protected function _afterLoad ()
+    {
+        $this->setWeekdayIds (
+            !empty ($this->getWeekdayIds ())
+            ? explode (',', $this->getWeekdayIds ())
+            : null
+        );
+
+        return parent::_afterLoad ();
+    }
+
     /**
      * Retrieve collection raw material product
      *
