@@ -31,9 +31,9 @@ class Gamuza_Basic_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
             )
         ;
 
-	if (!empty($filters['full_name']['full_name']['like']))
+	if (!empty($filters['full_name']['full_name']['like']) || !empty($filters['full_name']['like']))
 	{
-	    $value = $filters['full_name']['full_name']['like'];
+	    $value = $filters['full_name']['full_name']['like'] ?? $filters['full_name']['like'];
 
 	    $collection->addAttributeToSelect('firstname', 'left')
 	        ->addAttributeToSelect('lastname', 'left')
