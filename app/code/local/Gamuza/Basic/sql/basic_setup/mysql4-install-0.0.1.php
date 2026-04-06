@@ -148,7 +148,7 @@ $coreConfig->saveConfig ('system/log/error_email',             'log@toluca.com.b
 $coreConfig->saveConfig ('system/adminnotification/use_https', '2');
 $coreConfig->saveConfig ('system/backup/enabled',              '1');
 $coreConfig->saveConfig ('system/backup/type',                 'db');
-$coreConfig->saveConfig ('system/backup/maintenance',          '0');
+$coreConfig->saveConfig ('system/backup/maintenance',          '1');
 
 /**
  * Advanced

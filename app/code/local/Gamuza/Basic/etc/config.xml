@@ -1035,7 +1035,7 @@
             <backup>
                 <enabled>1</enabled>
                 <type>db</type>
-                <maintenance>0</maintenance>
+                <maintenance>1</maintenance>
             </backup>
         </system>
         <advanced>
