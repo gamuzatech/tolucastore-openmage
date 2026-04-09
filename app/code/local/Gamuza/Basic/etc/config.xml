@@ -134,6 +134,7 @@
                 <rewrite>
                     <backup>Gamuza_Basic_Model_Backup_Backup</backup>
                     <db>Gamuza_Basic_Model_Backup_Db</db>
+                    <observer>Gamuza_Basic_Model_Backup_Observer</observer>
                 </rewrite>
             </backup>
             <backup_resource>

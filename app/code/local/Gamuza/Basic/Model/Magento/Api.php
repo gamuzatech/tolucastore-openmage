@@ -35,7 +35,15 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
             );
         }
 
-        Mage::getModel ('backup/observer')->scheduledBackup ();
+        $backupErrors = Mage::getModel ('backup/observer')
+            ->scheduledBackup ()
+            ->getErrors ()
+        ;
+
+        if (count ($backupErrors) > 0)
+        {
+            Mage::throwException ($backupErrors [0]);
+        }
 
         $backupManager = Mage::registry ('backup_manager');
 

@@ -16,22 +16,27 @@ class Gamuza_Basic_Model_Backup_Resource_Db extends Mage_Backup_Model_Resource_D
      * @param string $tableName
      * @return Varien_Object|false
      */
-    public function getTableStatus($tableName)
+    public function getTableStatus($tableName, $tables = null)
     {
         $result = parent::getTableStatus($tableName);
 
         if (is_object($result) && !strcmp(php_sapi_name(), 'cli'))
         {
+            if (empty($tables))
+            {
+                $tables = $this->getTables();
+            }
+
             $row = 1;
 
-            foreach ($this->getTables() as $tableName)
+            foreach ($tables as $tableName)
             {
                 if (!strcmp($tableName, $result->getName())) break;
 
                 $row ++;
             }
 
-            $tablesCount = count($this->getTables());
+            $tablesCount = count($tables);
 
             echo sprintf(
                 '%s: %s: %s (%s of %s) %s%% (%s)',

@@ -11,5 +11,10 @@
 class Gamuza_Basic_Model_Backup_Observer extends Mage_Backup_Model_Observer
 {
     public const XML_PATH_BACKUP_LAST = 'system/backup/last';
+
+    public function getErrors ()
+    {
+        return $this->_errors;
+    }
 }
 
