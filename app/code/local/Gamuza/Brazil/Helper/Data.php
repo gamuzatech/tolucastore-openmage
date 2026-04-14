@@ -236,6 +236,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFE_AUTHORIZE_VALIDATE = 'brazil/nfe/authorize_validate';
     const XML_PATH_BRAZIL_NFE_CORRECT_VALIDATE   = 'brazil/nfe/correct_validate';
     const XML_PATH_BRAZIL_NFE_CANCEL_VALIDATE    = 'brazil/nfe/cancel_validate';
+    const XML_PATH_BRAZIL_NFE_IMPORT_VALIDATE    = 'brazil/nfe/import_validate';
 
     const XML_PATH_BRAZIL_NFCE_PRINT_ID  = 'brazil/nfce/print_id';
     const XML_PATH_BRAZIL_NFCE_BATCH_ID  = 'brazil/nfce/batch_id';

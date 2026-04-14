@@ -314,6 +314,7 @@
                 <cancel_validate>1</cancel_validate>
                 <authorize_validate>1</authorize_validate>
                 <correct_validate>1</correct_validate>
+                <import_validate>1</import_validate>
             </nfe>
             <cashier>
                 <show_history_nfes>1</show_history_nfes>

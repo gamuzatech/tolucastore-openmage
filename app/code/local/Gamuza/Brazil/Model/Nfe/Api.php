@@ -139,6 +139,8 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         {
             foreach ($filters as $field => $value)
             {
+                if (str_contains($field, 'pdv')) continue;
+
                 $collection->addFieldToFilter ($field, $value);
             }
         }
@@ -146,6 +148,8 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         {
             $this->_fault ('filters_invalid', $e->getMessage ());
         }
+
+        Mage::log($collection->getSelect()->__toString(), null, 'system.log', true);
 
         $result = array ();
 
@@ -275,6 +279,13 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                     'emitted_at'     => $event->getEmittedAt (),
                     'received_at'    => $event->getReceivedAt (),
                 );
+            }
+
+            if (empty ($nfe->getIncrementId ()) || empty ($nfe->getProtectCode ()))
+            {
+                $result [] = $data;
+
+                continue; // skip
             }
 
             $order = $this->_initOrder ($nfe->getIncrementId (), $nfe->getProtectCode ());
@@ -1045,6 +1056,135 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
         ;
 
         return $this->_getNFe ($nfe);
+    }
+
+    public function import ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = true)
+    {
+        /*
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+        */
+
+        if (empty ($data))
+        {
+            $this->_fault ('data_not_specified');
+        }
+
+        /*
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $order = $this->_initIBPT ($order, $updateIBPT);
+
+        $nfe = $this->_initNFe ($order, false);
+        */
+
+        if (!$nfe || !$nfe->getId ())
+        {
+            $nfe = Mage::getModel ('brazil/nfe')
+                ->setCreatedAt (date ('c'))
+            ;
+        }
+
+        /*
+        if (empty ($nfe->getNumberId ()))
+        {
+            $numberId = Mage::helper ('brazil')->getIncrementId ('nfe', 'number_id', array ('order_id' => $order->getId ()));
+
+            $nfe->setNumberId ($numberId);
+        }
+
+        if (!strcmp ($nfe->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_AUTHORIZED))
+        {
+            $this->_fault ('nfe_already_authorized');
+        }
+
+        if (!strcmp ($nfe->getStatusId (), Gamuza_Brazil_Helper_Data::NFE_STATUS_CANCELED))
+        {
+            $this->_fault ('nfe_already_canceled');
+        }
+        */
+
+        foreach ($this->_createAttributeList as $attribute)
+        {
+            if (array_key_exists ($attribute, $data))
+            {
+                $nfe->setData ($attribute, $data [$attribute]);
+            }
+            else
+            {
+                $customMessage = Mage::helper ('brazil')->__('Requested data not specified.') . PHP_EOL
+                    . PHP_EOL . Mage::helper ('brazil')->__('Attribute name: %s', $attribute);
+
+                $this->_fault ('data_not_specified', $customMessage);
+            }
+        }
+
+        /*
+        $destinyId = 0;
+
+        $orderBillingAddress = $order->getBillingAddress ();
+
+        if (!strcmp ($orderBillingAddress->getCountryId (), $this->_shippingCountryId)
+            && !strcmp ($orderBillingAddress->getRegionId (), $this->_shippingRegionId))
+        {
+            $destinyId = Gamuza_Brazil_Helper_Data::NFE_DESTINY_INTERNAL;
+        }
+        else if (!strcmp ($orderBillingAddress->getCountryId (), $this->_shippingCountryId)
+            && strcmp ($orderBillingAddress->getRegionId (), $this->_shippingRegionId) != 0)
+        {
+            $destinyId = Gamuza_Brazil_Helper_Data::NFE_DESTINY_INTERSTATE;
+        }
+        else if (strcmp ($orderBillingAddress->getCountryId (), $this->_shippingCountryId) != 0
+            && strcmp ($orderBillingAddress->getRegionId (), $this->_shippingRegionId) != 0)
+        {
+            $destinyId = Gamuza_Brazil_Helper_Data::NFE_DESTINY_ABROAD;
+        }
+
+        $polynomial = hash ('crc32b', $order->getId ());
+
+        $code = hexdec ($polynomial);
+        $code = str_pad ($code, 8, '0', STR_PAD_LEFT);
+        */
+
+        $nfe->setStatusId (Gamuza_Brazil_Helper_Data::NFE_STATUS_CREATED)
+            /*
+            ->setOrderId ($order->getId ())
+            ->setDestinyId ($destinyId)
+            ->setCode ($code)
+            */
+            ->save ()
+        ;
+
+        /**
+         * CPF or CNPJ
+         */
+        /*
+        if (strlen ($nfe->getCustomerTaxvat ()) == 11
+            || strlen ($nfe->getCustomerTaxvat ()) == 14)
+        {
+            $order->setCustomerTaxvat ($nfe->getCustomerTaxvat ())->save ();
+        }
+
+        if (!empty ($nfe->getCustomerRgIe ()))
+        {
+            $order->setBrazilRgIe ($nfe->getCustomerRgIe ())->save ();
+        }
+
+        if (!empty ($nfe->getCustomerIeIcms ()))
+        {
+            $order->setBrazilIeIcms ($nfe->getCustomerIeIcms ())->save ();
+        }
+
+        return $this->_getNFe ($nfe);
+        */
+        return $nfe;
     }
 
     /**
