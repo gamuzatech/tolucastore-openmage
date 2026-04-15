@@ -164,6 +164,12 @@
         </reference>
     </customer_account>
 
+    <customer_logged_in>
+        <reference name="top.links">
+            <action method="addLink" translate="label title" module="customer"><label>Edit Account</label><url>/customer/account/edit</url><title>Edit Account</title><prepare/><urlParams/><position>15</position></action>
+        </reference>
+    </customer_logged_in>
+
     <gamuza_checkout_handle translate="label">
         <reference name="content">
             <reference name="checkout.success">
