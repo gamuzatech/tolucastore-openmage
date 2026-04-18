@@ -129,9 +129,9 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $agreements array
      * @return string
      */
-    public function createOrder($code = null, $agreements = null, $store = null, $dob = null)
+    public function createOrder($code = null, $agreements = null, $store = null, $dob = null, $note = null)
     {
-        $order = $this->_createOrder ($code, $agreements, $store, $dob);
+        $order = $this->_createOrder ($code, $agreements, $store, $dob, $note);
 
         $result = array(
             'order' => $this->_getAttributes ($order, 'order', $this->_orderAttributes),
@@ -230,7 +230,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
      * @param  $agreements array
      * @return string
      */
-    protected function _createOrder($code = null, $agreements = null, $store = null, $dob = null)
+    protected function _createOrder($code = null, $agreements = null, $store = null, $dob = null, $note = null)
     {
         if (empty ($code))
         {
@@ -266,6 +266,14 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         )
         {
             $this->_fault('guest_checkout_is_not_enabled');
+        }
+
+        if (!empty ($note))
+        {
+            if ($quote->getCustomerNote () !== $note)
+            {
+                $quote->setCustomerNote ($note)->save ();
+            }
         }
 
         /** @var $customerResource Mage_Checkout_Model_Api_Resource_Customer */
