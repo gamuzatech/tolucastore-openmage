@@ -18,8 +18,8 @@
         <payment>
             <tab>gamuza</tab>
             <groups>
-                <gamuza_sitef_pinpad translate="label" module="sitef">
-                    <label>Payment via Sitef - Gamuza Technologies</label>
+                <sitef_pinpad_debit translate="label" module="sitef">
+                    <label>Debit via Sitef - Gamuza Technologies</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1200</sort_order>
                     <show_in_default>1</show_in_default>
@@ -119,7 +119,7 @@
                         </sort_order>
                         <model />
                     </fields>
-                </gamuza_sitef_pinpad>
+                </sitef_pinpad_debit>
             </groups>
         </payment>
     </sections>

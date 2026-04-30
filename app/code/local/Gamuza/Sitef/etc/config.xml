@@ -158,16 +158,16 @@
     </crontab>
     <default>
         <payment>
-            <gamuza_sitef_pinpad>
+            <sitef_pinpad_debit>
                 <active>1</active>
-                <title>Payment via Sitef - Gamuza Technologies</title>
+                <title>Debit via Sitef - Gamuza Technologies</title>
                 <order_status>pending</order_status>
                 <paid_status>paid</paid_status>
                 <allowspecific>0</allowspecific>
                 <group>offline</group>
-                <model>sitef/payment_method_pinpad</model>
+                <model>sitef/payment_method_pinpad_debit</model>
                 <payment_action>order</payment_action>
-            </gamuza_sitef_pinpad>
+            </sitef_pinpad_debit>
         </payment>
     </default>
 </config>
