@@ -5,9 +5,9 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Sitef_Model_Payment_Method_Pinpad_Debit extends Mage_Payment_Model_Method_Abstract
+class Gamuza_Sitef_Model_Payment_Method_Pinpad_Digital_Wallet extends Mage_Payment_Model_Method_Abstract
 {
-    const CODE = 'sitef_pinpad_debit';
+    const CODE = 'sitef_pinpad_digital_wallet';
 
     protected $_code = self::CODE;
 

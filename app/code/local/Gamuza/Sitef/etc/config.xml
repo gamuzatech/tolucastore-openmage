@@ -168,6 +168,26 @@
                 <model>sitef/payment_method_pinpad_debit</model>
                 <payment_action>order</payment_action>
             </sitef_pinpad_debit>
+            <sitef_pinpad_credit>
+                <active>1</active>
+                <title>Credit via Sitef - Gamuza Technologies</title>
+                <order_status>pending</order_status>
+                <paid_status>paid</paid_status>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+                <model>sitef/payment_method_pinpad_credit</model>
+                <payment_action>order</payment_action>
+            </sitef_pinpad_credit>
+            <sitef_pinpad_digital_wallet>
+                <active>1</active>
+                <title>Digital Wallet via Sitef - Gamuza Technologies</title>
+                <order_status>pending</order_status>
+                <paid_status>paid</paid_status>
+                <allowspecific>0</allowspecific>
+                <group>offline</group>
+                <model>sitef/payment_method_pinpad_digital_wallet</model>
+                <payment_action>order</payment_action>
+            </sitef_pinpad_digital_wallet>
         </payment>
     </default>
 </config>
