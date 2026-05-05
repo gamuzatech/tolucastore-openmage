@@ -52,6 +52,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         'weight', 'bot_type',
         'is_app', 'is_bot', 'is_zap', 'is_pdv',
         'is_openpix', 'is_pagcripto', 'is_picpay',
+        'created_at', 'updated_at',
     );
 
     /**
