@@ -142,7 +142,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                     'basename'     => $backup->getBasename (),
                     'id'           => $backup->getId (),
                     'time'         => intval ($backup->getTime ()),
-                    'time_at'      => date ('c', $backup->getTime ()),
+                    'time_at'      => gmdate ('Y-m-d H:i:s', $backup->getTime ()),
                     'path'         => $backup->getPath (),
                     'extension'    => $backup->getExtension (),
                     'display_name' => $backup->getDisplayName (),
