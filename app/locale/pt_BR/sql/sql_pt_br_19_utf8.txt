@@ -119,6 +119,10 @@ INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
 INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
+    VALUES ('default', 0, 'payment/gamuza_sitef_pinpad/title', 'Pagar com Sitef Pinpad')
+    ON DUPLICATE KEY UPDATE `updated_at` = NULL;
+
+INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     VALUES ('default', 0, 'payment/gamuza_brazil_pix/title', 'Pagar com Pix')
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
