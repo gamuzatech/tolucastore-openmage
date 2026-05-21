@@ -10,12 +10,19 @@
  */
 class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 {
+    const XML_PATH_PDV_SETTING_DEFAULT_CASHIER = Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_CASHIER;
+    const XML_PATH_PDV_SETTING_DEFAULT_OPERATOR = Toluca_PDV_Helper_Data::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR;
+
     const XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_INCLUDE_ALL_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS;
+    const XML_PATH_PDV_CASHIER_CATCH_PENDING_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_CATCH_PENDING_ORDERS;
     const XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP;
     const XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW;
     const XML_PATH_PDV_CASHIER_ALLOW_BROKEN_FLOW = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_ALLOW_BROKEN_FLOW;
+
+    public $_defaultCashierId = 0;
+    public $_defaultOperatorId = 0;
 
     public $_validateRemoteIp = false;
     public $_allowNegativeFlow = false;
@@ -24,6 +31,9 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
     public function __construct()
     {
         // parent::__construct();
+
+        $this->_defaultCashierId = Mage::getStoreConfigAsInt (self::XML_PATH_PDV_SETTING_DEFAULT_CASHIER);
+        $this->_defaultOperatorId = Mage::getStoreConfigAsInt (self::XML_PATH_PDV_SETTING_DEFAULT_OPERATOR);
 
         $this->_validateRemoteIp = Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP);
         $this->_allowNegativeFlow = Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW);
@@ -339,6 +349,10 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('cashier_already_opened');
             */
 
+            $history = Mage::getModel ('pdv/history')->load ($cashier->getHistoryId ());
+
+            $this->_catchOrderCollection ($cashier, $operator, $history);
+
             return intval ($cashier->getId ());
         }
 
@@ -401,6 +415,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setUserAgent ($userAgent)
             ->save ()
         ;
+
+        $this->_catchOrderCollection ($cashier, $operator, $history);
 
         return intval ($cashier->getId ());
     }
@@ -676,13 +692,17 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         return array ($cashier, $operator);
     }
 
-    public function _getOrderCollection ($cashier, $operator, $history)
+    public function _getOrderCollection ($cashier, $operator, $history = null)
     {
         $collection = Mage::getModel ('sales/order')->getCollection ()
             ->addFieldToFilter ('is_pdv', array ('eq' => true))
             ->addFieldToFilter ('pdv_cashier_id', array ('eq' => $cashier->getId ()))
-            ->addFieldToFilter ('pdv_history_id', array ('eq' => $history->getId ()))
         ;
+
+        if ($history && $history->getId ())
+        {
+            $collection->addFieldToFilter ('pdv_history_id', array ('eq' => $history->getId ()));
+        }
 
         if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS))
         {
@@ -698,6 +718,29 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         return $collection;
+    }
+
+    public function _catchOrderCollection ($cashier, $operator, $history)
+    {
+        if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_CATCH_PENDING_ORDERS)
+            || $cashier->getId () != $this->_defaultCashierId
+            || $operator->getId () != $this->_defaultOperatorId)
+        {
+            return -1;
+        }
+
+        $collection = $this->_getOrderCollection ($cashier, $operator, null)
+            ->addFieldToFilter ('state',  array ('eq' => Mage_Sales_Model_Order::STATE_NEW))
+            ->addFieldToFilter ('status', array ('eq' => Toluca_PDV_Helper_Data::ORDER_STATUS_PENDING))
+            ->addFieldToFilter ('pdv_history_id', array ('neq' => $history->getId ()))
+        ;
+
+        foreach ($collection as $order)
+        {
+            $order->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID, $history->getId ())->save ();
+        }
+
+        return $collection->getSize ();
     }
 }
 

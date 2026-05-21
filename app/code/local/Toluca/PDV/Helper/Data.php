@@ -30,6 +30,8 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_PDV_TABLE_ID    = 'pdv_table_id';
     const ORDER_ATTRIBUTE_PDV_CARD_ID     = 'pdv_card_id';
 
+    const ORDER_STATUS_PENDING = 'pending';
+
     const CASHIER_STATUS_CLOSED = 0;
     const CASHIER_STATUS_OPENED = 1;
 
@@ -68,6 +70,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS = 'pdv/cashier/show_operator_orders';
     const XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS = 'pdv/cashier/show_pending_orders';
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS = 'pdv/cashier/show_operator_carts';
+    const XML_PATH_PDV_CASHIER_CATCH_PENDING_ORDERS = 'pdv/cashier/catch_pending_orders';
     const XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP = 'pdv/cashier/validate_remote_ip';
     const XML_PATH_PDV_CASHIER_ALLOW_NEGATIVE_FLOW = 'pdv/cashier/allow_negative_flow';
     const XML_PATH_PDV_CASHIER_ALLOW_BROKEN_FLOW = 'pdv/cashier/allow_broken_flow';
