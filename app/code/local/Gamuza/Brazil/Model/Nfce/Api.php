@@ -840,7 +840,11 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         if (empty ($nfce->getCancelId ()))
         {
+            /*
             $cancelId = Mage::helper ('brazil')->getIncrementId ('nfce', 'cancel_id', array ('order_id' => $order->getId ()));
+            */
+
+            $cancelId = 1;
 
             $nfce->setCancelId ($cancelId)
                 ->setUpdatedAt (date ('c'))
