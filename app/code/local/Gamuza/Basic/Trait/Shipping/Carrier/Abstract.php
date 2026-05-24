@@ -20,6 +20,13 @@ trait Gamuza_Basic_Trait_Shipping_Carrier_Abstract
             return false;
         }
 
+        if ($this->getConfigFlag('only_in_pdv')
+            && Mage::helper('core')->isModuleEnabled('Toluca_PDV')
+            && !Mage::helper('pdv')->isPDV())
+        {
+            return false;
+        }
+
         $attributeSets = $this->getConfigData('attribute_set');
 
         if (!empty($attributeSets))

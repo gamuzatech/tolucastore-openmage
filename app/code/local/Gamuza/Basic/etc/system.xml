@@ -498,6 +498,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </sort_order>
+                        <only_in_pdv translate="label">
+                            <label>Only in PDV</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <sort_order>100</sort_order>
+                        </only_in_pdv>
                     </fields>
                 </pickup>
                 <eatin translate="label" module="shipping">
@@ -579,6 +589,16 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </sort_order>
+                        <only_in_pdv translate="label">
+                            <label>Only in PDV</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <sort_order>100</sort_order>
+                        </only_in_pdv>
                     </fields>
                 </eatin>
                 <flatrate>
@@ -605,6 +625,16 @@
                             <can_be_empty>1</can_be_empty>
                             <sort_order>10</sort_order>
                         </attribute_set>
+                        <only_in_pdv translate="label">
+                            <label>Only in PDV</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <sort_order>100</sort_order>
+                        </only_in_pdv>
                     </fields>
                 </flatrate>
                 <tablerate>
@@ -634,6 +664,16 @@
                             <can_be_empty>1</can_be_empty>
                             <sort_order>10</sort_order>
                         </attribute_set>
+                        <only_in_pdv translate="label">
+                            <label>Only in PDV</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                            <sort_order>100</sort_order>
+                        </only_in_pdv>
                     </fields>
                 </tablerate>
                 <freeshipping>
