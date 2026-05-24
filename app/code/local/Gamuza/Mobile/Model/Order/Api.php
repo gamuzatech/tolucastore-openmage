@@ -657,7 +657,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
 
         try
         {
-            Mage::getModel ('mobile/cart_api')->clear ($code);
+            Mage::getModel ('mobile/cart_api')->clear ($code, $store, $dob);
         }
         catch (Exception $e)
         {
