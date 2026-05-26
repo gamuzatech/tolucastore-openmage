@@ -26,6 +26,13 @@ class Gamuza_Basic_Model_Customer_Customer
     public const XML_PATH_VALIDATE_CUSTOMER_CELLPHONE = 'customer/address/validate_cellphone';
 
     /**
+     * Is model deleteable
+     *
+     * @var bool
+     */
+    protected $_isDeleteable = false;
+
+    /**
      * Send corresponding email template
      *
      * @param string $template configuration path of email template

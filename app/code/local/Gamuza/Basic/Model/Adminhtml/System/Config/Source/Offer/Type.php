@@ -19,7 +19,7 @@ class Gamuza_Basic_Model_Adminhtml_System_Config_Source_Offer_Type
     public function toOptionArray()
     {
         $result = array(
-            array ('value' => "", 'label' => Mage::helper ('basic')->__('-- Please Select --')),
+            array ('value' => "", 'label' => ""),
             array ('value' => Gamuza_Basic_Helper_Data::OFFER_TYPE_CLEARANCE, 'label' => Mage::helper ('basic')->__('Clearance')),
             array ('value' => Gamuza_Basic_Helper_Data::OFFER_TYPE_LIGHTNING, 'label' => Mage::helper ('basic')->__('Lightning')),
         );
@@ -35,7 +35,7 @@ class Gamuza_Basic_Model_Adminhtml_System_Config_Source_Offer_Type
     public function toArray()
     {
         $result = array(
-            "" => Mage::helper ('basic')->__('-- Please Select --'),
+            "" => "",
             Gamuza_Basic_Helper_Data::OFFER_TYPE_CLEARANCE => Mage::helper ('basic')->__('Clearance'),
             Gamuza_Basic_Helper_Data::OFFER_TYPE_LIGHTNING => Mage::helper ('basic')->__('Lightning'),
         );

@@ -10,6 +10,13 @@
  */
 class Gamuza_Basic_Model_Catalog_Product extends Mage_Catalog_Model_Product
 {
+    /**
+     * Is model deleteable
+     *
+     * @var bool
+     */
+    protected $_isDeleteable = false;
+
     protected function _beforeSave ()
     {
         $this->setWeekdayIds (
