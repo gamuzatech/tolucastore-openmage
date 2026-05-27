@@ -772,6 +772,8 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             $this->_fault ('code_not_specified');
         }
 
+        $currentPrinterId = Mage::helper ('mobile')->getPrinterId ();
+
         $order = $this->_initOrder($orderIncrementId, $orderProtectCode);
 
         $result = null;
@@ -779,6 +781,13 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         foreach ($order->getAllVisibleItems () as $item)
         {
             if ($item->getIsPrinted ())
+            {
+                continue; // skip
+            }
+
+            $printerId = intval ($item->getPrinterId ());
+
+            if ($printerId != $currentPrinterId)
             {
                 continue; // skip
             }

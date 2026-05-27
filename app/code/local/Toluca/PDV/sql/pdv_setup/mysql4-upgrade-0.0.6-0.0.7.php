@@ -158,6 +158,14 @@ SQLBLOCK;
             'comment'  => 'User Agent',
         ));
     $installer->getConnection ()
+        ->addColumn ($table, 'printer_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Printer ID',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'job_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,

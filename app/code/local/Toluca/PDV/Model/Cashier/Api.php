@@ -250,6 +250,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
         $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
         $userAgent = Mage::helper ('pdv')->getUserAgent ();
+        $printerId = Mage::helper ('pdv')->getPrinterId ();
 
         $print = Mage::getModel ('pdv/print')
             ->setTypeId (Toluca_PDV_Helper_Data::PRINT_TYPE_CASHIER)
@@ -263,6 +264,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setOperatorId ($operator->getId ())
             ->setRemoteIp ($remoteIp)
             ->setUserAgent ($userAgent)
+            ->setPrinterId ($printerId)
             ->setCreatedAt (date ('c'))
             ->save ()
         ;

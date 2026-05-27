@@ -574,6 +574,7 @@ CONTENT;
 
         $productAgeGate = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_AGE_GATE);
         $productGTIN = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN);
+        $productPrinterId = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_PRINTER_ID);
         $productPrinting = $product->getData (Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_PRINTING);
 
         $quoteItemIsAgeGate = !strcmp ($productAgeGate, self::AGE_GATE_VALUE_YES) ? '1' : null;
@@ -581,6 +582,7 @@ CONTENT;
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_AGE_GATE, $quoteItemIsAgeGate);
 
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
+        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_PRINTER_ID, $productPrinterId);
 
         $quoteItemIsPrinted = $quoteItem->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
 

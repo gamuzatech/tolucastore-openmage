@@ -402,6 +402,8 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             $this->_fault ('customer_code_not_specified');
         }
 
+        $currentPrinterId = Mage::helper ('mobile')->getPrinterId ();
+
         $quote = $this->_getCustomerQuote ($code, $store, $dob);
 
         $result = null;
@@ -409,6 +411,13 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         foreach ($quote->getAllVisibleItems () as $item)
         {
             if ($item->getIsPrinted ())
+            {
+                continue; // skip
+            }
+
+            $printerId = intval ($item->getPrinterId ());
+
+            if ($printerId != $currentPrinterId)
             {
                 continue; // skip
             }

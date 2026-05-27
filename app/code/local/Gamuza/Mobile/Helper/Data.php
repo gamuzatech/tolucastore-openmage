@@ -41,6 +41,11 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
             ?? Mage::helper ('core/http')->getHttpUserAgent (false);
     }
 
+    public function getPrinterId ()
+    {
+        return intval ($_SERVER ['HTTP_X_PRINTER_ID']);
+    }
+
     public function isComanda ()
     {
         return strpos ($_SERVER ['HTTP_USER_AGENT'], 'TolucaStoreComanda') !== false;
