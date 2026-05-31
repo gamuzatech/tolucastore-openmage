@@ -22,6 +22,38 @@
                     </weight>
                 </methods>
             </pdv_balance>
+            <!-- Card -->
+            <pdv_card translate="title" module="pdv">
+                <model>pdv/card_api</model>
+                <title>PDV Card API</title>
+                <acl>pdv/card</acl>
+                <methods>
+                    <move translate="title" module="pdv">
+                        <title>Move a card information</title>
+                        <acl>pdv/card/move</acl>
+                    </move>
+                    <remove translate="title" module="pdv">
+                        <title>Remove a card information</title>
+                        <acl>pdv/card/remove</acl>
+                    </remove>
+                </methods>
+            </pdv_card>
+            <!-- Table -->
+            <pdv_table translate="title" module="pdv">
+                <model>pdv/table_api</model>
+                <title>PDV Table API</title>
+                <acl>pdv/table</acl>
+                <methods>
+                    <move translate="title" module="pdv">
+                        <title>Move a table information</title>
+                        <acl>pdv/table/move</acl>
+                    </move>
+                    <remove translate="title" module="pdv">
+                        <title>Remove a table information</title>
+                        <acl>pdv/table/remove</acl>
+                    </remove>
+                </methods>
+            </pdv_table>
             <!-- Cashier -->
             <pdv_cashier translate="title" module="pdv">
                 <model>pdv/cashier_api</model>
@@ -188,58 +220,92 @@
                 <message>Operator password is invalid.</message>
             </operator_invalid_password>
 
-            <order_not_specified>
+            <card_not_specified>
                 <code>1600</code>
+                <message>Requested card was not specified.</message>
+            </card_not_specified>
+            <card_not_exists>
+                <code>1700</code>
+                <message>Requested card was not found.</message>
+            </card_not_exists>
+            <card_not_empty>
+                <code>1800</code>
+                <message>Requested card is not empty.</message>
+            </card_not_empty>
+            <card_already_exists>
+                <code>1900</code>
+                <message>Requested card already exists.</message>
+            </card_already_exists>
+
+            <table_not_specified>
+                <code>2000</code>
+                <message>Requested table was not specified.</message>
+            </table_not_specified>
+            <table_not_exists>
+                <code>2100</code>
+                <message>Requested table was not found.</message>
+            </table_not_exists>
+            <table_not_empty>
+                <code>2200</code>
+                <message>Requested table is not empty.</message>
+            </table_not_empty>
+            <table_already_exists>
+                <code>2300</code>
+                <message>Requested table already exists.</message>
+            </table_already_exists>
+
+            <order_not_specified>
+                <code>2400</code>
                 <message>Requested order not specified.</message>
             </order_not_specified>
             <code_not_specified>
-                <code>1700</code>
+                <code>2500</code>
                 <message>Requested code not specified.</message>
             </code_not_specified>
             <order_not_exists>
-                <code>1800</code>
+                <code>2600</code>
                 <message>Requested order was not found.</message>
             </order_not_exists>
 
             <!-- Mage_Checkout -->
             <customer_mode_is_unknown>
-                <code>1900</code>
+                <code>2700</code>
                 <message>Customer's mode is unknown</message>
             </customer_mode_is_unknown>
             <customer_data_invalid>
-                <code>2000</code>
+                <code>2800</code>
                 <message>Customer data is not valid. </message>
             </customer_data_invalid>
             <customer_not_set_for_quote>
-                <code>2100</code>
+                <code>2900</code>
                 <message>Customer is not set for quote.</message>
             </customer_not_set_for_quote>
 
             <!-- Mage_Checkout -->
             <customer_address_data_empty>
-                <code>2200</code>
+                <code>3000</code>
                 <message>Customer address data is empty.</message>
             </customer_address_data_empty>
             <address_not_belong_customer>
-                <code>2300</code>
+                <code>3100</code>
                 <message>Customer address identifier do not belong customer, which set in quote</message>
             </address_not_belong_customer>
             <customer_address_invalid>
-                <code>2400</code>
+                <code>3200</code>
                 <message>Customer's address data is not valid.</message>
             </customer_address_invalid>
             <address_is_not_set>
-                <code>2500</code>
+                <code>3300</code>
                 <message>Customer address is not set.</message>
             </address_is_not_set>
 
             <data_invalid>
-                <code>2600</code>
+                <code>3400</code>
                 <message>Invalid data given. Details in error message.</message>
             </data_invalid>
 
             <customer_invalid_cellphone>
-                <code>2700</code>
+                <code>3500</code>
                 <message>Customer cellphone is invalid.</message>
             </customer_invalid_cellphone>
         </faults>
@@ -255,6 +321,26 @@
                             <title>Get a balance weight</title>
                         </weight>
                     </balance>
+                    <!-- Card -->
+                    <card translate="title" module="pdv">
+                        <title>Card</title>
+                        <move translate="title" module="pdv">
+                            <title>Move a card information</title>
+                        </move>
+                        <remove translate="title" module="pdv">
+                            <title>Remove a card information</title>
+                        </remove>
+                    </card>
+                    <!-- Table -->
+                    <table translate="title" module="pdv">
+                        <title>Table</title>
+                        <move translate="title" module="pdv">
+                            <title>Move a table information</title>
+                        </move>
+                        <remove translate="title" module="pdv">
+                            <title>Remove a table information</title>
+                        </remove>
+                    </table>
                     <!-- Cashier -->
                     <cashier translate="title" module="pdv">
                         <title>Cashier</title>
