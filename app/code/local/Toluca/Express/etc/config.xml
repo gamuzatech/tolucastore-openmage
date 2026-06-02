@@ -96,10 +96,10 @@
     <default>
         <express>
             <setting>
-                <active>0</active>
+                <active>1</active>
             </setting>
             <redirect>
-                <active>0</active>
+                <active>1</active>
             </redirect>
         </express>
         <web>
