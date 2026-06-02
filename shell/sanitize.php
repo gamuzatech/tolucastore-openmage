@@ -50,6 +50,8 @@ try
     $coreConfig->deleteConfig ('system.accounting_on_login', 'desktop', -999999);
 
     $coreConfig->saveConfig ('system.cron_username', getenv ('USER'), 'desktop', -999999);
+
+    $coreConfig->saveConfig ('brazil/setting/environment_id', '2', 'default', 0);
 }
 catch (Exception $e)
 {
