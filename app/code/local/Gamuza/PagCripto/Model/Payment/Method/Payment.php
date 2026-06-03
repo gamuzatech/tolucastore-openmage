@@ -11,6 +11,7 @@ class Gamuza_PagCripto_Model_Payment_Method_Payment extends Mage_Payment_Model_M
 
     protected $_code = self::CODE;
 
+    protected $_isGateway = true;
     protected $_canOrder = true;
 
     protected $_formBlockType = 'pagcripto/payment_form_payment';

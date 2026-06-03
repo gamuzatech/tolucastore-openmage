@@ -11,6 +11,7 @@ class Gamuza_OpenPix_Model_Payment_Method_Payment extends Mage_Payment_Model_Met
 
     protected $_code = self::CODE;
 
+    protected $_isGateway = true;
     protected $_canOrder = true;
 
     protected $_formBlockType = 'openpix/payment_form_payment';

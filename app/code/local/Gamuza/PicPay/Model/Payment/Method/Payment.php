@@ -11,6 +11,7 @@ class Gamuza_PicPay_Model_Payment_Method_Payment extends Mage_Payment_Model_Meth
 
     protected $_code = self::CODE;
 
+    protected $_isGateway = true;
     protected $_canOrder = true;
 
     protected $_formBlockType = 'picpay/payment_form_payment';
