@@ -11,6 +11,7 @@ class Gamuza_Sitef_Model_Payment_Method_Pinpad extends Mage_Payment_Model_Method
 
     protected $_code = self::CODE;
 
+    protected $_isGateway = true;
     protected $_canOrder = true;
 
     protected $_formBlockType = 'sitef/payment_form_pinpad';
