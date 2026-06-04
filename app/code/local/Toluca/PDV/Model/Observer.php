@@ -15,6 +15,7 @@ class Toluca_PDV_Model_Observer
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS;
     const XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS;
+    const XML_PATH_PDV_CASHIER_SHOW_HISTORY_ORDERS = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_SHOW_HISTORY_ORDERS;
     const XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP = Toluca_PDV_Helper_Data::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP;
 
     const XML_PATH_PDV_PAYMENT_METHOD_CASHONDELIVERY = Toluca_PDV_Helper_Data::XML_PATH_PDV_PAYMENT_METHOD_CASHONDELIVERY;
@@ -43,6 +44,7 @@ class Toluca_PDV_Model_Observer
                         'show_operator_orders' => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_ORDERS),
                         'show_pending_orders'  => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_PENDING_ORDERS),
                         'show_operator_carts'  => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS),
+                        'show_history_orders'  => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_HISTORY_ORDERS),
                         'validate_remote_ip'   => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP),
                     ),
                 ),
