@@ -39,7 +39,7 @@ class Gamuza_OpenPix_Model_Payment_Method_Payment extends Mage_Payment_Model_Met
          * Transaction
          */
         $correlationId = Mage::helper ('openpix')->uuid_v4 ();
-        $orderAmount   = intval ($order->getBaseGrandTotal () * 100);
+        $orderAmount   = intval ($amount * 100);
 
         $storeName = Mage::getStoreConfig (Mage_Core_Model_Store::XML_PATH_STORE_STORE_NAME);
 

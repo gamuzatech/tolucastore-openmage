@@ -60,7 +60,7 @@ class Gamuza_PagCripto_Model_Payment_Method_Payment extends Mage_Payment_Model_M
 
         $post = array(
             'currency' => $payment->getCcType (),
-            'amount' => $order->getBaseGrandTotal (),
+            'amount' => $amount,
             'description' => sprintf ('%s %s (%s)',
                 Mage::helper ('pagcripto')->__('Order'),
                 $order->getIncrementId (), $storeName,

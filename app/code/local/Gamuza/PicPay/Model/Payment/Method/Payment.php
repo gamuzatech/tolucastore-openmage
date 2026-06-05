@@ -56,7 +56,7 @@ class Gamuza_PicPay_Model_Payment_Method_Payment extends Mage_Payment_Model_Meth
             'referenceId' => Mage::helper ('picpay')->getOrderReferenceId ($order),
             'callbackUrl' => $callbackUrl,
             'returnUrl'   => null,
-            'value'       => floatval ($order->getBaseGrandTotal ()),
+            'value'       => $amount,
             'expiresAt'   => null,
             'purchaseMode' => 'online',
             'buyer' => array(
@@ -90,7 +90,7 @@ class Gamuza_PicPay_Model_Payment_Method_Payment extends Mage_Payment_Model_Meth
                 ->setOrderIncrementId ($order->getIncrementId ())
                 ->setCallbackUrl ($callbackUrl)
                 ->setReturUrl (new Zend_Db_Expr ('NULL'))
-                ->setAmount (floatval ($order->getBaseGrandTotal ()))
+                ->setAmount ($amount)
                 ->setBuyerEmail ($customerEmail)
                 ->setMessage (new Zend_Db_Expr ('NULL'))
                 ->setCreatedAt (date ('c'))
