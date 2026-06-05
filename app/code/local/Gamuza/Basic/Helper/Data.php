@@ -17,6 +17,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
 
     const BASIC_ORDER_DRAFT_TABLE   = 'basic_order_draft';
     const BASIC_ORDER_SERVICE_TABLE = 'basic_order_service';
+    const BASIC_ORDER_PAYMENT_TABLE = 'basic_order_payment';
 
     const CATEGORY_ATTRIBUTE_INCLUDE_IN_HOME = 'include_in_home';
     const CATEGORY_ATTRIBUTE_CODE = 'code';
@@ -54,6 +55,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_SERVICE = 'is_service';
     const ORDER_ATTRIBUTE_IS_AGE_GATE = 'is_age_gate';
     const ORDER_ATTRIBUTE_IS_PRINTED  = 'is_printed';
+    const ORDER_ATTRIBUTE_IS_SPLIT    = 'is_split';
     const ORDER_ATTRIBUTE_IS_WEIGHTED = 'is_weighted';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';

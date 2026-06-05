@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Basic>
-            <version>0.0.25</version>
+            <version>0.0.26</version>
         </Gamuza_Basic>
     </modules>
     <global>
@@ -111,6 +111,9 @@
                     <eav_entity_attribute_option_value>
                         <table>eav_attribute_option_value</table>
                     </eav_entity_attribute_option_value>
+                    <order_payment>
+                        <table>basic_order_payment</table>
+                    </order_payment>
                     <order_service>
                         <table>basic_order_service</table>
                     </order_service>
