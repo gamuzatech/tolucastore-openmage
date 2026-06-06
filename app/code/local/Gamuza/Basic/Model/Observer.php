@@ -524,6 +524,28 @@ CONTENT;
             }
         }
 
+        $orderItems = Mage::getModel ('basic/order_payment')->getCollection ()
+            ->addFieldToFilter ('quote_id', array ('eq' => $order->getQuoteId ()))
+        ;
+
+        if ($orderItems->getSize () > 0)
+        {
+            $order->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_PAYMENTS, true)->save ();
+
+            foreach ($orderItems as $item)
+            {
+                $item->setOrderId ($order->getId ())
+                    ->setOrderIncrementId ($order->getIncrementId ())
+                    ->save ()
+                ;
+
+                if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV'))
+                {
+                    $item->setCustomerId ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID))->save ();
+                }
+            }
+        }
+
         $orderItems = Mage::getResourceModel ('sales/order_item_collection')
             ->setOrderFilter ($order)
             ->filterByTypes (array (Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE))
@@ -869,7 +891,7 @@ CONTENT;
                     ->setCustomerid ($quote->getCustomerId ())
                     ->setPaymentId ($quote->getPayment ()->getId ())
                     ->setPaymentMethod ($item ['method'])
-                    ->sePaymentAmount ($item ['amount'])
+                    ->setPaymentAmount ($item ['amount'])
                     ->setCreatedAt (date ('c'))
                     ->save ()
                 ;
