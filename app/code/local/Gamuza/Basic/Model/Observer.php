@@ -524,13 +524,13 @@ CONTENT;
             }
         }
 
-        $orderItems = Mage::getResourceModel ('sales/order_item_collection')
-            ->setOrderFilter ($order)
-            ->filterByTypes (array (Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE))
-        ;
-
-        if ($orderItems->getSize() > 0)
+        foreach ($order->getAllItems () as $item)
         {
+            if (strcmp ($item->getProductType (), Gamuza_Basic_Model_Catalog_Product_Type_Service::TYPE_SERVICE) != 0)
+            {
+                continue;
+            }
+
             $basic = Mage::getModel ('basic/order_service')
                 ->setOrder($order)
                 ->setState (Gamuza_Basic_Model_Order_Service::STATE_OPEN)
