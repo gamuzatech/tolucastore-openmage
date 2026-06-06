@@ -77,7 +77,7 @@ class Gamuza_Mobile_Model_Cart_Payment_Api extends Mage_Checkout_Model_Cart_Paym
      * @param  $store
      * @return bool
      */
-    public function _setPaymentMethod($code = null, $paymentData = null, $store = null, $dob = null)
+    public function _setPaymentMethod($code = null, $paymentData = null, $paymentSplit = null, $store = null, $dob = null)
     {
         if (empty ($code))
         {
@@ -158,6 +158,8 @@ class Gamuza_Mobile_Model_Cart_Payment_Api extends Mage_Checkout_Model_Cart_Paym
         {
             $this->_fault('payment_method_is_not_set', $e->getMessage());
         }
+
+        Mage::dispatchEvent('mobile_cart_payment_api_set_after', array('quote' => $quote, 'split' => $paymentSplit));
 
         return true;
     }

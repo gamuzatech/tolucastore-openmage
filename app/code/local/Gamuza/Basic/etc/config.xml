@@ -584,6 +584,15 @@
                     </gamuza_basic_basic_magento_api_info>
                 </observers>
             </basic_magento_api_info>
+            <!-- Gamuza_Mobile -->
+            <mobile_cart_payment_api_set_after>
+                <observers>
+                    <basic_mobile_cart_payment_api_set_after>
+                        <class>basic/observer</class>
+                        <method>mobileCartPaymentApiSetAfter</method>
+                    </basic_mobile_cart_payment_api_set_after>
+                </observers>
+            </mobile_cart_payment_api_set_after>
         </events>
         <pdf>
             <order>

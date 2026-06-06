@@ -844,6 +844,39 @@ CONTENT;
         return $this;
     }
 
+    public function mobileCartPaymentApiSetAfter ($observer)
+    {
+        $event = $observer->getEvent ();
+        $quote = $event->getQuote ();
+        $split = $event->getSplit ();
+
+        $collection = Mage::getModel ('basic/order_payment')->getCollection ()
+            ->addFieldToFilter ('quote_id', array ('eq' => $quote->getId ()))
+        ;
+
+        foreach ($collection as $item)
+        {
+            $item->delete ();
+        }
+
+        if (is_array ($split) && count ($split) > 0)
+        {
+            foreach ($split as $item)
+            {
+                $payment = Mage::getModel ('basic/order_payment')
+                    ->setQuoteId ($quote->getId ())
+                    ->setStoreId ($quote->getStoreId ())
+                    ->setCustomerid ($quote->getCustomerId ())
+                    ->setPaymentId ($quote->getPayment ()->getId ())
+                    ->setPaymentMethod ($item ['method'])
+                    ->sePaymentAmount ($item ['amount'])
+                    ->setCreatedAt (date ('c'))
+                    ->save ()
+                ;
+            }
+        }
+    }
+
     private function _updateOrderServiceState ($order, $state)
     {
         if ($order->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SERVICE))
