@@ -80,7 +80,6 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_SUFFIX_STORE  = 'STORE';
     const ORDER_SUFFIX_OTHER  = 'OTHER';
     const ORDER_SUFFIX_COMANDA = 'COMANDA';
-    const ORDER_SUFFIX_SERVICE = 'SERVICE';
 
     const PRODUCT_ATTRIBUTE_BRAND = 'brand';
     const PRODUCT_ATTRIBUTE_CODE = 'code';
