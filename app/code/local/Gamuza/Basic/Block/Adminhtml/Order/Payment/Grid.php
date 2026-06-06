@@ -1,7 +1,7 @@
 <?php
 /**
  * @package     Gamuza_Basic
- * @copyright   Copyright (c) 2023 Gamuza Technologies (http://www.gamuza.com.br/)
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
@@ -50,6 +50,17 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
             'type'    => 'options',
             'options' => self::getCustomers (),
 		));
+		$this->addColumn ('order_id', array(
+		    'header' => Mage::helper ('basic')->__('Order ID'),
+		    'align'  => 'right',
+	        'type'   => 'number',
+		    'index'  => 'order_id',
+		));
+		$this->addColumn ('order_increment_id', array(
+		    'header' => Mage::helper ('basic')->__('Order Inc. ID'),
+		    'align'  => 'right',
+		    'index'  => 'order_increment_id',
+		));
 		$this->addColumn ('quote_id', array(
 		    'header'  => Mage::helper ('basic')->__('Quote ID'),
 			'align'  => 'right',
@@ -61,17 +72,6 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
             'align'   => 'right',
             'type'   => 'number',
 		    'index'   => 'payment_id',
-		));
-		$this->addColumn ('order_id', array(
-		    'header' => Mage::helper ('basic')->__('Order ID'),
-		    'align'  => 'right',
-	        'type'   => 'number',
-		    'index'  => 'order_id',
-		));
-		$this->addColumn ('order_increment_id', array(
-		    'header' => Mage::helper ('basic')->__('Order Inc. ID'),
-		    'align'  => 'right',
-		    'index'  => 'order_increment_id',
 		));
 		$this->addColumn ('payment_method', array(
 		    'header'  => Mage::helper ('basic')->__('Payment Method'),
@@ -85,12 +85,6 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
 	        'type'    => 'price',
 		    'index'   => 'payment_amount',
             'currency_code' => $store->getBaseCurrency()->getCode(),
-		));
-		$this->addColumn ('state', array(
-		    'header'  => Mage::helper ('basic')->__('State'),
-		    'index'   => 'state',
-            'type'    => 'options',
-            'options' => Mage::getModel ('basic/adminhtml_system_config_source_order_payment_state')->toArray (),
 		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('basic')->__('Created At'),

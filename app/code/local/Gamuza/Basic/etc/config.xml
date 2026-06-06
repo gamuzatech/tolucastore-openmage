@@ -295,6 +295,9 @@
                 <is_age_gate>
                     <to_order>*</to_order>
                 </is_age_gate>
+                <is_payments>
+                    <to_order>*</to_order>
+                </is_payments>
                 <is_weighted>
                     <to_order>*</to_order>
                 </is_weighted>
@@ -352,6 +355,9 @@
                 <is_age_gate>
                     <to_quote>*</to_quote>
                 </is_age_gate>
+                <is_payments>
+                    <to_quote>*</to_quote>
+                </is_payments>
                 <is_weighted>
                     <to_quote>*</to_quote>
                 </is_weighted>

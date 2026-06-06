@@ -124,7 +124,7 @@ $options = array(
 
 foreach ($entities as $entity)
 {
-    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_SPLIT, $options);
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_PAYMENTS, $options);
 }
 
 $installer->endSetup ();

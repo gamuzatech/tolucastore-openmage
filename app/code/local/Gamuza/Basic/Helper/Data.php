@@ -54,8 +54,8 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_COMANDA = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_SERVICE = 'is_service';
     const ORDER_ATTRIBUTE_IS_AGE_GATE = 'is_age_gate';
+    const ORDER_ATTRIBUTE_IS_PAYMENTS = 'is_payments';
     const ORDER_ATTRIBUTE_IS_PRINTED  = 'is_printed';
-    const ORDER_ATTRIBUTE_IS_SPLIT    = 'is_split';
     const ORDER_ATTRIBUTE_IS_WEIGHTED = 'is_weighted';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
