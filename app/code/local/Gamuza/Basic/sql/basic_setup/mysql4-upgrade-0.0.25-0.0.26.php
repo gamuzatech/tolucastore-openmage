@@ -30,13 +30,6 @@ SQLBLOCK;
             'comment'  => 'State',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'increment_id', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Increment ID',
-        ));
-    $installer->getConnection ()
         ->addColumn ($table, 'quote_id', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
             'length'   => 11,
@@ -91,39 +84,11 @@ SQLBLOCK;
             'comment'  => 'Payment Method',
         ));
     $installer->getConnection ()
-        ->addColumn ($table, 'shipping_method', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
-            'length'   => 255,
-            'nullable' => false,
-            'comment'  => 'Shipping Method',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'shipping_amount', array(
+        ->addColumn ($table, 'payment_amount', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
             'length'   => '12,4',
             'nullable' => false,
-            'comment'  => 'Shipping Amount',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'subtotal_amount', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
-            'length'   => '12,4',
-            'nullable' => false,
-            'comment'  => 'Subtotal Amount',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'total_amount', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
-            'length'   => '12,4',
-            'nullable' => false,
-            'comment'  => 'Total Amount',
-        ));
-    $installer->getConnection ()
-        ->addColumn ($table, 'total_paid', array(
-            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
-            'length'   => '12,4',
-            'nullable' => false,
-            'comment'  => 'Total Paid',
+            'comment'  => 'Payment Amount',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'created_at', array(
@@ -140,15 +105,6 @@ SQLBLOCK;
 }
 
 addBasicOrderPaymentTable ($installer, Gamuza_Basic_Helper_Data::BASIC_ORDER_PAYMENT_TABLE, 'Gamuza Basic Order Payment Table');
-
-$installer->addEntityType('order_payment', array(
-    'entity_model' => 'basic/order_payment',
-    'table'        => 'basic/order_payment',
-    'increment_model'      => 'eav/entity_increment_numeric',
-    'increment_per_store'  => 1,
-    'increment_pad_length' => 8,
-    'increment_pad_char'   => 0,
-));
 
 /**
  * Quote & Order

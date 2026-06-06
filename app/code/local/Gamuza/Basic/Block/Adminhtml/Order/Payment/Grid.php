@@ -22,12 +22,6 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
 	{
 		$collection = Mage::getModel ('basic/order_payment')->getCollection ();
 
-        $collection->getSelect ()
-            ->columns (
-                "SUBSTRING_INDEX(shipping_method, '_', 1) AS shipping_method_1",
-            )
-        ;
-
 		$this->setCollection ($collection);
 
 		return parent::_prepareCollection ();
@@ -49,10 +43,6 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
 		    'align'  => 'right',
 	        'type'   => 'number',
 		    'index'  => 'entity_id',
-		));
-		$this->addColumn ('increment_id', array(
-		    'header'  => Mage::helper ('basic')->__('Payment #'),
-		    'index'   => 'increment_id',
 		));
 		$this->addColumn ('customer_id', array(
 		    'header'  => Mage::helper ('basic')->__('Customer'),
@@ -83,50 +73,17 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
 		    'align'  => 'right',
 		    'index'  => 'order_increment_id',
 		));
-		$this->addColumn ('shipping_method_1', array(
-		    'header'  => Mage::helper ('basic')->__('Shipping Method'),
-		    'index'   => 'shipping_method_1',
-            'type'    => 'options',
-            'options' => Mage::getModel ('basic/adminhtml_system_config_source_shipping_allmethods')->toArray (),
-            'filter_index' => 'shipping_method',
-            'filter_condition_callback' => array ($this, '_shippingmethodFilterConditionCallback'),
-		));
 		$this->addColumn ('payment_method', array(
 		    'header'  => Mage::helper ('basic')->__('Payment Method'),
 		    'index'   => 'payment_method',
             'type'    => 'options',
             'options' => Mage::getModel ('basic/adminhtml_system_config_source_payment_allmethods')->toArray (),
 		));
-		$this->addColumn ('total_paid', array(
-		    'header'  => Mage::helper ('basic')->__('Total Paid'),
-		    'index'   => 'total_paid',
+		$this->addColumn ('payment_amount', array(
+		    'header'  => Mage::helper ('basic')->__('Payment Amount'),
 		    'align'   => 'right',
 	        'type'    => 'price',
-		    'index'   => 'total_paid',
-            'currency_code' => $store->getBaseCurrency()->getCode(),
-		));
-		$this->addColumn ('subtotal_amount', array(
-		    'header'  => Mage::helper ('basic')->__('Subtotal Amount'),
-		    'index'   => 'subtotal_amount',
-		    'align'   => 'right',
-	        'type'    => 'price',
-		    'index'   => 'subtotal_amount',
-            'currency_code' => $store->getBaseCurrency()->getCode(),
-		));
-		$this->addColumn ('shipping_amount', array(
-		    'header'  => Mage::helper ('basic')->__('Shipping Amount'),
-		    'index'   => 'shipping_amount',
-		    'align'   => 'right',
-	        'type'    => 'price',
-		    'index'   => 'shipping_amount',
-            'currency_code' => $store->getBaseCurrency()->getCode(),
-		));
-		$this->addColumn ('total_amount', array(
-		    'header'  => Mage::helper ('basic')->__('Total Amount'),
-		    'index'   => 'total_amount',
-		    'align'   => 'right',
-	        'type'    => 'price',
-		    'index'   => 'total_amount',
+		    'index'   => 'payment_amount',
             'currency_code' => $store->getBaseCurrency()->getCode(),
 		));
 		$this->addColumn ('state', array(
@@ -191,18 +148,6 @@ class Gamuza_Basic_Block_Adminhtml_Order_Payment_Grid
         }
 
         return $result;
-    }
-
-    protected function _shippingmethodFilterConditionCallback ($collection, $column)
-    {
-        $value = $column->getFilter ()->getValue ();
-
-        if (!empty ($value))
-        {
-            $this->getCollection ()->getSelect ()->where (sprintf ("%s LIKE '%s_%%'", $column->getFilterIndex (), $value));
-        }
-
-        return $this;
     }
 }
 
