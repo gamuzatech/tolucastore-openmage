@@ -43,6 +43,10 @@ INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
 INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
+    VALUES ('default', 0, 'carriers/flatrate/name', 'Valor Fixo')
+    ON DUPLICATE KEY UPDATE `updated_at` = NULL;
+
+INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     VALUES ('default', 0, 'carriers/freeshipping/title', 'Entrega Grátis')
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
@@ -55,7 +59,7 @@ INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
 INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
-    VALUES ('default', 0, 'carriers/eatin/title', 'Consumir no Local')
+    VALUES ('default', 0, 'carriers/eatin/title', 'Comer no Local')
     ON DUPLICATE KEY UPDATE `updated_at` = NULL;
 
 INSERT INTO `core_config_data` (`scope`, `scope_id`, `path`, `value`)
