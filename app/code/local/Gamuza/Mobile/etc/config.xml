@@ -270,10 +270,11 @@
         </customer>
         <payment>
             <cashondelivery>
+                <active>0</active>
                 <model>mobile/payment_method_cashondelivery</model>
             </cashondelivery>
             <machineondelivery>
-                <active>1</active>
+                <active>0</active>
                 <cctypes>AE,BC,CC,DC,DI,EC,ED,ELO,HI,HC,JCB,MC,SM,VI,VE</cctypes>
                 <cc_type>VI</cc_type>
                 <model>mobile/payment_method_machineondelivery</model>

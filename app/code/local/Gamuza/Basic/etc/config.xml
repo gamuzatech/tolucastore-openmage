@@ -1069,7 +1069,7 @@
         </dev>
         <carriers>
             <pickup>
-                <active>1</active>
+                <active>0</active>
                 <title>Store Pickup</title>
                 <name>pickup</name>
                 <sallowspecific>0</sallowspecific>
@@ -1085,25 +1085,22 @@
                 <model>basic/shipping_carrier_eatin</model>
             </eatin>
             <flatrate>
-                <active>1</active>
+                <active>0</active>
                 <type>O</type>
                 <handling_action>O</handling_action>
                 <model>basic/shipping_carrier_flatrate</model>
             </flatrate>
             <tablerate>
-                <active>1</active>
+                <active>0</active>
                 <handling_action>O</handling_action>
                 <model>basic/shipping_carrier_tablerate</model>
             </tablerate>
             <freeshipping>
-                <active>1</active>
+                <active>0</active>
                 <free_shipping_subtotal>1000000000</free_shipping_subtotal>
             </freeshipping>
         </carriers>
         <payment>
-            <cashondelivery>
-                <active>1</active>
-            </cashondelivery>
             <basic_deferred_payment>
                 <active>0</active>
                 <model>basic/payment_method_deferred</model>
@@ -1112,6 +1109,18 @@
                 <allowspecific>0</allowspecific>
                 <group>offline</group>
             </basic_deferred_payment>
+            <checkmo>
+                <active>0</active>
+            </checkmo>
+            <free>
+                <active>0</active>
+            </free>
+            <purchaseorder>
+                <active>0</active>
+            </purchaseorder>
+            <banktransfer>
+                <active>0</active>
+            </banktransfer>
         </payment>
     </default>
 </config>
