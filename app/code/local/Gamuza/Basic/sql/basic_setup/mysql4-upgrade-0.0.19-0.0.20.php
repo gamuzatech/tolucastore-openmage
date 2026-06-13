@@ -27,6 +27,7 @@ $options = array(
 foreach ($entities as $entity)
 {
     $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE, $options);
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_WAITER_NAME, $options);
 }
 
 $options = array(

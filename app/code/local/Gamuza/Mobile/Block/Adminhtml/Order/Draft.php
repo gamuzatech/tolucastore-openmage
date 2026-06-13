@@ -88,6 +88,11 @@ class Gamuza_Mobile_Block_Adminhtml_Order_Draft extends Mage_Adminhtml_Block_Tem
         return Mage::helper ('basic')->__('Cart #%s', $this->getOrderSequence ());
     }
 
+    public function getWaiterName ()
+    {
+        return $this->getOrder ()->getData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_WAITER_NAME);
+    }
+
     public function getProductOptions ($item)
     {
         $product = $item->getProduct ();

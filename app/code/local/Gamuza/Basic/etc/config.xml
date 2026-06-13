@@ -286,6 +286,9 @@
                 <customer_cellphone>
                     <to_order>*</to_order>
                 </customer_cellphone>
+                <waiter_name>
+                    <to_order>*</to_order>
+                </waiter_name>
                 <is_service>
                     <to_order>*</to_order>
                 </is_service>
@@ -343,6 +346,9 @@
                 <customer_cellphone>
                     <to_quote>*</to_quote>
                 </customer_cellphone>
+                <waiter_name>
+                    <to_quote>*</to_quote>
+                </waiter_name>
                 <is_service>
                     <to_quote>*</to_quote>
                 </is_service>

@@ -123,6 +123,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_is_guest'  => boolval ($quote->getCustomerIsGuest ()),
                 'remote_ip' => $quote->getRemoteIp (),
                 'user_agent' => $quote->getUserAgent (),
+                'waiter_name' => $quote->getWaiterName (),
                 'customer_taxvat' => $quote->getCustomerTaxvat (),
                 'base_subtotal' => floatval ($quote->getBaseSubtotal ()),
                 'base_subtotal_with_discount' => floatval ($quote->getBaseSubtotalWithDiscount ()),
@@ -187,6 +188,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             'customer_is_guest'  => boolval ($quote->getCustomerIsGuest ()),
             'remote_ip' => $quote->getRemoteIp (),
             'user_agent' => $quote->getUserAgent (),
+            'waiter_name' => $quote->getWaiterName (),
             'customer_taxvat' => $quote->getCustomerTaxvat (),
             'base_subtotal' => floatval ($quote->getBaseSubtotal ()),
             'base_subtotal_with_discount' => floatval ($quote->getBaseSubtotalWithDiscount ()),
@@ -270,14 +272,14 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return intval ($quote->getId());
     }
 
-    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null, $name = null, $cellphone = null)
+    public function create ($cashier_id, $operator_id, $customer_id, $quote_id = 0, $table_id = 0, $card_id = 0, $note = null, $name = null, $cellphone = null, $waiter = null)
     {
-        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $name, $cellphone);
+        $quote = $this->_getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $name, $cellphone, $waiter);
 
         return intval ($quote->getId ());
     }
 
-    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $name, $cellphone)
+    protected function _getQuote ($cashier_id, $operator_id, $customer_id, $quote_id, $table_id, $card_id, $note, $name, $cellphone, $waiter)
     {
         if (empty ($cashier_id))
         {
@@ -371,6 +373,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setIsMultiShipping (false)
             ->setRemoteIp ($remoteIp)
             ->setUserAgent ($userAgent)
+            ->setWaiterName ($waiter)
             ->setCustomerFirstname ($customerFirstname)
             ->setCustomerLastname ($customerLastname)
             ->setCustomerEmail ($customerEmail)

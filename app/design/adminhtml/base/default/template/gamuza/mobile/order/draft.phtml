@@ -5,6 +5,8 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+echo $this->getLineSeparator($this->getWaiterName()) . PHP_EOL;
+
 echo sprintf ('<h1>%s</h1>', $this->getOrderTitle()) . PHP_EOL;
 
 if ($this->getQuoteId())

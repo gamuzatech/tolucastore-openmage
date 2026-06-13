@@ -16,6 +16,7 @@ class Gamuza_Mobile_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_STORE_INFO_CODE = 'store_info_code';
 
     const ORDER_ATTRIBUTE_USER_AGENT = 'user_agent';
+    const ORDER_ATTRIBUTE_WAITER_NAME = 'waiter_name';
 
     const XML_GLOBAL_PAYMENT_MACHINE_TYPES = 'global/payment/machine/types';
 
