@@ -5,6 +5,8 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+use Mage_Adminhtml_Block_Widget_Grid_Massaction_Abstract as MassAction;
+
 class Gamuza_Basic_Block_Adminhtml_Customer_Grid
     extends Mage_Adminhtml_Block_Customer_Grid
 {
@@ -97,6 +99,13 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Grid
         $this->sortColumnsByOrder();
 
         return $result;
+    }
+
+    protected function _prepareMassaction()
+    {
+        parent::_prepareMassaction();
+
+        $this->getMassactionBlock()->removeItem(MassAction::DELETE);
     }
 
     protected function _dobFilterConditionCallback ($collection, $column)
