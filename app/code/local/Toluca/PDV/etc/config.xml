@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Toluca_PDV>
-            <version>0.0.7</version>
+            <version>0.0.8</version>
         </Toluca_PDV>
     </modules>
     <global>
