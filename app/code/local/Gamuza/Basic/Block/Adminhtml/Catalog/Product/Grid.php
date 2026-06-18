@@ -5,6 +5,8 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+use Mage_Adminhtml_Block_Widget_Grid_Massaction_Abstract as MassAction;
+
 /**
  * Adminhtml customer grid block
  */
@@ -139,6 +141,8 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
     protected function _prepareMassaction()
     {
         parent::_prepareMassaction();
+
+        $this->getMassactionBlock()->removeItem(MassAction::DELETE);
 
         $this->getMassactionBlock()->addItem('stock_qty', array(
              'label'=> Mage::helper('basic')->__('Change Stock Qty'),
