@@ -188,6 +188,9 @@ class Toluca_PDV_Model_Observer
 
         $history->setShippingAmount (floatval ($history->getShippingAmount ()) + $order->getBaseShippingAmount ());
 
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+        $userAgent = Mage::helper ('pdv')->getUserAgent ();
+
         $log = Mage::getModel ('pdv/log')
             ->setTypeId (Toluca_PDV_Helper_Data::LOG_TYPE_ORDER)
             ->setCashierId ($cashier->getId ())
@@ -211,6 +214,8 @@ class Toluca_PDV_Model_Observer
                 : Mage::helper ('pdv')->__('Order Amount')
             )
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
+            ->setUserAgent ($userAgent)
             ->save ()
         ;
 
@@ -236,6 +241,8 @@ class Toluca_PDV_Model_Observer
                 ->setTotalAmount (- $changeAmount)
                 ->setMessage (Mage::helper ('pdv')->__('Change Amount'))
                 ->setCreatedAt (date ('c'))
+                ->setRemoteIp ($remoteIp)
+                ->setUserAgent ($userAgent)
                 ->save ()
             ;
 
@@ -299,6 +306,9 @@ class Toluca_PDV_Model_Observer
 
         $history->setShippingAmount (floatval ($history->getShippingAmount ()) + $order->getBaseShippingAmount ());
 
+        $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
+        $userAgent = Mage::helper ('pdv')->getUserAgent ();
+
         $log = Mage::getModel ('pdv/log')
             ->setTypeId (Toluca_PDV_Helper_Data::LOG_TYPE_REFUND)
             ->setCashierId ($cashier->getId ())
@@ -318,6 +328,8 @@ class Toluca_PDV_Model_Observer
             ->setTotalAmount (- $amount)
             ->setMessage (Mage::helper ('pdv')->__('Refund Amount'))
             ->setCreatedAt (date ('c'))
+            ->setRemoteIp ($remoteIp)
+            ->setUserAgent ($userAgent)
             ->save ()
         ;
 

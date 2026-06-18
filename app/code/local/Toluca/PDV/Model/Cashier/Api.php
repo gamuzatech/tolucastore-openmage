@@ -733,7 +733,9 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
 
         $collection = $this->_getOrderCollection ($cashier, $operator, null)
             ->addFieldToFilter ('state',  array ('eq' => Mage_Sales_Model_Order::STATE_NEW))
+            /*
             ->addFieldToFilter ('status', array ('eq' => Toluca_PDV_Helper_Data::ORDER_STATUS_PENDING))
+            */
             ->addFieldToFilter ('pdv_history_id', array ('neq' => $history->getId ()))
         ;
 

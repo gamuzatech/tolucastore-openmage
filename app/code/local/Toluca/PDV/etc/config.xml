@@ -271,9 +271,9 @@
             <cashier>
                 <include_all_orders>1</include_all_orders>
                 <show_operator_orders>0</show_operator_orders>
-                <show_pending_orders>1</show_pending_orders>
+                <show_pending_orders>0</show_pending_orders>
                 <show_operator_carts>0</show_operator_carts>
-                <catch_pending_orders>0</catch_pending_orders>
+                <catch_pending_orders>1</catch_pending_orders>
                 <show_history_orders>0</show_history_orders>
                 <show_history_nfes>1</show_history_nfes>
                 <show_history_nfces>1</show_history_nfces>
