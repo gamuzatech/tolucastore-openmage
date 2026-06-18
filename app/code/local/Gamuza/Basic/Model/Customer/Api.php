@@ -11,12 +11,15 @@
 class Gamuza_Basic_Model_Customer_Api extends Mage_Customer_Model_Api_Resource
 {
     protected $_mapAttributes = array(
-        'customer_id' => 'entity_id'
+        'customer_id' => 'entity_id',
+        'is_active'   => 'is_active',
     );
 
     public function items($filters = null, $order = null, $limit = null)
     {
-        $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToSelect('*');
+        $collection = Mage::getModel('customer/customer')->getCollection()->addAttributeToSelect('*')
+            ->addAttributeToFilter('is_active', array('eq' => '1'))
+        ;
 
         $collection->getSelect()
             ->joinLeft(
