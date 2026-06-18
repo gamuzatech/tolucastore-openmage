@@ -41,6 +41,38 @@ $attribute->setData ('used_in_forms', $forms)
 $attribute->save ();
 
 /**
+ * Customer Is Active
+ */
+$installer->addAttribute(
+    'customer',
+    Gamuza_Basic_Helper_Data::CUSTOMER_ATTRIBUTE_IS_ACTIVE,
+    array(
+        'type'         => 'static',
+        'default'      => '1',
+        'input'        => 'boolean',
+        'label'        => Mage::helper ('basic')->__('Is Active'),
+        'visible'      => true,
+        'required'     => true,
+        'user_defined' => false,
+        'unique'       => false,
+        'source'       => 'eav/entity_attribute_source_boolean',
+    )
+);
+
+$forms = array(
+    'adminhtml_customer',
+);
+
+$attribute = Mage::getSingleton ('eav/config')->getAttribute(
+    $installer->getEntityTypeId ('customer'), Gamuza_Basic_Helper_Data::CUSTOMER_ATTRIBUTE_IS_ACTIVE)
+;
+$attribute->setData ('used_in_forms', $forms)
+    ->setData('is_system', true)
+    ->setData('sort_order', 1200)
+;
+$attribute->save ();
+
+/**
  * Customer SecondaryName
  */
 $installer->addAttribute(
