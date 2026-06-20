@@ -256,7 +256,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             }
         }
 
-        $quote = $this->_getCustomerQuote($code, $store, $dob);
+        $quote = $this->_getCustomerQuote($code, $store, $dob, $note);
 
         if ($quote->getIsMultiShipping())
         {
@@ -268,14 +268,6 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         )
         {
             $this->_fault('guest_checkout_is_not_enabled');
-        }
-
-        if (!empty ($note))
-        {
-            if ($quote->getCustomerNote () !== $note)
-            {
-                $quote->setCustomerNote ($note)->save ();
-            }
         }
 
         /** @var $customerResource Mage_Checkout_Model_Api_Resource_Customer */
@@ -373,14 +365,14 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return true;
     }
 
-    public function draft ($code = null, $store = null, $dob = null)
+    public function draft ($code = null, $store = null, $dob = null, $note = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store, $dob);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob, $note);
 
         Mage::dispatchEvent ('mobile_order_api_draft_before', array ('order' => $quote, 'type' => __FUNCTION__));
 
@@ -395,7 +387,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         return $result;
     }
 
-    public function kitchen ($code = null, $store = null, $dob = null)
+    public function kitchen ($code = null, $store = null, $dob = null, $note = null)
     {
         if (empty ($code))
         {
@@ -404,7 +396,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         $currentPrinterId = Mage::helper ('mobile')->getPrinterId ();
 
-        $quote = $this->_getCustomerQuote ($code, $store, $dob);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob, $note);
 
         $result = null;
 
@@ -462,7 +454,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store, $dob, false);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob, $note, false);
 
         /**
          * getCustomerEmail

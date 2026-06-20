@@ -14,7 +14,7 @@ trait Gamuza_Mobile_Trait_Api_Resource
      * @param string|int $store
      * @return Mage_Sales_Model_Quote
      */
-    protected function _getCustomerQuote($customerCode, $store = null, $customerDob = null, $createNewQuote = false)
+    protected function _getCustomerQuote($customerCode, $store = null, $customerDob = null, $customerNote = null, $createNewQuote = false)
     {
         $storeId = Mage::getStoreConfig (Gamuza_Mobile_Helper_Data::XML_PATH_API_MOBILE_STORE_VIEW, $store);
 
@@ -43,6 +43,14 @@ trait Gamuza_Mobile_Trait_Api_Resource
         if ($quote->getCustomerDob () !== $customerDob)
         {
             $quote->setCustomerDob ($customerDob)->save (); // age_gate
+        }
+
+        if (!empty ($customerNote))
+        {
+            if ($quote->getCustomerNote () !== $customerNote)
+            {
+                $quote->setCustomerNote ($customerNote)->save ();
+            }
         }
 
         return $quote;
