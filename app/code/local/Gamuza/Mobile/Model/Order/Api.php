@@ -636,7 +636,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
      * @param  string $store
      * @return boolean
      */
-    public function reorder ($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null, $dob = null)
+    public function reorder ($orderIncrementId = null, $orderProtectCode = null, $code = null, $store = null, $dob = null, $note = null)
     {
         if (empty ($orderIncrementId))
         {
@@ -664,7 +664,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             // nothing
         }
 
-        $quote = $this->_getCustomerQuote ($code, $store, $dob, true);
+        $quote = $this->_getCustomerQuote ($code, $store, $dob, $note, true);
 
         $result = false;
 

@@ -28,14 +28,14 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
      * @param  $store
      * @return bool
      */
-    public function add($code = null, $productsData = null, $store = null, $dob = null)
+    public function add($code = null, $productsData = null, $store = null, $dob = null, $note = null)
     {
         if (empty ($code))
         {
             $this->_fault ('customer_code_not_specified');
         }
 
-        $quote = $this->_getCustomerQuote($code, $store, $dob, true);
+        $quote = $this->_getCustomerQuote($code, $store, $dob, $note, true);
 
         if (empty ($productsData))
         {
