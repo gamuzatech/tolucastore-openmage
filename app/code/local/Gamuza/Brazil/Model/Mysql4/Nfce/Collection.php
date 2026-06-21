@@ -42,6 +42,7 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
                     'pdv_sequence_id',
                     'pdv_table_id',
                     'pdv_card_id',
+                    'purchased_at' => 'order.created_at',
                 )
             )
         ;

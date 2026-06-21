@@ -205,6 +205,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'base_shipping_discount_amount' => floatval ($nfe->getBaseShippingDiscountAmount ()),
                 'payment_authorization_amount'  => floatval ($nfe->getPaymentAuthorizationAmount ()),
                 'base_grand_total' => floatval ($nfe->getBaseGrandTotal ()),
+                'purchased_at'     => strval ($nfe->getPurchasedAt ()),
                 // Toluca_PDV
                 'is_pdv'          => boolval ($nfe->getIsPdv ()),
                 'pdv_cashier_id'  => intval ($nfe->getPdvCashierId ()),
