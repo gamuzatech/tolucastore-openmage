@@ -162,6 +162,23 @@ class Toluca_PDV_Model_Observer
             return $this; // cancel
         }
 
+        $orderIsMultiPayment = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_MULTI_PAYMENT);
+
+        if ($orderIsMultiPayment)
+        {
+            foreach ($order->getSplitPayments () as $split)
+            {
+                $this->_salesOrderInvoicePayment ($order, $split, true);
+            }
+        }
+        else
+        {
+            $this->_salesOrderInvoicePayment ($order, $payment);
+        }
+    }
+
+    public function _salesOrderInvoicePayment ($order, $payment, $split = false)
+    {
         $orderPdvCashierId  = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID);
         $orderPdvOperatorId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_OPERATOR_ID);
         $orderPdvCustomerId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID);
@@ -176,6 +193,14 @@ class Toluca_PDV_Model_Observer
         $changeAmount = floatval ($payment->getAdditionalInformation('change_amount'));
         $changeType   = intval ($payment->getAdditionalInformation('change_type'));
 
+        if ($split)
+        {
+            $amount       = $payment->getAmount ();
+            $cashAmount   = $payment->getCashAmount ();
+            $changeAmount = $payment->getChangeAmount ();
+            $changeType   = $payment->getChangeType ();
+        }
+
         if ($changeType == 1)
         {
             $amount = $cashAmount;
@@ -186,7 +211,10 @@ class Toluca_PDV_Model_Observer
         $customer = Mage::getModel ('customer/customer')->load ($orderPdvCustomerId);
         $history = Mage::getModel ('pdv/history')->load ($orderPdvHistoryId);
 
-        $history->setShippingAmount (floatval ($history->getShippingAmount ()) + $order->getBaseShippingAmount ());
+        if (!$split || $payment->getIsDefault ())
+        {
+            $history->setShippingAmount (floatval ($history->getShippingAmount ()) + $order->getBaseShippingAmount ());
+        }
 
         $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
         $userAgent = Mage::helper ('pdv')->getUserAgent ();

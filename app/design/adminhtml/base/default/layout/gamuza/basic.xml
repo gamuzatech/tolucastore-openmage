@@ -161,6 +161,12 @@
         </reference>
     </admin_basic_adminhtml_shipping_rate_index>
 
+    <admin_basic_adminhtml_order_payment_index>
+        <reference name="content">
+            <block type="basic/adminhtml_order_payment" name="payment" />
+        </reference>
+    </admin_basic_adminhtml_order_payment_index>
+
     <admin_basic_adminhtml_order_service_index>
         <reference name="content">
             <block type="basic/adminhtml_order_service" name="service" />

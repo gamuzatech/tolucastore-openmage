@@ -67,7 +67,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'billing_name', 'shipping_name',
         'customer_stars', 'increment_number',
         'increment_per_store', 'increment_pad_length', /* 'increment_pad_char', 'increment_prefix' */
-        'is_motoboy', 'waiter_name',
+        'is_motoboy', 'is_multi_payment', 'waiter_name',
         'base_customer_balance_amount', 'base_customer_balance_invoiced', 'base_customer_balance_refunded',
         'customer_balance_amount', 'customer_balance_invoiced', 'customer_balance_refunded',
         'bs_customer_bal_total_refunded', 'customer_bal_total_refunded',
@@ -117,6 +117,13 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'brazil_pix_key',
     );
 
+    protected $_orderPaymentSplitAttributes = array(
+        'method', 'total', 'amount',
+        'cash_amount', 'change_amount', 'change_type',
+        'cc_type', 'po_number',
+        'customer_name', 'is_default',
+    );
+
     protected $_orderStatusHistoryAttributes = array(
         'is_customer_notified', 'is_visible_on_front', 'comment', 'status', 'entity_name', 'created_at'
     );
@@ -149,6 +156,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'customer_balance_amount', 'customer_balance_invoiced', 'customer_balance_refunded',
         'bs_customer_bal_total_refunded', 'customer_bal_total_refunded',
         'pagcripto_amount', 'pagcripto_received_amount',
+        'total', 'amount', 'cash_amount', 'change_amount',
     );
 
     protected $_intAttributes = array(
@@ -160,6 +168,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'item_id', 'parent_item_id', 'quote_item_id', 'order_id', 'product_id',
         'brazil_ie_icms',
         'pdv_cashier_id', 'pdv_operator_id', 'pdv_customer_id', 'pdv_history_id', 'pdv_sequence_id', 'pdv_table_id', 'pdv_card_id',
+        'change_type',
         /* eav_type */
         'increment_per_store', 'increment_pad_length', /* 'increment_pad_char', */
         /* eav_store */
@@ -168,11 +177,12 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
 
     protected $_boolAttributes = array(
         /* list */
-        'is_virtual', 'customer_is_guest', 'customer_note_notify', 'email_sent', 'is_motoboy',
+        'is_virtual', 'customer_is_guest', 'customer_note_notify', 'email_sent', 'is_motoboy', 'is_multi_payment',
         'is_comanda', 'is_weighted', 'is_printed',
         /* info */
         'free_shipping', 'is_qty_decimal', 'no_discount', 'is_nominal', 'gift_message_available',
-        'is_customer_notified', 'is_visible_on_front'
+        'is_customer_notified', 'is_visible_on_front',
+        'is_default',
     );
 
     protected $_strAttributes = array ('fax', 'postcode', 'telephone', 'cellphone');
@@ -533,6 +543,37 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
             {
                 $result ['payment'][$attribute] = intval ($result ['payment'][$attribute]);
             }
+        }
+
+        foreach ($order->getSplitPayments () as $payment)
+        {
+            $split = $this->_getAttributes($payment, 'order_payment_split', $this->_orderPaymentSplitAttributes);
+
+            foreach ($this->_floatAttributes as $attribute)
+            {
+                if (array_key_exists ($attribute, $split))
+                {
+                    $split [$attribute] = floatval ($split [$attribute]);
+                }
+            }
+
+            foreach ($this->_intAttributes as $attribute)
+            {
+                if (array_key_exists ($attribute, $split))
+                {
+                    $split [$attribute] = intval ($split [$attribute]);
+                }
+            }
+
+            foreach ($this->_boolAttributes as $attribute)
+            {
+                if (array_key_exists ($attribute, $split))
+                {
+                    $split [$attribute] = boolval ($split [$attribute]);
+                }
+            }
+
+            $result['payment_split'][] = $split;
         }
 
         $result['status_history'] = array();

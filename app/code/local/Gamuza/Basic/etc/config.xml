@@ -10,7 +10,7 @@
 <config>
     <modules>
         <Gamuza_Basic>
-            <version>0.0.25</version>
+            <version>0.0.26</version>
         </Gamuza_Basic>
     </modules>
     <global>
@@ -113,6 +113,9 @@
                     <eav_entity_attribute_option_value>
                         <table>eav_attribute_option_value</table>
                     </eav_entity_attribute_option_value>
+                    <order_payment>
+                        <table>basic_order_payment</table>
+                    </order_payment>
                     <order_service>
                         <table>basic_order_service</table>
                     </order_service>
@@ -242,6 +245,7 @@
                     <order_creditmemo>Gamuza_Basic_Model_Sales_Order_Creditmemo</order_creditmemo>
                     <order_invoice>Gamuza_Basic_Model_Sales_Order_Invoice</order_invoice>
                     <quote_item>Gamuza_Basic_Model_Sales_Quote_Item</quote_item>
+                    <order_payment>Gamuza_Basic_Model_Sales_Order_Payment</order_payment>
                     <order_shipment>Gamuza_Basic_Model_Sales_Order_Shipment</order_shipment>
                 </rewrite>
             </sales>
@@ -297,6 +301,9 @@
                 <is_age_gate>
                     <to_order>*</to_order>
                 </is_age_gate>
+                <is_multi_payment>
+                    <to_order>*</to_order>
+                </is_multi_payment>
                 <is_weighted>
                     <to_order>*</to_order>
                 </is_weighted>
@@ -357,6 +364,9 @@
                 <is_age_gate>
                     <to_quote>*</to_quote>
                 </is_age_gate>
+                <is_multi_payment>
+                    <to_quote>*</to_quote>
+                </is_multi_payment>
                 <is_weighted>
                     <to_quote>*</to_quote>
                 </is_weighted>
@@ -583,6 +593,15 @@
                     </gamuza_basic_basic_magento_api_info>
                 </observers>
             </basic_magento_api_info>
+            <!-- Gamuza_Mobile -->
+            <mobile_cart_payment_api_set_after>
+                <observers>
+                    <basic_mobile_cart_payment_api_set_after>
+                        <class>basic/observer</class>
+                        <method>mobileCartPaymentApiSetAfter</method>
+                    </basic_mobile_cart_payment_api_set_after>
+                </observers>
+            </mobile_cart_payment_api_set_after>
         </events>
         <pdf>
             <order>

@@ -33,6 +33,7 @@ class Gamuza_Brazil_Model_Mysql4_Nfce_Collection
                     'base_shipping_discount_amount',
                     'payment_authorization_amount',
                     'base_grand_total',
+                    'is_multi_payment',
                     'is_pdv',
                     'pdv_cashier_id',
                     'pdv_operator_id',

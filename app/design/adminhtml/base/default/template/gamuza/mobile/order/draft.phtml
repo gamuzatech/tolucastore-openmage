@@ -131,7 +131,7 @@ catch (Exception $e)
     Mage::logException ($e);
 }
 
-if ($_paymentMethod)
+if ($_paymentMethod && !$_order->getIsMultiPayment ())
 {
     echo $_paymentMethod->getTitle() . PHP_EOL;
 
@@ -147,6 +147,27 @@ if ($_paymentMethod)
             {
                 echo sprintf('<qr>%s</qr>', $value) . PHP_EOL;
             }
+        }
+    }
+}
+else if ($_paymentMethod && $_order->getIsMultiPayment ())
+{
+    echo $this->getLineSeparator() . PHP_EOL;
+
+    foreach ($_order->getSplitPayments () as $_payment)
+    {
+        $_paymentTitle  = Mage::getStoreConfig (sprintf ('payment/%s/title', $_payment->getMethod ()));
+        $_paymentAmount = Mage::helper ('core')->currency ($_payment->getAmount (), true, false);
+
+        echo sprintf('%s: %s %s', $_paymentTitle, $_paymentAmount, $_payment->getCustomerName ()) . PHP_EOL;
+
+        if (intval ($_payment->getChangeType ()) > 0)
+        {
+            echo sprintf(
+                '( %s - %s )',
+                Mage::helper ('core')->currency ($_payment->getCashAmount (), true, false),
+                Mage::helper ('core')->currency ($_payment->getChangeAmount (), true, false)
+            ) . PHP_EOL;
         }
     }
 }

@@ -11,6 +11,11 @@
     <menu>
         <sales>
             <children>
+                <payment>
+                    <title>Order Payments</title>
+                    <sort_order>55</sort_order>
+                    <action>admin_basic/adminhtml_order_payment</action>
+                </payment>
                 <service>
                     <title>Order Services</title>
                     <sort_order>55</sort_order>

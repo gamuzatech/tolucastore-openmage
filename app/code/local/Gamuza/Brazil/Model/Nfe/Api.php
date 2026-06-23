@@ -205,6 +205,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'base_shipping_discount_amount' => floatval ($nfe->getBaseShippingDiscountAmount ()),
                 'payment_authorization_amount'  => floatval ($nfe->getPaymentAuthorizationAmount ()),
                 'base_grand_total' => floatval ($nfe->getBaseGrandTotal ()),
+                'is_multi_payment' => boolval ($nfe->getIsMultiPayment ()),
                 'purchased_at'     => strval ($nfe->getPurchasedAt ()),
                 // Toluca_PDV
                 'is_pdv'          => boolval ($nfe->getIsPdv ()),
@@ -415,6 +416,46 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                     'base_shipping_amount'   => floatval ($payment->getBaseShippingAmount ()),
                     'base_shipping_captured' => floatval ($payment->getBaseShippingCaptured ()),
                     'base_shipping_refunded' => floatval ($payment->getBaseShippingRefunded ()),
+                    'additional_information' => $payment->getAdditionalInformation () ?: null,
+                    // DFe
+                    'payment_id' => $paymentId,
+                );
+            }
+
+            foreach ($order->getSplitPayments () as $payment)
+            {
+                $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_OTHER;
+
+                switch ($payment->getMethod ())
+                {
+                    case 'banktransfer':           { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_BANK_TRANSFER; break; }
+                    case 'cashondelivery':         { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_MONEY;         break; }
+                    case 'checkmo':                { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_CHECK;         break; }
+                    case 'free':                   { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_NONE;          break; }
+                    case 'gamuza_brazil_pix':      { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_STATIC_PIX;    break; }
+                    case 'gamuza_openpix_payment': { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_DYNAMIC_PIX;   break; }
+                    case 'machineondelivery':      { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_DEBIT_CARD;    break; }
+                    case 'pagseguropro_boleto':    { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_BANK_SLIP;     break; }
+                    case 'pagseguropro_tef':       { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_BANK_TRANSFER; break; }
+                    case 'rm_pagseguro_cc':        { $paymentId = Gamuza_Brazil_Helper_Data::NFE_PAYMENT_TYPE_CREDIT_CARD;   break; }
+                }
+
+                $paymentMethod = $payment->getMethod ();
+
+                $data ['split_payments'][] = array(
+                    'entity_id' => intval ($payment->getId ()),
+                    'parent_id' => intval ($payment->getPaymentId ()),
+                    'method' => strval ($paymentMethod),
+                    'title'  => Mage::getStoreConfig ("payment/{$paymentMethod}/title"),
+                    'total'  => floatval ($payment->getTotal ()),
+                    'amount' => floatval ($payment->getAmount ()),
+                    'cash_amount'   => floatval ($payment->getCashAmount ()),
+                    'change_amount' => floatval ($payment->getChangeAmount ()),
+                    'change_type'   => intval ($payment->getChangeType ()),
+                    'cc_type'   => $payment->getCcType (),
+                    'po_number' => $payment->getPoNumber (),
+                    'customer_name' => $payment->getCustomerName (),
+                    'is_default' => boolval ($payment->getIsDefault ()),
                     'additional_information' => $payment->getAdditionalInformation () ?: null,
                     // DFe
                     'payment_id' => $paymentId,

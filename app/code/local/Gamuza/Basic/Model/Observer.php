@@ -504,6 +504,7 @@ CONTENT;
     {
         $event = $observer->getEvent ();
         $order = $event->getOrder();
+        $payment = $order->getPayment();
 
         if (Mage::helper ('basic')->isComanda ())
         {
@@ -545,6 +546,31 @@ CONTENT;
         if ($draft && $draft->getId ())
         {
             $draft->setOrder ($order)->save ();
+        }
+
+        $collection = Mage::getModel ('basic/order_payment')->getCollection ()
+            ->addFieldToFilter ('quote_id', array ('eq' => $order->getQuoteId ()))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $order->setData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_MULTI_PAYMENT, true)->save ();
+
+            foreach ($collection as $item)
+            {
+                $item->setOrderId ($order->getId ())
+                    ->setPaymentId ($payment->getId ())
+                    ->setTotal ($order->getBaseGrandTotal ())
+                    ->save ()
+                ;
+
+                if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
+                    && $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV)
+                    && ($pdvCustomerId = $order->getData(Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID)))
+                {
+                    $item->setCustomerId ($pdvCustomerId)->save ();
+                }
+            }
         }
 
         Mage::helper ('basic/sales_order_status')->pending ($order);
@@ -842,6 +868,48 @@ CONTENT;
         );
 
         return $this;
+    }
+
+    public function mobileCartPaymentApiSetAfter ($observer)
+    {
+        $event = $observer->getEvent ();
+        $quote = $event->getQuote ();
+        $split = $event->getSplit ();
+        $payment = $quote->getPayment ();
+
+        $collection = Mage::getModel ('basic/order_payment')->getCollection ()
+            ->addFieldToFilter ('quote_id', array ('eq' => $quote->getId ()))
+        ;
+
+        foreach ($collection as $item)
+        {
+            $item->delete ();
+        }
+
+        if (is_array ($split) && count ($split) > 0)
+        {
+            foreach ($split as $item)
+            {
+                $payment = Mage::getModel ('basic/order_payment')
+                    ->setQuoteId ($quote->getId ())
+                    ->setStoreId ($quote->getStoreId ())
+                    ->setCustomerid ($quote->getCustomerId ())
+                    ->setPaymentId ($payment->getId ())
+                    ->setTotal ($quote->getBaseGrandTotal ())
+                    ->setMethod ($item ['method'])
+                    ->setAmount ($item ['amount'])
+                    ->setCashAmount ($item ['cash_amount'])
+                    ->setChangeAmount ($item ['change_amount'])
+                    ->setChangeType ($item ['change_type'])
+                    ->setCcType ($item ['cc_type'])
+                    ->setPoNumber($item['po_number'])
+                    ->setCustomerName ($item ['customer_name'])
+                    ->setIsDefault ($item ['is_default'])
+                    ->setCreatedAt (date ('c'))
+                    ->save ()
+                ;
+            }
+        }
     }
 
     private function _updateOrderServiceState ($order, $state)

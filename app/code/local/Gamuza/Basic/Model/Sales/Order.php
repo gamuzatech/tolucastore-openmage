@@ -21,6 +21,11 @@ class Gamuza_Basic_Model_Sales_Order extends Mage_Sales_Model_Order
     const STATUS_REFUNDED  = 'refunded';
     const STATUS_CANCELED  = 'canceled';
 
+    /**
+     * @var Gamuza_Basic_Model_Mysql4_Order_Payment_Collection|Gamuza_Basic_Model_Order_Payment[]|null
+     */
+    protected $_paymentsSplit = null;
+
     public function canPrepare ()
     {
         $collection = Mage::getModel ('sales/order_status_history')->getCollection ()
@@ -69,6 +74,36 @@ class Gamuza_Basic_Model_Sales_Order extends Mage_Sales_Model_Order
         }
 
         return $addresses;
+    }
+
+    /**
+     * @return Gamuza_Basic_Model_Mysql4_Order_Payment_Collection
+     */
+    public function getSplitPaymentsCollection()
+    {
+        if (is_null($this->_paymentsSplit))
+        {
+            $this->_paymentsSplit = Mage::getResourceModel('basic/order_payment_collection')
+                ->addFieldToFilter('order_id', array ('eq' => $this->getId ()))
+            ;
+        }
+
+        return $this->_paymentsSplit;
+    }
+
+    /**
+     * @return Gamuza_Basic_Model_Order_Payment[]
+     */
+    public function getSplitPayments()
+    {
+        $payments = [];
+
+        foreach ($this->getSplitPaymentsCollection() as $payment)
+        {
+            $payments[] =  $payment;
+        }
+
+        return $payments;
     }
 }
 
