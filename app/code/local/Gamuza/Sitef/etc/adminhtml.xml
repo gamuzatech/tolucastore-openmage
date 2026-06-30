@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Sitef
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <menu>
+        <gamuza module="sitef">
+            <title>Gamuza</title>
+            <sort_order>1000</sort_order>
+            <children>
+                <sitef module="sitef">
+                    <title>Sitef</title>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <pinpad_transaction translate="title" module="sitef">
+                            <title>Manage Pinpad Transactions</title>
+                            <sort_order>0</sort_order>
+                            <action>admin_sitef/adminhtml_pinpad_transaction</action>
+                        </pinpad_transaction>
+                    </children>
+                </sitef>
+            </children>
+        </gamuza>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <gamuza translate="title" module="sitef">
+                        <title>Gamuza</title>
+                        <sort_order>1000</sort_order>
+                        <children>
+                            <sitef translate="title" module="sitef">
+                                <title>Sitef</title>
+                                <sort_order>100</sort_order>
+                                <children>
+                                    <pinpad_transaction translate="title" module="sitef">
+                                        <title>Manage Pinpad Transactions</title>
+                                        <sort_order>0</sort_order>
+                                    </pinpad_transaction>
+                                </children>
+                            </sitef>
+                        </children>
+                    </gamuza>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
+
