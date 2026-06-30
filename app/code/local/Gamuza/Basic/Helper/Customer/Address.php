@@ -39,6 +39,13 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
                 {
                     $result = false;
                 }
+
+                $possibleCellphone = Mage::getStoreConfigFlag(Gamuza_Basic_Model_Customer_Customer::XML_PATH_POSSIBLE_CUSTOMER_CELLPHONE);
+
+                if ($phoneUtil->isPossibleNumber($phoneNumber) && $possibleCellphone)
+                {
+                    $result = true;
+                }
             }
             else
             {
