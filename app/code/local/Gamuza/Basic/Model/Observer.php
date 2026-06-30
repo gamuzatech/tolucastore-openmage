@@ -73,6 +73,12 @@ class Gamuza_Basic_Model_Observer
                 'shipping' => array(
                     'origin' => Mage::getModel ('basic/shipping_api')->origin (Mage::app ()->getStore ()->getId ()),
                 ),
+                'customer' => array(
+                    'address' => array(
+                        'validate_cellphone' => Mage::getStoreConfigFlag (Gamuza_Basic_Model_Customer_Customer::XML_PATH_VALIDATE_CUSTOMER_CELLPHONE),
+                        'possible_cellphone' => Mage::getStoreConfigFlag (Gamuza_Basic_Model_Customer_Customer::XML_PATH_POSSIBLE_CUSTOMER_CELLPHONE),
+                    )
+                )
             ),
         ));
 

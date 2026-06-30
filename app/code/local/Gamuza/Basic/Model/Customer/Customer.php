@@ -24,6 +24,7 @@ class Gamuza_Basic_Model_Customer_Customer
     public const XML_PATH_GENERATE_HUMAN_FRIENDLY_PASSWORD = 'customer/create_account/generate_human_friendly_password';
 
     public const XML_PATH_VALIDATE_CUSTOMER_CELLPHONE = 'customer/address/validate_cellphone';
+    public const XML_PATH_POSSIBLE_CUSTOMER_CELLPHONE = 'customer/address/possible_cellphone';
 
     /**
      * Is model deleteable

@@ -19,6 +19,8 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
      */
     const CELLPHONE_LENGTH_MINIMUM = 10;
 
+    const CELLPHONE_DEFAULT_NUMBER = '000000000';
+
     const CELLPHONE_BYPASS_NUMBER = '999999999';
 
     public function validateCellphone($cellphone, $countryId)
@@ -29,7 +31,7 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
 
         try
         {
-            $cellphone = $cellphone ?? '000000000';
+            $cellphone = $cellphone ?? self::CELLPHONE_DEFAULT_NUMBER;
 
             $phoneNumber = $phoneUtil->parse($cellphone, $countryId);
 
@@ -38,6 +40,13 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
                 if (!str_ends_with ($cellphone, self::CELLPHONE_BYPASS_NUMBER))
                 {
                     $result = false;
+                }
+
+                $possibleCellphone = Mage::getStoreConfigFlag(Gamuza_Basic_Model_Customer_Customer::XML_PATH_POSSIBLE_CUSTOMER_CELLPHONE);
+
+                if ($phoneUtil->isPossibleNumber($phoneNumber) && $possibleCellphone)
+                {
+                    $result = true;
                 }
             }
             else

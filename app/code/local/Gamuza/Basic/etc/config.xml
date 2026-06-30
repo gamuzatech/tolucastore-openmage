@@ -951,6 +951,8 @@
                 <prefix_show>0</prefix_show>
                 <middlename_show>0</middlename_show>
                 <suffix_show>0</suffix_show>
+                <validate_cellphone>0</validate_cellphone>
+                <possible_cellphone>1</possible_cellphone>
             </address>
             <address_templates>
                 <text>{{depend prefix}}{{var prefix}} {{/depend}}{{var firstname}} {{depend middlename}}{{var middlename}} {{/depend}}{{var lastname}}{{depend suffix}} {{var suffix}}{{/depend}}
