@@ -29,8 +29,8 @@ echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Open'), Mage::helper (
     Mage::helper ('pdv')->__('Close'), Mage::helper ('core')->currency ($_history->getCloseAmount (), true, false)) . PHP_EOL;
 echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Reinforce'), Mage::helper ('core')->currency ($_history->getReinforceAmount (), true, false),
     Mage::helper ('pdv')->__('Bleed'), Mage::helper ('core')->currency ($_history->getBleedAmount (), true, false)) . PHP_EOL;
-echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Money'), Mage::helper ('core')->currency ($_history->getMoneyAmount (), true, false),
-    Mage::helper ('pdv')->__('Money Change'), Mage::helper ('core')->currency ($_history->getChangeAmount (), true, false)) . PHP_EOL;
+echo sprintf ('%s: %s ( %s %s )', Mage::helper ('pdv')->__('Money'), Mage::helper ('core')->currency ($_history->getCashAmount (), true, false),
+    Mage::helper ('core')->currency ($_history->getMoneyAmount (), true, false), Mage::helper ('core')->currency ($_history->getChangeAmount (), true, false)) . PHP_EOL;
 echo $this->getLineSeparator () . PHP_EOL;
 
 echo sprintf ('%s: %s, %s: %s', Mage::helper ('pdv')->__('Machine'), Mage::helper ('core')->currency ($_history->getMachineAmount (), true, false),
@@ -59,6 +59,17 @@ if ($_cashierSequenceId > 0)
     echo $this->getLineSeparator (Mage::helper ('pdv')->__('Payments')) . PHP_EOL;
 
     foreach ($this->getOrderPayments ($_cashier, $_operator, $_history) as $orderPayment)
+    {
+        $paymentTitle = Mage::getStoreConfig (sprintf ('payment/%s/title', $orderPayment->getPaymentMethod ()));
+
+        $paymentAmount = Mage::helper ('core')->currency ($orderPayment->getPaymentAmount (), true, false);
+
+        echo sprintf ('%s %s: %s', $orderPayment->getPaymentCount (), $paymentTitle, $paymentAmount) . PHP_EOL;
+    }
+
+    echo $this->getLineSeparator (Mage::helper ('pdv')->__('Multiples')) . PHP_EOL;
+
+    foreach ($this->getOrderPayments ($_cashier, $_operator, $_history, true) as $orderPayment)
     {
         $paymentTitle = Mage::getStoreConfig (sprintf ('payment/%s/title', $orderPayment->getPaymentMethod ()));
 

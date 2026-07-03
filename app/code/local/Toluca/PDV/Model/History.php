@@ -51,5 +51,13 @@ class Toluca_PDV_Model_History extends Mage_Core_Model_Abstract
 
         $this->_getResource ()->save ($this); // total_amount
     }
+
+    public function getCashAmount ()
+    {
+        $moneyAmount  = floatval ($this->getMoneyAmount ());
+        $changeAmount = floatval ($this->getChangeAmount ());
+
+        return $moneyAmount + $changeAmount;
+    }
 }
 

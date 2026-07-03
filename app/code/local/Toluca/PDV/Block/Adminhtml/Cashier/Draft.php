@@ -35,9 +35,34 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Temp
         return $result;
     }
 
-    public function getOrderPayments ($cashier, $operator, $history)
+    public function getOrderPayments ($cashier, $operator, $history, $multi = false)
     {
         $collection = $this->_getOrderCollection ($cashier, $operator, $history);
+
+        if ($multi && Mage::helper ('core')->isModuleEnabled ('Gamuza_Basic'))
+        {
+            $collection->getSelect ()
+                ->reset (Zend_Db_Select::COLUMNS)
+                ->columns (array (
+                    'entity_id' => 'bfop.entity_id',
+                ))
+                ->join(
+                    array ('bfop' => Mage::getSingleton ('core/resource')->getTablename ('basic/order_payment')),
+                    'main_table.entity_id = bfop.order_id',
+                    array(
+                        'payment_method' => 'bfop.method',
+                        'payment_count'  => 'COUNT(bfop.entity_id)',
+                        'payment_amount' => 'SUM(bfop.amount)',
+                    )
+                )
+                ->group ('bfop.method')
+                ->order ('payment_count DESC')
+                ->order ('payment_amount DESC')
+                ->where ('is_multi_payment = 1')
+            ;
+
+            return $collection;
+        }
 
         $collection->getSelect ()
             ->join(
@@ -52,6 +77,7 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Temp
             ->group ('sfop.method')
             ->order ('payment_count DESC')
             ->order ('payment_amount DESC')
+            ->where ('is_multi_payment IS NULL OR is_multi_payment = 0')
         ;
 
         return $collection;
