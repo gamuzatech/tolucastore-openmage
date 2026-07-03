@@ -10,7 +10,7 @@ class Gamuza_Mobile_Block_Adminhtml_Customer_Draft extends Mage_Adminhtml_Block_
     protected $_separator = '-'; // default
 
     private $_fontgrow = 0;  // default
-    private $_wordwrap = 48; // default
+    private $_wordwrap = 44; // default
 
     public function __construct ()
     {

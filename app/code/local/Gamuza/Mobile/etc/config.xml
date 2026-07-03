@@ -265,7 +265,7 @@
                 <email_prefix>app</email_prefix>
             </create_account>
             <customer_draft>
-                <word_wrap>48</word_wrap>
+                <word_wrap>44</word_wrap>
             </customer_draft>
         </customer>
         <payment>
@@ -286,7 +286,7 @@
         </payment>
         <sales>
             <order_draft>
-                <word_wrap>48</word_wrap>
+                <word_wrap>44</word_wrap>
             </order_draft>
         </sales>
     </default>
