@@ -17,12 +17,14 @@ $installer->addAttribute(
     array(
         'type'         => 'varchar',
         'length'       => 255,
-        'input'        => 'text',
+        'input'        => 'label',
         'label'        => Mage::helper ('basic')->__('Cellphone'),
         'visible'      => true,
         'required'     => false,
         'user_defined' => false,
         'unique'       => true,
+        'data'         => 'customer/attribute_data_text',
+        'note'         => Mage::helper ('customer')->__('Default Billing Address'),
     )
 );
 
@@ -36,7 +38,7 @@ $attribute = Mage::getSingleton ('eav/config')->getAttribute(
 ;
 $attribute->setData ('used_in_forms', $forms)
     ->setData('is_system', true)
-    ->setData('sort_order', 72)
+    ->setData('sort_order', 1300)
 ;
 $attribute->save ();
 
