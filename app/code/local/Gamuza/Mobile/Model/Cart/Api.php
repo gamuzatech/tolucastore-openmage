@@ -55,6 +55,26 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         'created_at', 'updated_at',
     );
 
+    protected $_orderPaymentAttributes = array(
+        'base_shipping_captured', 'shipping_captured', 'amount_refunded',
+        'base_amount_paid', 'amount_canceled', 'base_amount_authorized',
+        'base_amount_paid_online', 'base_amount_refunded_online', 'base_shipping_amount',
+        'shipping_amount', 'amount_paid', 'amount_authorized',
+        'base_amount_ordered', 'base_shipping_refunded', 'shipping_refunded',
+        'base_amount_refunded', 'amount_ordered', 'base_amount_canceled',
+        'additional_data', 'method', 'cc_status_description', 'last_trans_id',
+        'cc_owner', 'cc_type', 'additional_information', 'cc_trans_id',
+        'cc_approval', 'cc_installments', 'cc_status', 'cc_last4', 'ext_payment_id',
+        'blockchain_address', 'blockchain_amount',
+        'pagcripto_currency', 'pagcripto_address', 'pagcripto_status', 'pagcripto_payment_request',
+        'pagcripto_amount', 'pagcripto_confirmations', 'pagcripto_received_amount',
+        'picpay_status', 'picpay_url',
+        'openpix_status', 'openpix_url', 'openpix_transaction_id', 'openpix_correlation_id',
+        'deferred_installments_qty', 'deferred_interval_days', 'deferred_first_due_days',
+        'deferred_fee_percentage', 'deferred_fee_amount',
+        'brazil_pix_key',
+    );
+
     /**
      * Retrieve amount information about quote
      *
@@ -142,6 +162,8 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             'openpix'      => null,
             'pagseguropro' => null,
         );
+
+        $result ['order']['payment'] = $this->_getAttributes ($order->getPayment(), 'order_payment', $this->_orderPaymentAttributes);
 
         $result ['order']['payment_method'] = $order->getPayment ()->getMethod ();
 
