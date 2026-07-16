@@ -10,6 +10,8 @@
  */
 class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 {
+    public const NFE_CUSTOMER_IE_NONE = Gamuza_Brazil_Helper_Data::NFE_CUSTOMER_IE_NONE;
+
     /**
      * Attributes map array per entity type
      *
@@ -575,24 +577,34 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
+        $customerTaxvat = new Zend_Db_Expr ('NULL');
+        $customerRgIe   = new Zend_Db_Expr ('NULL');
+        $customerIeIcms = self::NFE_CUSTOMER_IE_NONE;
+
         /**
          * CPF or CNPJ
          */
         if (strlen ($nfce->getCustomerTaxvat ()) == 11
             || strlen ($nfce->getCustomerTaxvat ()) == 14)
         {
-            $order->setCustomerTaxvat ($nfce->getCustomerTaxvat ())->save ();
+            $customerTaxvat = $nfce->getCustomerTaxvat ();
         }
 
         if (!empty ($nfce->getCustomerRgIe ()))
         {
-            $order->setBrazilRgIe ($nfce->getCustomerRgIe ())->save ();
+            $customerRgIe = $nfce->getCustomerRgIe ();
         }
 
         if (!empty ($nfce->getCustomerIeIcms ()))
         {
-            $order->setBrazilIeIcms ($nfce->getCustomerIeIcms ())->save ();
+            $customerIeIcms = $nfce->getCustomerIeIcms ();
         }
+
+        $order->setCustomerTaxvat ($customerTaxvat)
+            ->setBrazilRgIe ($customerRgIe)
+            ->setBrazilIeIcms ($customerIeIcms)
+            ->save ()
+        ;
 
         return $this->_getNFCe ($nfce);
     }

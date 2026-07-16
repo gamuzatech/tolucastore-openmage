@@ -562,24 +562,34 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             ->save ()
         ;
 
+        $customerTaxvat = new Zend_Db_Expr ('NULL');
+        $customerRgIe   = new Zend_Db_Expr ('NULL');
+        $customerIeIcms = self::NFE_CUSTOMER_IE_NONE;
+
         /**
          * CPF or CNPJ
          */
         if (strlen ($nfe->getCustomerTaxvat ()) == 11
             || strlen ($nfe->getCustomerTaxvat ()) == 14)
         {
-            $order->setCustomerTaxvat ($nfe->getCustomerTaxvat ())->save ();
+            $customerTaxvat = $nfe->getCustomerTaxvat ();
         }
 
         if (!empty ($nfe->getCustomerRgIe ()))
         {
-            $order->setBrazilRgIe ($nfe->getCustomerRgIe ())->save ();
+            $customerRgIe = $nfe->getCustomerRgIe ();
         }
 
         if (!empty ($nfe->getCustomerIeIcms ()))
         {
-            $order->setBrazilIeIcms ($nfe->getCustomerIeIcms ())->save ();
+            $customerIeIcms = $nfe->getCustomerIeIcms ();
         }
+
+        $order->setCustomerTaxvat ($customerTaxvat)
+            ->setBrazilRgIe ($customerRgIe)
+            ->setBrazilIeIcms ($customerIeIcms)
+            ->save ()
+        ;
 
         return $this->_getNFe ($nfe);
     }
