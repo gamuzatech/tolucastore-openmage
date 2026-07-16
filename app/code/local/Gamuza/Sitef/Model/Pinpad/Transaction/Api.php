@@ -68,8 +68,10 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
         'payment_id',
         'payment_confirmation',
         'payment_amount',
+        /*
         'authorization_data',
         'payment_sequence',
+        */
     );
 
     protected $_cardAttributeList = array(
