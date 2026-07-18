@@ -40,6 +40,24 @@ class Gamuza_Basic_Model_Catalog_Product extends Mage_Catalog_Model_Product
     }
 
     /**
+     * Retrieve collection raw material link
+     *
+     * @return Mage_Catalog_Model_Resource_Product_Link_Collection
+     */
+    public function getMaterialLinkCollection()
+    {
+        $collection = $this->getLinkInstance()->useMaterialLinks()
+            ->getLinkCollection();
+
+        $collection->setProduct($this);
+        $collection->addLinkTypeIdFilter();
+        $collection->addProductIdFilter();
+        $collection->joinAttributes();
+
+        return $collection;
+    }
+
+    /**
      * Retrieve collection raw material product
      *
      * @return Mage_Catalog_Model_Resource_Product_Link_Product_Collection

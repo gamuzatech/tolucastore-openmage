@@ -10,7 +10,7 @@
  */
 class Gamuza_Basic_Model_Catalog_Product_Link extends Mage_Catalog_Model_Product_Link
 {
-    public const LINK_TYPE_MATERIAL = 6;
+    public const LINK_TYPE_MATERIAL = 101;
 
     /**
      * @return $this
