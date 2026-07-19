@@ -599,6 +599,53 @@ CONTENT;
         return $this;
     }
 
+    public function salesQuoteProductAddAfter (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $items = $event->getItems ();
+
+        $errors = array ();
+
+        foreach ($items as $item)
+        {
+            $product = $item->getProduct ();
+            $quote   = $item->getQuote ();
+
+            $giveawayLinkCollection = $product->getGiveawayLinkCollection ();
+
+            foreach ($giveawayLinkCollection as $giveawayLink)
+            {
+                $giveawayProduct = Mage::getModel ('catalog/product')
+                    ->load ($giveawayLink->getLinkedProductId ());
+
+                if ($giveawayProduct && $giveawayProduct->getId ())
+                {
+                    try
+                    {
+                        $giveawayItem = $quote->addProduct ($giveawayProduct);
+
+                        if (is_string ($giveawayItem))
+                        {
+                            Mage::throwException ($giveawayItem);
+                        }
+                    }
+                    catch (Mage_Core_Exception $e)
+                    {
+                        $errors [] = $e->getMessage ();
+                    }
+
+                    foreach ($quote->getAllItems () as $giveawayItem)
+                    {
+                        if ($giveawayItem->getProductId () == $giveawayLink->getLinkedProductId ())
+                        {
+                            $giveawayItem->setQty ($giveawayLink->getQty ());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public function salesQuoteItemSetProduct (Varien_Event_Observer $observer)
     {
         $quoteItem = $observer->getQuoteItem ();
@@ -758,6 +805,27 @@ CONTENT;
         }
 
         return $this;
+    }
+
+    public function salesQuoteRemoveItemBefore (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $quoteItem = $event->getQuoteItem ();
+        $product = $quoteItem->getProduct ();
+        $quote   = $quoteItem->getQuote ();
+
+        $giveawayLinkCollection = $product->getGiveawayLinkCollection ();
+
+        foreach ($giveawayLinkCollection as $giveawayLink)
+        {
+            foreach ($quote->getAllItems () as $item)
+            {
+                if ($item->getProductId () == $giveawayLink->getLinkedProductId ())
+                {
+                    $quote->removeItem ($item->getId ());
+                }
+            }
+        }
     }
 
     public function salesQuoteCollectTotalsAfter ($observer)

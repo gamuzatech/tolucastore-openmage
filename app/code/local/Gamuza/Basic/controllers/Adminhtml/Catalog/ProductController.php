@@ -484,6 +484,18 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
     }
 
     /**
+     * Get giveaway fieldset block
+     *
+     * @throws Mage_Core_Exception
+     */
+    public function giveawayGridAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    /**
      * Get raw material fieldset block
      *
      * @throws Mage_Core_Exception
@@ -540,9 +552,14 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $product = parent::_initProductSave();
 
         /**
-         * Init product links data (material)
+         * Init product links data (giveaway,material)
          */
         $links = $this->getRequest()->getPost('links');
+
+        if (isset($links['giveaway']))
+        {
+            $product->setGiveawayLinkData(Mage::helper('adminhtml/js')->decodeGridSerializedInput($links['giveaway']));
+        }
 
         if (isset($links['material']))
         {

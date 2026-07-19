@@ -239,6 +239,7 @@
             </newsletter>
             <sales>
                 <rewrite>
+                    <quote>Gamuza_Basic_Model_Sales_Quote</quote>
                     <quote_address_total_shipping>Gamuza_Basic_Model_Sales_Quote_Address_Total_Shipping</quote_address_total_shipping>
                     <order>Gamuza_Basic_Model_Sales_Order</order>
                     <quote_address>Gamuza_Basic_Model_Sales_Quote_Address</quote_address>
@@ -520,6 +521,14 @@
                     </admin_basic_order_cancel_after>
                 </observers>
             </order_cancel_after>
+            <sales_quote_product_add_after>
+                <observers>
+                    <gamuza_basic_sales_quote_product_add_after>
+                        <class>basic/observer</class>
+                        <method>salesQuoteProductAddAfter</method>
+                    </gamuza_basic_sales_quote_product_add_after>
+                </observers>
+            </sales_quote_product_add_after>
             <sales_quote_item_set_product>
                 <observers>
                     <gamuza_basic_sales_quote_item_set_product>
@@ -536,6 +545,14 @@
                     </gamuza_basic_sales_quote_item_qty_set_after>
                 </observers>
             </sales_quote_item_qty_set_after>
+            <sales_quote_remove_item_before>
+                <observers>
+                    <gamuza_basic_sales_quote_remove_item_before>
+                        <class>basic/observer</class>
+                        <method>salesQuoteRemoveItemBefore</method>
+                    </gamuza_basic_sales_quote_remove_item_before>
+                </observers>
+            </sales_quote_remove_item_before>
             <sales_quote_collect_totals_after>
                 <observers>
                     <gamuza_basic_sales_quote_collect_totals_after>
@@ -628,6 +645,14 @@
                         <can_use_qty_decimals>0</can_use_qty_decimals>
                         <index_priority>100</index_priority>
                     </service>
+                    <giveaway translate="label" module="basic">
+                        <label>Giveaway Product</label>
+                        <model>basic/catalog_product_type_giveaway</model>
+                        <composite>0</composite>
+                        <is_qty>0</is_qty>
+                        <can_use_qty_decimals>0</can_use_qty_decimals>
+                        <index_priority>100</index_priority>
+                    </giveaway>
                     <material translate="label" module="basic">
                         <label>Raw Material Product</label>
                         <model>basic/catalog_product_type_material</model>

@@ -149,6 +149,11 @@ ol, ul {
     height: auto;
 }
 
+.cart-table .product-cart-image img {
+    max-width: 100%;
+    width: 100%;
+}
+
 .cms-home .products-grid > li.tns-item {
     float: none;
     margin-right: 0;
