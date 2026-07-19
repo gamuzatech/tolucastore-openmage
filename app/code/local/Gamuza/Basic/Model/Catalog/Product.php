@@ -40,6 +40,86 @@ class Gamuza_Basic_Model_Catalog_Product extends Mage_Catalog_Model_Product
     }
 
     /**
+     * Retrieve collection giveaway link
+     *
+     * @return Mage_Catalog_Model_Resource_Product_Link_Collection
+     */
+    public function getGiveawayLinkCollection()
+    {
+        $collection = $this->getLinkInstance()->useGiveawayLinks()
+            ->getLinkCollection();
+
+        $collection->setProduct($this);
+        $collection->addLinkTypeIdFilter();
+        $collection->addProductIdFilter();
+        $collection->joinAttributes();
+
+        return $collection;
+    }
+
+    /**
+     * Retrieve collection giveaway product
+     *
+     * @return Mage_Catalog_Model_Resource_Product_Link_Product_Collection
+     */
+    public function getGiveawayProductCollection()
+    {
+        $collection = $this->getLinkInstance()->useGiveawayLinks()
+            ->getProductCollection()
+            ->setIsStrongMode();
+
+        $collection->setProduct($this);
+
+        return $collection;
+    }
+
+    /**
+     * Retrieve array of giveaway products
+     *
+     * @return Mage_Catalog_Model_Product[]
+     */
+    public function getGiveawayProducts()
+    {
+        if (!$this->hasGiveawayProducts())
+        {
+            $products = [];
+
+            $collection = $this->getGiveawayProductCollection();
+
+            foreach ($collection as $product)
+            {
+                $products[] = $product;
+            }
+
+            $this->setGiveawayProducts($products);
+        }
+
+        return $this->getData('giveaway_products');
+    }
+
+   /**
+     * Retrieve giveaway products identifiers
+     *
+     * @return array
+     */
+    public function getGiveawayProductIds()
+    {
+        if (!$this->hasGiveawayProductIds())
+        {
+            $ids = [];
+
+            foreach ($this->getGiveawayProducts() as $product)
+            {
+                $ids[] = $product->getId();
+            }
+
+            $this->setGiveawayProductIds($ids);
+        }
+
+        return $this->getData('giveaway_product_ids');
+    }
+
+    /**
      * Retrieve collection raw material link
      *
      * @return Mage_Catalog_Model_Resource_Product_Link_Collection

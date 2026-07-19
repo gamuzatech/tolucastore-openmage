@@ -93,6 +93,25 @@
         </reference>
     </adminhtml_catalog_product_action_attribute_edit>
 
+    <adminhtml_catalog_product_giveawaygrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="basic/adminhtml_catalog_product_edit_tab_giveaway" name="catalog.product.edit.tab.giveaway"/>
+            <block type="adminhtml/widget_grid_serializer" name="giveaway_grid_serializer">
+                <reference name="giveaway_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>catalog.product.edit.tab.giveaway</grid_block_name>
+                        <data_callback>getSelectedGiveawayProducts</data_callback>
+                        <hidden_input_name>links[giveaway]</hidden_input_name>
+                        <reload_param_name>products_giveaway</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>qty</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_catalog_product_giveawaygrid>
+
     <adminhtml_catalog_product_materialgrid>
         <block type="core/text_list" name="root" output="toHtml">
             <block type="basic/adminhtml_catalog_product_edit_tab_material" name="catalog.product.edit.tab.material"/>

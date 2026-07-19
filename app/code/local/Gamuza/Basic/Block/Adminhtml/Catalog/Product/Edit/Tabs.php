@@ -38,6 +38,17 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
             }
 
             if (!in_array ($product->getTypeId (), array(
+                Gamuza_Basic_Model_Catalog_Product_Type_Giveaway::TYPE_GIVEAWAY
+            )))
+            {
+                $this->addTabAfter('giveaway', array(
+                    'label' => Mage::helper('catalog')->__('Giveaway'),
+                    'url'   => $this->getUrl('*/*/giveawayGrid', ['_current' => true]),
+                    'class' => 'ajax',
+                ), 'categories');
+            }
+
+            if (!in_array ($product->getTypeId (), array(
                 Gamuza_Basic_Model_Catalog_Product_Type_Material::TYPE_MATERIAL
             )))
             {
