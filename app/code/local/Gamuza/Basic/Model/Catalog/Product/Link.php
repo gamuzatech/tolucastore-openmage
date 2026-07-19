@@ -10,7 +10,18 @@
  */
 class Gamuza_Basic_Model_Catalog_Product_Link extends Mage_Catalog_Model_Product_Link
 {
+    public const LINK_TYPE_GIVEAWAY = 100;
     public const LINK_TYPE_MATERIAL = 101;
+
+    /**
+     * @return $this
+     */
+    public function useGiveawayLinks()
+    {
+        $this->setLinkTypeId(self::LINK_TYPE_GIVEAWAY);
+
+        return $this;
+    }
 
     /**
      * @return $this
@@ -31,6 +42,13 @@ class Gamuza_Basic_Model_Catalog_Product_Link extends Mage_Catalog_Model_Product
     public function saveProductRelations($product)
     {
         $result = parent::saveProductRelations($product);
+
+        $data = $product->getGiveawayLinkData();
+
+        if (!is_null($data))
+        {
+            $this->_getResource()->saveProductLinks($product, $data, self::LINK_TYPE_GIVEAWAY);
+        }
 
         $data = $product->getMaterialLinkData();
 

@@ -9,6 +9,29 @@ $installer = new Mage_Catalog_Model_Resource_Setup ('basic_setup');
 $installer->startSetup ();
 
 /**
+ * Create product links structure (giveaway)
+ */
+$connection = $installer->getConnection ();
+
+$productLinkTypeTable = $installer->getTable('catalog/product_link_type');
+$productLinkTypeData  = array(
+    'link_type_id' => Gamuza_Basic_Model_Catalog_Product_Link::LINK_TYPE_GIVEAWAY,
+    'code'         => Gamuza_Basic_Model_Catalog_Product_Type_Giveaway::TYPE_GIVEAWAY,
+);
+
+$connection->insertOnDuplicate ($productLinkTypeTable, $productLinkTypeData, array_keys ($productLinkTypeData));
+
+$productLinkAttributeTable = $installer->getTable('catalog/product_link_attribute');
+$productLinkAttributeData  = array(
+    'product_link_attribute_id'   => Gamuza_Basic_Model_Catalog_Product_Link::LINK_TYPE_GIVEAWAY,
+    'link_type_id'                => Gamuza_Basic_Model_Catalog_Product_Link::LINK_TYPE_GIVEAWAY,
+    'product_link_attribute_code' => 'qty',
+    'data_type'                   => 'int',
+);
+
+$connection->insertOnDuplicate ($productLinkAttributeTable, $productLinkAttributeData, array_keys ($productLinkAttributeData));
+
+/**
  * Create product links structure (material)
 */
 $connection = $installer->getConnection ();
