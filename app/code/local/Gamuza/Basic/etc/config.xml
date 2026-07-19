@@ -239,6 +239,7 @@
             </newsletter>
             <sales>
                 <rewrite>
+                    <quote>Gamuza_Basic_Model_Sales_Quote</quote>
                     <quote_address_total_shipping>Gamuza_Basic_Model_Sales_Quote_Address_Total_Shipping</quote_address_total_shipping>
                     <order>Gamuza_Basic_Model_Sales_Order</order>
                     <quote_address>Gamuza_Basic_Model_Sales_Quote_Address</quote_address>
@@ -544,14 +545,14 @@
                     </gamuza_basic_sales_quote_item_qty_set_after>
                 </observers>
             </sales_quote_item_qty_set_after>
-            <sales_quote_remove_item>
+            <sales_quote_remove_item_before>
                 <observers>
-                    <gamuza_basic_sales_quote_remove_item>
+                    <gamuza_basic_sales_quote_remove_item_before>
                         <class>basic/observer</class>
-                        <method>salesQuoteRemoveItem</method>
-                    </gamuza_basic_sales_quote_remove_item>
+                        <method>salesQuoteRemoveItemBefore</method>
+                    </gamuza_basic_sales_quote_remove_item_before>
                 </observers>
-            </sales_quote_remove_item>
+            </sales_quote_remove_item_before>
             <sales_quote_collect_totals_after>
                 <observers>
                     <gamuza_basic_sales_quote_collect_totals_after>
@@ -660,6 +661,14 @@
                         <can_use_qty_decimals>0</can_use_qty_decimals>
                         <index_priority>100</index_priority>
                     </material>
+                    <rodizio translate="label" module="basic">
+                        <label>Rodizio Product</label>
+                        <model>basic/catalog_product_type_rodizio</model>
+                        <composite>0</composite>
+                        <is_qty>0</is_qty>
+                        <can_use_qty_decimals>0</can_use_qty_decimals>
+                        <index_priority>100</index_priority>
+                    </rodizio>
                 </type>
             </product>
         </catalog>

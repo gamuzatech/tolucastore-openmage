@@ -12,6 +12,7 @@ class Gamuza_Basic_Model_Catalog_Product_Link extends Mage_Catalog_Model_Product
 {
     public const LINK_TYPE_GIVEAWAY = 100;
     public const LINK_TYPE_MATERIAL = 101;
+    public const LINK_TYPE_RODIZIO  = 102;
 
     /**
      * @return $this
@@ -29,6 +30,16 @@ class Gamuza_Basic_Model_Catalog_Product_Link extends Mage_Catalog_Model_Product
     public function useMaterialLinks()
     {
         $this->setLinkTypeId(self::LINK_TYPE_MATERIAL);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function useRodizioLinks()
+    {
+        $this->setLinkTypeId(self::LINK_TYPE_RODIZIO);
 
         return $this;
     }
@@ -55,6 +66,13 @@ class Gamuza_Basic_Model_Catalog_Product_Link extends Mage_Catalog_Model_Product
         if (!is_null($data))
         {
             $this->_getResource()->saveProductLinks($product, $data, self::LINK_TYPE_MATERIAL);
+        }
+
+        $data = $product->getRodizioLinkData();
+
+        if (!is_null($data))
+        {
+            $this->_getResource()->saveProductLinks($product, $data, self::LINK_TYPE_RODIZIO);
         }
 
         return $result;

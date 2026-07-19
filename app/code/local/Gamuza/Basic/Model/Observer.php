@@ -622,6 +622,20 @@ CONTENT;
                     $giveawayItem->setQty ($giveawayLink->getQty ());
                 }
             }
+
+            $rodizioLinkCollection = $product->getRodizioLinkCollection ();
+
+            foreach ($rodizioLinkCollection as $rodizioLink)
+            {
+                $rodizioProduct = Mage::getModel ('catalog/product')
+                    ->load ($rodizioLink->getLinkedProductId ());
+
+                if ($rodizioProduct && $rodizioProduct->getId ())
+                {
+                    $rodizioItem = $quote->addProduct ($rodizioProduct);
+                    $rodizioItem->setQty ($rodizioLink->getQty ());
+                }
+            }
         }
     }
 
@@ -789,12 +803,30 @@ CONTENT;
         return $this;
     }
 
-    public function salesQuoteRemoveItem (Varien_Event_Observer $observer)
+    public function salesQuoteRemoveItemBefore (Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent ();
         $quoteItem = $event->getQuoteItem ();
         $product = $quoteItem->getProduct ();
         $quote   = $quoteItem->getQuote ();
+
+        if (in_array ($product->getTypeId (), array(
+            Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO,
+        )))
+        {
+            foreach ($quote->getAllItems () as $item)
+            {
+                $rodizioLinkCollection = $item->getProduct ()->getRodizioLinkCollection ();
+
+                foreach ($rodizioLinkCollection as $rodizioLink)
+                {
+                    if ($product->getId () == $rodizioLink->getLinkedProductId ())
+                    {
+                        throw new Mage_Core_Exception (Mage::helper ('checkout')->__('Cannot remove the item.'));
+                    }
+                }
+            }
+        }
 
         $giveawayLinkCollection = $product->getGiveawayLinkCollection ();
 
