@@ -10,6 +10,8 @@
  */
 class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
 {
+    public const NFE_CUSTOMER_IE_NONE = Gamuza_Brazil_Helper_Data::NFE_CUSTOMER_IE_NONE;
+
     /**
      * Attributes map array per entity type
      *
@@ -182,6 +184,7 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
                 'customer_ie_icms' => intval ($nfe->getCustomerIeIcms ()),
                 'observation'     => $nfe->getObservation (),
                 'fisco'           => $nfe->getFisco (),
+                'is_printed'      => boolval ($nfe->getIsPrinted ()),
                 'created_at'      => strval ($nfe->getCreatedAt ()),
                 'updated_at'      => $nfe->getUpdatedAt (),
                 'signed_at'       => $nfe->getSignedAt (),

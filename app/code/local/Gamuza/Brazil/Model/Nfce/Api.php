@@ -471,7 +471,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function create ($orderIncrementId, $orderProtectCode, $data, $updateIBPT = true)
+    public function create ($orderIncrementId, $orderProtectCode, $data)
     {
         if (empty ($orderIncrementId))
         {
@@ -490,7 +490,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
 
-        $order = $this->_initIBPT ($order, $updateIBPT);
+        $order = $this->_initIBPT ($order);
 
         $nfce = $this->_initNFCe ($order, false);
 
@@ -1184,7 +1184,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         return $nfce;
     }
 
-    protected function _initIBPT (Mage_Sales_Model_Order $order, $updateIBPT = true)
+    protected function _initIBPT (Mage_Sales_Model_Order $order)
     {
         if (!$order || !$order->getId ())
         {
@@ -1233,20 +1233,14 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             {
                 $value = $item->getData ($field);
 
-                if ($updateIBPT)
-                {
-                    $value = $item->getProduct ()->getData ($field);
-                }
+                $value = $item->getProduct ()->getData ($field);
 
                 if (empty ($value))
                 {
                     $this->_faultOrderItem ($item, $field);
                 }
 
-                if ($updateIBPT)
-                {
-                    $item->setData ($field, $value)->save ();
-                }
+                $item->setData ($field, $value)->save ();
             }
 
             $ibpt = Mage::getModel ('brazil/ibpt')->load ($item->getBrazilNcm (), 'code');
