@@ -616,12 +616,9 @@ CONTENT;
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_GTIN, $productGTIN);
         $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_PRINTER_ID, $productPrinterId);
 
-        $quoteItemIsPrinted = $quoteItem->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
+        $quoteItemIsPrinted = !strcmp ($productPrinting, self::PRINTING_VALUE_NO) ? '1' : null;
 
-        if (strcmp ($quoteItemIsPrinted, '1') != 0 && !strcmp ($productPrinting, self::PRINTING_VALUE_NO))
-        {
-            $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, '1');
-        }
+        $quoteItem->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, $quoteItemIsPrinted);
     }
 
     public function salesQuoteItemQtySetAfter ($observer)
