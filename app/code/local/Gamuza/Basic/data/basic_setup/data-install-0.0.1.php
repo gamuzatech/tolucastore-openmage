@@ -66,7 +66,7 @@ $applyToAttributes = array(
 
 foreach ($applyToAttributes as $attributeCode)
 {
-    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,configurable,virtual,bundle,downloadable,service,giveaway,material');
+    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,configurable,virtual,bundle,downloadable,service,giveaway,material,rodizio');
 }
 
 $applyToAttributes = array(
@@ -85,7 +85,7 @@ $applyToAttributes = array(
 
 foreach ($applyToAttributes as $attributeCode)
 {
-    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,bundle,giveaway,material');
+    $installer->updateAttribute ('catalog_product', $attributeCode, 'apply_to', 'simple,bundle,giveaway,material,rodizio');
 }
 
 $rootCategoryId = Mage::getModel ('core/store')

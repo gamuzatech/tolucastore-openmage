@@ -198,5 +198,85 @@ class Gamuza_Basic_Model_Catalog_Product extends Mage_Catalog_Model_Product
 
         return $this->getData('material_product_ids');
     }
+
+    /**
+     * Retrieve collection rodizio link
+     *
+     * @return Mage_Catalog_Model_Resource_Product_Link_Collection
+     */
+    public function getRodizioLinkCollection()
+    {
+        $collection = $this->getLinkInstance()->useRodizioLinks()
+            ->getLinkCollection();
+
+        $collection->setProduct($this);
+        $collection->addLinkTypeIdFilter();
+        $collection->addProductIdFilter();
+        $collection->joinAttributes();
+
+        return $collection;
+    }
+
+    /**
+     * Retrieve collection rodizio product
+     *
+     * @return Mage_Catalog_Model_Resource_Product_Link_Product_Collection
+     */
+    public function getRodizioProductCollection()
+    {
+        $collection = $this->getLinkInstance()->useRodizioLinks()
+            ->getProductCollection()
+            ->setIsStrongMode();
+
+        $collection->setProduct($this);
+
+        return $collection;
+    }
+
+    /**
+     * Retrieve array of rodizio products
+     *
+     * @return Mage_Catalog_Model_Product[]
+     */
+    public function getRodizioProducts()
+    {
+        if (!$this->hasRodizioProducts())
+        {
+            $products = [];
+
+            $collection = $this->getRodizioProductCollection();
+
+            foreach ($collection as $product)
+            {
+                $products[] = $product;
+            }
+
+            $this->setRodizioProducts($products);
+        }
+
+        return $this->getData('rodizio_products');
+    }
+
+   /**
+     * Retrieve rodizio products identifiers
+     *
+     * @return array
+     */
+    public function getRodizioProductIds()
+    {
+        if (!$this->hasRodizioProductIds())
+        {
+            $ids = [];
+
+            foreach ($this->getRodizioProducts() as $product)
+            {
+                $ids[] = $product->getId();
+            }
+
+            $this->setRodizioProductIds($ids);
+        }
+
+        return $this->getData('rodizio_product_ids');
+    }
 }
 

@@ -131,6 +131,25 @@
         </block>
     </adminhtml_catalog_product_materialgrid>
 
+    <adminhtml_catalog_product_rodiziogrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="basic/adminhtml_catalog_product_edit_tab_rodizio" name="catalog.product.edit.tab.rodizio"/>
+            <block type="adminhtml/widget_grid_serializer" name="rodizio_grid_serializer">
+                <reference name="rodizio_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>catalog.product.edit.tab.rodizio</grid_block_name>
+                        <data_callback>getSelectedRodizioProducts</data_callback>
+                        <hidden_input_name>links[rodizio]</hidden_input_name>
+                        <reload_param_name>products_rodizio</reload_param_name>
+                    </action>
+                    <action method="addColumnInputName">
+                        <input_name>qty</input_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </adminhtml_catalog_product_rodiziogrid>
+
     <adminhtml_catalog_product_orders>
         <block type="core/text_list" name="root" output="toHtml">
             <block type="basic/adminhtml_catalog_product_edit_tab_orders" name="catalog.product.edit.tab.orders"/>
