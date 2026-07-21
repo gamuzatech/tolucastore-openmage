@@ -643,6 +643,39 @@ CONTENT;
                     }
                 }
             }
+
+            $rodizioLinkCollection = $product->getRodizioLinkCollection ();
+
+            foreach ($rodizioLinkCollection as $rodizioLink)
+            {
+                $rodizioProduct = Mage::getModel ('catalog/product')
+                    ->load ($rodizioLink->getLinkedProductId ());
+
+                if ($rodizioProduct && $rodizioProduct->getId ())
+                {
+                    try
+                    {
+                        $rodizioItem = $quote->addProduct ($rodizioProduct);
+
+                        if (is_string ($rodizioItem))
+                        {
+                            Mage::throwException ($rodizioItem);
+                        }
+                    }
+                    catch (Mage_Core_Exception $e)
+                    {
+                        $errors [] = $e->getMessage ();
+                    }
+
+                    foreach ($quote->getAllItems () as $rodizioItem)
+                    {
+                        if ($rodizioItem->getProductId () == $rodizioLink->getLinkedProductId ())
+                        {
+                            $rodizioItem->setQty ($rodizioLink->getQty ());
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -823,6 +856,24 @@ CONTENT;
                 if ($item->getProductId () == $giveawayLink->getLinkedProductId ())
                 {
                     $quote->removeItem ($item->getId ());
+                }
+            }
+        }
+
+        if (in_array ($product->getTypeId (), array(
+            Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO,
+        )))
+        {
+            foreach ($quote->getAllItems () as $item)
+            {
+                $rodizioLinkCollection = $item->getProduct ()->getRodizioLinkCollection ();
+
+                foreach ($rodizioLinkCollection as $rodizioLink)
+                {
+                    if ($product->getId () == $rodizioLink->getLinkedProductId ())
+                    {
+                        throw new Mage_Core_Exception (Mage::helper ('checkout')->__('Cannot remove the item.'));
+                    }
                 }
             }
         }

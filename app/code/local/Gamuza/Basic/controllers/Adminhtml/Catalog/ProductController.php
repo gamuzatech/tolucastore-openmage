@@ -508,6 +508,18 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
     }
 
     /**
+     * Get rodizio fieldset block
+     *
+     * @throws Mage_Core_Exception
+     */
+    public function rodizioGridAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    /**
      * Get orders fieldset block
      *
      * @throws Mage_Core_Exception
@@ -552,7 +564,7 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $product = parent::_initProductSave();
 
         /**
-         * Init product links data (giveaway,material)
+         * Init product links data (giveaway,material,rodizio)
          */
         $links = $this->getRequest()->getPost('links');
 
@@ -564,6 +576,11 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         if (isset($links['material']))
         {
             $product->setMaterialLinkData(Mage::helper('adminhtml/js')->decodeGridSerializedInput($links['material']));
+        }
+
+        if (isset($links['rodizio']))
+        {
+            $product->setRodizioLinkData(Mage::helper('adminhtml/js')->decodeGridSerializedInput($links['rodizio']));
         }
 
         return $product;
