@@ -58,6 +58,17 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Edit_Tabs
                     'class' => 'ajax',
                 ), 'categories');
             }
+
+            if (!in_array ($product->getTypeId (), array(
+                Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO
+            )))
+            {
+                $this->addTabAfter('rodizio', array(
+                    'label' => Mage::helper('catalog')->__('Rodizio'),
+                    'url'   => $this->getUrl('*/*/rodizioGrid', ['_current' => true]),
+                    'class' => 'ajax',
+                ), 'categories');
+            }
         }
 
         return $result;

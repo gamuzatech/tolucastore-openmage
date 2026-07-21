@@ -54,5 +54,28 @@ $productLinkAttributeData  = array(
 
 $connection->insertOnDuplicate ($productLinkAttributeTable, $productLinkAttributeData, array_keys ($productLinkAttributeData));
 
+/**
+ * Create product links structure (rodizio)
+ */
+$connection = $installer->getConnection ();
+
+$productLinkTypeTable = $installer->getTable('catalog/product_link_type');
+$productLinkTypeData  = array(
+    'link_type_id' => Gamuza_Basic_Model_Catalog_Product_Link::LINK_TYPE_RODIZIO,
+    'code'         => Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO,
+);
+
+$connection->insertOnDuplicate ($productLinkTypeTable, $productLinkTypeData, array_keys ($productLinkTypeData));
+
+$productLinkAttributeTable = $installer->getTable('catalog/product_link_attribute');
+$productLinkAttributeData  = array(
+    'product_link_attribute_id'   => Gamuza_Basic_Model_Catalog_Product_Link::LINK_TYPE_RODIZIO,
+    'link_type_id'                => Gamuza_Basic_Model_Catalog_Product_Link::LINK_TYPE_RODIZIO,
+    'product_link_attribute_code' => 'qty',
+    'data_type'                   => 'int',
+);
+
+$connection->insertOnDuplicate ($productLinkAttributeTable, $productLinkAttributeData, array_keys ($productLinkAttributeData));
+
 $installer->endSetup ();
 
