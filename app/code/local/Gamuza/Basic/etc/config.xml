@@ -545,6 +545,14 @@
                     </gamuza_basic_sales_quote_item_qty_set_after>
                 </observers>
             </sales_quote_item_qty_set_after>
+            <sales_quote_add_item_before>
+                <observers>
+                    <gamuza_basic_sales_quote_add_item_before>
+                        <class>basic/observer</class>
+                        <method>salesQuoteAddItemBefore</method>
+                    </gamuza_basic_sales_quote_add_item_before>
+                </observers>
+            </sales_quote_add_item_before>
             <sales_quote_remove_item_before>
                 <observers>
                     <gamuza_basic_sales_quote_remove_item_before>
