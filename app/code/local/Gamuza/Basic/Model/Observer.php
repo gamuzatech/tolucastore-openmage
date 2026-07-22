@@ -677,6 +677,11 @@ CONTENT;
                 }
             }
         }
+
+        if (count ($errors) > 0)
+        {
+            Mage::log (implode (PHP_EOL, $errors), null, Gamuza_Basic_Helper_Data::LOG);
+        }
     }
 
     public function salesQuoteItemSetProduct (Varien_Event_Observer $observer)
@@ -838,6 +843,39 @@ CONTENT;
         }
 
         return $this;
+    }
+
+    public function salesQuoteAddItemBefore (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $quoteItem = $event->getQuoteItem ();
+        $product = $quoteItem->getProduct ();
+        $quote   = $quoteItem->getQuote ();
+
+        if (in_array ($product->getTypeId (), array(
+            Gamuza_Basic_Model_Catalog_Product_Type_Giveaway::TYPE_GIVEAWAY,
+        )))
+        {
+            $giveawayQty = 0;
+
+            foreach ($quote->getAllItems () as $item)
+            {
+                $giveawayLinkCollection = $item->getProduct ()->getGiveawayLinkCollection ();
+
+                foreach ($giveawayLinkCollection as $giveawayLink)
+                {
+                    if ($product->getId () == $giveawayLink->getLinkedProductId ())
+                    {
+                        $giveawayQty ++;
+                    }
+                }
+            }
+
+            if ($giveawayQty == 0)
+            {
+                throw new Mage_Core_Exception (Mage::helper ('checkout')->__('Cannot add the item to shopping cart.'));
+            }
+        }
     }
 
     public function salesQuoteRemoveItemBefore (Varien_Event_Observer $observer)
