@@ -578,6 +578,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'special_from_date'       => $product->getSpecialFromDate(),
                 'special_to_date'         => $product->getSpecialToDate(),
                 'special_price'           => $product->getSpecialPrice(),
+                'giveaway_product_ids'    => $product->getGiveawayProductIds (),
                 'has_error'               => boolval ($item->getHasError ()),
                 'message'                 => $item->getMessage (),
                 // Basic stock data
