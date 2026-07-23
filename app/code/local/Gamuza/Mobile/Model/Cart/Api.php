@@ -420,11 +420,20 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
 
         $quote = $this->_getCustomerQuote ($code, $store, $dob, $note);
 
+        $resource = Mage::getSingleton ('core/resource');
+        $read  = $resource->getConnection ('core_read');
+        $table = $resource->getTableName ('sales/quote_item');
+
         $result = null;
 
         foreach ($quote->getAllVisibleItems () as $item)
         {
-            if ($item->getIsPrinted ())
+            $itemIsPrinted = $read->fetchOne(
+                " SELECT is_printed FROM {$table} WHERE item_id = ? ",
+                $item->getId ()
+            );
+
+            if (boolval ($itemIsPrinted))
             {
                 continue; // skip
             }
