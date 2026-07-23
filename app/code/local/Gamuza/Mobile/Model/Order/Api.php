@@ -819,9 +819,18 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
 
         $result = null;
 
+        $resource = Mage::getSingleton ('core/resource');
+        $read  = $resource->getConnection ('core_read');
+        $table = $resource->getTableName ('sales/order_item');
+
         foreach ($order->getAllVisibleItems () as $item)
         {
-            if ($item->getIsPrinted ())
+            $itemIsPrinted = $read->fetchOne(
+                " SELECT is_printed FROM {$table} WHERE item_id = ? ",
+                $item->getId ()
+            );
+
+            if (boolval ($itemIsPrinted))
             {
                 continue; // skip
             }
