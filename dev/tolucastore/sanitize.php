@@ -3,8 +3,8 @@
 // Change current directory to the directory of current script
 chdir(dirname(__FILE__));
 
-require '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php';
-require '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Mage.php';
+require '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'bootstrap.php';
+require '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Mage.php';
 
 if (!Mage::isInstalled())
 {
@@ -49,9 +49,37 @@ try
 
     $coreConfig->deleteConfig ('system.accounting_on_login', 'desktop', -999999);
 
+    $coreConfig->saveConfig ('balance.device_config', 'none', 'desktop', -999999);
+
+    $coreConfig->saveConfig ('mega_cmd.email',        'general@toluca.com.br',  'desktop', -999999);
+    $coreConfig->saveConfig ('mega_cmd.password',     '1234567890',             'desktop', -999999);
+    $coreConfig->saveConfig ('mega_cmd.recovery_key', '1234567890123456789012', 'desktop', -999999);
+
     $coreConfig->saveConfig ('system.cron_username', getenv ('USER'), 'desktop', -999999);
 
     $coreConfig->saveConfig ('brazil/setting/environment_id', '2', 'default', 0);
+    $coreConfig->saveConfig ('pdv/cashier/validate_remote_ip', '0', 'default', 0);
+
+    $cacheTypes = Mage::helper('core')->getCacheTypes();
+
+    foreach ($cacheTypes as $type => $value)
+    {
+        $cacheTypes[$type] = 0;
+
+        Mage::app()->getCacheInstance()->cleanType($type);
+
+        Mage::dispatchEvent('adminhtml_cache_refresh_type', array('type' => $type));
+    }
+
+    Mage::app()->saveUseCache($cacheTypes);
+
+    Mage::app()->cleanCache();
+
+    Mage::dispatchEvent('adminhtml_cache_flush_system');
+
+    Mage::app()->getCacheInstance()->flush();
+
+    Mage::dispatchEvent('adminhtml_cache_flush_all');
 }
 catch (Exception $e)
 {
