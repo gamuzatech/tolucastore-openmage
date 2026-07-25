@@ -858,6 +858,33 @@
         </payment>
         <sales>
             <groups>
+                <totals_sort translate="label">
+                    <fields>
+                        <subtotal translate="label">
+                            <sort_order>10</sort_order>
+                        </subtotal>
+                        <discount translate="label">
+                            <sort_order>20</sort_order>
+                        </discount>
+                        <shipping translate="label">
+                            <sort_order>30</sort_order>
+                        </shipping>
+                        <tax translate="label">
+                            <sort_order>40</sort_order>
+                        </tax>
+                        <waiter translate="label">
+                            <label>Waiter Amount</label>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>required-entry validate-digits validate-zero-or-greater</validate>
+                        </waiter>
+                        <grand_total translate="label">
+                            <sort_order>100</sort_order>
+                        </grand_total>
+                    </fields>
+                </totals_sort>
                 <minimum_age translate="label">
                     <label>Minimum Order Age</label>
                     <sort_order>45</sort_order>
@@ -900,6 +927,32 @@
                         </error_message>
                     </fields>
                 </minimum_age>
+                <waiter_options translate="label">
+                    <label>Waiter Options</label>
+                    <sort_order>200</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <active translate="label">
+                            <label>Enable</label>
+                            <sort_order>0</sort_order>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <amount translate="label comment">
+                            <label>Amount</label>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <validate>validate-number</validate>
+                        </amount>
+                    </fields>
+                </waiter_options>
             </groups>
         </sales>
         <admin>

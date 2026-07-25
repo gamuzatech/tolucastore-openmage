@@ -31,6 +31,19 @@ foreach ($entities as $entity)
 }
 
 $options = array(
+    'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+    'length'   => '12,4',
+    'nullable' => false,
+    'visible'  => true,
+    'required' => false,
+);
+
+foreach ($entities as $entity)
+{
+    $installer->addAttribute ($entity, Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_WAITER_AMOUNT, $options);
+}
+
+$options = array(
     'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
     'nullable' => true,
     'visible'  => true,

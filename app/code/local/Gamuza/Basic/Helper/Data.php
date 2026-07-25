@@ -60,6 +60,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_IS_WEIGHTED = 'is_weighted';
 
     const ORDER_ATTRIBUTE_CUSTOMER_CELLPHONE = 'customer_cellphone';
+    const ORDER_ATTRIBUTE_WAITER_AMOUNT = 'waiter_amount';
     const ORDER_ATTRIBUTE_WAITER_NAME = 'waiter_name';
     const ORDER_ATTRIBUTE_PRINTER_ID = 'printer_id';
 
@@ -159,6 +160,9 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_SALES_MINIMUM_AGE_AMOUNT        = 'sales/minimum_age/amount';
     const XML_PATH_SALES_MINIMUM_AGE_DESCRIPTION   = 'sales/minimum_age/description';
     const XML_PATH_SALES_MINIMUM_AGE_ERROR_MESSAGE = 'sales/minimum_age/error_message';
+
+    const XML_PATH_SALES_WAITER_OPTIONS_ACTIVE = 'sales/waiter_options/active';
+    const XML_PATH_SALES_WAITER_OPTIONS_AMOUNT = 'sales/waiter_options/amount';
 
     const XML_PATH_ADMIN_CUSTOMER_GRID_NAME_NOBR = 'admin/customer/grid_name_nobr';
     const XML_PATH_ADMIN_PRODUCT_GRID_NAME_NOBR  = 'admin/product/grid_name_nobr';

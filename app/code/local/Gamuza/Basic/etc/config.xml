@@ -56,6 +56,7 @@
                     <sales_order_grid>Gamuza_Basic_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
                     <sales_order_create_customer_grid>Gamuza_Basic_Block_Adminhtml_Sales_Order_Create_Customer_Grid</sales_order_create_customer_grid>
                     <sales_order_creditmemo_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_Creditmemo_View</sales_order_creditmemo_view>
+                    <sales_order_totals>Gamuza_Basic_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
                     <sales_order_invoice_totals>Gamuza_Basic_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
                     <sales_order_invoice_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_Invoice_View</sales_order_invoice_view>
                     <sales_order_shipment_view>Gamuza_Basic_Block_Adminhtml_Sales_Order_Shipment_View</sales_order_shipment_view>
@@ -293,6 +294,9 @@
                 <customer_cellphone>
                     <to_order>*</to_order>
                 </customer_cellphone>
+                <waiter_amount>
+                    <to_order>*</to_order>
+                </waiter_amount>
                 <waiter_name>
                     <to_order>*</to_order>
                 </waiter_name>
@@ -356,6 +360,9 @@
                 <customer_cellphone>
                     <to_quote>*</to_quote>
                 </customer_cellphone>
+                <waiter_amount>
+                    <to_quote>*</to_quote>
+                </waiter_amount>
                 <waiter_name>
                     <to_quote>*</to_quote>
                 </waiter_name>
@@ -692,6 +699,13 @@
                         <weekday_ids />
                     </product_attributes>
                 </item>
+                <totals>
+                    <waiter>
+                        <class>basic/quote_address_total_waiter</class>
+                        <after>subtotal</after>
+                        <before>grand_total</before>
+                    </waiter>
+                </totals>
             </quote>
             <order>
                 <item>
@@ -1045,6 +1059,14 @@
             </general>
         </wishlist>
         <sales>
+            <totals_sort>
+                <subtotal>10</subtotal>
+                <discount>20</discount>
+                <shipping>30</shipping>
+                <tax>40</tax>
+                <waiter>50</waiter>
+                <grand_total>100</grand_total>
+            </totals_sort>
             <minimum_order>
                 <active>1</active>
                 <amount>0</amount>
@@ -1057,6 +1079,10 @@
                 <allow_order>0</allow_order>
                 <allow_items>0</allow_items>
             </gift_options>
+            <waiter_options>
+                <active>0</active>
+                <amount>0</amount>
+            </waiter_options>
         </sales>
         <tax>
             <defaults>

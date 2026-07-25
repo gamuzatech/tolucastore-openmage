@@ -201,6 +201,8 @@
 "First Due Days","Primeiro Vencimento"
 "Fee Percentage","Porcentagem de Juros"
 "Fee Amount","Valor de Juros"
+"Waiter Amount","Gorjeta do Garçom"
+"Waiter Options","Opções do Garçom"
 "%d Installments","%s Parcelas"
 "%d Days","%d Dias"
 "Installments qty are not allowed for this payment method.","Qtde de parcelas não são permitidas para este tipo de pagamento."
