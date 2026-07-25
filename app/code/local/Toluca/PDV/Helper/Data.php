@@ -131,6 +131,11 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
         return intval ($_SERVER ['HTTP_X_PRINTER_ID']);
     }
 
+    public function getPrinterName ()
+    {
+        return $_SERVER ['HTTP_X_PRINTER_NAME'];
+    }
+
     public function getStoreConfig ($path)
     {
         $collection = Mage::getModel ('core/config_data')->getCollection ()

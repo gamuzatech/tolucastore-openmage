@@ -38,6 +38,7 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
                 'main_table.order_id = sfo.entity_id',
                 array(
 					'increment_id',
+					'ordered_at' => 'sfo.created_at',
 				)
             )
 			->joinLeft(
@@ -181,11 +182,21 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 		    'index'   => 'printer_id',
 		    'type'    => 'number',
 		));
+		$this->addColumn ('printer_name', array(
+		    'header'  => Mage::helper ('pdv')->__('Printer'),
+		    'index'   => 'printer_name',
+		));
 		$this->addColumn ('job_id', array(
 			'header' => Mage::helper ('pdv')->__('Job ID'),
 			'align'   => 'right',
 			'index'  => 'job_id',
 			'type'    => 'number',
+		));
+		$this->addColumn ('ordered_at', array(
+			'header' => Mage::helper ('pdv')->__('Ordered At'),
+			'index'  => 'ordered_at',
+            'type'   => 'datetime',
+			'filter_index' => 'sfo.created_at',
 		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('pdv')->__('Created At'),

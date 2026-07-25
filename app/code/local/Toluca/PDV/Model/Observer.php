@@ -410,6 +410,7 @@ class Toluca_PDV_Model_Observer
         $remoteIp = Mage::helper ('pdv')->getRemoteIp ();
         $userAgent = Mage::helper ('pdv')->getUserAgent ();
         $printerId = Mage::helper ('pdv')->getPrinterId ();
+        $printerName = Mage::helper ('pdv')->getPrinterName ();
 
         $print = Mage::getModel ('pdv/print')
             ->setTypeId ($type)
@@ -423,6 +424,7 @@ class Toluca_PDV_Model_Observer
             ->setRemoteIp ($remoteIp)
             ->setUserAgent ($userAgent)
             ->setPrinterId ($printerId)
+            ->setPrinterName ($printerName)
             ->setCreatedAt (date ('c'))
             ->save ()
         ;
@@ -444,10 +446,12 @@ class Toluca_PDV_Model_Observer
         if ($item && $item->getId () > 0)
         {
             $printerId = intval ($item->getPrinterId ());
+            // $printerName = $item->getPrinterName ();
 
             $print->setItemId ($item->getId ())
                 ->setProductId ($item->getProductId ())
                 ->setPrinterId ($printerId)
+                // ->setPrinterName ($printerName)
                 ->setUpdatedAt (date ('c'))
             ;
         }
