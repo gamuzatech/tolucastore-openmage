@@ -17,7 +17,7 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
     /**
      * Code Area + Phone Number
      */
-    const CELLPHONE_LENGTH_MINIMUM = 10;
+    const CELLPHONE_LENGTH_MINIMUM = 7;
 
     const CELLPHONE_DEFAULT_NUMBER = '000000000';
 

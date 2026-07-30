@@ -644,6 +644,7 @@ CONTENT;
                 }
             }
 
+            /*
             $rodizioLinkCollection = $product->getRodizioLinkCollection ();
 
             foreach ($rodizioLinkCollection as $rodizioLink)
@@ -676,6 +677,7 @@ CONTENT;
                     }
                 }
             }
+            */
         }
 
         if (count ($errors) > 0)
@@ -877,6 +879,31 @@ CONTENT;
             if ($giveawayQty == 0)
             {
                 throw new Mage_Core_Exception (Mage::helper ('checkout')->__('Cannot add the item to shopping cart.'));
+            }
+        }
+
+        if (!in_array ($product->getTypeId (), array(
+            Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO,
+        )))
+        {
+            $rodizioLinkCollection = $product->getRodizioLinkCollection ();
+
+            foreach ($rodizioLinkCollection as $rodizioLink)
+            {
+                $rodizioQty = 0;
+
+                foreach ($quote->getAllItems () as $item)
+                {
+                    if ($item->getProductId () == $rodizioLink->getLinkedProductId ())
+                    {
+                        $rodizioQty ++;
+                    }
+                }
+
+                if ($rodizioQty == 0 && boolval ($quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_PDV)))
+                {
+                    throw new Mage_Core_Exception (Mage::helper ('checkout')->__('Cannot add the item to shopping cart.'));
+                }
             }
         }
     }
