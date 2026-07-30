@@ -540,7 +540,9 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                 if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Basic')
                     && in_array ($item->getProduct ()->getTypeId (), array(
                         Gamuza_Basic_Model_Catalog_Product_Type_Giveaway::TYPE_GIVEAWAY,
+                        /*
                         Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO,
+                        */
                 )))
                 {
                     continue;
@@ -576,7 +578,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         }
         catch (Exception $e)
         {
-            // nothing
+            $this->_fault ('create_quote_fault', $e->getMessage ());
         }
 
         return $result;
