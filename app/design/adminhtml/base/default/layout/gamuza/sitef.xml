@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Sitef
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<layout version="0.1.0">
+    <admin_sitef_adminhtml_pinpad_transaction_index>
+        <reference name="content">
+            <block type="sitef/adminhtml_pinpad_transaction" name="pinpad_transaction" />
+        </reference>
+    </admin_sitef_adminhtml_pinpad_transaction_index>
+</layout>
+
