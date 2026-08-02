@@ -160,6 +160,8 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
             'pagcripto'    => null,
             'picpay'       => null,
             'openpix'      => null,
+            'sitef_pinpad' => null,
+            'brazil_pix'   => null,
             'pagseguropro' => null,
         );
 
@@ -220,6 +222,21 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                     'status' => $transaction->getStatus (),
                     'url'    => $transaction->getPaymentLinkUrl (),
                     'qrcode_image_url' => $transaction->getQrcodeImageUrl (),
+                );
+            }
+        }
+
+        if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Sitef')
+            && !strcmp ($payment->getMethod (), Gamuza_Sitef_Model_Payment_Method_Pinpad::CODE))
+        {
+            $transaction = Mage::getModel ('sitef/pinpad_transaction')->load ($order->getId(), 'order_id');
+
+            if ($transaction && $transaction->getId ())
+            {
+                $result ['sitef_pinpad'] = array (
+                    'payment_id'           => intval   ($transaction->getPaymentId ()),
+                    'payment_confirmation' => intval   ($transaction->getPaymentConfirmation ()),
+                    'payment_amount'       => floatval ($transaction->getPaymentAmount ()),
                 );
             }
         }

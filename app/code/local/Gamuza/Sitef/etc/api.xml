@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+/**
+ * @package     Gamuza_Sitef
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+-->
+
+<config>
+    <api>
+        <resources>
+            <sitef_pinpad_transaction translate="title" module="sitef">
+                <model>sitef/pinpad_transaction_api</model>
+                <title>Sitef Pinpad Transaction API</title>
+                <acl>sitef/pinpad_transaction</acl>
+                <methods>
+                    <list translate="title" module="sitef">
+                        <title>Retrieve the Sitef Pinpad Transaction list</title>
+                        <acl>sitef/pinpad_transaction/list</acl>
+                        <method>items</method>
+                    </list>
+                    <create translate="title" module="sitef">
+                        <title>Create a Sitef Pinpad Transaction for the order</title>
+                        <acl>sitef/pinpad_transaction/create</acl>
+                        <method>create</method>
+                    </create>
+                    <authorize translate="title" module="sitef">
+                        <title>Authorize a Sitef Pinpad Transaction for the order</title>
+                        <acl>sitef/pinpad_transaction/authorize</acl>
+                        <method>authorize</method>
+                    </authorize>
+                    <cancel translate="title" module="sitef">
+                        <title>Cancel a Sitef Pinpad Transaction for the order</title>
+                        <acl>sitef/pinpad_transaction/cancel</acl>
+                        <method>cancel</method>
+                    </cancel>
+                </methods>
+            </sitef_pinpad_transaction>
+        </resources>
+        <faults>
+            <order_not_specified>
+                <code>100</code>
+                <message>Requested order not specified.</message>
+            </order_not_specified>
+            <code_not_specified>
+                <code>200</code>
+                <message>Requested code not specified.</message>
+            </code_not_specified>
+            <data_not_specified>
+                <code>300</code>
+                <message>Requested data not specified.</message>
+            </data_not_specified>
+            <order_not_exists>
+                <code>400</code>
+                <message>Requested order not exists.</message>
+            </order_not_exists>
+            <filters_invalid>
+                <code>500</code>
+                <message>Invalid filters given. Details in error message.</message>
+            </filters_invalid>
+            <transaction_not_exists>
+                <code>600</code>
+                <message>Requested transaction not exists.</message>
+            </transaction_not_exists>
+            <transaction_not_exists>
+                <code>700</code>
+                <message>Requested transaction not exists.</message>
+            </transaction_not_exists>
+            <transaction_already_authorized>
+                <code>800</code>
+                <message>Requested transaction is already authorized.</message>
+            </transaction_already_authorized>
+            <transaction_already_canceled>
+                <code>900</code>
+                <message>Requested transaction is already canceled.</message>
+            </transaction_already_canceled>
+        </faults>
+        <acl>
+            <resources>
+                <sitef translate="title" module="sitef">
+                    <title>Gamuza Sitef API</title>
+                    <sort_order>0</sort_order>
+                    <pinpad_transaction translate="title" module="sitef">
+                        <title>Pinpad Transaction</title>
+                        <create translate="title" module="sitef">
+                            <title>Create a Sitef Pinpad Transaction for the order</title>
+                        </create>
+                        <authorize translate="title" module="sitef">
+                            <title>Authorize a Sitef Pinpad Transaction for the order</title>
+                        </authorize>
+                        <cancel translate="title" module="sitef">
+                            <title>Cancel a Sitef Pinpad Transaction for the order</title>
+                        </cancel>
+                    </pinpad_transaction>
+                </sitef>
+            </resources>
+        </acl>
+    </api>
+</config>
+
