@@ -35,6 +35,11 @@
                         <acl>sitef/pinpad_transaction/cancel</acl>
                         <method>cancel</method>
                     </cancel>
+                    <draft translate="title" module="sitef">
+                        <title>Draft a Sitef Pinpad Transaction for the order</title>
+                        <acl>sitef/pinpad_transaction/draft</acl>
+                        <method>draft</method>
+                    </draft>
                 </methods>
             </sitef_pinpad_transaction>
         </resources>
@@ -92,6 +97,9 @@
                         <cancel translate="title" module="sitef">
                             <title>Cancel a Sitef Pinpad Transaction for the order</title>
                         </cancel>
+                        <draft translate="title" module="sitef">
+                            <title>Draft a Sitef Pinpad Transaction for the order</title>
+                        </draft>
                     </pinpad_transaction>
                 </sitef>
             </resources>

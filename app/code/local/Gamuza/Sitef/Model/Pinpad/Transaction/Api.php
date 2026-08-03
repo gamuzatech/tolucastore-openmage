@@ -478,6 +478,39 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
         return $this->_getTransaction ($transaction);
     }
 
+    public function draft ($orderIncrementId, $orderProtectCode, $type, $text)
+    {
+        if (empty ($orderIncrementId))
+        {
+            $this->_fault ('order_not_specified');
+        }
+
+        if (empty ($orderProtectCode))
+        {
+            $this->_fault ('code_not_specified');
+        }
+
+        $order = $this->_initOrder ($orderIncrementId, $orderProtectCode);
+
+        $transaction = $this->_initTransaction ($order);
+
+        if (!strcmp ($transaction->getStatus (), Gamuza_Sitef_Helper_Data::API_PAYMENT_STATUS_CANCELED))
+        {
+            $this->_fault ('transaction_already_canceled');
+        }
+
+        /*
+        if (strcmp ($transaction->getStatus (), Gamuza_Sitef_Helper_Data::API_PAYMENT_STATUS_AUTHORIZED) != 0)
+        {
+            $this->_fault ('transaction_not_authorized');
+        }
+        */
+
+        Mage::dispatchEvent ('sitef_pinpad_api_draft_before', array ('order' => $order, 'type' => $type, 'sitef' => $transaction));
+
+        return $this->_getTransaction ($transaction);
+    }
+
     /**
      * Initialize order model
      *
