@@ -161,6 +161,11 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 		    'index'   => 'nfce_id',
 		    'type'    => 'number',
 		));
+		$this->addColumn ('sitef_id', array(
+		    'header'  => Mage::helper ('pdv')->__('SiTef ID'),
+		    'index'   => 'sitef_id',
+		    'type'    => 'number',
+		));
 		$this->addColumn ('qty_printed', array(
 		    'header'  => Mage::helper ('pdv')->__('Qty'),
 		    'align'   => 'right',

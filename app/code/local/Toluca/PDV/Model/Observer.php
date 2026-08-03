@@ -387,6 +387,7 @@ class Toluca_PDV_Model_Observer
         $order = $event->getOrder ();
         $item  = $event->getItem ();
         $nfce  = $event->getNfce ();
+        $sitef = $event->getSitef ();
 
         $orderIsPdv = boolval ($order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV));
 
@@ -460,6 +461,13 @@ class Toluca_PDV_Model_Observer
         if ($nfce && $nfce->getId () > 0)
         {
             $print->setNfceId ($nfce->getId ())
+                ->setUpdatedAt (date ('c'))
+            ;
+        }
+
+        if ($sitef && $sitef->getId () > 0)
+        {
+            $print->setSitefId ($sitef->getId ())
                 ->setUpdatedAt (date ('c'))
             ;
         }

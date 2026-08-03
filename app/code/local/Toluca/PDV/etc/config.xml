@@ -213,6 +213,15 @@
                     </pdv_mobile_order_api_draft_before>
                 </observers>
             </mobile_order_api_draft_before>
+            <!-- Gamuza_Sitef -->
+            <sitef_pinpad_api_draft_before>
+                <observers>
+                    <pdv_sitef_pinpad_api_draft_before>
+                        <class>pdv/observer</class>
+                        <method>mobileOrderApiDraftBefore</method>
+                    </pdv_sitef_pinpad_api_draft_before>
+                </observers>
+            </sitef_pinpad_api_draft_before>
         </events>
         <pdf>
             <history>

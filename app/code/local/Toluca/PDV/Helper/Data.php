@@ -50,6 +50,8 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const PRINT_TYPE_MESSENGER = 'messenger';
     const PRINT_TYPE_CASHIER = 'cashier';
     const PRINT_TYPE_NFCE    = 'nfce';
+    const PRINT_TYPE_SITEF_PINPAD_CASHIER  = 'sitef_pinpad_cashier';
+    const PRINT_TYPE_SITEF_PINPAD_CUSTOMER = 'sitef_pinpad_customer';
 
     const XML_PATH_GENERAL_STORE_INFORMATION_CODE = 'general/store_information/code';
     const XML_PATH_GENERAL_STORE_INFORMATION_NAME = 'general/store_information/name';

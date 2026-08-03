@@ -23,6 +23,8 @@ class Toluca_PDV_Model_Adminhtml_System_Config_Source_Print_Type
             array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_MESSENGER, 'label' => Mage::helper ('pdv')->__('Messenger')),
             array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_CASHIER, 'label' => Mage::helper ('pdv')->__('Cashier')),
             array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_NFCE,    'label' => Mage::helper ('pdv')->__('NFC-e')),
+            array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_SITEF_PINPAD_CASHIER,  'label' => Mage::helper ('pdv')->__('SiTef Pinpad Cashier')),
+            array ('value' => Toluca_PDV_Helper_Data::PRINT_TYPE_SITEF_PINPAD_CUSTOMER, 'label' => Mage::helper ('pdv')->__('SiTef Pinpad Customer')),
         );
 
         return $result;
@@ -41,6 +43,8 @@ class Toluca_PDV_Model_Adminhtml_System_Config_Source_Print_Type
             Toluca_PDV_Helper_Data::PRINT_TYPE_MESSENGER => Mage::helper ('pdv')->__('Messenger'),
             Toluca_PDV_Helper_Data::PRINT_TYPE_CASHIER => Mage::helper ('pdv')->__('Cashier'),
             Toluca_PDV_Helper_Data::PRINT_TYPE_NFCE    => Mage::helper ('pdv')->__('NFC-e'),
+            Toluca_PDV_Helper_Data::PRINT_TYPE_SITEF_PINPAD_CASHIER  => Mage::helper ('pdv')->__('SiTef Pinpad Cashier'),
+            Toluca_PDV_Helper_Data::PRINT_TYPE_SITEF_PINPAD_CUSTOMER => Mage::helper ('pdv')->__('SiTef Pinpad Customer'),
         );
 
         return $result;

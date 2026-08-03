@@ -133,6 +133,14 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'NFC-e ID',
         ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'sitef_id', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'SiTef ID',
+        ));
 
     $installer->getConnection ()
         ->addColumn ($table, 'qty_printed', array(
