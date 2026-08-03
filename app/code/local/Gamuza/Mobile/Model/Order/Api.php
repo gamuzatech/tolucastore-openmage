@@ -67,7 +67,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'billing_name', 'shipping_name',
         'customer_stars', 'increment_number',
         'increment_per_store', 'increment_pad_length', /* 'increment_pad_char', 'increment_prefix' */
-        'is_motoboy', 'is_multi_payment', 'waiter_name',
+        'is_motoboy', 'is_multi_payment', 'is_sitef', 'waiter_name',
         'base_customer_balance_amount', 'base_customer_balance_invoiced', 'base_customer_balance_refunded',
         'customer_balance_amount', 'customer_balance_invoiced', 'customer_balance_refunded',
         'bs_customer_bal_total_refunded', 'customer_bal_total_refunded',
@@ -177,7 +177,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
 
     protected $_boolAttributes = array(
         /* list */
-        'is_virtual', 'customer_is_guest', 'customer_note_notify', 'email_sent', 'is_motoboy', 'is_multi_payment',
+        'is_virtual', 'customer_is_guest', 'customer_note_notify', 'email_sent', 'is_motoboy', 'is_multi_payment', 'is_sitef',
         'is_comanda', 'is_weighted', 'is_printed',
         /* info */
         'free_shipping', 'is_qty_decimal', 'no_discount', 'is_nominal', 'gift_message_available',
