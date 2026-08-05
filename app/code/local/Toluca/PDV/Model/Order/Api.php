@@ -44,6 +44,11 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
         $tableId    = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_TABLE_ID);
         $cardId     = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CARD_ID);
 
+        if (intval ($order->getCustomerId ()) > 0)
+        {
+            $customerId = $order->getCustomerId ();
+        }
+
         $quoteId = Mage::getModel ('pdv/cart_api')->create ($cashierId, $operatorId, $customerId, 0, $tableId, $cardId);
 
         $quote = Mage::getModel ('sales/quote')

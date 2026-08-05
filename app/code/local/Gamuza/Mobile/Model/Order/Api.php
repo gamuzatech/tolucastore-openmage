@@ -55,7 +55,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'base_adjustment_negative', 'base_adjustment_positive',
         'base_shipping_discount_amount', 'base_total_due',
         'payment_authorization_amount', 'shipping_discount_amount', 'total_due', 'weight',
-        'customer_dob', 'increment_id', 'applied_rule_ids', 'base_currency_code',
+        'customer_dob', 'increment_id', 'applied_rule_ids', 'base_currency_code', 'customer_id',
         'customer_email', 'customer_firstname', 'customer_lastname', 'customer_taxvat',
         'discount_description', 'global_currency_code', 'order_currency_code',
         'remote_ip', 'user_agent', 'shipping_method', 'store_currency_code', 'store_name',
@@ -162,7 +162,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
     protected $_intAttributes = array(
         'entity_id',
         /* list */
-        'total_item_count', 'customer_gender', 'gift_message_id',
+        'total_item_count', 'customer_gender', 'gift_message_id', 'customer_id',
         /* info */
         'region_id', 'order_id', 'increment_number', 'cc_status', 'cc_installments',
         'item_id', 'parent_item_id', 'quote_item_id', 'order_id', 'product_id',
