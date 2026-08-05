@@ -640,7 +640,10 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
 
             foreach ($itemOptions as $itemOptionId => $itemOptionValues)
             {
-                $itemOptionValues = explode (',', $itemOptionValues);
+                if (is_string ($itemOptionValues))
+                {
+                    $itemOptionValues = explode (',', $itemOptionValues);
+                }
 
                 foreach ($item->getProduct ()->getOptions () as $option)
                 {
