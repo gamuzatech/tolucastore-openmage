@@ -534,6 +534,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
             /** @var $item Mage_Sales_Model_Quote_Item */
             $product = $item->getProduct();
             $stockItem = $product->getStockItem();
+            $quote = $item->getQuote();
 
             $qtyIncrements = $stockItem->getQtyIncrements();
 
@@ -611,6 +612,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'custom_weight'       => floatval ($item->getCustomWeight ()),
                 'is_printed'          => boolval ($item->getIsPrinted ()),
                 'unique_id'           => $item->getUniqueId (),
+                'quote_is_comanda'    => boolval ($quote->getIsComanda ()),
             );
 
             foreach ($this->_imageCodes as $code)
