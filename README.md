@@ -7,6 +7,7 @@
 - Chat & Sales Bot ( WhatsApp )
 - Point of Sale ( POS )
 - Delivery ( e-Commerce & POS )
+- TEF SiTef
 - PagCripto
 - PicPay
 - PagSeguro
