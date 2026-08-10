@@ -10,6 +10,42 @@
 <config>
     <api>
         <resources>
+            <!-- AdminNotification -->
+            <basic_admin_notification_inbox translate="title" module="basic">
+                <model>basic/adminNotification_inbox_api</model>
+                <title>Basic Admin Notification Inbox API</title>
+                <acl>basic/admin_notification_inbox</acl>
+                <methods>
+                    <list translate="title" module="basic">
+                        <title>Retrieve admin notification inbox list</title>
+                        <acl>basic/admin_notification_inbox/list</acl>
+                        <method>items</method>
+                    </list>
+                    <add translate="title" module="basic">
+                        <title>Add admin notification inbox item</title>
+                        <acl>basic/admin_notification_inbox/add</acl>
+                        <method>add</method>
+                    </add>
+                </methods>
+                <faults>
+                    <filters_invalid>
+                        <code>100</code>
+                        <message>Invalid filters given. Details in error message.</message>
+                    </filters_invalid>
+                    <inbox_data_not_specified>
+                        <code>200</code>
+                        <message>Requested inbox's data not specified.</message>
+                    </inbox_data_not_specified>
+                    <invalid_inbox_data>
+                        <code>300</code>
+                        <message>Inbox's data is not valid.</message>
+                    </invalid_inbox_data>
+                    <add_inbox_fault>
+                        <code>400</code>
+                        <message>Inbox(es) could not be added. </message>
+                    </add_inbox_fault>
+                </faults>
+            </basic_admin_notification_inbox>
             <!-- Core -->
             <basic_magento translate="title" module="basic">
                 <model>basic/magento_api</model>
@@ -368,6 +404,16 @@
                 <basic translate="title" module="basic">
                     <title>Basic API</title>
                     <sort_order>0</sort_order>
+                    <!-- AdminNotification -->
+                    <admin_notification_inbox translate="title" module="basic">
+                        <title>Basic Admin Notification Inbox API</title>
+                        <list translate="title" module="basic">
+                            <title>Retrieve admin notification inbox list</title>
+                        </list>
+                        <add translate="title" module="basic">
+                            <title>Add admin notification inbox item</title>
+                        </add>
+                    </admin_notification_inbox>
                     <!-- Core -->
                     <magento translate="title" module="basic">
                         <title>Magento</title>
