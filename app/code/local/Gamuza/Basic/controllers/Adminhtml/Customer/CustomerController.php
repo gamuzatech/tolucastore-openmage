@@ -19,16 +19,56 @@ class Gamuza_Basic_Adminhtml_Customer_CustomerController extends Mage_Adminhtml_
      */
     protected $_publicActions = array ('redirect');
 
+    /**
+     * Controller pre-dispatch method
+     *
+     * @return $this
+     */
+    public function preDispatch ()
+    {
+        if ($this->_isRedirect ())
+        {
+            $this->setFlag ('redirect', self::FLAG_NO_PRE_DISPATCH, true);
+        }
+
+        return parent::preDispatch ();
+    }
+
     public function redirectAction ()
     {
         $customerId = $this->getRequest ()->getParam ('customer_id');
 
-        if (intval ($customerId) > 0)
+        $isLoggedIn = Mage::getSingleton ('admin/session')->isLoggedIn ();
+
+        if (intval ($customerId) > 0 && $isLoggedIn)
         {
             return $this->_redirect ('adminhtml/customer/edit', array ('id' => $customerId));
         }
 
-        return $this->_redirect ('adminhtml/customer/index');
+        $homeUrl = Mage::helper ('core/url')->getHomeUrl ();
+
+        return $this->_redirectUrl ($homeUrl);
+    }
+
+    protected function _isAllowed ()
+    {
+        if ($this->_isRedirect ())
+        {
+            return true;
+        }
+
+        return parent::_isAllowed ();
+    }
+
+    protected function _isRedirect ()
+    {
+        $request = $this->getRequest ();
+
+        $result = $request->getRouteName () === 'adminhtml'
+            && $request->getControllerName () === 'customer_customer'
+            && $request->getActionName () === 'redirect';
+
+        return $result;
     }
 }
 

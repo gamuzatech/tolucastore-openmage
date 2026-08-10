@@ -19,6 +19,21 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
      */
     protected $_publicActions = array ('redirect');
 
+    /**
+     * Controller pre-dispatch method
+     *
+     * @return $this
+     */
+    public function preDispatch ()
+    {
+        if ($this->_isRedirect ())
+        {
+            $this->setFlag ('redirect', self::FLAG_NO_PRE_DISPATCH, true);
+        }
+
+        return parent::preDispatch ();
+    }
+
     public function massStockQtyAction()
     {
         $productIds = $this->getRequest()->getParam('product');
@@ -584,6 +599,27 @@ class Gamuza_Basic_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         }
 
         return $product;
+    }
+
+    protected function _isAllowed ()
+    {
+        if ($this->_isRedirect ())
+        {
+            return true;
+        }
+
+        return parent::_isAllowed ();
+    }
+
+    protected function _isRedirect ()
+    {
+        $request = $this->getRequest ();
+
+        $result = $request->getRouteName () === 'adminhtml'
+            && $request->getControllerName () === 'catalog_product'
+            && $request->getActionName () === 'redirect';
+
+        return $result;
     }
 }
 

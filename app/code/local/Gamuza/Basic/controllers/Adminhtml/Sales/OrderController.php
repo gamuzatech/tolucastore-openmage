@@ -19,6 +19,21 @@ class Gamuza_Basic_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_
      */
     protected $_publicActions = array ('pending', 'redirect');
 
+    /**
+     * Controller pre-dispatch method
+     *
+     * @return $this
+     */
+    public function preDispatch ()
+    {
+        if ($this->_isRedirect ())
+        {
+            $this->setFlag ('redirect', self::FLAG_NO_PRE_DISPATCH, true);
+        }
+
+        return parent::preDispatch ();
+    }
+
     public function pendingAction()
     {
         $collection = Mage::getModel ('sales/order')->getCollection ()
@@ -141,6 +156,27 @@ class Gamuza_Basic_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_
         }
 
         $this->_redirect ('*/sales_order/view', array ('order_id' => $order->getId ()));
+    }
+
+    protected function _isAllowed ()
+    {
+        if ($this->_isRedirect ())
+        {
+            return true;
+        }
+
+        return parent::_isAllowed ();
+    }
+
+    protected function _isRedirect ()
+    {
+        $request = $this->getRequest ();
+
+        $result = $request->getRouteName () === 'adminhtml'
+            && $request->getControllerName () === 'sales_order'
+            && $request->getActionName () === 'redirect';
+
+        return $result;
     }
 }
 
