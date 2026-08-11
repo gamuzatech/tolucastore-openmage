@@ -60,7 +60,7 @@ class Gamuza_Brazil_Block_Payment_Info_Pix extends Mage_Payment_Block_Info
 
     public function _getQRCodeUrl ($orderId)
     {
-        $qrCodeUrl = Mage::app ()->getStore ()->isAdmin () ? 'admin_brazil/adminhtml_pix/qrcode' : 'brazil/pix/qrcode';
+        $qrCodeUrl = Mage::app ()->getStore ()->isAdmin () ? 'adminhtml/brazil_pix/qrcode' : 'brazil/pix/qrcode';
 
         $result = $this->getUrl ($qrCodeUrl, array(
             '_secure' => true, 'order_id' => $orderId,

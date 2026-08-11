@@ -343,7 +343,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'actions' => array(
                 array(
                     'caption' => Mage::helper ('brazil')->__('View'),
-                    'url'     => array ('base' => 'admin_brazil/adminhtml_nfce/response'),
+                    'url'     => array ('base' => 'adminhtml/brazil_nfce/response'),
                     'field'   => 'nfce_id',
                     'data-column' => 'action',
                 ),
@@ -361,7 +361,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
             'actions' => array(
                 array(
                     'caption' => Mage::helper ('brazil')->__('View'),
-                    'url'     => array ('base' => 'admin_brazil/adminhtml_nfce/event'),
+                    'url'     => array ('base' => 'adminhtml/brazil_nfce/event'),
                     'field'   => 'nfce_id',
                     'data-column' => 'action',
                 ),

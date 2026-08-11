@@ -5,20 +5,20 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Adminhtml_RegionController extends Mage_Adminhtml_Controller_Action
+class Gamuza_Brazil_Adminhtml_Brazil_CfopController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{
-	    return Mage::getSingleton ('admin/session')->isAllowed ('gamuza/brazil/region');
+	    return Mage::getSingleton ('admin/session')->isAllowed ('gamuza/brazil/cfop');
 	}
 
 	protected function _initAction ()
 	{
 		$this->loadLayout ()
-            ->_setActiveMenu ('gamuza/brazil/region')
+            ->_setActiveMenu ('gamuza/brazil/cfop')
             ->_addBreadcrumb(
-                Mage::helper ('brazil')->__('Regions Manager'),
-                Mage::helper ('brazil')->__('Regions Manager')
+                Mage::helper ('brazil')->__('CFOP Manager'),
+                Mage::helper ('brazil')->__('CFOP Manager')
             )
         ;
 
@@ -28,7 +28,7 @@ class Gamuza_Brazil_Adminhtml_RegionController extends Mage_Adminhtml_Controller
 	public function indexAction ()
 	{
 	    $this->_title ($this->__('Brazil'));
-	    $this->_title ($this->__('Regions Manager'));
+	    $this->_title ($this->__('CFOP Manager'));
 
 		$this->_initAction ();
 

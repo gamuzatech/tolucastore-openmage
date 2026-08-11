@@ -9,67 +9,67 @@
 
 <layout version="0.1.0">
     <!-- NFC-e -->
-    <admin_brazil_adminhtml_nfce_index>
+    <adminhtml_brazil_nfce_index>
         <reference name="content">
             <block type="brazil/adminhtml_nfce" name="nfce" />
         </reference>
-    </admin_brazil_adminhtml_nfce_index>
-    <admin_brazil_adminhtml_nfce_response>
+    </adminhtml_brazil_nfce_index>
+    <adminhtml_brazil_nfce_response>
         <reference name="content">
             <block type="brazil/adminhtml_nfce_response" name="nfce_response" />
         </reference>
-    </admin_brazil_adminhtml_nfce_response>
-    <admin_brazil_adminhtml_nfce_event>
+    </adminhtml_brazil_nfce_response>
+    <adminhtml_brazil_nfce_event>
         <reference name="content">
             <block type="brazil/adminhtml_nfce_event" name="nfce_event" />
         </reference>
-    </admin_brazil_adminhtml_nfce_event>
+    </adminhtml_brazil_nfce_event>
     <!-- NF-e -->
-    <admin_brazil_adminhtml_nfe_index>
+    <adminhtml_brazil_nfe_index>
         <reference name="content">
             <block type="brazil/adminhtml_nfe" name="nfe" />
         </reference>
-    </admin_brazil_adminhtml_nfe_index>
-    <admin_brazil_adminhtml_nfe_response>
+    </adminhtml_brazil_nfe_index>
+    <adminhtml_brazil_nfe_response>
         <reference name="content">
             <block type="brazil/adminhtml_nfe_response" name="nfe_response" />
         </reference>
-    </admin_brazil_adminhtml_nfe_response>
-    <admin_brazil_adminhtml_nfe_event>
+    </adminhtml_brazil_nfe_response>
+    <adminhtml_brazil_nfe_event>
         <reference name="content">
             <block type="brazil/adminhtml_nfe_event" name="nfe_event" />
         </reference>
-    </admin_brazil_adminhtml_nfe_event>
+    </adminhtml_brazil_nfe_event>
     <!-- DF-e -->
-    <admin_brazil_adminhtml_ibpt_index>
+    <adminhtml_brazil_ibpt_index>
         <reference name="content">
             <block type="brazil/adminhtml_ibpt" name="ibpt" />
         </reference>
-    </admin_brazil_adminhtml_ibpt_index>
-    <admin_brazil_adminhtml_cest_index>
+    </adminhtml_brazil_ibpt_index>
+    <adminhtml_brazil_cest_index>
         <reference name="content">
             <block type="brazil/adminhtml_cest" name="cest" />
         </reference>
-    </admin_brazil_adminhtml_cest_index>
-    <admin_brazil_adminhtml_cfop_index>
+    </adminhtml_brazil_cest_index>
+    <adminhtml_brazil_cfop_index>
         <reference name="content">
             <block type="brazil/adminhtml_cfop" name="cfop" />
         </reference>
-    </admin_brazil_adminhtml_cfop_index>
-    <admin_brazil_adminhtml_country_index>
+    </adminhtml_brazil_cfop_index>
+    <adminhtml_brazil_country_index>
         <reference name="content">
             <block type="brazil/adminhtml_country" name="country" />
         </reference>
-    </admin_brazil_adminhtml_country_index>
-    <admin_brazil_adminhtml_region_index>
+    </adminhtml_brazil_country_index>
+    <adminhtml_brazil_region_index>
         <reference name="content">
             <block type="brazil/adminhtml_region" name="region" />
         </reference>
-    </admin_brazil_adminhtml_region_index>
-    <admin_brazil_adminhtml_city_index>
+    </adminhtml_brazil_region_index>
+    <adminhtml_brazil_city_index>
         <reference name="content">
             <block type="brazil/adminhtml_city" name="city" />
         </reference>
-    </admin_brazil_adminhtml_city_index>
+    </adminhtml_brazil_city_index>
 </layout>
 

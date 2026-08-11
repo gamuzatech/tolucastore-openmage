@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Adminhtml_CityController extends Mage_Adminhtml_Controller_Action
+class Gamuza_Brazil_Adminhtml_Brazil_CityController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{

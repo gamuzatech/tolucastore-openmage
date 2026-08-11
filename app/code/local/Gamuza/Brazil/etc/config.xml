@@ -199,13 +199,13 @@
     </global>
     <admin>
         <routers>
-            <admin_brazil>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Gamuza_Brazil</module>
-                    <frontName>admin_brazil</frontName>
+                    <modules>
+                        <gamuza_brazil before="Mage_Adminhtml">Gamuza_Brazil_Adminhtml</gamuza_brazil>
+                    </modules>
                 </args>
-            </admin_brazil>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
