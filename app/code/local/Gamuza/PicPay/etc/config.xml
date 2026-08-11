@@ -94,13 +94,13 @@
     </global>
     <admin>
         <routers>
-            <admin_picpay>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Gamuza_PicPay</module>
-                    <frontName>admin_picpay</frontName>
+                    <modules>
+                        <gamuza_picpay before="Mage_Adminhtml">Gamuza_PicPay_Adminhtml</gamuza_picpay>
+                    </modules>
                 </args>
-            </admin_picpay>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>

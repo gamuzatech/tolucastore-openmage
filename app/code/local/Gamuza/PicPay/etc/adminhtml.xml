@@ -20,7 +20,7 @@
                         <transaction translate="title" module="picpay">
                             <title>Manage Transactions</title>
                             <sort_order>0</sort_order>
-                            <action>admin_picpay/adminhtml_transaction</action>
+                            <action>adminhtml/picpay_transaction</action>
                         </transaction>
                     </children>
                 </picpay>
