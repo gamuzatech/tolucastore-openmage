@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_PagCripto_Adminhtml_TransactionController extends Mage_Adminhtml_Controller_Action
+class Gamuza_PagCripto_Adminhtml_Pagcripto_TransactionController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{

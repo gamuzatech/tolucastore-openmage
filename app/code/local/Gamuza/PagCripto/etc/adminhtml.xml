@@ -20,7 +20,7 @@
                         <transaction translate="title" module="pagcripto">
                             <title>Manage Transactions</title>
                             <sort_order>0</sort_order>
-                            <action>admin_pagcripto/adminhtml_transaction</action>
+                            <action>adminhtml/pagcripto_transaction</action>
                         </transaction>
                     </children>
                 </pagcripto>

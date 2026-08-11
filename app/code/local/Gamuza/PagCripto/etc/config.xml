@@ -173,13 +173,13 @@
     </global>
     <admin>
         <routers>
-            <admin_pagcripto>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Gamuza_PagCripto</module>
-                    <frontName>admin_pagcripto</frontName>
+                    <modules>
+                        <gamuza_pagcripto before="Mage_Adminhtml">Gamuza_PagCripto_Adminhtml</gamuza_pagcripto>
+                    </modules>
                 </args>
-            </admin_pagcripto>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
