@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Toluca_Bot_Adminhtml_ContactController extends Mage_Adminhtml_Controller_Action
+class Toluca_Bot_Adminhtml_Bot_ContactController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{

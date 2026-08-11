@@ -20,22 +20,22 @@
                         <chat translate="title" module="bot">
                             <title>Manage Chats</title>
                             <sort_order>0</sort_order>
-                            <action>admin_bot/adminhtml_chat</action>
+                            <action>adminhtml/bot_chat</action>
                         </chat>
                         <contact translate="title" module="bot">
                             <title>Manage Contacts</title>
                             <sort_order>10</sort_order>
-                            <action>admin_bot/adminhtml_contact</action>
+                            <action>adminhtml/bot_contact</action>
                         </contact>
                         <promotion translate="title" module="bot">
                             <title>Manage Promotions</title>
                             <sort_order>20</sort_order>
-                            <action>admin_bot/adminhtml_promotion</action>
+                            <action>adminhtml/bot_promotion</action>
                         </promotion>
                         <queue translate="title" module="bot">
                             <title>Manage Queue</title>
                             <sort_order>30</sort_order>
-                            <action>admin_bot/adminhtml_queue</action>
+                            <action>adminhtml/bot_queue</action>
                         </queue>
                     </children>
                 </bot>

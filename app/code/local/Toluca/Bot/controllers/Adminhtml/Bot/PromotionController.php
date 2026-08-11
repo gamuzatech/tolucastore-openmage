@@ -7,7 +7,7 @@
 
 require_once (Mage::getModuleDir ('lib', 'Toluca_Bot') . DS . 'lib' . DS . 'Gamuza' . DS . 'File' . DS . 'Uploader.php');
 
-class Toluca_Bot_Adminhtml_PromotionController extends Mage_Adminhtml_Controller_Action
+class Toluca_Bot_Adminhtml_Bot_PromotionController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{

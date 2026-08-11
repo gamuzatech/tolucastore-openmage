@@ -123,13 +123,13 @@
     </global>
     <admin>
         <routers>
-            <admin_bot>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Toluca_Bot</module>
-                    <frontName>admin_bot</frontName>
+                    <modules>
+                        <toluca_bot before="Mage_Adminhtml">Toluca_Bot_Adminhtml</toluca_bot>
+                    </modules>
                 </args>
-            </admin_bot>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
