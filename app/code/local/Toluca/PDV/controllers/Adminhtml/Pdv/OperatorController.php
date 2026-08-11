@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Toluca_PDV_Adminhtml_OperatorController extends Mage_Adminhtml_Controller_Action
+class Toluca_PDV_Adminhtml_Pdv_OperatorController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{

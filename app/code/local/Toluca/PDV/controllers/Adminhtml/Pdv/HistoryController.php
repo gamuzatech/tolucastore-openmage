@@ -1,23 +1,23 @@
 <?php
 /**
  * @package     Toluca_PDV
- * @copyright   Copyright (c) 2025 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @copyright   Copyright (c) 2023 Gamuza Technologies (http://www.gamuza.com.br/)
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Toluca_PDV_Adminhtml_PrintController extends Mage_Adminhtml_Controller_Action
+class Toluca_PDV_Adminhtml_Pdv_HistoryController extends Mage_Adminhtml_Controller_Action
 {
 	protected function _isAllowed ()
 	{
-	    return Mage::getSingleton ('admin/session')->isAllowed ('toluca/pdv/print');
+	    return Mage::getSingleton ('admin/session')->isAllowed ('toluca/pdv/history');
 	}
 
 	protected function _initAction ()
 	{
-		$this->loadLayout ()->_setActiveMenu ('toluca/pdv/print')
+		$this->loadLayout ()->_setActiveMenu ('toluca/pdv/history')
             ->_addBreadcrumb(
-                Mage::helper ('pdv')->__('Prints Manager'),
-                Mage::helper ('pdv')->__('Prints Manager')
+                Mage::helper ('pdv')->__('History Manager'),
+                Mage::helper ('pdv')->__('History Manager')
             )
         ;
 
@@ -27,7 +27,7 @@ class Toluca_PDV_Adminhtml_PrintController extends Mage_Adminhtml_Controller_Act
 	public function indexAction ()
 	{
 	    $this->_title ($this->__('PDV'));
-	    $this->_title ($this->__('Prints Manager'));
+	    $this->_title ($this->__('History Manager'));
 
 		$this->_initAction ();
 
@@ -39,8 +39,8 @@ class Toluca_PDV_Adminhtml_PrintController extends Mage_Adminhtml_Controller_Act
      */
     public function exportCsvAction()
     {
-        $fileName = 'prints.csv';
-        $grid     = $this->getLayout()->createBlock('pdv/adminhtml_print_grid');
+        $fileName = 'histories.csv';
+        $grid     = $this->getLayout()->createBlock('pdv/adminhtml_history_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getCsvFile());
     }
 
@@ -49,8 +49,8 @@ class Toluca_PDV_Adminhtml_PrintController extends Mage_Adminhtml_Controller_Act
      */
     public function exportExcelAction()
     {
-        $fileName   = 'prints.xml';
-        $grid       = $this->getLayout()->createBlock('pdv/adminhtml_print_grid');
+        $fileName   = 'histories.xml';
+        $grid       = $this->getLayout()->createBlock('pdv/adminhtml_history_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
     }
 }

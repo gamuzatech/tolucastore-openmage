@@ -231,13 +231,13 @@
     </global>
     <admin>
         <routers>
-            <admin_pdv>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Toluca_PDV</module>
-                    <frontName>admin_pdv</frontName>
+                    <modules>
+                        <toluca_pdv before="Mage_Adminhtml">Toluca_PDV_Adminhtml</toluca_pdv>
+                    </modules>
                 </args>
-            </admin_pdv>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>

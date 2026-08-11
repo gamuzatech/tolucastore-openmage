@@ -20,27 +20,27 @@
                         <cashier translate="title" module="pdv">
                             <title>Manage Cashiers</title>
                             <sort_order>0</sort_order>
-                            <action>admin_pdv/adminhtml_cashier</action>
+                            <action>adminhtml/pdv_cashier</action>
                         </cashier>
                         <operator translate="title" module="pdv">
                             <title>Manage Operators</title>
                             <sort_order>10</sort_order>
-                            <action>admin_pdv/adminhtml_operator</action>
+                            <action>adminhtml/pdv_operator</action>
                         </operator>
                         <history translate="title" module="pdv">
                             <title>Manage History</title>
                             <sort_order>30</sort_order>
-                            <action>admin_pdv/adminhtml_history</action>
+                            <action>adminhtml/pdv_history</action>
                         </history>
                         <log translate="title" module="pdv">
                             <title>Manage Logs</title>
                             <sort_order>40</sort_order>
-                            <action>admin_pdv/adminhtml_log</action>
+                            <action>adminhtml/pdv_log</action>
                         </log>
                         <print translate="title" module="pdv">
                             <title>Manage Prints</title>
                             <sort_order>50</sort_order>
-                            <action>admin_pdv/adminhtml_print</action>
+                            <action>adminhtml/pdv_print</action>
                         </print>
                     </children>
                 </pdv>
