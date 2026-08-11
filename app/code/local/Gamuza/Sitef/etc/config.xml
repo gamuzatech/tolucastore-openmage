@@ -94,13 +94,13 @@
     </global>
     <admin>
         <routers>
-            <admin_sitef>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Gamuza_Sitef</module>
-                    <frontName>admin_sitef</frontName>
+                    <modules>
+                        <gamuza_sitef before="Mage_Adminhtml">Gamuza_Sitef_Adminhtml</gamuza_sitef>
+                    </modules>
                 </args>
-            </admin_sitef>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>

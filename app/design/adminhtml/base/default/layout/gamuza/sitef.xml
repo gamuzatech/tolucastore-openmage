@@ -8,10 +8,10 @@
 -->
 
 <layout version="0.1.0">
-    <admin_sitef_adminhtml_pinpad_transaction_index>
+    <adminhtml_sitef_pinpad_transaction_index>
         <reference name="content">
             <block type="sitef/adminhtml_pinpad_transaction" name="pinpad_transaction" />
         </reference>
-    </admin_sitef_adminhtml_pinpad_transaction_index>
+    </adminhtml_sitef_pinpad_transaction_index>
 </layout>
 

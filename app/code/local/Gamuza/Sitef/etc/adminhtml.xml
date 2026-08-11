@@ -20,7 +20,7 @@
                         <pinpad_transaction translate="title" module="sitef">
                             <title>Manage Pinpad Transactions</title>
                             <sort_order>0</sort_order>
-                            <action>admin_sitef/adminhtml_pinpad_transaction</action>
+                            <action>adminhtml/sitef_pinpad_transaction</action>
                         </pinpad_transaction>
                     </children>
                 </sitef>
