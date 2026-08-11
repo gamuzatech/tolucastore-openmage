@@ -746,13 +746,6 @@
     </global>
     <admin>
         <routers>
-            <admin_basic>
-                <use>admin</use>
-                <args>
-                    <module>Gamuza_Basic</module>
-                    <frontName>admin_basic</frontName>
-                </args>
-            </admin_basic>
             <adminhtml>
                 <args>
                     <modules>

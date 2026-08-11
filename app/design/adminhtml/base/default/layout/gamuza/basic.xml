@@ -181,40 +181,40 @@
         </reference>
     </adminhtml_customer_edit>
 
-    <admin_basic_adminhtml_catalog_product_attribute_option_index>
+    <adminhtml_catalog_product_attribute_option_index>
         <reference name="content">
             <block type="basic/adminhtml_catalog_product_attribute_option" name="option" />
         </reference>
-    </admin_basic_adminhtml_catalog_product_attribute_option_index>
+    </adminhtml_catalog_product_attribute_option_index>
 
-    <admin_basic_adminhtml_shipping_tablerate_index>
+    <adminhtml_shipping_tablerate_index>
         <reference name="content">
             <block type="basic/adminhtml_shipping_tablerate" name="tablerate" />
         </reference>
-    </admin_basic_adminhtml_shipping_tablerate_index>
+    </adminhtml_shipping_tablerate_index>
 
-    <admin_basic_adminhtml_shipping_rate_index>
+    <adminhtml_shipping_rate_index>
         <reference name="content">
             <block type="basic/adminhtml_shipping_rate" name="rate" />
         </reference>
-    </admin_basic_adminhtml_shipping_rate_index>
+    </adminhtml_shipping_rate_index>
 
-    <admin_basic_adminhtml_order_payment_index>
+    <adminhtml_order_payment_index>
         <reference name="content">
             <block type="basic/adminhtml_order_payment" name="payment" />
         </reference>
-    </admin_basic_adminhtml_order_payment_index>
+    </adminhtml_order_payment_index>
 
-    <admin_basic_adminhtml_order_service_index>
+    <adminhtml_order_service_index>
         <reference name="content">
             <block type="basic/adminhtml_order_service" name="service" />
         </reference>
-    </admin_basic_adminhtml_order_service_index>
+    </adminhtml_order_service_index>
 
-    <admin_basic_adminhtml_quote_draft_index>
+    <adminhtml_quote_draft_index>
         <reference name="content">
             <block type="basic/adminhtml_quote_draft" name="draft" />
         </reference>
-    </admin_basic_adminhtml_quote_draft_index>
+    </adminhtml_quote_draft_index>
 </layout>
 
