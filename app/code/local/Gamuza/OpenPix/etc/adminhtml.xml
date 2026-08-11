@@ -20,7 +20,7 @@
                         <transaction translate="title" module="openpix">
                             <title>Manage Transactions</title>
                             <sort_order>0</sort_order>
-                            <action>admin_openpix/adminhtml_transaction</action>
+                            <action>adminhtml/openpix_transaction</action>
                         </transaction>
                     </children>
                 </openpix>

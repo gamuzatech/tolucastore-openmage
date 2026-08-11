@@ -8,10 +8,10 @@
 -->
 
 <layout version="0.1.0">
-    <admin_openpix_adminhtml_transaction_index>
+    <adminhtml_openpix_transaction_index>
         <reference name="content">
             <block type="openpix/adminhtml_transaction" name="transaction" />
         </reference>
-    </admin_openpix_adminhtml_transaction_index>
+    </adminhtml_openpix_transaction_index>
 </layout>
 

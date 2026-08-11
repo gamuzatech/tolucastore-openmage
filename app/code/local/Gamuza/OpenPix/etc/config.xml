@@ -112,13 +112,13 @@
     </global>
     <admin>
         <routers>
-            <admin_openpix>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Gamuza_OpenPix</module>
-                    <frontName>admin_openpix</frontName>
+                    <modules>
+                        <gamuza_openpix before="Mage_Adminhtml">Gamuza_OpenPix_Adminhtml</gamuza_openpix>
+                    </modules>
                 </args>
-            </admin_openpix>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
