@@ -308,6 +308,11 @@
                 <code>3500</code>
                 <message>Customer cellphone is invalid.</message>
             </customer_invalid_cellphone>
+
+            <create_quote_fault>
+                <code>3600</code>
+                <message>Cannot create a quote.</message>
+            </create_quote_fault>
         </faults>
         <acl>
             <resources>

@@ -64,6 +64,37 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
 
         try
         {
+            Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
+                array(
+                    'mode'       => 'billing',
+                    'firstname'  => $order->getBillingAddress ()->getFirstname (),
+                    'lastname'   => $order->getBillingAddress ()->getLastname (),
+                    'street'     => $order->getBillingAddress ()->getStreet (),
+                    'city'       => $order->getBillingAddress ()->getCity (),
+                    'region'     => $order->getBillingAddress ()->getRegionId (),
+                    'country_id' => $order->getBillingAddress ()->getCountryId (),
+                    'postcode'   => preg_replace ('[\D]', null, $order->getBillingAddress ()->getPostcode ()),
+                    'cellphone'  => preg_replace ('[\D]', null, $order->getBillingAddress ()->getCellphone ()),
+                ),
+            ), Mage_Core_Model_App::DISTRO_STORE_ID);
+
+            if ($order->getShippingAddress () && intval ($order->getShippingAddress ()->getId ()) > 0)
+            {
+                Mage::getModel ('checkout/cart_customer_api')->setAddresses ($quote->getId (), array(
+                    array(
+                        'mode'       => 'shipping',
+                        'firstname'  => $order->getShippingAddress ()->getFirstname (),
+                        'lastname'   => $order->getShippingAddress ()->getLastname (),
+                        'street'     => $order->getShippingAddress ()->getStreet (),
+                        'city'       => $order->getShippingAddress ()->getCity (),
+                        'region'     => $order->getShippingAddress ()->getRegionId (),
+                        'country_id' => $order->getShippingAddress ()->getCountryId (),
+                        'postcode'   => preg_replace ('[\D]', null, $order->getShippingAddress ()->getPostcode ()),
+                        'cellphone'  => preg_replace ('[\D]', null, $order->getShippingAddress ()->getCellphone ()),
+                    ),
+                ), Mage_Core_Model_App::DISTRO_STORE_ID);
+            }
+
             foreach ($order->getAllVisibleItems () as $item)
             {
                 $request = new Varien_Object ();
@@ -107,7 +138,7 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
         }
         catch (Exception $e)
         {
-            // nothing
+            $this->_fault ('create_quote_fault', $e->getMessage ());
         }
 
         return intval ($quote->getId ());
