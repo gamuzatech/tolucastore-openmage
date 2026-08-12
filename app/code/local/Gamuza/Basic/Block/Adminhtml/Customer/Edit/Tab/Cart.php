@@ -34,6 +34,7 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Edit_Tab_Cart
         else
         {
             $quote = Mage::getModel('sales/quote')->getCollection()
+                ->addFieldToFilter('is_active', array('eq' => '1'))
                 ->addFieldToFilter(
                     array('customer_id', 'pdv_customer_id'),
                     array(
@@ -41,6 +42,8 @@ class Gamuza_Basic_Block_Adminhtml_Customer_Edit_Tab_Cart
                         array('eq' => $customer->getId())
                     )
                 )
+                ->setOrder('updated_at', Varien_Data_Collection::SORT_ORDER_DESC)
+                ->setOrder('entity_id',  Varien_Data_Collection::SORT_ORDER_DESC)
                 ->getFirstItem()
             ;
         }

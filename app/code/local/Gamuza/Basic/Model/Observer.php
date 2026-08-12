@@ -408,6 +408,7 @@ class Gamuza_Basic_Model_Observer
 
         /** @var $quotes Mage_Sales_Model_Mysql4_Quote_Collection */
         $quotes = Mage::getModel('sales/quote')->getCollection()
+            ->addFieldToFilter('is_active',   array ('eq' => '1'))
             ->addFieldToFilter('items_count', array ('gt' => 0))
         ;
 
@@ -435,6 +436,7 @@ class Gamuza_Basic_Model_Observer
 
         /** @var $quotes Mage_Sales_Model_Mysql4_Quote_Collection */
         $quotes = Mage::getModel('sales/quote')->getCollection()
+            ->addFieldToFilter('is_active',   array ('eq' => '1'))
             ->addFieldToFilter('items_count', array ('eq' => 0))
         ;
 
