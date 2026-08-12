@@ -51,7 +51,8 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         $result = array ();
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
-            ->addFieldToFilter ('is_pdv',          array ('eq' => true))
+            ->addFieldToFilter ('is_active', array ('eq' => '1'))
+            ->addFieldToFilter ('is_pdv',    array ('eq' => '1'))
         ;
 
         if (!Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_OPERATOR_CARTS))
@@ -361,6 +362,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',       array ('eq' => '1'))
             ->addFieldToFilter ('pdv_customer_id', array ('eq' => $customer_id))
             ->addFieldToFilter ('entity_id',       array ('eq' => $quote_id))
         ;

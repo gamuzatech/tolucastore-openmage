@@ -26,6 +26,7 @@ class Toluca_PDV_Model_Card_Api extends Mage_Api_Model_Resource_Abstract
          * Old
          */
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',   array ('eq' => '1'))
             ->addFieldToFilter ('entity_id',   array ('eq' => $quote_id))
             ->addFieldToFilter ('pdv_card_id', array ('eq' => $card_id))
         ;
@@ -41,6 +42,7 @@ class Toluca_PDV_Model_Card_Api extends Mage_Api_Model_Resource_Abstract
          * New
          */
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',   array ('eq' => '1'))
             ->addFieldToFilter ('pdv_card_id', array ('eq' => $new_id))
         ;
 
@@ -69,6 +71,7 @@ class Toluca_PDV_Model_Card_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',   array ('eq' => '1'))
             ->addFieldToFilter ('entity_id',   array ('eq' => $quote_id))
             ->addFieldToFilter ('pdv_card_id', array ('eq' => $card_id))
         ;
@@ -85,7 +88,7 @@ class Toluca_PDV_Model_Card_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('card_not_empty');
         }
 
-        $quote->delete ();
+        $quote->delete (); // discard
 
         return true;
     }

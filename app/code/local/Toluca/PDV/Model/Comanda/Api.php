@@ -19,6 +19,7 @@ class Toluca_PDV_Model_Comanda_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',   array ('eq' => '1'))
             ->addFieldToFilter ('pdv_card_id', array ('eq' => $card_id))
             ->addFieldToFilter ('pdv_table_id', array ('eq' => $table_id))
         ;
@@ -44,6 +45,7 @@ class Toluca_PDV_Model_Comanda_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',   array ('eq' => '1'))
             ->addFieldToFilter ('pdv_card_id', array ('eq' => $card_id))
             ->addFieldToFilter ('pdv_table_id', array ('eq' => $table_id))
         ;

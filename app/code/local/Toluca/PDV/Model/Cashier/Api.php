@@ -167,6 +167,7 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active', array ('eq' => '1'))
             ->addFieldToFilter ('entity_id', array ('eq' => $operator->getQuoteId ()))
             ->addFieldToFilter ('pdv_customer_id', array ('eq' => $operator->getCustomerId ()))
         ;

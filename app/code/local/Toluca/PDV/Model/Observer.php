@@ -105,7 +105,7 @@ class Toluca_PDV_Model_Observer
 
         if ($orderIsPdv)
         {
-            $quote->delete (); // discard
+            $quote->setIsActive (0)->save (); // not_discard
 
             $orderPdvCashierId = $order->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CASHIER_ID);
 
