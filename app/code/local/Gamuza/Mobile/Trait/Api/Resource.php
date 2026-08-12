@@ -23,9 +23,17 @@ trait Gamuza_Mobile_Trait_Api_Resource
         $customerEmail  = sprintf ('%s+%s@%s', $customerPrefix, $customerCode, $customerDomain);
 
         /** @var $quote Mage_Sales_Model_Quote */
-        $quote = Mage::getModel("sales/quote")
+        $quote = Mage::getModel('sales/quote')->getCollection()
+            ->addFieldToFilter('is_active',      array ('eq' => '1'))
+            ->addFieldToFilter('store_id',       array ('eq' => $storeId))
+            ->addFieldToFilter('customer_email', array ('eq' => $customerEmail))
+            ->setOrder('updated_at', Varien_Data_Collection::SORT_ORDER_DESC)
+            ->setOrder('entity_id',  Varien_Data_Collection::SORT_ORDER_DESC)
+            ->getFirstItem()
+            /*
             ->setStoreId($storeId)
             ->load($customerEmail, 'customer_email')
+            */
         ;
 
         if ((!$quote || !$quote->getId()) && $createNewQuote)

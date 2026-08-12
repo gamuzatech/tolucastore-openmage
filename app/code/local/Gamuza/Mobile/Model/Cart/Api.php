@@ -376,7 +376,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                 array('order' => $order, 'quote' => $quote)
             );
 
-            $quote->delete (); // discard
+            $quote->setIsActive (0)->save (); // not_discard
         }
         catch (Mage_Core_Exception $e)
         {
@@ -521,6 +521,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         }
 
         $collection = Mage::getModel ('sales/quote')->getCollection ()
+            ->addFieldToFilter ('is_active',       array ('eq' => '1'))
             ->addFieldToFilter ('pdv_customer_id', array ('eq' => $customerId))
             ->addFieldToFilter ('pdv_table_id',    array ('eq' => $table_id))
             ->addFieldToFilter ('pdv_card_id',     array ('eq' => $card_id))
