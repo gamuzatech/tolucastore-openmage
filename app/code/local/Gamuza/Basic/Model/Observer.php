@@ -69,6 +69,18 @@ class Gamuza_Basic_Model_Observer
                         'phone'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_PHONE),
                         'hours'   => Mage::getStoreConfig (Gamuza_Basic_Helper_Data::XML_PATH_GENERAL_STORE_INFORMATION_HOURS),
                     ),
+                    'locale' => array(
+                        'timezone' => Mage::getStoreConfig(Mage_Core_Model_Locale::XML_PATH_DEFAULT_TIMEZONE),
+                        'magento'  => array(
+                            'timezone' => Mage::app ()->getLocale ()->date ()->getTimezone (),
+                            'offset'   => Mage::app ()->getLocale ()->date ()->get(Zend_Date::GMT_DIFF_SEP),
+                        ),
+                        'php' => array(
+                            'timezone' => date_default_timezone_get(),
+                            'offset'   => date('P'),
+                            'ini'      => ini_get('date.timezone'),
+                        ),
+                    ),
                 ),
                 'shipping' => array(
                     'origin' => Mage::getModel ('basic/shipping_api')->origin (Mage::app ()->getStore ()->getId ()),
