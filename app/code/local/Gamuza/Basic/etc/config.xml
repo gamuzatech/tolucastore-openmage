@@ -1074,7 +1074,8 @@
         </shipping>
         <checkout>
             <options>
-                <guest_selected>1</guest_selected>
+                <guest_checkout>0</guest_checkout>
+                <guest_selected>0</guest_selected>
                 <register_selected>1</register_selected>
             </options>
         </checkout>
