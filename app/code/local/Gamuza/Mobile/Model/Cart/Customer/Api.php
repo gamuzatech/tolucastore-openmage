@@ -58,7 +58,11 @@ class Gamuza_Mobile_Model_Cart_Customer_Api extends Mage_Checkout_Model_Cart_Cus
             {
                 $customerAddress = $this->_getCustomerAddress($addressItem['entity_id']);
 
-                if ($customerAddress->getCustomerId() != $quote->getCustomerId())
+                if ($customerAddress->getCustomerId() != $quote->getCustomerId()
+                    && (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
+                        && $quote->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV)
+                        && intval ($quoteCustomerId = $quote->getData(Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID)) > 0
+                        && $quoteCustomerId != $customerAddress->getCustomerId()))
                 {
                     $this->_fault('address_not_belong_customer');
                 }
