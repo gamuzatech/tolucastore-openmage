@@ -17,8 +17,9 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const LOG_TABLE      = 'toluca_pdv_log';
     const PRINT_TABLE    = 'toluca_pdv_print';
 
+    const ORDER_ATTRIBUTE_IS_COMANDA       = 'is_comanda';
     const ORDER_ATTRIBUTE_IS_COMANDA_ALERT = 'is_comanda_alert';
-    const ORDER_ATTRIBUTE_IS_COMANDA_BILL = 'is_comanda_bill';
+    const ORDER_ATTRIBUTE_IS_COMANDA_BILL  = 'is_comanda_bill';
     const ORDER_ATTRIBUTE_IS_MULTI_PAYMENT = 'is_multi_payment';
     const ORDER_ATTRIBUTE_IS_SUPER_MODE = 'is_super_mode';
     const ORDER_ATTRIBUTE_IS_PDV = 'is_pdv';

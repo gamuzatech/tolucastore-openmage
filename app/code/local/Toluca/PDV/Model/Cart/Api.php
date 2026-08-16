@@ -240,7 +240,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
         return $result;
     }
 
-    public function catch ($quote_id, $cashier_id, $operator_id)
+    public function catch ($quote_id, $cashier_id, $operator_id, $is_comanda = false)
     {
         if (empty ($quote_id))
         {
@@ -294,6 +294,11 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
             ->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_HISTORY_ID,  $history->getId ())
             ->save ()
         ;
+
+        if ($is_comanda)
+        {
+            $quote->setData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA, true)->save ();
+        }
 
         return intval ($quote->getId());
     }
