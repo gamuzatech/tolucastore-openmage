@@ -59,6 +59,8 @@ class Gamuza_Basic_Model_Observer
         $event = $observer->getEvent ();
         $info = $event->getInfo ();
 
+        $read = Mage::getSingleton('core/resource')->getConnection('core_read');
+
         $info = array_replace_recursive ($info, array(
             'config' => array(
                 'general' => array(
@@ -79,6 +81,11 @@ class Gamuza_Basic_Model_Observer
                             'timezone' => date_default_timezone_get(),
                             'offset'   => date('P'),
                             'ini'      => ini_get('date.timezone'),
+                        ),
+                        'mariadb' => array(
+                            'session_timezone' => $read->fetchOne('SELECT @@session.time_zone'),
+                            'global_timezone'  => $read->fetchOne('SELECT @@global.time_zone'),
+                            'system_timezone'  => $read->fetchOne('SELECT @@system_time_zone'),
                         ),
                     ),
                 ),
