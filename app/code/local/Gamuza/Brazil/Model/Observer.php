@@ -96,7 +96,7 @@ class Gamuza_Brazil_Model_Observer
 
         if (Mage::helper ('core')->isModuleEnabled ('Toluca_PDV')
             && $quote->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV)
-            && ($pdvCustomerId = $quote->getData(Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID)))
+            && intval ($pdvCustomerId = $quote->getData(Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_PDV_CUSTOMER_ID)) > 0)
         {
             $customer = Mage::getModel ('customer/customer')->load ($pdvCustomerId);
         }
