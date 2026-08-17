@@ -165,6 +165,35 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
         return $collection->toOptionHash ();
     }
 
+    public function getIncrementId ($cashier, $field, $contents = null)
+    {
+        $cashierId = $cashier->getId();
+
+        $filename = sprintf (
+            '%s%s%s_%s_get_%s.lock',
+            Mage::app ()->getConfig ()->getVarDir ('locks'),
+            DS, 'cashier', $cashierId, $field
+        );
+
+        $fp = fopen ($filename, 'a');
+
+        flock  ($fp, LOCK_EX);
+        fwrite ($fp, sprintf ('%s: %s%s', date ('c'), json_encode ($contents), PHP_EOL));
+
+        $cashier = Mage::getModel ('pdv/cashier')->load ($cashierId);
+        $value = $cashier->getData ($field);
+        $result = intval ($value) + 1;
+
+        fwrite ($fp, sprintf ('%s: %s%s', date ('c'), json_encode (array ($field => $result)), PHP_EOL));
+
+        $cashier->setData ($field, $result)->save ();
+
+        flock  ($fp, LOCK_UN);
+        fclose ($fp);
+
+        return $result;
+    }
+
     public function isPDV ()
     {
         return strpos ($_SERVER ['HTTP_USER_AGENT'], 'TolucaStorePDV') !== false;

@@ -144,9 +144,14 @@ class Toluca_PDV_Model_Observer
 
     __updateSequenceId:
 
+        /*
         $sequenceId = intval ($cashier->getSequenceId ()) + 1;
 
         $cashier->setSequenceId ($sequenceId)->save ();
+        */
+
+        $sequenceId = Mage::helper ('pdv')->getIncrementId ($cashier, 'sequence_id', array ('cashier_id' => $cashier->getId ()));
+
         $order->setPdvSequenceId ($sequenceId)->save ();
     }
 
