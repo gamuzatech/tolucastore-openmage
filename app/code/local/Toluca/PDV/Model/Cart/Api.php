@@ -234,6 +234,7 @@ class Toluca_PDV_Model_Cart_Api extends Mage_Api_Model_Resource_Abstract
                 'cellphone' => preg_replace ('[\D]', '', $address->getCellphone ()),
                 'telephone' => $address->getTelephone (),
                 'fax'       => $address->getFax (),
+                'customer_address_id' => $address->getCustomerAddressId (),
             );
         }
 
