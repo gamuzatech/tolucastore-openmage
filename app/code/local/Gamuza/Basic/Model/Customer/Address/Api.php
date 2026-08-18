@@ -11,6 +11,10 @@
 class Gamuza_Basic_Model_Customer_Address_Api
     extends Mage_Customer_Model_Address_Api
 {
+    protected $_mapAttributes = array (
+        'entity_id' => 'entity_id'
+    );
+
     public function items($customerId)
     {
         $customer = Mage::getModel('customer/customer')->load($customerId);
