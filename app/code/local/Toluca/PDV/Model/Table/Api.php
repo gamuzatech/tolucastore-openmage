@@ -88,7 +88,7 @@ class Toluca_PDV_Model_Table_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('table_not_empty');
         }
 
-        $quote->delete (); // discard
+        $quote->setIsActive (0)->save (); // not_discard
 
         return true;
     }
