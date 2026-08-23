@@ -459,9 +459,7 @@ class Gamuza_Basic_Model_Observer
             ->addFieldToFilter('items_count', array ('eq' => 0))
         ;
 
-        /*
         $quotes->addFieldToFilter('updated_at', array('to'=>date("Y-m-d H:i:s", mktime(23, 59, 59) - self::SALES_QUOTE_LIFETIME)));
-        */
 
         $quotes->walk('delete');
 
