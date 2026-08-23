@@ -447,6 +447,18 @@ class Toluca_PDV_Model_Observer
         else
         {
             $print->setQuoteId ($order->getId ())
+                ->setQuoteIsComanda ($order->getIsComanda ())
+                ->setUpdatedAt (date ('c'))
+            ;
+        }
+
+        if ($order && $order->getId () > 0)
+        {
+            $skus = array_map (function ($itemOrder) {
+                return $itemOrder->getSku ();
+            }, $order->getAllItems ());
+
+            $print->setSkusList (implode (',', $skus))
                 ->setUpdatedAt (date ('c'))
             ;
         }

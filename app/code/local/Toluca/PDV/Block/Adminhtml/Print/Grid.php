@@ -118,7 +118,7 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
             'options' => self::getOperators (),
 		));
 		$this->addColumn ('quote_id', array(
-		    'header'  => Mage::helper ('pdv')->__('Cart'),
+		    'header'  => Mage::helper ('pdv')->__('Cart ID'),
 		    'index'   => 'quote_id',
             'type'    => 'number',
 			'filter_index' => 'main_table.quote_id',
@@ -165,6 +165,16 @@ class Toluca_PDV_Block_Adminhtml_Print_Grid extends Mage_Adminhtml_Block_Widget_
 		    'header'  => Mage::helper ('pdv')->__('SiTef ID'),
 		    'index'   => 'sitef_id',
 		    'type'    => 'number',
+		));
+		$this->addColumn ('quote_is_comanda', array(
+		    'header'  => Mage::helper ('pdv')->__('Comanda'),
+		    'index'   => 'quote_is_comanda',
+			'type'    => 'options',
+			'options' => Mage::getModel ('adminhtml/system_config_source_yesno')->toArray (),
+		));
+		$this->addColumn ('skus_list', array(
+		    'header'  => Mage::helper ('pdv')->__('SKUs'),
+		    'index'   => 'skus_list',
 		));
 		$this->addColumn ('qty_printed', array(
 		    'header'  => Mage::helper ('pdv')->__('Qty'),

@@ -143,6 +143,20 @@ SQLBLOCK;
         ));
 
     $installer->getConnection ()
+        ->addColumn ($table, 'quote_is_comanda', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_INTEGER,
+            'length'   => 11,
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Quote Is Comanda',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'skus_list', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
+            'nullable' => false,
+            'comment'  => 'SKUs',
+        ));
+    $installer->getConnection ()
         ->addColumn ($table, 'qty_printed', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
             'length'   => '12,4',
