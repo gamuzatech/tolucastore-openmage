@@ -433,6 +433,16 @@ class Gamuza_Basic_Model_Observer
 
         foreach($quotes as $quote)
         {
+            if (!strcmp (php_sapi_name (), 'cli'))
+            {
+                echo sprintf (
+                    'Quote ID: %d, itemsCount: %d, updatedAt: %s',
+                    $quote->getId (),
+                    $quote->getItemsCount (),
+                    $quote->getUpdatedAt ()
+                ) . PHP_EOL;
+            }
+
             $collectTotals = false;
 
             foreach($quote->getAllItems() as $item)

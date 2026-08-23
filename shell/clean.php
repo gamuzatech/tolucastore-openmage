@@ -33,6 +33,10 @@ umask(0);
 
 try
 {
+    Mage::app()->getTranslator()->init(Mage_Core_Model_App_Area::AREA_ADMINHTML, true);
+
+    Mage::getSingleton('core/session', array('name' => Mage_Core_Model_App_Area::AREA_ADMINHTML));
+
     Mage::getModel ('basic/magento_api')->clean (shell_get_args ());
 }
 catch (Exception $e)
