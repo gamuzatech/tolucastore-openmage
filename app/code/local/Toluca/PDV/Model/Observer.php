@@ -53,6 +53,9 @@ class Toluca_PDV_Model_Observer
                         'show_history_nfces'   => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_SHOW_HISTORY_NFCES),
                         'validate_remote_ip'   => Mage::getStoreConfigFlag (self::XML_PATH_PDV_CASHIER_VALIDATE_REMOTE_IP),
                     ),
+                    'comanda' => array(
+                        'catch_pending_orders' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_COMANDA_CATCH_PENDING_ORDERS),
+                    )
                 ),
             ),
         ));

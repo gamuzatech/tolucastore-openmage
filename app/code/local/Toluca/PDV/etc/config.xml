@@ -289,6 +289,9 @@
                 <show_history_nfces>1</show_history_nfces>
                 <validate_remote_ip>0</validate_remote_ip>
             </cashier>
+            <comanda>
+                <catch_pending_orders>1</catch_pending_orders>
+            </comanda>
             <payment_method>
                 <money>cashondelivery</money>
                 <machine>machineondelivery</machine>
