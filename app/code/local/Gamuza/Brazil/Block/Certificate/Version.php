@@ -12,11 +12,20 @@ class Gamuza_Brazil_Block_Certificate_Version
     {
         $directory = Mage::getBaseDir ('var') . DS . 'brazil' . DS . 'cert';
 
-        $filename = $directory . DS . Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME);
+        $certname = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_CERTIFICATE_FILENAME);
+
+        if (empty ($certname))
+        {
+            return null;
+        }
+
+        $filename = $directory . DS . $certname;
 
         if (!is_file ($filename))
         {
-            return null;
+            $result = Mage::helper ('brazil')->__('Certificate file does not exist.') . PHP_EOL . $filename;
+
+            return nl2br ($result);
         }
 
         $contents = file_get_contents ($filename);
@@ -24,7 +33,14 @@ class Gamuza_Brazil_Block_Certificate_Version
 
         if (!openssl_pkcs12_read ($contents, $certificates, $password))
         {
-            return null;
+            $result = null;
+
+            while ($error = openssl_error_string ())
+            {
+                $result .= $error . PHP_EOL;
+            }
+
+            return nl2br ($result);
         }
 
         $result = openssl_x509_parse ($certificates ['cert'], false);
