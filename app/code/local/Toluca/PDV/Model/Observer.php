@@ -55,6 +55,10 @@ class Toluca_PDV_Model_Observer
                     ),
                     'comanda' => array(
                         'catch_pending_orders' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_COMANDA_CATCH_PENDING_ORDERS),
+                    ),
+                    'supervisor' => array(
+                        'active'   => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_SUPERVISOR_ACTIVE),
+                        'password' => Mage::getStoreConfig (Toluca_PDV_Helper_Data::XML_PATH_PDV_SUPERVISOR_PASSWORD),
                     )
                 ),
             ),
