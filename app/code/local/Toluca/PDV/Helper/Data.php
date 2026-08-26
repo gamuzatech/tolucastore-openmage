@@ -86,6 +86,8 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
 
     const XML_PATH_PDV_COMANDA_CATCH_PENDING_ORDERS = 'pdv/comanda/catch_pending_orders';
 
+    const XML_PATH_PDV_RECEIPT_PAYMENT_METHOD = 'pdv/receipt/payment_method';
+
     const XML_PATH_PDV_SUPERVISOR_ACTIVE   = 'pdv/supervisor/active';
     const XML_PATH_PDV_SUPERVISOR_PASSWORD = 'pdv/supervisor/password';
 
