@@ -431,17 +431,23 @@ class Gamuza_Basic_Model_Observer
             ->addFieldToFilter('items_count', array ('gt' => 0))
         ;
 
+        $row = 1;
+
         foreach($quotes as $quote)
         {
             if (!strcmp (php_sapi_name (), 'cli'))
             {
                 echo sprintf (
-                    'Quote ID: %d, itemsCount: %d, updatedAt: %s',
+                    'Quote ID: %d, itemsCount: %d, updatedAt: %s, quantity: %s of %s',
                     $quote->getId (),
                     $quote->getItemsCount (),
-                    $quote->getUpdatedAt ()
+                    $quote->getUpdatedAt (),
+                    str_pad ($row, strlen ($quotes->getSize ()), 0, STR_PAD_LEFT),
+                    $quotes->getSize ()
                 ) . PHP_EOL;
             }
+
+            $row ++;
 
             $collectTotals = false;
 
