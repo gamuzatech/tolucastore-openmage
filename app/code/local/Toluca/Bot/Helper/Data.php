@@ -90,6 +90,7 @@ class Toluca_Bot_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BOT_NOTIFICATION_SITE = 'bot/notification/site';
     const XML_PATH_BOT_NOTIFICATION_ORDER = 'bot/notification/order';
     const XML_PATH_BOT_NOTIFICATION_STATUS = 'bot/notification/status';
+    const XML_PATH_BOT_NOTIFICATION_CELLPHONE = 'bot/notification/cellphone';
 
     public function getRemoteIp ()
     {

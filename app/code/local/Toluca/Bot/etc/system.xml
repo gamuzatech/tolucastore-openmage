@@ -168,6 +168,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </status>
+                        <cellphone translate="label" module="bot">
+                            <label>Cellphone</label>
+                            <comment>5511912345678</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cellphone>
                     </fields>
                 </notification>
             </groups>

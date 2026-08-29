@@ -17,9 +17,6 @@ class Toluca_Bot_Model_Observer
         $event = $observer->getEvent ();
         $info = $event->getInfo ();
 
-        $botNotificationApp    = Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_APP);
-        $botNotificationSite   = Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_SITE);
-        $botNotificationOrder  = Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_ORDER);
         $botNotificationStatus = Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_STATUS);
 
         $info = array_replace_recursive ($info, array(
@@ -30,10 +27,11 @@ class Toluca_Bot_Model_Observer
                         'whatsapp_url' => Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_INFORMATION_WHATSAPP_URL),
                     ),
                     'notification' => array(
-                        'app'    => $botNotificationApp,
-                        'site'   => $botNotificationSite,
-                        'order'  => $botNotificationOrder,
+                        'app'    => Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_APP),
+                        'site'   => Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_SITE),
+                        'order'  => Mage::getStoreConfigFlag (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_ORDER),
                         'status' => $botNotificationStatus ? explode (',', $botNotificationStatus) : array (),
+                        'cellphone' => Mage::getStoreConfig (Toluca_Bot_Helper_Data::XML_PATH_BOT_NOTIFICATION_CELLPHONE),
                     ),
                 ),
             ),
