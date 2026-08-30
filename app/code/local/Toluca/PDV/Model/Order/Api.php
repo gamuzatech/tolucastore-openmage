@@ -99,6 +99,15 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
             {
                 $request = new Varien_Object ();
 
+                $product = $item->getProduct ();
+
+                $itemUniqueId = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_UNIQUE_ID);
+
+                if (!empty ($itemUniqueId))
+                {
+                    $product->addCustomOption ('unique_id', $itemUniqueId);
+                }
+
                 $productOptions = $item->getProductOptions ();
 
                 if (array_key_exists ('info_buyRequest', $productOptions))
@@ -131,7 +140,39 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
                     }
                 }
 
-                $quote->addProduct ($item->getProduct (), $request);
+                $quoteItem = $quote->addProduct ($product, $request);
+
+                if (is_string ($quoteItem))
+                {
+                    Mage::throwException ($quoteItem);
+                }
+
+                $itemIsPrinted = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
+                $itemPrinterId = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_PRINTER_ID);
+
+                $quoteItem->setData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, $itemIsPrinted)
+                    ->setData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_PRINTER_ID, $itemPrinterId)
+                    ->save ()
+                ;
+
+                if ($quote->getIsSuperMode ())
+                {
+                    if (!empty ($itemUniqueId))
+                    {
+                        $option = Mage::getModel ('sales/quote_item_option')
+                            ->setCode ('unique_id')
+                            ->setValue ($itemUniqueId)
+                            ->setItem ($quoteItem)
+                            ->setProduct ($product)
+                        ;
+
+                        $quoteItem->addOption ($option)
+                            ->setUniqueId ($itemUniqueId)
+                            ->setIsSuperMode(true)
+                            ->save ()
+                        ;
+                    }
+                }
             }
 
             $quote->collectTotals ()->save ();
