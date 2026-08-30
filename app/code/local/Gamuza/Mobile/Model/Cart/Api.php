@@ -560,9 +560,6 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                 if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Basic')
                     && in_array ($item->getProduct ()->getTypeId (), array(
                         Gamuza_Basic_Model_Catalog_Product_Type_Giveaway::TYPE_GIVEAWAY,
-                        /*
-                        Gamuza_Basic_Model_Catalog_Product_Type_Rodizio::TYPE_RODIZIO,
-                        */
                 )))
                 {
                     continue;
@@ -573,21 +570,30 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
                 $cartItem->setQuote ($cart);
 
                 $oldToNew [$item->getId()] = $cartItem;
-
-                $cart->addItem ($cartItem);
-
-                Mage::dispatchEvent ('sales_quote_product_add_after', array ('items' => array ($cartItem)));
             }
 
             foreach ($quote->getAllItems() as $item)
             {
+                if (Mage::helper ('core')->isModuleEnabled ('Gamuza_Basic')
+                    && in_array ($item->getProduct ()->getTypeId (), array(
+                        Gamuza_Basic_Model_Catalog_Product_Type_Giveaway::TYPE_GIVEAWAY,
+                )))
+                {
+                    continue;
+                }
+
+                $child = $oldToNew[$item->getId()];
+
                 if ($item->getParentItemId())
                 {
-                    $child = $oldToNew[$item->getId()];
                     $parent = $oldToNew[$item->getParentItemId()];
 
                     $child->setParentItem($parent);
                 }
+
+                $cart->addItem ($child);
+
+                Mage::dispatchEvent ('sales_quote_product_add_after', array ('items' => array ($child)));
             }
 
             $cart->collectTotals ()->save ();
