@@ -292,6 +292,9 @@
             <comanda>
                 <catch_pending_orders>1</catch_pending_orders>
             </comanda>
+            <checkout>
+                <wait_pending_orders>1</wait_pending_orders>
+            </checkout>
             <payment_method>
                 <money>cashondelivery</money>
                 <machine>machineondelivery</machine>

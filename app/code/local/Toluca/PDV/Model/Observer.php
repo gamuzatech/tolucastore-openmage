@@ -58,6 +58,9 @@ class Toluca_PDV_Model_Observer
                     'comanda' => array(
                         'catch_pending_orders' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_COMANDA_CATCH_PENDING_ORDERS),
                     ),
+                    'checkout' => array(
+                        'wait_pending_orders' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_CHECKOUT_WAIT_PENDING_ORDERS),
+                    ),
                     'receipt' => array(
                         'payment_method' => strlen ($receiptPaymentMethod) > 0 ? explode (',', $receiptPaymentMethod) : array (),
                     ),
