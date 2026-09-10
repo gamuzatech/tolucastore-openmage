@@ -727,6 +727,11 @@
                 </totals>
             </order_invoice>
         </sales>
+        <log>
+            <core>
+                <writer_model>Gamuza_Basic_Model_Log_Writer</writer_model>
+            </core>
+        </log>
         <basic>
             <product>
                 <options>
@@ -1116,6 +1121,7 @@
         <system>
             <cron>
                 <error_email><![CDATA[cron@toluca.com.br]]></error_email>
+                <logFile><![CDATA[basic_cron.log]]></logFile>
                 <enableRunNow>1</enableRunNow>
                 <showCronUserMessage>0</showCronUserMessage>
             </cron>
@@ -1141,6 +1147,10 @@
             </modules_disable_output>
         </advanced>
         <dev>
+            <log>
+                <file><![CDATA[[basic_system.log]]></file>
+                <exception_file><![CDATA[[basic_exception.log]]></exception_file>
+            </log>
             <js>
                 <merge_files>1</merge_files>
             </js>

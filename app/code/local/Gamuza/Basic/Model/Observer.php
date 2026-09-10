@@ -395,11 +395,11 @@ class Gamuza_Basic_Model_Observer
                     throw new Exception(sprintf('MISS: %s', $baseUrl));
                 }
 
-                Mage::log(sprintf('HIT: %s', $baseUrl), null, 'gamuza_basic_warmer.log');
+                Mage::log(sprintf('HIT: %s', $baseUrl), null, 'basic_warmer.log');
             }
             catch (Exception $e)
             {
-                Mage::log($e->getMessage(), null, 'gamuza_basic_warmer.log');
+                Mage::log($e->getMessage(), null, 'basic_warmer.log');
             }
         }
     }

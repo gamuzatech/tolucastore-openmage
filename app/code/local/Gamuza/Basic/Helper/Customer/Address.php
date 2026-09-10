@@ -68,7 +68,7 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
         }
         catch (NumberParseException $e)
         {
-            Mage::log ($e->getMessage (), null, 'cellphone.log');
+            Mage::log ($e->getMessage (), null, 'basic_cellphone.log');
 
             $result = false;
         }
