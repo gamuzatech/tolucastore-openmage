@@ -1,2 +1,4 @@
 -s:*
+-f:cache/*
+-f:session/*
 

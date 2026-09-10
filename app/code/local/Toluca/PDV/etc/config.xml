@@ -275,7 +275,7 @@
                 <dashboard>1</dashboard>
                 <desktop>1</desktop>
                 <preferences>1</preferences>
-                <receipt>1</receipt>
+                <receipt>0</receipt>
                 <backup>1</backup>
             </setting>
             <cashier>
