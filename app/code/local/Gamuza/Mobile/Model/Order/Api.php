@@ -156,6 +156,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'customer_balance_amount', 'customer_balance_invoiced', 'customer_balance_refunded',
         'bs_customer_bal_total_refunded', 'customer_bal_total_refunded',
         'pagcripto_amount', 'pagcripto_received_amount',
+        /* split */
         'total', 'amount', 'cash_amount', 'change_amount',
     );
 
@@ -182,6 +183,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         /* info */
         'free_shipping', 'is_qty_decimal', 'no_discount', 'is_nominal', 'gift_message_available',
         'is_customer_notified', 'is_visible_on_front',
+        /* split */
         'is_default',
     );
 

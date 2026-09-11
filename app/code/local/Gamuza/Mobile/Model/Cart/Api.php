@@ -31,12 +31,15 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         /* address */
         'weight', 'shipping_amount', 'base_shipping_amount', 'discount_amount', 'base_discount_amount', 'shipping_discount_amount', 'base_shipping_discount_amount',
         /* item */
-        'price', 'base_price', 'custom_price', 'discount_percent', 'row_total', 'base_row_total', 'row_total_with_discount', 'row_weight'
+        'price', 'base_price', 'custom_price', 'discount_percent', 'row_total', 'base_row_total', 'row_total_with_discount', 'row_weight',
+        /* split */
+        'total', 'amount', 'cash_amount', 'change_amount',
     );
 
     protected $_boolAttributes = array(
         'is_app', 'is_bot', 'is_zap', 'is_pdv',
         'is_openpix', 'is_pagcripto', 'is_picpay',
+        'is_multi_payment', 'is_default',
     );
 
     protected $_orderAttributes = array(
@@ -52,6 +55,7 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         'weight', 'bot_type', 'waiter_name',
         'is_app', 'is_bot', 'is_zap', 'is_pdv',
         'is_openpix', 'is_pagcripto', 'is_picpay',
+        'is_multi_payment',
         'created_at', 'updated_at',
     );
 
@@ -73,6 +77,13 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         'deferred_installments_qty', 'deferred_interval_days', 'deferred_first_due_days',
         'deferred_fee_percentage', 'deferred_fee_amount',
         'brazil_pix_key',
+    );
+
+    protected $_orderPaymentSplitAttributes = array(
+        'method', 'total', 'amount',
+        'cash_amount', 'change_amount', 'change_type',
+        'cc_type', 'po_number',
+        'customer_name', 'is_default',
     );
 
     /**
@@ -166,6 +177,37 @@ class Gamuza_Mobile_Model_Cart_Api extends Mage_Checkout_Model_Api_Resource
         );
 
         $result ['order']['payment'] = $this->_getAttributes ($order->getPayment(), 'order_payment', $this->_orderPaymentAttributes);
+
+        foreach ($order->getSplitPayments () as $payment)
+        {
+            $split = $this->_getAttributes ($payment, 'order_payment_split', $this->_orderPaymentSplitAttributes);
+
+            foreach ($this->_floatAttributes as $attribute)
+            {
+                if (array_key_exists ($attribute, $split))
+                {
+                    $split [$attribute] = floatval ($split [$attribute]);
+                }
+            }
+
+            foreach ($this->_intAttributes as $attribute)
+            {
+                if (array_key_exists ($attribute, $split))
+                {
+                    $split [$attribute] = intval ($split [$attribute]);
+                }
+            }
+
+            foreach ($this->_boolAttributes as $attribute)
+            {
+                if (array_key_exists ($attribute, $split))
+                {
+                    $split [$attribute] = boolval ($split [$attribute]);
+                }
+            }
+
+            $result ['order']['payment_split'][] = $split;
+        }
 
         $result ['order']['payment_method'] = $order->getPayment ()->getMethod ();
 
