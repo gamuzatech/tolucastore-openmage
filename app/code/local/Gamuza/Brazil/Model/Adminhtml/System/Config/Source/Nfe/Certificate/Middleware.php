@@ -20,6 +20,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Certificate_Middlew
         $result = array(
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_CERTIFICATE_A3_MIDDLEWARE_DEFAULT, 'label' => Mage::helper ('brazil')->__('Default')),
             array ('value' => Gamuza_Brazil_Helper_Data::NFE_CERTIFICATE_A3_MIDDLEWARE_SAFENET, 'label' => Mage::helper ('brazil')->__('SafeNet')),
+            array ('value' => Gamuza_Brazil_Helper_Data::NFE_CERTIFICATE_A3_MIDDLEWARE_SOFTHSM, 'label' => Mage::helper ('brazil')->__('SoftHSM')),
         );
 
         return $result;
@@ -35,6 +36,7 @@ class Gamuza_Brazil_Model_Adminhtml_System_Config_Source_Nfe_Certificate_Middlew
         $result = array(
             Gamuza_Brazil_Helper_Data::NFE_CERTIFICATE_A3_MIDDLEWARE_DEFAULT => Mage::helper ('brazil')->__('Default'),
             Gamuza_Brazil_Helper_Data::NFE_CERTIFICATE_A3_MIDDLEWARE_SAFENET => Mage::helper ('brazil')->__('SafeNet'),
+            Gamuza_Brazil_Helper_Data::NFE_CERTIFICATE_A3_MIDDLEWARE_SOFTHSM => Mage::helper ('brazil')->__('SoftHSM'),
         );
 
         return $result;

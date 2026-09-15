@@ -55,6 +55,7 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
     const NFE_CERTIFICATE_A3_MIDDLEWARE_DEFAULT = 'default';
     const NFE_CERTIFICATE_A3_MIDDLEWARE_SAFENET = 'safenet';
+    const NFE_CERTIFICATE_A3_MIDDLEWARE_SOFTHSM = 'softhsm';
 
     const NFE_VERSION_3_10 = '3.10';
     const NFE_VERSION_4_00 = '4.00';
