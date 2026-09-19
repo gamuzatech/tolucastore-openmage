@@ -196,6 +196,23 @@
                 </item>
             </order>
         </sales>
+        <middleware>
+            <default>
+                <Linux><![CDATA[/usr/lib/x86_64-linux-gnu/pkcs11/opensc-pkcs11.so]]></Linux>
+                <BSD><![CDATA[/usr/local/lib/pkcs11/opensc-pkcs11.so]]></BSD>
+                <Darwin><![CDATA[/opt/local/lib/pkcs11/opensc-pkcs11.so]]></Darwin>
+            </default>
+            <safenet>
+                <Linux><![CDATA[/usr/lib/pkcs11/libIDPrimePKCS11.so]]></Linux>
+                <BSD><![CDATA[/dev/null]]></BSD>
+                <Darwin><![CDATA[/usr/local/lib/pkcs11/libIDPrimePKCS11.dylib]]></Darwin>
+            </safenet>
+            <softhsm>
+                <Linux><![CDATA[/usr/lib/softhsm/libsofthsm2.so]]></Linux>
+                <BSD><![CDATA[/usr/local/lib/softhsm/libsofthsm2.so]]></BSD>
+                <Darwin><![CDATA[/opt/local/lib/softhsm/libsofthsm2.so]]></Darwin>
+            </softhsm>
+        </middleware>
     </global>
     <admin>
         <routers>

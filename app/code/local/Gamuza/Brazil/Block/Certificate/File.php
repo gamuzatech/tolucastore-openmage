@@ -5,7 +5,7 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
-class Gamuza_Brazil_Block_Certificate_Version
+class Gamuza_Brazil_Block_Certificate_File
     extends Mage_Adminhtml_Block_System_Config_Form_Field
 {
     public function render (Varien_Data_Form_Element_Abstract $element)
@@ -33,7 +33,7 @@ class Gamuza_Brazil_Block_Certificate_Version
 
         if (!openssl_pkcs12_read ($contents, $certificates, $password))
         {
-            $result = null;
+            $result = PHP_EOL;
 
             while ($error = openssl_error_string ())
             {
@@ -63,7 +63,9 @@ class Gamuza_Brazil_Block_Certificate_Version
             return "<b>{$key}:</b> {$value}";
         }, array_keys ($pairs), $pairs);
 
-        return implode ('<br/>', $pairs);
+        $result = implode ('<br/>', $pairs) . PHP_EOL;
+
+        return nl2br ($result);
     }
 }
 
