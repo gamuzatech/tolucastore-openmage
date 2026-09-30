@@ -571,6 +571,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'row_total_with_discount' => floatval($item->getRowTotalWithDiscount()),
                 'row_weight'              => floatval($item->getRowWeight()),
                 'created_at'              => $item->getCreatedAt (),
+                'updated_at'              => $item->getUpdatedAt (),
                 // Basic product data
                 'url_path'                => $product->getUrlPath(),
                 'thumbnail'               => $mediaUrl . 'catalog/product' . $product->getData ('thumbnail'),
