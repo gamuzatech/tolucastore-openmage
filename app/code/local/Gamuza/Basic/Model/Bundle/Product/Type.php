@@ -23,7 +23,9 @@ class Gamuza_Basic_Model_Bundle_Product_Type extends Mage_Bundle_Model_Product_T
             Gamuza_Basic_Helper_Data::PRODUCT_PRICE_VIEW_AS_HIGH_AS
         )))
         {
+            /*
             $product->setPriceType (Mage_Bundle_Model_Product_Price::PRICE_TYPE_DYNAMIC);
+            */
         }
 
         return parent::beforeSave($product);
