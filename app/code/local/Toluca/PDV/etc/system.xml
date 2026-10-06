@@ -234,10 +234,29 @@
                         </allow_broken_flow>
                     </fields>
                 </cashier>
+                <cart translate="label" module="pdv">
+                    <label>Cart</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <use_unique_id translate="label" module="pdv">
+                            <label>Use Unique ID</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_unique_id>
+                    </fields>
+                </cart>
                 <comanda translate="label" module="pdv">
                     <label>Comanda</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>20</sort_order>
+                    <sort_order>30</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -256,7 +275,7 @@
                 <checkout translate="label" module="pdv">
                     <label>Checkout</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>30</sort_order>
+                    <sort_order>40</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -275,7 +294,7 @@
                 <payment_method translate="label" module="pdv">
                     <label>Payment Method</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>40</sort_order>
+                    <sort_order>50</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -375,7 +394,7 @@
                 <receipt translate="label" module="pdv">
                     <label>Receipt</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>50</sort_order>
+                    <sort_order>60</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -394,7 +413,7 @@
                 <supervisor translate="label" module="pdv">
                     <label>Supervisor</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>60</sort_order>
+                    <sort_order>70</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>

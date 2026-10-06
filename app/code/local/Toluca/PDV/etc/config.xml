@@ -289,6 +289,9 @@
                 <show_history_nfces>1</show_history_nfces>
                 <validate_remote_ip>0</validate_remote_ip>
             </cashier>
+            <cart>
+                <use_unique_id>1</use_unique_id>
+            </cart>
             <comanda>
                 <catch_pending_orders>1</catch_pending_orders>
             </comanda>
