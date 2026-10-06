@@ -113,6 +113,41 @@ class Toluca_PDV_Model_Observer
         }
     }
 
+    public function salesQuoteCatalogProductAddAfter (Varien_Event_Observer $observer)
+    {
+        $event = $observer->getEvent ();
+        $item = $event->getItem ();
+        $qty = $event->getQty ();
+        $quote = $event->getQuote ();
+
+        $quoteIsComanda = $quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA);
+
+        if ($quoteIsComanda)
+        {
+            /*
+            $quote->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
+                ->save()
+            ;
+            */
+
+            $useUniqueId = Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_CART_USE_UNIQUE_ID);
+
+            if ($useUniqueId == false)
+            {
+                $quoteItemIsPrinted = $item->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
+                $quoteItemUniqueId  = $item->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_UNIQUE_ID);
+
+                if (strcmp ($quoteItemIsPrinted, '2') != 0 && empty ($quoteItemUniqueId))
+                {
+                    $item->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, '0')
+                        ->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_QTY_PRINTED, $qty)
+                        ->save ()
+                    ;
+                }
+            }
+        }
+    }
+
     public function salesOrderPlaceAfter ($observer)
     {
         $event = $observer->getEvent ();

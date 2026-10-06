@@ -612,6 +612,7 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                 'custom_price'        => floatval ($item->getCustomPrice ()),
                 'custom_weight'       => floatval ($item->getCustomWeight ()),
                 'is_printed'          => boolval ($item->getIsPrinted ()),
+                'qty_printed'         => floatval ($item->getQtyPrinted ()),
                 'unique_id'           => $item->getUniqueId (),
                 'quote_is_comanda'    => boolval ($quote->getIsComanda ()),
             );

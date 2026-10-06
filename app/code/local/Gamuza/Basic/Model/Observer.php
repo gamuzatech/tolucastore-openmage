@@ -885,7 +885,7 @@ CONTENT;
         return $this;
     }
 
-    public function salesQuoteAddItem (Varien_Event_Observer $observer)
+    public function salesQuoteAddItemAfter (Varien_Event_Observer $observer)
     {
         $event = $observer->getEvent ();
         $quoteItem = $event->getQuoteItem ();
@@ -896,7 +896,8 @@ CONTENT;
         if ($quoteIsComanda)
         {
             $quote->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
-                ->save()
+                ->getResource ()
+                ->save ($quote)
             ;
         }
     }

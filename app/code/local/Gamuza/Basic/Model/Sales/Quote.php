@@ -11,6 +11,22 @@
 class Gamuza_Basic_Model_Sales_Quote extends Mage_Sales_Model_Quote
 {
     /**
+     * Adding catalog product object data to quote
+     *
+     * @param int $qty
+     * @return  Mage_Sales_Model_Quote_Item
+     * @throws Mage_Core_Model_Store_Exception
+     */
+    protected function _addCatalogProduct (Mage_Catalog_Model_Product $product, $qty = 1)
+    {
+        $item = parent::_addCatalogProduct ($product, $qty);
+
+        Mage::dispatchEvent ('sales_quote_catalog_product_add_after', array ('item' => $item, 'qty' => $qty, 'quote' => $this));
+
+        return $item;
+    }
+
+    /**
      * Adding new item to quote
      *
      * @return  $this
@@ -43,7 +59,11 @@ class Gamuza_Basic_Model_Sales_Quote extends Mage_Sales_Model_Quote
 
         Mage::dispatchEvent('sales_quote_add_item_before', array('quote_item' => $item));
 
-        return parent::addItem($item);
+        $quote = parent::addItem($item);
+
+        Mage::dispatchEvent('sales_quote_add_item_after', array('quote_item' => $item));
+
+        return $quote;
     }
 
     /**
