@@ -735,6 +735,8 @@ class Gamuza_Mobile_Model_Cart_Product_Api extends Gamuza_Mobile_Model_Api_Resou
                                         // bundle
                                         'selection_qty'            => floatval ($selection->getSelectionQty ()),
                                         'selection_can_change_qty' => boolval ($selection->getSelectionCanChangeQty ()),
+                                        'selection_price_type'     => intval ($selection->getSelectionPriceType ()),
+                                        'selection_price_value'    => floatval ($selection->getSelectionPriceValue ()),
                                         'is_default'               => boolval ($selection->getIsDefault ()),
                                     );
                                 }

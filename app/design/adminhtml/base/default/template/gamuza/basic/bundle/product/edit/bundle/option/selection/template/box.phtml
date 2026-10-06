@@ -1,0 +1,31 @@
+<?php
+/**
+ * @package     Gamuza_Basic
+ * @copyright   Copyright (c) 2026 Gamuza Technologies (https://www.gamuza.com.br/)
+ * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
+ */
+?>
+<script type="text/javascript">
+//<![CDATA[
+var bundleTemplateBox = '<table class="border" cellpadding="0" cellspacing="0">' +
+    '    <thead>' +
+    '        <tr class="headings">' +
+    '            <th><?php echo $this->jsQuoteEscape(Mage::helper('catalog')->__('Name')) ?></th>' +
+    <?php if ($this->getCanReadPrice() !== false) : ?>
+    '            <th class="type-price price-type-box"><?php echo $this->jsQuoteEscape(Mage::helper('catalog')->__('Product Price')) ?></th>' +
+    '            <th class="type-type price-type-box"><?php echo $this->jsQuoteEscape(Mage::helper('bundle')->__('Price Type')) ?></th>' +
+    <?php endif ?>
+    '            <th class="type-price"><?php echo $this->jsQuoteEscape(Mage::helper('bundle')->__('Default Qty')) ?></th>' +
+    '            <th class="type-uqty qty-box"><?php echo $this->jsQuoteEscape(Mage::helper('bundle')->__('User Defined Qty')) ?></th>' +
+    '            <th class="type-order"><?php echo $this->jsQuoteEscape(Mage::helper('bundle')->__('Position')) ?></th>' +
+    '            <th style="width:1px"><?php echo $this->jsQuoteEscape(Mage::helper('bundle')->__('Default')) ?></th>' +
+    '            <th class="last">&nbsp;</th>' +
+    '        </tr>' +
+    '    </thead> ' +
+    '    <tbody>' +
+    '    </tbody>' +
+    '</table>';
+bSelection.templateBox = '<div class="grid tier form-list" id="' + bSelection.idLabel + '_box_{{parentIndex}}">' + bundleTemplateBox + '</div>';
+//]]>
+</script>
+

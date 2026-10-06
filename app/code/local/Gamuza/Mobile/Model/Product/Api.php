@@ -408,6 +408,8 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
                             'selection_id'             => intval ($selection->getId ()),
                             'selection_qty'            => floatval ($selection->getSelectionQty ()),
                             'selection_can_change_qty' => boolval ($selection->getSelectionCanChangeQty ()),
+                            'selection_price_type'     => intval ($selection->getSelectionPriceType ()),
+                            'selection_price_value'    => floatval ($selection->getSelectionPriceValue ()),
                             'is_default'               => boolval ($selection->getIsDefault ()),
                         );
                     }
