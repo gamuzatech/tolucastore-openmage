@@ -69,6 +69,7 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ITEM_ATTRIBUTE_IS_AGE_GATE = 'is_age_gate';
     const ORDER_ITEM_ATTRIBUTE_IS_PRINTED = 'is_printed';
     const ORDER_ITEM_ATTRIBUTE_PRINTER_ID = 'printer_id';
+    const ORDER_ITEM_ATTRIBUTE_QTY_PRINTED = 'qty_printed';
     const ORDER_ITEM_ATTRIBUTE_UNIQUE_ID = 'unique_id';
 
     const PAYMENT_ATTRIBUTE_DEFERRED_INSTALLMENTS_QTY = 'deferred_installments_qty';

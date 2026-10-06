@@ -88,6 +88,11 @@ foreach ($_order->getAllVisibleItems() as $item)
         echo sprintf('%s: %s', Mage::helper('basic')->__('Weight'), intval($item->getCustomWeight())) . PHP_EOL;
     }
 
+    if ($item->getQtyPrinted() && !$this->getQuoteId())
+    {
+        echo sprintf('%s: %s', Mage::helper('basic')->__('Qty'), intval($item->getQtyPrinted())) . PHP_EOL;
+    }
+
     echo Mage::helper('basic')->__('Price: %s <b><u>Qty: %s</u></b> Total: %s', $_price, $_qty, $_rowTotal) . PHP_EOL;
 
     echo sprintf('SKU: %s', $item->getSku()) . PHP_EOL;

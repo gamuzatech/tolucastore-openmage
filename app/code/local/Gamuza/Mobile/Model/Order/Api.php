@@ -94,7 +94,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'is_nominal', 'discount_refunded', 'base_discount_refunded',
         'gift_message_id', 'gift_message_available', 'mobile_product_code',
         'custom_weight', 'original_base_price',
-        'is_printed', 'created_at', 'updated_at',
+        'is_printed', 'qty_printed', 'created_at', 'updated_at',
     );
 
     protected $_orderPaymentAttributes = array(
@@ -143,7 +143,7 @@ class Gamuza_Mobile_Model_Order_Api extends Mage_Sales_Model_Order_Api
         'total_paid', 'total_qty_ordered', 'total_refunded', 'adjustment_negative', 'adjustment_positive',
         'base_adjustment_negative', 'base_adjustment_positive', 'base_shipping_discount_amount', 'base_total_due',
         'payment_authorization_amount', 'shipping_discount_amount', 'total_due', 'weight',
-        'custom_weight', 'original_base_price',
+        'custom_weight', 'original_base_price', 'qty_printed',
         /* info */
         'weight', 'qty_backordered', 'qty_canceled', 'qty_invoiced', 'qty_ordered', 'qty_refunded', 'qty_shipped',
         'price', 'base_price', 'original_price', 'base_original_price', 'discount_percent', 'discount_amount', 'base_discount_amount',

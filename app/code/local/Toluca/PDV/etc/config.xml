@@ -146,6 +146,14 @@
                     </toluca_pdv_jsonapi_call_before>
                 </observers>
             </jsonapi_call_before>
+            <sales_quote_catalog_product_add_after>
+                <observers>
+                    <toluca_pdv_sales_quote_catalog_product_add_after>
+                        <class>pdv/observer</class>
+                        <method>salesQuoteCatalogProductAddAfter</method>
+                    </toluca_pdv_sales_quote_catalog_product_add_after>
+                </observers>
+            </sales_quote_catalog_product_add_after>
             <sales_order_place_after>
                 <observers>
                     <toluca_pdv_sales_order_place_after>

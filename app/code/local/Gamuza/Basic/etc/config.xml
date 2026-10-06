@@ -335,6 +335,9 @@
                 <printer_id>
                     <to_order_item>*</to_order_item>
                 </printer_id>
+                <qty_printed>
+                    <to_order_item>*</to_order_item>
+                </qty_printed>
                 <unique_id>
                     <to_order_item>*</to_order_item>
                 </unique_id>
@@ -401,6 +404,9 @@
                 <printer_id>
                     <to_quote_item>*</to_quote_item>
                 </printer_id>
+                <qty_printed>
+                    <to_quote_item>*</to_quote_item>
+                </qty_printed>
                 <unique_id>
                     <to_quote_item>*</to_quote_item>
                 </unique_id>
@@ -552,14 +558,14 @@
                     </gamuza_basic_sales_quote_item_qty_set_after>
                 </observers>
             </sales_quote_item_qty_set_after>
-            <sales_quote_add_item>
+            <sales_quote_add_item_after>
                 <observers>
-                    <gamuza_basic_sales_quote_add_item>
+                    <gamuza_basic_sales_quote_add_item_after>
                         <class>basic/observer</class>
-                        <method>salesQuoteAddItem</method>
-                    </gamuza_basic_sales_quote_add_item>
+                        <method>salesQuoteAddItemAfter</method>
+                    </gamuza_basic_sales_quote_add_item_after>
                 </observers>
-            </sales_quote_add_item>
+            </sales_quote_add_item_after>
             <sales_quote_add_item_before>
                 <observers>
                     <gamuza_basic_sales_quote_add_item_before>
@@ -703,6 +709,7 @@
                         <image />
                         <gtin />
                         <printer_id />
+                        <qty_printed />
                         <unique_id />
                         <printing />
                         <weekday_ids />
@@ -714,6 +721,7 @@
                     <product_attributes>
                         <gtin />
                         <printer_id />
+                        <qty_printed />
                         <unique_id />
                     </product_attributes>
                 </item>

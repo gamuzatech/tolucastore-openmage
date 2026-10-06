@@ -34,6 +34,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
 
     const ORDER_ITEM_ATTRIBUTE_IS_PRINTED = 'is_printed';
     const ORDER_ITEM_ATTRIBUTE_PRINTER_ID = 'printer_id';
+    const ORDER_ITEM_ATTRIBUTE_QTY_PRINTED = 'qty_printed';
     const ORDER_ITEM_ATTRIBUTE_UNIQUE_ID  = 'unique_id';
 
     const ORDER_STATUS_PENDING = 'pending';
