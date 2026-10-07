@@ -247,6 +247,22 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_BRAZIL_NFCE_CORRECT_VALIDATE   = 'brazil/nfce/correct_validate';
     const XML_PATH_BRAZIL_NFCE_CANCEL_VALIDATE    = 'brazil/nfce/cancel_validate';
 
+    public function getCityId ($name)
+    {
+        $result = Mage::getStoreConfig (Gamuza_Brazil_Helper_Data::XML_PATH_BRAZIL_SETTING_CITY_ID);
+
+        $collection = Mage::getModel ('brazil/city')->getCollection ()
+            ->addFieldToFilter ('name', array ('eq' => $name))
+        ;
+
+        if ($collection->getSize () > 0)
+        {
+            $result = $collection->getFirstItem ()->getCode ();
+        }
+
+        return $result;
+    }
+
     public function getIncrementId ($type, $field, $contents = null)
     {
         $filename = sprintf (

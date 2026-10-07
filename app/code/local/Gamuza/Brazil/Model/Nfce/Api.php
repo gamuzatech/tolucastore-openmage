@@ -372,6 +372,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                     'postcode'     => preg_replace ('[\D]', '', $address->getPostcode ()),
                     'street'       => $address->getStreet (),
                     'city'         => strval ($address->getCity ()),
+                    'city_id'      => Mage::helper ('brazil')->getCityId ($address->getCity ()),
                     'region'       => strval ($address->getRegion ()),
                     'region_code'  => strval ($address->getRegionCode ()),
                     'country_id'   => strval ($address->getCountryId ()),
