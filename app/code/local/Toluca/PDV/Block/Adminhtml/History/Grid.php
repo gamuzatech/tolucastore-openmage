@@ -31,6 +31,9 @@ class Toluca_PDV_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widge
         'check_amount' => 0,
         'pix_amount' => 0,
 
+        'deferred_amount' => 0,
+        'sitef_pinpad_amount' => 0,
+
         'subtotal_amount' => 0,
         'refund_amount' => 0,
         'shipping_amount' => 0,
@@ -228,6 +231,23 @@ class Toluca_PDV_Block_Adminhtml_History_Grid extends Mage_Adminhtml_Block_Widge
 		    'index'   => 'pix_amount',
             'currency_code' => $store->getBaseCurrency()->getCode(),
             'default' => 0,
+		));
+
+		$this->addColumn ('deferred_amount', array(
+			'header'  => Mage::helper ('pdv')->__('Deferred'),
+			'align'   => 'right',
+			'type'    => 'price',
+			'index'   => 'deferred_amount',
+			'currency_code' => $store->getBaseCurrency()->getCode(),
+			'default' => 0,
+		));
+		$this->addColumn ('sitef_pinpad_amount', array(
+			'header'  => Mage::helper ('pdv')->__('Sitef Pinpad'),
+			'align'   => 'right',
+			'type'    => 'price',
+			'index'   => 'sitef_pinpad_amount',
+			'currency_code' => $store->getBaseCurrency()->getCode(),
+			'default' => 0,
 		));
 
 		$this->addColumn ('subtotal_amount', array(

@@ -175,6 +175,22 @@ SQLBLOCK;
             'nullable' => false,
             'comment'  => 'Pix Amount',
         ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'deferred_amount', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'length'   => '12,4',
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'Deferred Amount',
+        ));
+    $installer->getConnection ()
+        ->addColumn ($table, 'sitef_pinpad_amount', array(
+            'type'     => Varien_Db_Ddl_Table::TYPE_DECIMAL,
+            'length'   => '12,4',
+            'unsigned' => true,
+            'nullable' => false,
+            'comment'  => 'SiTef Pinpad Amount',
+        ));
 
     $installer->getConnection ()
         ->addColumn ($table, 'subtotal_amount', array(

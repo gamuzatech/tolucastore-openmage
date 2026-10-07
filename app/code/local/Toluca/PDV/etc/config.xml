@@ -317,6 +317,8 @@
                 <banktransfer>banktransfer</banktransfer>
                 <check>checkmo</check>
                 <pix>gamuza_brazil_pix</pix>
+                <deferred>basic_deferred_payment</deferred>
+                <sitef_pinpad>gamuza_sitef_pinpad</sitef_pinpad>
             </payment_method>
         </pdv>
     </default>
