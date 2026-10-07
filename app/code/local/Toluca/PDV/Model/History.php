@@ -34,18 +34,22 @@ class Toluca_PDV_Model_History extends Mage_Core_Model_Abstract
         $banktransferAmount = floatval ($this->getBanktransferAmount ());
         $checkAmount        = floatval ($this->getCheckAmount ());
         $pixAmount          = floatval ($this->getPixAmount ());
+        $deferredAmount     = floatval ($this->getDeferredAmount ());
+        $sitefPinpadAmount  = floatval ($this->getSitefPinpadAmount ());
         $refundAmount       = floatval ($this->getRefundAmount ());
 
         $this->setSubtotalAmount (
             $moneyAmount + $changeAmount + $machineAmount
             + $pagcriptoAmount + $picpayAmount + $openpixAmount
             + $creditcardAmount + $billetAmount + $banktransferAmount + $checkAmount + $pixAmount
+            + $deferredAmount + $sitefPinpadAmount
         );
 
         $this->setTotalAmount (
             $closeAmount + $machineAmount
             + $pagcriptoAmount + $picpayAmount + $openpixAmount
             + $creditcardAmount + $billetAmount + $banktransferAmount + $checkAmount + $pixAmount
+            + $deferredAmount + $sitefPinpadAmount
             + $refundAmount
         );
 

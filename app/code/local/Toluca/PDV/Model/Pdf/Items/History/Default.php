@@ -59,6 +59,8 @@ class Toluca_PDV_Model_Pdf_Items_History_Default
             Mage::helper ('core')->__('Bank Transfer') => $item->getBanktransferAmount (),
             Mage::helper ('core')->__('Check Money') => $item->getCheckAmount (),
             Mage::helper ('core')->__('Pix') => $item->getPixAmount (),
+            Mage::helper ('core')->__('Deferred') => $item->getDeferredAmount (),
+            Mage::helper ('core')->__('SiTef Pinpad') => $item->getSitefPinpadAmount (),
         );
 
         $fields = array_filter ($fields, function ($value) {

@@ -122,6 +122,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
                 'banktransfer_amount' => floatval ($history->getBanktransferAmount ()),
                 'check_amount'        => floatval ($history->getCheckAmount ()),
                 'pix_amount'          => floatval ($history->getPixAmount ()),
+                'deferred_amount'     => floatval ($history->getDeferredAmount ()),
+                'sitef_pinpad_amount' => floatval ($history->getSitefPinpadAmount ()),
                 'subtotal_amount' => floatval ($history->getSubtotalAmount ()),
                 'refund_amount'   => floatval ($history->getRefundAmount ()),
                 'shipping_amount' => floatval ($history->getShippingAmount ()),
@@ -380,6 +382,8 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             ->setBanktransferAmount (0)
             ->setCheckAmount (0)
             ->setPixAmount (0)
+            ->setDeferredAmount (0)
+            ->setSitefPinpadAmount (0)
             ->setSubtotalAmount (0)
             ->setRefundAmount (0)
             ->setShippingAmount (0)
@@ -509,10 +513,14 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
         $checkAmount = floatval ($history->getCheckAmount ());
         $pixAmount = floatval ($history->getPixAmount ());
 
+        $deferredAmount = floatval ($history->getDeferredAmount ());
+        $sitefPinpadAmount = floatval ($history->getSitefPinpadAmount ());
+
         $refundAmount = floatval ($history->getRefundAmount ());
 
         $closeAmount = ((($openAmount + $reinforceAmount) + $bleedAmount) + $moneyAmount) + $changeAmount
             + $openpixAmount + $checkAmount + $pixAmount
+            + $deferredAmount + $sitefPinpadAmount
             + $refundAmount;
 
         if ($amount > $closeAmount && !$this->_allowNegativeFlow)
@@ -592,11 +600,14 @@ class Toluca_PDV_Model_Cashier_Api extends Mage_Api_Model_Resource_Abstract
             $banktransferAmount = floatval ($history->getBanktransferAmount ());
             $checkAmount        = floatval ($history->getCheckAmount ());
             $pixAmount          = floatval ($history->getPixAmount ());
+            $deferredAmount     = floatval ($history->getDeferredAmount ());
+            $sitefPinpadAmount  = floatval ($history->getSitefPinpadAmount ());
             $refundAmount       = floatval ($history->getRefundAmount ());
 
             $orderAmount = $machineAmount
                 + $pagcriptoAmount + $picpayAmount + $openpixAmount
                 + $creditcardAmount + $billetAmount + $banktransferAmount + $checkAmount + $pixAmount
+                + $deferredAmount + $sitefPinpadAmount
                 + $refundAmount
             ;
         }
