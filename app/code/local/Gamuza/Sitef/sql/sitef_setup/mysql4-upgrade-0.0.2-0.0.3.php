@@ -263,14 +263,14 @@ SQLBLOCK;
         ->addColumn ($table, 'card_holder_name', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Card Holder Name',
         ));
     $installer->getConnection ()
         ->addColumn ($table, 'card_last_digits', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Card Last Digits',
         ));
     $installer->getConnection ()
@@ -298,7 +298,7 @@ SQLBLOCK;
         ->addColumn ($table, 'card_name', array(
             'type'     => Varien_Db_Ddl_Table::TYPE_TEXT,
             'length'   => 255,
-            'nullable' => false,
+            'nullable' => true,
             'comment'  => 'Card Name',
         ));
     $installer->getConnection ()

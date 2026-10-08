@@ -92,6 +92,12 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
         'paper_signature_required',
     );
 
+    protected $_bypassAttributeList = array(
+        'card_holder_name',
+        'card_last_digits',
+        'card_name',
+    );
+
     protected $_walletAttributeList = array(
         'qrcode_pix_key',
     );
@@ -190,6 +196,11 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
             }
             else
             {
+                if (array_key_exists ($attribute, $this->_bypassAttributeList))
+                {
+                    continue; // ignore
+                }
+
                 $customMessage = Mage::helper ('sitef')->__('Requested data not specified.') . PHP_EOL
                     . PHP_EOL . Mage::helper ('sitef')->__('Attribute name: %s', $attribute);
 
@@ -271,6 +282,11 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
             }
             else
             {
+                if (array_key_exists ($attribute, $this->_bypassAttributeList))
+                {
+                    continue; // ignore
+                }
+
                 $customMessage = Mage::helper ('sitef')->__('Requested data not specified.') . PHP_EOL
                     . PHP_EOL . Mage::helper ('sitef')->__('Attribute name: %s', $attribute);
 
@@ -302,6 +318,11 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
                 }
                 else
                 {
+                    if (array_key_exists ($attribute, $this->_bypassAttributeList))
+                    {
+                        continue; // ignore
+                    }
+
                     $customMessage = Mage::helper ('sitef')->__('Requested data not specified.') . PHP_EOL
                         . PHP_EOL . Mage::helper ('sitef')->__('Attribute name: %s', $attribute);
 
@@ -407,6 +428,11 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
             }
             else
             {
+                if (array_key_exists ($attribute, $this->_bypassAttributeList))
+                {
+                    continue; // ignore
+                }
+
                 $customMessage = Mage::helper ('sitef')->__('Requested data not specified.') . PHP_EOL
                     . PHP_EOL . Mage::helper ('sitef')->__('Attribute name: %s', $attribute);
 
@@ -437,6 +463,11 @@ class Gamuza_Sitef_Model_Pinpad_Transaction_Api extends Mage_Api_Model_Resource_
                 }
                 else
                 {
+                    if (array_key_exists ($attribute, $this->_bypassAttributeList))
+                    {
+                        continue; // ignore
+                    }
+
                     $customMessage = Mage::helper ('sitef')->__('Requested data not specified.') . PHP_EOL
                         . PHP_EOL . Mage::helper ('sitef')->__('Attribute name: %s', $attribute);
 
