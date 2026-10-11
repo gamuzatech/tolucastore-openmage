@@ -125,6 +125,7 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Temp
     public function getOrderCategories ($cashier, $operator, $history)
     {
         $nameAttribute = Mage::getModel ('eav/entity_attribute')->loadByCode (Mage_Catalog_Model_Category::ENTITY, 'name');
+        $activeAttribute = Mage::getModel ('eav/entity_attribute')->loadByCode (Mage_Catalog_Model_Category::ENTITY, 'is_active');
 
         $collection = $this->getOrderProducts ($cashier, $operator, $history);
 
@@ -141,6 +142,13 @@ class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Temp
                 sprintf ('ccp.category_id = ccev.entity_id and ccev.store_id = 0 and ccev.attribute_id = %s', $nameAttribute->getAttributeId ()),
                 array(
                     'category_name' => 'ccev.value',
+                )
+            )
+            ->join(
+                array ('ccei' => Mage::getSingleton ('core/resource')->getTableName ('catalog_category_entity_' . $activeAttribute->getBackendType ())),
+                sprintf ('ccp.category_id = ccei.entity_id and ccei.store_id = 0 and ccei.value = 1 and ccei.attribute_id = %s', $activeAttribute->getAttributeId ()),
+                array(
+                    'category_active' => 'ccei.value',
                 )
             )
             ->reset (Zend_Db_Select::GROUP)
