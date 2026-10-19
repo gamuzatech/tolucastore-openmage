@@ -207,10 +207,15 @@
                         <name>Visa Electron</name>
                         <order>150</order>
                     </VE>
+                    <VERO>
+                        <code>VERO</code>
+                        <name>VeroCard</name>
+                        <order>160</order>
+                    </VERO>
                     <VR>
                         <code>VR</code>
                         <name>Vale Refeição</name>
-                        <order>160</order>
+                        <order>170</order>
                     </VR>
                     <!-- Blockchain -->
                     <BTC>
