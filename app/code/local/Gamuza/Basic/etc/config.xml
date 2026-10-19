@@ -1099,6 +1099,7 @@
                 <guest_checkout>0</guest_checkout>
                 <guest_selected>0</guest_selected>
                 <register_selected>1</register_selected>
+                <customer_must_be_logged>0</customer_must_be_logged>
             </options>
         </checkout>
         <admin>

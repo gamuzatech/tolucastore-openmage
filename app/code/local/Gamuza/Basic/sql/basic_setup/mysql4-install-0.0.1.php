@@ -121,6 +121,14 @@ $coreConfig->saveConfig ('sales/gift_options/allow_items', '0');
 $coreConfig->saveConfig (Mage_Tax_Model_Config::CONFIG_XML_PATH_DEFAULT_COUNTRY, 'BR');
 
 /**
+ * Checkout
+ */
+$coreConfig->saveConfig (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_GUEST_CHECKOUT,    '0');
+$coreConfig->saveConfig (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_GUEST_SELECTED,    '0');
+$coreConfig->saveConfig (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_REGISTER_SELECTED, '1');
+$coreConfig->saveConfig (Gamuza_Basic_Helper_Data::XML_PATH_CHECKOUT_OPTIONS_CUSTOMER_MUST_BE_LOGGED, '0');
+
+/**
  * Shipping
  */
 $coreConfig->saveConfig (Mage_Shipping_Model_Config::XML_PATH_ORIGIN_COUNTRY_ID, 'BR');
