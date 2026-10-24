@@ -139,6 +139,11 @@ class Gamuza_Basic_Adminhtml_Sales_OrderController extends Mage_Adminhtml_Sales_
         {
             try
             {
+                foreach ($order->getAllItems () as $item)
+                {
+                    $item->setData ('is_printed', 0)->save ();
+                }
+
                 $order->setData('is_printed', 0)->save ();
 
                 $this->_getSession()->addSuccess ($this->__('The order notification has been sent.'));
