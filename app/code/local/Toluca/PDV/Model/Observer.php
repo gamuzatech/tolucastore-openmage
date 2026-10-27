@@ -120,9 +120,9 @@ class Toluca_PDV_Model_Observer
         $qty = $event->getQty ();
         $quote = $event->getQuote ();
 
-        $quoteIsComanda = $quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA);
+        $quoteIsPDV = $quote->getData (Toluca_PDV_Helper_Data::ORDER_ATTRIBUTE_IS_PDV);
 
-        if ($quoteIsComanda)
+        if ($quoteIsPDV)
         {
             /*
             $quote->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
@@ -134,13 +134,13 @@ class Toluca_PDV_Model_Observer
 
             if ($useUniqueId == false)
             {
-                $quoteItemIsPrinted = $item->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
-                $quoteItemUniqueId  = $item->getData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_UNIQUE_ID);
+                $quoteItemIsPrinted = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED);
+                $quoteItemUniqueId  = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_UNIQUE_ID);
 
                 if (strcmp ($quoteItemIsPrinted, '2') != 0 && empty ($quoteItemUniqueId))
                 {
-                    $item->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, '0')
-                        ->setData (Gamuza_Basic_Helper_Data::ORDER_ITEM_ATTRIBUTE_QTY_PRINTED, $qty)
+                    $item->setData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_IS_PRINTED, '0')
+                        ->setData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_QTY_PRINTED, $qty)
                         ->save ()
                     ;
                 }
