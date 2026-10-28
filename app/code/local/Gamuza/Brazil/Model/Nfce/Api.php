@@ -151,6 +151,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
 
         $result = array ();
 
+        $nfceIds = $collection->getAllIds ();
+
+        $responseCollection = Mage::getModel ('brazil/nfce_response')->getCollection ()
+            ->addFieldToFilter ('nfce_id', array ('in' => $nfceIds))
+        ;
+
+        $eventCollection = Mage::getModel ('brazil/nfce_event')->getCollection ()
+            ->addFieldToFilter ('nfce_id', array ('in' => $nfceIds))
+        ;
+
         foreach ($collection as $nfce)
         {
             $data = array (
@@ -227,11 +237,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 'city_name'    => strval ($nfce->getCityName ()),
             );
 
-            $responseCollection = Mage::getModel ('brazil/nfce_response')->getCollection ()
-                ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
-            ;
-
-            foreach ($responseCollection as $response)
+            foreach ($responseCollection->getItemsByColumnValue ('nfce_id', $nfce->getId ()) as $response)
             {
                 $data ['responses'][] = array(
                     'entity_id'     => intval ($response->getId ()),
@@ -253,11 +259,7 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 );
             }
 
-            $eventCollection = Mage::getModel ('brazil/nfce_event')->getCollection ()
-                ->addFieldToFilter ('nfce_id', array ('eq' => $nfce->getId ()))
-            ;
-
-            foreach ($eventCollection as $event)
+            foreach ($eventCollection->getItemsByColumnValue ('nfce_id', $nfce->getId ()) as $event)
             {
                 $data ['events'][] = array(
                     'entity_id'      => intval ($event->getId ()),
@@ -282,6 +284,27 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
                 );
             }
 
+            $result [] = $data;
+        }
+
+        return $result;
+    }
+
+    public function _getOrder ($nfce)
+    {
+        $result = array ();
+
+        $object = new Varien_Object ();
+        $object->addData (array(
+            'increment_id' => $nfce->getIncrementId (),
+            'protect_code' => $nfce->getProtectCode (),
+        ));
+
+        $collection = new Varien_Data_Collection ();
+        $collection->addItem ($object);
+
+        foreach ($collection as $nfce)
+        {
             $order = $this->_initOrder ($nfce->getIncrementId (), $nfce->getProtectCode ());
 
             $brazilNCM = array ();
@@ -1182,6 +1205,9 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfce_not_exists');
         }
 
+        $nfce->setIncrementId ($order->getIncrementId ());
+        $nfce->setProtectCode ($order->getProtectCode ());
+
         return $nfce;
     }
 
@@ -1359,6 +1385,16 @@ class Gamuza_Brazil_Model_Nfce_Api extends Mage_Api_Model_Resource_Abstract
         if (count ($items) > 0)
         {
             $result = reset ($items);
+        }
+
+        if (count ($items) > 0)
+        {
+            $orders = $this->_getOrder ($nfce);
+
+            if (count ($orders) > 0)
+            {
+                $result = array_merge ($result, reset ($orders));
+            }
         }
 
         return $result;
