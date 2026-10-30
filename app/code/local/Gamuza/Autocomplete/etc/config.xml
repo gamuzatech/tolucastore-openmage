@@ -25,6 +25,24 @@
             </autocomplete>
         </models>
     </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Gamuza_Autocomplete>
+                    <files>
+                        <default>Gamuza_Autocomplete.csv</default>
+                    </files>
+                </Gamuza_Autocomplete>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <autocomplete>
+                    <file>gamuza/autocomplete.xml</file>
+                </autocomplete>
+            </updates>
+        </layout>
+    </adminhtml>
     <frontend>
         <routers>
             <autocomplete>

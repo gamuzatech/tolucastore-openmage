@@ -106,6 +106,18 @@
                             </attributes>
                         </children>
                     </catalog>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <basic translate="title" module="basic">
+                                        <title>Gamuza Basic Section</title>
+                                        <sort_order>0</sort_order>
+                                    </basic>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
                 </children>
             </admin>
         </resources>

@@ -165,6 +165,9 @@ class Gamuza_Basic_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_ADMIN_CUSTOMER_GRID_NAME_NOBR = 'admin/customer/grid_name_nobr';
     const XML_PATH_ADMIN_PRODUCT_GRID_NAME_NOBR  = 'admin/product/grid_name_nobr';
 
+    const XML_PATH_BASIC_DRAFT_FONT_GROW = 'basic/draft/font_grow';
+    const XML_PATH_BASIC_DRAFT_WORD_WRAP = 'basic/draft/word_wrap';
+
     const LOG = 'gamuza_basic.log';
 
     public function getLocaleCode ($scope = 'default', $scope_id = 0)

@@ -97,7 +97,13 @@ class Gamuza_Basic_Model_Observer
                         'validate_cellphone' => Mage::getStoreConfigFlag (Gamuza_Basic_Model_Customer_Customer::XML_PATH_VALIDATE_CUSTOMER_CELLPHONE),
                         'possible_cellphone' => Mage::getStoreConfigFlag (Gamuza_Basic_Model_Customer_Customer::XML_PATH_POSSIBLE_CUSTOMER_CELLPHONE),
                     )
-                )
+                ),
+                'basic' => array(
+                    'draft' => array(
+                        'font_grow' => Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_BASIC_DRAFT_FONT_GROW),
+                        'word_wrap' => Mage::getStoreConfigAsInt (Gamuza_Basic_Helper_Data::XML_PATH_BASIC_DRAFT_WORD_WRAP),
+                    ),
+                ),
             ),
         ));
 

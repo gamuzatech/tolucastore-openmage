@@ -269,9 +269,6 @@
             <create_account>
                 <email_prefix>app</email_prefix>
             </create_account>
-            <customer_draft>
-                <word_wrap>44</word_wrap>
-            </customer_draft>
         </customer>
         <payment>
             <cashondelivery>
@@ -289,11 +286,6 @@
                 <group>offline</group>
             </machineondelivery>
         </payment>
-        <sales>
-            <order_draft>
-                <word_wrap>44</word_wrap>
-            </order_draft>
-        </sales>
     </default>
 </config>
 

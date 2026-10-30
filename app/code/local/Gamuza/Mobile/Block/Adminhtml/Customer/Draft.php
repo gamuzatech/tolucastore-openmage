@@ -10,14 +10,14 @@ class Gamuza_Mobile_Block_Adminhtml_Customer_Draft extends Mage_Adminhtml_Block_
     protected $_separator = '-'; // default
 
     private $_fontgrow = 0;  // default
-    private $_wordwrap = 44; // default
+    private $_wordwrap = 48; // default
 
     public function __construct ()
     {
         parent::__construct ();
 
-        $this->_fontgrow = Mage::getStoreConfigFlag ('customer/customer_draft/font_grow');
-        $this->_wordwrap = Mage::getStoreConfigAsInt ('customer/customer_draft/word_wrap');
+        $this->_fontgrow = Mage::getStoreConfigFlag ('basic/draft/font_grow');
+        $this->_wordwrap = Mage::getStoreConfigAsInt ('basic/draft/word_wrap');
     }
 
     public function getFontGrow ()

@@ -883,6 +883,11 @@
         </jobs>
     </crontab>
     <default>
+        <basic>
+            <draft>
+                <word_wrap>48</word_wrap>
+            </draft>
+        </basic>
         <general>
             <country>
                 <default>BR</default>

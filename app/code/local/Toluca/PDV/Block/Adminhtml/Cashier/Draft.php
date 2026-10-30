@@ -7,11 +7,13 @@
 
 class Toluca_PDV_Block_Adminhtml_Cashier_Draft extends Mage_Adminhtml_Block_Template
 {
+    private $_wordwrap = 48; // default
+
     public function __construct ()
     {
         parent::__construct ();
 
-        $this->_wordwrap = intval (Mage::getStoreConfig ('sales/order_draft/word_wrap'));
+        $this->_wordwrap = intval (Mage::getStoreConfig ('basic/draft/word_wrap'));
     }
 
     public function getLineSeparator ($title = null)
