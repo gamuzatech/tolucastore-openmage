@@ -32,6 +32,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const ORDER_ATTRIBUTE_PDV_TABLE_ID    = 'pdv_table_id';
     const ORDER_ATTRIBUTE_PDV_CARD_ID     = 'pdv_card_id';
 
+    const ORDER_ITEM_ATTRIBUTE_CUSTOM_WEIGHT  = 'custom_weight';
     const ORDER_ITEM_ATTRIBUTE_IS_PRINTED = 'is_printed';
     const ORDER_ITEM_ATTRIBUTE_PRINTER_ID = 'printer_id';
     const ORDER_ITEM_ATTRIBUTE_QTY_PRINTED = 'qty_printed';

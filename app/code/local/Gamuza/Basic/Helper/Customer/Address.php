@@ -51,14 +51,14 @@ class Gamuza_Basic_Helper_Customer_Address extends Mage_Customer_Helper_Address
             }
             else
             {
-                $nationalNumber = $phoneNumber->getNationalNumber();
-
                 $numberType = $phoneUtil->getNumberType($phoneNumber);
 
                 if ($numberType != PhoneNumberType::MOBILE)
                 {
                     $result = false;
                 }
+
+                $nationalNumber = $phoneNumber->getNationalNumber();
 
                 if (strlen ($nationalNumber) < self::CELLPHONE_LENGTH_MINIMUM)
                 {

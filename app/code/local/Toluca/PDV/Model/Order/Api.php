@@ -101,6 +101,13 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
 
                 $product = $item->getProduct ();
 
+                $customWeight = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_CUSTOM_WEIGHT);
+
+                if (!empty ($customWeight))
+                {
+                    $product->addCustomOption ('custom_weight', $customWeight);
+                }
+
                 $itemUniqueId = $item->getData (Toluca_PDV_Helper_Data::ORDER_ITEM_ATTRIBUTE_UNIQUE_ID);
 
                 if (!empty ($itemUniqueId))
@@ -157,6 +164,36 @@ class Toluca_PDV_Model_Order_Api extends Mage_Api_Model_Resource_Abstract
 
                 if ($quote->getIsSuperMode ())
                 {
+                    $originalPrice = $item->getOriginalPrice ();
+
+                    if (!empty ($originalPrice))
+                    {
+                        $finalPrice = $item->getPrice ();
+
+                        $quoteItem->setIsSuperMode (true)
+                            ->setOriginalCustomPrice ($finalPrice)
+                            ->setCustomPrice ($finalPrice)
+                            ->setOriginalBasePrice ($originalPrice)
+                            ->save ()
+                        ;
+                    }
+
+                    if (!empty ($customWeight))
+                    {
+                        $option = Mage::getModel ('sales/quote_item_option')
+                            ->setCode ('custom_weight')
+                            ->setValue ($customWeight)
+                            ->setItem ($quoteItem)
+                            ->setProduct ($product)
+                        ;
+
+                        $quoteItem->addOption ($option)
+                            ->setCustomWeight ($customWeight)
+                            ->setIsSuperMode(true)
+                            ->save ()
+                        ;
+                    }
+
                     if (!empty ($itemUniqueId))
                     {
                         $option = Mage::getModel ('sales/quote_item_option')
