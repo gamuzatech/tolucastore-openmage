@@ -72,6 +72,10 @@
                         <title>Logout info about current Magento session</title>
                         <acl>basic/magento/logout</acl>
                     </logout>
+                    <rotate translate="title" module="basic">
+                        <title>Rotate info about current Magento log</title>
+                        <acl>basic/magento/rotate</acl>
+                    </rotate>
                     <session translate="title" module="basic">
                         <title>Generate info about current Magento session</title>
                         <acl>basic/magento/session</acl>
@@ -432,6 +436,9 @@
                         <logout translate="title" module="basic">
                             <title>Logout info about current Magento session</title>
                         </logout>
+                        <rotate translate="title" module="basic">
+                            <title>Rotate info about current Magento log</title>
+                        </rotate>
                         <session translate="title" module="basic">
                             <title>Generate info about current Magento session</title>
                         </session>

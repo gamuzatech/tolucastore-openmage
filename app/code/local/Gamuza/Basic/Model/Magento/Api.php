@@ -5,11 +5,17 @@
  * @author      Eneias Ramos de Melo <eneias@gamuza.com.br>
  */
 
+use Cesargb\Log\Rotation;
+use Cesargb\Log\Exceptions\RotationFailed;
+
 /**
  * Magento API
  */
 class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 {
+    const LOG_DAYS = Gamuza_Basic_Helper_Data::LOG_DAYS;
+    const LOG_SIZE = Gamuza_Basic_Helper_Data::LOG_SIZE;
+
     /**
      * Retrieve information about current Magento installation
      *
@@ -186,6 +192,45 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
         return true;
     }
 
+    public function rotate ()
+    {
+        $result = array ();
+
+        $rotation = new Rotation (array(
+            'compress' => true,
+            'truncate' => true,
+            'files'    => self::LOG_DAYS,
+            'min-size' => self::LOG_SIZE,
+            'then' => function ($filenameTarget, $filenameRotated) {
+                $this->_log ('ROTATE: %s => %s', $filenameRotated, $filenameTarget);
+            },
+            'catch' => function (RotationFailed $exception) {
+                $this->_log ('ROTATE: %s %s', $exception->getFilename (), $exception->getMessage ());
+            },
+            'finally' => function ($message, $filenameTarget) {
+                $this->_log ('ROTATE: %s %s', $filenameTarget, $message);
+            },
+        ));
+
+        $dir = Mage::app ()->getConfig ()->getOptions ()->getLogDir ();
+
+        $dh  = glob ($dir . DS . '*.log');
+
+        foreach ($dh as $file)
+        {
+            $size = filesize ($file);
+
+            if ($size > self::LOG_SIZE)
+            {
+                $this->_log ('ROTATE: %s %s', $file, $size);
+
+                $result [$file] = $rotation->rotate ($file);
+            }
+        }
+
+        return $result;
+    }
+
     public function session ($codes = array())
     {
         $result = null;
@@ -273,7 +318,7 @@ class Gamuza_Basic_Model_Magento_Api extends Mage_Core_Model_Magento_Api
 
             array_shift ($args);
 
-            echo sprintf ($text, implode (',', $args)) . PHP_EOL;
+            echo vsprintf ($text, $args) . PHP_EOL;
         }
     }
 }
