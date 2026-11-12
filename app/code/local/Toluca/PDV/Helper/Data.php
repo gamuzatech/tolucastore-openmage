@@ -91,6 +91,7 @@ class Toluca_PDV_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_PATH_PDV_CASHIER_ALLOW_BROKEN_FLOW = 'pdv/cashier/allow_broken_flow';
 
     const XML_PATH_PDV_CART_USE_UNIQUE_ID = 'pdv/cart/use_unique_id';
+    const XML_PATH_PDV_CART_WAIT_PENDING_ORDERS = 'pdv/cart/wait_pending_orders';
 
     const XML_PATH_PDV_COMANDA_CATCH_PENDING_ORDERS = 'pdv/comanda/catch_pending_orders';
 

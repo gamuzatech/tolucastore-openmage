@@ -57,6 +57,7 @@ class Toluca_PDV_Model_Observer
                     ),
                     'cart' => array(
                         'use_unique_id' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_CART_USE_UNIQUE_ID),
+                        'wait_pending_orders' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_CART_WAIT_PENDING_ORDERS),
                     ),
                     'comanda' => array(
                         'catch_pending_orders' => Mage::getStoreConfigFlag (Toluca_PDV_Helper_Data::XML_PATH_PDV_COMANDA_CATCH_PENDING_ORDERS),
