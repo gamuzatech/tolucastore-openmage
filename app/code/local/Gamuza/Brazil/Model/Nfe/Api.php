@@ -1162,9 +1162,6 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
             $this->_fault ('nfe_not_exists');
         }
 
-        $nfe->setIncrementId ($order->getIncrementId ());
-        $nfe->setProtectCode ($order->getProtectCode ());
-
         return $nfe;
     }
 
@@ -1346,6 +1343,9 @@ class Gamuza_Brazil_Model_Nfe_Api extends Mage_Api_Model_Resource_Abstract
 
         if (count ($items) > 0)
         {
+            $nfe->setIncrementId ($result ['increment_id']);
+            $nfe->setProtectCode ($result ['protect_code']);
+
             $orders = $this->_getOrder ($nfe);
 
             if (count ($orders) > 0)
