@@ -60,6 +60,7 @@ class Gamuza_Mobile_Model_Product_Api extends Mage_Catalog_Model_Api_Resource
         'weight',
         'created_at',
         'updated_at',
+        'expired_at',
     );
 
     protected $_descCodes  = array ('description', 'short_description');

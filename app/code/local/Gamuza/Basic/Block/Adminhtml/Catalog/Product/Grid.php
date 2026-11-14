@@ -33,6 +33,8 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
         $this->getCollection()->addAttributeToSelect ('weight');
 
         $this->getCollection()->addAttributeToSelect ('special_price');
+
+        $this->getCollection()->addAttributeToSelect ('expired_at');
 /*
         if (Mage::helper('catalog')->isModuleEnabled('Mage_CatalogInventory'))
         {
@@ -131,6 +133,12 @@ class Gamuza_Basic_Block_Adminhtml_Catalog_Product_Grid
             'type'     => 'datetime',
             'width'    => '100px',
         ), 'created_at');
+        $this->addColumnAfter ('expired_at', array(
+            'header'   => Mage::helper ('basic')->__('Expired At'),
+            'index'    => 'expired_at',
+            'type'     => 'datetime',
+            'width'    => '100px',
+        ), 'updated_at');
 
         $this->sortColumnsByOrder ();
 

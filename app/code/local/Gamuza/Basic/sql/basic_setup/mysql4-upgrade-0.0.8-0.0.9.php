@@ -37,6 +37,34 @@ $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_A
 ));
 
 /**
+ * Product Expired At
+ */
+$installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_EXPIRED_AT, array(
+    'group'            => Mage::helper ('basic')->__('General'),
+    'label'            => Mage::helper ('basic')->__('Expired At'),
+    'note'             => Mage::helper ('basic')->__('Product Expiration Date'),
+    'global'           => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+    'backend'          => 'eav/entity_attribute_backend_datetime',
+    'type'             => 'datetime',
+    'input'            => 'date',
+    'visible'          => true,
+    'required'         => false,
+    'user_defined'     => false,
+    'searchable'       => true,
+    'filterable'       => true,
+    'comparable'       => true,
+    'visible_on_front' => true,
+    'unique'           => false,
+    'is_configurable'  => false,
+    'sort_order'       => 1000,
+    'visible_in_advanced_search' => true,
+    'filterable_in_search' => true,
+    'used_for_promo_rules' => true,
+    'used_in_product_listing' => true,
+    'used_for_sort_by' => true,
+));
+
+/**
  * Product GTIN
  */
 $installer->addAttribute ('catalog_product', Gamuza_Basic_Helper_Data::PRODUCT_ATTRIBUTE_GTIN, array(
