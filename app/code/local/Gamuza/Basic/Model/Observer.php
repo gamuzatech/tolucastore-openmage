@@ -897,9 +897,11 @@ CONTENT;
         $quoteItem = $event->getQuoteItem ();
         $quote = $quoteItem->getQuote ();
 
+        $quoteIsCatch = Mage::getStoreConfigFlag (Gamuza_Basic_Helper_Data::XML_PATH_BASIC_COMANDA_CATCH_PENDING_ORDERS);
+
         $quoteIsComanda = $quote->getData (Gamuza_Basic_Helper_Data::ORDER_ATTRIBUTE_IS_COMANDA);
 
-        if ($quoteIsComanda)
+        if ($quoteIsComanda && $quoteIsCatch)
         {
             $quote->setData (Gamuza_Mobile_Helper_Data::ORDER_ATTRIBUTE_IS_PRINTED, '0')
                 ->getResource ()

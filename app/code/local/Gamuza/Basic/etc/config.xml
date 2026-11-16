@@ -884,6 +884,9 @@
     </crontab>
     <default>
         <basic>
+            <comanda>
+                <catch_pending_orders>1</catch_pending_orders>
+            </comanda>
             <draft>
                 <word_wrap>48</word_wrap>
             </draft>
