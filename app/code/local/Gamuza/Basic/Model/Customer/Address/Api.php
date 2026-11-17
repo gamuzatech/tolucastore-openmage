@@ -12,6 +12,7 @@ class Gamuza_Basic_Model_Customer_Address_Api
     extends Mage_Customer_Model_Address_Api
 {
     protected $_mapAttributes = array (
+        'customer_address_id' => 'entity_id',
         'entity_id' => 'entity_id'
     );
 
