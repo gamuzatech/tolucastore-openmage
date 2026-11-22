@@ -291,5 +291,23 @@ class Gamuza_Brazil_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $value;
     }
+
+    public function getTotals (Mage_Adminhtml_Block_Widget_Grid $grid)
+    {
+        $fieldsTotals = $grid->_fieldsTotals;
+
+        foreach ($grid->getCollection () as $item)
+        {
+            foreach ($fieldsTotals as $id => $value)
+            {
+                $fieldsTotals [$id] += floatval ($item->getData ($id));
+            }
+        }
+
+        $object = new Varien_Object ();
+        $object->addData ($fieldsTotals);
+
+        return $object;
+    }
 }
 

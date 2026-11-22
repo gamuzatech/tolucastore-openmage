@@ -7,6 +7,14 @@
 
 class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
+	protected $_countTotals = true;
+
+	protected $_isExport = true;
+
+	public $_fieldsTotals = array(
+		'base_grand_total' => 0,
+	);
+
 	public function __construct ()
 	{
 		parent::__construct ();
@@ -57,6 +65,20 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		    'header'  => Mage::helper ('brazil')->__('Order Inc. ID'),
 		    'align'   => 'right',
 		    'index'   => 'increment_id',
+		));
+		$this->addColumn ('base_grand_total', array(
+			'header'   => Mage::helper ('sales')->__('G.T. (Base)'),
+			'index'    => 'base_grand_total',
+			'type'     => 'currency',
+			'currency' => 'base_currency_code',
+			'renderer' => 'brazil/adminhtml_widget_grid_column_renderer_total',
+		));
+		$this->addColumn ('purchased_at', array(
+			'header' => Mage::helper ('brazil')->__('Purchased At'),
+			'index'  => 'purchased_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+            'filter_index' => 'order.created_at',
 		));
 		$this->addColumn ('batch_id', array(
 		    'header'  => Mage::helper ('brazil')->__('Batch ID'),
@@ -309,6 +331,7 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 			'index'  => 'is_printed',
 			'type'   => 'options',
 			'options' => Mage::getModel ('adminhtml/system_config_source_yesno')->toArray (),
+			'filter_index' => 'main_table.is_printed',
 		));
 		$this->addColumn ('created_at', array(
 			'header' => Mage::helper ('brazil')->__('Created At'),
@@ -327,6 +350,24 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 		$this->addColumn ('signed_at', array(
 			'header' => Mage::helper ('brazil')->__('Signed At'),
 			'index'  => 'signed_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+		));
+		$this->addColumn ('authorized_at', array(
+			'header' => Mage::helper ('brazil')->__('Authorized At'),
+			'index'  => 'authorized_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+		));
+		$this->addColumn ('corrected_at', array(
+			'header' => Mage::helper ('brazil')->__('Corrected At'),
+			'index'  => 'corrected_at',
+            'type'   => 'datetime',
+            'width'  => '100px',
+		));
+		$this->addColumn ('canceled_at', array(
+			'header' => Mage::helper ('brazil')->__('Canceled At'),
+			'index'  => 'canceled_at',
             'type'   => 'datetime',
             'width'  => '100px',
 		));
@@ -395,6 +436,11 @@ class Gamuza_Brazil_Block_Adminhtml_Nfce_Grid extends Mage_Adminhtml_Block_Widge
 	public function getRowUrl ($row)
 	{
         // nothing
+	}
+
+	public function getTotals ()
+	{
+		return $this->helper ('brazil')->getTotals ($this);
 	}
 }
 
